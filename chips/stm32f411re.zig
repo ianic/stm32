@@ -7,7 +7,6 @@ pub const regs = rzig.registers;
 const hal = @import("../hal.zig");
 pub const clk = hal.clock.Chip(chip_frequencies); // clock hal initialized with chip frequencies
 
-//pub const irq = @import("irq.zig");
 pub const adc = @import("stm32f411re/adc.zig");
 pub const gpio = @import("stm32f411re/gpio.zig").gpio;
 

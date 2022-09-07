@@ -24,12 +24,12 @@ pub fn build(b: *std.build.Builder) !void {
     };
 
     const examples = [_]Example{
-        .{ .name = "blink", .source = "examples/blink/main.zig" },
-        // .{ .name = "uart-pooling", .source = "uart/pooling/src/main.zig" },
-        // .{ .name = "uart-interrupt", .source = "uart/interrupt/src/main.zig" },
-        // .{ .name = "uart-dma", .source = "uart/dma_buffered/src/main.zig" },
-        // .{ .name = "adc", .source = "adc/src/main.zig" },
-        // .{ .name = "pwm", .source = "pwm/main.zig" },
+        .{ .name = "blink", .source = "examples/blink.zig" },
+        .{ .name = "uart-pooling", .source = "examples/uart/pooling.zig" },
+        .{ .name = "uart-interrupt", .source = "examples/uart/interrupt/main.zig" },
+        .{ .name = "uart-dma", .source = "examples/uart/dma/main.zig" },
+        .{ .name = "adc", .source = "examples/adc.zig" },
+        .{ .name = "pwm", .source = "examples/pwm.zig" },
     };
 
     for (examples) |e| {
@@ -42,6 +42,7 @@ pub fn build(b: *std.build.Builder) !void {
                 .hal_package_path = .{ .path = root_path ++ "hal.zig" },
             },
         );
+        //elf.inner.addPackagePath("hal", "hal.zig");
         elf.inner.setBuildMode(.ReleaseSmall);
         const bin = b.addInstallRaw(
             elf.inner,
