@@ -1,4 +1,4 @@
-pub const hal = @import("../../hal.zig").gpio;
+const hal = @import("microzig").hal.gpio;
 
 pub const gpio = struct {
     pub const pa0 = struct {
