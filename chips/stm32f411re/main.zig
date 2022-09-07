@@ -4,12 +4,14 @@ const rzig = @import("registers.zig");
 pub usingnamespace rzig; // re-export VectorTable and InterruptVector for microzig
 pub const regs = rzig.registers;
 
-pub const clk = @import("clock.zig").Chip(chip_frequencies); // clock hal initialized with chip frequencies
+pub const hal = @import("../../hal/hal.zig");
+
+pub const clk = hal.clock.Chip(chip_frequencies); // clock hal initialized with chip frequencies
 
 //pub const irq = @import("irq.zig");
 pub const adc = @import("adc.zig");
 
-pub const gpio = @import("stm32f411re_gpio.zig").gpio;
+pub const gpio = @import("gpio.zig").gpio;
 
 pub const Config = struct {
     clock: clk.Config = hsi_100,
@@ -234,7 +236,6 @@ pub const Task = struct {
 // -------------- event loop
 
 // -------------- irq
-pub const hal = @import("hal.zig");
 
 pub const Irq = enum(u8) {
     // zig fmt: off
@@ -310,11 +311,9 @@ pub const Irq = enum(u8) {
 // -------------- irq
 
 // -------------- uart
-const uart_hal = @import("uart.zig");
-
 pub const uart = struct {
-    pub fn Uart1(comptime config: uart_hal.Config) type {
-        return uart_hal.UartX(.{
+    pub fn Uart1(comptime config: hal.uart.Config) type {
+        return hal.uart.UartX(.{
             .name = "USART1",
             .rcc = "APB2",
             .irq = Irq.usart1,
@@ -334,8 +333,8 @@ pub const uart = struct {
         }, config);
     }
 
-    pub fn Uart2(comptime config: uart_hal.Config) type {
-        return uart_hal.UartX(.{
+    pub fn Uart2(comptime config: hal.uart.Config) type {
+        return hal.uart.UartX(.{
             .name = "USART2",
             .rcc = "APB1",
             .irq = Irq.usart2,
@@ -355,8 +354,8 @@ pub const uart = struct {
         }, config);
     }
 
-    pub fn Uart6(comptime config: uart_hal.Config) type {
-        return uart_hal.UartX(.{
+    pub fn Uart6(comptime config: hal.uart.Config) type {
+        return hal.uart.UartX(.{
             .name = "USART6",
             .rcc = "APB2",
             .irq = Irq.usart6,
