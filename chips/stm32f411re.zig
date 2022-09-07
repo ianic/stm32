@@ -1,17 +1,15 @@
 const std = @import("std");
 
-const rzig = @import("registers.zig");
+const rzig = @import("stm32f411re/registers.zig");
 pub usingnamespace rzig; // re-export VectorTable and InterruptVector for microzig
 pub const regs = rzig.registers;
 
-pub const hal = @import("../../hal.zig");
-
+const hal = @import("../hal.zig");
 pub const clk = hal.clock.Chip(chip_frequencies); // clock hal initialized with chip frequencies
 
 //pub const irq = @import("irq.zig");
-pub const adc = @import("adc.zig");
-
-pub const gpio = @import("gpio.zig").gpio;
+pub const adc = @import("stm32f411re/adc.zig");
+pub const gpio = @import("stm32f411re/gpio.zig").gpio;
 
 pub const Config = struct {
     clock: clk.Config = hsi_100,

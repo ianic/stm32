@@ -3,9 +3,9 @@ const micro = @import("microzig");
 const chip = micro.chip;
 const regs = chip.regs;
 
-pub const clock = @import("clock.zig");
-pub const gpio = @import("gpio.zig");
-pub const uart = @import("uart.zig");
+// pub const clock = @import("clock.zig");
+// pub const gpio = @import("gpio.zig");
+// pub const uart = @import("uart.zig");
 
 pub const irq = struct {
     // 0...31  => regs.NVIC.ISER0.modify(.{ .SETENA = bit }),

@@ -1,8 +1,9 @@
 const std = @import("std");
 const micro = @import("microzig/src/main.zig");
-const hal = @import("hal/hal.zig");
-const chips = @import("chips/chips.zig");
-const boards = @import("boards/boards.zig");
+
+const hal = @import("hal.zig");
+const chips = @import("chips.zig");
+const boards = @import("boards.zig");
 
 fn root() []const u8 {
     return std.fs.path.dirname(@src().file) orelse unreachable;
@@ -38,7 +39,7 @@ pub fn build(b: *std.build.Builder) !void {
             e.source,
             backing,
             .{
-                .hal_package_path = .{ .path = root_path ++ "hal/hal.zig" },
+                .hal_package_path = .{ .path = root_path ++ "hal.zig" },
             },
         );
         elf.inner.setBuildMode(.ReleaseSmall);

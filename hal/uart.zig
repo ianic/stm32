@@ -1,6 +1,6 @@
 const std = @import("std");
 const micro = @import("microzig");
-const chip = micro.chip;
+const chip = micro.chip; // TODO: rething chip.Irq dependency
 const regs = chip.regs;
 
 pub const Config = struct {
