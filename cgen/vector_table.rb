@@ -2,7 +2,8 @@
 
 require 'erb'
 require 'json'
-require 'nokogiri'
+#require 'nokogiri'
+require 'csv'
 
 if ARGV[0].nil?
 	print "Usage: vector_table.rb [chip-name]\n"
@@ -16,15 +17,18 @@ def read_data(chip)
 	data = JSON.parse(file, object_class: OpenStruct)
 	interrupts = data.cores[0].interrupts
 
-    filename = "data/STM32F#{chip[0..2].upcase}.svd"
-    doc = File.open(filename) { |f| Nokogiri::XML(f) }
-    descriptions = {}
-    for i in doc.xpath("//interrupt") do
-        name = i.xpath("name").text
-        desc = i.xpath("description").text.delete("\n").squeeze(" ")
-        val = i.xpath("value").text.to_i
-        descriptions[val] = {"desc" => desc, "name" => name}
-    end
+    # filename = "data/STM32F#{chip[0..2].upcase}.svd"
+    # doc = File.open(filename) { |f| Nokogiri::XML(f) }
+    # descriptions = {}
+    # for i in doc.xpath("//interrupt") do
+    #     name = i.xpath("name").text
+    #     desc = i.xpath("description").text.delete("\n").squeeze(" ")
+    #     val = i.xpath("value").text.to_i
+    #     descriptions[val] = {"desc" => desc, "name" => name}
+    # end
+
+    vt = CSV.read("data/vector_table.csv")
+    descriptions = vt.to_h{ |row| [row[0].to_i, row[1]] }
 
 	return interrupts, descriptions
 end
@@ -43,7 +47,7 @@ for i in interrupts do
   spec = OpenStruct.new
   spec.name = i.name
   spec.number = i.number
-  spec.desc = descriptions[i.number] ? descriptions[i.number]["desc"] : ""
+  spec.desc = descriptions[i.number] || ""
   data << spec
   j = i.number+1
 end
@@ -98,22 +102,3 @@ const unhandled = InterruptVector{
 end
 
 generate data
-
-
-# #pp doc.xpath("//peripherals/peripheral")[0].name
-
-# pp doc.cpu.name.content
-
-
-# doc = Nokogiri::Slop <<-EOXML
-# <employees>
-#   <employee status="active">
-#     <fullname>Dean Martin</fullname>
-#   </employee>
-#   <employee status="inactive">
-#     <fullname>Jerry Lewis</fullname>
-#   </employee>
-# </employees>
-# EOXML
-
-# pp doc.employees.employee.last.fullname.content
