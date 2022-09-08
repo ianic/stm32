@@ -97,7 +97,7 @@ const unhandled = InterruptVector{
     }.tmp,
 };
 
-pub const hal = @import("hal.zig");
+const hal = @import("microzig").hal;
 
 pub const Irq = enum(u8) {
     // zig fmt: off
