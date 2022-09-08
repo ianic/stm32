@@ -97,6 +97,26 @@ const unhandled = InterruptVector{
     }.tmp,
 };
 
+pub const hal = @import("hal.zig");
+
+pub const Irq = enum(u8) {
+    // zig fmt: off
+    <%- for i in data -%>
+    <%- next if i.padding -%>
+    <%= i.name.downcase.ljust(20) %> = <%= i.number %>, // <%= i.desc %>
+    <%- end -%>
+    // zig fmt: on
+
+    pub fn enable(self: Irq) void {
+        hal.irq.enable(@enumToInt(self));
+    }
+    pub fn disable(self: Irq) void {
+        hal.irq.disable(@enumToInt(self));
+    }
+    pub fn setPriority(self: Irq, pri: u4) void {
+        hal.irq.setPriority(@enumToInt(self), pri);
+    }
+};
   EOF
   puts ERB.new(tmpl, trim_mode: '-').result(binding)
 end

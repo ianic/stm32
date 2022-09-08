@@ -1,0 +1,57 @@
+0,Window WatchDog Interrupt
+1,PVD through EXTI Line detection Interrupt
+2,Tamper and TimeStamp interrupts through the EXTI line
+3,RTC Wakeup interrupt through the EXTI line
+4,FLASH global Interrupt
+5,RCC global Interrupt
+6,EXTI Line0 Interrupt
+7,EXTI Line1 Interrupt
+8,EXTI Line2 Interrupt
+9,EXTI Line3 Interrupt
+10,EXTI Line4 Interrupt
+11,DMA1 Stream 0 global Interrupt
+12,DMA1 Stream 1 global Interrupt
+13,DMA1 Stream 2 global Interrupt
+14,DMA1 Stream 3 global Interrupt
+15,DMA1 Stream 4 global Interrupt
+16,DMA1 Stream 5 global Interrupt
+17,DMA1 Stream 6 global Interrupt
+18,ADC1 ADC2 and ADC3 global Interrupts
+23,External Line[9:5] Interrupts
+24,TIM1 Break interrupt and TIM9 global interrupt
+25,TIM1 Update Interrupt and TIM10 global interrupt
+26,TIM1 Trigger and Commutation Interrupt and TIM11 global interrupt
+27,TIM1 Capture Compare Interrupt
+28,TIM2 global Interrupt
+29,TIM3 global Interrupt
+30,TIM4 global Interrupt
+31,I2C1 Event Interrupt
+32,I2C1 Error Interrupt
+33,I2C2 Event Interrupt
+34,I2C2 Error Interrupt
+35,SPI1 global Interrupt
+36,SPI2 global Interrupt
+37,USART1 global Interrupt
+38,USART2 global Interrupt
+40,External Line[15:10] Interrupts
+41,RTC Alarm (A and B) through EXTI Line Interrupt
+42,USB OTG FS Wakeup through EXTI line interrupt
+47,DMA1 Stream7 Interrupt
+49,SDIO global Interrupt
+50,TIM5 global Interrupt
+51,SPI3 global Interrupt
+56,DMA2 Stream 0 global Interrupt
+57,DMA2 Stream 1 global Interrupt
+58,DMA2 Stream 2 global Interrupt
+59,DMA2 Stream 3 global Interrupt
+60,DMA2 Stream 4 global Interrupt
+67,USB OTG FS global Interrupt
+68,DMA2 Stream 5 global interrupt
+69,DMA2 Stream 6 global interrupt
+70,DMA2 Stream 7 global interrupt
+71,USART6 global interrupt
+72,I2C3 event interrupt
+73,I2C3 error interrupt
+81,FPU global interrupt
+84,SPI4 global Interrupt
+85,SPI5 global Interrupt

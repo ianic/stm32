@@ -1,9 +1,11 @@
 const std = @import("std");
 const hal = @import("microzig").hal;
 
-const rzig = @import("stm32f411re/registers.zig");
-pub usingnamespace rzig; // re-export VectorTable and InterruptVector for microzig
-pub const regs = rzig.registers;
+const vector_table = @import("stm32f411re/vector_table.zig");
+pub usingnamespace vector_table; // re-export VectorTable and InterruptVector for microzig
+
+pub const regs = @import("stm32f411re/registers.zig").registers;
+pub const regsisters = regs;
 
 pub const clk = hal.clock.Chip(chip_frequencies); // clock hal initialized with chip frequencies
 pub const adc = @import("stm32f411re/adc.zig");
