@@ -184,10 +184,10 @@ pub fn Chip(comptime chip_frequencies: type) type {
         pub fn initSysTick(comptime ahb_freq: u32, comptime ms: u16) void {
             const reload: u24 = @intCast(u24, ahb_freq / 8) / 1000 * ms - 1;
             //const reload: u24 = @intCast(u24, ahb_freq / 1000) * ms - 1;  // for clocksource = 1
-            regs.SCS.SysTick.LOAD.modify(.{ .RELOAD = reload }); // set counter
+            regs.STK.LOAD.modify(.{ .RELOAD = reload }); // set counter
             regs.SCB.SHPR3.modify(.{ .PRI_15 = 0xf0 }); // SysTick IRQ priority
-            regs.SCS.SysTick.VAL.modify(.{ .CURRENT = 0 }); // start from 0
-            regs.SCS.SysTick.CTRL.modify(.{
+            regs.STK.VAL.modify(.{ .CURRENT = 0 }); // start from 0
+            regs.STK.CTRL.modify(.{
                 .ENABLE = 1,
                 .CLKSOURCE = 0, // 0: AHB/8, 1: AHB (processor clock)
                 .TICKINT = 1, // 1: Counting down to zero to asserts the SysTick exception request
