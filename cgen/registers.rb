@@ -75,36 +75,39 @@ def add_reserved_padding(r)
   bit_offset = 0
   for f in r.fields do
     if f.bit_offset != bit_offset
-      (bit_offset..(f.bit_offset-1)).each_with_index do |b, i|
-        fields << OpenStruct.new({
-                                 "name" => "reserved#{reserved}",
-                                 "bit_offset" => b,
-                                 "bit_width" => 1,
-                               })
-        reserved += 1
-      end
-      # fields << OpenStruct.new({
-      #                            "name" => "reserved_#{bit_offset}_#{f.bit_offset-1}",
-      #                            "bit_offset" => bit_offset,
-      #                            "bit_width" => f.bit_offset - bit_offset,
+      # bit by bit version
+      # (bit_offset..(f.bit_offset-1)).each_with_index do |b, i|
+      #   fields << OpenStruct.new({
+      #                            "name" => "reserved#{reserved}",
+      #                            "bit_offset" => b,
+      #                            "bit_width" => 1,
       #                          })
+      #   reserved += 1
+      # end
+      # compact version
+      fields << OpenStruct.new({
+                                 "name" => "reserved_#{bit_offset}_#{f.bit_offset-1}",
+                                 "bit_offset" => bit_offset,
+                                 "bit_width" => f.bit_offset - bit_offset,
+                               })
     end
     fields << f
     bit_offset = f.bit_offset + f.bit_width
   end
   if bit_offset < r.size
-    (bit_offset..(r.size-1)).each_with_index do |b, i|
-      fields << OpenStruct.new({
-                                 "name" => "padding#{i}",
-                                 "bit_offset" => b,
-                                 "bit_width" => 1,
-                               })
-    end
-    # fields << OpenStruct.new({
-    #                              "name" => "padding_#{bit_offset}_#{r.size-1}",
-    #                              "bit_offset" => bit_offset,
-    #                              "bit_width" => r.size - bit_offset,
+    # bit by bit version
+    # (bit_offset..(r.size-1)).each_with_index do |b, i|
+    #   fields << OpenStruct.new({
+    #                              "name" => "padding#{i}",
+    #                              "bit_offset" => b,
+    #                              "bit_width" => 1,
     #                            })
+    # end
+    fields << OpenStruct.new({
+                                 "name" => "padding_#{bit_offset}_#{r.size-1}",
+                                 "bit_offset" => bit_offset,
+                                 "bit_width" => r.size - bit_offset,
+                               })
   end
   r.fields = fields
 end

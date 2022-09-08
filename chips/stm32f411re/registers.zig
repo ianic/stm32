@@ -19,8 +19,7 @@ pub const registers = struct {
             STRT1: u1,
             /// Overrun flag of ADC 1
             OVR1: u1,
-            reserved0: u1,
-            reserved1: u1,
+            reserved_6_7: u2,
             /// Analog watchdog flag of ADC 2
             AWD2: u1,
             /// End of conversion of ADC 2
@@ -33,8 +32,7 @@ pub const registers = struct {
             STRT2: u1,
             /// Overrun flag of ADC 2
             OVR2: u1,
-            reserved2: u1,
-            reserved3: u1,
+            reserved_14_15: u2,
             /// Analog watchdog flag of ADC 3
             AWD3: u1,
             /// End of conversion of ADC 3
@@ -47,54 +45,28 @@ pub const registers = struct {
             STRT3: u1,
             /// Overrun flag of ADC3
             OVR3: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
+            padding_22_31: u10,
         }), base_address + 0x0);
 
         /// address: 0x40012304
         /// ADC common control register
         pub const CCR = @intToPtr(*volatile Mmio(32, packed struct {
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
-            reserved6: u1,
-            reserved7: u1,
+            reserved_0_7: u8,
             /// Delay between 2 sampling phases
             DELAY: u4,
-            reserved8: u1,
+            reserved_12_12: u1,
             /// DMA disable selection for multi-ADC mode
             DDS: u1,
             /// Direct memory access mode for multi ADC mode
             DMA: u2,
             /// ADC prescaler
             ADCPRE: u2,
-            reserved9: u1,
-            reserved10: u1,
-            reserved11: u1,
-            reserved12: u1,
+            reserved_18_21: u4,
             /// VBAT enable
             VBATE: u1,
             /// Temperature sensor and VREFINT enable
             TSVREFE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
+            padding_24_31: u8,
         }), base_address + 0x4);
     };
 
@@ -117,32 +89,7 @@ pub const registers = struct {
             STRT: u1,
             /// Overrun
             OVR: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
-            padding24: u1,
-            padding25: u1,
+            padding_6_31: u26,
         }), base_address + 0x0);
 
         /// address: 0x40012004
@@ -168,12 +115,7 @@ pub const registers = struct {
             JDISCEN: u1,
             /// Discontinuous mode channel count
             DISCNUM: u3,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
+            reserved_16_21: u6,
             /// Analog watchdog enable on injected channels
             JAWDEN: u1,
             /// Analog watchdog enable on regular channels
@@ -182,11 +124,7 @@ pub const registers = struct {
             RES: u2,
             /// Overrun interrupt enable
             OVRIE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
+            padding_27_31: u5,
         }), base_address + 0x4);
 
         /// address: 0x40012008
@@ -196,12 +134,7 @@ pub const registers = struct {
             ADON: u1,
             /// Continuous conversion
             CONT: u1,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
+            reserved_2_7: u6,
             /// Direct memory access mode (for single ADC mode)
             DMA: u1,
             /// DMA disable selection (for single ADC mode)
@@ -210,24 +143,21 @@ pub const registers = struct {
             EOCS: u1,
             /// Data alignment
             ALIGN: u1,
-            reserved6: u1,
-            reserved7: u1,
-            reserved8: u1,
-            reserved9: u1,
+            reserved_12_15: u4,
             /// External event select for injected group
             JEXTSEL: u4,
             /// External trigger enable for injected channels
             JEXTEN: u2,
             /// Start conversion of injected channels
             JSWSTART: u1,
-            reserved10: u1,
+            reserved_23_23: u1,
             /// External event select for regular group
             EXTSEL: u4,
             /// External trigger enable for regular channels
             EXTEN: u2,
             /// Start conversion of regular channels
             SWSTART: u1,
-            padding0: u1,
+            padding_31_31: u1,
         }), base_address + 0x8);
 
         /// address: 0x4001200c
@@ -266,26 +196,7 @@ pub const registers = struct {
         pub const JOFR1 = @intToPtr(*volatile Mmio(32, packed struct {
             /// Data offset for injected channel x
             JOFFSET1: u12,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
+            padding_12_31: u20,
         }), base_address + 0x14);
 
         /// address: 0x40012018
@@ -293,26 +204,7 @@ pub const registers = struct {
         pub const JOFR2 = @intToPtr(*volatile Mmio(32, packed struct {
             /// Data offset for injected channel x
             JOFFSET2: u12,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
+            padding_12_31: u20,
         }), base_address + 0x18);
 
         /// address: 0x4001201c
@@ -320,26 +212,7 @@ pub const registers = struct {
         pub const JOFR3 = @intToPtr(*volatile Mmio(32, packed struct {
             /// Data offset for injected channel x
             JOFFSET3: u12,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
+            padding_12_31: u20,
         }), base_address + 0x1c);
 
         /// address: 0x40012020
@@ -347,26 +220,7 @@ pub const registers = struct {
         pub const JOFR4 = @intToPtr(*volatile Mmio(32, packed struct {
             /// Data offset for injected channel x
             JOFFSET4: u12,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
+            padding_12_31: u20,
         }), base_address + 0x20);
 
         /// address: 0x40012024
@@ -374,26 +228,7 @@ pub const registers = struct {
         pub const HTR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Analog watchdog higher threshold
             HT: u12,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
+            padding_12_31: u20,
         }), base_address + 0x24);
 
         /// address: 0x40012028
@@ -401,26 +236,7 @@ pub const registers = struct {
         pub const LTR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Analog watchdog lower threshold
             LT: u12,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
+            padding_12_31: u20,
         }), base_address + 0x28);
 
         /// address: 0x4001202c
@@ -436,14 +252,7 @@ pub const registers = struct {
             SQ16: u5,
             /// Regular channel sequence length
             L: u4,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
+            padding_24_31: u8,
         }), base_address + 0x2c);
 
         /// address: 0x40012030
@@ -461,8 +270,7 @@ pub const registers = struct {
             SQ11: u5,
             /// 12th conversion in regular sequence
             SQ12: u5,
-            padding0: u1,
-            padding1: u1,
+            padding_30_31: u2,
         }), base_address + 0x30);
 
         /// address: 0x40012034
@@ -480,8 +288,7 @@ pub const registers = struct {
             SQ5: u5,
             /// 6th conversion in regular sequence
             SQ6: u5,
-            padding0: u1,
-            padding1: u1,
+            padding_30_31: u2,
         }), base_address + 0x34);
 
         /// address: 0x40012038
@@ -497,16 +304,7 @@ pub const registers = struct {
             JSQ4: u5,
             /// Injected sequence length
             JL: u2,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
+            padding_22_31: u10,
         }), base_address + 0x38);
 
         /// address: 0x4001203c
@@ -514,22 +312,7 @@ pub const registers = struct {
         pub const JDR1 = @intToPtr(*volatile Mmio(32, packed struct {
             /// Injected data
             JDATA: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x3c);
 
         /// address: 0x40012040
@@ -537,22 +320,7 @@ pub const registers = struct {
         pub const JDR2 = @intToPtr(*volatile Mmio(32, packed struct {
             /// Injected data
             JDATA: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x40);
 
         /// address: 0x40012044
@@ -560,22 +328,7 @@ pub const registers = struct {
         pub const JDR3 = @intToPtr(*volatile Mmio(32, packed struct {
             /// Injected data
             JDATA: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x44);
 
         /// address: 0x40012048
@@ -583,22 +336,7 @@ pub const registers = struct {
         pub const JDR4 = @intToPtr(*volatile Mmio(32, packed struct {
             /// Injected data
             JDATA: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x48);
 
         /// address: 0x4001204c
@@ -606,22 +344,7 @@ pub const registers = struct {
         pub const DR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Regular data
             DATA: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x4c);
     };
 
@@ -651,10 +374,7 @@ pub const registers = struct {
         pub const DBGMCU_IDCODE = @intToPtr(*volatile Mmio(32, packed struct {
             /// DEV_ID
             DEV_ID: u12,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
+            reserved_12_15: u4,
             /// REV_ID
             REV_ID: u16,
         }), base_address + 0x0);
@@ -668,36 +388,12 @@ pub const registers = struct {
             DBG_STOP: u1,
             /// DBG_STANDBY
             DBG_STANDBY: u1,
-            reserved0: u1,
-            reserved1: u1,
+            reserved_3_4: u2,
             /// TRACE_IOEN
             TRACE_IOEN: u1,
             /// TRACE_MODE
             TRACE_MODE: u2,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
+            padding_8_31: u24,
         }), base_address + 0x4);
 
         /// address: 0xe0042008
@@ -711,40 +407,21 @@ pub const registers = struct {
             DBG_TIM4_STOP: u1,
             /// DBG_TIM5_STOP
             DBG_TIM5_STOP: u1,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
+            reserved_4_9: u6,
             /// RTC stopped when Core is halted
             DBG_RTC_Stop: u1,
             /// DBG_WWDG_STOP
             DBG_WWDG_STOP: u1,
             /// DBG_IWDEG_STOP
             DBG_IWDEG_STOP: u1,
-            reserved6: u1,
-            reserved7: u1,
-            reserved8: u1,
-            reserved9: u1,
-            reserved10: u1,
-            reserved11: u1,
-            reserved12: u1,
-            reserved13: u1,
+            reserved_13_20: u8,
             /// DBG_J2C1_SMBUS_TIMEOUT
             DBG_I2C1_SMBUS_TIMEOUT: u1,
             /// DBG_J2C2_SMBUS_TIMEOUT
             DBG_I2C2_SMBUS_TIMEOUT: u1,
             /// DBG_J2C3SMBUS_TIMEOUT
             DBG_I2C3SMBUS_TIMEOUT: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
+            padding_24_31: u8,
         }), base_address + 0x8);
 
         /// address: 0xe004200c
@@ -752,40 +429,14 @@ pub const registers = struct {
         pub const DBGMCU_APB2_FZ = @intToPtr(*volatile Mmio(32, packed struct {
             /// TIM1 counter stopped when core is halted
             DBG_TIM1_STOP: u1,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
-            reserved6: u1,
-            reserved7: u1,
-            reserved8: u1,
-            reserved9: u1,
-            reserved10: u1,
-            reserved11: u1,
-            reserved12: u1,
-            reserved13: u1,
-            reserved14: u1,
+            reserved_1_15: u15,
             /// TIM9 counter stopped when core is halted
             DBG_TIM9_STOP: u1,
             /// TIM10 counter stopped when core is halted
             DBG_TIM10_STOP: u1,
             /// TIM11 counter stopped when core is halted
             DBG_TIM11_STOP: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
+            padding_19_31: u13,
         }), base_address + 0xc);
     };
 
@@ -842,15 +493,7 @@ pub const registers = struct {
             MR21: u1,
             /// Interrupt Mask on line 22
             MR22: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
+            padding_23_31: u9,
         }), base_address + 0x0);
 
         /// address: 0x40013c04
@@ -902,15 +545,7 @@ pub const registers = struct {
             MR21: u1,
             /// Event Mask on line 22
             MR22: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
+            padding_23_31: u9,
         }), base_address + 0x4);
 
         /// address: 0x40013c08
@@ -962,15 +597,7 @@ pub const registers = struct {
             TR21: u1,
             /// Rising trigger event configuration of line 22
             TR22: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
+            padding_23_31: u9,
         }), base_address + 0x8);
 
         /// address: 0x40013c0c
@@ -1022,15 +649,7 @@ pub const registers = struct {
             TR21: u1,
             /// Falling trigger event configuration of line 22
             TR22: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
+            padding_23_31: u9,
         }), base_address + 0xc);
 
         /// address: 0x40013c10
@@ -1082,15 +701,7 @@ pub const registers = struct {
             SWIER21: u1,
             /// Software Interrupt on line 22
             SWIER22: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
+            padding_23_31: u9,
         }), base_address + 0x10);
 
         /// address: 0x40013c14
@@ -1142,15 +753,7 @@ pub const registers = struct {
             PR21: u1,
             /// Pending bit 22
             PR22: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
+            padding_23_31: u9,
         }), base_address + 0x14);
     };
 
@@ -1163,11 +766,7 @@ pub const registers = struct {
         pub const ACR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Latency
             LATENCY: u3,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
+            reserved_3_7: u5,
             /// Prefetch enable
             PRFTEN: u1,
             /// Instruction cache enable
@@ -1178,25 +777,7 @@ pub const registers = struct {
             ICRST: u1,
             /// Data cache reset
             DCRST: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
+            padding_13_31: u19,
         }), base_address + 0x0);
 
         /// address: 0x40023c04
@@ -1220,8 +801,7 @@ pub const registers = struct {
             EOP: u1,
             /// Operation error
             OPERR: u1,
-            reserved0: u1,
-            reserved1: u1,
+            reserved_2_3: u2,
             /// Write protection error
             WRPERR: u1,
             /// Programming alignment error
@@ -1230,31 +810,10 @@ pub const registers = struct {
             PGPERR: u1,
             /// Programming sequence error
             PGSERR: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
-            reserved6: u1,
-            reserved7: u1,
-            reserved8: u1,
-            reserved9: u1,
+            reserved_8_15: u8,
             /// Busy
             BSY: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
+            padding_17_31: u15,
         }), base_address + 0xc);
 
         /// address: 0x40023c10
@@ -1268,33 +827,18 @@ pub const registers = struct {
             MER: u1,
             /// Sector number
             SNB: u4,
-            reserved0: u1,
+            reserved_7_7: u1,
             /// Program size
             PSIZE: u2,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
-            reserved6: u1,
+            reserved_10_15: u6,
             /// Start
             STRT: u1,
-            reserved7: u1,
-            reserved8: u1,
-            reserved9: u1,
-            reserved10: u1,
-            reserved11: u1,
-            reserved12: u1,
-            reserved13: u1,
+            reserved_17_23: u7,
             /// End of operation interrupt enable
             EOPIE: u1,
             /// Error interrupt enable
             ERRIE: u1,
-            reserved14: u1,
-            reserved15: u1,
-            reserved16: u1,
-            reserved17: u1,
-            reserved18: u1,
+            reserved_26_30: u5,
             /// Lock
             LOCK: u1,
         }), base_address + 0x10);
@@ -1308,7 +852,7 @@ pub const registers = struct {
             OPTSTRT: u1,
             /// BOR reset Level
             BOR_LEV: u2,
-            reserved0: u1,
+            reserved_4_4: u1,
             /// WDG_SW User option bytes
             WDG_SW: u1,
             /// nRST_STOP User option bytes
@@ -1319,10 +863,7 @@ pub const registers = struct {
             RDP: u8,
             /// Not write protect
             nWRP: u12,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
+            padding_28_31: u4,
         }), base_address + 0x14);
     };
 
@@ -1335,22 +876,7 @@ pub const registers = struct {
         pub const KR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Key value
             KEY: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x0);
 
         /// address: 0x40003004
@@ -1362,26 +888,7 @@ pub const registers = struct {
         pub const RLR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Watchdog counter reload value
             RL: u12,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
+            padding_12_31: u20,
         }), base_address + 0x8);
 
         /// address: 0x4000300c
@@ -1391,36 +898,7 @@ pub const registers = struct {
             PVU: u1,
             /// Watchdog counter reload value update
             RVU: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
-            padding24: u1,
-            padding25: u1,
-            padding26: u1,
-            padding27: u1,
-            padding28: u1,
-            padding29: u1,
+            padding_2_31: u30,
         }), base_address + 0xc);
     };
 
@@ -1435,30 +913,12 @@ pub const registers = struct {
             DSPD: u2,
             /// Non-zero-length status OUT handshake
             NZLSOHSK: u1,
-            reserved0: u1,
+            reserved_3_3: u1,
             /// Device address
             DAD: u7,
             /// Periodic frame interval
             PFIVL: u2,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
+            padding_13_31: u19,
         }), base_address + 0x0);
 
         /// address: 0x50000804
@@ -1484,26 +944,7 @@ pub const registers = struct {
             CGONAK: u1,
             /// Power-on programming done
             POPRGDNE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
+            padding_12_31: u20,
         }), base_address + 0x4);
 
         /// address: 0x50000808
@@ -1515,22 +956,10 @@ pub const registers = struct {
             ENUMSPD: u2,
             /// Erratic error
             EERR: u1,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
+            reserved_4_7: u4,
             /// Frame number of the received SOF
             FNSOF: u14,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
+            padding_22_31: u10,
         }), base_address + 0x8);
 
         /// address: 0x50000810
@@ -1540,7 +969,7 @@ pub const registers = struct {
             XFRCM: u1,
             /// Endpoint disabled interrupt mask
             EPDM: u1,
-            reserved0: u1,
+            reserved_2_2: u1,
             /// Timeout condition mask (Non-isochronous endpoints)
             TOM: u1,
             /// IN token received when TxFIFO empty mask
@@ -1549,31 +978,7 @@ pub const registers = struct {
             INEPNMM: u1,
             /// IN endpoint NAK effective mask
             INEPNEM: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
-            padding24: u1,
+            padding_7_31: u25,
         }), base_address + 0x10);
 
         /// address: 0x50000814
@@ -1583,38 +988,12 @@ pub const registers = struct {
             XFRCM: u1,
             /// Endpoint disabled interrupt mask
             EPDM: u1,
-            reserved0: u1,
+            reserved_2_2: u1,
             /// SETUP phase done mask
             STUPM: u1,
             /// OUT token received when endpoint disabled mask
             OTEPDM: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
-            padding24: u1,
-            padding25: u1,
-            padding26: u1,
+            padding_5_31: u27,
         }), base_address + 0x14);
 
         /// address: 0x50000818
@@ -1640,22 +1019,7 @@ pub const registers = struct {
         pub const DVBUSDIS = @intToPtr(*volatile Mmio(32, packed struct {
             /// Device VBUS discharge time
             VBUSDT: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x28);
 
         /// address: 0x5000082c
@@ -1663,26 +1027,7 @@ pub const registers = struct {
         pub const DVBUSPULSE = @intToPtr(*volatile Mmio(32, packed struct {
             /// Device VBUS pulsing time
             DVBUSP: u12,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
+            padding_12_31: u20,
         }), base_address + 0x2c);
 
         /// address: 0x50000834
@@ -1690,22 +1035,7 @@ pub const registers = struct {
         pub const DIEPEMPMSK = @intToPtr(*volatile Mmio(32, packed struct {
             /// IN EP Tx FIFO empty interrupt mask bits
             INEPTXFEM: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x34);
 
         /// address: 0x50000900
@@ -1713,27 +1043,15 @@ pub const registers = struct {
         pub const FS_DIEPCTL0 = @intToPtr(*volatile Mmio(32, packed struct {
             /// Maximum packet size
             MPSIZ: u2,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
-            reserved6: u1,
-            reserved7: u1,
-            reserved8: u1,
-            reserved9: u1,
-            reserved10: u1,
-            reserved11: u1,
-            reserved12: u1,
+            reserved_2_14: u13,
             /// USB active endpoint
             USBAEP: u1,
-            reserved13: u1,
+            reserved_16_16: u1,
             /// NAK status
             NAKSTS: u1,
             /// Endpoint type
             EPTYP: u2,
-            reserved14: u1,
+            reserved_20_20: u1,
             /// STALL handshake
             STALL: u1,
             /// TxFIFO number
@@ -1742,8 +1060,7 @@ pub const registers = struct {
             CNAK: u1,
             /// Set NAK
             SNAK: u1,
-            reserved15: u1,
-            reserved16: u1,
+            reserved_28_29: u2,
             /// Endpoint disable
             EPDIS: u1,
             /// Endpoint enable
@@ -1755,10 +1072,7 @@ pub const registers = struct {
         pub const DIEPCTL1 = @intToPtr(*volatile Mmio(32, packed struct {
             /// MPSIZ
             MPSIZ: u11,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
+            reserved_11_14: u4,
             /// USBAEP
             USBAEP: u1,
             /// EONUM/DPID
@@ -1767,7 +1081,7 @@ pub const registers = struct {
             NAKSTS: u1,
             /// EPTYP
             EPTYP: u2,
-            reserved4: u1,
+            reserved_20_20: u1,
             /// Stall
             Stall: u1,
             /// TXFNUM
@@ -1791,10 +1105,7 @@ pub const registers = struct {
         pub const DIEPCTL2 = @intToPtr(*volatile Mmio(32, packed struct {
             /// MPSIZ
             MPSIZ: u11,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
+            reserved_11_14: u4,
             /// USBAEP
             USBAEP: u1,
             /// EONUM/DPID
@@ -1803,7 +1114,7 @@ pub const registers = struct {
             NAKSTS: u1,
             /// EPTYP
             EPTYP: u2,
-            reserved4: u1,
+            reserved_20_20: u1,
             /// Stall
             Stall: u1,
             /// TXFNUM
@@ -1827,10 +1138,7 @@ pub const registers = struct {
         pub const DIEPCTL3 = @intToPtr(*volatile Mmio(32, packed struct {
             /// MPSIZ
             MPSIZ: u11,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
+            reserved_11_14: u4,
             /// USBAEP
             USBAEP: u1,
             /// EONUM/DPID
@@ -1839,7 +1147,7 @@ pub const registers = struct {
             NAKSTS: u1,
             /// EPTYP
             EPTYP: u2,
-            reserved4: u1,
+            reserved_20_20: u1,
             /// Stall
             Stall: u1,
             /// TXFNUM
@@ -1863,22 +1171,10 @@ pub const registers = struct {
         pub const DOEPCTL0 = @intToPtr(*volatile Mmio(32, packed struct {
             /// MPSIZ
             MPSIZ: u2,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
-            reserved6: u1,
-            reserved7: u1,
-            reserved8: u1,
-            reserved9: u1,
-            reserved10: u1,
-            reserved11: u1,
-            reserved12: u1,
+            reserved_2_14: u13,
             /// USBAEP
             USBAEP: u1,
-            reserved13: u1,
+            reserved_16_16: u1,
             /// NAKSTS
             NAKSTS: u1,
             /// EPTYP
@@ -1887,16 +1183,12 @@ pub const registers = struct {
             SNPM: u1,
             /// Stall
             Stall: u1,
-            reserved14: u1,
-            reserved15: u1,
-            reserved16: u1,
-            reserved17: u1,
+            reserved_22_25: u4,
             /// CNAK
             CNAK: u1,
             /// SNAK
             SNAK: u1,
-            reserved18: u1,
-            reserved19: u1,
+            reserved_28_29: u2,
             /// EPDIS
             EPDIS: u1,
             /// EPENA
@@ -1908,10 +1200,7 @@ pub const registers = struct {
         pub const DOEPCTL1 = @intToPtr(*volatile Mmio(32, packed struct {
             /// MPSIZ
             MPSIZ: u11,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
+            reserved_11_14: u4,
             /// USBAEP
             USBAEP: u1,
             /// EONUM/DPID
@@ -1924,10 +1213,7 @@ pub const registers = struct {
             SNPM: u1,
             /// Stall
             Stall: u1,
-            reserved4: u1,
-            reserved5: u1,
-            reserved6: u1,
-            reserved7: u1,
+            reserved_22_25: u4,
             /// CNAK
             CNAK: u1,
             /// SNAK
@@ -1947,10 +1233,7 @@ pub const registers = struct {
         pub const DOEPCTL2 = @intToPtr(*volatile Mmio(32, packed struct {
             /// MPSIZ
             MPSIZ: u11,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
+            reserved_11_14: u4,
             /// USBAEP
             USBAEP: u1,
             /// EONUM/DPID
@@ -1963,10 +1246,7 @@ pub const registers = struct {
             SNPM: u1,
             /// Stall
             Stall: u1,
-            reserved4: u1,
-            reserved5: u1,
-            reserved6: u1,
-            reserved7: u1,
+            reserved_22_25: u4,
             /// CNAK
             CNAK: u1,
             /// SNAK
@@ -1986,10 +1266,7 @@ pub const registers = struct {
         pub const DOEPCTL3 = @intToPtr(*volatile Mmio(32, packed struct {
             /// MPSIZ
             MPSIZ: u11,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
+            reserved_11_14: u4,
             /// USBAEP
             USBAEP: u1,
             /// EONUM/DPID
@@ -2002,10 +1279,7 @@ pub const registers = struct {
             SNPM: u1,
             /// Stall
             Stall: u1,
-            reserved4: u1,
-            reserved5: u1,
-            reserved6: u1,
-            reserved7: u1,
+            reserved_22_25: u4,
             /// CNAK
             CNAK: u1,
             /// SNAK
@@ -2027,40 +1301,17 @@ pub const registers = struct {
             XFRC: u1,
             /// EPDISD
             EPDISD: u1,
-            reserved0: u1,
+            reserved_2_2: u1,
             /// TOC
             TOC: u1,
             /// ITTXFE
             ITTXFE: u1,
-            reserved1: u1,
+            reserved_5_5: u1,
             /// INEPNE
             INEPNE: u1,
             /// TXFE
             TXFE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
+            padding_8_31: u24,
         }), base_address + 0x108);
 
         /// address: 0x50000928
@@ -2070,40 +1321,17 @@ pub const registers = struct {
             XFRC: u1,
             /// EPDISD
             EPDISD: u1,
-            reserved0: u1,
+            reserved_2_2: u1,
             /// TOC
             TOC: u1,
             /// ITTXFE
             ITTXFE: u1,
-            reserved1: u1,
+            reserved_5_5: u1,
             /// INEPNE
             INEPNE: u1,
             /// TXFE
             TXFE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
+            padding_8_31: u24,
         }), base_address + 0x128);
 
         /// address: 0x50000948
@@ -2113,40 +1341,17 @@ pub const registers = struct {
             XFRC: u1,
             /// EPDISD
             EPDISD: u1,
-            reserved0: u1,
+            reserved_2_2: u1,
             /// TOC
             TOC: u1,
             /// ITTXFE
             ITTXFE: u1,
-            reserved1: u1,
+            reserved_5_5: u1,
             /// INEPNE
             INEPNE: u1,
             /// TXFE
             TXFE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
+            padding_8_31: u24,
         }), base_address + 0x148);
 
         /// address: 0x50000968
@@ -2156,40 +1361,17 @@ pub const registers = struct {
             XFRC: u1,
             /// EPDISD
             EPDISD: u1,
-            reserved0: u1,
+            reserved_2_2: u1,
             /// TOC
             TOC: u1,
             /// ITTXFE
             ITTXFE: u1,
-            reserved1: u1,
+            reserved_5_5: u1,
             /// INEPNE
             INEPNE: u1,
             /// TXFE
             TXFE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
+            padding_8_31: u24,
         }), base_address + 0x168);
 
         /// address: 0x50000b08
@@ -2199,39 +1381,15 @@ pub const registers = struct {
             XFRC: u1,
             /// EPDISD
             EPDISD: u1,
-            reserved0: u1,
+            reserved_2_2: u1,
             /// STUP
             STUP: u1,
             /// OTEPDIS
             OTEPDIS: u1,
-            reserved1: u1,
+            reserved_5_5: u1,
             /// B2BSTUP
             B2BSTUP: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
-            padding24: u1,
+            padding_7_31: u25,
         }), base_address + 0x308);
 
         /// address: 0x50000b28
@@ -2241,39 +1399,15 @@ pub const registers = struct {
             XFRC: u1,
             /// EPDISD
             EPDISD: u1,
-            reserved0: u1,
+            reserved_2_2: u1,
             /// STUP
             STUP: u1,
             /// OTEPDIS
             OTEPDIS: u1,
-            reserved1: u1,
+            reserved_5_5: u1,
             /// B2BSTUP
             B2BSTUP: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
-            padding24: u1,
+            padding_7_31: u25,
         }), base_address + 0x328);
 
         /// address: 0x50000b48
@@ -2283,39 +1417,15 @@ pub const registers = struct {
             XFRC: u1,
             /// EPDISD
             EPDISD: u1,
-            reserved0: u1,
+            reserved_2_2: u1,
             /// STUP
             STUP: u1,
             /// OTEPDIS
             OTEPDIS: u1,
-            reserved1: u1,
+            reserved_5_5: u1,
             /// B2BSTUP
             B2BSTUP: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
-            padding24: u1,
+            padding_7_31: u25,
         }), base_address + 0x348);
 
         /// address: 0x50000b68
@@ -2325,39 +1435,15 @@ pub const registers = struct {
             XFRC: u1,
             /// EPDISD
             EPDISD: u1,
-            reserved0: u1,
+            reserved_2_2: u1,
             /// STUP
             STUP: u1,
             /// OTEPDIS
             OTEPDIS: u1,
-            reserved1: u1,
+            reserved_5_5: u1,
             /// B2BSTUP
             B2BSTUP: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
-            padding24: u1,
+            padding_7_31: u25,
         }), base_address + 0x368);
 
         /// address: 0x50000910
@@ -2365,31 +1451,10 @@ pub const registers = struct {
         pub const DIEPTSIZ0 = @intToPtr(*volatile Mmio(32, packed struct {
             /// Transfer size
             XFRSIZ: u7,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
-            reserved6: u1,
-            reserved7: u1,
-            reserved8: u1,
-            reserved9: u1,
-            reserved10: u1,
-            reserved11: u1,
+            reserved_7_18: u12,
             /// Packet count
             PKTCNT: u2,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
+            padding_21_31: u11,
         }), base_address + 0x110);
 
         /// address: 0x50000b10
@@ -2397,32 +1462,13 @@ pub const registers = struct {
         pub const DOEPTSIZ0 = @intToPtr(*volatile Mmio(32, packed struct {
             /// Transfer size
             XFRSIZ: u7,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
-            reserved6: u1,
-            reserved7: u1,
-            reserved8: u1,
-            reserved9: u1,
-            reserved10: u1,
-            reserved11: u1,
+            reserved_7_18: u12,
             /// Packet count
             PKTCNT: u1,
-            reserved12: u1,
-            reserved13: u1,
-            reserved14: u1,
-            reserved15: u1,
-            reserved16: u1,
-            reserved17: u1,
-            reserved18: u1,
-            reserved19: u1,
-            reserved20: u1,
+            reserved_20_28: u9,
             /// SETUP packet count
             STUPCNT: u2,
-            padding0: u1,
+            padding_31_31: u1,
         }), base_address + 0x310);
 
         /// address: 0x50000930
@@ -2434,7 +1480,7 @@ pub const registers = struct {
             PKTCNT: u10,
             /// Multi count
             MCNT: u2,
-            padding0: u1,
+            padding_31_31: u1,
         }), base_address + 0x130);
 
         /// address: 0x50000950
@@ -2446,7 +1492,7 @@ pub const registers = struct {
             PKTCNT: u10,
             /// Multi count
             MCNT: u2,
-            padding0: u1,
+            padding_31_31: u1,
         }), base_address + 0x150);
 
         /// address: 0x50000970
@@ -2458,7 +1504,7 @@ pub const registers = struct {
             PKTCNT: u10,
             /// Multi count
             MCNT: u2,
-            padding0: u1,
+            padding_31_31: u1,
         }), base_address + 0x170);
 
         /// address: 0x50000918
@@ -2466,22 +1512,7 @@ pub const registers = struct {
         pub const DTXFSTS0 = @intToPtr(*volatile Mmio(32, packed struct {
             /// IN endpoint TxFIFO space available
             INEPTFSAV: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x118);
 
         /// address: 0x50000938
@@ -2489,22 +1520,7 @@ pub const registers = struct {
         pub const DTXFSTS1 = @intToPtr(*volatile Mmio(32, packed struct {
             /// IN endpoint TxFIFO space available
             INEPTFSAV: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x138);
 
         /// address: 0x50000958
@@ -2512,22 +1528,7 @@ pub const registers = struct {
         pub const DTXFSTS2 = @intToPtr(*volatile Mmio(32, packed struct {
             /// IN endpoint TxFIFO space available
             INEPTFSAV: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x158);
 
         /// address: 0x50000978
@@ -2535,22 +1536,7 @@ pub const registers = struct {
         pub const DTXFSTS3 = @intToPtr(*volatile Mmio(32, packed struct {
             /// IN endpoint TxFIFO space available
             INEPTFSAV: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x178);
 
         /// address: 0x50000b30
@@ -2562,7 +1548,7 @@ pub const registers = struct {
             PKTCNT: u10,
             /// Received data PID/SETUP packet count
             RXDPID_STUPCNT: u2,
-            padding0: u1,
+            padding_31_31: u1,
         }), base_address + 0x330);
 
         /// address: 0x50000b50
@@ -2574,7 +1560,7 @@ pub const registers = struct {
             PKTCNT: u10,
             /// Received data PID/SETUP packet count
             RXDPID_STUPCNT: u2,
-            padding0: u1,
+            padding_31_31: u1,
         }), base_address + 0x350);
 
         /// address: 0x50000b70
@@ -2586,7 +1572,7 @@ pub const registers = struct {
             PKTCNT: u10,
             /// Received data PID/SETUP packet count
             RXDPID_STUPCNT: u2,
-            padding0: u1,
+            padding_31_31: u1,
         }), base_address + 0x370);
     };
 
@@ -2601,12 +1587,7 @@ pub const registers = struct {
             SRQSCS: u1,
             /// Session request
             SRQ: u1,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
+            reserved_2_7: u6,
             /// Host negotiation success
             HNGSCS: u1,
             /// HNP request
@@ -2615,10 +1596,7 @@ pub const registers = struct {
             HSHNPEN: u1,
             /// Device HNP enabled
             DHNPEN: u1,
-            reserved6: u1,
-            reserved7: u1,
-            reserved8: u1,
-            reserved9: u1,
+            reserved_12_15: u4,
             /// Connector ID status
             CIDSTS: u1,
             /// Long/short debounce time
@@ -2627,61 +1605,28 @@ pub const registers = struct {
             ASVLD: u1,
             /// B-session valid
             BSVLD: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
+            padding_20_31: u12,
         }), base_address + 0x0);
 
         /// address: 0x50000004
         /// OTG_FS interrupt register (OTG_FS_GOTGINT)
         pub const FS_GOTGINT = @intToPtr(*volatile Mmio(32, packed struct {
-            reserved0: u1,
-            reserved1: u1,
+            reserved_0_1: u2,
             /// Session end detected
             SEDET: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
-            reserved6: u1,
+            reserved_3_7: u5,
             /// Session request success status change
             SRSSCHG: u1,
             /// Host negotiation success status change
             HNSSCHG: u1,
-            reserved7: u1,
-            reserved8: u1,
-            reserved9: u1,
-            reserved10: u1,
-            reserved11: u1,
-            reserved12: u1,
-            reserved13: u1,
+            reserved_10_16: u7,
             /// Host negotiation detected
             HNGDET: u1,
             /// A-device timeout change
             ADTOCHG: u1,
             /// Debounce done
             DBCDNE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
+            padding_20_31: u12,
         }), base_address + 0x4);
 
         /// address: 0x50000008
@@ -2689,39 +1634,12 @@ pub const registers = struct {
         pub const FS_GAHBCFG = @intToPtr(*volatile Mmio(32, packed struct {
             /// Global interrupt mask
             GINT: u1,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
+            reserved_1_6: u6,
             /// TxFIFO empty level
             TXFELVL: u1,
             /// Periodic TxFIFO empty level
             PTXFELVL: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
+            padding_9_31: u23,
         }), base_address + 0x8);
 
         /// address: 0x5000000c
@@ -2729,33 +1647,17 @@ pub const registers = struct {
         pub const FS_GUSBCFG = @intToPtr(*volatile Mmio(32, packed struct {
             /// FS timeout calibration
             TOCAL: u3,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
+            reserved_3_5: u3,
             /// Full Speed serial transceiver select
             PHYSEL: u1,
-            reserved3: u1,
+            reserved_7_7: u1,
             /// SRP-capable
             SRPCAP: u1,
             /// HNP-capable
             HNPCAP: u1,
             /// USB turnaround time
             TRDT: u4,
-            reserved4: u1,
-            reserved5: u1,
-            reserved6: u1,
-            reserved7: u1,
-            reserved8: u1,
-            reserved9: u1,
-            reserved10: u1,
-            reserved11: u1,
-            reserved12: u1,
-            reserved13: u1,
-            reserved14: u1,
-            reserved15: u1,
-            reserved16: u1,
-            reserved17: u1,
-            reserved18: u1,
+            reserved_14_28: u15,
             /// Force host mode
             FHMOD: u1,
             /// Force device mode
@@ -2773,33 +1675,14 @@ pub const registers = struct {
             HSRST: u1,
             /// Host frame counter reset
             FCRST: u1,
-            reserved0: u1,
+            reserved_3_3: u1,
             /// RxFIFO flush
             RXFFLSH: u1,
             /// TxFIFO flush
             TXFFLSH: u1,
             /// TxFIFO number
             TXFNUM: u5,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
-            reserved6: u1,
-            reserved7: u1,
-            reserved8: u1,
-            reserved9: u1,
-            reserved10: u1,
-            reserved11: u1,
-            reserved12: u1,
-            reserved13: u1,
-            reserved14: u1,
-            reserved15: u1,
-            reserved16: u1,
-            reserved17: u1,
-            reserved18: u1,
-            reserved19: u1,
-            reserved20: u1,
+            reserved_11_30: u20,
             /// AHB master idle
             AHBIDL: u1,
         }), base_address + 0x10);
@@ -2823,8 +1706,7 @@ pub const registers = struct {
             GINAKEFF: u1,
             /// Global OUT NAK effective
             GOUTNAKEFF: u1,
-            reserved0: u1,
-            reserved1: u1,
+            reserved_8_9: u2,
             /// Early suspend
             ESUSP: u1,
             /// USB suspend
@@ -2837,8 +1719,7 @@ pub const registers = struct {
             ISOODRP: u1,
             /// End of periodic frame interrupt
             EOPF: u1,
-            reserved2: u1,
-            reserved3: u1,
+            reserved_16_17: u2,
             /// IN endpoint interrupt
             IEPINT: u1,
             /// OUT endpoint interrupt
@@ -2847,15 +1728,14 @@ pub const registers = struct {
             IISOIXFR: u1,
             /// Incomplete periodic transfer(Host mode)/Incomplete isochronous OUT transfer(Device mode)
             IPXFR_INCOMPISOOUT: u1,
-            reserved4: u1,
-            reserved5: u1,
+            reserved_22_23: u2,
             /// Host port interrupt
             HPRTINT: u1,
             /// Host channels interrupt
             HCINT: u1,
             /// Periodic TxFIFO empty
             PTXFE: u1,
-            reserved6: u1,
+            reserved_27_27: u1,
             /// Connector ID status change
             CIDSCHG: u1,
             /// Disconnect detected interrupt
@@ -2869,7 +1749,7 @@ pub const registers = struct {
         /// address: 0x50000018
         /// OTG_FS interrupt mask register (OTG_FS_GINTMSK)
         pub const FS_GINTMSK = @intToPtr(*volatile Mmio(32, packed struct {
-            reserved0: u1,
+            reserved_0_0: u1,
             /// Mode mismatch interrupt mask
             MMISM: u1,
             /// OTG interrupt mask
@@ -2884,8 +1764,7 @@ pub const registers = struct {
             GINAKEFFM: u1,
             /// Global OUT NAK effective mask
             GONAKEFFM: u1,
-            reserved1: u1,
-            reserved2: u1,
+            reserved_8_9: u2,
             /// Early suspend mask
             ESUSPM: u1,
             /// USB suspend mask
@@ -2898,7 +1777,7 @@ pub const registers = struct {
             ISOODRPM: u1,
             /// End of periodic frame interrupt mask
             EOPFM: u1,
-            reserved3: u1,
+            reserved_16_16: u1,
             /// Endpoint mismatch interrupt mask
             EPMISM: u1,
             /// IN endpoints interrupt mask
@@ -2909,15 +1788,14 @@ pub const registers = struct {
             IISOIXFRM: u1,
             /// Incomplete periodic transfer mask(Host mode)/Incomplete isochronous OUT transfer mask(Device mode)
             IPXFRM_IISOOXFRM: u1,
-            reserved4: u1,
-            reserved5: u1,
+            reserved_22_23: u2,
             /// Host port interrupt mask
             PRTIM: u1,
             /// Host channels interrupt mask
             HCIM: u1,
             /// Periodic TxFIFO empty mask
             PTXFEM: u1,
-            reserved6: u1,
+            reserved_27_27: u1,
             /// Connector ID status change mask
             CIDSCHGM: u1,
             /// Disconnect detected interrupt mask
@@ -2941,13 +1819,7 @@ pub const registers = struct {
             PKTSTS: u4,
             /// Frame number
             FRMNUM: u4,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
+            padding_25_31: u7,
         }), base_address + 0x1c);
 
         /// address: 0x5000001c
@@ -2963,13 +1835,7 @@ pub const registers = struct {
             PKTSTS: u4,
             /// Frame number
             FRMNUM: u4,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
+            padding_25_31: u7,
         }), base_address + 0x1c);
 
         /// address: 0x50000024
@@ -2977,22 +1843,7 @@ pub const registers = struct {
         pub const FS_GRXFSIZ = @intToPtr(*volatile Mmio(32, packed struct {
             /// RxFIFO depth
             RXFD: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x24);
 
         /// address: 0x50000028
@@ -3022,48 +1873,23 @@ pub const registers = struct {
             NPTQXSAV: u8,
             /// Top of the non-periodic transmit request queue
             NPTXQTOP: u7,
-            padding0: u1,
+            padding_31_31: u1,
         }), base_address + 0x2c);
 
         /// address: 0x50000038
         /// OTG_FS general core configuration register (OTG_FS_GCCFG)
         pub const FS_GCCFG = @intToPtr(*volatile Mmio(32, packed struct {
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
-            reserved6: u1,
-            reserved7: u1,
-            reserved8: u1,
-            reserved9: u1,
-            reserved10: u1,
-            reserved11: u1,
-            reserved12: u1,
-            reserved13: u1,
-            reserved14: u1,
-            reserved15: u1,
+            reserved_0_15: u16,
             /// Power down
             PWRDWN: u1,
-            reserved16: u1,
+            reserved_17_17: u1,
             /// Enable the VBUS sensing device
             VBUSASEN: u1,
             /// Enable the VBUS sensing device
             VBUSBSEN: u1,
             /// SOF output enable
             SOFOUTEN: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
+            padding_21_31: u11,
         }), base_address + 0x38);
 
         /// address: 0x5000003c
@@ -3121,35 +1947,7 @@ pub const registers = struct {
             FSLSPCS: u2,
             /// FS- and LS-only support
             FSLSS: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
-            padding24: u1,
-            padding25: u1,
-            padding26: u1,
-            padding27: u1,
-            padding28: u1,
+            padding_3_31: u29,
         }), base_address + 0x0);
 
         /// address: 0x50000404
@@ -3157,22 +1955,7 @@ pub const registers = struct {
         pub const HFIR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Frame interval
             FRIVL: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x4);
 
         /// address: 0x50000408
@@ -3204,22 +1987,7 @@ pub const registers = struct {
         pub const HAINTMSK = @intToPtr(*volatile Mmio(32, packed struct {
             /// Channel interrupt mask
             HAINTM: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x18);
 
         /// address: 0x50000440
@@ -3243,7 +2011,7 @@ pub const registers = struct {
             PSUSP: u1,
             /// Port reset
             PRST: u1,
-            reserved0: u1,
+            reserved_9_9: u1,
             /// Port line status
             PLSTS: u2,
             /// Port power
@@ -3252,19 +2020,7 @@ pub const registers = struct {
             PTCTL: u4,
             /// Port speed
             PSPD: u2,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
+            padding_19_31: u13,
         }), base_address + 0x40);
 
         /// address: 0x50000500
@@ -3276,7 +2032,7 @@ pub const registers = struct {
             EPNUM: u4,
             /// Endpoint direction
             EPDIR: u1,
-            reserved0: u1,
+            reserved_16_16: u1,
             /// Low-speed device
             LSDEV: u1,
             /// Endpoint type
@@ -3302,7 +2058,7 @@ pub const registers = struct {
             EPNUM: u4,
             /// Endpoint direction
             EPDIR: u1,
-            reserved0: u1,
+            reserved_16_16: u1,
             /// Low-speed device
             LSDEV: u1,
             /// Endpoint type
@@ -3328,7 +2084,7 @@ pub const registers = struct {
             EPNUM: u4,
             /// Endpoint direction
             EPDIR: u1,
-            reserved0: u1,
+            reserved_16_16: u1,
             /// Low-speed device
             LSDEV: u1,
             /// Endpoint type
@@ -3354,7 +2110,7 @@ pub const registers = struct {
             EPNUM: u4,
             /// Endpoint direction
             EPDIR: u1,
-            reserved0: u1,
+            reserved_16_16: u1,
             /// Low-speed device
             LSDEV: u1,
             /// Endpoint type
@@ -3380,7 +2136,7 @@ pub const registers = struct {
             EPNUM: u4,
             /// Endpoint direction
             EPDIR: u1,
-            reserved0: u1,
+            reserved_16_16: u1,
             /// Low-speed device
             LSDEV: u1,
             /// Endpoint type
@@ -3406,7 +2162,7 @@ pub const registers = struct {
             EPNUM: u4,
             /// Endpoint direction
             EPDIR: u1,
-            reserved0: u1,
+            reserved_16_16: u1,
             /// Low-speed device
             LSDEV: u1,
             /// Endpoint type
@@ -3432,7 +2188,7 @@ pub const registers = struct {
             EPNUM: u4,
             /// Endpoint direction
             EPDIR: u1,
-            reserved0: u1,
+            reserved_16_16: u1,
             /// Low-speed device
             LSDEV: u1,
             /// Endpoint type
@@ -3458,7 +2214,7 @@ pub const registers = struct {
             EPNUM: u4,
             /// Endpoint direction
             EPDIR: u1,
-            reserved0: u1,
+            reserved_16_16: u1,
             /// Low-speed device
             LSDEV: u1,
             /// Endpoint type
@@ -3482,14 +2238,14 @@ pub const registers = struct {
             XFRC: u1,
             /// Channel halted
             CHH: u1,
-            reserved0: u1,
+            reserved_2_2: u1,
             /// STALL response received interrupt
             STALL: u1,
             /// NAK response received interrupt
             NAK: u1,
             /// ACK response received/transmitted interrupt
             ACK: u1,
-            reserved1: u1,
+            reserved_6_6: u1,
             /// Transaction error
             TXERR: u1,
             /// Babble error
@@ -3498,27 +2254,7 @@ pub const registers = struct {
             FRMOR: u1,
             /// Data toggle error
             DTERR: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
+            padding_11_31: u21,
         }), base_address + 0x108);
 
         /// address: 0x50000528
@@ -3528,14 +2264,14 @@ pub const registers = struct {
             XFRC: u1,
             /// Channel halted
             CHH: u1,
-            reserved0: u1,
+            reserved_2_2: u1,
             /// STALL response received interrupt
             STALL: u1,
             /// NAK response received interrupt
             NAK: u1,
             /// ACK response received/transmitted interrupt
             ACK: u1,
-            reserved1: u1,
+            reserved_6_6: u1,
             /// Transaction error
             TXERR: u1,
             /// Babble error
@@ -3544,27 +2280,7 @@ pub const registers = struct {
             FRMOR: u1,
             /// Data toggle error
             DTERR: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
+            padding_11_31: u21,
         }), base_address + 0x128);
 
         /// address: 0x50000548
@@ -3574,14 +2290,14 @@ pub const registers = struct {
             XFRC: u1,
             /// Channel halted
             CHH: u1,
-            reserved0: u1,
+            reserved_2_2: u1,
             /// STALL response received interrupt
             STALL: u1,
             /// NAK response received interrupt
             NAK: u1,
             /// ACK response received/transmitted interrupt
             ACK: u1,
-            reserved1: u1,
+            reserved_6_6: u1,
             /// Transaction error
             TXERR: u1,
             /// Babble error
@@ -3590,27 +2306,7 @@ pub const registers = struct {
             FRMOR: u1,
             /// Data toggle error
             DTERR: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
+            padding_11_31: u21,
         }), base_address + 0x148);
 
         /// address: 0x50000568
@@ -3620,14 +2316,14 @@ pub const registers = struct {
             XFRC: u1,
             /// Channel halted
             CHH: u1,
-            reserved0: u1,
+            reserved_2_2: u1,
             /// STALL response received interrupt
             STALL: u1,
             /// NAK response received interrupt
             NAK: u1,
             /// ACK response received/transmitted interrupt
             ACK: u1,
-            reserved1: u1,
+            reserved_6_6: u1,
             /// Transaction error
             TXERR: u1,
             /// Babble error
@@ -3636,27 +2332,7 @@ pub const registers = struct {
             FRMOR: u1,
             /// Data toggle error
             DTERR: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
+            padding_11_31: u21,
         }), base_address + 0x168);
 
         /// address: 0x50000588
@@ -3666,14 +2342,14 @@ pub const registers = struct {
             XFRC: u1,
             /// Channel halted
             CHH: u1,
-            reserved0: u1,
+            reserved_2_2: u1,
             /// STALL response received interrupt
             STALL: u1,
             /// NAK response received interrupt
             NAK: u1,
             /// ACK response received/transmitted interrupt
             ACK: u1,
-            reserved1: u1,
+            reserved_6_6: u1,
             /// Transaction error
             TXERR: u1,
             /// Babble error
@@ -3682,27 +2358,7 @@ pub const registers = struct {
             FRMOR: u1,
             /// Data toggle error
             DTERR: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
+            padding_11_31: u21,
         }), base_address + 0x188);
 
         /// address: 0x500005a8
@@ -3712,14 +2368,14 @@ pub const registers = struct {
             XFRC: u1,
             /// Channel halted
             CHH: u1,
-            reserved0: u1,
+            reserved_2_2: u1,
             /// STALL response received interrupt
             STALL: u1,
             /// NAK response received interrupt
             NAK: u1,
             /// ACK response received/transmitted interrupt
             ACK: u1,
-            reserved1: u1,
+            reserved_6_6: u1,
             /// Transaction error
             TXERR: u1,
             /// Babble error
@@ -3728,27 +2384,7 @@ pub const registers = struct {
             FRMOR: u1,
             /// Data toggle error
             DTERR: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
+            padding_11_31: u21,
         }), base_address + 0x1a8);
 
         /// address: 0x500005c8
@@ -3758,14 +2394,14 @@ pub const registers = struct {
             XFRC: u1,
             /// Channel halted
             CHH: u1,
-            reserved0: u1,
+            reserved_2_2: u1,
             /// STALL response received interrupt
             STALL: u1,
             /// NAK response received interrupt
             NAK: u1,
             /// ACK response received/transmitted interrupt
             ACK: u1,
-            reserved1: u1,
+            reserved_6_6: u1,
             /// Transaction error
             TXERR: u1,
             /// Babble error
@@ -3774,27 +2410,7 @@ pub const registers = struct {
             FRMOR: u1,
             /// Data toggle error
             DTERR: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
+            padding_11_31: u21,
         }), base_address + 0x1c8);
 
         /// address: 0x500005e8
@@ -3804,14 +2420,14 @@ pub const registers = struct {
             XFRC: u1,
             /// Channel halted
             CHH: u1,
-            reserved0: u1,
+            reserved_2_2: u1,
             /// STALL response received interrupt
             STALL: u1,
             /// NAK response received interrupt
             NAK: u1,
             /// ACK response received/transmitted interrupt
             ACK: u1,
-            reserved1: u1,
+            reserved_6_6: u1,
             /// Transaction error
             TXERR: u1,
             /// Babble error
@@ -3820,27 +2436,7 @@ pub const registers = struct {
             FRMOR: u1,
             /// Data toggle error
             DTERR: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
+            padding_11_31: u21,
         }), base_address + 0x1e8);
 
         /// address: 0x5000050c
@@ -3850,7 +2446,7 @@ pub const registers = struct {
             XFRCM: u1,
             /// Channel halted mask
             CHHM: u1,
-            reserved0: u1,
+            reserved_2_2: u1,
             /// STALL response received interrupt mask
             STALLM: u1,
             /// NAK response received interrupt mask
@@ -3867,27 +2463,7 @@ pub const registers = struct {
             FRMORM: u1,
             /// Data toggle error mask
             DTERRM: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
+            padding_11_31: u21,
         }), base_address + 0x10c);
 
         /// address: 0x5000052c
@@ -3897,7 +2473,7 @@ pub const registers = struct {
             XFRCM: u1,
             /// Channel halted mask
             CHHM: u1,
-            reserved0: u1,
+            reserved_2_2: u1,
             /// STALL response received interrupt mask
             STALLM: u1,
             /// NAK response received interrupt mask
@@ -3914,27 +2490,7 @@ pub const registers = struct {
             FRMORM: u1,
             /// Data toggle error mask
             DTERRM: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
+            padding_11_31: u21,
         }), base_address + 0x12c);
 
         /// address: 0x5000054c
@@ -3944,7 +2500,7 @@ pub const registers = struct {
             XFRCM: u1,
             /// Channel halted mask
             CHHM: u1,
-            reserved0: u1,
+            reserved_2_2: u1,
             /// STALL response received interrupt mask
             STALLM: u1,
             /// NAK response received interrupt mask
@@ -3961,27 +2517,7 @@ pub const registers = struct {
             FRMORM: u1,
             /// Data toggle error mask
             DTERRM: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
+            padding_11_31: u21,
         }), base_address + 0x14c);
 
         /// address: 0x5000056c
@@ -3991,7 +2527,7 @@ pub const registers = struct {
             XFRCM: u1,
             /// Channel halted mask
             CHHM: u1,
-            reserved0: u1,
+            reserved_2_2: u1,
             /// STALL response received interrupt mask
             STALLM: u1,
             /// NAK response received interrupt mask
@@ -4008,27 +2544,7 @@ pub const registers = struct {
             FRMORM: u1,
             /// Data toggle error mask
             DTERRM: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
+            padding_11_31: u21,
         }), base_address + 0x16c);
 
         /// address: 0x5000058c
@@ -4038,7 +2554,7 @@ pub const registers = struct {
             XFRCM: u1,
             /// Channel halted mask
             CHHM: u1,
-            reserved0: u1,
+            reserved_2_2: u1,
             /// STALL response received interrupt mask
             STALLM: u1,
             /// NAK response received interrupt mask
@@ -4055,27 +2571,7 @@ pub const registers = struct {
             FRMORM: u1,
             /// Data toggle error mask
             DTERRM: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
+            padding_11_31: u21,
         }), base_address + 0x18c);
 
         /// address: 0x500005ac
@@ -4085,7 +2581,7 @@ pub const registers = struct {
             XFRCM: u1,
             /// Channel halted mask
             CHHM: u1,
-            reserved0: u1,
+            reserved_2_2: u1,
             /// STALL response received interrupt mask
             STALLM: u1,
             /// NAK response received interrupt mask
@@ -4102,27 +2598,7 @@ pub const registers = struct {
             FRMORM: u1,
             /// Data toggle error mask
             DTERRM: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
+            padding_11_31: u21,
         }), base_address + 0x1ac);
 
         /// address: 0x500005cc
@@ -4132,7 +2608,7 @@ pub const registers = struct {
             XFRCM: u1,
             /// Channel halted mask
             CHHM: u1,
-            reserved0: u1,
+            reserved_2_2: u1,
             /// STALL response received interrupt mask
             STALLM: u1,
             /// NAK response received interrupt mask
@@ -4149,27 +2625,7 @@ pub const registers = struct {
             FRMORM: u1,
             /// Data toggle error mask
             DTERRM: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
+            padding_11_31: u21,
         }), base_address + 0x1cc);
 
         /// address: 0x500005ec
@@ -4179,7 +2635,7 @@ pub const registers = struct {
             XFRCM: u1,
             /// Channel halted mask
             CHHM: u1,
-            reserved0: u1,
+            reserved_2_2: u1,
             /// STALL response received interrupt mask
             STALLM: u1,
             /// NAK response received interrupt mask
@@ -4196,27 +2652,7 @@ pub const registers = struct {
             FRMORM: u1,
             /// Data toggle error mask
             DTERRM: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
+            padding_11_31: u21,
         }), base_address + 0x1ec);
 
         /// address: 0x50000510
@@ -4228,7 +2664,7 @@ pub const registers = struct {
             PKTCNT: u10,
             /// Data PID
             DPID: u2,
-            padding0: u1,
+            padding_31_31: u1,
         }), base_address + 0x110);
 
         /// address: 0x50000530
@@ -4240,7 +2676,7 @@ pub const registers = struct {
             PKTCNT: u10,
             /// Data PID
             DPID: u2,
-            padding0: u1,
+            padding_31_31: u1,
         }), base_address + 0x130);
 
         /// address: 0x50000550
@@ -4252,7 +2688,7 @@ pub const registers = struct {
             PKTCNT: u10,
             /// Data PID
             DPID: u2,
-            padding0: u1,
+            padding_31_31: u1,
         }), base_address + 0x150);
 
         /// address: 0x50000570
@@ -4264,7 +2700,7 @@ pub const registers = struct {
             PKTCNT: u10,
             /// Data PID
             DPID: u2,
-            padding0: u1,
+            padding_31_31: u1,
         }), base_address + 0x170);
 
         /// address: 0x50000590
@@ -4276,7 +2712,7 @@ pub const registers = struct {
             PKTCNT: u10,
             /// Data PID
             DPID: u2,
-            padding0: u1,
+            padding_31_31: u1,
         }), base_address + 0x190);
 
         /// address: 0x500005b0
@@ -4288,7 +2724,7 @@ pub const registers = struct {
             PKTCNT: u10,
             /// Data PID
             DPID: u2,
-            padding0: u1,
+            padding_31_31: u1,
         }), base_address + 0x1b0);
 
         /// address: 0x500005d0
@@ -4300,7 +2736,7 @@ pub const registers = struct {
             PKTCNT: u10,
             /// Data PID
             DPID: u2,
-            padding0: u1,
+            padding_31_31: u1,
         }), base_address + 0x1d0);
 
         /// address: 0x500005f0
@@ -4312,7 +2748,7 @@ pub const registers = struct {
             PKTCNT: u10,
             /// Data PID
             DPID: u2,
-            padding0: u1,
+            padding_31_31: u1,
         }), base_address + 0x1f0);
     };
 
@@ -4327,37 +2763,10 @@ pub const registers = struct {
             STPPCLK: u1,
             /// Gate HCLK
             GATEHCLK: u1,
-            reserved0: u1,
-            reserved1: u1,
+            reserved_2_3: u2,
             /// PHY Suspended
             PHYSUSP: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
-            padding24: u1,
-            padding25: u1,
-            padding26: u1,
+            padding_5_31: u27,
         }), base_address + 0x0);
     };
 
@@ -4384,29 +2793,12 @@ pub const registers = struct {
             DBP: u1,
             /// Flash power down in Stop mode
             FPDS: u1,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
+            reserved_10_12: u3,
             /// ADCDC1
             ADCDC1: u1,
             /// Regulator voltage scaling output selection
             VOS: u2,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x0);
 
         /// address: 0x40007004
@@ -4420,37 +2812,15 @@ pub const registers = struct {
             PVDO: u1,
             /// Backup regulator ready
             BRR: u1,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
+            reserved_4_7: u4,
             /// Enable WKUP pin
             EWUP: u1,
             /// Backup regulator enable
             BRE: u1,
-            reserved4: u1,
-            reserved5: u1,
-            reserved6: u1,
-            reserved7: u1,
+            reserved_10_13: u4,
             /// Regulator voltage scaling output selection ready bit
             VOSRDY: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
+            padding_15_31: u17,
         }), base_address + 0x4);
     };
 
@@ -4465,7 +2835,7 @@ pub const registers = struct {
             HSION: u1,
             /// Internal high-speed clock ready flag
             HSIRDY: u1,
-            reserved0: u1,
+            reserved_2_2: u1,
             /// Internal high-speed clock trimming
             HSITRIM: u5,
             /// Internal high-speed clock calibration
@@ -4478,10 +2848,7 @@ pub const registers = struct {
             HSEBYP: u1,
             /// Clock security system enable
             CSSON: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
+            reserved_20_23: u4,
             /// Main PLL (PLL) enable
             PLLON: u1,
             /// Main PLL (PLL) clock ready flag
@@ -4490,10 +2857,7 @@ pub const registers = struct {
             PLLI2SON: u1,
             /// PLLI2S clock ready flag
             PLLI2SRDY: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
+            padding_28_31: u4,
         }), base_address + 0x0);
 
         /// address: 0x40023804
@@ -4529,18 +2893,15 @@ pub const registers = struct {
             PLLN7: u1,
             /// Main PLL (PLL) multiplication factor for VCO
             PLLN8: u1,
-            reserved0: u1,
+            reserved_15_15: u1,
             /// Main PLL (PLL) division factor for main system clock
             PLLP0: u1,
             /// Main PLL (PLL) division factor for main system clock
             PLLP1: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
+            reserved_18_21: u4,
             /// Main PLL(PLL) and audio PLL (PLLI2S) entry clock source
             PLLSRC: u1,
-            reserved5: u1,
+            reserved_23_23: u1,
             /// Main PLL (PLL) division factor for USB OTG FS, SDIO and random number generator clocks
             PLLQ0: u1,
             /// Main PLL (PLL) division factor for USB OTG FS, SDIO and random number generator clocks
@@ -4549,10 +2910,7 @@ pub const registers = struct {
             PLLQ2: u1,
             /// Main PLL (PLL) division factor for USB OTG FS, SDIO and random number generator clocks
             PLLQ3: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
+            padding_28_31: u4,
         }), base_address + 0x4);
 
         /// address: 0x40023808
@@ -4568,8 +2926,7 @@ pub const registers = struct {
             SWS1: u1,
             /// AHB prescaler
             HPRE: u4,
-            reserved0: u1,
-            reserved1: u1,
+            reserved_8_9: u2,
             /// APB Low speed prescaler (APB1)
             PPRE1: u3,
             /// APB high-speed prescaler (APB2)
@@ -4603,7 +2960,7 @@ pub const registers = struct {
             PLLRDYF: u1,
             /// PLLI2S ready interrupt flag
             PLLI2SRDYF: u1,
-            reserved0: u1,
+            reserved_6_6: u1,
             /// Clock security system interrupt flag
             CSSF: u1,
             /// LSI ready interrupt enable
@@ -4618,8 +2975,7 @@ pub const registers = struct {
             PLLRDYIE: u1,
             /// PLLI2S ready interrupt enable
             PLLI2SRDYIE: u1,
-            reserved1: u1,
-            reserved2: u1,
+            reserved_14_15: u2,
             /// LSI ready interrupt clear
             LSIRDYC: u1,
             /// LSE ready interrupt clear
@@ -4632,17 +2988,10 @@ pub const registers = struct {
             PLLRDYC: u1,
             /// PLLI2S ready interrupt clear
             PLLI2SRDYC: u1,
-            reserved3: u1,
+            reserved_22_22: u1,
             /// Clock security system interrupt clear
             CSSC: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
+            padding_24_31: u8,
         }), base_address + 0xc);
 
         /// address: 0x40023810
@@ -4658,75 +3007,27 @@ pub const registers = struct {
             GPIODRST: u1,
             /// IO port E reset
             GPIOERST: u1,
-            reserved0: u1,
-            reserved1: u1,
+            reserved_5_6: u2,
             /// IO port H reset
             GPIOHRST: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
+            reserved_8_11: u4,
             /// CRC reset
             CRCRST: u1,
-            reserved6: u1,
-            reserved7: u1,
-            reserved8: u1,
-            reserved9: u1,
-            reserved10: u1,
-            reserved11: u1,
-            reserved12: u1,
-            reserved13: u1,
+            reserved_13_20: u8,
             /// DMA2 reset
             DMA1RST: u1,
             /// DMA2 reset
             DMA2RST: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
+            padding_23_31: u9,
         }), base_address + 0x10);
 
         /// address: 0x40023814
         /// AHB2 peripheral reset register
         pub const AHB2RSTR = @intToPtr(*volatile Mmio(32, packed struct {
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
-            reserved6: u1,
+            reserved_0_6: u7,
             /// USB OTG FS module reset
             OTGFSRST: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
+            padding_8_31: u24,
         }), base_address + 0x14);
 
         /// address: 0x40023820
@@ -4740,42 +3041,28 @@ pub const registers = struct {
             TIM4RST: u1,
             /// TIM5 reset
             TIM5RST: u1,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
-            reserved6: u1,
+            reserved_4_10: u7,
             /// Window watchdog reset
             WWDGRST: u1,
-            reserved7: u1,
-            reserved8: u1,
+            reserved_12_13: u2,
             /// SPI 2 reset
             SPI2RST: u1,
             /// SPI 3 reset
             SPI3RST: u1,
-            reserved9: u1,
+            reserved_16_16: u1,
             /// USART 2 reset
             UART2RST: u1,
-            reserved10: u1,
-            reserved11: u1,
-            reserved12: u1,
+            reserved_18_20: u3,
             /// I2C 1 reset
             I2C1RST: u1,
             /// I2C 2 reset
             I2C2RST: u1,
             /// I2C3 reset
             I2C3RST: u1,
-            reserved13: u1,
-            reserved14: u1,
-            reserved15: u1,
-            reserved16: u1,
+            reserved_24_27: u4,
             /// Power interface reset
             PWRRST: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
+            padding_29_31: u3,
         }), base_address + 0x20);
 
         /// address: 0x40023824
@@ -4783,46 +3070,30 @@ pub const registers = struct {
         pub const APB2RSTR = @intToPtr(*volatile Mmio(32, packed struct {
             /// TIM1 reset
             TIM1RST: u1,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
+            reserved_1_3: u3,
             /// USART1 reset
             USART1RST: u1,
             /// USART6 reset
             USART6RST: u1,
-            reserved3: u1,
-            reserved4: u1,
+            reserved_6_7: u2,
             /// ADC interface reset (common to all ADCs)
             ADCRST: u1,
-            reserved5: u1,
-            reserved6: u1,
+            reserved_9_10: u2,
             /// SDIO reset
             SDIORST: u1,
             /// SPI 1 reset
             SPI1RST: u1,
-            reserved7: u1,
+            reserved_13_13: u1,
             /// System configuration controller reset
             SYSCFGRST: u1,
-            reserved8: u1,
+            reserved_15_15: u1,
             /// TIM9 reset
             TIM9RST: u1,
             /// TIM10 reset
             TIM10RST: u1,
             /// TIM11 reset
             TIM11RST: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
+            padding_19_31: u13,
         }), base_address + 0x24);
 
         /// address: 0x40023830
@@ -4838,75 +3109,27 @@ pub const registers = struct {
             GPIODEN: u1,
             /// IO port E clock enable
             GPIOEEN: u1,
-            reserved0: u1,
-            reserved1: u1,
+            reserved_5_6: u2,
             /// IO port H clock enable
             GPIOHEN: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
+            reserved_8_11: u4,
             /// CRC clock enable
             CRCEN: u1,
-            reserved6: u1,
-            reserved7: u1,
-            reserved8: u1,
-            reserved9: u1,
-            reserved10: u1,
-            reserved11: u1,
-            reserved12: u1,
-            reserved13: u1,
+            reserved_13_20: u8,
             /// DMA1 clock enable
             DMA1EN: u1,
             /// DMA2 clock enable
             DMA2EN: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
+            padding_23_31: u9,
         }), base_address + 0x30);
 
         /// address: 0x40023834
         /// AHB2 peripheral clock enable register
         pub const AHB2ENR = @intToPtr(*volatile Mmio(32, packed struct {
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
-            reserved6: u1,
+            reserved_0_6: u7,
             /// USB OTG FS clock enable
             OTGFSEN: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
+            padding_8_31: u24,
         }), base_address + 0x34);
 
         /// address: 0x40023840
@@ -4920,42 +3143,28 @@ pub const registers = struct {
             TIM4EN: u1,
             /// TIM5 clock enable
             TIM5EN: u1,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
-            reserved6: u1,
+            reserved_4_10: u7,
             /// Window watchdog clock enable
             WWDGEN: u1,
-            reserved7: u1,
-            reserved8: u1,
+            reserved_12_13: u2,
             /// SPI2 clock enable
             SPI2EN: u1,
             /// SPI3 clock enable
             SPI3EN: u1,
-            reserved9: u1,
+            reserved_16_16: u1,
             /// USART 2 clock enable
             USART2EN: u1,
-            reserved10: u1,
-            reserved11: u1,
-            reserved12: u1,
+            reserved_18_20: u3,
             /// I2C1 clock enable
             I2C1EN: u1,
             /// I2C2 clock enable
             I2C2EN: u1,
             /// I2C3 clock enable
             I2C3EN: u1,
-            reserved13: u1,
-            reserved14: u1,
-            reserved15: u1,
-            reserved16: u1,
+            reserved_24_27: u4,
             /// Power interface clock enable
             PWREN: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
+            padding_29_31: u3,
         }), base_address + 0x40);
 
         /// address: 0x40023844
@@ -4963,19 +3172,15 @@ pub const registers = struct {
         pub const APB2ENR = @intToPtr(*volatile Mmio(32, packed struct {
             /// TIM1 clock enable
             TIM1EN: u1,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
+            reserved_1_3: u3,
             /// USART1 clock enable
             USART1EN: u1,
             /// USART6 clock enable
             USART6EN: u1,
-            reserved3: u1,
-            reserved4: u1,
+            reserved_6_7: u2,
             /// ADC1 clock enable
             ADC1EN: u1,
-            reserved5: u1,
-            reserved6: u1,
+            reserved_9_10: u2,
             /// SDIO clock enable
             SDIOEN: u1,
             /// SPI1 clock enable
@@ -4984,26 +3189,14 @@ pub const registers = struct {
             SPI4EN: u1,
             /// System configuration controller clock enable
             SYSCFGEN: u1,
-            reserved7: u1,
+            reserved_15_15: u1,
             /// TIM9 clock enable
             TIM9EN: u1,
             /// TIM10 clock enable
             TIM10EN: u1,
             /// TIM11 clock enable
             TIM11EN: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
+            padding_19_31: u13,
         }), base_address + 0x44);
 
         /// address: 0x40023850
@@ -5019,77 +3212,32 @@ pub const registers = struct {
             GPIODLPEN: u1,
             /// IO port E clock enable during Sleep mode
             GPIOELPEN: u1,
-            reserved0: u1,
-            reserved1: u1,
+            reserved_5_6: u2,
             /// IO port H clock enable during Sleep mode
             GPIOHLPEN: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
+            reserved_8_11: u4,
             /// CRC clock enable during Sleep mode
             CRCLPEN: u1,
-            reserved6: u1,
-            reserved7: u1,
+            reserved_13_14: u2,
             /// Flash interface clock enable during Sleep mode
             FLITFLPEN: u1,
             /// SRAM 1interface clock enable during Sleep mode
             SRAM1LPEN: u1,
-            reserved8: u1,
-            reserved9: u1,
-            reserved10: u1,
-            reserved11: u1,
+            reserved_17_20: u4,
             /// DMA1 clock enable during Sleep mode
             DMA1LPEN: u1,
             /// DMA2 clock enable during Sleep mode
             DMA2LPEN: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
+            padding_23_31: u9,
         }), base_address + 0x50);
 
         /// address: 0x40023854
         /// AHB2 peripheral clock enable in low power mode register
         pub const AHB2LPENR = @intToPtr(*volatile Mmio(32, packed struct {
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
-            reserved6: u1,
+            reserved_0_6: u7,
             /// USB OTG FS clock enable during Sleep mode
             OTGFSLPEN: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
+            padding_8_31: u24,
         }), base_address + 0x54);
 
         /// address: 0x40023860
@@ -5103,42 +3251,28 @@ pub const registers = struct {
             TIM4LPEN: u1,
             /// TIM5 clock enable during Sleep mode
             TIM5LPEN: u1,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
-            reserved6: u1,
+            reserved_4_10: u7,
             /// Window watchdog clock enable during Sleep mode
             WWDGLPEN: u1,
-            reserved7: u1,
-            reserved8: u1,
+            reserved_12_13: u2,
             /// SPI2 clock enable during Sleep mode
             SPI2LPEN: u1,
             /// SPI3 clock enable during Sleep mode
             SPI3LPEN: u1,
-            reserved9: u1,
+            reserved_16_16: u1,
             /// USART2 clock enable during Sleep mode
             USART2LPEN: u1,
-            reserved10: u1,
-            reserved11: u1,
-            reserved12: u1,
+            reserved_18_20: u3,
             /// I2C1 clock enable during Sleep mode
             I2C1LPEN: u1,
             /// I2C2 clock enable during Sleep mode
             I2C2LPEN: u1,
             /// I2C3 clock enable during Sleep mode
             I2C3LPEN: u1,
-            reserved13: u1,
-            reserved14: u1,
-            reserved15: u1,
-            reserved16: u1,
+            reserved_24_27: u4,
             /// Power interface clock enable during Sleep mode
             PWRLPEN: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
+            padding_29_31: u3,
         }), base_address + 0x60);
 
         /// address: 0x40023864
@@ -5146,19 +3280,15 @@ pub const registers = struct {
         pub const APB2LPENR = @intToPtr(*volatile Mmio(32, packed struct {
             /// TIM1 clock enable during Sleep mode
             TIM1LPEN: u1,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
+            reserved_1_3: u3,
             /// USART1 clock enable during Sleep mode
             USART1LPEN: u1,
             /// USART6 clock enable during Sleep mode
             USART6LPEN: u1,
-            reserved3: u1,
-            reserved4: u1,
+            reserved_6_7: u2,
             /// ADC1 clock enable during Sleep mode
             ADC1LPEN: u1,
-            reserved5: u1,
-            reserved6: u1,
+            reserved_9_10: u2,
             /// SDIO clock enable during Sleep mode
             SDIOLPEN: u1,
             /// SPI 1 clock enable during Sleep mode
@@ -5167,26 +3297,14 @@ pub const registers = struct {
             SPI4LPEN: u1,
             /// System configuration controller clock enable during Sleep mode
             SYSCFGLPEN: u1,
-            reserved7: u1,
+            reserved_15_15: u1,
             /// TIM9 clock enable during sleep mode
             TIM9LPEN: u1,
             /// TIM10 clock enable during Sleep mode
             TIM10LPEN: u1,
             /// TIM11 clock enable during Sleep mode
             TIM11LPEN: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
+            padding_19_31: u13,
         }), base_address + 0x64);
 
         /// address: 0x40023870
@@ -5198,39 +3316,17 @@ pub const registers = struct {
             LSERDY: u1,
             /// External low-speed oscillator bypass
             LSEBYP: u1,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
+            reserved_3_7: u5,
             /// RTC clock source selection
             RTCSEL0: u1,
             /// RTC clock source selection
             RTCSEL1: u1,
-            reserved5: u1,
-            reserved6: u1,
-            reserved7: u1,
-            reserved8: u1,
-            reserved9: u1,
+            reserved_10_14: u5,
             /// RTC clock enable
             RTCEN: u1,
             /// Backup domain software reset
             BDRST: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
+            padding_17_31: u15,
         }), base_address + 0x70);
 
         /// address: 0x40023874
@@ -5240,28 +3336,7 @@ pub const registers = struct {
             LSION: u1,
             /// Internal low-speed oscillator ready
             LSIRDY: u1,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
-            reserved6: u1,
-            reserved7: u1,
-            reserved8: u1,
-            reserved9: u1,
-            reserved10: u1,
-            reserved11: u1,
-            reserved12: u1,
-            reserved13: u1,
-            reserved14: u1,
-            reserved15: u1,
-            reserved16: u1,
-            reserved17: u1,
-            reserved18: u1,
-            reserved19: u1,
-            reserved20: u1,
-            reserved21: u1,
+            reserved_2_23: u22,
             /// Remove reset flag
             RMVF: u1,
             /// BOR reset flag
@@ -5287,8 +3362,7 @@ pub const registers = struct {
             MODPER: u13,
             /// Incrementation step
             INCSTEP: u15,
-            reserved0: u1,
-            reserved1: u1,
+            reserved_28_29: u2,
             /// Spread Select
             SPREADSEL: u1,
             /// Spread spectrum modulation enable
@@ -5298,30 +3372,13 @@ pub const registers = struct {
         /// address: 0x40023884
         /// PLLI2S configuration register
         pub const PLLI2SCFGR = @intToPtr(*volatile Mmio(32, packed struct {
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
+            reserved_0_5: u6,
             /// PLLI2S multiplication factor for VCO
             PLLI2SNx: u9,
-            reserved6: u1,
-            reserved7: u1,
-            reserved8: u1,
-            reserved9: u1,
-            reserved10: u1,
-            reserved11: u1,
-            reserved12: u1,
-            reserved13: u1,
-            reserved14: u1,
-            reserved15: u1,
-            reserved16: u1,
-            reserved17: u1,
-            reserved18: u1,
+            reserved_15_27: u13,
             /// PLLI2S division factor for I2S clocks
             PLLI2SRx: u3,
-            padding0: u1,
+            padding_31_31: u1,
         }), base_address + 0x84);
     };
 
@@ -5336,27 +3393,19 @@ pub const registers = struct {
             SU: u4,
             /// Second tens in BCD format
             ST: u3,
-            reserved0: u1,
+            reserved_7_7: u1,
             /// Minute units in BCD format
             MNU: u4,
             /// Minute tens in BCD format
             MNT: u3,
-            reserved1: u1,
+            reserved_15_15: u1,
             /// Hour units in BCD format
             HU: u4,
             /// Hour tens in BCD format
             HT: u2,
             /// AM/PM notation
             PM: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
+            padding_23_31: u9,
         }), base_address + 0x0);
 
         /// address: 0x40002804
@@ -5366,8 +3415,7 @@ pub const registers = struct {
             DU: u4,
             /// Date tens in BCD format
             DT: u2,
-            reserved0: u1,
-            reserved1: u1,
+            reserved_6_7: u2,
             /// Month units in BCD format
             MU: u4,
             /// Month tens in BCD format
@@ -5378,14 +3426,7 @@ pub const registers = struct {
             YU: u4,
             /// Year tens in BCD format
             YT: u4,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
+            padding_24_31: u8,
         }), base_address + 0x4);
 
         /// address: 0x40002808
@@ -5433,14 +3474,7 @@ pub const registers = struct {
             OSEL: u2,
             /// Calibration output enable
             COE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
+            padding_24_31: u8,
         }), base_address + 0x8);
 
         /// address: 0x4000280c
@@ -5476,24 +3510,10 @@ pub const registers = struct {
             TAMP1F: u1,
             /// TAMPER2 detection flag
             TAMP2F: u1,
-            reserved0: u1,
+            reserved_15_15: u1,
             /// Recalibration pending Flag
             RECALPF: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
+            padding_17_31: u15,
         }), base_address + 0xc);
 
         /// address: 0x40002810
@@ -5501,18 +3521,10 @@ pub const registers = struct {
         pub const PRER = @intToPtr(*volatile Mmio(32, packed struct {
             /// Synchronous prescaler factor
             PREDIV_S: u15,
-            reserved0: u1,
+            reserved_15_15: u1,
             /// Asynchronous prescaler factor
             PREDIV_A: u7,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
+            padding_23_31: u9,
         }), base_address + 0x10);
 
         /// address: 0x40002814
@@ -5520,22 +3532,7 @@ pub const registers = struct {
         pub const WUTR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Wakeup auto-reload value bits
             WUT: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x14);
 
         /// address: 0x40002818
@@ -5543,34 +3540,10 @@ pub const registers = struct {
         pub const CALIBR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Digital calibration
             DC: u5,
-            reserved0: u1,
-            reserved1: u1,
+            reserved_5_6: u2,
             /// Digital calibration sign
             DCS: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
+            padding_8_31: u24,
         }), base_address + 0x18);
 
         /// address: 0x4000281c
@@ -5644,30 +3617,7 @@ pub const registers = struct {
         pub const WPR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Write protection key
             KEY: u8,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
+            padding_8_31: u24,
         }), base_address + 0x24);
 
         /// address: 0x40002828
@@ -5675,22 +3625,7 @@ pub const registers = struct {
         pub const SSR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Sub second value
             SS: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x28);
 
         /// address: 0x4000282c
@@ -5698,22 +3633,7 @@ pub const registers = struct {
         pub const SHIFTR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Subtract a fraction of a second
             SUBFS: u15,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
-            reserved6: u1,
-            reserved7: u1,
-            reserved8: u1,
-            reserved9: u1,
-            reserved10: u1,
-            reserved11: u1,
-            reserved12: u1,
-            reserved13: u1,
-            reserved14: u1,
-            reserved15: u1,
+            reserved_15_30: u16,
             /// Add one second
             ADD1S: u1,
         }), base_address + 0x2c);
@@ -5725,27 +3645,19 @@ pub const registers = struct {
             SU: u4,
             /// Second tens in BCD format
             ST: u3,
-            reserved0: u1,
+            reserved_7_7: u1,
             /// Minute units in BCD format
             MNU: u4,
             /// Minute tens in BCD format
             MNT: u3,
-            reserved1: u1,
+            reserved_15_15: u1,
             /// Hour units in BCD format
             HU: u4,
             /// Hour tens in BCD format
             HT: u2,
             /// AM/PM notation
             PM: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
+            padding_23_31: u9,
         }), base_address + 0x30);
 
         /// address: 0x40002834
@@ -5755,30 +3667,14 @@ pub const registers = struct {
             DU: u4,
             /// Date tens in BCD format
             DT: u2,
-            reserved0: u1,
-            reserved1: u1,
+            reserved_6_7: u2,
             /// Month units in BCD format
             MU: u4,
             /// Month tens in BCD format
             MT: u1,
             /// Week day units
             WDU: u3,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x34);
 
         /// address: 0x40002838
@@ -5786,22 +3682,7 @@ pub const registers = struct {
         pub const TSSSR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Sub second value
             SS: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x38);
 
         /// address: 0x4000283c
@@ -5809,32 +3690,14 @@ pub const registers = struct {
         pub const CALR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Calibration minus
             CALM: u9,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
+            reserved_9_12: u4,
             /// Use a 16-second calibration cycle period
             CALW16: u1,
             /// Use an 8-second calibration cycle period
             CALW8: u1,
             /// Increase frequency of RTC by 488.5 ppm
             CALP: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x3c);
 
         /// address: 0x40002840
@@ -5850,8 +3713,7 @@ pub const registers = struct {
             TAMP2E: u1,
             /// Active level for tamper 2
             TAMP2TRG: u1,
-            reserved0: u1,
-            reserved1: u1,
+            reserved_5_6: u2,
             /// Activate timestamp on tamper detection event
             TAMPTS: u1,
             /// Tamper sampling frequency
@@ -5868,19 +3730,7 @@ pub const registers = struct {
             TSINSEL: u1,
             /// AFO_ALARM output type
             ALARMOUTTYPE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
+            padding_19_31: u13,
         }), base_address + 0x40);
 
         /// address: 0x40002844
@@ -5888,21 +3738,10 @@ pub const registers = struct {
         pub const ALRMASSR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Sub seconds value
             SS: u15,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
-            reserved6: u1,
-            reserved7: u1,
-            reserved8: u1,
+            reserved_15_23: u9,
             /// Mask the most-significant bits starting at this bit
             MASKSS: u4,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
+            padding_28_31: u4,
         }), base_address + 0x44);
 
         /// address: 0x40002848
@@ -5910,21 +3749,10 @@ pub const registers = struct {
         pub const ALRMBSSR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Sub seconds value
             SS: u15,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
-            reserved6: u1,
-            reserved7: u1,
-            reserved8: u1,
+            reserved_15_23: u9,
             /// Mask the most-significant bits starting at this bit
             MASKSS: u4,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
+            padding_28_31: u4,
         }), base_address + 0x48);
 
         /// address: 0x40002850
@@ -6077,36 +3905,7 @@ pub const registers = struct {
         pub const POWER = @intToPtr(*volatile Mmio(32, packed struct {
             /// PWRCTRL
             PWRCTRL: u2,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
-            padding24: u1,
-            padding25: u1,
-            padding26: u1,
-            padding27: u1,
-            padding28: u1,
-            padding29: u1,
+            padding_2_31: u30,
         }), base_address + 0x0);
 
         /// address: 0x40012c04
@@ -6126,23 +3925,7 @@ pub const registers = struct {
             NEGEDGE: u1,
             /// HW Flow Control enable
             HWFC_EN: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
+            padding_15_31: u17,
         }), base_address + 0x4);
 
         /// address: 0x40012c08
@@ -6173,23 +3956,7 @@ pub const registers = struct {
             nIEN: u1,
             /// CE-ATA command
             CE_ATACMD: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
+            padding_15_31: u17,
         }), base_address + 0xc);
 
         /// address: 0x40012c10
@@ -6236,13 +4003,7 @@ pub const registers = struct {
         pub const DLEN = @intToPtr(*volatile Mmio(32, packed struct {
             /// Data length value
             DATALENGTH: u25,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
+            padding_25_31: u7,
         }), base_address + 0x28);
 
         /// address: 0x40012c2c
@@ -6266,26 +4027,7 @@ pub const registers = struct {
             RWMOD: u1,
             /// SD I/O enable functions
             SDIOEN: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
+            padding_12_31: u20,
         }), base_address + 0x2c);
 
         /// address: 0x40012c30
@@ -6293,13 +4035,7 @@ pub const registers = struct {
         pub const DCOUNT = @intToPtr(*volatile Mmio(32, packed struct {
             /// Data count value
             DATACOUNT: u25,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
+            padding_25_31: u7,
         }), base_address + 0x30);
 
         /// address: 0x40012c34
@@ -6353,14 +4089,7 @@ pub const registers = struct {
             SDIOIT: u1,
             /// CE-ATA command completion signal received for CMD61
             CEATAEND: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
+            padding_24_31: u8,
         }), base_address + 0x34);
 
         /// address: 0x40012c38
@@ -6388,29 +4117,12 @@ pub const registers = struct {
             STBITERRC: u1,
             /// DBCKEND flag clear bit
             DBCKENDC: u1,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
-            reserved6: u1,
-            reserved7: u1,
-            reserved8: u1,
-            reserved9: u1,
-            reserved10: u1,
+            reserved_11_21: u11,
             /// SDIOIT flag clear bit
             SDIOITC: u1,
             /// CEATAEND flag clear bit
             CEATAENDC: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
+            padding_24_31: u8,
         }), base_address + 0x38);
 
         /// address: 0x40012c3c
@@ -6464,14 +4176,7 @@ pub const registers = struct {
             SDIOITIE: u1,
             /// CE-ATA command completion signal received interrupt enable
             CEATAENDIE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
+            padding_24_31: u8,
         }), base_address + 0x3c);
 
         /// address: 0x40012c48
@@ -6479,14 +4184,7 @@ pub const registers = struct {
         pub const FIFOCNT = @intToPtr(*volatile Mmio(32, packed struct {
             /// Remaining number of words to be written to or read from the FIFO.
             FIFOCOUNT: u24,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
+            padding_24_31: u8,
         }), base_address + 0x48);
 
         /// address: 0x40012c80
@@ -6506,74 +4204,16 @@ pub const registers = struct {
         pub const MEMRM = @intToPtr(*volatile Mmio(32, packed struct {
             /// MEM_MODE
             MEM_MODE: u2,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
-            padding24: u1,
-            padding25: u1,
-            padding26: u1,
-            padding27: u1,
-            padding28: u1,
-            padding29: u1,
+            padding_2_31: u30,
         }), base_address + 0x0);
 
         /// address: 0x40013804
         /// peripheral mode configuration register
         pub const PMC = @intToPtr(*volatile Mmio(32, packed struct {
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
-            reserved6: u1,
-            reserved7: u1,
-            reserved8: u1,
-            reserved9: u1,
-            reserved10: u1,
-            reserved11: u1,
-            reserved12: u1,
-            reserved13: u1,
-            reserved14: u1,
-            reserved15: u1,
+            reserved_0_15: u16,
             /// ADC1DC2
             ADC1DC2: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
+            padding_17_31: u15,
         }), base_address + 0x4);
 
         /// address: 0x40013808
@@ -6587,22 +4227,7 @@ pub const registers = struct {
             EXTI2: u4,
             /// EXTI x configuration (x = 0 to 3)
             EXTI3: u4,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x8);
 
         /// address: 0x4001380c
@@ -6616,22 +4241,7 @@ pub const registers = struct {
             EXTI6: u4,
             /// EXTI x configuration (x = 4 to 7)
             EXTI7: u4,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0xc);
 
         /// address: 0x40013810
@@ -6645,22 +4255,7 @@ pub const registers = struct {
             EXTI10: u4,
             /// EXTI x configuration (x = 8 to 11)
             EXTI11: u4,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x10);
 
         /// address: 0x40013814
@@ -6674,22 +4269,7 @@ pub const registers = struct {
             EXTI14: u4,
             /// EXTI x configuration (x = 12 to 15)
             EXTI15: u4,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x14);
 
         /// address: 0x40013820
@@ -6697,38 +4277,10 @@ pub const registers = struct {
         pub const CMPCR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Compensation cell power-down
             CMP_PD: u1,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
-            reserved6: u1,
+            reserved_1_7: u7,
             /// READY
             READY: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
+            padding_9_31: u23,
         }), base_address + 0x20);
     };
 
@@ -6755,28 +4307,7 @@ pub const registers = struct {
             ARPE: u1,
             /// Clock division
             CKD: u2,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
+            padding_10_31: u22,
         }), base_address + 0x0);
 
         /// address: 0x40010404
@@ -6784,7 +4315,7 @@ pub const registers = struct {
         pub const CR2 = @intToPtr(*volatile Mmio(32, packed struct {
             /// Capture/compare preloaded control
             CCPC: u1,
-            reserved0: u1,
+            reserved_1_1: u1,
             /// Capture/compare control update selection
             CCUS: u1,
             /// Capture/compare DMA selection
@@ -6807,23 +4338,7 @@ pub const registers = struct {
             OIS3N: u1,
             /// Output Idle state 4
             OIS4: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
+            padding_15_31: u17,
         }), base_address + 0x4);
 
         /// address: 0x40010408
@@ -6831,7 +4346,7 @@ pub const registers = struct {
         pub const SMCR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Slave mode selection
             SMS: u3,
-            reserved0: u1,
+            reserved_3_3: u1,
             /// Trigger selection
             TS: u3,
             /// Master/Slave mode
@@ -6844,22 +4359,7 @@ pub const registers = struct {
             ECE: u1,
             /// External trigger polarity
             ETP: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x8);
 
         /// address: 0x4001040c
@@ -6895,23 +4395,7 @@ pub const registers = struct {
             COMDE: u1,
             /// Trigger DMA request enable
             TDE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
+            padding_15_31: u17,
         }), base_address + 0xc);
 
         /// address: 0x40010410
@@ -6933,7 +4417,7 @@ pub const registers = struct {
             TIF: u1,
             /// Break interrupt flag
             BIF: u1,
-            reserved0: u1,
+            reserved_8_8: u1,
             /// Capture/Compare 1 overcapture flag
             CC1OF: u1,
             /// Capture/compare 2 overcapture flag
@@ -6942,25 +4426,7 @@ pub const registers = struct {
             CC3OF: u1,
             /// Capture/Compare 4 overcapture flag
             CC4OF: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
+            padding_13_31: u19,
         }), base_address + 0x10);
 
         /// address: 0x40010414
@@ -6982,30 +4448,7 @@ pub const registers = struct {
             TG: u1,
             /// Break generation
             BG: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
+            padding_8_31: u24,
         }), base_address + 0x14);
 
         /// address: 0x40010418
@@ -7031,22 +4474,7 @@ pub const registers = struct {
             OC2M: u3,
             /// Output Compare 2 clear enable
             OC2CE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x18);
 
         /// address: 0x40010418
@@ -7064,22 +4492,7 @@ pub const registers = struct {
             IC2PCS: u2,
             /// Input capture 2 filter
             IC2F: u4,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x18);
 
         /// address: 0x4001041c
@@ -7105,22 +4518,7 @@ pub const registers = struct {
             OC4M: u3,
             /// Output compare 4 clear enable
             OC4CE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x1c);
 
         /// address: 0x4001041c
@@ -7138,22 +4536,7 @@ pub const registers = struct {
             IC4PSC: u2,
             /// Input capture 4 filter
             IC4F: u4,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x1c);
 
         /// address: 0x40010420
@@ -7187,24 +4570,7 @@ pub const registers = struct {
             CC4E: u1,
             /// Capture/Compare 3 output Polarity
             CC4P: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
+            padding_14_31: u18,
         }), base_address + 0x20);
 
         /// address: 0x40010424
@@ -7240,30 +4606,10 @@ pub const registers = struct {
         pub const DCR = @intToPtr(*volatile Mmio(32, packed struct {
             /// DMA base address
             DBA: u5,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
+            reserved_5_7: u3,
             /// DMA burst length
             DBL: u5,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
+            padding_13_31: u19,
         }), base_address + 0x48);
 
         /// address: 0x4001044c
@@ -7271,22 +4617,7 @@ pub const registers = struct {
         pub const DMAR = @intToPtr(*volatile Mmio(32, packed struct {
             /// DMA register for burst accesses
             DMAB: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x4c);
 
         /// address: 0x40010430
@@ -7294,30 +4625,7 @@ pub const registers = struct {
         pub const RCR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Repetition counter value
             REP: u8,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
+            padding_8_31: u24,
         }), base_address + 0x30);
 
         /// address: 0x40010444
@@ -7339,22 +4647,7 @@ pub const registers = struct {
             AOE: u1,
             /// Main output enable
             MOE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x44);
     };
 
@@ -7381,28 +4674,7 @@ pub const registers = struct {
             ARPE: u1,
             /// Clock division
             CKD: u2,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
+            padding_10_31: u22,
         }), base_address + 0x0);
 
         /// address: 0x40010404
@@ -7410,7 +4682,7 @@ pub const registers = struct {
         pub const CR2 = @intToPtr(*volatile Mmio(32, packed struct {
             /// Capture/compare preloaded control
             CCPC: u1,
-            reserved0: u1,
+            reserved_1_1: u1,
             /// Capture/compare control update selection
             CCUS: u1,
             /// Capture/compare DMA selection
@@ -7433,23 +4705,7 @@ pub const registers = struct {
             OIS3N: u1,
             /// Output Idle state 4
             OIS4: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
+            padding_15_31: u17,
         }), base_address + 0x4);
 
         /// address: 0x40010408
@@ -7457,7 +4713,7 @@ pub const registers = struct {
         pub const SMCR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Slave mode selection
             SMS: u3,
-            reserved0: u1,
+            reserved_3_3: u1,
             /// Trigger selection
             TS: u3,
             /// Master/Slave mode
@@ -7470,22 +4726,7 @@ pub const registers = struct {
             ECE: u1,
             /// External trigger polarity
             ETP: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x8);
 
         /// address: 0x4001040c
@@ -7521,23 +4762,7 @@ pub const registers = struct {
             COMDE: u1,
             /// Trigger DMA request enable
             TDE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
+            padding_15_31: u17,
         }), base_address + 0xc);
 
         /// address: 0x40010410
@@ -7559,7 +4784,7 @@ pub const registers = struct {
             TIF: u1,
             /// Break interrupt flag
             BIF: u1,
-            reserved0: u1,
+            reserved_8_8: u1,
             /// Capture/Compare 1 overcapture flag
             CC1OF: u1,
             /// Capture/compare 2 overcapture flag
@@ -7568,25 +4793,7 @@ pub const registers = struct {
             CC3OF: u1,
             /// Capture/Compare 4 overcapture flag
             CC4OF: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
+            padding_13_31: u19,
         }), base_address + 0x10);
 
         /// address: 0x40010414
@@ -7608,30 +4815,7 @@ pub const registers = struct {
             TG: u1,
             /// Break generation
             BG: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
+            padding_8_31: u24,
         }), base_address + 0x14);
 
         /// address: 0x40010418
@@ -7657,22 +4841,7 @@ pub const registers = struct {
             OC2M: u3,
             /// Output Compare 2 clear enable
             OC2CE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x18);
 
         /// address: 0x40010418
@@ -7690,22 +4859,7 @@ pub const registers = struct {
             IC2PCS: u2,
             /// Input capture 2 filter
             IC2F: u4,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x18);
 
         /// address: 0x4001041c
@@ -7731,22 +4885,7 @@ pub const registers = struct {
             OC4M: u3,
             /// Output compare 4 clear enable
             OC4CE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x1c);
 
         /// address: 0x4001041c
@@ -7764,22 +4903,7 @@ pub const registers = struct {
             IC4PSC: u2,
             /// Input capture 4 filter
             IC4F: u4,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x1c);
 
         /// address: 0x40010420
@@ -7813,24 +4937,7 @@ pub const registers = struct {
             CC4E: u1,
             /// Capture/Compare 3 output Polarity
             CC4P: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
+            padding_14_31: u18,
         }), base_address + 0x20);
 
         /// address: 0x40010424
@@ -7866,30 +4973,10 @@ pub const registers = struct {
         pub const DCR = @intToPtr(*volatile Mmio(32, packed struct {
             /// DMA base address
             DBA: u5,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
+            reserved_5_7: u3,
             /// DMA burst length
             DBL: u5,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
+            padding_13_31: u19,
         }), base_address + 0x48);
 
         /// address: 0x4001044c
@@ -7897,22 +4984,7 @@ pub const registers = struct {
         pub const DMAR = @intToPtr(*volatile Mmio(32, packed struct {
             /// DMA register for burst accesses
             DMAB: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x4c);
 
         /// address: 0x40010430
@@ -7920,30 +4992,7 @@ pub const registers = struct {
         pub const RCR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Repetition counter value
             REP: u8,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
+            padding_8_31: u24,
         }), base_address + 0x30);
 
         /// address: 0x40010444
@@ -7965,22 +5014,7 @@ pub const registers = struct {
             AOE: u1,
             /// Main output enable
             MOE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x44);
     };
 
@@ -7997,36 +5031,12 @@ pub const registers = struct {
             UDIS: u1,
             /// Update request source
             URS: u1,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
+            reserved_3_6: u4,
             /// Auto-reload preload enable
             ARPE: u1,
             /// Clock division
             CKD: u2,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
+            padding_10_31: u22,
         }), base_address + 0x0);
 
         /// address: 0x4001440c
@@ -8036,36 +5046,7 @@ pub const registers = struct {
             UIE: u1,
             /// Capture/Compare 1 interrupt enable
             CC1IE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
-            padding24: u1,
-            padding25: u1,
-            padding26: u1,
-            padding27: u1,
-            padding28: u1,
-            padding29: u1,
+            padding_2_31: u30,
         }), base_address + 0xc);
 
         /// address: 0x40014410
@@ -8075,37 +5056,10 @@ pub const registers = struct {
             UIF: u1,
             /// Capture/compare 1 interrupt flag
             CC1IF: u1,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
-            reserved6: u1,
+            reserved_2_8: u7,
             /// Capture/Compare 1 overcapture flag
             CC1OF: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
+            padding_10_31: u22,
         }), base_address + 0x10);
 
         /// address: 0x40014414
@@ -8115,36 +5069,7 @@ pub const registers = struct {
             UG: u1,
             /// Capture/compare 1 generation
             CC1G: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
-            padding24: u1,
-            padding25: u1,
-            padding26: u1,
-            padding27: u1,
-            padding28: u1,
-            padding29: u1,
+            padding_2_31: u30,
         }), base_address + 0x14);
 
         /// address: 0x40014418
@@ -8158,31 +5083,7 @@ pub const registers = struct {
             OC1PE: u1,
             /// Output Compare 1 mode
             OC1M: u3,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
-            padding24: u1,
+            padding_7_31: u25,
         }), base_address + 0x18);
 
         /// address: 0x40014418
@@ -8194,30 +5095,7 @@ pub const registers = struct {
             ICPCS: u2,
             /// Input capture 1 filter
             IC1F: u4,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
+            padding_8_31: u24,
         }), base_address + 0x18);
 
         /// address: 0x40014420
@@ -8227,37 +5105,10 @@ pub const registers = struct {
             CC1E: u1,
             /// Capture/Compare 1 output Polarity
             CC1P: u1,
-            reserved0: u1,
+            reserved_2_2: u1,
             /// Capture/Compare 1 output Polarity
             CC1NP: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
-            padding24: u1,
-            padding25: u1,
-            padding26: u1,
-            padding27: u1,
+            padding_4_31: u28,
         }), base_address + 0x20);
 
         /// address: 0x40014424
@@ -8290,36 +5141,12 @@ pub const registers = struct {
             UDIS: u1,
             /// Update request source
             URS: u1,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
+            reserved_3_6: u4,
             /// Auto-reload preload enable
             ARPE: u1,
             /// Clock division
             CKD: u2,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
+            padding_10_31: u22,
         }), base_address + 0x0);
 
         /// address: 0x4001480c
@@ -8329,36 +5156,7 @@ pub const registers = struct {
             UIE: u1,
             /// Capture/Compare 1 interrupt enable
             CC1IE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
-            padding24: u1,
-            padding25: u1,
-            padding26: u1,
-            padding27: u1,
-            padding28: u1,
-            padding29: u1,
+            padding_2_31: u30,
         }), base_address + 0xc);
 
         /// address: 0x40014810
@@ -8368,37 +5166,10 @@ pub const registers = struct {
             UIF: u1,
             /// Capture/compare 1 interrupt flag
             CC1IF: u1,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
-            reserved6: u1,
+            reserved_2_8: u7,
             /// Capture/Compare 1 overcapture flag
             CC1OF: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
+            padding_10_31: u22,
         }), base_address + 0x10);
 
         /// address: 0x40014814
@@ -8408,36 +5179,7 @@ pub const registers = struct {
             UG: u1,
             /// Capture/compare 1 generation
             CC1G: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
-            padding24: u1,
-            padding25: u1,
-            padding26: u1,
-            padding27: u1,
-            padding28: u1,
-            padding29: u1,
+            padding_2_31: u30,
         }), base_address + 0x14);
 
         /// address: 0x40014818
@@ -8451,31 +5193,7 @@ pub const registers = struct {
             OC1PE: u1,
             /// Output Compare 1 mode
             OC1M: u3,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
-            padding24: u1,
+            padding_7_31: u25,
         }), base_address + 0x18);
 
         /// address: 0x40014818
@@ -8487,30 +5205,7 @@ pub const registers = struct {
             ICPCS: u2,
             /// Input capture 1 filter
             IC1F: u4,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
+            padding_8_31: u24,
         }), base_address + 0x18);
 
         /// address: 0x40014820
@@ -8520,37 +5215,10 @@ pub const registers = struct {
             CC1E: u1,
             /// Capture/Compare 1 output Polarity
             CC1P: u1,
-            reserved0: u1,
+            reserved_2_2: u1,
             /// Capture/Compare 1 output Polarity
             CC1NP: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
-            padding24: u1,
-            padding25: u1,
-            padding26: u1,
-            padding27: u1,
+            padding_4_31: u28,
         }), base_address + 0x20);
 
         /// address: 0x40014824
@@ -8574,36 +5242,7 @@ pub const registers = struct {
         pub const OR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Input 1 remapping capability
             RMP: u2,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
-            padding24: u1,
-            padding25: u1,
-            padding26: u1,
-            padding27: u1,
-            padding28: u1,
-            padding29: u1,
+            padding_2_31: u30,
         }), base_address + 0x50);
     };
 
@@ -8630,66 +5269,20 @@ pub const registers = struct {
             ARPE: u1,
             /// Clock division
             CKD: u2,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
+            padding_10_31: u22,
         }), base_address + 0x0);
 
         /// address: 0x40000004
         /// control register 2
         pub const CR2 = @intToPtr(*volatile Mmio(32, packed struct {
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
+            reserved_0_2: u3,
             /// Capture/compare DMA selection
             CCDS: u1,
             /// Master mode selection
             MMS: u3,
             /// TI1 selection
             TI1S: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
+            padding_8_31: u24,
         }), base_address + 0x4);
 
         /// address: 0x40000008
@@ -8697,7 +5290,7 @@ pub const registers = struct {
         pub const SMCR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Slave mode selection
             SMS: u3,
-            reserved0: u1,
+            reserved_3_3: u1,
             /// Trigger selection
             TS: u3,
             /// Master/Slave mode
@@ -8710,22 +5303,7 @@ pub const registers = struct {
             ECE: u1,
             /// External trigger polarity
             ETP: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x8);
 
         /// address: 0x4000000c
@@ -8741,10 +5319,10 @@ pub const registers = struct {
             CC3IE: u1,
             /// Capture/Compare 4 interrupt enable
             CC4IE: u1,
-            reserved0: u1,
+            reserved_5_5: u1,
             /// Trigger interrupt enable
             TIE: u1,
-            reserved1: u1,
+            reserved_7_7: u1,
             /// Update DMA request enable
             UDE: u1,
             /// Capture/Compare 1 DMA request enable
@@ -8755,26 +5333,10 @@ pub const registers = struct {
             CC3DE: u1,
             /// Capture/Compare 4 DMA request enable
             CC4DE: u1,
-            reserved2: u1,
+            reserved_13_13: u1,
             /// Trigger DMA request enable
             TDE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
+            padding_15_31: u17,
         }), base_address + 0xc);
 
         /// address: 0x40000010
@@ -8790,11 +5352,10 @@ pub const registers = struct {
             CC3IF: u1,
             /// Capture/Compare 4 interrupt flag
             CC4IF: u1,
-            reserved0: u1,
+            reserved_5_5: u1,
             /// Trigger interrupt flag
             TIF: u1,
-            reserved1: u1,
-            reserved2: u1,
+            reserved_7_8: u2,
             /// Capture/Compare 1 overcapture flag
             CC1OF: u1,
             /// Capture/compare 2 overcapture flag
@@ -8803,25 +5364,7 @@ pub const registers = struct {
             CC3OF: u1,
             /// Capture/Compare 4 overcapture flag
             CC4OF: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
+            padding_13_31: u19,
         }), base_address + 0x10);
 
         /// address: 0x40000014
@@ -8837,34 +5380,10 @@ pub const registers = struct {
             CC3G: u1,
             /// Capture/compare 4 generation
             CC4G: u1,
-            reserved0: u1,
+            reserved_5_5: u1,
             /// Trigger generation
             TG: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
-            padding24: u1,
+            padding_7_31: u25,
         }), base_address + 0x14);
 
         /// address: 0x40000018
@@ -8890,22 +5409,7 @@ pub const registers = struct {
             OC2M: u3,
             /// OC2CE
             OC2CE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x18);
 
         /// address: 0x40000018
@@ -8923,22 +5427,7 @@ pub const registers = struct {
             IC2PCS: u2,
             /// Input capture 2 filter
             IC2F: u4,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x18);
 
         /// address: 0x4000001c
@@ -8964,22 +5453,7 @@ pub const registers = struct {
             OC4M: u3,
             /// O24CE
             O24CE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x1c);
 
         /// address: 0x4000001c
@@ -8997,22 +5471,7 @@ pub const registers = struct {
             IC4PSC: u2,
             /// Input capture 4 filter
             IC4F: u4,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x1c);
 
         /// address: 0x40000020
@@ -9022,46 +5481,31 @@ pub const registers = struct {
             CC1E: u1,
             /// Capture/Compare 1 output Polarity
             CC1P: u1,
-            reserved0: u1,
+            reserved_2_2: u1,
             /// Capture/Compare 1 output Polarity
             CC1NP: u1,
             /// Capture/Compare 2 output enable
             CC2E: u1,
             /// Capture/Compare 2 output Polarity
             CC2P: u1,
-            reserved1: u1,
+            reserved_6_6: u1,
             /// Capture/Compare 2 output Polarity
             CC2NP: u1,
             /// Capture/Compare 3 output enable
             CC3E: u1,
             /// Capture/Compare 3 output Polarity
             CC3P: u1,
-            reserved2: u1,
+            reserved_10_10: u1,
             /// Capture/Compare 3 output Polarity
             CC3NP: u1,
             /// Capture/Compare 4 output enable
             CC4E: u1,
             /// Capture/Compare 3 output Polarity
             CC4P: u1,
-            reserved3: u1,
+            reserved_14_14: u1,
             /// Capture/Compare 4 output Polarity
             CC4NP: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x20);
 
         /// address: 0x40000024
@@ -9127,30 +5571,10 @@ pub const registers = struct {
         pub const DCR = @intToPtr(*volatile Mmio(32, packed struct {
             /// DMA base address
             DBA: u5,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
+            reserved_5_7: u3,
             /// DMA burst length
             DBL: u5,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
+            padding_13_31: u19,
         }), base_address + 0x48);
 
         /// address: 0x4000004c
@@ -9158,59 +5582,16 @@ pub const registers = struct {
         pub const DMAR = @intToPtr(*volatile Mmio(32, packed struct {
             /// DMA register for burst accesses
             DMAB: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x4c);
 
         /// address: 0x40000050
         /// TIM5 option register
         pub const OR = @intToPtr(*volatile Mmio(32, packed struct {
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
-            reserved6: u1,
-            reserved7: u1,
-            reserved8: u1,
-            reserved9: u1,
+            reserved_0_9: u10,
             /// Timer Input 4 remap
             ITR1_RMP: u2,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
+            padding_12_31: u20,
         }), base_address + 0x50);
     };
 
@@ -9237,66 +5618,20 @@ pub const registers = struct {
             ARPE: u1,
             /// Clock division
             CKD: u2,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
+            padding_10_31: u22,
         }), base_address + 0x0);
 
         /// address: 0x40000804
         /// control register 2
         pub const CR2 = @intToPtr(*volatile Mmio(32, packed struct {
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
+            reserved_0_2: u3,
             /// Capture/compare DMA selection
             CCDS: u1,
             /// Master mode selection
             MMS: u3,
             /// TI1 selection
             TI1S: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
+            padding_8_31: u24,
         }), base_address + 0x4);
 
         /// address: 0x40000808
@@ -9304,7 +5639,7 @@ pub const registers = struct {
         pub const SMCR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Slave mode selection
             SMS: u3,
-            reserved0: u1,
+            reserved_3_3: u1,
             /// Trigger selection
             TS: u3,
             /// Master/Slave mode
@@ -9317,22 +5652,7 @@ pub const registers = struct {
             ECE: u1,
             /// External trigger polarity
             ETP: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x8);
 
         /// address: 0x4000080c
@@ -9348,10 +5668,10 @@ pub const registers = struct {
             CC3IE: u1,
             /// Capture/Compare 4 interrupt enable
             CC4IE: u1,
-            reserved0: u1,
+            reserved_5_5: u1,
             /// Trigger interrupt enable
             TIE: u1,
-            reserved1: u1,
+            reserved_7_7: u1,
             /// Update DMA request enable
             UDE: u1,
             /// Capture/Compare 1 DMA request enable
@@ -9362,26 +5682,10 @@ pub const registers = struct {
             CC3DE: u1,
             /// Capture/Compare 4 DMA request enable
             CC4DE: u1,
-            reserved2: u1,
+            reserved_13_13: u1,
             /// Trigger DMA request enable
             TDE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
+            padding_15_31: u17,
         }), base_address + 0xc);
 
         /// address: 0x40000810
@@ -9397,11 +5701,10 @@ pub const registers = struct {
             CC3IF: u1,
             /// Capture/Compare 4 interrupt flag
             CC4IF: u1,
-            reserved0: u1,
+            reserved_5_5: u1,
             /// Trigger interrupt flag
             TIF: u1,
-            reserved1: u1,
-            reserved2: u1,
+            reserved_7_8: u2,
             /// Capture/Compare 1 overcapture flag
             CC1OF: u1,
             /// Capture/compare 2 overcapture flag
@@ -9410,25 +5713,7 @@ pub const registers = struct {
             CC3OF: u1,
             /// Capture/Compare 4 overcapture flag
             CC4OF: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
+            padding_13_31: u19,
         }), base_address + 0x10);
 
         /// address: 0x40000814
@@ -9444,34 +5729,10 @@ pub const registers = struct {
             CC3G: u1,
             /// Capture/compare 4 generation
             CC4G: u1,
-            reserved0: u1,
+            reserved_5_5: u1,
             /// Trigger generation
             TG: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
-            padding24: u1,
+            padding_7_31: u25,
         }), base_address + 0x14);
 
         /// address: 0x40000818
@@ -9497,22 +5758,7 @@ pub const registers = struct {
             OC2M: u3,
             /// OC2CE
             OC2CE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x18);
 
         /// address: 0x40000818
@@ -9530,22 +5776,7 @@ pub const registers = struct {
             IC2PCS: u2,
             /// Input capture 2 filter
             IC2F: u4,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x18);
 
         /// address: 0x4000081c
@@ -9571,22 +5802,7 @@ pub const registers = struct {
             OC4M: u3,
             /// O24CE
             O24CE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x1c);
 
         /// address: 0x4000081c
@@ -9604,22 +5820,7 @@ pub const registers = struct {
             IC4PSC: u2,
             /// Input capture 4 filter
             IC4F: u4,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x1c);
 
         /// address: 0x40000820
@@ -9629,46 +5830,31 @@ pub const registers = struct {
             CC1E: u1,
             /// Capture/Compare 1 output Polarity
             CC1P: u1,
-            reserved0: u1,
+            reserved_2_2: u1,
             /// Capture/Compare 1 output Polarity
             CC1NP: u1,
             /// Capture/Compare 2 output enable
             CC2E: u1,
             /// Capture/Compare 2 output Polarity
             CC2P: u1,
-            reserved1: u1,
+            reserved_6_6: u1,
             /// Capture/Compare 2 output Polarity
             CC2NP: u1,
             /// Capture/Compare 3 output enable
             CC3E: u1,
             /// Capture/Compare 3 output Polarity
             CC3P: u1,
-            reserved2: u1,
+            reserved_10_10: u1,
             /// Capture/Compare 3 output Polarity
             CC3NP: u1,
             /// Capture/Compare 4 output enable
             CC4E: u1,
             /// Capture/Compare 3 output Polarity
             CC4P: u1,
-            reserved3: u1,
+            reserved_14_14: u1,
             /// Capture/Compare 4 output Polarity
             CC4NP: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x20);
 
         /// address: 0x40000824
@@ -9734,30 +5920,10 @@ pub const registers = struct {
         pub const DCR = @intToPtr(*volatile Mmio(32, packed struct {
             /// DMA base address
             DBA: u5,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
+            reserved_5_7: u3,
             /// DMA burst length
             DBL: u5,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
+            padding_13_31: u19,
         }), base_address + 0x48);
 
         /// address: 0x4000084c
@@ -9765,22 +5931,7 @@ pub const registers = struct {
         pub const DMAR = @intToPtr(*volatile Mmio(32, packed struct {
             /// DMA register for burst accesses
             DMAB: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x4c);
     };
 
@@ -9807,66 +5958,20 @@ pub const registers = struct {
             ARPE: u1,
             /// Clock division
             CKD: u2,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
+            padding_10_31: u22,
         }), base_address + 0x0);
 
         /// address: 0x40000804
         /// control register 2
         pub const CR2 = @intToPtr(*volatile Mmio(32, packed struct {
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
+            reserved_0_2: u3,
             /// Capture/compare DMA selection
             CCDS: u1,
             /// Master mode selection
             MMS: u3,
             /// TI1 selection
             TI1S: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
+            padding_8_31: u24,
         }), base_address + 0x4);
 
         /// address: 0x40000808
@@ -9874,7 +5979,7 @@ pub const registers = struct {
         pub const SMCR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Slave mode selection
             SMS: u3,
-            reserved0: u1,
+            reserved_3_3: u1,
             /// Trigger selection
             TS: u3,
             /// Master/Slave mode
@@ -9887,22 +5992,7 @@ pub const registers = struct {
             ECE: u1,
             /// External trigger polarity
             ETP: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x8);
 
         /// address: 0x4000080c
@@ -9918,10 +6008,10 @@ pub const registers = struct {
             CC3IE: u1,
             /// Capture/Compare 4 interrupt enable
             CC4IE: u1,
-            reserved0: u1,
+            reserved_5_5: u1,
             /// Trigger interrupt enable
             TIE: u1,
-            reserved1: u1,
+            reserved_7_7: u1,
             /// Update DMA request enable
             UDE: u1,
             /// Capture/Compare 1 DMA request enable
@@ -9932,26 +6022,10 @@ pub const registers = struct {
             CC3DE: u1,
             /// Capture/Compare 4 DMA request enable
             CC4DE: u1,
-            reserved2: u1,
+            reserved_13_13: u1,
             /// Trigger DMA request enable
             TDE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
+            padding_15_31: u17,
         }), base_address + 0xc);
 
         /// address: 0x40000810
@@ -9967,11 +6041,10 @@ pub const registers = struct {
             CC3IF: u1,
             /// Capture/Compare 4 interrupt flag
             CC4IF: u1,
-            reserved0: u1,
+            reserved_5_5: u1,
             /// Trigger interrupt flag
             TIF: u1,
-            reserved1: u1,
-            reserved2: u1,
+            reserved_7_8: u2,
             /// Capture/Compare 1 overcapture flag
             CC1OF: u1,
             /// Capture/compare 2 overcapture flag
@@ -9980,25 +6053,7 @@ pub const registers = struct {
             CC3OF: u1,
             /// Capture/Compare 4 overcapture flag
             CC4OF: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
+            padding_13_31: u19,
         }), base_address + 0x10);
 
         /// address: 0x40000814
@@ -10014,34 +6069,10 @@ pub const registers = struct {
             CC3G: u1,
             /// Capture/compare 4 generation
             CC4G: u1,
-            reserved0: u1,
+            reserved_5_5: u1,
             /// Trigger generation
             TG: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
-            padding24: u1,
+            padding_7_31: u25,
         }), base_address + 0x14);
 
         /// address: 0x40000818
@@ -10067,22 +6098,7 @@ pub const registers = struct {
             OC2M: u3,
             /// OC2CE
             OC2CE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x18);
 
         /// address: 0x40000818
@@ -10100,22 +6116,7 @@ pub const registers = struct {
             IC2PCS: u2,
             /// Input capture 2 filter
             IC2F: u4,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x18);
 
         /// address: 0x4000081c
@@ -10141,22 +6142,7 @@ pub const registers = struct {
             OC4M: u3,
             /// O24CE
             O24CE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x1c);
 
         /// address: 0x4000081c
@@ -10174,22 +6160,7 @@ pub const registers = struct {
             IC4PSC: u2,
             /// Input capture 4 filter
             IC4F: u4,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x1c);
 
         /// address: 0x40000820
@@ -10199,46 +6170,31 @@ pub const registers = struct {
             CC1E: u1,
             /// Capture/Compare 1 output Polarity
             CC1P: u1,
-            reserved0: u1,
+            reserved_2_2: u1,
             /// Capture/Compare 1 output Polarity
             CC1NP: u1,
             /// Capture/Compare 2 output enable
             CC2E: u1,
             /// Capture/Compare 2 output Polarity
             CC2P: u1,
-            reserved1: u1,
+            reserved_6_6: u1,
             /// Capture/Compare 2 output Polarity
             CC2NP: u1,
             /// Capture/Compare 3 output enable
             CC3E: u1,
             /// Capture/Compare 3 output Polarity
             CC3P: u1,
-            reserved2: u1,
+            reserved_10_10: u1,
             /// Capture/Compare 3 output Polarity
             CC3NP: u1,
             /// Capture/Compare 4 output enable
             CC4E: u1,
             /// Capture/Compare 3 output Polarity
             CC4P: u1,
-            reserved3: u1,
+            reserved_14_14: u1,
             /// Capture/Compare 4 output Polarity
             CC4NP: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x20);
 
         /// address: 0x40000824
@@ -10304,30 +6260,10 @@ pub const registers = struct {
         pub const DCR = @intToPtr(*volatile Mmio(32, packed struct {
             /// DMA base address
             DBA: u5,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
+            reserved_5_7: u3,
             /// DMA burst length
             DBL: u5,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
+            padding_13_31: u19,
         }), base_address + 0x48);
 
         /// address: 0x4000084c
@@ -10335,22 +6271,7 @@ pub const registers = struct {
         pub const DMAR = @intToPtr(*volatile Mmio(32, packed struct {
             /// DMA register for burst accesses
             DMAB: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x4c);
     };
 
@@ -10377,66 +6298,20 @@ pub const registers = struct {
             ARPE: u1,
             /// Clock division
             CKD: u2,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
+            padding_10_31: u22,
         }), base_address + 0x0);
 
         /// address: 0x40000c04
         /// control register 2
         pub const CR2 = @intToPtr(*volatile Mmio(32, packed struct {
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
+            reserved_0_2: u3,
             /// Capture/compare DMA selection
             CCDS: u1,
             /// Master mode selection
             MMS: u3,
             /// TI1 selection
             TI1S: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
+            padding_8_31: u24,
         }), base_address + 0x4);
 
         /// address: 0x40000c08
@@ -10444,7 +6319,7 @@ pub const registers = struct {
         pub const SMCR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Slave mode selection
             SMS: u3,
-            reserved0: u1,
+            reserved_3_3: u1,
             /// Trigger selection
             TS: u3,
             /// Master/Slave mode
@@ -10457,22 +6332,7 @@ pub const registers = struct {
             ECE: u1,
             /// External trigger polarity
             ETP: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x8);
 
         /// address: 0x40000c0c
@@ -10488,10 +6348,10 @@ pub const registers = struct {
             CC3IE: u1,
             /// Capture/Compare 4 interrupt enable
             CC4IE: u1,
-            reserved0: u1,
+            reserved_5_5: u1,
             /// Trigger interrupt enable
             TIE: u1,
-            reserved1: u1,
+            reserved_7_7: u1,
             /// Update DMA request enable
             UDE: u1,
             /// Capture/Compare 1 DMA request enable
@@ -10502,26 +6362,10 @@ pub const registers = struct {
             CC3DE: u1,
             /// Capture/Compare 4 DMA request enable
             CC4DE: u1,
-            reserved2: u1,
+            reserved_13_13: u1,
             /// Trigger DMA request enable
             TDE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
+            padding_15_31: u17,
         }), base_address + 0xc);
 
         /// address: 0x40000c10
@@ -10537,11 +6381,10 @@ pub const registers = struct {
             CC3IF: u1,
             /// Capture/Compare 4 interrupt flag
             CC4IF: u1,
-            reserved0: u1,
+            reserved_5_5: u1,
             /// Trigger interrupt flag
             TIF: u1,
-            reserved1: u1,
-            reserved2: u1,
+            reserved_7_8: u2,
             /// Capture/Compare 1 overcapture flag
             CC1OF: u1,
             /// Capture/compare 2 overcapture flag
@@ -10550,25 +6393,7 @@ pub const registers = struct {
             CC3OF: u1,
             /// Capture/Compare 4 overcapture flag
             CC4OF: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
+            padding_13_31: u19,
         }), base_address + 0x10);
 
         /// address: 0x40000c14
@@ -10584,34 +6409,10 @@ pub const registers = struct {
             CC3G: u1,
             /// Capture/compare 4 generation
             CC4G: u1,
-            reserved0: u1,
+            reserved_5_5: u1,
             /// Trigger generation
             TG: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
-            padding24: u1,
+            padding_7_31: u25,
         }), base_address + 0x14);
 
         /// address: 0x40000c18
@@ -10637,22 +6438,7 @@ pub const registers = struct {
             OC2M: u3,
             /// OC2CE
             OC2CE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x18);
 
         /// address: 0x40000c18
@@ -10670,22 +6456,7 @@ pub const registers = struct {
             IC2PCS: u2,
             /// Input capture 2 filter
             IC2F: u4,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x18);
 
         /// address: 0x40000c1c
@@ -10711,22 +6482,7 @@ pub const registers = struct {
             OC4M: u3,
             /// O24CE
             O24CE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x1c);
 
         /// address: 0x40000c1c
@@ -10744,22 +6500,7 @@ pub const registers = struct {
             IC4PSC: u2,
             /// Input capture 4 filter
             IC4F: u4,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x1c);
 
         /// address: 0x40000c20
@@ -10769,46 +6510,31 @@ pub const registers = struct {
             CC1E: u1,
             /// Capture/Compare 1 output Polarity
             CC1P: u1,
-            reserved0: u1,
+            reserved_2_2: u1,
             /// Capture/Compare 1 output Polarity
             CC1NP: u1,
             /// Capture/Compare 2 output enable
             CC2E: u1,
             /// Capture/Compare 2 output Polarity
             CC2P: u1,
-            reserved1: u1,
+            reserved_6_6: u1,
             /// Capture/Compare 2 output Polarity
             CC2NP: u1,
             /// Capture/Compare 3 output enable
             CC3E: u1,
             /// Capture/Compare 3 output Polarity
             CC3P: u1,
-            reserved2: u1,
+            reserved_10_10: u1,
             /// Capture/Compare 3 output Polarity
             CC3NP: u1,
             /// Capture/Compare 4 output enable
             CC4E: u1,
             /// Capture/Compare 3 output Polarity
             CC4P: u1,
-            reserved3: u1,
+            reserved_14_14: u1,
             /// Capture/Compare 4 output Polarity
             CC4NP: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x20);
 
         /// address: 0x40000c24
@@ -10874,30 +6600,10 @@ pub const registers = struct {
         pub const DCR = @intToPtr(*volatile Mmio(32, packed struct {
             /// DMA base address
             DBA: u5,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
+            reserved_5_7: u3,
             /// DMA burst length
             DBL: u5,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
+            padding_13_31: u19,
         }), base_address + 0x48);
 
         /// address: 0x40000c4c
@@ -10905,59 +6611,16 @@ pub const registers = struct {
         pub const DMAR = @intToPtr(*volatile Mmio(32, packed struct {
             /// DMA register for burst accesses
             DMAB: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x4c);
 
         /// address: 0x40000c50
         /// TIM5 option register
         pub const OR = @intToPtr(*volatile Mmio(32, packed struct {
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
+            reserved_0_5: u6,
             /// Timer Input 4 remap
             IT4_RMP: u2,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
+            padding_8_31: u24,
         }), base_address + 0x50);
     };
 
@@ -10976,71 +6639,21 @@ pub const registers = struct {
             URS: u1,
             /// One-pulse mode
             OPM: u1,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
+            reserved_4_6: u3,
             /// Auto-reload preload enable
             ARPE: u1,
             /// Clock division
             CKD: u2,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
+            padding_10_31: u22,
         }), base_address + 0x0);
 
         /// address: 0x40014004
         /// control register 2
         pub const CR2 = @intToPtr(*volatile Mmio(32, packed struct {
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
+            reserved_0_3: u4,
             /// Master mode selection
             MMS: u3,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
-            padding24: u1,
+            padding_7_31: u25,
         }), base_address + 0x4);
 
         /// address: 0x40014008
@@ -11048,35 +6661,12 @@ pub const registers = struct {
         pub const SMCR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Slave mode selection
             SMS: u3,
-            reserved0: u1,
+            reserved_3_3: u1,
             /// Trigger selection
             TS: u3,
             /// Master/Slave mode
             MSM: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
+            padding_8_31: u24,
         }), base_address + 0x8);
 
         /// address: 0x4001400c
@@ -11088,36 +6678,10 @@ pub const registers = struct {
             CC1IE: u1,
             /// Capture/Compare 2 interrupt enable
             CC2IE: u1,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
+            reserved_3_5: u3,
             /// Trigger interrupt enable
             TIE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
-            padding24: u1,
+            padding_7_31: u25,
         }), base_address + 0xc);
 
         /// address: 0x40014010
@@ -11129,38 +6693,15 @@ pub const registers = struct {
             CC1IF: u1,
             /// Capture/Compare 2 interrupt flag
             CC2IF: u1,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
+            reserved_3_5: u3,
             /// Trigger interrupt flag
             TIF: u1,
-            reserved3: u1,
-            reserved4: u1,
+            reserved_7_8: u2,
             /// Capture/Compare 1 overcapture flag
             CC1OF: u1,
             /// Capture/compare 2 overcapture flag
             CC2OF: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
+            padding_11_31: u21,
         }), base_address + 0x10);
 
         /// address: 0x40014014
@@ -11172,36 +6713,10 @@ pub const registers = struct {
             CC1G: u1,
             /// Capture/compare 2 generation
             CC2G: u1,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
+            reserved_3_5: u3,
             /// Trigger generation
             TG: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
-            padding24: u1,
+            padding_7_31: u25,
         }), base_address + 0x14);
 
         /// address: 0x40014018
@@ -11215,7 +6730,7 @@ pub const registers = struct {
             OC1PE: u1,
             /// Output Compare 1 mode
             OC1M: u3,
-            reserved0: u1,
+            reserved_7_7: u1,
             /// Capture/Compare 2 selection
             CC2S: u2,
             /// Output Compare 2 fast enable
@@ -11224,23 +6739,7 @@ pub const registers = struct {
             OC2PE: u1,
             /// Output Compare 2 mode
             OC2M: u3,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
+            padding_15_31: u17,
         }), base_address + 0x18);
 
         /// address: 0x40014018
@@ -11252,30 +6751,14 @@ pub const registers = struct {
             ICPCS: u2,
             /// Input capture 1 filter
             IC1F: u3,
-            reserved0: u1,
+            reserved_7_7: u1,
             /// Capture/Compare 2 selection
             CC2S: u2,
             /// Input capture 2 prescaler
             IC2PCS: u2,
             /// Input capture 2 filter
             IC2F: u3,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
+            padding_15_31: u17,
         }), base_address + 0x18);
 
         /// address: 0x40014020
@@ -11285,40 +6768,17 @@ pub const registers = struct {
             CC1E: u1,
             /// Capture/Compare 1 output Polarity
             CC1P: u1,
-            reserved0: u1,
+            reserved_2_2: u1,
             /// Capture/Compare 1 output Polarity
             CC1NP: u1,
             /// Capture/Compare 2 output enable
             CC2E: u1,
             /// Capture/Compare 2 output Polarity
             CC2P: u1,
-            reserved1: u1,
+            reserved_6_6: u1,
             /// Capture/Compare 2 output Polarity
             CC2NP: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
+            padding_8_31: u24,
         }), base_address + 0x20);
 
         /// address: 0x40014024
@@ -11369,28 +6829,7 @@ pub const registers = struct {
             LBD: u1,
             /// CTS flag
             CTS: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
+            padding_10_31: u22,
         }), base_address + 0x0);
 
         /// address: 0x40011404
@@ -11404,22 +6843,7 @@ pub const registers = struct {
             DIV_Fraction: u4,
             /// mantissa of USARTDIV
             DIV_Mantissa: u12,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x8);
 
         /// address: 0x4001140c
@@ -11453,25 +6877,10 @@ pub const registers = struct {
             M: u1,
             /// USART enable
             UE: u1,
-            reserved0: u1,
+            reserved_14_14: u1,
             /// Oversampling mode
             OVER8: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0xc);
 
         /// address: 0x40011410
@@ -11479,12 +6888,12 @@ pub const registers = struct {
         pub const CR2 = @intToPtr(*volatile Mmio(32, packed struct {
             /// Address of the USART node
             ADD: u4,
-            reserved0: u1,
+            reserved_4_4: u1,
             /// lin break detection length
             LBDL: u1,
             /// LIN break detection interrupt enable
             LBDIE: u1,
-            reserved1: u1,
+            reserved_7_7: u1,
             /// Last bit clock pulse
             LBCL: u1,
             /// Clock phase
@@ -11497,23 +6906,7 @@ pub const registers = struct {
             STOP: u2,
             /// LIN mode enable
             LINEN: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
+            padding_15_31: u17,
         }), base_address + 0x10);
 
         /// address: 0x40011414
@@ -11543,26 +6936,7 @@ pub const registers = struct {
             CTSIE: u1,
             /// One sample bit method enable
             ONEBIT: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
+            padding_12_31: u20,
         }), base_address + 0x14);
 
         /// address: 0x40011418
@@ -11572,22 +6946,7 @@ pub const registers = struct {
             PSC: u8,
             /// Guard time value
             GT: u8,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x18);
     };
 
@@ -11618,28 +6977,7 @@ pub const registers = struct {
             LBD: u1,
             /// CTS flag
             CTS: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
+            padding_10_31: u22,
         }), base_address + 0x0);
 
         /// address: 0x40011404
@@ -11653,22 +6991,7 @@ pub const registers = struct {
             DIV_Fraction: u4,
             /// mantissa of USARTDIV
             DIV_Mantissa: u12,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x8);
 
         /// address: 0x4001140c
@@ -11702,25 +7025,10 @@ pub const registers = struct {
             M: u1,
             /// USART enable
             UE: u1,
-            reserved0: u1,
+            reserved_14_14: u1,
             /// Oversampling mode
             OVER8: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0xc);
 
         /// address: 0x40011410
@@ -11728,12 +7036,12 @@ pub const registers = struct {
         pub const CR2 = @intToPtr(*volatile Mmio(32, packed struct {
             /// Address of the USART node
             ADD: u4,
-            reserved0: u1,
+            reserved_4_4: u1,
             /// lin break detection length
             LBDL: u1,
             /// LIN break detection interrupt enable
             LBDIE: u1,
-            reserved1: u1,
+            reserved_7_7: u1,
             /// Last bit clock pulse
             LBCL: u1,
             /// Clock phase
@@ -11746,23 +7054,7 @@ pub const registers = struct {
             STOP: u2,
             /// LIN mode enable
             LINEN: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
+            padding_15_31: u17,
         }), base_address + 0x10);
 
         /// address: 0x40011414
@@ -11792,26 +7084,7 @@ pub const registers = struct {
             CTSIE: u1,
             /// One sample bit method enable
             ONEBIT: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
+            padding_12_31: u20,
         }), base_address + 0x14);
 
         /// address: 0x40011418
@@ -11821,22 +7094,7 @@ pub const registers = struct {
             PSC: u8,
             /// Guard time value
             GT: u8,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x18);
     };
 
@@ -11867,28 +7125,7 @@ pub const registers = struct {
             LBD: u1,
             /// CTS flag
             CTS: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
+            padding_10_31: u22,
         }), base_address + 0x0);
 
         /// address: 0x40011404
@@ -11902,22 +7139,7 @@ pub const registers = struct {
             DIV_Fraction: u4,
             /// mantissa of USARTDIV
             DIV_Mantissa: u12,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x8);
 
         /// address: 0x4001140c
@@ -11951,25 +7173,10 @@ pub const registers = struct {
             M: u1,
             /// USART enable
             UE: u1,
-            reserved0: u1,
+            reserved_14_14: u1,
             /// Oversampling mode
             OVER8: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0xc);
 
         /// address: 0x40011410
@@ -11977,12 +7184,12 @@ pub const registers = struct {
         pub const CR2 = @intToPtr(*volatile Mmio(32, packed struct {
             /// Address of the USART node
             ADD: u4,
-            reserved0: u1,
+            reserved_4_4: u1,
             /// lin break detection length
             LBDL: u1,
             /// LIN break detection interrupt enable
             LBDIE: u1,
-            reserved1: u1,
+            reserved_7_7: u1,
             /// Last bit clock pulse
             LBCL: u1,
             /// Clock phase
@@ -11995,23 +7202,7 @@ pub const registers = struct {
             STOP: u2,
             /// LIN mode enable
             LINEN: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
+            padding_15_31: u17,
         }), base_address + 0x10);
 
         /// address: 0x40011414
@@ -12041,26 +7232,7 @@ pub const registers = struct {
             CTSIE: u1,
             /// One sample bit method enable
             ONEBIT: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
+            padding_12_31: u20,
         }), base_address + 0x14);
 
         /// address: 0x40011418
@@ -12070,22 +7242,7 @@ pub const registers = struct {
             PSC: u8,
             /// Guard time value
             GT: u8,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x18);
     };
 
@@ -12100,30 +7257,7 @@ pub const registers = struct {
             T: u7,
             /// Activation bit
             WDGA: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
+            padding_8_31: u24,
         }), base_address + 0x0);
 
         /// address: 0x40002c04
@@ -12137,28 +7271,7 @@ pub const registers = struct {
             WDGTB1: u1,
             /// Early wakeup interrupt
             EWI: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
+            padding_10_31: u22,
         }), base_address + 0x4);
 
         /// address: 0x40002c08
@@ -12166,37 +7279,7 @@ pub const registers = struct {
         pub const SR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Early wakeup interrupt flag
             EWIF: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
-            padding24: u1,
-            padding25: u1,
-            padding26: u1,
-            padding27: u1,
-            padding28: u1,
-            padding29: u1,
-            padding30: u1,
+            padding_1_31: u31,
         }), base_address + 0x8);
     };
 
@@ -12209,7 +7292,7 @@ pub const registers = struct {
         pub const LISR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Stream x FIFO error interrupt flag (x=3..0)
             FEIF0: u1,
-            reserved0: u1,
+            reserved_1_1: u1,
             /// Stream x direct mode error interrupt flag (x=3..0)
             DMEIF0: u1,
             /// Stream x transfer error interrupt flag (x=3..0)
@@ -12220,7 +7303,7 @@ pub const registers = struct {
             TCIF0: u1,
             /// Stream x FIFO error interrupt flag (x=3..0)
             FEIF1: u1,
-            reserved1: u1,
+            reserved_7_7: u1,
             /// Stream x direct mode error interrupt flag (x=3..0)
             DMEIF1: u1,
             /// Stream x transfer error interrupt flag (x=3..0)
@@ -12229,13 +7312,10 @@ pub const registers = struct {
             HTIF1: u1,
             /// Stream x transfer complete interrupt flag (x = 3..0)
             TCIF1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
+            reserved_12_15: u4,
             /// Stream x FIFO error interrupt flag (x=3..0)
             FEIF2: u1,
-            reserved6: u1,
+            reserved_17_17: u1,
             /// Stream x direct mode error interrupt flag (x=3..0)
             DMEIF2: u1,
             /// Stream x transfer error interrupt flag (x=3..0)
@@ -12246,7 +7326,7 @@ pub const registers = struct {
             TCIF2: u1,
             /// Stream x FIFO error interrupt flag (x=3..0)
             FEIF3: u1,
-            reserved7: u1,
+            reserved_23_23: u1,
             /// Stream x direct mode error interrupt flag (x=3..0)
             DMEIF3: u1,
             /// Stream x transfer error interrupt flag (x=3..0)
@@ -12255,10 +7335,7 @@ pub const registers = struct {
             HTIF3: u1,
             /// Stream x transfer complete interrupt flag (x = 3..0)
             TCIF3: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
+            padding_28_31: u4,
         }), base_address + 0x0);
 
         /// address: 0x40026004
@@ -12266,7 +7343,7 @@ pub const registers = struct {
         pub const HISR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Stream x FIFO error interrupt flag (x=7..4)
             FEIF4: u1,
-            reserved0: u1,
+            reserved_1_1: u1,
             /// Stream x direct mode error interrupt flag (x=7..4)
             DMEIF4: u1,
             /// Stream x transfer error interrupt flag (x=7..4)
@@ -12277,7 +7354,7 @@ pub const registers = struct {
             TCIF4: u1,
             /// Stream x FIFO error interrupt flag (x=7..4)
             FEIF5: u1,
-            reserved1: u1,
+            reserved_7_7: u1,
             /// Stream x direct mode error interrupt flag (x=7..4)
             DMEIF5: u1,
             /// Stream x transfer error interrupt flag (x=7..4)
@@ -12286,13 +7363,10 @@ pub const registers = struct {
             HTIF5: u1,
             /// Stream x transfer complete interrupt flag (x=7..4)
             TCIF5: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
+            reserved_12_15: u4,
             /// Stream x FIFO error interrupt flag (x=7..4)
             FEIF6: u1,
-            reserved6: u1,
+            reserved_17_17: u1,
             /// Stream x direct mode error interrupt flag (x=7..4)
             DMEIF6: u1,
             /// Stream x transfer error interrupt flag (x=7..4)
@@ -12303,7 +7377,7 @@ pub const registers = struct {
             TCIF6: u1,
             /// Stream x FIFO error interrupt flag (x=7..4)
             FEIF7: u1,
-            reserved7: u1,
+            reserved_23_23: u1,
             /// Stream x direct mode error interrupt flag (x=7..4)
             DMEIF7: u1,
             /// Stream x transfer error interrupt flag (x=7..4)
@@ -12312,10 +7386,7 @@ pub const registers = struct {
             HTIF7: u1,
             /// Stream x transfer complete interrupt flag (x=7..4)
             TCIF7: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
+            padding_28_31: u4,
         }), base_address + 0x4);
 
         /// address: 0x40026008
@@ -12323,7 +7394,7 @@ pub const registers = struct {
         pub const LIFCR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Stream x clear FIFO error interrupt flag (x = 3..0)
             CFEIF0: u1,
-            reserved0: u1,
+            reserved_1_1: u1,
             /// Stream x clear direct mode error interrupt flag (x = 3..0)
             CDMEIF0: u1,
             /// Stream x clear transfer error interrupt flag (x = 3..0)
@@ -12334,7 +7405,7 @@ pub const registers = struct {
             CTCIF0: u1,
             /// Stream x clear FIFO error interrupt flag (x = 3..0)
             CFEIF1: u1,
-            reserved1: u1,
+            reserved_7_7: u1,
             /// Stream x clear direct mode error interrupt flag (x = 3..0)
             CDMEIF1: u1,
             /// Stream x clear transfer error interrupt flag (x = 3..0)
@@ -12343,13 +7414,10 @@ pub const registers = struct {
             CHTIF1: u1,
             /// Stream x clear transfer complete interrupt flag (x = 3..0)
             CTCIF1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
+            reserved_12_15: u4,
             /// Stream x clear FIFO error interrupt flag (x = 3..0)
             CFEIF2: u1,
-            reserved6: u1,
+            reserved_17_17: u1,
             /// Stream x clear direct mode error interrupt flag (x = 3..0)
             CDMEIF2: u1,
             /// Stream x clear transfer error interrupt flag (x = 3..0)
@@ -12360,7 +7428,7 @@ pub const registers = struct {
             CTCIF2: u1,
             /// Stream x clear FIFO error interrupt flag (x = 3..0)
             CFEIF3: u1,
-            reserved7: u1,
+            reserved_23_23: u1,
             /// Stream x clear direct mode error interrupt flag (x = 3..0)
             CDMEIF3: u1,
             /// Stream x clear transfer error interrupt flag (x = 3..0)
@@ -12369,10 +7437,7 @@ pub const registers = struct {
             CHTIF3: u1,
             /// Stream x clear transfer complete interrupt flag (x = 3..0)
             CTCIF3: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
+            padding_28_31: u4,
         }), base_address + 0x8);
 
         /// address: 0x4002600c
@@ -12380,7 +7445,7 @@ pub const registers = struct {
         pub const HIFCR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Stream x clear FIFO error interrupt flag (x = 7..4)
             CFEIF4: u1,
-            reserved0: u1,
+            reserved_1_1: u1,
             /// Stream x clear direct mode error interrupt flag (x = 7..4)
             CDMEIF4: u1,
             /// Stream x clear transfer error interrupt flag (x = 7..4)
@@ -12391,7 +7456,7 @@ pub const registers = struct {
             CTCIF4: u1,
             /// Stream x clear FIFO error interrupt flag (x = 7..4)
             CFEIF5: u1,
-            reserved1: u1,
+            reserved_7_7: u1,
             /// Stream x clear direct mode error interrupt flag (x = 7..4)
             CDMEIF5: u1,
             /// Stream x clear transfer error interrupt flag (x = 7..4)
@@ -12400,13 +7465,10 @@ pub const registers = struct {
             CHTIF5: u1,
             /// Stream x clear transfer complete interrupt flag (x = 7..4)
             CTCIF5: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
+            reserved_12_15: u4,
             /// Stream x clear FIFO error interrupt flag (x = 7..4)
             CFEIF6: u1,
-            reserved6: u1,
+            reserved_17_17: u1,
             /// Stream x clear direct mode error interrupt flag (x = 7..4)
             CDMEIF6: u1,
             /// Stream x clear transfer error interrupt flag (x = 7..4)
@@ -12417,7 +7479,7 @@ pub const registers = struct {
             CTCIF6: u1,
             /// Stream x clear FIFO error interrupt flag (x = 7..4)
             CFEIF7: u1,
-            reserved7: u1,
+            reserved_23_23: u1,
             /// Stream x clear direct mode error interrupt flag (x = 7..4)
             CDMEIF7: u1,
             /// Stream x clear transfer error interrupt flag (x = 7..4)
@@ -12426,10 +7488,7 @@ pub const registers = struct {
             CHTIF7: u1,
             /// Stream x clear transfer complete interrupt flag (x = 7..4)
             CTCIF7: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
+            padding_28_31: u4,
         }), base_address + 0xc);
 
         /// address: 0x40026010
@@ -12467,17 +7526,14 @@ pub const registers = struct {
             DBM: u1,
             /// Current target (only in double buffer mode)
             CT: u1,
-            reserved0: u1,
+            reserved_20_20: u1,
             /// Peripheral burst transfer configuration
             PBURST: u2,
             /// Memory burst transfer configuration
             MBURST: u2,
             /// Channel selection
             CHSEL: u3,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
+            padding_28_31: u4,
         }), base_address + 0x10);
 
         /// address: 0x40026014
@@ -12485,22 +7541,7 @@ pub const registers = struct {
         pub const S0NDTR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Number of data items to transfer
             NDT: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x14);
 
         /// address: 0x40026018
@@ -12533,33 +7574,10 @@ pub const registers = struct {
             DMDIS: u1,
             /// FIFO status
             FS: u3,
-            reserved0: u1,
+            reserved_6_6: u1,
             /// FIFO error interrupt enable
             FEIE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
+            padding_8_31: u24,
         }), base_address + 0x24);
 
         /// address: 0x40026028
@@ -12605,10 +7623,7 @@ pub const registers = struct {
             MBURST: u2,
             /// Channel selection
             CHSEL: u3,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
+            padding_28_31: u4,
         }), base_address + 0x28);
 
         /// address: 0x4002602c
@@ -12616,22 +7631,7 @@ pub const registers = struct {
         pub const S1NDTR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Number of data items to transfer
             NDT: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x2c);
 
         /// address: 0x40026030
@@ -12664,33 +7664,10 @@ pub const registers = struct {
             DMDIS: u1,
             /// FIFO status
             FS: u3,
-            reserved0: u1,
+            reserved_6_6: u1,
             /// FIFO error interrupt enable
             FEIE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
+            padding_8_31: u24,
         }), base_address + 0x3c);
 
         /// address: 0x40026040
@@ -12736,10 +7713,7 @@ pub const registers = struct {
             MBURST: u2,
             /// Channel selection
             CHSEL: u3,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
+            padding_28_31: u4,
         }), base_address + 0x40);
 
         /// address: 0x40026044
@@ -12747,22 +7721,7 @@ pub const registers = struct {
         pub const S2NDTR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Number of data items to transfer
             NDT: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x44);
 
         /// address: 0x40026048
@@ -12795,33 +7754,10 @@ pub const registers = struct {
             DMDIS: u1,
             /// FIFO status
             FS: u3,
-            reserved0: u1,
+            reserved_6_6: u1,
             /// FIFO error interrupt enable
             FEIE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
+            padding_8_31: u24,
         }), base_address + 0x54);
 
         /// address: 0x40026058
@@ -12867,10 +7803,7 @@ pub const registers = struct {
             MBURST: u2,
             /// Channel selection
             CHSEL: u3,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
+            padding_28_31: u4,
         }), base_address + 0x58);
 
         /// address: 0x4002605c
@@ -12878,22 +7811,7 @@ pub const registers = struct {
         pub const S3NDTR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Number of data items to transfer
             NDT: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x5c);
 
         /// address: 0x40026060
@@ -12926,33 +7844,10 @@ pub const registers = struct {
             DMDIS: u1,
             /// FIFO status
             FS: u3,
-            reserved0: u1,
+            reserved_6_6: u1,
             /// FIFO error interrupt enable
             FEIE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
+            padding_8_31: u24,
         }), base_address + 0x6c);
 
         /// address: 0x40026070
@@ -12998,10 +7893,7 @@ pub const registers = struct {
             MBURST: u2,
             /// Channel selection
             CHSEL: u3,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
+            padding_28_31: u4,
         }), base_address + 0x70);
 
         /// address: 0x40026074
@@ -13009,22 +7901,7 @@ pub const registers = struct {
         pub const S4NDTR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Number of data items to transfer
             NDT: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x74);
 
         /// address: 0x40026078
@@ -13057,33 +7934,10 @@ pub const registers = struct {
             DMDIS: u1,
             /// FIFO status
             FS: u3,
-            reserved0: u1,
+            reserved_6_6: u1,
             /// FIFO error interrupt enable
             FEIE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
+            padding_8_31: u24,
         }), base_address + 0x84);
 
         /// address: 0x40026088
@@ -13129,10 +7983,7 @@ pub const registers = struct {
             MBURST: u2,
             /// Channel selection
             CHSEL: u3,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
+            padding_28_31: u4,
         }), base_address + 0x88);
 
         /// address: 0x4002608c
@@ -13140,22 +7991,7 @@ pub const registers = struct {
         pub const S5NDTR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Number of data items to transfer
             NDT: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x8c);
 
         /// address: 0x40026090
@@ -13188,33 +8024,10 @@ pub const registers = struct {
             DMDIS: u1,
             /// FIFO status
             FS: u3,
-            reserved0: u1,
+            reserved_6_6: u1,
             /// FIFO error interrupt enable
             FEIE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
+            padding_8_31: u24,
         }), base_address + 0x9c);
 
         /// address: 0x400260a0
@@ -13260,10 +8073,7 @@ pub const registers = struct {
             MBURST: u2,
             /// Channel selection
             CHSEL: u3,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
+            padding_28_31: u4,
         }), base_address + 0xa0);
 
         /// address: 0x400260a4
@@ -13271,22 +8081,7 @@ pub const registers = struct {
         pub const S6NDTR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Number of data items to transfer
             NDT: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0xa4);
 
         /// address: 0x400260a8
@@ -13319,33 +8114,10 @@ pub const registers = struct {
             DMDIS: u1,
             /// FIFO status
             FS: u3,
-            reserved0: u1,
+            reserved_6_6: u1,
             /// FIFO error interrupt enable
             FEIE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
+            padding_8_31: u24,
         }), base_address + 0xb4);
 
         /// address: 0x400260b8
@@ -13391,10 +8163,7 @@ pub const registers = struct {
             MBURST: u2,
             /// Channel selection
             CHSEL: u3,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
+            padding_28_31: u4,
         }), base_address + 0xb8);
 
         /// address: 0x400260bc
@@ -13402,22 +8171,7 @@ pub const registers = struct {
         pub const S7NDTR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Number of data items to transfer
             NDT: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0xbc);
 
         /// address: 0x400260c0
@@ -13450,33 +8204,10 @@ pub const registers = struct {
             DMDIS: u1,
             /// FIFO status
             FS: u3,
-            reserved0: u1,
+            reserved_6_6: u1,
             /// FIFO error interrupt enable
             FEIE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
+            padding_8_31: u24,
         }), base_address + 0xcc);
     };
 
@@ -13489,7 +8220,7 @@ pub const registers = struct {
         pub const LISR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Stream x FIFO error interrupt flag (x=3..0)
             FEIF0: u1,
-            reserved0: u1,
+            reserved_1_1: u1,
             /// Stream x direct mode error interrupt flag (x=3..0)
             DMEIF0: u1,
             /// Stream x transfer error interrupt flag (x=3..0)
@@ -13500,7 +8231,7 @@ pub const registers = struct {
             TCIF0: u1,
             /// Stream x FIFO error interrupt flag (x=3..0)
             FEIF1: u1,
-            reserved1: u1,
+            reserved_7_7: u1,
             /// Stream x direct mode error interrupt flag (x=3..0)
             DMEIF1: u1,
             /// Stream x transfer error interrupt flag (x=3..0)
@@ -13509,13 +8240,10 @@ pub const registers = struct {
             HTIF1: u1,
             /// Stream x transfer complete interrupt flag (x = 3..0)
             TCIF1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
+            reserved_12_15: u4,
             /// Stream x FIFO error interrupt flag (x=3..0)
             FEIF2: u1,
-            reserved6: u1,
+            reserved_17_17: u1,
             /// Stream x direct mode error interrupt flag (x=3..0)
             DMEIF2: u1,
             /// Stream x transfer error interrupt flag (x=3..0)
@@ -13526,7 +8254,7 @@ pub const registers = struct {
             TCIF2: u1,
             /// Stream x FIFO error interrupt flag (x=3..0)
             FEIF3: u1,
-            reserved7: u1,
+            reserved_23_23: u1,
             /// Stream x direct mode error interrupt flag (x=3..0)
             DMEIF3: u1,
             /// Stream x transfer error interrupt flag (x=3..0)
@@ -13535,10 +8263,7 @@ pub const registers = struct {
             HTIF3: u1,
             /// Stream x transfer complete interrupt flag (x = 3..0)
             TCIF3: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
+            padding_28_31: u4,
         }), base_address + 0x0);
 
         /// address: 0x40026004
@@ -13546,7 +8271,7 @@ pub const registers = struct {
         pub const HISR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Stream x FIFO error interrupt flag (x=7..4)
             FEIF4: u1,
-            reserved0: u1,
+            reserved_1_1: u1,
             /// Stream x direct mode error interrupt flag (x=7..4)
             DMEIF4: u1,
             /// Stream x transfer error interrupt flag (x=7..4)
@@ -13557,7 +8282,7 @@ pub const registers = struct {
             TCIF4: u1,
             /// Stream x FIFO error interrupt flag (x=7..4)
             FEIF5: u1,
-            reserved1: u1,
+            reserved_7_7: u1,
             /// Stream x direct mode error interrupt flag (x=7..4)
             DMEIF5: u1,
             /// Stream x transfer error interrupt flag (x=7..4)
@@ -13566,13 +8291,10 @@ pub const registers = struct {
             HTIF5: u1,
             /// Stream x transfer complete interrupt flag (x=7..4)
             TCIF5: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
+            reserved_12_15: u4,
             /// Stream x FIFO error interrupt flag (x=7..4)
             FEIF6: u1,
-            reserved6: u1,
+            reserved_17_17: u1,
             /// Stream x direct mode error interrupt flag (x=7..4)
             DMEIF6: u1,
             /// Stream x transfer error interrupt flag (x=7..4)
@@ -13583,7 +8305,7 @@ pub const registers = struct {
             TCIF6: u1,
             /// Stream x FIFO error interrupt flag (x=7..4)
             FEIF7: u1,
-            reserved7: u1,
+            reserved_23_23: u1,
             /// Stream x direct mode error interrupt flag (x=7..4)
             DMEIF7: u1,
             /// Stream x transfer error interrupt flag (x=7..4)
@@ -13592,10 +8314,7 @@ pub const registers = struct {
             HTIF7: u1,
             /// Stream x transfer complete interrupt flag (x=7..4)
             TCIF7: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
+            padding_28_31: u4,
         }), base_address + 0x4);
 
         /// address: 0x40026008
@@ -13603,7 +8322,7 @@ pub const registers = struct {
         pub const LIFCR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Stream x clear FIFO error interrupt flag (x = 3..0)
             CFEIF0: u1,
-            reserved0: u1,
+            reserved_1_1: u1,
             /// Stream x clear direct mode error interrupt flag (x = 3..0)
             CDMEIF0: u1,
             /// Stream x clear transfer error interrupt flag (x = 3..0)
@@ -13614,7 +8333,7 @@ pub const registers = struct {
             CTCIF0: u1,
             /// Stream x clear FIFO error interrupt flag (x = 3..0)
             CFEIF1: u1,
-            reserved1: u1,
+            reserved_7_7: u1,
             /// Stream x clear direct mode error interrupt flag (x = 3..0)
             CDMEIF1: u1,
             /// Stream x clear transfer error interrupt flag (x = 3..0)
@@ -13623,13 +8342,10 @@ pub const registers = struct {
             CHTIF1: u1,
             /// Stream x clear transfer complete interrupt flag (x = 3..0)
             CTCIF1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
+            reserved_12_15: u4,
             /// Stream x clear FIFO error interrupt flag (x = 3..0)
             CFEIF2: u1,
-            reserved6: u1,
+            reserved_17_17: u1,
             /// Stream x clear direct mode error interrupt flag (x = 3..0)
             CDMEIF2: u1,
             /// Stream x clear transfer error interrupt flag (x = 3..0)
@@ -13640,7 +8356,7 @@ pub const registers = struct {
             CTCIF2: u1,
             /// Stream x clear FIFO error interrupt flag (x = 3..0)
             CFEIF3: u1,
-            reserved7: u1,
+            reserved_23_23: u1,
             /// Stream x clear direct mode error interrupt flag (x = 3..0)
             CDMEIF3: u1,
             /// Stream x clear transfer error interrupt flag (x = 3..0)
@@ -13649,10 +8365,7 @@ pub const registers = struct {
             CHTIF3: u1,
             /// Stream x clear transfer complete interrupt flag (x = 3..0)
             CTCIF3: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
+            padding_28_31: u4,
         }), base_address + 0x8);
 
         /// address: 0x4002600c
@@ -13660,7 +8373,7 @@ pub const registers = struct {
         pub const HIFCR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Stream x clear FIFO error interrupt flag (x = 7..4)
             CFEIF4: u1,
-            reserved0: u1,
+            reserved_1_1: u1,
             /// Stream x clear direct mode error interrupt flag (x = 7..4)
             CDMEIF4: u1,
             /// Stream x clear transfer error interrupt flag (x = 7..4)
@@ -13671,7 +8384,7 @@ pub const registers = struct {
             CTCIF4: u1,
             /// Stream x clear FIFO error interrupt flag (x = 7..4)
             CFEIF5: u1,
-            reserved1: u1,
+            reserved_7_7: u1,
             /// Stream x clear direct mode error interrupt flag (x = 7..4)
             CDMEIF5: u1,
             /// Stream x clear transfer error interrupt flag (x = 7..4)
@@ -13680,13 +8393,10 @@ pub const registers = struct {
             CHTIF5: u1,
             /// Stream x clear transfer complete interrupt flag (x = 7..4)
             CTCIF5: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
+            reserved_12_15: u4,
             /// Stream x clear FIFO error interrupt flag (x = 7..4)
             CFEIF6: u1,
-            reserved6: u1,
+            reserved_17_17: u1,
             /// Stream x clear direct mode error interrupt flag (x = 7..4)
             CDMEIF6: u1,
             /// Stream x clear transfer error interrupt flag (x = 7..4)
@@ -13697,7 +8407,7 @@ pub const registers = struct {
             CTCIF6: u1,
             /// Stream x clear FIFO error interrupt flag (x = 7..4)
             CFEIF7: u1,
-            reserved7: u1,
+            reserved_23_23: u1,
             /// Stream x clear direct mode error interrupt flag (x = 7..4)
             CDMEIF7: u1,
             /// Stream x clear transfer error interrupt flag (x = 7..4)
@@ -13706,10 +8416,7 @@ pub const registers = struct {
             CHTIF7: u1,
             /// Stream x clear transfer complete interrupt flag (x = 7..4)
             CTCIF7: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
+            padding_28_31: u4,
         }), base_address + 0xc);
 
         /// address: 0x40026010
@@ -13747,17 +8454,14 @@ pub const registers = struct {
             DBM: u1,
             /// Current target (only in double buffer mode)
             CT: u1,
-            reserved0: u1,
+            reserved_20_20: u1,
             /// Peripheral burst transfer configuration
             PBURST: u2,
             /// Memory burst transfer configuration
             MBURST: u2,
             /// Channel selection
             CHSEL: u3,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
+            padding_28_31: u4,
         }), base_address + 0x10);
 
         /// address: 0x40026014
@@ -13765,22 +8469,7 @@ pub const registers = struct {
         pub const S0NDTR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Number of data items to transfer
             NDT: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x14);
 
         /// address: 0x40026018
@@ -13813,33 +8502,10 @@ pub const registers = struct {
             DMDIS: u1,
             /// FIFO status
             FS: u3,
-            reserved0: u1,
+            reserved_6_6: u1,
             /// FIFO error interrupt enable
             FEIE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
+            padding_8_31: u24,
         }), base_address + 0x24);
 
         /// address: 0x40026028
@@ -13885,10 +8551,7 @@ pub const registers = struct {
             MBURST: u2,
             /// Channel selection
             CHSEL: u3,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
+            padding_28_31: u4,
         }), base_address + 0x28);
 
         /// address: 0x4002602c
@@ -13896,22 +8559,7 @@ pub const registers = struct {
         pub const S1NDTR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Number of data items to transfer
             NDT: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x2c);
 
         /// address: 0x40026030
@@ -13944,33 +8592,10 @@ pub const registers = struct {
             DMDIS: u1,
             /// FIFO status
             FS: u3,
-            reserved0: u1,
+            reserved_6_6: u1,
             /// FIFO error interrupt enable
             FEIE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
+            padding_8_31: u24,
         }), base_address + 0x3c);
 
         /// address: 0x40026040
@@ -14016,10 +8641,7 @@ pub const registers = struct {
             MBURST: u2,
             /// Channel selection
             CHSEL: u3,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
+            padding_28_31: u4,
         }), base_address + 0x40);
 
         /// address: 0x40026044
@@ -14027,22 +8649,7 @@ pub const registers = struct {
         pub const S2NDTR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Number of data items to transfer
             NDT: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x44);
 
         /// address: 0x40026048
@@ -14075,33 +8682,10 @@ pub const registers = struct {
             DMDIS: u1,
             /// FIFO status
             FS: u3,
-            reserved0: u1,
+            reserved_6_6: u1,
             /// FIFO error interrupt enable
             FEIE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
+            padding_8_31: u24,
         }), base_address + 0x54);
 
         /// address: 0x40026058
@@ -14147,10 +8731,7 @@ pub const registers = struct {
             MBURST: u2,
             /// Channel selection
             CHSEL: u3,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
+            padding_28_31: u4,
         }), base_address + 0x58);
 
         /// address: 0x4002605c
@@ -14158,22 +8739,7 @@ pub const registers = struct {
         pub const S3NDTR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Number of data items to transfer
             NDT: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x5c);
 
         /// address: 0x40026060
@@ -14206,33 +8772,10 @@ pub const registers = struct {
             DMDIS: u1,
             /// FIFO status
             FS: u3,
-            reserved0: u1,
+            reserved_6_6: u1,
             /// FIFO error interrupt enable
             FEIE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
+            padding_8_31: u24,
         }), base_address + 0x6c);
 
         /// address: 0x40026070
@@ -14278,10 +8821,7 @@ pub const registers = struct {
             MBURST: u2,
             /// Channel selection
             CHSEL: u3,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
+            padding_28_31: u4,
         }), base_address + 0x70);
 
         /// address: 0x40026074
@@ -14289,22 +8829,7 @@ pub const registers = struct {
         pub const S4NDTR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Number of data items to transfer
             NDT: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x74);
 
         /// address: 0x40026078
@@ -14337,33 +8862,10 @@ pub const registers = struct {
             DMDIS: u1,
             /// FIFO status
             FS: u3,
-            reserved0: u1,
+            reserved_6_6: u1,
             /// FIFO error interrupt enable
             FEIE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
+            padding_8_31: u24,
         }), base_address + 0x84);
 
         /// address: 0x40026088
@@ -14409,10 +8911,7 @@ pub const registers = struct {
             MBURST: u2,
             /// Channel selection
             CHSEL: u3,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
+            padding_28_31: u4,
         }), base_address + 0x88);
 
         /// address: 0x4002608c
@@ -14420,22 +8919,7 @@ pub const registers = struct {
         pub const S5NDTR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Number of data items to transfer
             NDT: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x8c);
 
         /// address: 0x40026090
@@ -14468,33 +8952,10 @@ pub const registers = struct {
             DMDIS: u1,
             /// FIFO status
             FS: u3,
-            reserved0: u1,
+            reserved_6_6: u1,
             /// FIFO error interrupt enable
             FEIE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
+            padding_8_31: u24,
         }), base_address + 0x9c);
 
         /// address: 0x400260a0
@@ -14540,10 +9001,7 @@ pub const registers = struct {
             MBURST: u2,
             /// Channel selection
             CHSEL: u3,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
+            padding_28_31: u4,
         }), base_address + 0xa0);
 
         /// address: 0x400260a4
@@ -14551,22 +9009,7 @@ pub const registers = struct {
         pub const S6NDTR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Number of data items to transfer
             NDT: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0xa4);
 
         /// address: 0x400260a8
@@ -14599,33 +9042,10 @@ pub const registers = struct {
             DMDIS: u1,
             /// FIFO status
             FS: u3,
-            reserved0: u1,
+            reserved_6_6: u1,
             /// FIFO error interrupt enable
             FEIE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
+            padding_8_31: u24,
         }), base_address + 0xb4);
 
         /// address: 0x400260b8
@@ -14671,10 +9091,7 @@ pub const registers = struct {
             MBURST: u2,
             /// Channel selection
             CHSEL: u3,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
+            padding_28_31: u4,
         }), base_address + 0xb8);
 
         /// address: 0x400260bc
@@ -14682,22 +9099,7 @@ pub const registers = struct {
         pub const S7NDTR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Number of data items to transfer
             NDT: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0xbc);
 
         /// address: 0x400260c0
@@ -14730,33 +9132,10 @@ pub const registers = struct {
             DMDIS: u1,
             /// FIFO status
             FS: u3,
-            reserved0: u1,
+            reserved_6_6: u1,
             /// FIFO error interrupt enable
             FEIE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
+            padding_8_31: u24,
         }), base_address + 0xcc);
     };
 
@@ -14836,22 +9215,7 @@ pub const registers = struct {
             OT14: u1,
             /// Port x configuration bits (y = 0..15)
             OT15: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x4);
 
         /// address: 0x40020808
@@ -14963,22 +9327,7 @@ pub const registers = struct {
             IDR14: u1,
             /// Port input data (y = 0..15)
             IDR15: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x10);
 
         /// address: 0x40020814
@@ -15016,22 +9365,7 @@ pub const registers = struct {
             ODR14: u1,
             /// Port output data (y = 0..15)
             ODR15: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x14);
 
         /// address: 0x40020818
@@ -15140,21 +9474,7 @@ pub const registers = struct {
             LCK15: u1,
             /// Port x lock bit y (y= 0..15)
             LCKK: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
+            padding_17_31: u15,
         }), base_address + 0x1c);
 
         /// address: 0x40020820
@@ -15276,22 +9596,7 @@ pub const registers = struct {
             OT14: u1,
             /// Port x configuration bits (y = 0..15)
             OT15: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x4);
 
         /// address: 0x40020808
@@ -15403,22 +9708,7 @@ pub const registers = struct {
             IDR14: u1,
             /// Port input data (y = 0..15)
             IDR15: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x10);
 
         /// address: 0x40020814
@@ -15456,22 +9746,7 @@ pub const registers = struct {
             ODR14: u1,
             /// Port output data (y = 0..15)
             ODR15: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x14);
 
         /// address: 0x40020818
@@ -15580,21 +9855,7 @@ pub const registers = struct {
             LCK15: u1,
             /// Port x lock bit y (y= 0..15)
             LCKK: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
+            padding_17_31: u15,
         }), base_address + 0x1c);
 
         /// address: 0x40020820
@@ -15716,22 +9977,7 @@ pub const registers = struct {
             OT14: u1,
             /// Port x configuration bits (y = 0..15)
             OT15: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x4);
 
         /// address: 0x40020808
@@ -15843,22 +10089,7 @@ pub const registers = struct {
             IDR14: u1,
             /// Port input data (y = 0..15)
             IDR15: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x10);
 
         /// address: 0x40020814
@@ -15896,22 +10127,7 @@ pub const registers = struct {
             ODR14: u1,
             /// Port output data (y = 0..15)
             ODR15: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x14);
 
         /// address: 0x40020818
@@ -16020,21 +10236,7 @@ pub const registers = struct {
             LCK15: u1,
             /// Port x lock bit y (y= 0..15)
             LCKK: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
+            padding_17_31: u15,
         }), base_address + 0x1c);
 
         /// address: 0x40020820
@@ -16156,22 +10358,7 @@ pub const registers = struct {
             OT14: u1,
             /// Port x configuration bits (y = 0..15)
             OT15: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x4);
 
         /// address: 0x40020808
@@ -16283,22 +10470,7 @@ pub const registers = struct {
             IDR14: u1,
             /// Port input data (y = 0..15)
             IDR15: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x10);
 
         /// address: 0x40020814
@@ -16336,22 +10508,7 @@ pub const registers = struct {
             ODR14: u1,
             /// Port output data (y = 0..15)
             ODR15: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x14);
 
         /// address: 0x40020818
@@ -16460,21 +10617,7 @@ pub const registers = struct {
             LCK15: u1,
             /// Port x lock bit y (y= 0..15)
             LCKK: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
+            padding_17_31: u15,
         }), base_address + 0x1c);
 
         /// address: 0x40020820
@@ -16596,22 +10739,7 @@ pub const registers = struct {
             OT14: u1,
             /// Port x configuration bits (y = 0..15)
             OT15: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x4);
 
         /// address: 0x40020408
@@ -16723,22 +10851,7 @@ pub const registers = struct {
             IDR14: u1,
             /// Port input data (y = 0..15)
             IDR15: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x10);
 
         /// address: 0x40020414
@@ -16776,22 +10889,7 @@ pub const registers = struct {
             ODR14: u1,
             /// Port output data (y = 0..15)
             ODR15: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x14);
 
         /// address: 0x40020418
@@ -16900,21 +10998,7 @@ pub const registers = struct {
             LCK15: u1,
             /// Port x lock bit y (y= 0..15)
             LCKK: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
+            padding_17_31: u15,
         }), base_address + 0x1c);
 
         /// address: 0x40020420
@@ -17036,22 +11120,7 @@ pub const registers = struct {
             OT14: u1,
             /// Port x configuration bits (y = 0..15)
             OT15: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x4);
 
         /// address: 0x40020008
@@ -17163,22 +11232,7 @@ pub const registers = struct {
             IDR14: u1,
             /// Port input data (y = 0..15)
             IDR15: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x10);
 
         /// address: 0x40020014
@@ -17216,22 +11270,7 @@ pub const registers = struct {
             ODR14: u1,
             /// Port output data (y = 0..15)
             ODR15: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x14);
 
         /// address: 0x40020018
@@ -17340,21 +11379,7 @@ pub const registers = struct {
             LCK15: u1,
             /// Port x lock bit y (y= 0..15)
             LCKK: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
+            padding_17_31: u15,
         }), base_address + 0x1c);
 
         /// address: 0x40020020
@@ -17411,7 +11436,7 @@ pub const registers = struct {
             PE: u1,
             /// SMBus mode
             SMBUS: u1,
-            reserved0: u1,
+            reserved_2_2: u1,
             /// SMBus type
             SMBTYPE: u1,
             /// ARP enable
@@ -17434,25 +11459,10 @@ pub const registers = struct {
             PEC: u1,
             /// SMBus alert
             ALERT: u1,
-            reserved1: u1,
+            reserved_14_14: u1,
             /// Software reset
             SWRST: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x0);
 
         /// address: 0x40005404
@@ -17460,8 +11470,7 @@ pub const registers = struct {
         pub const CR2 = @intToPtr(*volatile Mmio(32, packed struct {
             /// Peripheral clock frequency
             FREQ: u6,
-            reserved0: u1,
-            reserved1: u1,
+            reserved_6_7: u2,
             /// Error interrupt enable
             ITERREN: u1,
             /// Event interrupt enable
@@ -17472,25 +11481,7 @@ pub const registers = struct {
             DMAEN: u1,
             /// DMA last transfer
             LAST: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
+            padding_13_31: u19,
         }), base_address + 0x4);
 
         /// address: 0x40005408
@@ -17502,29 +11493,10 @@ pub const registers = struct {
             ADD7: u7,
             /// Interface address
             ADD10: u2,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
+            reserved_10_14: u5,
             /// Addressing mode (slave mode)
             ADDMODE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x8);
 
         /// address: 0x4000540c
@@ -17534,30 +11506,7 @@ pub const registers = struct {
             ENDUAL: u1,
             /// Interface address
             ADD2: u7,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
+            padding_8_31: u24,
         }), base_address + 0xc);
 
         /// address: 0x40005410
@@ -17577,7 +11526,7 @@ pub const registers = struct {
             ADD10: u1,
             /// Stop detection (slave mode)
             STOPF: u1,
-            reserved0: u1,
+            reserved_5_5: u1,
             /// Data register not empty (receivers)
             RxNE: u1,
             /// Data register empty (transmitters)
@@ -17592,27 +11541,12 @@ pub const registers = struct {
             OVR: u1,
             /// PEC Error in reception
             PECERR: u1,
-            reserved1: u1,
+            reserved_13_13: u1,
             /// Timeout or Tlow error
             TIMEOUT: u1,
             /// SMBus alert
             SMBALERT: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x14);
 
         /// address: 0x40005418
@@ -17624,7 +11558,7 @@ pub const registers = struct {
             BUSY: u1,
             /// Transmitter/receiver
             TRA: u1,
-            reserved0: u1,
+            reserved_3_3: u1,
             /// General call address (Slave mode)
             GENCALL: u1,
             /// SMBus device default address (Slave mode)
@@ -17635,22 +11569,7 @@ pub const registers = struct {
             DUALF: u1,
             /// acket error checking register
             PEC: u8,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x18);
 
         /// address: 0x4000541c
@@ -17658,28 +11577,12 @@ pub const registers = struct {
         pub const CCR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Clock control register in Fast/Standard mode (Master mode)
             CCR: u12,
-            reserved0: u1,
-            reserved1: u1,
+            reserved_12_13: u2,
             /// Fast mode duty cycle
             DUTY: u1,
             /// I2C master mode selection
             F_S: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x1c);
 
         /// address: 0x40005420
@@ -17698,7 +11601,7 @@ pub const registers = struct {
             PE: u1,
             /// SMBus mode
             SMBUS: u1,
-            reserved0: u1,
+            reserved_2_2: u1,
             /// SMBus type
             SMBTYPE: u1,
             /// ARP enable
@@ -17721,25 +11624,10 @@ pub const registers = struct {
             PEC: u1,
             /// SMBus alert
             ALERT: u1,
-            reserved1: u1,
+            reserved_14_14: u1,
             /// Software reset
             SWRST: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x0);
 
         /// address: 0x40005404
@@ -17747,8 +11635,7 @@ pub const registers = struct {
         pub const CR2 = @intToPtr(*volatile Mmio(32, packed struct {
             /// Peripheral clock frequency
             FREQ: u6,
-            reserved0: u1,
-            reserved1: u1,
+            reserved_6_7: u2,
             /// Error interrupt enable
             ITERREN: u1,
             /// Event interrupt enable
@@ -17759,25 +11646,7 @@ pub const registers = struct {
             DMAEN: u1,
             /// DMA last transfer
             LAST: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
+            padding_13_31: u19,
         }), base_address + 0x4);
 
         /// address: 0x40005408
@@ -17789,29 +11658,10 @@ pub const registers = struct {
             ADD7: u7,
             /// Interface address
             ADD10: u2,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
+            reserved_10_14: u5,
             /// Addressing mode (slave mode)
             ADDMODE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x8);
 
         /// address: 0x4000540c
@@ -17821,30 +11671,7 @@ pub const registers = struct {
             ENDUAL: u1,
             /// Interface address
             ADD2: u7,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
+            padding_8_31: u24,
         }), base_address + 0xc);
 
         /// address: 0x40005410
@@ -17864,7 +11691,7 @@ pub const registers = struct {
             ADD10: u1,
             /// Stop detection (slave mode)
             STOPF: u1,
-            reserved0: u1,
+            reserved_5_5: u1,
             /// Data register not empty (receivers)
             RxNE: u1,
             /// Data register empty (transmitters)
@@ -17879,27 +11706,12 @@ pub const registers = struct {
             OVR: u1,
             /// PEC Error in reception
             PECERR: u1,
-            reserved1: u1,
+            reserved_13_13: u1,
             /// Timeout or Tlow error
             TIMEOUT: u1,
             /// SMBus alert
             SMBALERT: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x14);
 
         /// address: 0x40005418
@@ -17911,7 +11723,7 @@ pub const registers = struct {
             BUSY: u1,
             /// Transmitter/receiver
             TRA: u1,
-            reserved0: u1,
+            reserved_3_3: u1,
             /// General call address (Slave mode)
             GENCALL: u1,
             /// SMBus device default address (Slave mode)
@@ -17922,22 +11734,7 @@ pub const registers = struct {
             DUALF: u1,
             /// acket error checking register
             PEC: u8,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x18);
 
         /// address: 0x4000541c
@@ -17945,28 +11742,12 @@ pub const registers = struct {
         pub const CCR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Clock control register in Fast/Standard mode (Master mode)
             CCR: u12,
-            reserved0: u1,
-            reserved1: u1,
+            reserved_12_13: u2,
             /// Fast mode duty cycle
             DUTY: u1,
             /// I2C master mode selection
             F_S: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x1c);
 
         /// address: 0x40005420
@@ -17985,7 +11766,7 @@ pub const registers = struct {
             PE: u1,
             /// SMBus mode
             SMBUS: u1,
-            reserved0: u1,
+            reserved_2_2: u1,
             /// SMBus type
             SMBTYPE: u1,
             /// ARP enable
@@ -18008,25 +11789,10 @@ pub const registers = struct {
             PEC: u1,
             /// SMBus alert
             ALERT: u1,
-            reserved1: u1,
+            reserved_14_14: u1,
             /// Software reset
             SWRST: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x0);
 
         /// address: 0x40005404
@@ -18034,8 +11800,7 @@ pub const registers = struct {
         pub const CR2 = @intToPtr(*volatile Mmio(32, packed struct {
             /// Peripheral clock frequency
             FREQ: u6,
-            reserved0: u1,
-            reserved1: u1,
+            reserved_6_7: u2,
             /// Error interrupt enable
             ITERREN: u1,
             /// Event interrupt enable
@@ -18046,25 +11811,7 @@ pub const registers = struct {
             DMAEN: u1,
             /// DMA last transfer
             LAST: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
+            padding_13_31: u19,
         }), base_address + 0x4);
 
         /// address: 0x40005408
@@ -18076,29 +11823,10 @@ pub const registers = struct {
             ADD7: u7,
             /// Interface address
             ADD10: u2,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
+            reserved_10_14: u5,
             /// Addressing mode (slave mode)
             ADDMODE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x8);
 
         /// address: 0x4000540c
@@ -18108,30 +11836,7 @@ pub const registers = struct {
             ENDUAL: u1,
             /// Interface address
             ADD2: u7,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
+            padding_8_31: u24,
         }), base_address + 0xc);
 
         /// address: 0x40005410
@@ -18151,7 +11856,7 @@ pub const registers = struct {
             ADD10: u1,
             /// Stop detection (slave mode)
             STOPF: u1,
-            reserved0: u1,
+            reserved_5_5: u1,
             /// Data register not empty (receivers)
             RxNE: u1,
             /// Data register empty (transmitters)
@@ -18166,27 +11871,12 @@ pub const registers = struct {
             OVR: u1,
             /// PEC Error in reception
             PECERR: u1,
-            reserved1: u1,
+            reserved_13_13: u1,
             /// Timeout or Tlow error
             TIMEOUT: u1,
             /// SMBus alert
             SMBALERT: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x14);
 
         /// address: 0x40005418
@@ -18198,7 +11888,7 @@ pub const registers = struct {
             BUSY: u1,
             /// Transmitter/receiver
             TRA: u1,
-            reserved0: u1,
+            reserved_3_3: u1,
             /// General call address (Slave mode)
             GENCALL: u1,
             /// SMBus device default address (Slave mode)
@@ -18209,22 +11899,7 @@ pub const registers = struct {
             DUALF: u1,
             /// acket error checking register
             PEC: u8,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x18);
 
         /// address: 0x4000541c
@@ -18232,28 +11907,12 @@ pub const registers = struct {
         pub const CCR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Clock control register in Fast/Standard mode (Master mode)
             CCR: u12,
-            reserved0: u1,
-            reserved1: u1,
+            reserved_12_13: u2,
             /// Fast mode duty cycle
             DUTY: u1,
             /// I2C master mode selection
             F_S: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x1c);
 
         /// address: 0x40005420
@@ -18296,22 +11955,7 @@ pub const registers = struct {
             BIDIOE: u1,
             /// Bidirectional data mode enable
             BIDIMODE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x0);
 
         /// address: 0x40015004
@@ -18323,7 +11967,7 @@ pub const registers = struct {
             TXDMAEN: u1,
             /// SS output enable
             SSOE: u1,
-            reserved0: u1,
+            reserved_3_3: u1,
             /// Frame format
             FRF: u1,
             /// Error interrupt enable
@@ -18332,30 +11976,7 @@ pub const registers = struct {
             RXNEIE: u1,
             /// Tx buffer empty interrupt enable
             TXEIE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
+            padding_8_31: u24,
         }), base_address + 0x4);
 
         /// address: 0x40015008
@@ -18379,29 +12000,7 @@ pub const registers = struct {
             BSY: u1,
             /// TI frame format error
             TIFRFE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
+            padding_9_31: u23,
         }), base_address + 0x8);
 
         /// address: 0x4001500c
@@ -18413,22 +12012,7 @@ pub const registers = struct {
         pub const CRCPR = @intToPtr(*volatile Mmio(32, packed struct {
             /// CRC polynomial register
             CRCPOLY: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x10);
 
         /// address: 0x40015014
@@ -18436,22 +12020,7 @@ pub const registers = struct {
         pub const RXCRCR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Rx CRC register
             RxCRC: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x14);
 
         /// address: 0x40015018
@@ -18459,22 +12028,7 @@ pub const registers = struct {
         pub const TXCRCR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Tx CRC register
             TxCRC: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x18);
 
         /// address: 0x4001501c
@@ -18488,7 +12042,7 @@ pub const registers = struct {
             CKPOL: u1,
             /// I2S standard selection
             I2SSTD: u2,
-            reserved0: u1,
+            reserved_6_6: u1,
             /// PCM frame synchronization
             PCMSYNC: u1,
             /// I2S configuration mode
@@ -18497,26 +12051,7 @@ pub const registers = struct {
             I2SE: u1,
             /// I2S mode selection
             I2SMOD: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
+            padding_12_31: u20,
         }), base_address + 0x1c);
 
         /// address: 0x40015020
@@ -18528,28 +12063,7 @@ pub const registers = struct {
             ODD: u1,
             /// Master clock output enable
             MCKOE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
+            padding_10_31: u22,
         }), base_address + 0x20);
     };
 
@@ -18588,22 +12102,7 @@ pub const registers = struct {
             BIDIOE: u1,
             /// Bidirectional data mode enable
             BIDIMODE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x0);
 
         /// address: 0x40015004
@@ -18615,7 +12114,7 @@ pub const registers = struct {
             TXDMAEN: u1,
             /// SS output enable
             SSOE: u1,
-            reserved0: u1,
+            reserved_3_3: u1,
             /// Frame format
             FRF: u1,
             /// Error interrupt enable
@@ -18624,30 +12123,7 @@ pub const registers = struct {
             RXNEIE: u1,
             /// Tx buffer empty interrupt enable
             TXEIE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
+            padding_8_31: u24,
         }), base_address + 0x4);
 
         /// address: 0x40015008
@@ -18671,29 +12147,7 @@ pub const registers = struct {
             BSY: u1,
             /// TI frame format error
             TIFRFE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
+            padding_9_31: u23,
         }), base_address + 0x8);
 
         /// address: 0x4001500c
@@ -18705,22 +12159,7 @@ pub const registers = struct {
         pub const CRCPR = @intToPtr(*volatile Mmio(32, packed struct {
             /// CRC polynomial register
             CRCPOLY: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x10);
 
         /// address: 0x40015014
@@ -18728,22 +12167,7 @@ pub const registers = struct {
         pub const RXCRCR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Rx CRC register
             RxCRC: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x14);
 
         /// address: 0x40015018
@@ -18751,22 +12175,7 @@ pub const registers = struct {
         pub const TXCRCR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Tx CRC register
             TxCRC: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x18);
 
         /// address: 0x4001501c
@@ -18780,7 +12189,7 @@ pub const registers = struct {
             CKPOL: u1,
             /// I2S standard selection
             I2SSTD: u2,
-            reserved0: u1,
+            reserved_6_6: u1,
             /// PCM frame synchronization
             PCMSYNC: u1,
             /// I2S configuration mode
@@ -18789,26 +12198,7 @@ pub const registers = struct {
             I2SE: u1,
             /// I2S mode selection
             I2SMOD: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
+            padding_12_31: u20,
         }), base_address + 0x1c);
 
         /// address: 0x40015020
@@ -18820,28 +12210,7 @@ pub const registers = struct {
             ODD: u1,
             /// Master clock output enable
             MCKOE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
+            padding_10_31: u22,
         }), base_address + 0x20);
     };
 
@@ -18880,22 +12249,7 @@ pub const registers = struct {
             BIDIOE: u1,
             /// Bidirectional data mode enable
             BIDIMODE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x0);
 
         /// address: 0x40015004
@@ -18907,7 +12261,7 @@ pub const registers = struct {
             TXDMAEN: u1,
             /// SS output enable
             SSOE: u1,
-            reserved0: u1,
+            reserved_3_3: u1,
             /// Frame format
             FRF: u1,
             /// Error interrupt enable
@@ -18916,30 +12270,7 @@ pub const registers = struct {
             RXNEIE: u1,
             /// Tx buffer empty interrupt enable
             TXEIE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
+            padding_8_31: u24,
         }), base_address + 0x4);
 
         /// address: 0x40015008
@@ -18963,29 +12294,7 @@ pub const registers = struct {
             BSY: u1,
             /// TI frame format error
             TIFRFE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
+            padding_9_31: u23,
         }), base_address + 0x8);
 
         /// address: 0x4001500c
@@ -18997,22 +12306,7 @@ pub const registers = struct {
         pub const CRCPR = @intToPtr(*volatile Mmio(32, packed struct {
             /// CRC polynomial register
             CRCPOLY: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x10);
 
         /// address: 0x40015014
@@ -19020,22 +12314,7 @@ pub const registers = struct {
         pub const RXCRCR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Rx CRC register
             RxCRC: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x14);
 
         /// address: 0x40015018
@@ -19043,22 +12322,7 @@ pub const registers = struct {
         pub const TXCRCR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Tx CRC register
             TxCRC: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x18);
 
         /// address: 0x4001501c
@@ -19072,7 +12336,7 @@ pub const registers = struct {
             CKPOL: u1,
             /// I2S standard selection
             I2SSTD: u2,
-            reserved0: u1,
+            reserved_6_6: u1,
             /// PCM frame synchronization
             PCMSYNC: u1,
             /// I2S configuration mode
@@ -19081,26 +12345,7 @@ pub const registers = struct {
             I2SE: u1,
             /// I2S mode selection
             I2SMOD: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
+            padding_12_31: u20,
         }), base_address + 0x1c);
 
         /// address: 0x40015020
@@ -19112,28 +12357,7 @@ pub const registers = struct {
             ODD: u1,
             /// Master clock output enable
             MCKOE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
+            padding_10_31: u22,
         }), base_address + 0x20);
     };
 
@@ -19172,22 +12396,7 @@ pub const registers = struct {
             BIDIOE: u1,
             /// Bidirectional data mode enable
             BIDIMODE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x0);
 
         /// address: 0x40015004
@@ -19199,7 +12408,7 @@ pub const registers = struct {
             TXDMAEN: u1,
             /// SS output enable
             SSOE: u1,
-            reserved0: u1,
+            reserved_3_3: u1,
             /// Frame format
             FRF: u1,
             /// Error interrupt enable
@@ -19208,30 +12417,7 @@ pub const registers = struct {
             RXNEIE: u1,
             /// Tx buffer empty interrupt enable
             TXEIE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
+            padding_8_31: u24,
         }), base_address + 0x4);
 
         /// address: 0x40015008
@@ -19255,29 +12441,7 @@ pub const registers = struct {
             BSY: u1,
             /// TI frame format error
             TIFRFE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
+            padding_9_31: u23,
         }), base_address + 0x8);
 
         /// address: 0x4001500c
@@ -19289,22 +12453,7 @@ pub const registers = struct {
         pub const CRCPR = @intToPtr(*volatile Mmio(32, packed struct {
             /// CRC polynomial register
             CRCPOLY: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x10);
 
         /// address: 0x40015014
@@ -19312,22 +12461,7 @@ pub const registers = struct {
         pub const RXCRCR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Rx CRC register
             RxCRC: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x14);
 
         /// address: 0x40015018
@@ -19335,22 +12469,7 @@ pub const registers = struct {
         pub const TXCRCR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Tx CRC register
             TxCRC: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x18);
 
         /// address: 0x4001501c
@@ -19364,7 +12483,7 @@ pub const registers = struct {
             CKPOL: u1,
             /// I2S standard selection
             I2SSTD: u2,
-            reserved0: u1,
+            reserved_6_6: u1,
             /// PCM frame synchronization
             PCMSYNC: u1,
             /// I2S configuration mode
@@ -19373,26 +12492,7 @@ pub const registers = struct {
             I2SE: u1,
             /// I2S mode selection
             I2SMOD: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
+            padding_12_31: u20,
         }), base_address + 0x1c);
 
         /// address: 0x40015020
@@ -19404,28 +12504,7 @@ pub const registers = struct {
             ODD: u1,
             /// Master clock output enable
             MCKOE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
+            padding_10_31: u22,
         }), base_address + 0x20);
     };
 
@@ -19464,22 +12543,7 @@ pub const registers = struct {
             BIDIOE: u1,
             /// Bidirectional data mode enable
             BIDIMODE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x0);
 
         /// address: 0x40015004
@@ -19491,7 +12555,7 @@ pub const registers = struct {
             TXDMAEN: u1,
             /// SS output enable
             SSOE: u1,
-            reserved0: u1,
+            reserved_3_3: u1,
             /// Frame format
             FRF: u1,
             /// Error interrupt enable
@@ -19500,30 +12564,7 @@ pub const registers = struct {
             RXNEIE: u1,
             /// Tx buffer empty interrupt enable
             TXEIE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
+            padding_8_31: u24,
         }), base_address + 0x4);
 
         /// address: 0x40015008
@@ -19547,29 +12588,7 @@ pub const registers = struct {
             BSY: u1,
             /// TI frame format error
             TIFRFE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
+            padding_9_31: u23,
         }), base_address + 0x8);
 
         /// address: 0x4001500c
@@ -19581,22 +12600,7 @@ pub const registers = struct {
         pub const CRCPR = @intToPtr(*volatile Mmio(32, packed struct {
             /// CRC polynomial register
             CRCPOLY: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x10);
 
         /// address: 0x40015014
@@ -19604,22 +12608,7 @@ pub const registers = struct {
         pub const RXCRCR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Rx CRC register
             RxCRC: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x14);
 
         /// address: 0x40015018
@@ -19627,22 +12616,7 @@ pub const registers = struct {
         pub const TXCRCR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Tx CRC register
             TxCRC: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x18);
 
         /// address: 0x4001501c
@@ -19656,7 +12630,7 @@ pub const registers = struct {
             CKPOL: u1,
             /// I2S standard selection
             I2SSTD: u2,
-            reserved0: u1,
+            reserved_6_6: u1,
             /// PCM frame synchronization
             PCMSYNC: u1,
             /// I2S configuration mode
@@ -19665,26 +12639,7 @@ pub const registers = struct {
             I2SE: u1,
             /// I2S mode selection
             I2SMOD: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
+            padding_12_31: u20,
         }), base_address + 0x1c);
 
         /// address: 0x40015020
@@ -19696,28 +12651,7 @@ pub const registers = struct {
             ODD: u1,
             /// Master clock output enable
             MCKOE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
+            padding_10_31: u22,
         }), base_address + 0x20);
     };
 
@@ -19756,22 +12690,7 @@ pub const registers = struct {
             BIDIOE: u1,
             /// Bidirectional data mode enable
             BIDIMODE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x0);
 
         /// address: 0x40015004
@@ -19783,7 +12702,7 @@ pub const registers = struct {
             TXDMAEN: u1,
             /// SS output enable
             SSOE: u1,
-            reserved0: u1,
+            reserved_3_3: u1,
             /// Frame format
             FRF: u1,
             /// Error interrupt enable
@@ -19792,30 +12711,7 @@ pub const registers = struct {
             RXNEIE: u1,
             /// Tx buffer empty interrupt enable
             TXEIE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
+            padding_8_31: u24,
         }), base_address + 0x4);
 
         /// address: 0x40015008
@@ -19839,29 +12735,7 @@ pub const registers = struct {
             BSY: u1,
             /// TI frame format error
             TIFRFE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
+            padding_9_31: u23,
         }), base_address + 0x8);
 
         /// address: 0x4001500c
@@ -19873,22 +12747,7 @@ pub const registers = struct {
         pub const CRCPR = @intToPtr(*volatile Mmio(32, packed struct {
             /// CRC polynomial register
             CRCPOLY: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x10);
 
         /// address: 0x40015014
@@ -19896,22 +12755,7 @@ pub const registers = struct {
         pub const RXCRCR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Rx CRC register
             RxCRC: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x14);
 
         /// address: 0x40015018
@@ -19919,22 +12763,7 @@ pub const registers = struct {
         pub const TXCRCR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Tx CRC register
             TxCRC: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x18);
 
         /// address: 0x4001501c
@@ -19948,7 +12777,7 @@ pub const registers = struct {
             CKPOL: u1,
             /// I2S standard selection
             I2SSTD: u2,
-            reserved0: u1,
+            reserved_6_6: u1,
             /// PCM frame synchronization
             PCMSYNC: u1,
             /// I2S configuration mode
@@ -19957,26 +12786,7 @@ pub const registers = struct {
             I2SE: u1,
             /// I2S mode selection
             I2SMOD: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
+            padding_12_31: u20,
         }), base_address + 0x1c);
 
         /// address: 0x40015020
@@ -19988,28 +12798,7 @@ pub const registers = struct {
             ODD: u1,
             /// Master clock output enable
             MCKOE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
+            padding_10_31: u22,
         }), base_address + 0x20);
     };
 
@@ -20048,22 +12837,7 @@ pub const registers = struct {
             BIDIOE: u1,
             /// Bidirectional data mode enable
             BIDIMODE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x0);
 
         /// address: 0x40015004
@@ -20075,7 +12849,7 @@ pub const registers = struct {
             TXDMAEN: u1,
             /// SS output enable
             SSOE: u1,
-            reserved0: u1,
+            reserved_3_3: u1,
             /// Frame format
             FRF: u1,
             /// Error interrupt enable
@@ -20084,30 +12858,7 @@ pub const registers = struct {
             RXNEIE: u1,
             /// Tx buffer empty interrupt enable
             TXEIE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
+            padding_8_31: u24,
         }), base_address + 0x4);
 
         /// address: 0x40015008
@@ -20131,29 +12882,7 @@ pub const registers = struct {
             BSY: u1,
             /// TI frame format error
             TIFRFE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
+            padding_9_31: u23,
         }), base_address + 0x8);
 
         /// address: 0x4001500c
@@ -20165,22 +12894,7 @@ pub const registers = struct {
         pub const CRCPR = @intToPtr(*volatile Mmio(32, packed struct {
             /// CRC polynomial register
             CRCPOLY: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x10);
 
         /// address: 0x40015014
@@ -20188,22 +12902,7 @@ pub const registers = struct {
         pub const RXCRCR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Rx CRC register
             RxCRC: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x14);
 
         /// address: 0x40015018
@@ -20211,22 +12910,7 @@ pub const registers = struct {
         pub const TXCRCR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Tx CRC register
             TxCRC: u16,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
+            padding_16_31: u16,
         }), base_address + 0x18);
 
         /// address: 0x4001501c
@@ -20240,7 +12924,7 @@ pub const registers = struct {
             CKPOL: u1,
             /// I2S standard selection
             I2SSTD: u2,
-            reserved0: u1,
+            reserved_6_6: u1,
             /// PCM frame synchronization
             PCMSYNC: u1,
             /// I2S configuration mode
@@ -20249,26 +12933,7 @@ pub const registers = struct {
             I2SE: u1,
             /// I2S mode selection
             I2SMOD: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
+            padding_12_31: u20,
         }), base_address + 0x1c);
 
         /// address: 0x40015020
@@ -20280,28 +12945,7 @@ pub const registers = struct {
             ODD: u1,
             /// Master clock output enable
             MCKOE: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
+            padding_10_31: u22,
         }), base_address + 0x20);
     };
 
@@ -20686,7 +13330,7 @@ pub const registers = struct {
             LSPACT: u1,
             /// USER
             USER: u1,
-            reserved0: u1,
+            reserved_2_2: u1,
             /// THREAD
             THREAD: u1,
             /// HFRDY
@@ -20695,30 +13339,10 @@ pub const registers = struct {
             MMRDY: u1,
             /// BFRDY
             BFRDY: u1,
-            reserved1: u1,
+            reserved_7_7: u1,
             /// MONRDY
             MONRDY: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
-            reserved6: u1,
-            reserved7: u1,
-            reserved8: u1,
-            reserved9: u1,
-            reserved10: u1,
-            reserved11: u1,
-            reserved12: u1,
-            reserved13: u1,
-            reserved14: u1,
-            reserved15: u1,
-            reserved16: u1,
-            reserved17: u1,
-            reserved18: u1,
-            reserved19: u1,
-            reserved20: u1,
-            reserved21: u1,
-            reserved22: u1,
+            reserved_9_29: u21,
             /// LSPEN
             LSPEN: u1,
             /// ASPEN
@@ -20728,9 +13352,7 @@ pub const registers = struct {
         /// address: 0xe000ef38
         /// Floating-point context address register
         pub const FPCAR = @intToPtr(*volatile Mmio(32, packed struct {
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
+            reserved_0_2: u3,
             /// Location of unpopulated floating-point
             ADDRESS: u29,
         }), base_address + 0x4);
@@ -20748,24 +13370,10 @@ pub const registers = struct {
             UFC: u1,
             /// Inexact cumulative exception bit
             IXC: u1,
-            reserved0: u1,
-            reserved1: u1,
+            reserved_5_6: u2,
             /// Input denormal cumulative exception bit.
             IDC: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
-            reserved6: u1,
-            reserved7: u1,
-            reserved8: u1,
-            reserved9: u1,
-            reserved10: u1,
-            reserved11: u1,
-            reserved12: u1,
-            reserved13: u1,
-            reserved14: u1,
-            reserved15: u1,
+            reserved_8_21: u14,
             /// Rounding Mode control field
             RMode: u2,
             /// Flush-to-zero mode control bit:
@@ -20774,7 +13382,7 @@ pub const registers = struct {
             DN: u1,
             /// Alternative half-precision control bit
             AHP: u1,
-            reserved16: u1,
+            reserved_27_27: u1,
             /// Overflow condition code flag
             V: u1,
             /// Carry condition code flag
@@ -20795,25 +13403,12 @@ pub const registers = struct {
         pub const MPU_TYPER = @intToPtr(*volatile Mmio(32, packed struct {
             /// Separate flag
             SEPARATE: u1,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
-            reserved6: u1,
+            reserved_1_7: u7,
             /// Number of MPU data regions
             DREGION: u8,
             /// Number of MPU instruction regions
             IREGION: u8,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
+            padding_24_31: u8,
         }), base_address + 0x0);
 
         /// address: 0xe000ed94
@@ -20825,35 +13420,7 @@ pub const registers = struct {
             HFNMIENA: u1,
             /// Enable priviliged software access to default memory map
             PRIVDEFENA: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
-            padding24: u1,
-            padding25: u1,
-            padding26: u1,
-            padding27: u1,
-            padding28: u1,
+            padding_3_31: u29,
         }), base_address + 0x4);
 
         /// address: 0xe000ed98
@@ -20861,30 +13428,7 @@ pub const registers = struct {
         pub const MPU_RNR = @intToPtr(*volatile Mmio(32, packed struct {
             /// MPU region
             REGION: u8,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
+            padding_8_31: u24,
         }), base_address + 0x8);
 
         /// address: 0xe000ed9c
@@ -20905,8 +13449,7 @@ pub const registers = struct {
             ENABLE: u1,
             /// Size of the MPU protection region
             SIZE: u5,
-            reserved0: u1,
-            reserved1: u1,
+            reserved_6_7: u2,
             /// Subregion disable bits
             SRD: u8,
             /// memory attribute
@@ -20917,16 +13460,13 @@ pub const registers = struct {
             S: u1,
             /// memory attribute
             TEX: u3,
-            reserved2: u1,
-            reserved3: u1,
+            reserved_22_23: u2,
             /// Access permission
             AP: u3,
-            reserved4: u1,
+            reserved_27_27: u1,
             /// Instruction access disable bit
             XN: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
+            padding_29_31: u3,
         }), base_address + 0x10);
     };
 
@@ -20943,36 +13483,10 @@ pub const registers = struct {
             TICKINT: u1,
             /// Clock source selection
             CLKSOURCE: u1,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
-            reserved6: u1,
-            reserved7: u1,
-            reserved8: u1,
-            reserved9: u1,
-            reserved10: u1,
-            reserved11: u1,
-            reserved12: u1,
+            reserved_3_15: u13,
             /// COUNTFLAG
             COUNTFLAG: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
+            padding_17_31: u15,
         }), base_address + 0x0);
 
         /// address: 0xe000e014
@@ -20980,14 +13494,7 @@ pub const registers = struct {
         pub const LOAD = @intToPtr(*volatile Mmio(32, packed struct {
             /// RELOAD value
             RELOAD: u24,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
+            padding_24_31: u8,
         }), base_address + 0x4);
 
         /// address: 0xe000e018
@@ -20995,14 +13502,7 @@ pub const registers = struct {
         pub const VAL = @intToPtr(*volatile Mmio(32, packed struct {
             /// Current counter value
             CURRENT: u24,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
+            padding_24_31: u8,
         }), base_address + 0x8);
 
         /// address: 0xe000e01c
@@ -21010,12 +13510,7 @@ pub const registers = struct {
         pub const CALIB = @intToPtr(*volatile Mmio(32, packed struct {
             /// Calibration value
             TENMS: u24,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
+            reserved_24_29: u6,
             /// SKEW flag: Indicates whether the TENMS value is exact
             SKEW: u1,
             /// NOREF flag. Reads as zero
@@ -21047,19 +13542,15 @@ pub const registers = struct {
         pub const ICSR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Active vector
             VECTACTIVE: u9,
-            reserved0: u1,
-            reserved1: u1,
+            reserved_9_10: u2,
             /// Return to base level
             RETTOBASE: u1,
             /// Pending vector
             VECTPENDING: u7,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
+            reserved_19_21: u3,
             /// Interrupt pending flag
             ISRPENDING: u1,
-            reserved5: u1,
-            reserved6: u1,
+            reserved_23_24: u2,
             /// SysTick exception clear-pending bit
             PENDSTCLR: u1,
             /// SysTick exception set-pending bit
@@ -21068,8 +13559,7 @@ pub const registers = struct {
             PENDSVCLR: u1,
             /// PendSV set-pending bit
             PENDSVSET: u1,
-            reserved7: u1,
-            reserved8: u1,
+            reserved_29_30: u2,
             /// NMI set-pending bit.
             NMIPENDSET: u1,
         }), base_address + 0x4);
@@ -21077,19 +13567,10 @@ pub const registers = struct {
         /// address: 0xe000ed08
         /// Vector table offset register
         pub const VTOR = @intToPtr(*volatile Mmio(32, packed struct {
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
-            reserved6: u1,
-            reserved7: u1,
-            reserved8: u1,
+            reserved_0_8: u9,
             /// Vector table base offset field
             TBLOFF: u21,
-            padding0: u1,
-            padding1: u1,
+            padding_30_31: u2,
         }), base_address + 0x8);
 
         /// address: 0xe000ed0c
@@ -21101,17 +13582,10 @@ pub const registers = struct {
             VECTCLRACTIVE: u1,
             /// SYSRESETREQ
             SYSRESETREQ: u1,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
+            reserved_3_7: u5,
             /// PRIGROUP
             PRIGROUP: u3,
-            reserved5: u1,
-            reserved6: u1,
-            reserved7: u1,
-            reserved8: u1,
+            reserved_11_14: u4,
             /// ENDIANESS
             ENDIANESS: u1,
             /// Register key
@@ -21121,41 +13595,15 @@ pub const registers = struct {
         /// address: 0xe000ed10
         /// System control register
         pub const SCR = @intToPtr(*volatile Mmio(32, packed struct {
-            reserved0: u1,
+            reserved_0_0: u1,
             /// SLEEPONEXIT
             SLEEPONEXIT: u1,
             /// SLEEPDEEP
             SLEEPDEEP: u1,
-            reserved1: u1,
+            reserved_3_3: u1,
             /// Send Event on Pending bit
             SEVEONPEND: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
-            padding23: u1,
-            padding24: u1,
-            padding25: u1,
-            padding26: u1,
+            padding_5_31: u27,
         }), base_address + 0x10);
 
         /// address: 0xe000ed14
@@ -21165,40 +13613,17 @@ pub const registers = struct {
             NONBASETHRDENA: u1,
             /// USERSETMPEND
             USERSETMPEND: u1,
-            reserved0: u1,
+            reserved_2_2: u1,
             /// UNALIGN_ TRP
             UNALIGN__TRP: u1,
             /// DIV_0_TRP
             DIV_0_TRP: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
+            reserved_5_7: u3,
             /// BFHFNMIGN
             BFHFNMIGN: u1,
             /// STKALIGN
             STKALIGN: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
+            padding_10_31: u22,
         }), base_address + 0x14);
 
         /// address: 0xe000ed18
@@ -21210,43 +13635,13 @@ pub const registers = struct {
             PRI_5: u8,
             /// Priority of system handler 6
             PRI_6: u8,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
+            padding_24_31: u8,
         }), base_address + 0x18);
 
         /// address: 0xe000ed1c
         /// System handler priority registers
         pub const SHPR2 = @intToPtr(*volatile Mmio(32, packed struct {
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
-            reserved6: u1,
-            reserved7: u1,
-            reserved8: u1,
-            reserved9: u1,
-            reserved10: u1,
-            reserved11: u1,
-            reserved12: u1,
-            reserved13: u1,
-            reserved14: u1,
-            reserved15: u1,
-            reserved16: u1,
-            reserved17: u1,
-            reserved18: u1,
-            reserved19: u1,
-            reserved20: u1,
-            reserved21: u1,
-            reserved22: u1,
-            reserved23: u1,
+            reserved_0_23: u24,
             /// Priority of system handler 11
             PRI_11: u8,
         }), base_address + 0x1c);
@@ -21254,22 +13649,7 @@ pub const registers = struct {
         /// address: 0xe000ed20
         /// System handler priority registers
         pub const SHPR3 = @intToPtr(*volatile Mmio(32, packed struct {
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
-            reserved6: u1,
-            reserved7: u1,
-            reserved8: u1,
-            reserved9: u1,
-            reserved10: u1,
-            reserved11: u1,
-            reserved12: u1,
-            reserved13: u1,
-            reserved14: u1,
-            reserved15: u1,
+            reserved_0_15: u16,
             /// Priority of system handler 14
             PRI_14: u8,
             /// Priority of system handler 15
@@ -21283,17 +13663,15 @@ pub const registers = struct {
             MEMFAULTACT: u1,
             /// Bus fault exception active bit
             BUSFAULTACT: u1,
-            reserved0: u1,
+            reserved_2_2: u1,
             /// Usage fault exception active bit
             USGFAULTACT: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
+            reserved_4_6: u3,
             /// SVC call active bit
             SVCALLACT: u1,
             /// Debug monitor active bit
             MONITORACT: u1,
-            reserved4: u1,
+            reserved_9_9: u1,
             /// PendSV exception active bit
             PENDSVACT: u1,
             /// SysTick exception active bit
@@ -21312,35 +13690,23 @@ pub const registers = struct {
             BUSFAULTENA: u1,
             /// Usage fault enable bit
             USGFAULTENA: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
+            padding_19_31: u13,
         }), base_address + 0x24);
 
         /// address: 0xe000ed28
         /// Configurable fault status register
         pub const CFSR_UFSR_BFSR_MMFSR = @intToPtr(*volatile Mmio(32, packed struct {
-            reserved0: u1,
+            reserved_0_0: u1,
             /// Instruction access violation flag
             IACCVIOL: u1,
-            reserved1: u1,
+            reserved_2_2: u1,
             /// Memory manager fault on unstacking for a return from exception
             MUNSTKERR: u1,
             /// Memory manager fault on stacking for exception entry.
             MSTKERR: u1,
             /// MLSPERR
             MLSPERR: u1,
-            reserved2: u1,
+            reserved_6_6: u1,
             /// Memory Management Fault Address Register (MMAR) valid flag
             MMARVALID: u1,
             /// Instruction bus error
@@ -21355,7 +13721,7 @@ pub const registers = struct {
             STKERR: u1,
             /// Bus fault on floating-point lazy state preservation
             LSPERR: u1,
-            reserved3: u1,
+            reserved_14_14: u1,
             /// Bus Fault Address Register (BFAR) valid flag
             BFARVALID: u1,
             /// Undefined instruction usage fault
@@ -21366,56 +13732,21 @@ pub const registers = struct {
             INVPC: u1,
             /// No coprocessor usage fault.
             NOCP: u1,
-            reserved4: u1,
-            reserved5: u1,
-            reserved6: u1,
-            reserved7: u1,
+            reserved_20_23: u4,
             /// Unaligned access usage fault
             UNALIGNED: u1,
             /// Divide by zero usage fault
             DIVBYZERO: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
+            padding_26_31: u6,
         }), base_address + 0x28);
 
         /// address: 0xe000ed2c
         /// Hard fault status register
         pub const HFSR = @intToPtr(*volatile Mmio(32, packed struct {
-            reserved0: u1,
+            reserved_0_0: u1,
             /// Vector table hard fault
             VECTTBL: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
-            reserved6: u1,
-            reserved7: u1,
-            reserved8: u1,
-            reserved9: u1,
-            reserved10: u1,
-            reserved11: u1,
-            reserved12: u1,
-            reserved13: u1,
-            reserved14: u1,
-            reserved15: u1,
-            reserved16: u1,
-            reserved17: u1,
-            reserved18: u1,
-            reserved19: u1,
-            reserved20: u1,
-            reserved21: u1,
-            reserved22: u1,
-            reserved23: u1,
-            reserved24: u1,
-            reserved25: u1,
-            reserved26: u1,
-            reserved27: u1,
-            reserved28: u1,
+            reserved_2_29: u28,
             /// Forced hard fault
             FORCED: u1,
             /// Reserved for Debug use
@@ -21447,29 +13778,7 @@ pub const registers = struct {
         pub const STIR = @intToPtr(*volatile Mmio(32, packed struct {
             /// Software generated interrupt ID
             INTID: u9,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
-            padding22: u1,
+            padding_9_31: u23,
         }), base_address + 0x0);
     };
 
@@ -21480,36 +13789,10 @@ pub const registers = struct {
         /// address: 0xe000ed88
         /// Coprocessor access control register
         pub const CPACR = @intToPtr(*volatile Mmio(32, packed struct {
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
-            reserved5: u1,
-            reserved6: u1,
-            reserved7: u1,
-            reserved8: u1,
-            reserved9: u1,
-            reserved10: u1,
-            reserved11: u1,
-            reserved12: u1,
-            reserved13: u1,
-            reserved14: u1,
-            reserved15: u1,
-            reserved16: u1,
-            reserved17: u1,
-            reserved18: u1,
-            reserved19: u1,
+            reserved_0_19: u20,
             /// CP
             CP: u4,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
+            padding_24_31: u8,
         }), base_address + 0x0);
     };
 
@@ -21526,37 +13809,12 @@ pub const registers = struct {
             DISDEFWBUF: u1,
             /// DISFOLD
             DISFOLD: u1,
-            reserved0: u1,
-            reserved1: u1,
-            reserved2: u1,
-            reserved3: u1,
-            reserved4: u1,
+            reserved_3_7: u5,
             /// DISFPCA
             DISFPCA: u1,
             /// DISOOFP
             DISOOFP: u1,
-            padding0: u1,
-            padding1: u1,
-            padding2: u1,
-            padding3: u1,
-            padding4: u1,
-            padding5: u1,
-            padding6: u1,
-            padding7: u1,
-            padding8: u1,
-            padding9: u1,
-            padding10: u1,
-            padding11: u1,
-            padding12: u1,
-            padding13: u1,
-            padding14: u1,
-            padding15: u1,
-            padding16: u1,
-            padding17: u1,
-            padding18: u1,
-            padding19: u1,
-            padding20: u1,
-            padding21: u1,
+            padding_10_31: u22,
         }), base_address + 0x0);
     };
 };
