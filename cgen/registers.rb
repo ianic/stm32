@@ -63,34 +63,88 @@ def read_data(chip)
 end
 
 def add_reserved_padding(r)
-  if r.fields.length == 1
-    r.bit_width = r.fields[0].bit_width
+  if r.fields.length == 1  and r.fields.first.bit_offset == 0 and r.fields.first.name == r.name
+    r.bit_width = r.fields.first.bit_width
     r.type = r.bit_width == 32 ? :int : :mmio_int
     return
   end
 
   r.fields.sort_by!(&:bit_offset)
   fields = []
+  reserved = 0
   bit_offset = 0
   for f in r.fields do
     if f.bit_offset != bit_offset
-      fields << OpenStruct.new({
-                                 "name" => "reserved_#{bit_offset}_#{f.bit_offset-1}",
-                                 "bit_offset" => bit_offset,
-                                 "bit_width" => f.bit_offset - bit_offset,
+      (bit_offset..(f.bit_offset-1)).each_with_index do |b, i|
+        fields << OpenStruct.new({
+                                 "name" => "reserved#{reserved}",
+                                 "bit_offset" => b,
+                                 "bit_width" => 1,
                                })
+        reserved += 1
+      end
+      # fields << OpenStruct.new({
+      #                            "name" => "reserved_#{bit_offset}_#{f.bit_offset-1}",
+      #                            "bit_offset" => bit_offset,
+      #                            "bit_width" => f.bit_offset - bit_offset,
+      #                          })
     end
     fields << f
     bit_offset = f.bit_offset + f.bit_width
   end
   if bit_offset < r.size
-    fields << OpenStruct.new({
-                                 "name" => "padding_#{bit_offset}_#{r.size-1}",
-                                 "bit_offset" => bit_offset,
-                                 "bit_width" => r.size - bit_offset,
+    (bit_offset..(r.size-1)).each_with_index do |b, i|
+      fields << OpenStruct.new({
+                                 "name" => "padding#{i}",
+                                 "bit_offset" => b,
+                                 "bit_width" => 1,
                                })
+    end
+    # fields << OpenStruct.new({
+    #                              "name" => "padding_#{bit_offset}_#{r.size-1}",
+    #                              "bit_offset" => bit_offset,
+    #                              "bit_width" => r.size - bit_offset,
+    #                            })
   end
   r.fields = fields
+end
+
+def fix_adc_smpr(peripherals)
+  peripherals.select{ |p| p.group == "ADC" }.each do |adc|
+  r = adc.registers.find{ |r| r.name == "SMPR2" }
+  if r and r.fields.length == 1
+    r.fields = []
+    (0..9).each do |i|
+      r.fields << OpenStruct.new({
+                                 "name" => "SMP#{i}",
+                                 "bit_offset" => i+3,
+                                 "bit_width" => 3,
+                               })
+    end
+    r.fields << OpenStruct.new({
+                                 "name" => "padding",
+                                 "bit_offset" => 27,
+                                 "bit_width" => 2,
+                               })
+  end
+
+  r = adc.registers.find{ |r| r.name == "SMPR1" }
+  if r and r.fields.length == 1
+    r.fields = []
+    (10..18).each do |i|
+      r.fields << OpenStruct.new({
+                                 "name" => "SMP#{i}",
+                                 "bit_offset" => i+3,
+                                 "bit_width" => 3,
+                               })
+    end
+    r.fields << OpenStruct.new({
+                                 "name" => "padding",
+                                 "bit_offset" => 30,
+                                 "bit_width" => 5,
+                               })
+  end
+  end
 end
 
 peripherals = read_data ARGV[0]
@@ -107,6 +161,8 @@ peripherals = peripherals.map do |p|
   end
   p
 end
+
+fix_adc_smpr(peripherals)
 
 def generate(peripherals)
   tmpl = <<-EOF
@@ -139,6 +195,8 @@ pub const registers = struct {
    };
   <%- end -%>
 };
+
+<%= File.read("data/registers_footer.zig") %>
   EOF
   puts ERB.new(tmpl, trim_mode: '-').result(binding)
 end
