@@ -42,7 +42,7 @@ const button = board.button;
 const led = board.led;
 
 var blink_speed: u32 = 500;
-var ticker = chip.ticker();
+var ticker = chip.Ticker.init();
 
 const uart1 = uart.Uart1(.{}).interrupt();
 

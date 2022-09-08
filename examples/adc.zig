@@ -14,7 +14,7 @@ pub const interrupts = struct {
     }
 };
 
-var ticker = chip.ticker();
+var ticker = chip.Ticker.init();
 
 pub fn init() void {
     const clock = chip.hsi_100;

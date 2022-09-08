@@ -14,7 +14,7 @@ pub const interrupts = struct {
     }
 };
 
-var ticker = chip.ticker();
+var ticker = chip.Ticker.init();
 var blink_speed: u32 = 500;
 
 fn changeBlinkSpeed() void {
