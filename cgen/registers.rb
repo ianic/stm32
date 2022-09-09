@@ -11,7 +11,8 @@ if ARGV[0].nil?
 end
 
 def read_data(chip)
-  filename = "data/STM32F#{chip[0..2].upcase}.svd"
+  #filename = "data/STM32F#{chip[0..2].upcase}.svd"
+  filename = "stm32F#{chip[0..2].upcase}.svd"
   doc = File.open(filename) { |f| Nokogiri::XML(f) }
   peripherals = []
   for pd in doc.xpath("//peripheral") do
@@ -20,6 +21,10 @@ def read_data(chip)
     unless pd.attribute("derivedFrom").nil?
       from_name = pd.attribute("derivedFrom").text
       parent = peripherals.find{ |p| p["name"] == from_name }
+      unless parent
+        #print "parent #{from_name} not found for #{pd.xpath('name').text}"
+        next
+      end
       p = parent.clone.merge({
                                "name" => pd.xpath("name").text,
                                "base_address" => pd.xpath("baseAddress").text.sub("0X", "0x").downcase,
@@ -180,11 +185,11 @@ pub const registers = struct {
         /// <%= r.desc %>
         <%- case r.type -%>
         <%- when :int -%>
-        pub const <%= r.name %> = @intToPtr(*volatile u32, base_address + <%= r.address_offset %>);
+        pub const <%= r.name %> = @intToPtr(*volatile u<%= r.size %>, base_address + <%= r.address_offset %>);
         <%- when :mmio_int -%>
-        pub const <%= r.name %> = @intToPtr(*volatile MmioInt(32, u<%= r.bit_width %>), base_address + <%= r.address_offset %>);
+        pub const <%= r.name %> = @intToPtr(*volatile MmioInt(<%= r.size %>, u<%= r.bit_width %>), base_address + <%= r.address_offset %>);
         <%- else -%>
-        pub const <%= r.name %> = @intToPtr(*volatile Mmio(32, packed struct {
+        pub const <%= r.name %> = @intToPtr(*volatile Mmio(<%= r.size %>, packed struct {
             <%- for f in r.fields -%>
             <%- if f.desc -%>
             /// <%= f.desc %>
