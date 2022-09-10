@@ -137,14 +137,14 @@ fn Spec(comptime pin_name: []const u8) type {
         }
 
         fn initMode(mode: Mode, pull: Pull) void {
-            set("MODER", "MODER", @enumToInt(mode)); // regs.GPIOx.MODER.MODERy = z
-            set("PUPDR", "PUPDR", @enumToInt(pull)); // regs.GPIOx.PUPDR.PUPDRy = z
+            set("MODER", "MODER", mode); // regs.GPIOx.MODER.MODERy = z
+            set("PUPDR", "PUPDR", pull); // regs.GPIOx.PUPDR.PUPDRy = z
         }
 
         fn initOutput(c: OutputConfig) void {
             initMode(.output, c.pull);
-            set("OTYPER", "OT", @enumToInt(c.type)); // regs.GPIOx.OTYPER.OTy = z
-            set("OSPEEDR", "OSPEEDR", @enumToInt(c.speed)); // regs.GPIOx.OSPEEDR.OSPEEDRy = z
+            set("OTYPER", "OT", c.type); // regs.GPIOx.OTYPER.OTy = z
+            set("OSPEEDR", "OSPEEDR", c.speed); // regs.GPIOx.OSPEEDR.OSPEEDRy = z
         }
 
         fn initInput(c: InputConfig) void {

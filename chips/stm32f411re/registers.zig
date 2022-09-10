@@ -13856,11 +13856,28 @@ pub fn Mmio(comptime size: u8, comptime PackedT: type) type {
         }
 
         pub inline fn modify(addr: *volatile Self, fields: anytype) void {
-            var val = read(addr);
+            var reg = read(addr);
             inline for (@typeInfo(@TypeOf(fields)).Struct.fields) |field| {
-                @field(val, field.name) = @field(fields, field.name);
+                // simple:
+                // @field(reg, field.name) = @field(fields, field.name);
+
+                // allows passing enum or int to set int or enum
+                const field_name = field.name;
+                const value = @field(fields, field_name);
+
+                const int_value = switch (@typeInfo(@TypeOf(value))) {
+                    .Int, .ComptimeInt => value,
+                    .Enum => @enumToInt(value),
+                    else => @compileError("unable to get int value"),
+                };
+                const reg_field_type = @TypeOf(@field(reg, field_name));
+                @field(reg, field_name) = switch (@typeInfo(reg_field_type)) {
+                    .Int => int_value,
+                    .Enum => @intToEnum(reg_field_type, int_value),
+                    else => @compileError("unable to set filed"),
+                };
             }
-            write(addr, val);
+            write(addr, reg);
         }
 
         pub inline fn toggle(addr: *volatile Self, fields: anytype) void {
@@ -13871,10 +13888,21 @@ pub fn Mmio(comptime size: u8, comptime PackedT: type) type {
             write(addr, val);
         }
 
-        pub inline fn set(self: *volatile Self, comptime field: anytype, value: anytype) void {
-            var temp = self.read();
-            @field(temp, field) = value;
-            self.write(temp);
+        pub inline fn set(addr: *volatile Self, comptime field_name: anytype, value: anytype) void {
+            var reg = read(addr);
+            // same part as in modify
+            const int_value = switch (@typeInfo(@TypeOf(value))) {
+                .Int, .ComptimeInt => value,
+                .Enum => @enumToInt(value),
+                else => @compileError("unable to get int value"),
+            };
+            const reg_field_type = @TypeOf(@field(reg, field_name));
+            @field(reg, field_name) = switch (@typeInfo(reg_field_type)) {
+                .Int => int_value,
+                .Enum => @intToEnum(reg_field_type, int_value),
+                else => @compileError("unable to set field"),
+            };
+            write(addr, reg);
         }
     };
 }
