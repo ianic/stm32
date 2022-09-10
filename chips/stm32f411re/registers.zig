@@ -7,26 +7,26 @@ pub const registers = struct {
         /// address: 0x40012300
         /// ADC Common status register
         pub const CSR = @intToPtr(*volatile Mmio(32, packed struct {
-            AWD1: u1, //Analog watchdog flag of ADC 1
-            EOC1: u1, //End of conversion of ADC 1
-            JEOC1: u1, //Injected channel end of conversion of ADC 1
-            JSTRT1: u1, //Injected channel Start flag of ADC 1
-            STRT1: u1, //Regular channel Start flag of ADC 1
-            OVR1: u1, //Overrun flag of ADC 1
+            AWD1: u1, // Analog watchdog flag of ADC 1
+            EOC1: u1, // End of conversion of ADC 1
+            JEOC1: u1, // Injected channel end of conversion of ADC 1
+            JSTRT1: u1, // Injected channel Start flag of ADC 1
+            STRT1: u1, // Regular channel Start flag of ADC 1
+            OVR1: u1, // Overrun flag of ADC 1
             reserved_6_7: u2,
-            AWD2: u1, //Analog watchdog flag of ADC 2
-            EOC2: u1, //End of conversion of ADC 2
-            JEOC2: u1, //Injected channel end of conversion of ADC 2
-            JSTRT2: u1, //Injected channel Start flag of ADC 2
-            STRT2: u1, //Regular channel Start flag of ADC 2
-            OVR2: u1, //Overrun flag of ADC 2
+            AWD2: u1, // Analog watchdog flag of ADC 2
+            EOC2: u1, // End of conversion of ADC 2
+            JEOC2: u1, // Injected channel end of conversion of ADC 2
+            JSTRT2: u1, // Injected channel Start flag of ADC 2
+            STRT2: u1, // Regular channel Start flag of ADC 2
+            OVR2: u1, // Overrun flag of ADC 2
             reserved_14_15: u2,
-            AWD3: u1, //Analog watchdog flag of ADC 3
-            EOC3: u1, //End of conversion of ADC 3
-            JEOC3: u1, //Injected channel end of conversion of ADC 3
-            JSTRT3: u1, //Injected channel Start flag of ADC 3
-            STRT3: u1, //Regular channel Start flag of ADC 3
-            OVR3: u1, //Overrun flag of ADC3
+            AWD3: u1, // Analog watchdog flag of ADC 3
+            EOC3: u1, // End of conversion of ADC 3
+            JEOC3: u1, // Injected channel end of conversion of ADC 3
+            JSTRT3: u1, // Injected channel Start flag of ADC 3
+            STRT3: u1, // Regular channel Start flag of ADC 3
+            OVR3: u1, // Overrun flag of ADC3
             padding_22_31: u10,
         }), base_address + 0x0);
 
@@ -34,14 +34,14 @@ pub const registers = struct {
         /// ADC common control register
         pub const CCR = @intToPtr(*volatile Mmio(32, packed struct {
             reserved_0_7: u8,
-            DELAY: u4, //Delay between 2 sampling phases
+            DELAY: u4, // Delay between 2 sampling phases
             reserved_12_12: u1,
-            DDS: u1, //DMA disable selection for multi-ADC mode
-            DMA: u2, //Direct memory access mode for multi ADC mode
-            ADCPRE: u2, //ADC prescaler
+            DDS: u1, // DMA disable selection for multi-ADC mode
+            DMA: u2, // Direct memory access mode for multi ADC mode
+            ADCPRE: u2, // ADC prescaler
             reserved_18_21: u4,
-            VBATE: u1, //VBAT enable
-            TSVREFE: u1, //Temperature sensor and VREFINT enable
+            VBATE: u1, // VBAT enable
+            TSVREFE: u1, // Temperature sensor and VREFINT enable
             padding_24_31: u8,
         }), base_address + 0x4);
     };
@@ -53,54 +53,54 @@ pub const registers = struct {
         /// address: 0x40012000
         /// status register
         pub const SR = @intToPtr(*volatile Mmio(32, packed struct {
-            AWD: u1, //Analog watchdog flag
-            EOC: u1, //Regular channel end of conversion
-            JEOC: u1, //Injected channel end of conversion
-            JSTRT: u1, //Injected channel start flag
-            STRT: u1, //Regular channel start flag
-            OVR: u1, //Overrun
+            AWD: u1, // Analog watchdog flag
+            EOC: u1, // Regular channel end of conversion
+            JEOC: u1, // Injected channel end of conversion
+            JSTRT: u1, // Injected channel start flag
+            STRT: u1, // Regular channel start flag
+            OVR: u1, // Overrun
             padding_6_31: u26,
         }), base_address + 0x0);
 
         /// address: 0x40012004
         /// control register 1
         pub const CR1 = @intToPtr(*volatile Mmio(32, packed struct {
-            AWDCH: u5, //Analog watchdog channel select bits
-            EOCIE: u1, //Interrupt enable for EOC
-            AWDIE: u1, //Analog watchdog interrupt enable
-            JEOCIE: u1, //Interrupt enable for injected channels
-            SCAN: u1, //Scan mode
-            AWDSGL: u1, //Enable the watchdog on a single channel in scan mode
-            JAUTO: u1, //Automatic injected group conversion
-            DISCEN: u1, //Discontinuous mode on regular channels
-            JDISCEN: u1, //Discontinuous mode on injected channels
-            DISCNUM: u3, //Discontinuous mode channel count
+            AWDCH: u5, // Analog watchdog channel select bits
+            EOCIE: u1, // Interrupt enable for EOC
+            AWDIE: u1, // Analog watchdog interrupt enable
+            JEOCIE: u1, // Interrupt enable for injected channels
+            SCAN: u1, // Scan mode
+            AWDSGL: u1, // Enable the watchdog on a single channel in scan mode
+            JAUTO: u1, // Automatic injected group conversion
+            DISCEN: u1, // Discontinuous mode on regular channels
+            JDISCEN: u1, // Discontinuous mode on injected channels
+            DISCNUM: u3, // Discontinuous mode channel count
             reserved_16_21: u6,
-            JAWDEN: u1, //Analog watchdog enable on injected channels
-            AWDEN: u1, //Analog watchdog enable on regular channels
-            RES: u2, //Resolution
-            OVRIE: u1, //Overrun interrupt enable
+            JAWDEN: u1, // Analog watchdog enable on injected channels
+            AWDEN: u1, // Analog watchdog enable on regular channels
+            RES: u2, // Resolution
+            OVRIE: u1, // Overrun interrupt enable
             padding_27_31: u5,
         }), base_address + 0x4);
 
         /// address: 0x40012008
         /// control register 2
         pub const CR2 = @intToPtr(*volatile Mmio(32, packed struct {
-            ADON: u1, //A/D Converter ON / OFF
-            CONT: u1, //Continuous conversion
+            ADON: u1, // A/D Converter ON / OFF
+            CONT: u1, // Continuous conversion
             reserved_2_7: u6,
-            DMA: u1, //Direct memory access mode (for single ADC mode)
-            DDS: u1, //DMA disable selection (for single ADC mode)
-            EOCS: u1, //End of conversion selection
-            ALIGN: u1, //Data alignment
+            DMA: u1, // Direct memory access mode (for single ADC mode)
+            DDS: u1, // DMA disable selection (for single ADC mode)
+            EOCS: u1, // End of conversion selection
+            ALIGN: u1, // Data alignment
             reserved_12_15: u4,
-            JEXTSEL: u4, //External event select for injected group
-            JEXTEN: u2, //External trigger enable for injected channels
-            JSWSTART: u1, //Start conversion of injected channels
+            JEXTSEL: u4, // External event select for injected group
+            JEXTEN: u2, // External trigger enable for injected channels
+            JSWSTART: u1, // Start conversion of injected channels
             reserved_23_23: u1,
-            EXTSEL: u4, //External event select for regular group
-            EXTEN: u2, //External trigger enable for regular channels
-            SWSTART: u1, //Start conversion of regular channels
+            EXTSEL: u4, // External event select for regular group
+            EXTEN: u2, // External trigger enable for regular channels
+            SWSTART: u1, // Start conversion of regular channels
             padding_31_31: u1,
         }), base_address + 0x8);
 
@@ -138,123 +138,123 @@ pub const registers = struct {
         /// address: 0x40012014
         /// injected channel data offset register x
         pub const JOFR1 = @intToPtr(*volatile Mmio(32, packed struct {
-            JOFFSET1: u12, //Data offset for injected channel x
+            JOFFSET1: u12, // Data offset for injected channel x
             padding_12_31: u20,
         }), base_address + 0x14);
 
         /// address: 0x40012018
         /// injected channel data offset register x
         pub const JOFR2 = @intToPtr(*volatile Mmio(32, packed struct {
-            JOFFSET2: u12, //Data offset for injected channel x
+            JOFFSET2: u12, // Data offset for injected channel x
             padding_12_31: u20,
         }), base_address + 0x18);
 
         /// address: 0x4001201c
         /// injected channel data offset register x
         pub const JOFR3 = @intToPtr(*volatile Mmio(32, packed struct {
-            JOFFSET3: u12, //Data offset for injected channel x
+            JOFFSET3: u12, // Data offset for injected channel x
             padding_12_31: u20,
         }), base_address + 0x1c);
 
         /// address: 0x40012020
         /// injected channel data offset register x
         pub const JOFR4 = @intToPtr(*volatile Mmio(32, packed struct {
-            JOFFSET4: u12, //Data offset for injected channel x
+            JOFFSET4: u12, // Data offset for injected channel x
             padding_12_31: u20,
         }), base_address + 0x20);
 
         /// address: 0x40012024
         /// watchdog higher threshold register
         pub const HTR = @intToPtr(*volatile Mmio(32, packed struct {
-            HT: u12, //Analog watchdog higher threshold
+            HT: u12, // Analog watchdog higher threshold
             padding_12_31: u20,
         }), base_address + 0x24);
 
         /// address: 0x40012028
         /// watchdog lower threshold register
         pub const LTR = @intToPtr(*volatile Mmio(32, packed struct {
-            LT: u12, //Analog watchdog lower threshold
+            LT: u12, // Analog watchdog lower threshold
             padding_12_31: u20,
         }), base_address + 0x28);
 
         /// address: 0x4001202c
         /// regular sequence register 1
         pub const SQR1 = @intToPtr(*volatile Mmio(32, packed struct {
-            SQ13: u5, //13th conversion in regular sequence
-            SQ14: u5, //14th conversion in regular sequence
-            SQ15: u5, //15th conversion in regular sequence
-            SQ16: u5, //16th conversion in regular sequence
-            L: u4, //Regular channel sequence length
+            SQ13: u5, // 13th conversion in regular sequence
+            SQ14: u5, // 14th conversion in regular sequence
+            SQ15: u5, // 15th conversion in regular sequence
+            SQ16: u5, // 16th conversion in regular sequence
+            L: u4, // Regular channel sequence length
             padding_24_31: u8,
         }), base_address + 0x2c);
 
         /// address: 0x40012030
         /// regular sequence register 2
         pub const SQR2 = @intToPtr(*volatile Mmio(32, packed struct {
-            SQ7: u5, //7th conversion in regular sequence
-            SQ8: u5, //8th conversion in regular sequence
-            SQ9: u5, //9th conversion in regular sequence
-            SQ10: u5, //10th conversion in regular sequence
-            SQ11: u5, //11th conversion in regular sequence
-            SQ12: u5, //12th conversion in regular sequence
+            SQ7: u5, // 7th conversion in regular sequence
+            SQ8: u5, // 8th conversion in regular sequence
+            SQ9: u5, // 9th conversion in regular sequence
+            SQ10: u5, // 10th conversion in regular sequence
+            SQ11: u5, // 11th conversion in regular sequence
+            SQ12: u5, // 12th conversion in regular sequence
             padding_30_31: u2,
         }), base_address + 0x30);
 
         /// address: 0x40012034
         /// regular sequence register 3
         pub const SQR3 = @intToPtr(*volatile Mmio(32, packed struct {
-            SQ1: u5, //1st conversion in regular sequence
-            SQ2: u5, //2nd conversion in regular sequence
-            SQ3: u5, //3rd conversion in regular sequence
-            SQ4: u5, //4th conversion in regular sequence
-            SQ5: u5, //5th conversion in regular sequence
-            SQ6: u5, //6th conversion in regular sequence
+            SQ1: u5, // 1st conversion in regular sequence
+            SQ2: u5, // 2nd conversion in regular sequence
+            SQ3: u5, // 3rd conversion in regular sequence
+            SQ4: u5, // 4th conversion in regular sequence
+            SQ5: u5, // 5th conversion in regular sequence
+            SQ6: u5, // 6th conversion in regular sequence
             padding_30_31: u2,
         }), base_address + 0x34);
 
         /// address: 0x40012038
         /// injected sequence register
         pub const JSQR = @intToPtr(*volatile Mmio(32, packed struct {
-            JSQ1: u5, //1st conversion in injected sequence
-            JSQ2: u5, //2nd conversion in injected sequence
-            JSQ3: u5, //3rd conversion in injected sequence
-            JSQ4: u5, //4th conversion in injected sequence
-            JL: u2, //Injected sequence length
+            JSQ1: u5, // 1st conversion in injected sequence
+            JSQ2: u5, // 2nd conversion in injected sequence
+            JSQ3: u5, // 3rd conversion in injected sequence
+            JSQ4: u5, // 4th conversion in injected sequence
+            JL: u2, // Injected sequence length
             padding_22_31: u10,
         }), base_address + 0x38);
 
         /// address: 0x4001203c
         /// injected data register x
         pub const JDR1 = @intToPtr(*volatile Mmio(32, packed struct {
-            JDATA: u16, //Injected data
+            JDATA: u16, // Injected data
             padding_16_31: u16,
         }), base_address + 0x3c);
 
         /// address: 0x40012040
         /// injected data register x
         pub const JDR2 = @intToPtr(*volatile Mmio(32, packed struct {
-            JDATA: u16, //Injected data
+            JDATA: u16, // Injected data
             padding_16_31: u16,
         }), base_address + 0x40);
 
         /// address: 0x40012044
         /// injected data register x
         pub const JDR3 = @intToPtr(*volatile Mmio(32, packed struct {
-            JDATA: u16, //Injected data
+            JDATA: u16, // Injected data
             padding_16_31: u16,
         }), base_address + 0x44);
 
         /// address: 0x40012048
         /// injected data register x
         pub const JDR4 = @intToPtr(*volatile Mmio(32, packed struct {
-            JDATA: u16, //Injected data
+            JDATA: u16, // Injected data
             padding_16_31: u16,
         }), base_address + 0x48);
 
         /// address: 0x4001204c
         /// regular data register
         pub const DR = @intToPtr(*volatile Mmio(32, packed struct {
-            DATA: u16, //Regular data
+            DATA: u16, // Regular data
             padding_16_31: u16,
         }), base_address + 0x4c);
     };
@@ -283,49 +283,49 @@ pub const registers = struct {
         /// address: 0xe0042000
         /// IDCODE
         pub const DBGMCU_IDCODE = @intToPtr(*volatile Mmio(32, packed struct {
-            DEV_ID: u12, //DEV_ID
+            DEV_ID: u12, // DEV_ID
             reserved_12_15: u4,
-            REV_ID: u16, //REV_ID
+            REV_ID: u16, // REV_ID
         }), base_address + 0x0);
 
         /// address: 0xe0042004
         /// Control Register
         pub const DBGMCU_CR = @intToPtr(*volatile Mmio(32, packed struct {
-            DBG_SLEEP: u1, //DBG_SLEEP
-            DBG_STOP: u1, //DBG_STOP
-            DBG_STANDBY: u1, //DBG_STANDBY
+            DBG_SLEEP: u1, // DBG_SLEEP
+            DBG_STOP: u1, // DBG_STOP
+            DBG_STANDBY: u1, // DBG_STANDBY
             reserved_3_4: u2,
-            TRACE_IOEN: u1, //TRACE_IOEN
-            TRACE_MODE: u2, //TRACE_MODE
+            TRACE_IOEN: u1, // TRACE_IOEN
+            TRACE_MODE: u2, // TRACE_MODE
             padding_8_31: u24,
         }), base_address + 0x4);
 
         /// address: 0xe0042008
         /// Debug MCU APB1 Freeze registe
         pub const DBGMCU_APB1_FZ = @intToPtr(*volatile Mmio(32, packed struct {
-            DBG_TIM2_STOP: u1, //DBG_TIM2_STOP
-            DBG_TIM3_STOP: u1, //DBG_TIM3 _STOP
-            DBG_TIM4_STOP: u1, //DBG_TIM4_STOP
-            DBG_TIM5_STOP: u1, //DBG_TIM5_STOP
+            DBG_TIM2_STOP: u1, // DBG_TIM2_STOP
+            DBG_TIM3_STOP: u1, // DBG_TIM3 _STOP
+            DBG_TIM4_STOP: u1, // DBG_TIM4_STOP
+            DBG_TIM5_STOP: u1, // DBG_TIM5_STOP
             reserved_4_9: u6,
-            DBG_RTC_Stop: u1, //RTC stopped when Core is halted
-            DBG_WWDG_STOP: u1, //DBG_WWDG_STOP
-            DBG_IWDEG_STOP: u1, //DBG_IWDEG_STOP
+            DBG_RTC_Stop: u1, // RTC stopped when Core is halted
+            DBG_WWDG_STOP: u1, // DBG_WWDG_STOP
+            DBG_IWDEG_STOP: u1, // DBG_IWDEG_STOP
             reserved_13_20: u8,
-            DBG_I2C1_SMBUS_TIMEOUT: u1, //DBG_J2C1_SMBUS_TIMEOUT
-            DBG_I2C2_SMBUS_TIMEOUT: u1, //DBG_J2C2_SMBUS_TIMEOUT
-            DBG_I2C3SMBUS_TIMEOUT: u1, //DBG_J2C3SMBUS_TIMEOUT
+            DBG_I2C1_SMBUS_TIMEOUT: u1, // DBG_J2C1_SMBUS_TIMEOUT
+            DBG_I2C2_SMBUS_TIMEOUT: u1, // DBG_J2C2_SMBUS_TIMEOUT
+            DBG_I2C3SMBUS_TIMEOUT: u1, // DBG_J2C3SMBUS_TIMEOUT
             padding_24_31: u8,
         }), base_address + 0x8);
 
         /// address: 0xe004200c
         /// Debug MCU APB2 Freeze registe
         pub const DBGMCU_APB2_FZ = @intToPtr(*volatile Mmio(32, packed struct {
-            DBG_TIM1_STOP: u1, //TIM1 counter stopped when core is halted
+            DBG_TIM1_STOP: u1, // TIM1 counter stopped when core is halted
             reserved_1_15: u15,
-            DBG_TIM9_STOP: u1, //TIM9 counter stopped when core is halted
-            DBG_TIM10_STOP: u1, //TIM10 counter stopped when core is halted
-            DBG_TIM11_STOP: u1, //TIM11 counter stopped when core is halted
+            DBG_TIM9_STOP: u1, // TIM9 counter stopped when core is halted
+            DBG_TIM10_STOP: u1, // TIM10 counter stopped when core is halted
+            DBG_TIM11_STOP: u1, // TIM11 counter stopped when core is halted
             padding_19_31: u13,
         }), base_address + 0xc);
     };
@@ -337,174 +337,174 @@ pub const registers = struct {
         /// address: 0x40013c00
         /// Interrupt mask register (EXTI_IMR)
         pub const IMR = @intToPtr(*volatile Mmio(32, packed struct {
-            MR0: u1, //Interrupt Mask on line 0
-            MR1: u1, //Interrupt Mask on line 1
-            MR2: u1, //Interrupt Mask on line 2
-            MR3: u1, //Interrupt Mask on line 3
-            MR4: u1, //Interrupt Mask on line 4
-            MR5: u1, //Interrupt Mask on line 5
-            MR6: u1, //Interrupt Mask on line 6
-            MR7: u1, //Interrupt Mask on line 7
-            MR8: u1, //Interrupt Mask on line 8
-            MR9: u1, //Interrupt Mask on line 9
-            MR10: u1, //Interrupt Mask on line 10
-            MR11: u1, //Interrupt Mask on line 11
-            MR12: u1, //Interrupt Mask on line 12
-            MR13: u1, //Interrupt Mask on line 13
-            MR14: u1, //Interrupt Mask on line 14
-            MR15: u1, //Interrupt Mask on line 15
-            MR16: u1, //Interrupt Mask on line 16
-            MR17: u1, //Interrupt Mask on line 17
-            MR18: u1, //Interrupt Mask on line 18
-            MR19: u1, //Interrupt Mask on line 19
-            MR20: u1, //Interrupt Mask on line 20
-            MR21: u1, //Interrupt Mask on line 21
-            MR22: u1, //Interrupt Mask on line 22
+            MR0: u1, // Interrupt Mask on line 0
+            MR1: u1, // Interrupt Mask on line 1
+            MR2: u1, // Interrupt Mask on line 2
+            MR3: u1, // Interrupt Mask on line 3
+            MR4: u1, // Interrupt Mask on line 4
+            MR5: u1, // Interrupt Mask on line 5
+            MR6: u1, // Interrupt Mask on line 6
+            MR7: u1, // Interrupt Mask on line 7
+            MR8: u1, // Interrupt Mask on line 8
+            MR9: u1, // Interrupt Mask on line 9
+            MR10: u1, // Interrupt Mask on line 10
+            MR11: u1, // Interrupt Mask on line 11
+            MR12: u1, // Interrupt Mask on line 12
+            MR13: u1, // Interrupt Mask on line 13
+            MR14: u1, // Interrupt Mask on line 14
+            MR15: u1, // Interrupt Mask on line 15
+            MR16: u1, // Interrupt Mask on line 16
+            MR17: u1, // Interrupt Mask on line 17
+            MR18: u1, // Interrupt Mask on line 18
+            MR19: u1, // Interrupt Mask on line 19
+            MR20: u1, // Interrupt Mask on line 20
+            MR21: u1, // Interrupt Mask on line 21
+            MR22: u1, // Interrupt Mask on line 22
             padding_23_31: u9,
         }), base_address + 0x0);
 
         /// address: 0x40013c04
         /// Event mask register (EXTI_EMR)
         pub const EMR = @intToPtr(*volatile Mmio(32, packed struct {
-            MR0: u1, //Event Mask on line 0
-            MR1: u1, //Event Mask on line 1
-            MR2: u1, //Event Mask on line 2
-            MR3: u1, //Event Mask on line 3
-            MR4: u1, //Event Mask on line 4
-            MR5: u1, //Event Mask on line 5
-            MR6: u1, //Event Mask on line 6
-            MR7: u1, //Event Mask on line 7
-            MR8: u1, //Event Mask on line 8
-            MR9: u1, //Event Mask on line 9
-            MR10: u1, //Event Mask on line 10
-            MR11: u1, //Event Mask on line 11
-            MR12: u1, //Event Mask on line 12
-            MR13: u1, //Event Mask on line 13
-            MR14: u1, //Event Mask on line 14
-            MR15: u1, //Event Mask on line 15
-            MR16: u1, //Event Mask on line 16
-            MR17: u1, //Event Mask on line 17
-            MR18: u1, //Event Mask on line 18
-            MR19: u1, //Event Mask on line 19
-            MR20: u1, //Event Mask on line 20
-            MR21: u1, //Event Mask on line 21
-            MR22: u1, //Event Mask on line 22
+            MR0: u1, // Event Mask on line 0
+            MR1: u1, // Event Mask on line 1
+            MR2: u1, // Event Mask on line 2
+            MR3: u1, // Event Mask on line 3
+            MR4: u1, // Event Mask on line 4
+            MR5: u1, // Event Mask on line 5
+            MR6: u1, // Event Mask on line 6
+            MR7: u1, // Event Mask on line 7
+            MR8: u1, // Event Mask on line 8
+            MR9: u1, // Event Mask on line 9
+            MR10: u1, // Event Mask on line 10
+            MR11: u1, // Event Mask on line 11
+            MR12: u1, // Event Mask on line 12
+            MR13: u1, // Event Mask on line 13
+            MR14: u1, // Event Mask on line 14
+            MR15: u1, // Event Mask on line 15
+            MR16: u1, // Event Mask on line 16
+            MR17: u1, // Event Mask on line 17
+            MR18: u1, // Event Mask on line 18
+            MR19: u1, // Event Mask on line 19
+            MR20: u1, // Event Mask on line 20
+            MR21: u1, // Event Mask on line 21
+            MR22: u1, // Event Mask on line 22
             padding_23_31: u9,
         }), base_address + 0x4);
 
         /// address: 0x40013c08
         /// Rising Trigger selection register (EXTI_RTSR)
         pub const RTSR = @intToPtr(*volatile Mmio(32, packed struct {
-            TR0: u1, //Rising trigger event configuration of line 0
-            TR1: u1, //Rising trigger event configuration of line 1
-            TR2: u1, //Rising trigger event configuration of line 2
-            TR3: u1, //Rising trigger event configuration of line 3
-            TR4: u1, //Rising trigger event configuration of line 4
-            TR5: u1, //Rising trigger event configuration of line 5
-            TR6: u1, //Rising trigger event configuration of line 6
-            TR7: u1, //Rising trigger event configuration of line 7
-            TR8: u1, //Rising trigger event configuration of line 8
-            TR9: u1, //Rising trigger event configuration of line 9
-            TR10: u1, //Rising trigger event configuration of line 10
-            TR11: u1, //Rising trigger event configuration of line 11
-            TR12: u1, //Rising trigger event configuration of line 12
-            TR13: u1, //Rising trigger event configuration of line 13
-            TR14: u1, //Rising trigger event configuration of line 14
-            TR15: u1, //Rising trigger event configuration of line 15
-            TR16: u1, //Rising trigger event configuration of line 16
-            TR17: u1, //Rising trigger event configuration of line 17
-            TR18: u1, //Rising trigger event configuration of line 18
-            TR19: u1, //Rising trigger event configuration of line 19
-            TR20: u1, //Rising trigger event configuration of line 20
-            TR21: u1, //Rising trigger event configuration of line 21
-            TR22: u1, //Rising trigger event configuration of line 22
+            TR0: u1, // Rising trigger event configuration of line 0
+            TR1: u1, // Rising trigger event configuration of line 1
+            TR2: u1, // Rising trigger event configuration of line 2
+            TR3: u1, // Rising trigger event configuration of line 3
+            TR4: u1, // Rising trigger event configuration of line 4
+            TR5: u1, // Rising trigger event configuration of line 5
+            TR6: u1, // Rising trigger event configuration of line 6
+            TR7: u1, // Rising trigger event configuration of line 7
+            TR8: u1, // Rising trigger event configuration of line 8
+            TR9: u1, // Rising trigger event configuration of line 9
+            TR10: u1, // Rising trigger event configuration of line 10
+            TR11: u1, // Rising trigger event configuration of line 11
+            TR12: u1, // Rising trigger event configuration of line 12
+            TR13: u1, // Rising trigger event configuration of line 13
+            TR14: u1, // Rising trigger event configuration of line 14
+            TR15: u1, // Rising trigger event configuration of line 15
+            TR16: u1, // Rising trigger event configuration of line 16
+            TR17: u1, // Rising trigger event configuration of line 17
+            TR18: u1, // Rising trigger event configuration of line 18
+            TR19: u1, // Rising trigger event configuration of line 19
+            TR20: u1, // Rising trigger event configuration of line 20
+            TR21: u1, // Rising trigger event configuration of line 21
+            TR22: u1, // Rising trigger event configuration of line 22
             padding_23_31: u9,
         }), base_address + 0x8);
 
         /// address: 0x40013c0c
         /// Falling Trigger selection register (EXTI_FTSR)
         pub const FTSR = @intToPtr(*volatile Mmio(32, packed struct {
-            TR0: u1, //Falling trigger event configuration of line 0
-            TR1: u1, //Falling trigger event configuration of line 1
-            TR2: u1, //Falling trigger event configuration of line 2
-            TR3: u1, //Falling trigger event configuration of line 3
-            TR4: u1, //Falling trigger event configuration of line 4
-            TR5: u1, //Falling trigger event configuration of line 5
-            TR6: u1, //Falling trigger event configuration of line 6
-            TR7: u1, //Falling trigger event configuration of line 7
-            TR8: u1, //Falling trigger event configuration of line 8
-            TR9: u1, //Falling trigger event configuration of line 9
-            TR10: u1, //Falling trigger event configuration of line 10
-            TR11: u1, //Falling trigger event configuration of line 11
-            TR12: u1, //Falling trigger event configuration of line 12
-            TR13: u1, //Falling trigger event configuration of line 13
-            TR14: u1, //Falling trigger event configuration of line 14
-            TR15: u1, //Falling trigger event configuration of line 15
-            TR16: u1, //Falling trigger event configuration of line 16
-            TR17: u1, //Falling trigger event configuration of line 17
-            TR18: u1, //Falling trigger event configuration of line 18
-            TR19: u1, //Falling trigger event configuration of line 19
-            TR20: u1, //Falling trigger event configuration of line 20
-            TR21: u1, //Falling trigger event configuration of line 21
-            TR22: u1, //Falling trigger event configuration of line 22
+            TR0: u1, // Falling trigger event configuration of line 0
+            TR1: u1, // Falling trigger event configuration of line 1
+            TR2: u1, // Falling trigger event configuration of line 2
+            TR3: u1, // Falling trigger event configuration of line 3
+            TR4: u1, // Falling trigger event configuration of line 4
+            TR5: u1, // Falling trigger event configuration of line 5
+            TR6: u1, // Falling trigger event configuration of line 6
+            TR7: u1, // Falling trigger event configuration of line 7
+            TR8: u1, // Falling trigger event configuration of line 8
+            TR9: u1, // Falling trigger event configuration of line 9
+            TR10: u1, // Falling trigger event configuration of line 10
+            TR11: u1, // Falling trigger event configuration of line 11
+            TR12: u1, // Falling trigger event configuration of line 12
+            TR13: u1, // Falling trigger event configuration of line 13
+            TR14: u1, // Falling trigger event configuration of line 14
+            TR15: u1, // Falling trigger event configuration of line 15
+            TR16: u1, // Falling trigger event configuration of line 16
+            TR17: u1, // Falling trigger event configuration of line 17
+            TR18: u1, // Falling trigger event configuration of line 18
+            TR19: u1, // Falling trigger event configuration of line 19
+            TR20: u1, // Falling trigger event configuration of line 20
+            TR21: u1, // Falling trigger event configuration of line 21
+            TR22: u1, // Falling trigger event configuration of line 22
             padding_23_31: u9,
         }), base_address + 0xc);
 
         /// address: 0x40013c10
         /// Software interrupt event register (EXTI_SWIER)
         pub const SWIER = @intToPtr(*volatile Mmio(32, packed struct {
-            SWIER0: u1, //Software Interrupt on line 0
-            SWIER1: u1, //Software Interrupt on line 1
-            SWIER2: u1, //Software Interrupt on line 2
-            SWIER3: u1, //Software Interrupt on line 3
-            SWIER4: u1, //Software Interrupt on line 4
-            SWIER5: u1, //Software Interrupt on line 5
-            SWIER6: u1, //Software Interrupt on line 6
-            SWIER7: u1, //Software Interrupt on line 7
-            SWIER8: u1, //Software Interrupt on line 8
-            SWIER9: u1, //Software Interrupt on line 9
-            SWIER10: u1, //Software Interrupt on line 10
-            SWIER11: u1, //Software Interrupt on line 11
-            SWIER12: u1, //Software Interrupt on line 12
-            SWIER13: u1, //Software Interrupt on line 13
-            SWIER14: u1, //Software Interrupt on line 14
-            SWIER15: u1, //Software Interrupt on line 15
-            SWIER16: u1, //Software Interrupt on line 16
-            SWIER17: u1, //Software Interrupt on line 17
-            SWIER18: u1, //Software Interrupt on line 18
-            SWIER19: u1, //Software Interrupt on line 19
-            SWIER20: u1, //Software Interrupt on line 20
-            SWIER21: u1, //Software Interrupt on line 21
-            SWIER22: u1, //Software Interrupt on line 22
+            SWIER0: u1, // Software Interrupt on line 0
+            SWIER1: u1, // Software Interrupt on line 1
+            SWIER2: u1, // Software Interrupt on line 2
+            SWIER3: u1, // Software Interrupt on line 3
+            SWIER4: u1, // Software Interrupt on line 4
+            SWIER5: u1, // Software Interrupt on line 5
+            SWIER6: u1, // Software Interrupt on line 6
+            SWIER7: u1, // Software Interrupt on line 7
+            SWIER8: u1, // Software Interrupt on line 8
+            SWIER9: u1, // Software Interrupt on line 9
+            SWIER10: u1, // Software Interrupt on line 10
+            SWIER11: u1, // Software Interrupt on line 11
+            SWIER12: u1, // Software Interrupt on line 12
+            SWIER13: u1, // Software Interrupt on line 13
+            SWIER14: u1, // Software Interrupt on line 14
+            SWIER15: u1, // Software Interrupt on line 15
+            SWIER16: u1, // Software Interrupt on line 16
+            SWIER17: u1, // Software Interrupt on line 17
+            SWIER18: u1, // Software Interrupt on line 18
+            SWIER19: u1, // Software Interrupt on line 19
+            SWIER20: u1, // Software Interrupt on line 20
+            SWIER21: u1, // Software Interrupt on line 21
+            SWIER22: u1, // Software Interrupt on line 22
             padding_23_31: u9,
         }), base_address + 0x10);
 
         /// address: 0x40013c14
         /// Pending register (EXTI_PR)
         pub const PR = @intToPtr(*volatile Mmio(32, packed struct {
-            PR0: u1, //Pending bit 0
-            PR1: u1, //Pending bit 1
-            PR2: u1, //Pending bit 2
-            PR3: u1, //Pending bit 3
-            PR4: u1, //Pending bit 4
-            PR5: u1, //Pending bit 5
-            PR6: u1, //Pending bit 6
-            PR7: u1, //Pending bit 7
-            PR8: u1, //Pending bit 8
-            PR9: u1, //Pending bit 9
-            PR10: u1, //Pending bit 10
-            PR11: u1, //Pending bit 11
-            PR12: u1, //Pending bit 12
-            PR13: u1, //Pending bit 13
-            PR14: u1, //Pending bit 14
-            PR15: u1, //Pending bit 15
-            PR16: u1, //Pending bit 16
-            PR17: u1, //Pending bit 17
-            PR18: u1, //Pending bit 18
-            PR19: u1, //Pending bit 19
-            PR20: u1, //Pending bit 20
-            PR21: u1, //Pending bit 21
-            PR22: u1, //Pending bit 22
+            PR0: u1, // Pending bit 0
+            PR1: u1, // Pending bit 1
+            PR2: u1, // Pending bit 2
+            PR3: u1, // Pending bit 3
+            PR4: u1, // Pending bit 4
+            PR5: u1, // Pending bit 5
+            PR6: u1, // Pending bit 6
+            PR7: u1, // Pending bit 7
+            PR8: u1, // Pending bit 8
+            PR9: u1, // Pending bit 9
+            PR10: u1, // Pending bit 10
+            PR11: u1, // Pending bit 11
+            PR12: u1, // Pending bit 12
+            PR13: u1, // Pending bit 13
+            PR14: u1, // Pending bit 14
+            PR15: u1, // Pending bit 15
+            PR16: u1, // Pending bit 16
+            PR17: u1, // Pending bit 17
+            PR18: u1, // Pending bit 18
+            PR19: u1, // Pending bit 19
+            PR20: u1, // Pending bit 20
+            PR21: u1, // Pending bit 21
+            PR22: u1, // Pending bit 22
             padding_23_31: u9,
         }), base_address + 0x14);
     };
@@ -516,73 +516,73 @@ pub const registers = struct {
         /// address: 0x40023c00
         /// Flash access control register
         pub const ACR = @intToPtr(*volatile Mmio(32, packed struct {
-            LATENCY: u3, //Latency
+            LATENCY: u3, // Latency
             reserved_3_7: u5,
-            PRFTEN: u1, //Prefetch enable
-            ICEN: u1, //Instruction cache enable
-            DCEN: u1, //Data cache enable
-            ICRST: u1, //Instruction cache reset
-            DCRST: u1, //Data cache reset
+            PRFTEN: u1, // Prefetch enable
+            ICEN: u1, // Instruction cache enable
+            DCEN: u1, // Data cache enable
+            ICRST: u1, // Instruction cache reset
+            DCRST: u1, // Data cache reset
             padding_13_31: u19,
         }), base_address + 0x0);
 
         /// address: 0x40023c04
         /// Flash key register
         pub const KEYR = @intToPtr(*volatile Mmio(32, packed struct {
-            KEY: u32, //FPEC key
+            KEY: u32, // FPEC key
         }), base_address + 0x4);
 
         /// address: 0x40023c08
         /// Flash option key register
         pub const OPTKEYR = @intToPtr(*volatile Mmio(32, packed struct {
-            OPTKEY: u32, //Option byte key
+            OPTKEY: u32, // Option byte key
         }), base_address + 0x8);
 
         /// address: 0x40023c0c
         /// Status register
         pub const SR = @intToPtr(*volatile Mmio(32, packed struct {
-            EOP: u1, //End of operation
-            OPERR: u1, //Operation error
+            EOP: u1, // End of operation
+            OPERR: u1, // Operation error
             reserved_2_3: u2,
-            WRPERR: u1, //Write protection error
-            PGAERR: u1, //Programming alignment error
-            PGPERR: u1, //Programming parallelism error
-            PGSERR: u1, //Programming sequence error
+            WRPERR: u1, // Write protection error
+            PGAERR: u1, // Programming alignment error
+            PGPERR: u1, // Programming parallelism error
+            PGSERR: u1, // Programming sequence error
             reserved_8_15: u8,
-            BSY: u1, //Busy
+            BSY: u1, // Busy
             padding_17_31: u15,
         }), base_address + 0xc);
 
         /// address: 0x40023c10
         /// Control register
         pub const CR = @intToPtr(*volatile Mmio(32, packed struct {
-            PG: u1, //Programming
-            SER: u1, //Sector Erase
-            MER: u1, //Mass Erase
-            SNB: u4, //Sector number
+            PG: u1, // Programming
+            SER: u1, // Sector Erase
+            MER: u1, // Mass Erase
+            SNB: u4, // Sector number
             reserved_7_7: u1,
-            PSIZE: u2, //Program size
+            PSIZE: u2, // Program size
             reserved_10_15: u6,
-            STRT: u1, //Start
+            STRT: u1, // Start
             reserved_17_23: u7,
-            EOPIE: u1, //End of operation interrupt enable
-            ERRIE: u1, //Error interrupt enable
+            EOPIE: u1, // End of operation interrupt enable
+            ERRIE: u1, // Error interrupt enable
             reserved_26_30: u5,
-            LOCK: u1, //Lock
+            LOCK: u1, // Lock
         }), base_address + 0x10);
 
         /// address: 0x40023c14
         /// Flash option control register
         pub const OPTCR = @intToPtr(*volatile Mmio(32, packed struct {
-            OPTLOCK: u1, //Option lock
-            OPTSTRT: u1, //Option start
-            BOR_LEV: u2, //BOR reset Level
+            OPTLOCK: u1, // Option lock
+            OPTSTRT: u1, // Option start
+            BOR_LEV: u2, // BOR reset Level
             reserved_4_4: u1,
-            WDG_SW: u1, //WDG_SW User option bytes
-            nRST_STOP: u1, //nRST_STOP User option bytes
-            nRST_STDBY: u1, //nRST_STDBY User option bytes
-            RDP: u8, //Read protect
-            nWRP: u12, //Not write protect
+            WDG_SW: u1, // WDG_SW User option bytes
+            nRST_STOP: u1, // nRST_STOP User option bytes
+            nRST_STDBY: u1, // nRST_STDBY User option bytes
+            RDP: u8, // Read protect
+            nWRP: u12, // Not write protect
             padding_28_31: u4,
         }), base_address + 0x14);
     };
@@ -594,7 +594,7 @@ pub const registers = struct {
         /// address: 0x40003000
         /// Key register
         pub const KR = @intToPtr(*volatile Mmio(32, packed struct {
-            KEY: u16, //Key value
+            KEY: u16, // Key value
             padding_16_31: u16,
         }), base_address + 0x0);
 
@@ -605,15 +605,15 @@ pub const registers = struct {
         /// address: 0x40003008
         /// Reload register
         pub const RLR = @intToPtr(*volatile Mmio(32, packed struct {
-            RL: u12, //Watchdog counter reload value
+            RL: u12, // Watchdog counter reload value
             padding_12_31: u20,
         }), base_address + 0x8);
 
         /// address: 0x4000300c
         /// Status register
         pub const SR = @intToPtr(*volatile Mmio(32, packed struct {
-            PVU: u1, //Watchdog prescaler value update
-            RVU: u1, //Watchdog counter reload value update
+            PVU: u1, // Watchdog prescaler value update
+            RVU: u1, // Watchdog counter reload value update
             padding_2_31: u30,
         }), base_address + 0xc);
     };
@@ -625,465 +625,465 @@ pub const registers = struct {
         /// address: 0x50000800
         /// OTG_FS device configuration register (OTG_FS_DCFG)
         pub const FS_DCFG = @intToPtr(*volatile Mmio(32, packed struct {
-            DSPD: u2, //Device speed
-            NZLSOHSK: u1, //Non-zero-length status OUT handshake
+            DSPD: u2, // Device speed
+            NZLSOHSK: u1, // Non-zero-length status OUT handshake
             reserved_3_3: u1,
-            DAD: u7, //Device address
-            PFIVL: u2, //Periodic frame interval
+            DAD: u7, // Device address
+            PFIVL: u2, // Periodic frame interval
             padding_13_31: u19,
         }), base_address + 0x0);
 
         /// address: 0x50000804
         /// OTG_FS device control register (OTG_FS_DCTL)
         pub const FS_DCTL = @intToPtr(*volatile Mmio(32, packed struct {
-            RWUSIG: u1, //Remote wakeup signaling
-            SDIS: u1, //Soft disconnect
-            GINSTS: u1, //Global IN NAK status
-            GONSTS: u1, //Global OUT NAK status
-            TCTL: u3, //Test control
-            SGINAK: u1, //Set global IN NAK
-            CGINAK: u1, //Clear global IN NAK
-            SGONAK: u1, //Set global OUT NAK
-            CGONAK: u1, //Clear global OUT NAK
-            POPRGDNE: u1, //Power-on programming done
+            RWUSIG: u1, // Remote wakeup signaling
+            SDIS: u1, // Soft disconnect
+            GINSTS: u1, // Global IN NAK status
+            GONSTS: u1, // Global OUT NAK status
+            TCTL: u3, // Test control
+            SGINAK: u1, // Set global IN NAK
+            CGINAK: u1, // Clear global IN NAK
+            SGONAK: u1, // Set global OUT NAK
+            CGONAK: u1, // Clear global OUT NAK
+            POPRGDNE: u1, // Power-on programming done
             padding_12_31: u20,
         }), base_address + 0x4);
 
         /// address: 0x50000808
         /// OTG_FS device status register (OTG_FS_DSTS)
         pub const FS_DSTS = @intToPtr(*volatile Mmio(32, packed struct {
-            SUSPSTS: u1, //Suspend status
-            ENUMSPD: u2, //Enumerated speed
-            EERR: u1, //Erratic error
+            SUSPSTS: u1, // Suspend status
+            ENUMSPD: u2, // Enumerated speed
+            EERR: u1, // Erratic error
             reserved_4_7: u4,
-            FNSOF: u14, //Frame number of the received SOF
+            FNSOF: u14, // Frame number of the received SOF
             padding_22_31: u10,
         }), base_address + 0x8);
 
         /// address: 0x50000810
         /// OTG_FS device IN endpoint common interrupt mask register (OTG_FS_DIEPMSK)
         pub const FS_DIEPMSK = @intToPtr(*volatile Mmio(32, packed struct {
-            XFRCM: u1, //Transfer completed interrupt mask
-            EPDM: u1, //Endpoint disabled interrupt mask
+            XFRCM: u1, // Transfer completed interrupt mask
+            EPDM: u1, // Endpoint disabled interrupt mask
             reserved_2_2: u1,
-            TOM: u1, //Timeout condition mask (Non-isochronous endpoints)
-            ITTXFEMSK: u1, //IN token received when TxFIFO empty mask
-            INEPNMM: u1, //IN token received with EP mismatch mask
-            INEPNEM: u1, //IN endpoint NAK effective mask
+            TOM: u1, // Timeout condition mask (Non-isochronous endpoints)
+            ITTXFEMSK: u1, // IN token received when TxFIFO empty mask
+            INEPNMM: u1, // IN token received with EP mismatch mask
+            INEPNEM: u1, // IN endpoint NAK effective mask
             padding_7_31: u25,
         }), base_address + 0x10);
 
         /// address: 0x50000814
         /// OTG_FS device OUT endpoint common interrupt mask register (OTG_FS_DOEPMSK)
         pub const FS_DOEPMSK = @intToPtr(*volatile Mmio(32, packed struct {
-            XFRCM: u1, //Transfer completed interrupt mask
-            EPDM: u1, //Endpoint disabled interrupt mask
+            XFRCM: u1, // Transfer completed interrupt mask
+            EPDM: u1, // Endpoint disabled interrupt mask
             reserved_2_2: u1,
-            STUPM: u1, //SETUP phase done mask
-            OTEPDM: u1, //OUT token received when endpoint disabled mask
+            STUPM: u1, // SETUP phase done mask
+            OTEPDM: u1, // OUT token received when endpoint disabled mask
             padding_5_31: u27,
         }), base_address + 0x14);
 
         /// address: 0x50000818
         /// OTG_FS device all endpoints interrupt register (OTG_FS_DAINT)
         pub const FS_DAINT = @intToPtr(*volatile Mmio(32, packed struct {
-            IEPINT: u16, //IN endpoint interrupt bits
-            OEPINT: u16, //OUT endpoint interrupt bits
+            IEPINT: u16, // IN endpoint interrupt bits
+            OEPINT: u16, // OUT endpoint interrupt bits
         }), base_address + 0x18);
 
         /// address: 0x5000081c
         /// OTG_FS all endpoints interrupt mask register (OTG_FS_DAINTMSK)
         pub const FS_DAINTMSK = @intToPtr(*volatile Mmio(32, packed struct {
-            IEPM: u16, //IN EP interrupt mask bits
-            OEPINT: u16, //OUT endpoint interrupt bits
+            IEPM: u16, // IN EP interrupt mask bits
+            OEPINT: u16, // OUT endpoint interrupt bits
         }), base_address + 0x1c);
 
         /// address: 0x50000828
         /// OTG_FS device VBUS discharge time register
         pub const DVBUSDIS = @intToPtr(*volatile Mmio(32, packed struct {
-            VBUSDT: u16, //Device VBUS discharge time
+            VBUSDT: u16, // Device VBUS discharge time
             padding_16_31: u16,
         }), base_address + 0x28);
 
         /// address: 0x5000082c
         /// OTG_FS device VBUS pulsing time register
         pub const DVBUSPULSE = @intToPtr(*volatile Mmio(32, packed struct {
-            DVBUSP: u12, //Device VBUS pulsing time
+            DVBUSP: u12, // Device VBUS pulsing time
             padding_12_31: u20,
         }), base_address + 0x2c);
 
         /// address: 0x50000834
         /// OTG_FS device IN endpoint FIFO empty interrupt mask register
         pub const DIEPEMPMSK = @intToPtr(*volatile Mmio(32, packed struct {
-            INEPTXFEM: u16, //IN EP Tx FIFO empty interrupt mask bits
+            INEPTXFEM: u16, // IN EP Tx FIFO empty interrupt mask bits
             padding_16_31: u16,
         }), base_address + 0x34);
 
         /// address: 0x50000900
         /// OTG_FS device control IN endpoint 0 control register (OTG_FS_DIEPCTL0)
         pub const FS_DIEPCTL0 = @intToPtr(*volatile Mmio(32, packed struct {
-            MPSIZ: u2, //Maximum packet size
+            MPSIZ: u2, // Maximum packet size
             reserved_2_14: u13,
-            USBAEP: u1, //USB active endpoint
+            USBAEP: u1, // USB active endpoint
             reserved_16_16: u1,
-            NAKSTS: u1, //NAK status
-            EPTYP: u2, //Endpoint type
+            NAKSTS: u1, // NAK status
+            EPTYP: u2, // Endpoint type
             reserved_20_20: u1,
-            STALL: u1, //STALL handshake
-            TXFNUM: u4, //TxFIFO number
-            CNAK: u1, //Clear NAK
-            SNAK: u1, //Set NAK
+            STALL: u1, // STALL handshake
+            TXFNUM: u4, // TxFIFO number
+            CNAK: u1, // Clear NAK
+            SNAK: u1, // Set NAK
             reserved_28_29: u2,
-            EPDIS: u1, //Endpoint disable
-            EPENA: u1, //Endpoint enable
+            EPDIS: u1, // Endpoint disable
+            EPENA: u1, // Endpoint enable
         }), base_address + 0x100);
 
         /// address: 0x50000920
         /// OTG device endpoint-1 control register
         pub const DIEPCTL1 = @intToPtr(*volatile Mmio(32, packed struct {
-            MPSIZ: u11, //MPSIZ
+            MPSIZ: u11, // MPSIZ
             reserved_11_14: u4,
-            USBAEP: u1, //USBAEP
-            EONUM_DPID: u1, //EONUM/DPID
-            NAKSTS: u1, //NAKSTS
-            EPTYP: u2, //EPTYP
+            USBAEP: u1, // USBAEP
+            EONUM_DPID: u1, // EONUM/DPID
+            NAKSTS: u1, // NAKSTS
+            EPTYP: u2, // EPTYP
             reserved_20_20: u1,
-            Stall: u1, //Stall
-            TXFNUM: u4, //TXFNUM
-            CNAK: u1, //CNAK
-            SNAK: u1, //SNAK
-            SD0PID_SEVNFRM: u1, //SD0PID/SEVNFRM
-            SODDFRM_SD1PID: u1, //SODDFRM/SD1PID
-            EPDIS: u1, //EPDIS
-            EPENA: u1, //EPENA
+            Stall: u1, // Stall
+            TXFNUM: u4, // TXFNUM
+            CNAK: u1, // CNAK
+            SNAK: u1, // SNAK
+            SD0PID_SEVNFRM: u1, // SD0PID/SEVNFRM
+            SODDFRM_SD1PID: u1, // SODDFRM/SD1PID
+            EPDIS: u1, // EPDIS
+            EPENA: u1, // EPENA
         }), base_address + 0x120);
 
         /// address: 0x50000940
         /// OTG device endpoint-2 control register
         pub const DIEPCTL2 = @intToPtr(*volatile Mmio(32, packed struct {
-            MPSIZ: u11, //MPSIZ
+            MPSIZ: u11, // MPSIZ
             reserved_11_14: u4,
-            USBAEP: u1, //USBAEP
-            EONUM_DPID: u1, //EONUM/DPID
-            NAKSTS: u1, //NAKSTS
-            EPTYP: u2, //EPTYP
+            USBAEP: u1, // USBAEP
+            EONUM_DPID: u1, // EONUM/DPID
+            NAKSTS: u1, // NAKSTS
+            EPTYP: u2, // EPTYP
             reserved_20_20: u1,
-            Stall: u1, //Stall
-            TXFNUM: u4, //TXFNUM
-            CNAK: u1, //CNAK
-            SNAK: u1, //SNAK
-            SD0PID_SEVNFRM: u1, //SD0PID/SEVNFRM
-            SODDFRM: u1, //SODDFRM
-            EPDIS: u1, //EPDIS
-            EPENA: u1, //EPENA
+            Stall: u1, // Stall
+            TXFNUM: u4, // TXFNUM
+            CNAK: u1, // CNAK
+            SNAK: u1, // SNAK
+            SD0PID_SEVNFRM: u1, // SD0PID/SEVNFRM
+            SODDFRM: u1, // SODDFRM
+            EPDIS: u1, // EPDIS
+            EPENA: u1, // EPENA
         }), base_address + 0x140);
 
         /// address: 0x50000960
         /// OTG device endpoint-3 control register
         pub const DIEPCTL3 = @intToPtr(*volatile Mmio(32, packed struct {
-            MPSIZ: u11, //MPSIZ
+            MPSIZ: u11, // MPSIZ
             reserved_11_14: u4,
-            USBAEP: u1, //USBAEP
-            EONUM_DPID: u1, //EONUM/DPID
-            NAKSTS: u1, //NAKSTS
-            EPTYP: u2, //EPTYP
+            USBAEP: u1, // USBAEP
+            EONUM_DPID: u1, // EONUM/DPID
+            NAKSTS: u1, // NAKSTS
+            EPTYP: u2, // EPTYP
             reserved_20_20: u1,
-            Stall: u1, //Stall
-            TXFNUM: u4, //TXFNUM
-            CNAK: u1, //CNAK
-            SNAK: u1, //SNAK
-            SD0PID_SEVNFRM: u1, //SD0PID/SEVNFRM
-            SODDFRM: u1, //SODDFRM
-            EPDIS: u1, //EPDIS
-            EPENA: u1, //EPENA
+            Stall: u1, // Stall
+            TXFNUM: u4, // TXFNUM
+            CNAK: u1, // CNAK
+            SNAK: u1, // SNAK
+            SD0PID_SEVNFRM: u1, // SD0PID/SEVNFRM
+            SODDFRM: u1, // SODDFRM
+            EPDIS: u1, // EPDIS
+            EPENA: u1, // EPENA
         }), base_address + 0x160);
 
         /// address: 0x50000b00
         /// device endpoint-0 control register
         pub const DOEPCTL0 = @intToPtr(*volatile Mmio(32, packed struct {
-            MPSIZ: u2, //MPSIZ
+            MPSIZ: u2, // MPSIZ
             reserved_2_14: u13,
-            USBAEP: u1, //USBAEP
+            USBAEP: u1, // USBAEP
             reserved_16_16: u1,
-            NAKSTS: u1, //NAKSTS
-            EPTYP: u2, //EPTYP
-            SNPM: u1, //SNPM
-            Stall: u1, //Stall
+            NAKSTS: u1, // NAKSTS
+            EPTYP: u2, // EPTYP
+            SNPM: u1, // SNPM
+            Stall: u1, // Stall
             reserved_22_25: u4,
-            CNAK: u1, //CNAK
-            SNAK: u1, //SNAK
+            CNAK: u1, // CNAK
+            SNAK: u1, // SNAK
             reserved_28_29: u2,
-            EPDIS: u1, //EPDIS
-            EPENA: u1, //EPENA
+            EPDIS: u1, // EPDIS
+            EPENA: u1, // EPENA
         }), base_address + 0x300);
 
         /// address: 0x50000b20
         /// device endpoint-1 control register
         pub const DOEPCTL1 = @intToPtr(*volatile Mmio(32, packed struct {
-            MPSIZ: u11, //MPSIZ
+            MPSIZ: u11, // MPSIZ
             reserved_11_14: u4,
-            USBAEP: u1, //USBAEP
-            EONUM_DPID: u1, //EONUM/DPID
-            NAKSTS: u1, //NAKSTS
-            EPTYP: u2, //EPTYP
-            SNPM: u1, //SNPM
-            Stall: u1, //Stall
+            USBAEP: u1, // USBAEP
+            EONUM_DPID: u1, // EONUM/DPID
+            NAKSTS: u1, // NAKSTS
+            EPTYP: u2, // EPTYP
+            SNPM: u1, // SNPM
+            Stall: u1, // Stall
             reserved_22_25: u4,
-            CNAK: u1, //CNAK
-            SNAK: u1, //SNAK
-            SD0PID_SEVNFRM: u1, //SD0PID/SEVNFRM
-            SODDFRM: u1, //SODDFRM
-            EPDIS: u1, //EPDIS
-            EPENA: u1, //EPENA
+            CNAK: u1, // CNAK
+            SNAK: u1, // SNAK
+            SD0PID_SEVNFRM: u1, // SD0PID/SEVNFRM
+            SODDFRM: u1, // SODDFRM
+            EPDIS: u1, // EPDIS
+            EPENA: u1, // EPENA
         }), base_address + 0x320);
 
         /// address: 0x50000b40
         /// device endpoint-2 control register
         pub const DOEPCTL2 = @intToPtr(*volatile Mmio(32, packed struct {
-            MPSIZ: u11, //MPSIZ
+            MPSIZ: u11, // MPSIZ
             reserved_11_14: u4,
-            USBAEP: u1, //USBAEP
-            EONUM_DPID: u1, //EONUM/DPID
-            NAKSTS: u1, //NAKSTS
-            EPTYP: u2, //EPTYP
-            SNPM: u1, //SNPM
-            Stall: u1, //Stall
+            USBAEP: u1, // USBAEP
+            EONUM_DPID: u1, // EONUM/DPID
+            NAKSTS: u1, // NAKSTS
+            EPTYP: u2, // EPTYP
+            SNPM: u1, // SNPM
+            Stall: u1, // Stall
             reserved_22_25: u4,
-            CNAK: u1, //CNAK
-            SNAK: u1, //SNAK
-            SD0PID_SEVNFRM: u1, //SD0PID/SEVNFRM
-            SODDFRM: u1, //SODDFRM
-            EPDIS: u1, //EPDIS
-            EPENA: u1, //EPENA
+            CNAK: u1, // CNAK
+            SNAK: u1, // SNAK
+            SD0PID_SEVNFRM: u1, // SD0PID/SEVNFRM
+            SODDFRM: u1, // SODDFRM
+            EPDIS: u1, // EPDIS
+            EPENA: u1, // EPENA
         }), base_address + 0x340);
 
         /// address: 0x50000b60
         /// device endpoint-3 control register
         pub const DOEPCTL3 = @intToPtr(*volatile Mmio(32, packed struct {
-            MPSIZ: u11, //MPSIZ
+            MPSIZ: u11, // MPSIZ
             reserved_11_14: u4,
-            USBAEP: u1, //USBAEP
-            EONUM_DPID: u1, //EONUM/DPID
-            NAKSTS: u1, //NAKSTS
-            EPTYP: u2, //EPTYP
-            SNPM: u1, //SNPM
-            Stall: u1, //Stall
+            USBAEP: u1, // USBAEP
+            EONUM_DPID: u1, // EONUM/DPID
+            NAKSTS: u1, // NAKSTS
+            EPTYP: u2, // EPTYP
+            SNPM: u1, // SNPM
+            Stall: u1, // Stall
             reserved_22_25: u4,
-            CNAK: u1, //CNAK
-            SNAK: u1, //SNAK
-            SD0PID_SEVNFRM: u1, //SD0PID/SEVNFRM
-            SODDFRM: u1, //SODDFRM
-            EPDIS: u1, //EPDIS
-            EPENA: u1, //EPENA
+            CNAK: u1, // CNAK
+            SNAK: u1, // SNAK
+            SD0PID_SEVNFRM: u1, // SD0PID/SEVNFRM
+            SODDFRM: u1, // SODDFRM
+            EPDIS: u1, // EPDIS
+            EPENA: u1, // EPENA
         }), base_address + 0x360);
 
         /// address: 0x50000908
         /// device endpoint-x interrupt register
         pub const DIEPINT0 = @intToPtr(*volatile Mmio(32, packed struct {
-            XFRC: u1, //XFRC
-            EPDISD: u1, //EPDISD
+            XFRC: u1, // XFRC
+            EPDISD: u1, // EPDISD
             reserved_2_2: u1,
-            TOC: u1, //TOC
-            ITTXFE: u1, //ITTXFE
+            TOC: u1, // TOC
+            ITTXFE: u1, // ITTXFE
             reserved_5_5: u1,
-            INEPNE: u1, //INEPNE
-            TXFE: u1, //TXFE
+            INEPNE: u1, // INEPNE
+            TXFE: u1, // TXFE
             padding_8_31: u24,
         }), base_address + 0x108);
 
         /// address: 0x50000928
         /// device endpoint-1 interrupt register
         pub const DIEPINT1 = @intToPtr(*volatile Mmio(32, packed struct {
-            XFRC: u1, //XFRC
-            EPDISD: u1, //EPDISD
+            XFRC: u1, // XFRC
+            EPDISD: u1, // EPDISD
             reserved_2_2: u1,
-            TOC: u1, //TOC
-            ITTXFE: u1, //ITTXFE
+            TOC: u1, // TOC
+            ITTXFE: u1, // ITTXFE
             reserved_5_5: u1,
-            INEPNE: u1, //INEPNE
-            TXFE: u1, //TXFE
+            INEPNE: u1, // INEPNE
+            TXFE: u1, // TXFE
             padding_8_31: u24,
         }), base_address + 0x128);
 
         /// address: 0x50000948
         /// device endpoint-2 interrupt register
         pub const DIEPINT2 = @intToPtr(*volatile Mmio(32, packed struct {
-            XFRC: u1, //XFRC
-            EPDISD: u1, //EPDISD
+            XFRC: u1, // XFRC
+            EPDISD: u1, // EPDISD
             reserved_2_2: u1,
-            TOC: u1, //TOC
-            ITTXFE: u1, //ITTXFE
+            TOC: u1, // TOC
+            ITTXFE: u1, // ITTXFE
             reserved_5_5: u1,
-            INEPNE: u1, //INEPNE
-            TXFE: u1, //TXFE
+            INEPNE: u1, // INEPNE
+            TXFE: u1, // TXFE
             padding_8_31: u24,
         }), base_address + 0x148);
 
         /// address: 0x50000968
         /// device endpoint-3 interrupt register
         pub const DIEPINT3 = @intToPtr(*volatile Mmio(32, packed struct {
-            XFRC: u1, //XFRC
-            EPDISD: u1, //EPDISD
+            XFRC: u1, // XFRC
+            EPDISD: u1, // EPDISD
             reserved_2_2: u1,
-            TOC: u1, //TOC
-            ITTXFE: u1, //ITTXFE
+            TOC: u1, // TOC
+            ITTXFE: u1, // ITTXFE
             reserved_5_5: u1,
-            INEPNE: u1, //INEPNE
-            TXFE: u1, //TXFE
+            INEPNE: u1, // INEPNE
+            TXFE: u1, // TXFE
             padding_8_31: u24,
         }), base_address + 0x168);
 
         /// address: 0x50000b08
         /// device endpoint-0 interrupt register
         pub const DOEPINT0 = @intToPtr(*volatile Mmio(32, packed struct {
-            XFRC: u1, //XFRC
-            EPDISD: u1, //EPDISD
+            XFRC: u1, // XFRC
+            EPDISD: u1, // EPDISD
             reserved_2_2: u1,
-            STUP: u1, //STUP
-            OTEPDIS: u1, //OTEPDIS
+            STUP: u1, // STUP
+            OTEPDIS: u1, // OTEPDIS
             reserved_5_5: u1,
-            B2BSTUP: u1, //B2BSTUP
+            B2BSTUP: u1, // B2BSTUP
             padding_7_31: u25,
         }), base_address + 0x308);
 
         /// address: 0x50000b28
         /// device endpoint-1 interrupt register
         pub const DOEPINT1 = @intToPtr(*volatile Mmio(32, packed struct {
-            XFRC: u1, //XFRC
-            EPDISD: u1, //EPDISD
+            XFRC: u1, // XFRC
+            EPDISD: u1, // EPDISD
             reserved_2_2: u1,
-            STUP: u1, //STUP
-            OTEPDIS: u1, //OTEPDIS
+            STUP: u1, // STUP
+            OTEPDIS: u1, // OTEPDIS
             reserved_5_5: u1,
-            B2BSTUP: u1, //B2BSTUP
+            B2BSTUP: u1, // B2BSTUP
             padding_7_31: u25,
         }), base_address + 0x328);
 
         /// address: 0x50000b48
         /// device endpoint-2 interrupt register
         pub const DOEPINT2 = @intToPtr(*volatile Mmio(32, packed struct {
-            XFRC: u1, //XFRC
-            EPDISD: u1, //EPDISD
+            XFRC: u1, // XFRC
+            EPDISD: u1, // EPDISD
             reserved_2_2: u1,
-            STUP: u1, //STUP
-            OTEPDIS: u1, //OTEPDIS
+            STUP: u1, // STUP
+            OTEPDIS: u1, // OTEPDIS
             reserved_5_5: u1,
-            B2BSTUP: u1, //B2BSTUP
+            B2BSTUP: u1, // B2BSTUP
             padding_7_31: u25,
         }), base_address + 0x348);
 
         /// address: 0x50000b68
         /// device endpoint-3 interrupt register
         pub const DOEPINT3 = @intToPtr(*volatile Mmio(32, packed struct {
-            XFRC: u1, //XFRC
-            EPDISD: u1, //EPDISD
+            XFRC: u1, // XFRC
+            EPDISD: u1, // EPDISD
             reserved_2_2: u1,
-            STUP: u1, //STUP
-            OTEPDIS: u1, //OTEPDIS
+            STUP: u1, // STUP
+            OTEPDIS: u1, // OTEPDIS
             reserved_5_5: u1,
-            B2BSTUP: u1, //B2BSTUP
+            B2BSTUP: u1, // B2BSTUP
             padding_7_31: u25,
         }), base_address + 0x368);
 
         /// address: 0x50000910
         /// device endpoint-0 transfer size register
         pub const DIEPTSIZ0 = @intToPtr(*volatile Mmio(32, packed struct {
-            XFRSIZ: u7, //Transfer size
+            XFRSIZ: u7, // Transfer size
             reserved_7_18: u12,
-            PKTCNT: u2, //Packet count
+            PKTCNT: u2, // Packet count
             padding_21_31: u11,
         }), base_address + 0x110);
 
         /// address: 0x50000b10
         /// device OUT endpoint-0 transfer size register
         pub const DOEPTSIZ0 = @intToPtr(*volatile Mmio(32, packed struct {
-            XFRSIZ: u7, //Transfer size
+            XFRSIZ: u7, // Transfer size
             reserved_7_18: u12,
-            PKTCNT: u1, //Packet count
+            PKTCNT: u1, // Packet count
             reserved_20_28: u9,
-            STUPCNT: u2, //SETUP packet count
+            STUPCNT: u2, // SETUP packet count
             padding_31_31: u1,
         }), base_address + 0x310);
 
         /// address: 0x50000930
         /// device endpoint-1 transfer size register
         pub const DIEPTSIZ1 = @intToPtr(*volatile Mmio(32, packed struct {
-            XFRSIZ: u19, //Transfer size
-            PKTCNT: u10, //Packet count
-            MCNT: u2, //Multi count
+            XFRSIZ: u19, // Transfer size
+            PKTCNT: u10, // Packet count
+            MCNT: u2, // Multi count
             padding_31_31: u1,
         }), base_address + 0x130);
 
         /// address: 0x50000950
         /// device endpoint-2 transfer size register
         pub const DIEPTSIZ2 = @intToPtr(*volatile Mmio(32, packed struct {
-            XFRSIZ: u19, //Transfer size
-            PKTCNT: u10, //Packet count
-            MCNT: u2, //Multi count
+            XFRSIZ: u19, // Transfer size
+            PKTCNT: u10, // Packet count
+            MCNT: u2, // Multi count
             padding_31_31: u1,
         }), base_address + 0x150);
 
         /// address: 0x50000970
         /// device endpoint-3 transfer size register
         pub const DIEPTSIZ3 = @intToPtr(*volatile Mmio(32, packed struct {
-            XFRSIZ: u19, //Transfer size
-            PKTCNT: u10, //Packet count
-            MCNT: u2, //Multi count
+            XFRSIZ: u19, // Transfer size
+            PKTCNT: u10, // Packet count
+            MCNT: u2, // Multi count
             padding_31_31: u1,
         }), base_address + 0x170);
 
         /// address: 0x50000918
         /// OTG_FS device IN endpoint transmit FIFO status register
         pub const DTXFSTS0 = @intToPtr(*volatile Mmio(32, packed struct {
-            INEPTFSAV: u16, //IN endpoint TxFIFO space available
+            INEPTFSAV: u16, // IN endpoint TxFIFO space available
             padding_16_31: u16,
         }), base_address + 0x118);
 
         /// address: 0x50000938
         /// OTG_FS device IN endpoint transmit FIFO status register
         pub const DTXFSTS1 = @intToPtr(*volatile Mmio(32, packed struct {
-            INEPTFSAV: u16, //IN endpoint TxFIFO space available
+            INEPTFSAV: u16, // IN endpoint TxFIFO space available
             padding_16_31: u16,
         }), base_address + 0x138);
 
         /// address: 0x50000958
         /// OTG_FS device IN endpoint transmit FIFO status register
         pub const DTXFSTS2 = @intToPtr(*volatile Mmio(32, packed struct {
-            INEPTFSAV: u16, //IN endpoint TxFIFO space available
+            INEPTFSAV: u16, // IN endpoint TxFIFO space available
             padding_16_31: u16,
         }), base_address + 0x158);
 
         /// address: 0x50000978
         /// OTG_FS device IN endpoint transmit FIFO status register
         pub const DTXFSTS3 = @intToPtr(*volatile Mmio(32, packed struct {
-            INEPTFSAV: u16, //IN endpoint TxFIFO space available
+            INEPTFSAV: u16, // IN endpoint TxFIFO space available
             padding_16_31: u16,
         }), base_address + 0x178);
 
         /// address: 0x50000b30
         /// device OUT endpoint-1 transfer size register
         pub const DOEPTSIZ1 = @intToPtr(*volatile Mmio(32, packed struct {
-            XFRSIZ: u19, //Transfer size
-            PKTCNT: u10, //Packet count
-            RXDPID_STUPCNT: u2, //Received data PID/SETUP packet count
+            XFRSIZ: u19, // Transfer size
+            PKTCNT: u10, // Packet count
+            RXDPID_STUPCNT: u2, // Received data PID/SETUP packet count
             padding_31_31: u1,
         }), base_address + 0x330);
 
         /// address: 0x50000b50
         /// device OUT endpoint-2 transfer size register
         pub const DOEPTSIZ2 = @intToPtr(*volatile Mmio(32, packed struct {
-            XFRSIZ: u19, //Transfer size
-            PKTCNT: u10, //Packet count
-            RXDPID_STUPCNT: u2, //Received data PID/SETUP packet count
+            XFRSIZ: u19, // Transfer size
+            PKTCNT: u10, // Packet count
+            RXDPID_STUPCNT: u2, // Received data PID/SETUP packet count
             padding_31_31: u1,
         }), base_address + 0x350);
 
         /// address: 0x50000b70
         /// device OUT endpoint-3 transfer size register
         pub const DOEPTSIZ3 = @intToPtr(*volatile Mmio(32, packed struct {
-            XFRSIZ: u19, //Transfer size
-            PKTCNT: u10, //Packet count
-            RXDPID_STUPCNT: u2, //Received data PID/SETUP packet count
+            XFRSIZ: u19, // Transfer size
+            PKTCNT: u10, // Packet count
+            RXDPID_STUPCNT: u2, // Received data PID/SETUP packet count
             padding_31_31: u1,
         }), base_address + 0x370);
     };
@@ -1095,18 +1095,18 @@ pub const registers = struct {
         /// address: 0x50000000
         /// OTG_FS control and status register (OTG_FS_GOTGCTL)
         pub const FS_GOTGCTL = @intToPtr(*volatile Mmio(32, packed struct {
-            SRQSCS: u1, //Session request success
-            SRQ: u1, //Session request
+            SRQSCS: u1, // Session request success
+            SRQ: u1, // Session request
             reserved_2_7: u6,
-            HNGSCS: u1, //Host negotiation success
-            HNPRQ: u1, //HNP request
-            HSHNPEN: u1, //Host set HNP enable
-            DHNPEN: u1, //Device HNP enabled
+            HNGSCS: u1, // Host negotiation success
+            HNPRQ: u1, // HNP request
+            HSHNPEN: u1, // Host set HNP enable
+            DHNPEN: u1, // Device HNP enabled
             reserved_12_15: u4,
-            CIDSTS: u1, //Connector ID status
-            DBCT: u1, //Long/short debounce time
-            ASVLD: u1, //A-session valid
-            BSVLD: u1, //B-session valid
+            CIDSTS: u1, // Connector ID status
+            DBCT: u1, // Long/short debounce time
+            ASVLD: u1, // A-session valid
+            BSVLD: u1, // B-session valid
             padding_20_31: u12,
         }), base_address + 0x0);
 
@@ -1114,175 +1114,175 @@ pub const registers = struct {
         /// OTG_FS interrupt register (OTG_FS_GOTGINT)
         pub const FS_GOTGINT = @intToPtr(*volatile Mmio(32, packed struct {
             reserved_0_1: u2,
-            SEDET: u1, //Session end detected
+            SEDET: u1, // Session end detected
             reserved_3_7: u5,
-            SRSSCHG: u1, //Session request success status change
-            HNSSCHG: u1, //Host negotiation success status change
+            SRSSCHG: u1, // Session request success status change
+            HNSSCHG: u1, // Host negotiation success status change
             reserved_10_16: u7,
-            HNGDET: u1, //Host negotiation detected
-            ADTOCHG: u1, //A-device timeout change
-            DBCDNE: u1, //Debounce done
+            HNGDET: u1, // Host negotiation detected
+            ADTOCHG: u1, // A-device timeout change
+            DBCDNE: u1, // Debounce done
             padding_20_31: u12,
         }), base_address + 0x4);
 
         /// address: 0x50000008
         /// OTG_FS AHB configuration register (OTG_FS_GAHBCFG)
         pub const FS_GAHBCFG = @intToPtr(*volatile Mmio(32, packed struct {
-            GINT: u1, //Global interrupt mask
+            GINT: u1, // Global interrupt mask
             reserved_1_6: u6,
-            TXFELVL: u1, //TxFIFO empty level
-            PTXFELVL: u1, //Periodic TxFIFO empty level
+            TXFELVL: u1, // TxFIFO empty level
+            PTXFELVL: u1, // Periodic TxFIFO empty level
             padding_9_31: u23,
         }), base_address + 0x8);
 
         /// address: 0x5000000c
         /// OTG_FS USB configuration register (OTG_FS_GUSBCFG)
         pub const FS_GUSBCFG = @intToPtr(*volatile Mmio(32, packed struct {
-            TOCAL: u3, //FS timeout calibration
+            TOCAL: u3, // FS timeout calibration
             reserved_3_5: u3,
-            PHYSEL: u1, //Full Speed serial transceiver select
+            PHYSEL: u1, // Full Speed serial transceiver select
             reserved_7_7: u1,
-            SRPCAP: u1, //SRP-capable
-            HNPCAP: u1, //HNP-capable
-            TRDT: u4, //USB turnaround time
+            SRPCAP: u1, // SRP-capable
+            HNPCAP: u1, // HNP-capable
+            TRDT: u4, // USB turnaround time
             reserved_14_28: u15,
-            FHMOD: u1, //Force host mode
-            FDMOD: u1, //Force device mode
-            CTXPKT: u1, //Corrupt Tx packet
+            FHMOD: u1, // Force host mode
+            FDMOD: u1, // Force device mode
+            CTXPKT: u1, // Corrupt Tx packet
         }), base_address + 0xc);
 
         /// address: 0x50000010
         /// OTG_FS reset register (OTG_FS_GRSTCTL)
         pub const FS_GRSTCTL = @intToPtr(*volatile Mmio(32, packed struct {
-            CSRST: u1, //Core soft reset
-            HSRST: u1, //HCLK soft reset
-            FCRST: u1, //Host frame counter reset
+            CSRST: u1, // Core soft reset
+            HSRST: u1, // HCLK soft reset
+            FCRST: u1, // Host frame counter reset
             reserved_3_3: u1,
-            RXFFLSH: u1, //RxFIFO flush
-            TXFFLSH: u1, //TxFIFO flush
-            TXFNUM: u5, //TxFIFO number
+            RXFFLSH: u1, // RxFIFO flush
+            TXFFLSH: u1, // TxFIFO flush
+            TXFNUM: u5, // TxFIFO number
             reserved_11_30: u20,
-            AHBIDL: u1, //AHB master idle
+            AHBIDL: u1, // AHB master idle
         }), base_address + 0x10);
 
         /// address: 0x50000014
         /// OTG_FS core interrupt register (OTG_FS_GINTSTS)
         pub const FS_GINTSTS = @intToPtr(*volatile Mmio(32, packed struct {
-            CMOD: u1, //Current mode of operation
-            MMIS: u1, //Mode mismatch interrupt
-            OTGINT: u1, //OTG interrupt
-            SOF: u1, //Start of frame
-            RXFLVL: u1, //RxFIFO non-empty
-            NPTXFE: u1, //Non-periodic TxFIFO empty
-            GINAKEFF: u1, //Global IN non-periodic NAK effective
-            GOUTNAKEFF: u1, //Global OUT NAK effective
+            CMOD: u1, // Current mode of operation
+            MMIS: u1, // Mode mismatch interrupt
+            OTGINT: u1, // OTG interrupt
+            SOF: u1, // Start of frame
+            RXFLVL: u1, // RxFIFO non-empty
+            NPTXFE: u1, // Non-periodic TxFIFO empty
+            GINAKEFF: u1, // Global IN non-periodic NAK effective
+            GOUTNAKEFF: u1, // Global OUT NAK effective
             reserved_8_9: u2,
-            ESUSP: u1, //Early suspend
-            USBSUSP: u1, //USB suspend
-            USBRST: u1, //USB reset
-            ENUMDNE: u1, //Enumeration done
-            ISOODRP: u1, //Isochronous OUT packet dropped interrupt
-            EOPF: u1, //End of periodic frame interrupt
+            ESUSP: u1, // Early suspend
+            USBSUSP: u1, // USB suspend
+            USBRST: u1, // USB reset
+            ENUMDNE: u1, // Enumeration done
+            ISOODRP: u1, // Isochronous OUT packet dropped interrupt
+            EOPF: u1, // End of periodic frame interrupt
             reserved_16_17: u2,
-            IEPINT: u1, //IN endpoint interrupt
-            OEPINT: u1, //OUT endpoint interrupt
-            IISOIXFR: u1, //Incomplete isochronous IN transfer
-            IPXFR_INCOMPISOOUT: u1, //Incomplete periodic transfer(Host mode)/Incomplete isochronous OUT transfer(Device mode)
+            IEPINT: u1, // IN endpoint interrupt
+            OEPINT: u1, // OUT endpoint interrupt
+            IISOIXFR: u1, // Incomplete isochronous IN transfer
+            IPXFR_INCOMPISOOUT: u1, // Incomplete periodic transfer(Host mode)/Incomplete isochronous OUT transfer(Device mode)
             reserved_22_23: u2,
-            HPRTINT: u1, //Host port interrupt
-            HCINT: u1, //Host channels interrupt
-            PTXFE: u1, //Periodic TxFIFO empty
+            HPRTINT: u1, // Host port interrupt
+            HCINT: u1, // Host channels interrupt
+            PTXFE: u1, // Periodic TxFIFO empty
             reserved_27_27: u1,
-            CIDSCHG: u1, //Connector ID status change
-            DISCINT: u1, //Disconnect detected interrupt
-            SRQINT: u1, //Session request/new session detected interrupt
-            WKUPINT: u1, //Resume/remote wakeup detected interrupt
+            CIDSCHG: u1, // Connector ID status change
+            DISCINT: u1, // Disconnect detected interrupt
+            SRQINT: u1, // Session request/new session detected interrupt
+            WKUPINT: u1, // Resume/remote wakeup detected interrupt
         }), base_address + 0x14);
 
         /// address: 0x50000018
         /// OTG_FS interrupt mask register (OTG_FS_GINTMSK)
         pub const FS_GINTMSK = @intToPtr(*volatile Mmio(32, packed struct {
             reserved_0_0: u1,
-            MMISM: u1, //Mode mismatch interrupt mask
-            OTGINT: u1, //OTG interrupt mask
-            SOFM: u1, //Start of frame mask
-            RXFLVLM: u1, //Receive FIFO non-empty mask
-            NPTXFEM: u1, //Non-periodic TxFIFO empty mask
-            GINAKEFFM: u1, //Global non-periodic IN NAK effective mask
-            GONAKEFFM: u1, //Global OUT NAK effective mask
+            MMISM: u1, // Mode mismatch interrupt mask
+            OTGINT: u1, // OTG interrupt mask
+            SOFM: u1, // Start of frame mask
+            RXFLVLM: u1, // Receive FIFO non-empty mask
+            NPTXFEM: u1, // Non-periodic TxFIFO empty mask
+            GINAKEFFM: u1, // Global non-periodic IN NAK effective mask
+            GONAKEFFM: u1, // Global OUT NAK effective mask
             reserved_8_9: u2,
-            ESUSPM: u1, //Early suspend mask
-            USBSUSPM: u1, //USB suspend mask
-            USBRST: u1, //USB reset mask
-            ENUMDNEM: u1, //Enumeration done mask
-            ISOODRPM: u1, //Isochronous OUT packet dropped interrupt mask
-            EOPFM: u1, //End of periodic frame interrupt mask
+            ESUSPM: u1, // Early suspend mask
+            USBSUSPM: u1, // USB suspend mask
+            USBRST: u1, // USB reset mask
+            ENUMDNEM: u1, // Enumeration done mask
+            ISOODRPM: u1, // Isochronous OUT packet dropped interrupt mask
+            EOPFM: u1, // End of periodic frame interrupt mask
             reserved_16_16: u1,
-            EPMISM: u1, //Endpoint mismatch interrupt mask
-            IEPINT: u1, //IN endpoints interrupt mask
-            OEPINT: u1, //OUT endpoints interrupt mask
-            IISOIXFRM: u1, //Incomplete isochronous IN transfer mask
-            IPXFRM_IISOOXFRM: u1, //Incomplete periodic transfer mask(Host mode)/Incomplete isochronous OUT transfer mask(Device mode)
+            EPMISM: u1, // Endpoint mismatch interrupt mask
+            IEPINT: u1, // IN endpoints interrupt mask
+            OEPINT: u1, // OUT endpoints interrupt mask
+            IISOIXFRM: u1, // Incomplete isochronous IN transfer mask
+            IPXFRM_IISOOXFRM: u1, // Incomplete periodic transfer mask(Host mode)/Incomplete isochronous OUT transfer mask(Device mode)
             reserved_22_23: u2,
-            PRTIM: u1, //Host port interrupt mask
-            HCIM: u1, //Host channels interrupt mask
-            PTXFEM: u1, //Periodic TxFIFO empty mask
+            PRTIM: u1, // Host port interrupt mask
+            HCIM: u1, // Host channels interrupt mask
+            PTXFEM: u1, // Periodic TxFIFO empty mask
             reserved_27_27: u1,
-            CIDSCHGM: u1, //Connector ID status change mask
-            DISCINT: u1, //Disconnect detected interrupt mask
-            SRQIM: u1, //Session request/new session detected interrupt mask
-            WUIM: u1, //Resume/remote wakeup detected interrupt mask
+            CIDSCHGM: u1, // Connector ID status change mask
+            DISCINT: u1, // Disconnect detected interrupt mask
+            SRQIM: u1, // Session request/new session detected interrupt mask
+            WUIM: u1, // Resume/remote wakeup detected interrupt mask
         }), base_address + 0x18);
 
         /// address: 0x5000001c
         /// OTG_FS Receive status debug read(Device mode)
         pub const FS_GRXSTSR_Device = @intToPtr(*volatile Mmio(32, packed struct {
-            EPNUM: u4, //Endpoint number
-            BCNT: u11, //Byte count
-            DPID: u2, //Data PID
-            PKTSTS: u4, //Packet status
-            FRMNUM: u4, //Frame number
+            EPNUM: u4, // Endpoint number
+            BCNT: u11, // Byte count
+            DPID: u2, // Data PID
+            PKTSTS: u4, // Packet status
+            FRMNUM: u4, // Frame number
             padding_25_31: u7,
         }), base_address + 0x1c);
 
         /// address: 0x5000001c
         /// OTG_FS Receive status debug read(Host mode)
         pub const FS_GRXSTSR_Host = @intToPtr(*volatile Mmio(32, packed struct {
-            EPNUM: u4, //Endpoint number
-            BCNT: u11, //Byte count
-            DPID: u2, //Data PID
-            PKTSTS: u4, //Packet status
-            FRMNUM: u4, //Frame number
+            EPNUM: u4, // Endpoint number
+            BCNT: u11, // Byte count
+            DPID: u2, // Data PID
+            PKTSTS: u4, // Packet status
+            FRMNUM: u4, // Frame number
             padding_25_31: u7,
         }), base_address + 0x1c);
 
         /// address: 0x50000024
         /// OTG_FS Receive FIFO size register (OTG_FS_GRXFSIZ)
         pub const FS_GRXFSIZ = @intToPtr(*volatile Mmio(32, packed struct {
-            RXFD: u16, //RxFIFO depth
+            RXFD: u16, // RxFIFO depth
             padding_16_31: u16,
         }), base_address + 0x24);
 
         /// address: 0x50000028
         /// OTG_FS non-periodic transmit FIFO size register (Device mode)
         pub const FS_GNPTXFSIZ_Device = @intToPtr(*volatile Mmio(32, packed struct {
-            TX0FSA: u16, //Endpoint 0 transmit RAM start address
-            TX0FD: u16, //Endpoint 0 TxFIFO depth
+            TX0FSA: u16, // Endpoint 0 transmit RAM start address
+            TX0FD: u16, // Endpoint 0 TxFIFO depth
         }), base_address + 0x28);
 
         /// address: 0x50000028
         /// OTG_FS non-periodic transmit FIFO size register (Host mode)
         pub const FS_GNPTXFSIZ_Host = @intToPtr(*volatile Mmio(32, packed struct {
-            NPTXFSA: u16, //Non-periodic transmit RAM start address
-            NPTXFD: u16, //Non-periodic TxFIFO depth
+            NPTXFSA: u16, // Non-periodic transmit RAM start address
+            NPTXFD: u16, // Non-periodic TxFIFO depth
         }), base_address + 0x28);
 
         /// address: 0x5000002c
         /// OTG_FS non-periodic transmit FIFO/queue status register (OTG_FS_GNPTXSTS)
         pub const FS_GNPTXSTS = @intToPtr(*volatile Mmio(32, packed struct {
-            NPTXFSAV: u16, //Non-periodic TxFIFO space available
-            NPTQXSAV: u8, //Non-periodic transmit request queue space available
-            NPTXQTOP: u7, //Top of the non-periodic transmit request queue
+            NPTXFSAV: u16, // Non-periodic TxFIFO space available
+            NPTQXSAV: u8, // Non-periodic transmit request queue space available
+            NPTXQTOP: u7, // Top of the non-periodic transmit request queue
             padding_31_31: u1,
         }), base_address + 0x2c);
 
@@ -1290,46 +1290,46 @@ pub const registers = struct {
         /// OTG_FS general core configuration register (OTG_FS_GCCFG)
         pub const FS_GCCFG = @intToPtr(*volatile Mmio(32, packed struct {
             reserved_0_15: u16,
-            PWRDWN: u1, //Power down
+            PWRDWN: u1, // Power down
             reserved_17_17: u1,
-            VBUSASEN: u1, //Enable the VBUS sensing device
-            VBUSBSEN: u1, //Enable the VBUS sensing device
-            SOFOUTEN: u1, //SOF output enable
+            VBUSASEN: u1, // Enable the VBUS sensing device
+            VBUSBSEN: u1, // Enable the VBUS sensing device
+            SOFOUTEN: u1, // SOF output enable
             padding_21_31: u11,
         }), base_address + 0x38);
 
         /// address: 0x5000003c
         /// core ID register
         pub const FS_CID = @intToPtr(*volatile Mmio(32, packed struct {
-            PRODUCT_ID: u32, //Product ID field
+            PRODUCT_ID: u32, // Product ID field
         }), base_address + 0x3c);
 
         /// address: 0x50000100
         /// OTG_FS Host periodic transmit FIFO size register (OTG_FS_HPTXFSIZ)
         pub const FS_HPTXFSIZ = @intToPtr(*volatile Mmio(32, packed struct {
-            PTXSA: u16, //Host periodic TxFIFO start address
-            PTXFSIZ: u16, //Host periodic TxFIFO depth
+            PTXSA: u16, // Host periodic TxFIFO start address
+            PTXFSIZ: u16, // Host periodic TxFIFO depth
         }), base_address + 0x100);
 
         /// address: 0x50000104
         /// OTG_FS device IN endpoint transmit FIFO size register (OTG_FS_DIEPTXF2)
         pub const FS_DIEPTXF1 = @intToPtr(*volatile Mmio(32, packed struct {
-            INEPTXSA: u16, //IN endpoint FIFO2 transmit RAM start address
-            INEPTXFD: u16, //IN endpoint TxFIFO depth
+            INEPTXSA: u16, // IN endpoint FIFO2 transmit RAM start address
+            INEPTXFD: u16, // IN endpoint TxFIFO depth
         }), base_address + 0x104);
 
         /// address: 0x50000108
         /// OTG_FS device IN endpoint transmit FIFO size register (OTG_FS_DIEPTXF3)
         pub const FS_DIEPTXF2 = @intToPtr(*volatile Mmio(32, packed struct {
-            INEPTXSA: u16, //IN endpoint FIFO3 transmit RAM start address
-            INEPTXFD: u16, //IN endpoint TxFIFO depth
+            INEPTXSA: u16, // IN endpoint FIFO3 transmit RAM start address
+            INEPTXFD: u16, // IN endpoint TxFIFO depth
         }), base_address + 0x108);
 
         /// address: 0x5000010c
         /// OTG_FS device IN endpoint transmit FIFO size register (OTG_FS_DIEPTXF4)
         pub const FS_DIEPTXF3 = @intToPtr(*volatile Mmio(32, packed struct {
-            INEPTXSA: u16, //IN endpoint FIFO4 transmit RAM start address
-            INEPTXFD: u16, //IN endpoint TxFIFO depth
+            INEPTXSA: u16, // IN endpoint FIFO4 transmit RAM start address
+            INEPTXFD: u16, // IN endpoint TxFIFO depth
         }), base_address + 0x10c);
     };
 
@@ -1340,31 +1340,31 @@ pub const registers = struct {
         /// address: 0x50000400
         /// OTG_FS host configuration register (OTG_FS_HCFG)
         pub const FS_HCFG = @intToPtr(*volatile Mmio(32, packed struct {
-            FSLSPCS: u2, //FS/LS PHY clock select
-            FSLSS: u1, //FS- and LS-only support
+            FSLSPCS: u2, // FS/LS PHY clock select
+            FSLSS: u1, // FS- and LS-only support
             padding_3_31: u29,
         }), base_address + 0x0);
 
         /// address: 0x50000404
         /// OTG_FS Host frame interval register
         pub const HFIR = @intToPtr(*volatile Mmio(32, packed struct {
-            FRIVL: u16, //Frame interval
+            FRIVL: u16, // Frame interval
             padding_16_31: u16,
         }), base_address + 0x4);
 
         /// address: 0x50000408
         /// OTG_FS host frame number/frame time remaining register (OTG_FS_HFNUM)
         pub const FS_HFNUM = @intToPtr(*volatile Mmio(32, packed struct {
-            FRNUM: u16, //Frame number
-            FTREM: u16, //Frame time remaining
+            FRNUM: u16, // Frame number
+            FTREM: u16, // Frame time remaining
         }), base_address + 0x8);
 
         /// address: 0x50000410
         /// OTG_FS_Host periodic transmit FIFO/queue status register (OTG_FS_HPTXSTS)
         pub const FS_HPTXSTS = @intToPtr(*volatile Mmio(32, packed struct {
-            PTXFSAVL: u16, //Periodic transmit data FIFO space available
-            PTXQSAV: u8, //Periodic transmit request queue space available
-            PTXQTOP: u8, //Top of the periodic transmit request queue
+            PTXFSAVL: u16, // Periodic transmit data FIFO space available
+            PTXQSAV: u8, // Periodic transmit request queue space available
+            PTXQTOP: u8, // Top of the periodic transmit request queue
         }), base_address + 0x10);
 
         /// address: 0x50000414
@@ -1374,499 +1374,499 @@ pub const registers = struct {
         /// address: 0x50000418
         /// OTG_FS host all channels interrupt mask register
         pub const HAINTMSK = @intToPtr(*volatile Mmio(32, packed struct {
-            HAINTM: u16, //Channel interrupt mask
+            HAINTM: u16, // Channel interrupt mask
             padding_16_31: u16,
         }), base_address + 0x18);
 
         /// address: 0x50000440
         /// OTG_FS host port control and status register (OTG_FS_HPRT)
         pub const FS_HPRT = @intToPtr(*volatile Mmio(32, packed struct {
-            PCSTS: u1, //Port connect status
-            PCDET: u1, //Port connect detected
-            PENA: u1, //Port enable
-            PENCHNG: u1, //Port enable/disable change
-            POCA: u1, //Port overcurrent active
-            POCCHNG: u1, //Port overcurrent change
-            PRES: u1, //Port resume
-            PSUSP: u1, //Port suspend
-            PRST: u1, //Port reset
+            PCSTS: u1, // Port connect status
+            PCDET: u1, // Port connect detected
+            PENA: u1, // Port enable
+            PENCHNG: u1, // Port enable/disable change
+            POCA: u1, // Port overcurrent active
+            POCCHNG: u1, // Port overcurrent change
+            PRES: u1, // Port resume
+            PSUSP: u1, // Port suspend
+            PRST: u1, // Port reset
             reserved_9_9: u1,
-            PLSTS: u2, //Port line status
-            PPWR: u1, //Port power
-            PTCTL: u4, //Port test control
-            PSPD: u2, //Port speed
+            PLSTS: u2, // Port line status
+            PPWR: u1, // Port power
+            PTCTL: u4, // Port test control
+            PSPD: u2, // Port speed
             padding_19_31: u13,
         }), base_address + 0x40);
 
         /// address: 0x50000500
         /// OTG_FS host channel-0 characteristics register (OTG_FS_HCCHAR0)
         pub const FS_HCCHAR0 = @intToPtr(*volatile Mmio(32, packed struct {
-            MPSIZ: u11, //Maximum packet size
-            EPNUM: u4, //Endpoint number
-            EPDIR: u1, //Endpoint direction
+            MPSIZ: u11, // Maximum packet size
+            EPNUM: u4, // Endpoint number
+            EPDIR: u1, // Endpoint direction
             reserved_16_16: u1,
-            LSDEV: u1, //Low-speed device
-            EPTYP: u2, //Endpoint type
-            MCNT: u2, //Multicount
-            DAD: u7, //Device address
-            ODDFRM: u1, //Odd frame
-            CHDIS: u1, //Channel disable
-            CHENA: u1, //Channel enable
+            LSDEV: u1, // Low-speed device
+            EPTYP: u2, // Endpoint type
+            MCNT: u2, // Multicount
+            DAD: u7, // Device address
+            ODDFRM: u1, // Odd frame
+            CHDIS: u1, // Channel disable
+            CHENA: u1, // Channel enable
         }), base_address + 0x100);
 
         /// address: 0x50000520
         /// OTG_FS host channel-1 characteristics register (OTG_FS_HCCHAR1)
         pub const FS_HCCHAR1 = @intToPtr(*volatile Mmio(32, packed struct {
-            MPSIZ: u11, //Maximum packet size
-            EPNUM: u4, //Endpoint number
-            EPDIR: u1, //Endpoint direction
+            MPSIZ: u11, // Maximum packet size
+            EPNUM: u4, // Endpoint number
+            EPDIR: u1, // Endpoint direction
             reserved_16_16: u1,
-            LSDEV: u1, //Low-speed device
-            EPTYP: u2, //Endpoint type
-            MCNT: u2, //Multicount
-            DAD: u7, //Device address
-            ODDFRM: u1, //Odd frame
-            CHDIS: u1, //Channel disable
-            CHENA: u1, //Channel enable
+            LSDEV: u1, // Low-speed device
+            EPTYP: u2, // Endpoint type
+            MCNT: u2, // Multicount
+            DAD: u7, // Device address
+            ODDFRM: u1, // Odd frame
+            CHDIS: u1, // Channel disable
+            CHENA: u1, // Channel enable
         }), base_address + 0x120);
 
         /// address: 0x50000540
         /// OTG_FS host channel-2 characteristics register (OTG_FS_HCCHAR2)
         pub const FS_HCCHAR2 = @intToPtr(*volatile Mmio(32, packed struct {
-            MPSIZ: u11, //Maximum packet size
-            EPNUM: u4, //Endpoint number
-            EPDIR: u1, //Endpoint direction
+            MPSIZ: u11, // Maximum packet size
+            EPNUM: u4, // Endpoint number
+            EPDIR: u1, // Endpoint direction
             reserved_16_16: u1,
-            LSDEV: u1, //Low-speed device
-            EPTYP: u2, //Endpoint type
-            MCNT: u2, //Multicount
-            DAD: u7, //Device address
-            ODDFRM: u1, //Odd frame
-            CHDIS: u1, //Channel disable
-            CHENA: u1, //Channel enable
+            LSDEV: u1, // Low-speed device
+            EPTYP: u2, // Endpoint type
+            MCNT: u2, // Multicount
+            DAD: u7, // Device address
+            ODDFRM: u1, // Odd frame
+            CHDIS: u1, // Channel disable
+            CHENA: u1, // Channel enable
         }), base_address + 0x140);
 
         /// address: 0x50000560
         /// OTG_FS host channel-3 characteristics register (OTG_FS_HCCHAR3)
         pub const FS_HCCHAR3 = @intToPtr(*volatile Mmio(32, packed struct {
-            MPSIZ: u11, //Maximum packet size
-            EPNUM: u4, //Endpoint number
-            EPDIR: u1, //Endpoint direction
+            MPSIZ: u11, // Maximum packet size
+            EPNUM: u4, // Endpoint number
+            EPDIR: u1, // Endpoint direction
             reserved_16_16: u1,
-            LSDEV: u1, //Low-speed device
-            EPTYP: u2, //Endpoint type
-            MCNT: u2, //Multicount
-            DAD: u7, //Device address
-            ODDFRM: u1, //Odd frame
-            CHDIS: u1, //Channel disable
-            CHENA: u1, //Channel enable
+            LSDEV: u1, // Low-speed device
+            EPTYP: u2, // Endpoint type
+            MCNT: u2, // Multicount
+            DAD: u7, // Device address
+            ODDFRM: u1, // Odd frame
+            CHDIS: u1, // Channel disable
+            CHENA: u1, // Channel enable
         }), base_address + 0x160);
 
         /// address: 0x50000580
         /// OTG_FS host channel-4 characteristics register (OTG_FS_HCCHAR4)
         pub const FS_HCCHAR4 = @intToPtr(*volatile Mmio(32, packed struct {
-            MPSIZ: u11, //Maximum packet size
-            EPNUM: u4, //Endpoint number
-            EPDIR: u1, //Endpoint direction
+            MPSIZ: u11, // Maximum packet size
+            EPNUM: u4, // Endpoint number
+            EPDIR: u1, // Endpoint direction
             reserved_16_16: u1,
-            LSDEV: u1, //Low-speed device
-            EPTYP: u2, //Endpoint type
-            MCNT: u2, //Multicount
-            DAD: u7, //Device address
-            ODDFRM: u1, //Odd frame
-            CHDIS: u1, //Channel disable
-            CHENA: u1, //Channel enable
+            LSDEV: u1, // Low-speed device
+            EPTYP: u2, // Endpoint type
+            MCNT: u2, // Multicount
+            DAD: u7, // Device address
+            ODDFRM: u1, // Odd frame
+            CHDIS: u1, // Channel disable
+            CHENA: u1, // Channel enable
         }), base_address + 0x180);
 
         /// address: 0x500005a0
         /// OTG_FS host channel-5 characteristics register (OTG_FS_HCCHAR5)
         pub const FS_HCCHAR5 = @intToPtr(*volatile Mmio(32, packed struct {
-            MPSIZ: u11, //Maximum packet size
-            EPNUM: u4, //Endpoint number
-            EPDIR: u1, //Endpoint direction
+            MPSIZ: u11, // Maximum packet size
+            EPNUM: u4, // Endpoint number
+            EPDIR: u1, // Endpoint direction
             reserved_16_16: u1,
-            LSDEV: u1, //Low-speed device
-            EPTYP: u2, //Endpoint type
-            MCNT: u2, //Multicount
-            DAD: u7, //Device address
-            ODDFRM: u1, //Odd frame
-            CHDIS: u1, //Channel disable
-            CHENA: u1, //Channel enable
+            LSDEV: u1, // Low-speed device
+            EPTYP: u2, // Endpoint type
+            MCNT: u2, // Multicount
+            DAD: u7, // Device address
+            ODDFRM: u1, // Odd frame
+            CHDIS: u1, // Channel disable
+            CHENA: u1, // Channel enable
         }), base_address + 0x1a0);
 
         /// address: 0x500005c0
         /// OTG_FS host channel-6 characteristics register (OTG_FS_HCCHAR6)
         pub const FS_HCCHAR6 = @intToPtr(*volatile Mmio(32, packed struct {
-            MPSIZ: u11, //Maximum packet size
-            EPNUM: u4, //Endpoint number
-            EPDIR: u1, //Endpoint direction
+            MPSIZ: u11, // Maximum packet size
+            EPNUM: u4, // Endpoint number
+            EPDIR: u1, // Endpoint direction
             reserved_16_16: u1,
-            LSDEV: u1, //Low-speed device
-            EPTYP: u2, //Endpoint type
-            MCNT: u2, //Multicount
-            DAD: u7, //Device address
-            ODDFRM: u1, //Odd frame
-            CHDIS: u1, //Channel disable
-            CHENA: u1, //Channel enable
+            LSDEV: u1, // Low-speed device
+            EPTYP: u2, // Endpoint type
+            MCNT: u2, // Multicount
+            DAD: u7, // Device address
+            ODDFRM: u1, // Odd frame
+            CHDIS: u1, // Channel disable
+            CHENA: u1, // Channel enable
         }), base_address + 0x1c0);
 
         /// address: 0x500005e0
         /// OTG_FS host channel-7 characteristics register (OTG_FS_HCCHAR7)
         pub const FS_HCCHAR7 = @intToPtr(*volatile Mmio(32, packed struct {
-            MPSIZ: u11, //Maximum packet size
-            EPNUM: u4, //Endpoint number
-            EPDIR: u1, //Endpoint direction
+            MPSIZ: u11, // Maximum packet size
+            EPNUM: u4, // Endpoint number
+            EPDIR: u1, // Endpoint direction
             reserved_16_16: u1,
-            LSDEV: u1, //Low-speed device
-            EPTYP: u2, //Endpoint type
-            MCNT: u2, //Multicount
-            DAD: u7, //Device address
-            ODDFRM: u1, //Odd frame
-            CHDIS: u1, //Channel disable
-            CHENA: u1, //Channel enable
+            LSDEV: u1, // Low-speed device
+            EPTYP: u2, // Endpoint type
+            MCNT: u2, // Multicount
+            DAD: u7, // Device address
+            ODDFRM: u1, // Odd frame
+            CHDIS: u1, // Channel disable
+            CHENA: u1, // Channel enable
         }), base_address + 0x1e0);
 
         /// address: 0x50000508
         /// OTG_FS host channel-0 interrupt register (OTG_FS_HCINT0)
         pub const FS_HCINT0 = @intToPtr(*volatile Mmio(32, packed struct {
-            XFRC: u1, //Transfer completed
-            CHH: u1, //Channel halted
+            XFRC: u1, // Transfer completed
+            CHH: u1, // Channel halted
             reserved_2_2: u1,
-            STALL: u1, //STALL response received interrupt
-            NAK: u1, //NAK response received interrupt
-            ACK: u1, //ACK response received/transmitted interrupt
+            STALL: u1, // STALL response received interrupt
+            NAK: u1, // NAK response received interrupt
+            ACK: u1, // ACK response received/transmitted interrupt
             reserved_6_6: u1,
-            TXERR: u1, //Transaction error
-            BBERR: u1, //Babble error
-            FRMOR: u1, //Frame overrun
-            DTERR: u1, //Data toggle error
+            TXERR: u1, // Transaction error
+            BBERR: u1, // Babble error
+            FRMOR: u1, // Frame overrun
+            DTERR: u1, // Data toggle error
             padding_11_31: u21,
         }), base_address + 0x108);
 
         /// address: 0x50000528
         /// OTG_FS host channel-1 interrupt register (OTG_FS_HCINT1)
         pub const FS_HCINT1 = @intToPtr(*volatile Mmio(32, packed struct {
-            XFRC: u1, //Transfer completed
-            CHH: u1, //Channel halted
+            XFRC: u1, // Transfer completed
+            CHH: u1, // Channel halted
             reserved_2_2: u1,
-            STALL: u1, //STALL response received interrupt
-            NAK: u1, //NAK response received interrupt
-            ACK: u1, //ACK response received/transmitted interrupt
+            STALL: u1, // STALL response received interrupt
+            NAK: u1, // NAK response received interrupt
+            ACK: u1, // ACK response received/transmitted interrupt
             reserved_6_6: u1,
-            TXERR: u1, //Transaction error
-            BBERR: u1, //Babble error
-            FRMOR: u1, //Frame overrun
-            DTERR: u1, //Data toggle error
+            TXERR: u1, // Transaction error
+            BBERR: u1, // Babble error
+            FRMOR: u1, // Frame overrun
+            DTERR: u1, // Data toggle error
             padding_11_31: u21,
         }), base_address + 0x128);
 
         /// address: 0x50000548
         /// OTG_FS host channel-2 interrupt register (OTG_FS_HCINT2)
         pub const FS_HCINT2 = @intToPtr(*volatile Mmio(32, packed struct {
-            XFRC: u1, //Transfer completed
-            CHH: u1, //Channel halted
+            XFRC: u1, // Transfer completed
+            CHH: u1, // Channel halted
             reserved_2_2: u1,
-            STALL: u1, //STALL response received interrupt
-            NAK: u1, //NAK response received interrupt
-            ACK: u1, //ACK response received/transmitted interrupt
+            STALL: u1, // STALL response received interrupt
+            NAK: u1, // NAK response received interrupt
+            ACK: u1, // ACK response received/transmitted interrupt
             reserved_6_6: u1,
-            TXERR: u1, //Transaction error
-            BBERR: u1, //Babble error
-            FRMOR: u1, //Frame overrun
-            DTERR: u1, //Data toggle error
+            TXERR: u1, // Transaction error
+            BBERR: u1, // Babble error
+            FRMOR: u1, // Frame overrun
+            DTERR: u1, // Data toggle error
             padding_11_31: u21,
         }), base_address + 0x148);
 
         /// address: 0x50000568
         /// OTG_FS host channel-3 interrupt register (OTG_FS_HCINT3)
         pub const FS_HCINT3 = @intToPtr(*volatile Mmio(32, packed struct {
-            XFRC: u1, //Transfer completed
-            CHH: u1, //Channel halted
+            XFRC: u1, // Transfer completed
+            CHH: u1, // Channel halted
             reserved_2_2: u1,
-            STALL: u1, //STALL response received interrupt
-            NAK: u1, //NAK response received interrupt
-            ACK: u1, //ACK response received/transmitted interrupt
+            STALL: u1, // STALL response received interrupt
+            NAK: u1, // NAK response received interrupt
+            ACK: u1, // ACK response received/transmitted interrupt
             reserved_6_6: u1,
-            TXERR: u1, //Transaction error
-            BBERR: u1, //Babble error
-            FRMOR: u1, //Frame overrun
-            DTERR: u1, //Data toggle error
+            TXERR: u1, // Transaction error
+            BBERR: u1, // Babble error
+            FRMOR: u1, // Frame overrun
+            DTERR: u1, // Data toggle error
             padding_11_31: u21,
         }), base_address + 0x168);
 
         /// address: 0x50000588
         /// OTG_FS host channel-4 interrupt register (OTG_FS_HCINT4)
         pub const FS_HCINT4 = @intToPtr(*volatile Mmio(32, packed struct {
-            XFRC: u1, //Transfer completed
-            CHH: u1, //Channel halted
+            XFRC: u1, // Transfer completed
+            CHH: u1, // Channel halted
             reserved_2_2: u1,
-            STALL: u1, //STALL response received interrupt
-            NAK: u1, //NAK response received interrupt
-            ACK: u1, //ACK response received/transmitted interrupt
+            STALL: u1, // STALL response received interrupt
+            NAK: u1, // NAK response received interrupt
+            ACK: u1, // ACK response received/transmitted interrupt
             reserved_6_6: u1,
-            TXERR: u1, //Transaction error
-            BBERR: u1, //Babble error
-            FRMOR: u1, //Frame overrun
-            DTERR: u1, //Data toggle error
+            TXERR: u1, // Transaction error
+            BBERR: u1, // Babble error
+            FRMOR: u1, // Frame overrun
+            DTERR: u1, // Data toggle error
             padding_11_31: u21,
         }), base_address + 0x188);
 
         /// address: 0x500005a8
         /// OTG_FS host channel-5 interrupt register (OTG_FS_HCINT5)
         pub const FS_HCINT5 = @intToPtr(*volatile Mmio(32, packed struct {
-            XFRC: u1, //Transfer completed
-            CHH: u1, //Channel halted
+            XFRC: u1, // Transfer completed
+            CHH: u1, // Channel halted
             reserved_2_2: u1,
-            STALL: u1, //STALL response received interrupt
-            NAK: u1, //NAK response received interrupt
-            ACK: u1, //ACK response received/transmitted interrupt
+            STALL: u1, // STALL response received interrupt
+            NAK: u1, // NAK response received interrupt
+            ACK: u1, // ACK response received/transmitted interrupt
             reserved_6_6: u1,
-            TXERR: u1, //Transaction error
-            BBERR: u1, //Babble error
-            FRMOR: u1, //Frame overrun
-            DTERR: u1, //Data toggle error
+            TXERR: u1, // Transaction error
+            BBERR: u1, // Babble error
+            FRMOR: u1, // Frame overrun
+            DTERR: u1, // Data toggle error
             padding_11_31: u21,
         }), base_address + 0x1a8);
 
         /// address: 0x500005c8
         /// OTG_FS host channel-6 interrupt register (OTG_FS_HCINT6)
         pub const FS_HCINT6 = @intToPtr(*volatile Mmio(32, packed struct {
-            XFRC: u1, //Transfer completed
-            CHH: u1, //Channel halted
+            XFRC: u1, // Transfer completed
+            CHH: u1, // Channel halted
             reserved_2_2: u1,
-            STALL: u1, //STALL response received interrupt
-            NAK: u1, //NAK response received interrupt
-            ACK: u1, //ACK response received/transmitted interrupt
+            STALL: u1, // STALL response received interrupt
+            NAK: u1, // NAK response received interrupt
+            ACK: u1, // ACK response received/transmitted interrupt
             reserved_6_6: u1,
-            TXERR: u1, //Transaction error
-            BBERR: u1, //Babble error
-            FRMOR: u1, //Frame overrun
-            DTERR: u1, //Data toggle error
+            TXERR: u1, // Transaction error
+            BBERR: u1, // Babble error
+            FRMOR: u1, // Frame overrun
+            DTERR: u1, // Data toggle error
             padding_11_31: u21,
         }), base_address + 0x1c8);
 
         /// address: 0x500005e8
         /// OTG_FS host channel-7 interrupt register (OTG_FS_HCINT7)
         pub const FS_HCINT7 = @intToPtr(*volatile Mmio(32, packed struct {
-            XFRC: u1, //Transfer completed
-            CHH: u1, //Channel halted
+            XFRC: u1, // Transfer completed
+            CHH: u1, // Channel halted
             reserved_2_2: u1,
-            STALL: u1, //STALL response received interrupt
-            NAK: u1, //NAK response received interrupt
-            ACK: u1, //ACK response received/transmitted interrupt
+            STALL: u1, // STALL response received interrupt
+            NAK: u1, // NAK response received interrupt
+            ACK: u1, // ACK response received/transmitted interrupt
             reserved_6_6: u1,
-            TXERR: u1, //Transaction error
-            BBERR: u1, //Babble error
-            FRMOR: u1, //Frame overrun
-            DTERR: u1, //Data toggle error
+            TXERR: u1, // Transaction error
+            BBERR: u1, // Babble error
+            FRMOR: u1, // Frame overrun
+            DTERR: u1, // Data toggle error
             padding_11_31: u21,
         }), base_address + 0x1e8);
 
         /// address: 0x5000050c
         /// OTG_FS host channel-0 mask register (OTG_FS_HCINTMSK0)
         pub const FS_HCINTMSK0 = @intToPtr(*volatile Mmio(32, packed struct {
-            XFRCM: u1, //Transfer completed mask
-            CHHM: u1, //Channel halted mask
+            XFRCM: u1, // Transfer completed mask
+            CHHM: u1, // Channel halted mask
             reserved_2_2: u1,
-            STALLM: u1, //STALL response received interrupt mask
-            NAKM: u1, //NAK response received interrupt mask
-            ACKM: u1, //ACK response received/transmitted interrupt mask
-            NYET: u1, //response received interrupt mask
-            TXERRM: u1, //Transaction error mask
-            BBERRM: u1, //Babble error mask
-            FRMORM: u1, //Frame overrun mask
-            DTERRM: u1, //Data toggle error mask
+            STALLM: u1, // STALL response received interrupt mask
+            NAKM: u1, // NAK response received interrupt mask
+            ACKM: u1, // ACK response received/transmitted interrupt mask
+            NYET: u1, // response received interrupt mask
+            TXERRM: u1, // Transaction error mask
+            BBERRM: u1, // Babble error mask
+            FRMORM: u1, // Frame overrun mask
+            DTERRM: u1, // Data toggle error mask
             padding_11_31: u21,
         }), base_address + 0x10c);
 
         /// address: 0x5000052c
         /// OTG_FS host channel-1 mask register (OTG_FS_HCINTMSK1)
         pub const FS_HCINTMSK1 = @intToPtr(*volatile Mmio(32, packed struct {
-            XFRCM: u1, //Transfer completed mask
-            CHHM: u1, //Channel halted mask
+            XFRCM: u1, // Transfer completed mask
+            CHHM: u1, // Channel halted mask
             reserved_2_2: u1,
-            STALLM: u1, //STALL response received interrupt mask
-            NAKM: u1, //NAK response received interrupt mask
-            ACKM: u1, //ACK response received/transmitted interrupt mask
-            NYET: u1, //response received interrupt mask
-            TXERRM: u1, //Transaction error mask
-            BBERRM: u1, //Babble error mask
-            FRMORM: u1, //Frame overrun mask
-            DTERRM: u1, //Data toggle error mask
+            STALLM: u1, // STALL response received interrupt mask
+            NAKM: u1, // NAK response received interrupt mask
+            ACKM: u1, // ACK response received/transmitted interrupt mask
+            NYET: u1, // response received interrupt mask
+            TXERRM: u1, // Transaction error mask
+            BBERRM: u1, // Babble error mask
+            FRMORM: u1, // Frame overrun mask
+            DTERRM: u1, // Data toggle error mask
             padding_11_31: u21,
         }), base_address + 0x12c);
 
         /// address: 0x5000054c
         /// OTG_FS host channel-2 mask register (OTG_FS_HCINTMSK2)
         pub const FS_HCINTMSK2 = @intToPtr(*volatile Mmio(32, packed struct {
-            XFRCM: u1, //Transfer completed mask
-            CHHM: u1, //Channel halted mask
+            XFRCM: u1, // Transfer completed mask
+            CHHM: u1, // Channel halted mask
             reserved_2_2: u1,
-            STALLM: u1, //STALL response received interrupt mask
-            NAKM: u1, //NAK response received interrupt mask
-            ACKM: u1, //ACK response received/transmitted interrupt mask
-            NYET: u1, //response received interrupt mask
-            TXERRM: u1, //Transaction error mask
-            BBERRM: u1, //Babble error mask
-            FRMORM: u1, //Frame overrun mask
-            DTERRM: u1, //Data toggle error mask
+            STALLM: u1, // STALL response received interrupt mask
+            NAKM: u1, // NAK response received interrupt mask
+            ACKM: u1, // ACK response received/transmitted interrupt mask
+            NYET: u1, // response received interrupt mask
+            TXERRM: u1, // Transaction error mask
+            BBERRM: u1, // Babble error mask
+            FRMORM: u1, // Frame overrun mask
+            DTERRM: u1, // Data toggle error mask
             padding_11_31: u21,
         }), base_address + 0x14c);
 
         /// address: 0x5000056c
         /// OTG_FS host channel-3 mask register (OTG_FS_HCINTMSK3)
         pub const FS_HCINTMSK3 = @intToPtr(*volatile Mmio(32, packed struct {
-            XFRCM: u1, //Transfer completed mask
-            CHHM: u1, //Channel halted mask
+            XFRCM: u1, // Transfer completed mask
+            CHHM: u1, // Channel halted mask
             reserved_2_2: u1,
-            STALLM: u1, //STALL response received interrupt mask
-            NAKM: u1, //NAK response received interrupt mask
-            ACKM: u1, //ACK response received/transmitted interrupt mask
-            NYET: u1, //response received interrupt mask
-            TXERRM: u1, //Transaction error mask
-            BBERRM: u1, //Babble error mask
-            FRMORM: u1, //Frame overrun mask
-            DTERRM: u1, //Data toggle error mask
+            STALLM: u1, // STALL response received interrupt mask
+            NAKM: u1, // NAK response received interrupt mask
+            ACKM: u1, // ACK response received/transmitted interrupt mask
+            NYET: u1, // response received interrupt mask
+            TXERRM: u1, // Transaction error mask
+            BBERRM: u1, // Babble error mask
+            FRMORM: u1, // Frame overrun mask
+            DTERRM: u1, // Data toggle error mask
             padding_11_31: u21,
         }), base_address + 0x16c);
 
         /// address: 0x5000058c
         /// OTG_FS host channel-4 mask register (OTG_FS_HCINTMSK4)
         pub const FS_HCINTMSK4 = @intToPtr(*volatile Mmio(32, packed struct {
-            XFRCM: u1, //Transfer completed mask
-            CHHM: u1, //Channel halted mask
+            XFRCM: u1, // Transfer completed mask
+            CHHM: u1, // Channel halted mask
             reserved_2_2: u1,
-            STALLM: u1, //STALL response received interrupt mask
-            NAKM: u1, //NAK response received interrupt mask
-            ACKM: u1, //ACK response received/transmitted interrupt mask
-            NYET: u1, //response received interrupt mask
-            TXERRM: u1, //Transaction error mask
-            BBERRM: u1, //Babble error mask
-            FRMORM: u1, //Frame overrun mask
-            DTERRM: u1, //Data toggle error mask
+            STALLM: u1, // STALL response received interrupt mask
+            NAKM: u1, // NAK response received interrupt mask
+            ACKM: u1, // ACK response received/transmitted interrupt mask
+            NYET: u1, // response received interrupt mask
+            TXERRM: u1, // Transaction error mask
+            BBERRM: u1, // Babble error mask
+            FRMORM: u1, // Frame overrun mask
+            DTERRM: u1, // Data toggle error mask
             padding_11_31: u21,
         }), base_address + 0x18c);
 
         /// address: 0x500005ac
         /// OTG_FS host channel-5 mask register (OTG_FS_HCINTMSK5)
         pub const FS_HCINTMSK5 = @intToPtr(*volatile Mmio(32, packed struct {
-            XFRCM: u1, //Transfer completed mask
-            CHHM: u1, //Channel halted mask
+            XFRCM: u1, // Transfer completed mask
+            CHHM: u1, // Channel halted mask
             reserved_2_2: u1,
-            STALLM: u1, //STALL response received interrupt mask
-            NAKM: u1, //NAK response received interrupt mask
-            ACKM: u1, //ACK response received/transmitted interrupt mask
-            NYET: u1, //response received interrupt mask
-            TXERRM: u1, //Transaction error mask
-            BBERRM: u1, //Babble error mask
-            FRMORM: u1, //Frame overrun mask
-            DTERRM: u1, //Data toggle error mask
+            STALLM: u1, // STALL response received interrupt mask
+            NAKM: u1, // NAK response received interrupt mask
+            ACKM: u1, // ACK response received/transmitted interrupt mask
+            NYET: u1, // response received interrupt mask
+            TXERRM: u1, // Transaction error mask
+            BBERRM: u1, // Babble error mask
+            FRMORM: u1, // Frame overrun mask
+            DTERRM: u1, // Data toggle error mask
             padding_11_31: u21,
         }), base_address + 0x1ac);
 
         /// address: 0x500005cc
         /// OTG_FS host channel-6 mask register (OTG_FS_HCINTMSK6)
         pub const FS_HCINTMSK6 = @intToPtr(*volatile Mmio(32, packed struct {
-            XFRCM: u1, //Transfer completed mask
-            CHHM: u1, //Channel halted mask
+            XFRCM: u1, // Transfer completed mask
+            CHHM: u1, // Channel halted mask
             reserved_2_2: u1,
-            STALLM: u1, //STALL response received interrupt mask
-            NAKM: u1, //NAK response received interrupt mask
-            ACKM: u1, //ACK response received/transmitted interrupt mask
-            NYET: u1, //response received interrupt mask
-            TXERRM: u1, //Transaction error mask
-            BBERRM: u1, //Babble error mask
-            FRMORM: u1, //Frame overrun mask
-            DTERRM: u1, //Data toggle error mask
+            STALLM: u1, // STALL response received interrupt mask
+            NAKM: u1, // NAK response received interrupt mask
+            ACKM: u1, // ACK response received/transmitted interrupt mask
+            NYET: u1, // response received interrupt mask
+            TXERRM: u1, // Transaction error mask
+            BBERRM: u1, // Babble error mask
+            FRMORM: u1, // Frame overrun mask
+            DTERRM: u1, // Data toggle error mask
             padding_11_31: u21,
         }), base_address + 0x1cc);
 
         /// address: 0x500005ec
         /// OTG_FS host channel-7 mask register (OTG_FS_HCINTMSK7)
         pub const FS_HCINTMSK7 = @intToPtr(*volatile Mmio(32, packed struct {
-            XFRCM: u1, //Transfer completed mask
-            CHHM: u1, //Channel halted mask
+            XFRCM: u1, // Transfer completed mask
+            CHHM: u1, // Channel halted mask
             reserved_2_2: u1,
-            STALLM: u1, //STALL response received interrupt mask
-            NAKM: u1, //NAK response received interrupt mask
-            ACKM: u1, //ACK response received/transmitted interrupt mask
-            NYET: u1, //response received interrupt mask
-            TXERRM: u1, //Transaction error mask
-            BBERRM: u1, //Babble error mask
-            FRMORM: u1, //Frame overrun mask
-            DTERRM: u1, //Data toggle error mask
+            STALLM: u1, // STALL response received interrupt mask
+            NAKM: u1, // NAK response received interrupt mask
+            ACKM: u1, // ACK response received/transmitted interrupt mask
+            NYET: u1, // response received interrupt mask
+            TXERRM: u1, // Transaction error mask
+            BBERRM: u1, // Babble error mask
+            FRMORM: u1, // Frame overrun mask
+            DTERRM: u1, // Data toggle error mask
             padding_11_31: u21,
         }), base_address + 0x1ec);
 
         /// address: 0x50000510
         /// OTG_FS host channel-0 transfer size register
         pub const FS_HCTSIZ0 = @intToPtr(*volatile Mmio(32, packed struct {
-            XFRSIZ: u19, //Transfer size
-            PKTCNT: u10, //Packet count
-            DPID: u2, //Data PID
+            XFRSIZ: u19, // Transfer size
+            PKTCNT: u10, // Packet count
+            DPID: u2, // Data PID
             padding_31_31: u1,
         }), base_address + 0x110);
 
         /// address: 0x50000530
         /// OTG_FS host channel-1 transfer size register
         pub const FS_HCTSIZ1 = @intToPtr(*volatile Mmio(32, packed struct {
-            XFRSIZ: u19, //Transfer size
-            PKTCNT: u10, //Packet count
-            DPID: u2, //Data PID
+            XFRSIZ: u19, // Transfer size
+            PKTCNT: u10, // Packet count
+            DPID: u2, // Data PID
             padding_31_31: u1,
         }), base_address + 0x130);
 
         /// address: 0x50000550
         /// OTG_FS host channel-2 transfer size register
         pub const FS_HCTSIZ2 = @intToPtr(*volatile Mmio(32, packed struct {
-            XFRSIZ: u19, //Transfer size
-            PKTCNT: u10, //Packet count
-            DPID: u2, //Data PID
+            XFRSIZ: u19, // Transfer size
+            PKTCNT: u10, // Packet count
+            DPID: u2, // Data PID
             padding_31_31: u1,
         }), base_address + 0x150);
 
         /// address: 0x50000570
         /// OTG_FS host channel-3 transfer size register
         pub const FS_HCTSIZ3 = @intToPtr(*volatile Mmio(32, packed struct {
-            XFRSIZ: u19, //Transfer size
-            PKTCNT: u10, //Packet count
-            DPID: u2, //Data PID
+            XFRSIZ: u19, // Transfer size
+            PKTCNT: u10, // Packet count
+            DPID: u2, // Data PID
             padding_31_31: u1,
         }), base_address + 0x170);
 
         /// address: 0x50000590
         /// OTG_FS host channel-x transfer size register
         pub const FS_HCTSIZ4 = @intToPtr(*volatile Mmio(32, packed struct {
-            XFRSIZ: u19, //Transfer size
-            PKTCNT: u10, //Packet count
-            DPID: u2, //Data PID
+            XFRSIZ: u19, // Transfer size
+            PKTCNT: u10, // Packet count
+            DPID: u2, // Data PID
             padding_31_31: u1,
         }), base_address + 0x190);
 
         /// address: 0x500005b0
         /// OTG_FS host channel-5 transfer size register
         pub const FS_HCTSIZ5 = @intToPtr(*volatile Mmio(32, packed struct {
-            XFRSIZ: u19, //Transfer size
-            PKTCNT: u10, //Packet count
-            DPID: u2, //Data PID
+            XFRSIZ: u19, // Transfer size
+            PKTCNT: u10, // Packet count
+            DPID: u2, // Data PID
             padding_31_31: u1,
         }), base_address + 0x1b0);
 
         /// address: 0x500005d0
         /// OTG_FS host channel-6 transfer size register
         pub const FS_HCTSIZ6 = @intToPtr(*volatile Mmio(32, packed struct {
-            XFRSIZ: u19, //Transfer size
-            PKTCNT: u10, //Packet count
-            DPID: u2, //Data PID
+            XFRSIZ: u19, // Transfer size
+            PKTCNT: u10, // Packet count
+            DPID: u2, // Data PID
             padding_31_31: u1,
         }), base_address + 0x1d0);
 
         /// address: 0x500005f0
         /// OTG_FS host channel-7 transfer size register
         pub const FS_HCTSIZ7 = @intToPtr(*volatile Mmio(32, packed struct {
-            XFRSIZ: u19, //Transfer size
-            PKTCNT: u10, //Packet count
-            DPID: u2, //Data PID
+            XFRSIZ: u19, // Transfer size
+            PKTCNT: u10, // Packet count
+            DPID: u2, // Data PID
             padding_31_31: u1,
         }), base_address + 0x1f0);
     };
@@ -1878,10 +1878,10 @@ pub const registers = struct {
         /// address: 0x50000e00
         /// OTG_FS power and clock gating control register
         pub const FS_PCGCCTL = @intToPtr(*volatile Mmio(32, packed struct {
-            STPPCLK: u1, //Stop PHY clock
-            GATEHCLK: u1, //Gate HCLK
+            STPPCLK: u1, // Stop PHY clock
+            GATEHCLK: u1, // Gate HCLK
             reserved_2_3: u2,
-            PHYSUSP: u1, //PHY Suspended
+            PHYSUSP: u1, // PHY Suspended
             padding_5_31: u27,
         }), base_address + 0x0);
     };
@@ -1893,32 +1893,32 @@ pub const registers = struct {
         /// address: 0x40007000
         /// power control register
         pub const CR = @intToPtr(*volatile Mmio(32, packed struct {
-            LPDS: u1, //Low-power deep sleep
-            PDDS: u1, //Power down deepsleep
-            CWUF: u1, //Clear wakeup flag
-            CSBF: u1, //Clear standby flag
-            PVDE: u1, //Power voltage detector enable
-            PLS: u3, //PVD level selection
-            DBP: u1, //Disable backup domain write protection
-            FPDS: u1, //Flash power down in Stop mode
+            LPDS: u1, // Low-power deep sleep
+            PDDS: u1, // Power down deepsleep
+            CWUF: u1, // Clear wakeup flag
+            CSBF: u1, // Clear standby flag
+            PVDE: u1, // Power voltage detector enable
+            PLS: u3, // PVD level selection
+            DBP: u1, // Disable backup domain write protection
+            FPDS: u1, // Flash power down in Stop mode
             reserved_10_12: u3,
-            ADCDC1: u1, //ADCDC1
-            VOS: u2, //Regulator voltage scaling output selection
+            ADCDC1: u1, // ADCDC1
+            VOS: u2, // Regulator voltage scaling output selection
             padding_16_31: u16,
         }), base_address + 0x0);
 
         /// address: 0x40007004
         /// power control/status register
         pub const CSR = @intToPtr(*volatile Mmio(32, packed struct {
-            WUF: u1, //Wakeup flag
-            SBF: u1, //Standby flag
-            PVDO: u1, //PVD output
-            BRR: u1, //Backup regulator ready
+            WUF: u1, // Wakeup flag
+            SBF: u1, // Standby flag
+            PVDO: u1, // PVD output
+            BRR: u1, // Backup regulator ready
             reserved_4_7: u4,
-            EWUP: u1, //Enable WKUP pin
-            BRE: u1, //Backup regulator enable
+            EWUP: u1, // Enable WKUP pin
+            BRE: u1, // Backup regulator enable
             reserved_10_13: u4,
-            VOSRDY: u1, //Regulator voltage scaling output selection ready bit
+            VOSRDY: u1, // Regulator voltage scaling output selection ready bit
             padding_15_31: u17,
         }), base_address + 0x4);
     };
@@ -1930,117 +1930,117 @@ pub const registers = struct {
         /// address: 0x40023800
         /// clock control register
         pub const CR = @intToPtr(*volatile Mmio(32, packed struct {
-            HSION: u1, //Internal high-speed clock enable
-            HSIRDY: u1, //Internal high-speed clock ready flag
+            HSION: u1, // Internal high-speed clock enable
+            HSIRDY: u1, // Internal high-speed clock ready flag
             reserved_2_2: u1,
-            HSITRIM: u5, //Internal high-speed clock trimming
-            HSICAL: u8, //Internal high-speed clock calibration
-            HSEON: u1, //HSE clock enable
-            HSERDY: u1, //HSE clock ready flag
-            HSEBYP: u1, //HSE clock bypass
-            CSSON: u1, //Clock security system enable
+            HSITRIM: u5, // Internal high-speed clock trimming
+            HSICAL: u8, // Internal high-speed clock calibration
+            HSEON: u1, // HSE clock enable
+            HSERDY: u1, // HSE clock ready flag
+            HSEBYP: u1, // HSE clock bypass
+            CSSON: u1, // Clock security system enable
             reserved_20_23: u4,
-            PLLON: u1, //Main PLL (PLL) enable
-            PLLRDY: u1, //Main PLL (PLL) clock ready flag
-            PLLI2SON: u1, //PLLI2S enable
-            PLLI2SRDY: u1, //PLLI2S clock ready flag
+            PLLON: u1, // Main PLL (PLL) enable
+            PLLRDY: u1, // Main PLL (PLL) clock ready flag
+            PLLI2SON: u1, // PLLI2S enable
+            PLLI2SRDY: u1, // PLLI2S clock ready flag
             padding_28_31: u4,
         }), base_address + 0x0);
 
         /// address: 0x40023804
         /// PLL configuration register
         pub const PLLCFGR = @intToPtr(*volatile Mmio(32, packed struct {
-            PLLM0: u1, //Division factor for the main PLL (PLL) and audio PLL (PLLI2S) input clock
-            PLLM1: u1, //Division factor for the main PLL (PLL) and audio PLL (PLLI2S) input clock
-            PLLM2: u1, //Division factor for the main PLL (PLL) and audio PLL (PLLI2S) input clock
-            PLLM3: u1, //Division factor for the main PLL (PLL) and audio PLL (PLLI2S) input clock
-            PLLM4: u1, //Division factor for the main PLL (PLL) and audio PLL (PLLI2S) input clock
-            PLLM5: u1, //Division factor for the main PLL (PLL) and audio PLL (PLLI2S) input clock
-            PLLN0: u1, //Main PLL (PLL) multiplication factor for VCO
-            PLLN1: u1, //Main PLL (PLL) multiplication factor for VCO
-            PLLN2: u1, //Main PLL (PLL) multiplication factor for VCO
-            PLLN3: u1, //Main PLL (PLL) multiplication factor for VCO
-            PLLN4: u1, //Main PLL (PLL) multiplication factor for VCO
-            PLLN5: u1, //Main PLL (PLL) multiplication factor for VCO
-            PLLN6: u1, //Main PLL (PLL) multiplication factor for VCO
-            PLLN7: u1, //Main PLL (PLL) multiplication factor for VCO
-            PLLN8: u1, //Main PLL (PLL) multiplication factor for VCO
+            PLLM0: u1, // Division factor for the main PLL (PLL) and audio PLL (PLLI2S) input clock
+            PLLM1: u1, // Division factor for the main PLL (PLL) and audio PLL (PLLI2S) input clock
+            PLLM2: u1, // Division factor for the main PLL (PLL) and audio PLL (PLLI2S) input clock
+            PLLM3: u1, // Division factor for the main PLL (PLL) and audio PLL (PLLI2S) input clock
+            PLLM4: u1, // Division factor for the main PLL (PLL) and audio PLL (PLLI2S) input clock
+            PLLM5: u1, // Division factor for the main PLL (PLL) and audio PLL (PLLI2S) input clock
+            PLLN0: u1, // Main PLL (PLL) multiplication factor for VCO
+            PLLN1: u1, // Main PLL (PLL) multiplication factor for VCO
+            PLLN2: u1, // Main PLL (PLL) multiplication factor for VCO
+            PLLN3: u1, // Main PLL (PLL) multiplication factor for VCO
+            PLLN4: u1, // Main PLL (PLL) multiplication factor for VCO
+            PLLN5: u1, // Main PLL (PLL) multiplication factor for VCO
+            PLLN6: u1, // Main PLL (PLL) multiplication factor for VCO
+            PLLN7: u1, // Main PLL (PLL) multiplication factor for VCO
+            PLLN8: u1, // Main PLL (PLL) multiplication factor for VCO
             reserved_15_15: u1,
-            PLLP0: u1, //Main PLL (PLL) division factor for main system clock
-            PLLP1: u1, //Main PLL (PLL) division factor for main system clock
+            PLLP0: u1, // Main PLL (PLL) division factor for main system clock
+            PLLP1: u1, // Main PLL (PLL) division factor for main system clock
             reserved_18_21: u4,
-            PLLSRC: u1, //Main PLL(PLL) and audio PLL (PLLI2S) entry clock source
+            PLLSRC: u1, // Main PLL(PLL) and audio PLL (PLLI2S) entry clock source
             reserved_23_23: u1,
-            PLLQ0: u1, //Main PLL (PLL) division factor for USB OTG FS, SDIO and random number generator clocks
-            PLLQ1: u1, //Main PLL (PLL) division factor for USB OTG FS, SDIO and random number generator clocks
-            PLLQ2: u1, //Main PLL (PLL) division factor for USB OTG FS, SDIO and random number generator clocks
-            PLLQ3: u1, //Main PLL (PLL) division factor for USB OTG FS, SDIO and random number generator clocks
+            PLLQ0: u1, // Main PLL (PLL) division factor for USB OTG FS, SDIO and random number generator clocks
+            PLLQ1: u1, // Main PLL (PLL) division factor for USB OTG FS, SDIO and random number generator clocks
+            PLLQ2: u1, // Main PLL (PLL) division factor for USB OTG FS, SDIO and random number generator clocks
+            PLLQ3: u1, // Main PLL (PLL) division factor for USB OTG FS, SDIO and random number generator clocks
             padding_28_31: u4,
         }), base_address + 0x4);
 
         /// address: 0x40023808
         /// clock configuration register
         pub const CFGR = @intToPtr(*volatile Mmio(32, packed struct {
-            SW0: u1, //System clock switch
-            SW1: u1, //System clock switch
-            SWS0: u1, //System clock switch status
-            SWS1: u1, //System clock switch status
-            HPRE: u4, //AHB prescaler
+            SW0: u1, // System clock switch
+            SW1: u1, // System clock switch
+            SWS0: u1, // System clock switch status
+            SWS1: u1, // System clock switch status
+            HPRE: u4, // AHB prescaler
             reserved_8_9: u2,
-            PPRE1: u3, //APB Low speed prescaler (APB1)
-            PPRE2: u3, //APB high-speed prescaler (APB2)
-            RTCPRE: u5, //HSE division factor for RTC clock
-            MCO1: u2, //Microcontroller clock output 1
-            I2SSRC: u1, //I2S clock selection
-            MCO1PRE: u3, //MCO1 prescaler
-            MCO2PRE: u3, //MCO2 prescaler
-            MCO2: u2, //Microcontroller clock output 2
+            PPRE1: u3, // APB Low speed prescaler (APB1)
+            PPRE2: u3, // APB high-speed prescaler (APB2)
+            RTCPRE: u5, // HSE division factor for RTC clock
+            MCO1: u2, // Microcontroller clock output 1
+            I2SSRC: u1, // I2S clock selection
+            MCO1PRE: u3, // MCO1 prescaler
+            MCO2PRE: u3, // MCO2 prescaler
+            MCO2: u2, // Microcontroller clock output 2
         }), base_address + 0x8);
 
         /// address: 0x4002380c
         /// clock interrupt register
         pub const CIR = @intToPtr(*volatile Mmio(32, packed struct {
-            LSIRDYF: u1, //LSI ready interrupt flag
-            LSERDYF: u1, //LSE ready interrupt flag
-            HSIRDYF: u1, //HSI ready interrupt flag
-            HSERDYF: u1, //HSE ready interrupt flag
-            PLLRDYF: u1, //Main PLL (PLL) ready interrupt flag
-            PLLI2SRDYF: u1, //PLLI2S ready interrupt flag
+            LSIRDYF: u1, // LSI ready interrupt flag
+            LSERDYF: u1, // LSE ready interrupt flag
+            HSIRDYF: u1, // HSI ready interrupt flag
+            HSERDYF: u1, // HSE ready interrupt flag
+            PLLRDYF: u1, // Main PLL (PLL) ready interrupt flag
+            PLLI2SRDYF: u1, // PLLI2S ready interrupt flag
             reserved_6_6: u1,
-            CSSF: u1, //Clock security system interrupt flag
-            LSIRDYIE: u1, //LSI ready interrupt enable
-            LSERDYIE: u1, //LSE ready interrupt enable
-            HSIRDYIE: u1, //HSI ready interrupt enable
-            HSERDYIE: u1, //HSE ready interrupt enable
-            PLLRDYIE: u1, //Main PLL (PLL) ready interrupt enable
-            PLLI2SRDYIE: u1, //PLLI2S ready interrupt enable
+            CSSF: u1, // Clock security system interrupt flag
+            LSIRDYIE: u1, // LSI ready interrupt enable
+            LSERDYIE: u1, // LSE ready interrupt enable
+            HSIRDYIE: u1, // HSI ready interrupt enable
+            HSERDYIE: u1, // HSE ready interrupt enable
+            PLLRDYIE: u1, // Main PLL (PLL) ready interrupt enable
+            PLLI2SRDYIE: u1, // PLLI2S ready interrupt enable
             reserved_14_15: u2,
-            LSIRDYC: u1, //LSI ready interrupt clear
-            LSERDYC: u1, //LSE ready interrupt clear
-            HSIRDYC: u1, //HSI ready interrupt clear
-            HSERDYC: u1, //HSE ready interrupt clear
-            PLLRDYC: u1, //Main PLL(PLL) ready interrupt clear
-            PLLI2SRDYC: u1, //PLLI2S ready interrupt clear
+            LSIRDYC: u1, // LSI ready interrupt clear
+            LSERDYC: u1, // LSE ready interrupt clear
+            HSIRDYC: u1, // HSI ready interrupt clear
+            HSERDYC: u1, // HSE ready interrupt clear
+            PLLRDYC: u1, // Main PLL(PLL) ready interrupt clear
+            PLLI2SRDYC: u1, // PLLI2S ready interrupt clear
             reserved_22_22: u1,
-            CSSC: u1, //Clock security system interrupt clear
+            CSSC: u1, // Clock security system interrupt clear
             padding_24_31: u8,
         }), base_address + 0xc);
 
         /// address: 0x40023810
         /// AHB1 peripheral reset register
         pub const AHB1RSTR = @intToPtr(*volatile Mmio(32, packed struct {
-            GPIOARST: u1, //IO port A reset
-            GPIOBRST: u1, //IO port B reset
-            GPIOCRST: u1, //IO port C reset
-            GPIODRST: u1, //IO port D reset
-            GPIOERST: u1, //IO port E reset
+            GPIOARST: u1, // IO port A reset
+            GPIOBRST: u1, // IO port B reset
+            GPIOCRST: u1, // IO port C reset
+            GPIODRST: u1, // IO port D reset
+            GPIOERST: u1, // IO port E reset
             reserved_5_6: u2,
-            GPIOHRST: u1, //IO port H reset
+            GPIOHRST: u1, // IO port H reset
             reserved_8_11: u4,
-            CRCRST: u1, //CRC reset
+            CRCRST: u1, // CRC reset
             reserved_13_20: u8,
-            DMA1RST: u1, //DMA2 reset
-            DMA2RST: u1, //DMA2 reset
+            DMA1RST: u1, // DMA2 reset
+            DMA2RST: u1, // DMA2 reset
             padding_23_31: u9,
         }), base_address + 0x10);
 
@@ -2048,69 +2048,69 @@ pub const registers = struct {
         /// AHB2 peripheral reset register
         pub const AHB2RSTR = @intToPtr(*volatile Mmio(32, packed struct {
             reserved_0_6: u7,
-            OTGFSRST: u1, //USB OTG FS module reset
+            OTGFSRST: u1, // USB OTG FS module reset
             padding_8_31: u24,
         }), base_address + 0x14);
 
         /// address: 0x40023820
         /// APB1 peripheral reset register
         pub const APB1RSTR = @intToPtr(*volatile Mmio(32, packed struct {
-            TIM2RST: u1, //TIM2 reset
-            TIM3RST: u1, //TIM3 reset
-            TIM4RST: u1, //TIM4 reset
-            TIM5RST: u1, //TIM5 reset
+            TIM2RST: u1, // TIM2 reset
+            TIM3RST: u1, // TIM3 reset
+            TIM4RST: u1, // TIM4 reset
+            TIM5RST: u1, // TIM5 reset
             reserved_4_10: u7,
-            WWDGRST: u1, //Window watchdog reset
+            WWDGRST: u1, // Window watchdog reset
             reserved_12_13: u2,
-            SPI2RST: u1, //SPI 2 reset
-            SPI3RST: u1, //SPI 3 reset
+            SPI2RST: u1, // SPI 2 reset
+            SPI3RST: u1, // SPI 3 reset
             reserved_16_16: u1,
-            UART2RST: u1, //USART 2 reset
+            UART2RST: u1, // USART 2 reset
             reserved_18_20: u3,
-            I2C1RST: u1, //I2C 1 reset
-            I2C2RST: u1, //I2C 2 reset
-            I2C3RST: u1, //I2C3 reset
+            I2C1RST: u1, // I2C 1 reset
+            I2C2RST: u1, // I2C 2 reset
+            I2C3RST: u1, // I2C3 reset
             reserved_24_27: u4,
-            PWRRST: u1, //Power interface reset
+            PWRRST: u1, // Power interface reset
             padding_29_31: u3,
         }), base_address + 0x20);
 
         /// address: 0x40023824
         /// APB2 peripheral reset register
         pub const APB2RSTR = @intToPtr(*volatile Mmio(32, packed struct {
-            TIM1RST: u1, //TIM1 reset
+            TIM1RST: u1, // TIM1 reset
             reserved_1_3: u3,
-            USART1RST: u1, //USART1 reset
-            USART6RST: u1, //USART6 reset
+            USART1RST: u1, // USART1 reset
+            USART6RST: u1, // USART6 reset
             reserved_6_7: u2,
-            ADCRST: u1, //ADC interface reset (common to all ADCs)
+            ADCRST: u1, // ADC interface reset (common to all ADCs)
             reserved_9_10: u2,
-            SDIORST: u1, //SDIO reset
-            SPI1RST: u1, //SPI 1 reset
+            SDIORST: u1, // SDIO reset
+            SPI1RST: u1, // SPI 1 reset
             reserved_13_13: u1,
-            SYSCFGRST: u1, //System configuration controller reset
+            SYSCFGRST: u1, // System configuration controller reset
             reserved_15_15: u1,
-            TIM9RST: u1, //TIM9 reset
-            TIM10RST: u1, //TIM10 reset
-            TIM11RST: u1, //TIM11 reset
+            TIM9RST: u1, // TIM9 reset
+            TIM10RST: u1, // TIM10 reset
+            TIM11RST: u1, // TIM11 reset
             padding_19_31: u13,
         }), base_address + 0x24);
 
         /// address: 0x40023830
         /// AHB1 peripheral clock register
         pub const AHB1ENR = @intToPtr(*volatile Mmio(32, packed struct {
-            GPIOAEN: u1, //IO port A clock enable
-            GPIOBEN: u1, //IO port B clock enable
-            GPIOCEN: u1, //IO port C clock enable
-            GPIODEN: u1, //IO port D clock enable
-            GPIOEEN: u1, //IO port E clock enable
+            GPIOAEN: u1, // IO port A clock enable
+            GPIOBEN: u1, // IO port B clock enable
+            GPIOCEN: u1, // IO port C clock enable
+            GPIODEN: u1, // IO port D clock enable
+            GPIOEEN: u1, // IO port E clock enable
             reserved_5_6: u2,
-            GPIOHEN: u1, //IO port H clock enable
+            GPIOHEN: u1, // IO port H clock enable
             reserved_8_11: u4,
-            CRCEN: u1, //CRC clock enable
+            CRCEN: u1, // CRC clock enable
             reserved_13_20: u8,
-            DMA1EN: u1, //DMA1 clock enable
-            DMA2EN: u1, //DMA2 clock enable
+            DMA1EN: u1, // DMA1 clock enable
+            DMA2EN: u1, // DMA2 clock enable
             padding_23_31: u9,
         }), base_address + 0x30);
 
@@ -2118,72 +2118,72 @@ pub const registers = struct {
         /// AHB2 peripheral clock enable register
         pub const AHB2ENR = @intToPtr(*volatile Mmio(32, packed struct {
             reserved_0_6: u7,
-            OTGFSEN: u1, //USB OTG FS clock enable
+            OTGFSEN: u1, // USB OTG FS clock enable
             padding_8_31: u24,
         }), base_address + 0x34);
 
         /// address: 0x40023840
         /// APB1 peripheral clock enable register
         pub const APB1ENR = @intToPtr(*volatile Mmio(32, packed struct {
-            TIM2EN: u1, //TIM2 clock enable
-            TIM3EN: u1, //TIM3 clock enable
-            TIM4EN: u1, //TIM4 clock enable
-            TIM5EN: u1, //TIM5 clock enable
+            TIM2EN: u1, // TIM2 clock enable
+            TIM3EN: u1, // TIM3 clock enable
+            TIM4EN: u1, // TIM4 clock enable
+            TIM5EN: u1, // TIM5 clock enable
             reserved_4_10: u7,
-            WWDGEN: u1, //Window watchdog clock enable
+            WWDGEN: u1, // Window watchdog clock enable
             reserved_12_13: u2,
-            SPI2EN: u1, //SPI2 clock enable
-            SPI3EN: u1, //SPI3 clock enable
+            SPI2EN: u1, // SPI2 clock enable
+            SPI3EN: u1, // SPI3 clock enable
             reserved_16_16: u1,
-            USART2EN: u1, //USART 2 clock enable
+            USART2EN: u1, // USART 2 clock enable
             reserved_18_20: u3,
-            I2C1EN: u1, //I2C1 clock enable
-            I2C2EN: u1, //I2C2 clock enable
-            I2C3EN: u1, //I2C3 clock enable
+            I2C1EN: u1, // I2C1 clock enable
+            I2C2EN: u1, // I2C2 clock enable
+            I2C3EN: u1, // I2C3 clock enable
             reserved_24_27: u4,
-            PWREN: u1, //Power interface clock enable
+            PWREN: u1, // Power interface clock enable
             padding_29_31: u3,
         }), base_address + 0x40);
 
         /// address: 0x40023844
         /// APB2 peripheral clock enable register
         pub const APB2ENR = @intToPtr(*volatile Mmio(32, packed struct {
-            TIM1EN: u1, //TIM1 clock enable
+            TIM1EN: u1, // TIM1 clock enable
             reserved_1_3: u3,
-            USART1EN: u1, //USART1 clock enable
-            USART6EN: u1, //USART6 clock enable
+            USART1EN: u1, // USART1 clock enable
+            USART6EN: u1, // USART6 clock enable
             reserved_6_7: u2,
-            ADC1EN: u1, //ADC1 clock enable
+            ADC1EN: u1, // ADC1 clock enable
             reserved_9_10: u2,
-            SDIOEN: u1, //SDIO clock enable
-            SPI1EN: u1, //SPI1 clock enable
-            SPI4EN: u1, //SPI4 clock enable
-            SYSCFGEN: u1, //System configuration controller clock enable
+            SDIOEN: u1, // SDIO clock enable
+            SPI1EN: u1, // SPI1 clock enable
+            SPI4EN: u1, // SPI4 clock enable
+            SYSCFGEN: u1, // System configuration controller clock enable
             reserved_15_15: u1,
-            TIM9EN: u1, //TIM9 clock enable
-            TIM10EN: u1, //TIM10 clock enable
-            TIM11EN: u1, //TIM11 clock enable
+            TIM9EN: u1, // TIM9 clock enable
+            TIM10EN: u1, // TIM10 clock enable
+            TIM11EN: u1, // TIM11 clock enable
             padding_19_31: u13,
         }), base_address + 0x44);
 
         /// address: 0x40023850
         /// AHB1 peripheral clock enable in low power mode register
         pub const AHB1LPENR = @intToPtr(*volatile Mmio(32, packed struct {
-            GPIOALPEN: u1, //IO port A clock enable during sleep mode
-            GPIOBLPEN: u1, //IO port B clock enable during Sleep mode
-            GPIOCLPEN: u1, //IO port C clock enable during Sleep mode
-            GPIODLPEN: u1, //IO port D clock enable during Sleep mode
-            GPIOELPEN: u1, //IO port E clock enable during Sleep mode
+            GPIOALPEN: u1, // IO port A clock enable during sleep mode
+            GPIOBLPEN: u1, // IO port B clock enable during Sleep mode
+            GPIOCLPEN: u1, // IO port C clock enable during Sleep mode
+            GPIODLPEN: u1, // IO port D clock enable during Sleep mode
+            GPIOELPEN: u1, // IO port E clock enable during Sleep mode
             reserved_5_6: u2,
-            GPIOHLPEN: u1, //IO port H clock enable during Sleep mode
+            GPIOHLPEN: u1, // IO port H clock enable during Sleep mode
             reserved_8_11: u4,
-            CRCLPEN: u1, //CRC clock enable during Sleep mode
+            CRCLPEN: u1, // CRC clock enable during Sleep mode
             reserved_13_14: u2,
-            FLITFLPEN: u1, //Flash interface clock enable during Sleep mode
-            SRAM1LPEN: u1, //SRAM 1interface clock enable during Sleep mode
+            FLITFLPEN: u1, // Flash interface clock enable during Sleep mode
+            SRAM1LPEN: u1, // SRAM 1interface clock enable during Sleep mode
             reserved_17_20: u4,
-            DMA1LPEN: u1, //DMA1 clock enable during Sleep mode
-            DMA2LPEN: u1, //DMA2 clock enable during Sleep mode
+            DMA1LPEN: u1, // DMA1 clock enable during Sleep mode
+            DMA2LPEN: u1, // DMA2 clock enable during Sleep mode
             padding_23_31: u9,
         }), base_address + 0x50);
 
@@ -2191,102 +2191,102 @@ pub const registers = struct {
         /// AHB2 peripheral clock enable in low power mode register
         pub const AHB2LPENR = @intToPtr(*volatile Mmio(32, packed struct {
             reserved_0_6: u7,
-            OTGFSLPEN: u1, //USB OTG FS clock enable during Sleep mode
+            OTGFSLPEN: u1, // USB OTG FS clock enable during Sleep mode
             padding_8_31: u24,
         }), base_address + 0x54);
 
         /// address: 0x40023860
         /// APB1 peripheral clock enable in low power mode register
         pub const APB1LPENR = @intToPtr(*volatile Mmio(32, packed struct {
-            TIM2LPEN: u1, //TIM2 clock enable during Sleep mode
-            TIM3LPEN: u1, //TIM3 clock enable during Sleep mode
-            TIM4LPEN: u1, //TIM4 clock enable during Sleep mode
-            TIM5LPEN: u1, //TIM5 clock enable during Sleep mode
+            TIM2LPEN: u1, // TIM2 clock enable during Sleep mode
+            TIM3LPEN: u1, // TIM3 clock enable during Sleep mode
+            TIM4LPEN: u1, // TIM4 clock enable during Sleep mode
+            TIM5LPEN: u1, // TIM5 clock enable during Sleep mode
             reserved_4_10: u7,
-            WWDGLPEN: u1, //Window watchdog clock enable during Sleep mode
+            WWDGLPEN: u1, // Window watchdog clock enable during Sleep mode
             reserved_12_13: u2,
-            SPI2LPEN: u1, //SPI2 clock enable during Sleep mode
-            SPI3LPEN: u1, //SPI3 clock enable during Sleep mode
+            SPI2LPEN: u1, // SPI2 clock enable during Sleep mode
+            SPI3LPEN: u1, // SPI3 clock enable during Sleep mode
             reserved_16_16: u1,
-            USART2LPEN: u1, //USART2 clock enable during Sleep mode
+            USART2LPEN: u1, // USART2 clock enable during Sleep mode
             reserved_18_20: u3,
-            I2C1LPEN: u1, //I2C1 clock enable during Sleep mode
-            I2C2LPEN: u1, //I2C2 clock enable during Sleep mode
-            I2C3LPEN: u1, //I2C3 clock enable during Sleep mode
+            I2C1LPEN: u1, // I2C1 clock enable during Sleep mode
+            I2C2LPEN: u1, // I2C2 clock enable during Sleep mode
+            I2C3LPEN: u1, // I2C3 clock enable during Sleep mode
             reserved_24_27: u4,
-            PWRLPEN: u1, //Power interface clock enable during Sleep mode
+            PWRLPEN: u1, // Power interface clock enable during Sleep mode
             padding_29_31: u3,
         }), base_address + 0x60);
 
         /// address: 0x40023864
         /// APB2 peripheral clock enabled in low power mode register
         pub const APB2LPENR = @intToPtr(*volatile Mmio(32, packed struct {
-            TIM1LPEN: u1, //TIM1 clock enable during Sleep mode
+            TIM1LPEN: u1, // TIM1 clock enable during Sleep mode
             reserved_1_3: u3,
-            USART1LPEN: u1, //USART1 clock enable during Sleep mode
-            USART6LPEN: u1, //USART6 clock enable during Sleep mode
+            USART1LPEN: u1, // USART1 clock enable during Sleep mode
+            USART6LPEN: u1, // USART6 clock enable during Sleep mode
             reserved_6_7: u2,
-            ADC1LPEN: u1, //ADC1 clock enable during Sleep mode
+            ADC1LPEN: u1, // ADC1 clock enable during Sleep mode
             reserved_9_10: u2,
-            SDIOLPEN: u1, //SDIO clock enable during Sleep mode
-            SPI1LPEN: u1, //SPI 1 clock enable during Sleep mode
-            SPI4LPEN: u1, //SPI4 clock enable during Sleep mode
-            SYSCFGLPEN: u1, //System configuration controller clock enable during Sleep mode
+            SDIOLPEN: u1, // SDIO clock enable during Sleep mode
+            SPI1LPEN: u1, // SPI 1 clock enable during Sleep mode
+            SPI4LPEN: u1, // SPI4 clock enable during Sleep mode
+            SYSCFGLPEN: u1, // System configuration controller clock enable during Sleep mode
             reserved_15_15: u1,
-            TIM9LPEN: u1, //TIM9 clock enable during sleep mode
-            TIM10LPEN: u1, //TIM10 clock enable during Sleep mode
-            TIM11LPEN: u1, //TIM11 clock enable during Sleep mode
+            TIM9LPEN: u1, // TIM9 clock enable during sleep mode
+            TIM10LPEN: u1, // TIM10 clock enable during Sleep mode
+            TIM11LPEN: u1, // TIM11 clock enable during Sleep mode
             padding_19_31: u13,
         }), base_address + 0x64);
 
         /// address: 0x40023870
         /// Backup domain control register
         pub const BDCR = @intToPtr(*volatile Mmio(32, packed struct {
-            LSEON: u1, //External low-speed oscillator enable
-            LSERDY: u1, //External low-speed oscillator ready
-            LSEBYP: u1, //External low-speed oscillator bypass
+            LSEON: u1, // External low-speed oscillator enable
+            LSERDY: u1, // External low-speed oscillator ready
+            LSEBYP: u1, // External low-speed oscillator bypass
             reserved_3_7: u5,
-            RTCSEL0: u1, //RTC clock source selection
-            RTCSEL1: u1, //RTC clock source selection
+            RTCSEL0: u1, // RTC clock source selection
+            RTCSEL1: u1, // RTC clock source selection
             reserved_10_14: u5,
-            RTCEN: u1, //RTC clock enable
-            BDRST: u1, //Backup domain software reset
+            RTCEN: u1, // RTC clock enable
+            BDRST: u1, // Backup domain software reset
             padding_17_31: u15,
         }), base_address + 0x70);
 
         /// address: 0x40023874
         /// clock control & status register
         pub const CSR = @intToPtr(*volatile Mmio(32, packed struct {
-            LSION: u1, //Internal low-speed oscillator enable
-            LSIRDY: u1, //Internal low-speed oscillator ready
+            LSION: u1, // Internal low-speed oscillator enable
+            LSIRDY: u1, // Internal low-speed oscillator ready
             reserved_2_23: u22,
-            RMVF: u1, //Remove reset flag
-            BORRSTF: u1, //BOR reset flag
-            PADRSTF: u1, //PIN reset flag
-            PORRSTF: u1, //POR/PDR reset flag
-            SFTRSTF: u1, //Software reset flag
-            WDGRSTF: u1, //Independent watchdog reset flag
-            WWDGRSTF: u1, //Window watchdog reset flag
-            LPWRRSTF: u1, //Low-power reset flag
+            RMVF: u1, // Remove reset flag
+            BORRSTF: u1, // BOR reset flag
+            PADRSTF: u1, // PIN reset flag
+            PORRSTF: u1, // POR/PDR reset flag
+            SFTRSTF: u1, // Software reset flag
+            WDGRSTF: u1, // Independent watchdog reset flag
+            WWDGRSTF: u1, // Window watchdog reset flag
+            LPWRRSTF: u1, // Low-power reset flag
         }), base_address + 0x74);
 
         /// address: 0x40023880
         /// spread spectrum clock generation register
         pub const SSCGR = @intToPtr(*volatile Mmio(32, packed struct {
-            MODPER: u13, //Modulation period
-            INCSTEP: u15, //Incrementation step
+            MODPER: u13, // Modulation period
+            INCSTEP: u15, // Incrementation step
             reserved_28_29: u2,
-            SPREADSEL: u1, //Spread Select
-            SSCGEN: u1, //Spread spectrum modulation enable
+            SPREADSEL: u1, // Spread Select
+            SSCGEN: u1, // Spread spectrum modulation enable
         }), base_address + 0x80);
 
         /// address: 0x40023884
         /// PLLI2S configuration register
         pub const PLLI2SCFGR = @intToPtr(*volatile Mmio(32, packed struct {
             reserved_0_5: u6,
-            PLLI2SNx: u9, //PLLI2S multiplication factor for VCO
+            PLLI2SNx: u9, // PLLI2S multiplication factor for VCO
             reserved_15_27: u13,
-            PLLI2SRx: u3, //PLLI2S division factor for I2S clocks
+            PLLI2SRx: u3, // PLLI2S division factor for I2S clocks
             padding_31_31: u1,
         }), base_address + 0x84);
     };
@@ -2298,368 +2298,368 @@ pub const registers = struct {
         /// address: 0x40002800
         /// time register
         pub const TR = @intToPtr(*volatile Mmio(32, packed struct {
-            SU: u4, //Second units in BCD format
-            ST: u3, //Second tens in BCD format
+            SU: u4, // Second units in BCD format
+            ST: u3, // Second tens in BCD format
             reserved_7_7: u1,
-            MNU: u4, //Minute units in BCD format
-            MNT: u3, //Minute tens in BCD format
+            MNU: u4, // Minute units in BCD format
+            MNT: u3, // Minute tens in BCD format
             reserved_15_15: u1,
-            HU: u4, //Hour units in BCD format
-            HT: u2, //Hour tens in BCD format
-            PM: u1, //AM/PM notation
+            HU: u4, // Hour units in BCD format
+            HT: u2, // Hour tens in BCD format
+            PM: u1, // AM/PM notation
             padding_23_31: u9,
         }), base_address + 0x0);
 
         /// address: 0x40002804
         /// date register
         pub const DR = @intToPtr(*volatile Mmio(32, packed struct {
-            DU: u4, //Date units in BCD format
-            DT: u2, //Date tens in BCD format
+            DU: u4, // Date units in BCD format
+            DT: u2, // Date tens in BCD format
             reserved_6_7: u2,
-            MU: u4, //Month units in BCD format
-            MT: u1, //Month tens in BCD format
-            WDU: u3, //Week day units
-            YU: u4, //Year units in BCD format
-            YT: u4, //Year tens in BCD format
+            MU: u4, // Month units in BCD format
+            MT: u1, // Month tens in BCD format
+            WDU: u3, // Week day units
+            YU: u4, // Year units in BCD format
+            YT: u4, // Year tens in BCD format
             padding_24_31: u8,
         }), base_address + 0x4);
 
         /// address: 0x40002808
         /// control register
         pub const CR = @intToPtr(*volatile Mmio(32, packed struct {
-            WCKSEL: u3, //Wakeup clock selection
-            TSEDGE: u1, //Time-stamp event active edge
-            REFCKON: u1, //Reference clock detection enable (50 or 60 Hz)
-            BYPSHAD: u1, //Bypass the shadow registers
-            FMT: u1, //Hour format
-            DCE: u1, //Coarse digital calibration enable
-            ALRAE: u1, //Alarm A enable
-            ALRBE: u1, //Alarm B enable
-            WUTE: u1, //Wakeup timer enable
-            TSE: u1, //Time stamp enable
-            ALRAIE: u1, //Alarm A interrupt enable
-            ALRBIE: u1, //Alarm B interrupt enable
-            WUTIE: u1, //Wakeup timer interrupt enable
-            TSIE: u1, //Time-stamp interrupt enable
-            ADD1H: u1, //Add 1 hour (summer time change)
-            SUB1H: u1, //Subtract 1 hour (winter time change)
-            BKP: u1, //Backup
-            COSEL: u1, //Calibration Output selection
-            POL: u1, //Output polarity
-            OSEL: u2, //Output selection
-            COE: u1, //Calibration output enable
+            WCKSEL: u3, // Wakeup clock selection
+            TSEDGE: u1, // Time-stamp event active edge
+            REFCKON: u1, // Reference clock detection enable (50 or 60 Hz)
+            BYPSHAD: u1, // Bypass the shadow registers
+            FMT: u1, // Hour format
+            DCE: u1, // Coarse digital calibration enable
+            ALRAE: u1, // Alarm A enable
+            ALRBE: u1, // Alarm B enable
+            WUTE: u1, // Wakeup timer enable
+            TSE: u1, // Time stamp enable
+            ALRAIE: u1, // Alarm A interrupt enable
+            ALRBIE: u1, // Alarm B interrupt enable
+            WUTIE: u1, // Wakeup timer interrupt enable
+            TSIE: u1, // Time-stamp interrupt enable
+            ADD1H: u1, // Add 1 hour (summer time change)
+            SUB1H: u1, // Subtract 1 hour (winter time change)
+            BKP: u1, // Backup
+            COSEL: u1, // Calibration Output selection
+            POL: u1, // Output polarity
+            OSEL: u2, // Output selection
+            COE: u1, // Calibration output enable
             padding_24_31: u8,
         }), base_address + 0x8);
 
         /// address: 0x4000280c
         /// initialization and status register
         pub const ISR = @intToPtr(*volatile Mmio(32, packed struct {
-            ALRAWF: u1, //Alarm A write flag
-            ALRBWF: u1, //Alarm B write flag
-            WUTWF: u1, //Wakeup timer write flag
-            SHPF: u1, //Shift operation pending
-            INITS: u1, //Initialization status flag
-            RSF: u1, //Registers synchronization flag
-            INITF: u1, //Initialization flag
-            INIT: u1, //Initialization mode
-            ALRAF: u1, //Alarm A flag
-            ALRBF: u1, //Alarm B flag
-            WUTF: u1, //Wakeup timer flag
-            TSF: u1, //Time-stamp flag
-            TSOVF: u1, //Time-stamp overflow flag
-            TAMP1F: u1, //Tamper detection flag
-            TAMP2F: u1, //TAMPER2 detection flag
+            ALRAWF: u1, // Alarm A write flag
+            ALRBWF: u1, // Alarm B write flag
+            WUTWF: u1, // Wakeup timer write flag
+            SHPF: u1, // Shift operation pending
+            INITS: u1, // Initialization status flag
+            RSF: u1, // Registers synchronization flag
+            INITF: u1, // Initialization flag
+            INIT: u1, // Initialization mode
+            ALRAF: u1, // Alarm A flag
+            ALRBF: u1, // Alarm B flag
+            WUTF: u1, // Wakeup timer flag
+            TSF: u1, // Time-stamp flag
+            TSOVF: u1, // Time-stamp overflow flag
+            TAMP1F: u1, // Tamper detection flag
+            TAMP2F: u1, // TAMPER2 detection flag
             reserved_15_15: u1,
-            RECALPF: u1, //Recalibration pending Flag
+            RECALPF: u1, // Recalibration pending Flag
             padding_17_31: u15,
         }), base_address + 0xc);
 
         /// address: 0x40002810
         /// prescaler register
         pub const PRER = @intToPtr(*volatile Mmio(32, packed struct {
-            PREDIV_S: u15, //Synchronous prescaler factor
+            PREDIV_S: u15, // Synchronous prescaler factor
             reserved_15_15: u1,
-            PREDIV_A: u7, //Asynchronous prescaler factor
+            PREDIV_A: u7, // Asynchronous prescaler factor
             padding_23_31: u9,
         }), base_address + 0x10);
 
         /// address: 0x40002814
         /// wakeup timer register
         pub const WUTR = @intToPtr(*volatile Mmio(32, packed struct {
-            WUT: u16, //Wakeup auto-reload value bits
+            WUT: u16, // Wakeup auto-reload value bits
             padding_16_31: u16,
         }), base_address + 0x14);
 
         /// address: 0x40002818
         /// calibration register
         pub const CALIBR = @intToPtr(*volatile Mmio(32, packed struct {
-            DC: u5, //Digital calibration
+            DC: u5, // Digital calibration
             reserved_5_6: u2,
-            DCS: u1, //Digital calibration sign
+            DCS: u1, // Digital calibration sign
             padding_8_31: u24,
         }), base_address + 0x18);
 
         /// address: 0x4000281c
         /// alarm A register
         pub const ALRMAR = @intToPtr(*volatile Mmio(32, packed struct {
-            SU: u4, //Second units in BCD format
-            ST: u3, //Second tens in BCD format
-            MSK1: u1, //Alarm A seconds mask
-            MNU: u4, //Minute units in BCD format
-            MNT: u3, //Minute tens in BCD format
-            MSK2: u1, //Alarm A minutes mask
-            HU: u4, //Hour units in BCD format
-            HT: u2, //Hour tens in BCD format
-            PM: u1, //AM/PM notation
-            MSK3: u1, //Alarm A hours mask
-            DU: u4, //Date units or day in BCD format
-            DT: u2, //Date tens in BCD format
-            WDSEL: u1, //Week day selection
-            MSK4: u1, //Alarm A date mask
+            SU: u4, // Second units in BCD format
+            ST: u3, // Second tens in BCD format
+            MSK1: u1, // Alarm A seconds mask
+            MNU: u4, // Minute units in BCD format
+            MNT: u3, // Minute tens in BCD format
+            MSK2: u1, // Alarm A minutes mask
+            HU: u4, // Hour units in BCD format
+            HT: u2, // Hour tens in BCD format
+            PM: u1, // AM/PM notation
+            MSK3: u1, // Alarm A hours mask
+            DU: u4, // Date units or day in BCD format
+            DT: u2, // Date tens in BCD format
+            WDSEL: u1, // Week day selection
+            MSK4: u1, // Alarm A date mask
         }), base_address + 0x1c);
 
         /// address: 0x40002820
         /// alarm B register
         pub const ALRMBR = @intToPtr(*volatile Mmio(32, packed struct {
-            SU: u4, //Second units in BCD format
-            ST: u3, //Second tens in BCD format
-            MSK1: u1, //Alarm B seconds mask
-            MNU: u4, //Minute units in BCD format
-            MNT: u3, //Minute tens in BCD format
-            MSK2: u1, //Alarm B minutes mask
-            HU: u4, //Hour units in BCD format
-            HT: u2, //Hour tens in BCD format
-            PM: u1, //AM/PM notation
-            MSK3: u1, //Alarm B hours mask
-            DU: u4, //Date units or day in BCD format
-            DT: u2, //Date tens in BCD format
-            WDSEL: u1, //Week day selection
-            MSK4: u1, //Alarm B date mask
+            SU: u4, // Second units in BCD format
+            ST: u3, // Second tens in BCD format
+            MSK1: u1, // Alarm B seconds mask
+            MNU: u4, // Minute units in BCD format
+            MNT: u3, // Minute tens in BCD format
+            MSK2: u1, // Alarm B minutes mask
+            HU: u4, // Hour units in BCD format
+            HT: u2, // Hour tens in BCD format
+            PM: u1, // AM/PM notation
+            MSK3: u1, // Alarm B hours mask
+            DU: u4, // Date units or day in BCD format
+            DT: u2, // Date tens in BCD format
+            WDSEL: u1, // Week day selection
+            MSK4: u1, // Alarm B date mask
         }), base_address + 0x20);
 
         /// address: 0x40002824
         /// write protection register
         pub const WPR = @intToPtr(*volatile Mmio(32, packed struct {
-            KEY: u8, //Write protection key
+            KEY: u8, // Write protection key
             padding_8_31: u24,
         }), base_address + 0x24);
 
         /// address: 0x40002828
         /// sub second register
         pub const SSR = @intToPtr(*volatile Mmio(32, packed struct {
-            SS: u16, //Sub second value
+            SS: u16, // Sub second value
             padding_16_31: u16,
         }), base_address + 0x28);
 
         /// address: 0x4000282c
         /// shift control register
         pub const SHIFTR = @intToPtr(*volatile Mmio(32, packed struct {
-            SUBFS: u15, //Subtract a fraction of a second
+            SUBFS: u15, // Subtract a fraction of a second
             reserved_15_30: u16,
-            ADD1S: u1, //Add one second
+            ADD1S: u1, // Add one second
         }), base_address + 0x2c);
 
         /// address: 0x40002830
         /// time stamp time register
         pub const TSTR = @intToPtr(*volatile Mmio(32, packed struct {
-            SU: u4, //Second units in BCD format
-            ST: u3, //Second tens in BCD format
+            SU: u4, // Second units in BCD format
+            ST: u3, // Second tens in BCD format
             reserved_7_7: u1,
-            MNU: u4, //Minute units in BCD format
-            MNT: u3, //Minute tens in BCD format
+            MNU: u4, // Minute units in BCD format
+            MNT: u3, // Minute tens in BCD format
             reserved_15_15: u1,
-            HU: u4, //Hour units in BCD format
-            HT: u2, //Hour tens in BCD format
-            PM: u1, //AM/PM notation
+            HU: u4, // Hour units in BCD format
+            HT: u2, // Hour tens in BCD format
+            PM: u1, // AM/PM notation
             padding_23_31: u9,
         }), base_address + 0x30);
 
         /// address: 0x40002834
         /// time stamp date register
         pub const TSDR = @intToPtr(*volatile Mmio(32, packed struct {
-            DU: u4, //Date units in BCD format
-            DT: u2, //Date tens in BCD format
+            DU: u4, // Date units in BCD format
+            DT: u2, // Date tens in BCD format
             reserved_6_7: u2,
-            MU: u4, //Month units in BCD format
-            MT: u1, //Month tens in BCD format
-            WDU: u3, //Week day units
+            MU: u4, // Month units in BCD format
+            MT: u1, // Month tens in BCD format
+            WDU: u3, // Week day units
             padding_16_31: u16,
         }), base_address + 0x34);
 
         /// address: 0x40002838
         /// timestamp sub second register
         pub const TSSSR = @intToPtr(*volatile Mmio(32, packed struct {
-            SS: u16, //Sub second value
+            SS: u16, // Sub second value
             padding_16_31: u16,
         }), base_address + 0x38);
 
         /// address: 0x4000283c
         /// calibration register
         pub const CALR = @intToPtr(*volatile Mmio(32, packed struct {
-            CALM: u9, //Calibration minus
+            CALM: u9, // Calibration minus
             reserved_9_12: u4,
-            CALW16: u1, //Use a 16-second calibration cycle period
-            CALW8: u1, //Use an 8-second calibration cycle period
-            CALP: u1, //Increase frequency of RTC by 488.5 ppm
+            CALW16: u1, // Use a 16-second calibration cycle period
+            CALW8: u1, // Use an 8-second calibration cycle period
+            CALP: u1, // Increase frequency of RTC by 488.5 ppm
             padding_16_31: u16,
         }), base_address + 0x3c);
 
         /// address: 0x40002840
         /// tamper and alternate function configuration register
         pub const TAFCR = @intToPtr(*volatile Mmio(32, packed struct {
-            TAMP1E: u1, //Tamper 1 detection enable
-            TAMP1TRG: u1, //Active level for tamper 1
-            TAMPIE: u1, //Tamper interrupt enable
-            TAMP2E: u1, //Tamper 2 detection enable
-            TAMP2TRG: u1, //Active level for tamper 2
+            TAMP1E: u1, // Tamper 1 detection enable
+            TAMP1TRG: u1, // Active level for tamper 1
+            TAMPIE: u1, // Tamper interrupt enable
+            TAMP2E: u1, // Tamper 2 detection enable
+            TAMP2TRG: u1, // Active level for tamper 2
             reserved_5_6: u2,
-            TAMPTS: u1, //Activate timestamp on tamper detection event
-            TAMPFREQ: u3, //Tamper sampling frequency
-            TAMPFLT: u2, //Tamper filter count
-            TAMPPRCH: u2, //Tamper precharge duration
-            TAMPPUDIS: u1, //TAMPER pull-up disable
-            TAMP1INSEL: u1, //TAMPER1 mapping
-            TSINSEL: u1, //TIMESTAMP mapping
-            ALARMOUTTYPE: u1, //AFO_ALARM output type
+            TAMPTS: u1, // Activate timestamp on tamper detection event
+            TAMPFREQ: u3, // Tamper sampling frequency
+            TAMPFLT: u2, // Tamper filter count
+            TAMPPRCH: u2, // Tamper precharge duration
+            TAMPPUDIS: u1, // TAMPER pull-up disable
+            TAMP1INSEL: u1, // TAMPER1 mapping
+            TSINSEL: u1, // TIMESTAMP mapping
+            ALARMOUTTYPE: u1, // AFO_ALARM output type
             padding_19_31: u13,
         }), base_address + 0x40);
 
         /// address: 0x40002844
         /// alarm A sub second register
         pub const ALRMASSR = @intToPtr(*volatile Mmio(32, packed struct {
-            SS: u15, //Sub seconds value
+            SS: u15, // Sub seconds value
             reserved_15_23: u9,
-            MASKSS: u4, //Mask the most-significant bits starting at this bit
+            MASKSS: u4, // Mask the most-significant bits starting at this bit
             padding_28_31: u4,
         }), base_address + 0x44);
 
         /// address: 0x40002848
         /// alarm B sub second register
         pub const ALRMBSSR = @intToPtr(*volatile Mmio(32, packed struct {
-            SS: u15, //Sub seconds value
+            SS: u15, // Sub seconds value
             reserved_15_23: u9,
-            MASKSS: u4, //Mask the most-significant bits starting at this bit
+            MASKSS: u4, // Mask the most-significant bits starting at this bit
             padding_28_31: u4,
         }), base_address + 0x48);
 
         /// address: 0x40002850
         /// backup register
         pub const BKP0R = @intToPtr(*volatile Mmio(32, packed struct {
-            BKP: u32, //BKP
+            BKP: u32, // BKP
         }), base_address + 0x50);
 
         /// address: 0x40002854
         /// backup register
         pub const BKP1R = @intToPtr(*volatile Mmio(32, packed struct {
-            BKP: u32, //BKP
+            BKP: u32, // BKP
         }), base_address + 0x54);
 
         /// address: 0x40002858
         /// backup register
         pub const BKP2R = @intToPtr(*volatile Mmio(32, packed struct {
-            BKP: u32, //BKP
+            BKP: u32, // BKP
         }), base_address + 0x58);
 
         /// address: 0x4000285c
         /// backup register
         pub const BKP3R = @intToPtr(*volatile Mmio(32, packed struct {
-            BKP: u32, //BKP
+            BKP: u32, // BKP
         }), base_address + 0x5c);
 
         /// address: 0x40002860
         /// backup register
         pub const BKP4R = @intToPtr(*volatile Mmio(32, packed struct {
-            BKP: u32, //BKP
+            BKP: u32, // BKP
         }), base_address + 0x60);
 
         /// address: 0x40002864
         /// backup register
         pub const BKP5R = @intToPtr(*volatile Mmio(32, packed struct {
-            BKP: u32, //BKP
+            BKP: u32, // BKP
         }), base_address + 0x64);
 
         /// address: 0x40002868
         /// backup register
         pub const BKP6R = @intToPtr(*volatile Mmio(32, packed struct {
-            BKP: u32, //BKP
+            BKP: u32, // BKP
         }), base_address + 0x68);
 
         /// address: 0x4000286c
         /// backup register
         pub const BKP7R = @intToPtr(*volatile Mmio(32, packed struct {
-            BKP: u32, //BKP
+            BKP: u32, // BKP
         }), base_address + 0x6c);
 
         /// address: 0x40002870
         /// backup register
         pub const BKP8R = @intToPtr(*volatile Mmio(32, packed struct {
-            BKP: u32, //BKP
+            BKP: u32, // BKP
         }), base_address + 0x70);
 
         /// address: 0x40002874
         /// backup register
         pub const BKP9R = @intToPtr(*volatile Mmio(32, packed struct {
-            BKP: u32, //BKP
+            BKP: u32, // BKP
         }), base_address + 0x74);
 
         /// address: 0x40002878
         /// backup register
         pub const BKP10R = @intToPtr(*volatile Mmio(32, packed struct {
-            BKP: u32, //BKP
+            BKP: u32, // BKP
         }), base_address + 0x78);
 
         /// address: 0x4000287c
         /// backup register
         pub const BKP11R = @intToPtr(*volatile Mmio(32, packed struct {
-            BKP: u32, //BKP
+            BKP: u32, // BKP
         }), base_address + 0x7c);
 
         /// address: 0x40002880
         /// backup register
         pub const BKP12R = @intToPtr(*volatile Mmio(32, packed struct {
-            BKP: u32, //BKP
+            BKP: u32, // BKP
         }), base_address + 0x80);
 
         /// address: 0x40002884
         /// backup register
         pub const BKP13R = @intToPtr(*volatile Mmio(32, packed struct {
-            BKP: u32, //BKP
+            BKP: u32, // BKP
         }), base_address + 0x84);
 
         /// address: 0x40002888
         /// backup register
         pub const BKP14R = @intToPtr(*volatile Mmio(32, packed struct {
-            BKP: u32, //BKP
+            BKP: u32, // BKP
         }), base_address + 0x88);
 
         /// address: 0x4000288c
         /// backup register
         pub const BKP15R = @intToPtr(*volatile Mmio(32, packed struct {
-            BKP: u32, //BKP
+            BKP: u32, // BKP
         }), base_address + 0x8c);
 
         /// address: 0x40002890
         /// backup register
         pub const BKP16R = @intToPtr(*volatile Mmio(32, packed struct {
-            BKP: u32, //BKP
+            BKP: u32, // BKP
         }), base_address + 0x90);
 
         /// address: 0x40002894
         /// backup register
         pub const BKP17R = @intToPtr(*volatile Mmio(32, packed struct {
-            BKP: u32, //BKP
+            BKP: u32, // BKP
         }), base_address + 0x94);
 
         /// address: 0x40002898
         /// backup register
         pub const BKP18R = @intToPtr(*volatile Mmio(32, packed struct {
-            BKP: u32, //BKP
+            BKP: u32, // BKP
         }), base_address + 0x98);
 
         /// address: 0x4000289c
         /// backup register
         pub const BKP19R = @intToPtr(*volatile Mmio(32, packed struct {
-            BKP: u32, //BKP
+            BKP: u32, // BKP
         }), base_address + 0x9c);
     };
 
@@ -2670,41 +2670,41 @@ pub const registers = struct {
         /// address: 0x40012c00
         /// power control register
         pub const POWER = @intToPtr(*volatile Mmio(32, packed struct {
-            PWRCTRL: u2, //PWRCTRL
+            PWRCTRL: u2, // PWRCTRL
             padding_2_31: u30,
         }), base_address + 0x0);
 
         /// address: 0x40012c04
         /// SDI clock control register
         pub const CLKCR = @intToPtr(*volatile Mmio(32, packed struct {
-            CLKDIV: u8, //Clock divide factor
-            CLKEN: u1, //Clock enable bit
-            PWRSAV: u1, //Power saving configuration bit
-            BYPASS: u1, //Clock divider bypass enable bit
-            WIDBUS: u2, //Wide bus mode enable bit
-            NEGEDGE: u1, //SDIO_CK dephasing selection bit
-            HWFC_EN: u1, //HW Flow Control enable
+            CLKDIV: u8, // Clock divide factor
+            CLKEN: u1, // Clock enable bit
+            PWRSAV: u1, // Power saving configuration bit
+            BYPASS: u1, // Clock divider bypass enable bit
+            WIDBUS: u2, // Wide bus mode enable bit
+            NEGEDGE: u1, // SDIO_CK dephasing selection bit
+            HWFC_EN: u1, // HW Flow Control enable
             padding_15_31: u17,
         }), base_address + 0x4);
 
         /// address: 0x40012c08
         /// argument register
         pub const ARG = @intToPtr(*volatile Mmio(32, packed struct {
-            CMDARG: u32, //Command argument
+            CMDARG: u32, // Command argument
         }), base_address + 0x8);
 
         /// address: 0x40012c0c
         /// command register
         pub const CMD = @intToPtr(*volatile Mmio(32, packed struct {
-            CMDINDEX: u6, //Command index
-            WAITRESP: u2, //Wait for response bits
-            WAITINT: u1, //CPSM waits for interrupt request
-            WAITPEND: u1, //CPSM Waits for ends of data transfer (CmdPend internal signal).
-            CPSMEN: u1, //Command path state machine (CPSM) Enable bit
-            SDIOSuspend: u1, //SD I/O suspend command
-            ENCMDcompl: u1, //Enable CMD completion
-            nIEN: u1, //not Interrupt Enable
-            CE_ATACMD: u1, //CE-ATA command
+            CMDINDEX: u6, // Command index
+            WAITRESP: u2, // Wait for response bits
+            WAITINT: u1, // CPSM waits for interrupt request
+            WAITPEND: u1, // CPSM Waits for ends of data transfer (CmdPend internal signal).
+            CPSMEN: u1, // Command path state machine (CPSM) Enable bit
+            SDIOSuspend: u1, // SD I/O suspend command
+            ENCMDcompl: u1, // Enable CMD completion
+            nIEN: u1, // not Interrupt Enable
+            CE_ATACMD: u1, // CE-ATA command
             padding_15_31: u17,
         }), base_address + 0xc);
 
@@ -2715,153 +2715,153 @@ pub const registers = struct {
         /// address: 0x40012c14
         /// response 1..4 register
         pub const RESP1 = @intToPtr(*volatile Mmio(32, packed struct {
-            CARDSTATUS1: u32, //Card Status
+            CARDSTATUS1: u32, // Card Status
         }), base_address + 0x14);
 
         /// address: 0x40012c18
         /// response 1..4 register
         pub const RESP2 = @intToPtr(*volatile Mmio(32, packed struct {
-            CARDSTATUS2: u32, //Card Status
+            CARDSTATUS2: u32, // Card Status
         }), base_address + 0x18);
 
         /// address: 0x40012c1c
         /// response 1..4 register
         pub const RESP3 = @intToPtr(*volatile Mmio(32, packed struct {
-            CARDSTATUS3: u32, //Card Status
+            CARDSTATUS3: u32, // Card Status
         }), base_address + 0x1c);
 
         /// address: 0x40012c20
         /// response 1..4 register
         pub const RESP4 = @intToPtr(*volatile Mmio(32, packed struct {
-            CARDSTATUS4: u32, //Card Status
+            CARDSTATUS4: u32, // Card Status
         }), base_address + 0x20);
 
         /// address: 0x40012c24
         /// data timer register
         pub const DTIMER = @intToPtr(*volatile Mmio(32, packed struct {
-            DATATIME: u32, //Data timeout period
+            DATATIME: u32, // Data timeout period
         }), base_address + 0x24);
 
         /// address: 0x40012c28
         /// data length register
         pub const DLEN = @intToPtr(*volatile Mmio(32, packed struct {
-            DATALENGTH: u25, //Data length value
+            DATALENGTH: u25, // Data length value
             padding_25_31: u7,
         }), base_address + 0x28);
 
         /// address: 0x40012c2c
         /// data control register
         pub const DCTRL = @intToPtr(*volatile Mmio(32, packed struct {
-            DTEN: u1, //DTEN
-            DTDIR: u1, //Data transfer direction selection
-            DTMODE: u1, //Data transfer mode selection 1: Stream or SDIO multibyte data transfer.
-            DMAEN: u1, //DMA enable bit
-            DBLOCKSIZE: u4, //Data block size
-            RWSTART: u1, //Read wait start
-            RWSTOP: u1, //Read wait stop
-            RWMOD: u1, //Read wait mode
-            SDIOEN: u1, //SD I/O enable functions
+            DTEN: u1, // DTEN
+            DTDIR: u1, // Data transfer direction selection
+            DTMODE: u1, // Data transfer mode selection 1: Stream or SDIO multibyte data transfer.
+            DMAEN: u1, // DMA enable bit
+            DBLOCKSIZE: u4, // Data block size
+            RWSTART: u1, // Read wait start
+            RWSTOP: u1, // Read wait stop
+            RWMOD: u1, // Read wait mode
+            SDIOEN: u1, // SD I/O enable functions
             padding_12_31: u20,
         }), base_address + 0x2c);
 
         /// address: 0x40012c30
         /// data counter register
         pub const DCOUNT = @intToPtr(*volatile Mmio(32, packed struct {
-            DATACOUNT: u25, //Data count value
+            DATACOUNT: u25, // Data count value
             padding_25_31: u7,
         }), base_address + 0x30);
 
         /// address: 0x40012c34
         /// status register
         pub const STA = @intToPtr(*volatile Mmio(32, packed struct {
-            CCRCFAIL: u1, //Command response received (CRC check failed)
-            DCRCFAIL: u1, //Data block sent/received (CRC check failed)
-            CTIMEOUT: u1, //Command response timeout
-            DTIMEOUT: u1, //Data timeout
-            TXUNDERR: u1, //Transmit FIFO underrun error
-            RXOVERR: u1, //Received FIFO overrun error
-            CMDREND: u1, //Command response received (CRC check passed)
-            CMDSENT: u1, //Command sent (no response required)
-            DATAEND: u1, //Data end (data counter, SDIDCOUNT, is zero)
-            STBITERR: u1, //Start bit not detected on all data signals in wide bus mode
-            DBCKEND: u1, //Data block sent/received (CRC check passed)
-            CMDACT: u1, //Command transfer in progress
-            TXACT: u1, //Data transmit in progress
-            RXACT: u1, //Data receive in progress
-            TXFIFOHE: u1, //Transmit FIFO half empty: at least 8 words can be written into the FIFO
-            RXFIFOHF: u1, //Receive FIFO half full: there are at least 8 words in the FIFO
-            TXFIFOF: u1, //Transmit FIFO full
-            RXFIFOF: u1, //Receive FIFO full
-            TXFIFOE: u1, //Transmit FIFO empty
-            RXFIFOE: u1, //Receive FIFO empty
-            TXDAVL: u1, //Data available in transmit FIFO
-            RXDAVL: u1, //Data available in receive FIFO
-            SDIOIT: u1, //SDIO interrupt received
-            CEATAEND: u1, //CE-ATA command completion signal received for CMD61
+            CCRCFAIL: u1, // Command response received (CRC check failed)
+            DCRCFAIL: u1, // Data block sent/received (CRC check failed)
+            CTIMEOUT: u1, // Command response timeout
+            DTIMEOUT: u1, // Data timeout
+            TXUNDERR: u1, // Transmit FIFO underrun error
+            RXOVERR: u1, // Received FIFO overrun error
+            CMDREND: u1, // Command response received (CRC check passed)
+            CMDSENT: u1, // Command sent (no response required)
+            DATAEND: u1, // Data end (data counter, SDIDCOUNT, is zero)
+            STBITERR: u1, // Start bit not detected on all data signals in wide bus mode
+            DBCKEND: u1, // Data block sent/received (CRC check passed)
+            CMDACT: u1, // Command transfer in progress
+            TXACT: u1, // Data transmit in progress
+            RXACT: u1, // Data receive in progress
+            TXFIFOHE: u1, // Transmit FIFO half empty: at least 8 words can be written into the FIFO
+            RXFIFOHF: u1, // Receive FIFO half full: there are at least 8 words in the FIFO
+            TXFIFOF: u1, // Transmit FIFO full
+            RXFIFOF: u1, // Receive FIFO full
+            TXFIFOE: u1, // Transmit FIFO empty
+            RXFIFOE: u1, // Receive FIFO empty
+            TXDAVL: u1, // Data available in transmit FIFO
+            RXDAVL: u1, // Data available in receive FIFO
+            SDIOIT: u1, // SDIO interrupt received
+            CEATAEND: u1, // CE-ATA command completion signal received for CMD61
             padding_24_31: u8,
         }), base_address + 0x34);
 
         /// address: 0x40012c38
         /// interrupt clear register
         pub const ICR = @intToPtr(*volatile Mmio(32, packed struct {
-            CCRCFAILC: u1, //CCRCFAIL flag clear bit
-            DCRCFAILC: u1, //DCRCFAIL flag clear bit
-            CTIMEOUTC: u1, //CTIMEOUT flag clear bit
-            DTIMEOUTC: u1, //DTIMEOUT flag clear bit
-            TXUNDERRC: u1, //TXUNDERR flag clear bit
-            RXOVERRC: u1, //RXOVERR flag clear bit
-            CMDRENDC: u1, //CMDREND flag clear bit
-            CMDSENTC: u1, //CMDSENT flag clear bit
-            DATAENDC: u1, //DATAEND flag clear bit
-            STBITERRC: u1, //STBITERR flag clear bit
-            DBCKENDC: u1, //DBCKEND flag clear bit
+            CCRCFAILC: u1, // CCRCFAIL flag clear bit
+            DCRCFAILC: u1, // DCRCFAIL flag clear bit
+            CTIMEOUTC: u1, // CTIMEOUT flag clear bit
+            DTIMEOUTC: u1, // DTIMEOUT flag clear bit
+            TXUNDERRC: u1, // TXUNDERR flag clear bit
+            RXOVERRC: u1, // RXOVERR flag clear bit
+            CMDRENDC: u1, // CMDREND flag clear bit
+            CMDSENTC: u1, // CMDSENT flag clear bit
+            DATAENDC: u1, // DATAEND flag clear bit
+            STBITERRC: u1, // STBITERR flag clear bit
+            DBCKENDC: u1, // DBCKEND flag clear bit
             reserved_11_21: u11,
-            SDIOITC: u1, //SDIOIT flag clear bit
-            CEATAENDC: u1, //CEATAEND flag clear bit
+            SDIOITC: u1, // SDIOIT flag clear bit
+            CEATAENDC: u1, // CEATAEND flag clear bit
             padding_24_31: u8,
         }), base_address + 0x38);
 
         /// address: 0x40012c3c
         /// mask register
         pub const MASK = @intToPtr(*volatile Mmio(32, packed struct {
-            CCRCFAILIE: u1, //Command CRC fail interrupt enable
-            DCRCFAILIE: u1, //Data CRC fail interrupt enable
-            CTIMEOUTIE: u1, //Command timeout interrupt enable
-            DTIMEOUTIE: u1, //Data timeout interrupt enable
-            TXUNDERRIE: u1, //Tx FIFO underrun error interrupt enable
-            RXOVERRIE: u1, //Rx FIFO overrun error interrupt enable
-            CMDRENDIE: u1, //Command response received interrupt enable
-            CMDSENTIE: u1, //Command sent interrupt enable
-            DATAENDIE: u1, //Data end interrupt enable
-            STBITERRIE: u1, //Start bit error interrupt enable
-            DBCKENDIE: u1, //Data block end interrupt enable
-            CMDACTIE: u1, //Command acting interrupt enable
-            TXACTIE: u1, //Data transmit acting interrupt enable
-            RXACTIE: u1, //Data receive acting interrupt enable
-            TXFIFOHEIE: u1, //Tx FIFO half empty interrupt enable
-            RXFIFOHFIE: u1, //Rx FIFO half full interrupt enable
-            TXFIFOFIE: u1, //Tx FIFO full interrupt enable
-            RXFIFOFIE: u1, //Rx FIFO full interrupt enable
-            TXFIFOEIE: u1, //Tx FIFO empty interrupt enable
-            RXFIFOEIE: u1, //Rx FIFO empty interrupt enable
-            TXDAVLIE: u1, //Data available in Tx FIFO interrupt enable
-            RXDAVLIE: u1, //Data available in Rx FIFO interrupt enable
-            SDIOITIE: u1, //SDIO mode interrupt received interrupt enable
-            CEATAENDIE: u1, //CE-ATA command completion signal received interrupt enable
+            CCRCFAILIE: u1, // Command CRC fail interrupt enable
+            DCRCFAILIE: u1, // Data CRC fail interrupt enable
+            CTIMEOUTIE: u1, // Command timeout interrupt enable
+            DTIMEOUTIE: u1, // Data timeout interrupt enable
+            TXUNDERRIE: u1, // Tx FIFO underrun error interrupt enable
+            RXOVERRIE: u1, // Rx FIFO overrun error interrupt enable
+            CMDRENDIE: u1, // Command response received interrupt enable
+            CMDSENTIE: u1, // Command sent interrupt enable
+            DATAENDIE: u1, // Data end interrupt enable
+            STBITERRIE: u1, // Start bit error interrupt enable
+            DBCKENDIE: u1, // Data block end interrupt enable
+            CMDACTIE: u1, // Command acting interrupt enable
+            TXACTIE: u1, // Data transmit acting interrupt enable
+            RXACTIE: u1, // Data receive acting interrupt enable
+            TXFIFOHEIE: u1, // Tx FIFO half empty interrupt enable
+            RXFIFOHFIE: u1, // Rx FIFO half full interrupt enable
+            TXFIFOFIE: u1, // Tx FIFO full interrupt enable
+            RXFIFOFIE: u1, // Rx FIFO full interrupt enable
+            TXFIFOEIE: u1, // Tx FIFO empty interrupt enable
+            RXFIFOEIE: u1, // Rx FIFO empty interrupt enable
+            TXDAVLIE: u1, // Data available in Tx FIFO interrupt enable
+            RXDAVLIE: u1, // Data available in Rx FIFO interrupt enable
+            SDIOITIE: u1, // SDIO mode interrupt received interrupt enable
+            CEATAENDIE: u1, // CE-ATA command completion signal received interrupt enable
             padding_24_31: u8,
         }), base_address + 0x3c);
 
         /// address: 0x40012c48
         /// FIFO counter register
         pub const FIFOCNT = @intToPtr(*volatile Mmio(32, packed struct {
-            FIFOCOUNT: u24, //Remaining number of words to be written to or read from the FIFO.
+            FIFOCOUNT: u24, // Remaining number of words to be written to or read from the FIFO.
             padding_24_31: u8,
         }), base_address + 0x48);
 
         /// address: 0x40012c80
         /// data FIFO register
         pub const FIFO = @intToPtr(*volatile Mmio(32, packed struct {
-            FIFOData: u32, //Receive and transmit FIFO data
+            FIFOData: u32, // Receive and transmit FIFO data
         }), base_address + 0x80);
     };
 
@@ -2872,7 +2872,7 @@ pub const registers = struct {
         /// address: 0x40013800
         /// memory remap register
         pub const MEMRM = @intToPtr(*volatile Mmio(32, packed struct {
-            MEM_MODE: u2, //MEM_MODE
+            MEM_MODE: u2, // MEM_MODE
             padding_2_31: u30,
         }), base_address + 0x0);
 
@@ -2880,56 +2880,56 @@ pub const registers = struct {
         /// peripheral mode configuration register
         pub const PMC = @intToPtr(*volatile Mmio(32, packed struct {
             reserved_0_15: u16,
-            ADC1DC2: u1, //ADC1DC2
+            ADC1DC2: u1, // ADC1DC2
             padding_17_31: u15,
         }), base_address + 0x4);
 
         /// address: 0x40013808
         /// external interrupt configuration register 1
         pub const EXTICR1 = @intToPtr(*volatile Mmio(32, packed struct {
-            EXTI0: u4, //EXTI x configuration (x = 0 to 3)
-            EXTI1: u4, //EXTI x configuration (x = 0 to 3)
-            EXTI2: u4, //EXTI x configuration (x = 0 to 3)
-            EXTI3: u4, //EXTI x configuration (x = 0 to 3)
+            EXTI0: u4, // EXTI x configuration (x = 0 to 3)
+            EXTI1: u4, // EXTI x configuration (x = 0 to 3)
+            EXTI2: u4, // EXTI x configuration (x = 0 to 3)
+            EXTI3: u4, // EXTI x configuration (x = 0 to 3)
             padding_16_31: u16,
         }), base_address + 0x8);
 
         /// address: 0x4001380c
         /// external interrupt configuration register 2
         pub const EXTICR2 = @intToPtr(*volatile Mmio(32, packed struct {
-            EXTI4: u4, //EXTI x configuration (x = 4 to 7)
-            EXTI5: u4, //EXTI x configuration (x = 4 to 7)
-            EXTI6: u4, //EXTI x configuration (x = 4 to 7)
-            EXTI7: u4, //EXTI x configuration (x = 4 to 7)
+            EXTI4: u4, // EXTI x configuration (x = 4 to 7)
+            EXTI5: u4, // EXTI x configuration (x = 4 to 7)
+            EXTI6: u4, // EXTI x configuration (x = 4 to 7)
+            EXTI7: u4, // EXTI x configuration (x = 4 to 7)
             padding_16_31: u16,
         }), base_address + 0xc);
 
         /// address: 0x40013810
         /// external interrupt configuration register 3
         pub const EXTICR3 = @intToPtr(*volatile Mmio(32, packed struct {
-            EXTI8: u4, //EXTI x configuration (x = 8 to 11)
-            EXTI9: u4, //EXTI x configuration (x = 8 to 11)
-            EXTI10: u4, //EXTI10
-            EXTI11: u4, //EXTI x configuration (x = 8 to 11)
+            EXTI8: u4, // EXTI x configuration (x = 8 to 11)
+            EXTI9: u4, // EXTI x configuration (x = 8 to 11)
+            EXTI10: u4, // EXTI10
+            EXTI11: u4, // EXTI x configuration (x = 8 to 11)
             padding_16_31: u16,
         }), base_address + 0x10);
 
         /// address: 0x40013814
         /// external interrupt configuration register 4
         pub const EXTICR4 = @intToPtr(*volatile Mmio(32, packed struct {
-            EXTI12: u4, //EXTI x configuration (x = 12 to 15)
-            EXTI13: u4, //EXTI x configuration (x = 12 to 15)
-            EXTI14: u4, //EXTI x configuration (x = 12 to 15)
-            EXTI15: u4, //EXTI x configuration (x = 12 to 15)
+            EXTI12: u4, // EXTI x configuration (x = 12 to 15)
+            EXTI13: u4, // EXTI x configuration (x = 12 to 15)
+            EXTI14: u4, // EXTI x configuration (x = 12 to 15)
+            EXTI15: u4, // EXTI x configuration (x = 12 to 15)
             padding_16_31: u16,
         }), base_address + 0x14);
 
         /// address: 0x40013820
         /// Compensation cell control register
         pub const CMPCR = @intToPtr(*volatile Mmio(32, packed struct {
-            CMP_PD: u1, //Compensation cell power-down
+            CMP_PD: u1, // Compensation cell power-down
             reserved_1_7: u7,
-            READY: u1, //READY
+            READY: u1, // READY
             padding_9_31: u23,
         }), base_address + 0x20);
     };
@@ -2941,177 +2941,177 @@ pub const registers = struct {
         /// address: 0x40010000
         /// control register 1
         pub const CR1 = @intToPtr(*volatile Mmio(32, packed struct {
-            CEN: u1, //Counter enable
-            UDIS: u1, //Update disable
-            URS: u1, //Update request source
-            OPM: u1, //One-pulse mode
-            DIR: u1, //Direction
-            CMS: u2, //Center-aligned mode selection
-            ARPE: u1, //Auto-reload preload enable
-            CKD: u2, //Clock division
+            CEN: u1, // Counter enable
+            UDIS: u1, // Update disable
+            URS: u1, // Update request source
+            OPM: u1, // One-pulse mode
+            DIR: u1, // Direction
+            CMS: u2, // Center-aligned mode selection
+            ARPE: u1, // Auto-reload preload enable
+            CKD: u2, // Clock division
             padding_10_31: u22,
         }), base_address + 0x0);
 
         /// address: 0x40010004
         /// control register 2
         pub const CR2 = @intToPtr(*volatile Mmio(32, packed struct {
-            CCPC: u1, //Capture/compare preloaded control
+            CCPC: u1, // Capture/compare preloaded control
             reserved_1_1: u1,
-            CCUS: u1, //Capture/compare control update selection
-            CCDS: u1, //Capture/compare DMA selection
-            MMS: u3, //Master mode selection
-            TI1S: u1, //TI1 selection
-            OIS1: u1, //Output Idle state 1
-            OIS1N: u1, //Output Idle state 1
-            OIS2: u1, //Output Idle state 2
-            OIS2N: u1, //Output Idle state 2
-            OIS3: u1, //Output Idle state 3
-            OIS3N: u1, //Output Idle state 3
-            OIS4: u1, //Output Idle state 4
+            CCUS: u1, // Capture/compare control update selection
+            CCDS: u1, // Capture/compare DMA selection
+            MMS: u3, // Master mode selection
+            TI1S: u1, // TI1 selection
+            OIS1: u1, // Output Idle state 1
+            OIS1N: u1, // Output Idle state 1
+            OIS2: u1, // Output Idle state 2
+            OIS2N: u1, // Output Idle state 2
+            OIS3: u1, // Output Idle state 3
+            OIS3N: u1, // Output Idle state 3
+            OIS4: u1, // Output Idle state 4
             padding_15_31: u17,
         }), base_address + 0x4);
 
         /// address: 0x40010008
         /// slave mode control register
         pub const SMCR = @intToPtr(*volatile Mmio(32, packed struct {
-            SMS: u3, //Slave mode selection
+            SMS: u3, // Slave mode selection
             reserved_3_3: u1,
-            TS: u3, //Trigger selection
-            MSM: u1, //Master/Slave mode
-            ETF: u4, //External trigger filter
-            ETPS: u2, //External trigger prescaler
-            ECE: u1, //External clock enable
-            ETP: u1, //External trigger polarity
+            TS: u3, // Trigger selection
+            MSM: u1, // Master/Slave mode
+            ETF: u4, // External trigger filter
+            ETPS: u2, // External trigger prescaler
+            ECE: u1, // External clock enable
+            ETP: u1, // External trigger polarity
             padding_16_31: u16,
         }), base_address + 0x8);
 
         /// address: 0x4001000c
         /// DMA/Interrupt enable register
         pub const DIER = @intToPtr(*volatile Mmio(32, packed struct {
-            UIE: u1, //Update interrupt enable
-            CC1IE: u1, //Capture/Compare 1 interrupt enable
-            CC2IE: u1, //Capture/Compare 2 interrupt enable
-            CC3IE: u1, //Capture/Compare 3 interrupt enable
-            CC4IE: u1, //Capture/Compare 4 interrupt enable
-            COMIE: u1, //COM interrupt enable
-            TIE: u1, //Trigger interrupt enable
-            BIE: u1, //Break interrupt enable
-            UDE: u1, //Update DMA request enable
-            CC1DE: u1, //Capture/Compare 1 DMA request enable
-            CC2DE: u1, //Capture/Compare 2 DMA request enable
-            CC3DE: u1, //Capture/Compare 3 DMA request enable
-            CC4DE: u1, //Capture/Compare 4 DMA request enable
-            COMDE: u1, //COM DMA request enable
-            TDE: u1, //Trigger DMA request enable
+            UIE: u1, // Update interrupt enable
+            CC1IE: u1, // Capture/Compare 1 interrupt enable
+            CC2IE: u1, // Capture/Compare 2 interrupt enable
+            CC3IE: u1, // Capture/Compare 3 interrupt enable
+            CC4IE: u1, // Capture/Compare 4 interrupt enable
+            COMIE: u1, // COM interrupt enable
+            TIE: u1, // Trigger interrupt enable
+            BIE: u1, // Break interrupt enable
+            UDE: u1, // Update DMA request enable
+            CC1DE: u1, // Capture/Compare 1 DMA request enable
+            CC2DE: u1, // Capture/Compare 2 DMA request enable
+            CC3DE: u1, // Capture/Compare 3 DMA request enable
+            CC4DE: u1, // Capture/Compare 4 DMA request enable
+            COMDE: u1, // COM DMA request enable
+            TDE: u1, // Trigger DMA request enable
             padding_15_31: u17,
         }), base_address + 0xc);
 
         /// address: 0x40010010
         /// status register
         pub const SR = @intToPtr(*volatile Mmio(32, packed struct {
-            UIF: u1, //Update interrupt flag
-            CC1IF: u1, //Capture/compare 1 interrupt flag
-            CC2IF: u1, //Capture/Compare 2 interrupt flag
-            CC3IF: u1, //Capture/Compare 3 interrupt flag
-            CC4IF: u1, //Capture/Compare 4 interrupt flag
-            COMIF: u1, //COM interrupt flag
-            TIF: u1, //Trigger interrupt flag
-            BIF: u1, //Break interrupt flag
+            UIF: u1, // Update interrupt flag
+            CC1IF: u1, // Capture/compare 1 interrupt flag
+            CC2IF: u1, // Capture/Compare 2 interrupt flag
+            CC3IF: u1, // Capture/Compare 3 interrupt flag
+            CC4IF: u1, // Capture/Compare 4 interrupt flag
+            COMIF: u1, // COM interrupt flag
+            TIF: u1, // Trigger interrupt flag
+            BIF: u1, // Break interrupt flag
             reserved_8_8: u1,
-            CC1OF: u1, //Capture/Compare 1 overcapture flag
-            CC2OF: u1, //Capture/compare 2 overcapture flag
-            CC3OF: u1, //Capture/Compare 3 overcapture flag
-            CC4OF: u1, //Capture/Compare 4 overcapture flag
+            CC1OF: u1, // Capture/Compare 1 overcapture flag
+            CC2OF: u1, // Capture/compare 2 overcapture flag
+            CC3OF: u1, // Capture/Compare 3 overcapture flag
+            CC4OF: u1, // Capture/Compare 4 overcapture flag
             padding_13_31: u19,
         }), base_address + 0x10);
 
         /// address: 0x40010014
         /// event generation register
         pub const EGR = @intToPtr(*volatile Mmio(32, packed struct {
-            UG: u1, //Update generation
-            CC1G: u1, //Capture/compare 1 generation
-            CC2G: u1, //Capture/compare 2 generation
-            CC3G: u1, //Capture/compare 3 generation
-            CC4G: u1, //Capture/compare 4 generation
-            COMG: u1, //Capture/Compare control update generation
-            TG: u1, //Trigger generation
-            BG: u1, //Break generation
+            UG: u1, // Update generation
+            CC1G: u1, // Capture/compare 1 generation
+            CC2G: u1, // Capture/compare 2 generation
+            CC3G: u1, // Capture/compare 3 generation
+            CC4G: u1, // Capture/compare 4 generation
+            COMG: u1, // Capture/Compare control update generation
+            TG: u1, // Trigger generation
+            BG: u1, // Break generation
             padding_8_31: u24,
         }), base_address + 0x14);
 
         /// address: 0x40010018
         /// capture/compare mode register 1 (output mode)
         pub const CCMR1_Output = @intToPtr(*volatile Mmio(32, packed struct {
-            CC1S: u2, //Capture/Compare 1 selection
-            OC1FE: u1, //Output Compare 1 fast enable
-            OC1PE: u1, //Output Compare 1 preload enable
-            OC1M: u3, //Output Compare 1 mode
-            OC1CE: u1, //Output Compare 1 clear enable
-            CC2S: u2, //Capture/Compare 2 selection
-            OC2FE: u1, //Output Compare 2 fast enable
-            OC2PE: u1, //Output Compare 2 preload enable
-            OC2M: u3, //Output Compare 2 mode
-            OC2CE: u1, //Output Compare 2 clear enable
+            CC1S: u2, // Capture/Compare 1 selection
+            OC1FE: u1, // Output Compare 1 fast enable
+            OC1PE: u1, // Output Compare 1 preload enable
+            OC1M: u3, // Output Compare 1 mode
+            OC1CE: u1, // Output Compare 1 clear enable
+            CC2S: u2, // Capture/Compare 2 selection
+            OC2FE: u1, // Output Compare 2 fast enable
+            OC2PE: u1, // Output Compare 2 preload enable
+            OC2M: u3, // Output Compare 2 mode
+            OC2CE: u1, // Output Compare 2 clear enable
             padding_16_31: u16,
         }), base_address + 0x18);
 
         /// address: 0x40010018
         /// capture/compare mode register 1 (input mode)
         pub const CCMR1_Input = @intToPtr(*volatile Mmio(32, packed struct {
-            CC1S: u2, //Capture/Compare 1 selection
-            ICPCS: u2, //Input capture 1 prescaler
-            IC1F: u4, //Input capture 1 filter
-            CC2S: u2, //Capture/Compare 2 selection
-            IC2PCS: u2, //Input capture 2 prescaler
-            IC2F: u4, //Input capture 2 filter
+            CC1S: u2, // Capture/Compare 1 selection
+            ICPCS: u2, // Input capture 1 prescaler
+            IC1F: u4, // Input capture 1 filter
+            CC2S: u2, // Capture/Compare 2 selection
+            IC2PCS: u2, // Input capture 2 prescaler
+            IC2F: u4, // Input capture 2 filter
             padding_16_31: u16,
         }), base_address + 0x18);
 
         /// address: 0x4001001c
         /// capture/compare mode register 2 (output mode)
         pub const CCMR2_Output = @intToPtr(*volatile Mmio(32, packed struct {
-            CC3S: u2, //Capture/Compare 3 selection
-            OC3FE: u1, //Output compare 3 fast enable
-            OC3PE: u1, //Output compare 3 preload enable
-            OC3M: u3, //Output compare 3 mode
-            OC3CE: u1, //Output compare 3 clear enable
-            CC4S: u2, //Capture/Compare 4 selection
-            OC4FE: u1, //Output compare 4 fast enable
-            OC4PE: u1, //Output compare 4 preload enable
-            OC4M: u3, //Output compare 4 mode
-            OC4CE: u1, //Output compare 4 clear enable
+            CC3S: u2, // Capture/Compare 3 selection
+            OC3FE: u1, // Output compare 3 fast enable
+            OC3PE: u1, // Output compare 3 preload enable
+            OC3M: u3, // Output compare 3 mode
+            OC3CE: u1, // Output compare 3 clear enable
+            CC4S: u2, // Capture/Compare 4 selection
+            OC4FE: u1, // Output compare 4 fast enable
+            OC4PE: u1, // Output compare 4 preload enable
+            OC4M: u3, // Output compare 4 mode
+            OC4CE: u1, // Output compare 4 clear enable
             padding_16_31: u16,
         }), base_address + 0x1c);
 
         /// address: 0x4001001c
         /// capture/compare mode register 2 (input mode)
         pub const CCMR2_Input = @intToPtr(*volatile Mmio(32, packed struct {
-            CC3S: u2, //Capture/compare 3 selection
-            IC3PSC: u2, //Input capture 3 prescaler
-            IC3F: u4, //Input capture 3 filter
-            CC4S: u2, //Capture/Compare 4 selection
-            IC4PSC: u2, //Input capture 4 prescaler
-            IC4F: u4, //Input capture 4 filter
+            CC3S: u2, // Capture/compare 3 selection
+            IC3PSC: u2, // Input capture 3 prescaler
+            IC3F: u4, // Input capture 3 filter
+            CC4S: u2, // Capture/Compare 4 selection
+            IC4PSC: u2, // Input capture 4 prescaler
+            IC4F: u4, // Input capture 4 filter
             padding_16_31: u16,
         }), base_address + 0x1c);
 
         /// address: 0x40010020
         /// capture/compare enable register
         pub const CCER = @intToPtr(*volatile Mmio(32, packed struct {
-            CC1E: u1, //Capture/Compare 1 output enable
-            CC1P: u1, //Capture/Compare 1 output Polarity
-            CC1NE: u1, //Capture/Compare 1 complementary output enable
-            CC1NP: u1, //Capture/Compare 1 output Polarity
-            CC2E: u1, //Capture/Compare 2 output enable
-            CC2P: u1, //Capture/Compare 2 output Polarity
-            CC2NE: u1, //Capture/Compare 2 complementary output enable
-            CC2NP: u1, //Capture/Compare 2 output Polarity
-            CC3E: u1, //Capture/Compare 3 output enable
-            CC3P: u1, //Capture/Compare 3 output Polarity
-            CC3NE: u1, //Capture/Compare 3 complementary output enable
-            CC3NP: u1, //Capture/Compare 3 output Polarity
-            CC4E: u1, //Capture/Compare 4 output enable
-            CC4P: u1, //Capture/Compare 3 output Polarity
+            CC1E: u1, // Capture/Compare 1 output enable
+            CC1P: u1, // Capture/Compare 1 output Polarity
+            CC1NE: u1, // Capture/Compare 1 complementary output enable
+            CC1NP: u1, // Capture/Compare 1 output Polarity
+            CC2E: u1, // Capture/Compare 2 output enable
+            CC2P: u1, // Capture/Compare 2 output Polarity
+            CC2NE: u1, // Capture/Compare 2 complementary output enable
+            CC2NP: u1, // Capture/Compare 2 output Polarity
+            CC3E: u1, // Capture/Compare 3 output enable
+            CC3P: u1, // Capture/Compare 3 output Polarity
+            CC3NE: u1, // Capture/Compare 3 complementary output enable
+            CC3NP: u1, // Capture/Compare 3 output Polarity
+            CC4E: u1, // Capture/Compare 4 output enable
+            CC4P: u1, // Capture/Compare 3 output Polarity
             padding_14_31: u18,
         }), base_address + 0x20);
 
@@ -3146,37 +3146,37 @@ pub const registers = struct {
         /// address: 0x40010048
         /// DMA control register
         pub const DCR = @intToPtr(*volatile Mmio(32, packed struct {
-            DBA: u5, //DMA base address
+            DBA: u5, // DMA base address
             reserved_5_7: u3,
-            DBL: u5, //DMA burst length
+            DBL: u5, // DMA burst length
             padding_13_31: u19,
         }), base_address + 0x48);
 
         /// address: 0x4001004c
         /// DMA address for full transfer
         pub const DMAR = @intToPtr(*volatile Mmio(32, packed struct {
-            DMAB: u16, //DMA register for burst accesses
+            DMAB: u16, // DMA register for burst accesses
             padding_16_31: u16,
         }), base_address + 0x4c);
 
         /// address: 0x40010030
         /// repetition counter register
         pub const RCR = @intToPtr(*volatile Mmio(32, packed struct {
-            REP: u8, //Repetition counter value
+            REP: u8, // Repetition counter value
             padding_8_31: u24,
         }), base_address + 0x30);
 
         /// address: 0x40010044
         /// break and dead-time register
         pub const BDTR = @intToPtr(*volatile Mmio(32, packed struct {
-            DTG: u8, //Dead-time generator setup
-            LOCK: u2, //Lock configuration
-            OSSI: u1, //Off-state selection for Idle mode
-            OSSR: u1, //Off-state selection for Run mode
-            BKE: u1, //Break enable
-            BKP: u1, //Break polarity
-            AOE: u1, //Automatic output enable
-            MOE: u1, //Main output enable
+            DTG: u8, // Dead-time generator setup
+            LOCK: u2, // Lock configuration
+            OSSI: u1, // Off-state selection for Idle mode
+            OSSR: u1, // Off-state selection for Run mode
+            BKE: u1, // Break enable
+            BKP: u1, // Break polarity
+            AOE: u1, // Automatic output enable
+            MOE: u1, // Main output enable
             padding_16_31: u16,
         }), base_address + 0x44);
     };
@@ -3188,67 +3188,67 @@ pub const registers = struct {
         /// address: 0x40014400
         /// control register 1
         pub const CR1 = @intToPtr(*volatile Mmio(32, packed struct {
-            CEN: u1, //Counter enable
-            UDIS: u1, //Update disable
-            URS: u1, //Update request source
+            CEN: u1, // Counter enable
+            UDIS: u1, // Update disable
+            URS: u1, // Update request source
             reserved_3_6: u4,
-            ARPE: u1, //Auto-reload preload enable
-            CKD: u2, //Clock division
+            ARPE: u1, // Auto-reload preload enable
+            CKD: u2, // Clock division
             padding_10_31: u22,
         }), base_address + 0x0);
 
         /// address: 0x4001440c
         /// DMA/Interrupt enable register
         pub const DIER = @intToPtr(*volatile Mmio(32, packed struct {
-            UIE: u1, //Update interrupt enable
-            CC1IE: u1, //Capture/Compare 1 interrupt enable
+            UIE: u1, // Update interrupt enable
+            CC1IE: u1, // Capture/Compare 1 interrupt enable
             padding_2_31: u30,
         }), base_address + 0xc);
 
         /// address: 0x40014410
         /// status register
         pub const SR = @intToPtr(*volatile Mmio(32, packed struct {
-            UIF: u1, //Update interrupt flag
-            CC1IF: u1, //Capture/compare 1 interrupt flag
+            UIF: u1, // Update interrupt flag
+            CC1IF: u1, // Capture/compare 1 interrupt flag
             reserved_2_8: u7,
-            CC1OF: u1, //Capture/Compare 1 overcapture flag
+            CC1OF: u1, // Capture/Compare 1 overcapture flag
             padding_10_31: u22,
         }), base_address + 0x10);
 
         /// address: 0x40014414
         /// event generation register
         pub const EGR = @intToPtr(*volatile Mmio(32, packed struct {
-            UG: u1, //Update generation
-            CC1G: u1, //Capture/compare 1 generation
+            UG: u1, // Update generation
+            CC1G: u1, // Capture/compare 1 generation
             padding_2_31: u30,
         }), base_address + 0x14);
 
         /// address: 0x40014418
         /// capture/compare mode register 1 (output mode)
         pub const CCMR1_Output = @intToPtr(*volatile Mmio(32, packed struct {
-            CC1S: u2, //Capture/Compare 1 selection
-            OC1FE: u1, //Output Compare 1 fast enable
-            OC1PE: u1, //Output Compare 1 preload enable
-            OC1M: u3, //Output Compare 1 mode
+            CC1S: u2, // Capture/Compare 1 selection
+            OC1FE: u1, // Output Compare 1 fast enable
+            OC1PE: u1, // Output Compare 1 preload enable
+            OC1M: u3, // Output Compare 1 mode
             padding_7_31: u25,
         }), base_address + 0x18);
 
         /// address: 0x40014418
         /// capture/compare mode register 1 (input mode)
         pub const CCMR1_Input = @intToPtr(*volatile Mmio(32, packed struct {
-            CC1S: u2, //Capture/Compare 1 selection
-            ICPCS: u2, //Input capture 1 prescaler
-            IC1F: u4, //Input capture 1 filter
+            CC1S: u2, // Capture/Compare 1 selection
+            ICPCS: u2, // Input capture 1 prescaler
+            IC1F: u4, // Input capture 1 filter
             padding_8_31: u24,
         }), base_address + 0x18);
 
         /// address: 0x40014420
         /// capture/compare enable register
         pub const CCER = @intToPtr(*volatile Mmio(32, packed struct {
-            CC1E: u1, //Capture/Compare 1 output enable
-            CC1P: u1, //Capture/Compare 1 output Polarity
+            CC1E: u1, // Capture/Compare 1 output enable
+            CC1P: u1, // Capture/Compare 1 output Polarity
             reserved_2_2: u1,
-            CC1NP: u1, //Capture/Compare 1 output Polarity
+            CC1NP: u1, // Capture/Compare 1 output Polarity
             padding_4_31: u28,
         }), base_address + 0x20);
 
@@ -3276,67 +3276,67 @@ pub const registers = struct {
         /// address: 0x40014800
         /// control register 1
         pub const CR1 = @intToPtr(*volatile Mmio(32, packed struct {
-            CEN: u1, //Counter enable
-            UDIS: u1, //Update disable
-            URS: u1, //Update request source
+            CEN: u1, // Counter enable
+            UDIS: u1, // Update disable
+            URS: u1, // Update request source
             reserved_3_6: u4,
-            ARPE: u1, //Auto-reload preload enable
-            CKD: u2, //Clock division
+            ARPE: u1, // Auto-reload preload enable
+            CKD: u2, // Clock division
             padding_10_31: u22,
         }), base_address + 0x0);
 
         /// address: 0x4001480c
         /// DMA/Interrupt enable register
         pub const DIER = @intToPtr(*volatile Mmio(32, packed struct {
-            UIE: u1, //Update interrupt enable
-            CC1IE: u1, //Capture/Compare 1 interrupt enable
+            UIE: u1, // Update interrupt enable
+            CC1IE: u1, // Capture/Compare 1 interrupt enable
             padding_2_31: u30,
         }), base_address + 0xc);
 
         /// address: 0x40014810
         /// status register
         pub const SR = @intToPtr(*volatile Mmio(32, packed struct {
-            UIF: u1, //Update interrupt flag
-            CC1IF: u1, //Capture/compare 1 interrupt flag
+            UIF: u1, // Update interrupt flag
+            CC1IF: u1, // Capture/compare 1 interrupt flag
             reserved_2_8: u7,
-            CC1OF: u1, //Capture/Compare 1 overcapture flag
+            CC1OF: u1, // Capture/Compare 1 overcapture flag
             padding_10_31: u22,
         }), base_address + 0x10);
 
         /// address: 0x40014814
         /// event generation register
         pub const EGR = @intToPtr(*volatile Mmio(32, packed struct {
-            UG: u1, //Update generation
-            CC1G: u1, //Capture/compare 1 generation
+            UG: u1, // Update generation
+            CC1G: u1, // Capture/compare 1 generation
             padding_2_31: u30,
         }), base_address + 0x14);
 
         /// address: 0x40014818
         /// capture/compare mode register 1 (output mode)
         pub const CCMR1_Output = @intToPtr(*volatile Mmio(32, packed struct {
-            CC1S: u2, //Capture/Compare 1 selection
-            OC1FE: u1, //Output Compare 1 fast enable
-            OC1PE: u1, //Output Compare 1 preload enable
-            OC1M: u3, //Output Compare 1 mode
+            CC1S: u2, // Capture/Compare 1 selection
+            OC1FE: u1, // Output Compare 1 fast enable
+            OC1PE: u1, // Output Compare 1 preload enable
+            OC1M: u3, // Output Compare 1 mode
             padding_7_31: u25,
         }), base_address + 0x18);
 
         /// address: 0x40014818
         /// capture/compare mode register 1 (input mode)
         pub const CCMR1_Input = @intToPtr(*volatile Mmio(32, packed struct {
-            CC1S: u2, //Capture/Compare 1 selection
-            ICPCS: u2, //Input capture 1 prescaler
-            IC1F: u4, //Input capture 1 filter
+            CC1S: u2, // Capture/Compare 1 selection
+            ICPCS: u2, // Input capture 1 prescaler
+            IC1F: u4, // Input capture 1 filter
             padding_8_31: u24,
         }), base_address + 0x18);
 
         /// address: 0x40014820
         /// capture/compare enable register
         pub const CCER = @intToPtr(*volatile Mmio(32, packed struct {
-            CC1E: u1, //Capture/Compare 1 output enable
-            CC1P: u1, //Capture/Compare 1 output Polarity
+            CC1E: u1, // Capture/Compare 1 output enable
+            CC1P: u1, // Capture/Compare 1 output Polarity
             reserved_2_2: u1,
-            CC1NP: u1, //Capture/Compare 1 output Polarity
+            CC1NP: u1, // Capture/Compare 1 output Polarity
             padding_4_31: u28,
         }), base_address + 0x20);
 
@@ -3359,7 +3359,7 @@ pub const registers = struct {
         /// address: 0x40014850
         /// option register
         pub const OR = @intToPtr(*volatile Mmio(32, packed struct {
-            RMP: u2, //Input 1 remapping capability
+            RMP: u2, // Input 1 remapping capability
             padding_2_31: u30,
         }), base_address + 0x50);
     };
@@ -3371,14 +3371,14 @@ pub const registers = struct {
         /// address: 0x40000000
         /// control register 1
         pub const CR1 = @intToPtr(*volatile Mmio(32, packed struct {
-            CEN: u1, //Counter enable
-            UDIS: u1, //Update disable
-            URS: u1, //Update request source
-            OPM: u1, //One-pulse mode
-            DIR: u1, //Direction
-            CMS: u2, //Center-aligned mode selection
-            ARPE: u1, //Auto-reload preload enable
-            CKD: u2, //Clock division
+            CEN: u1, // Counter enable
+            UDIS: u1, // Update disable
+            URS: u1, // Update request source
+            OPM: u1, // One-pulse mode
+            DIR: u1, // Direction
+            CMS: u2, // Center-aligned mode selection
+            ARPE: u1, // Auto-reload preload enable
+            CKD: u2, // Clock division
             padding_10_31: u22,
         }), base_address + 0x0);
 
@@ -3386,161 +3386,161 @@ pub const registers = struct {
         /// control register 2
         pub const CR2 = @intToPtr(*volatile Mmio(32, packed struct {
             reserved_0_2: u3,
-            CCDS: u1, //Capture/compare DMA selection
-            MMS: u3, //Master mode selection
-            TI1S: u1, //TI1 selection
+            CCDS: u1, // Capture/compare DMA selection
+            MMS: u3, // Master mode selection
+            TI1S: u1, // TI1 selection
             padding_8_31: u24,
         }), base_address + 0x4);
 
         /// address: 0x40000008
         /// slave mode control register
         pub const SMCR = @intToPtr(*volatile Mmio(32, packed struct {
-            SMS: u3, //Slave mode selection
+            SMS: u3, // Slave mode selection
             reserved_3_3: u1,
-            TS: u3, //Trigger selection
-            MSM: u1, //Master/Slave mode
-            ETF: u4, //External trigger filter
-            ETPS: u2, //External trigger prescaler
-            ECE: u1, //External clock enable
-            ETP: u1, //External trigger polarity
+            TS: u3, // Trigger selection
+            MSM: u1, // Master/Slave mode
+            ETF: u4, // External trigger filter
+            ETPS: u2, // External trigger prescaler
+            ECE: u1, // External clock enable
+            ETP: u1, // External trigger polarity
             padding_16_31: u16,
         }), base_address + 0x8);
 
         /// address: 0x4000000c
         /// DMA/Interrupt enable register
         pub const DIER = @intToPtr(*volatile Mmio(32, packed struct {
-            UIE: u1, //Update interrupt enable
-            CC1IE: u1, //Capture/Compare 1 interrupt enable
-            CC2IE: u1, //Capture/Compare 2 interrupt enable
-            CC3IE: u1, //Capture/Compare 3 interrupt enable
-            CC4IE: u1, //Capture/Compare 4 interrupt enable
+            UIE: u1, // Update interrupt enable
+            CC1IE: u1, // Capture/Compare 1 interrupt enable
+            CC2IE: u1, // Capture/Compare 2 interrupt enable
+            CC3IE: u1, // Capture/Compare 3 interrupt enable
+            CC4IE: u1, // Capture/Compare 4 interrupt enable
             reserved_5_5: u1,
-            TIE: u1, //Trigger interrupt enable
+            TIE: u1, // Trigger interrupt enable
             reserved_7_7: u1,
-            UDE: u1, //Update DMA request enable
-            CC1DE: u1, //Capture/Compare 1 DMA request enable
-            CC2DE: u1, //Capture/Compare 2 DMA request enable
-            CC3DE: u1, //Capture/Compare 3 DMA request enable
-            CC4DE: u1, //Capture/Compare 4 DMA request enable
+            UDE: u1, // Update DMA request enable
+            CC1DE: u1, // Capture/Compare 1 DMA request enable
+            CC2DE: u1, // Capture/Compare 2 DMA request enable
+            CC3DE: u1, // Capture/Compare 3 DMA request enable
+            CC4DE: u1, // Capture/Compare 4 DMA request enable
             reserved_13_13: u1,
-            TDE: u1, //Trigger DMA request enable
+            TDE: u1, // Trigger DMA request enable
             padding_15_31: u17,
         }), base_address + 0xc);
 
         /// address: 0x40000010
         /// status register
         pub const SR = @intToPtr(*volatile Mmio(32, packed struct {
-            UIF: u1, //Update interrupt flag
-            CC1IF: u1, //Capture/compare 1 interrupt flag
-            CC2IF: u1, //Capture/Compare 2 interrupt flag
-            CC3IF: u1, //Capture/Compare 3 interrupt flag
-            CC4IF: u1, //Capture/Compare 4 interrupt flag
+            UIF: u1, // Update interrupt flag
+            CC1IF: u1, // Capture/compare 1 interrupt flag
+            CC2IF: u1, // Capture/Compare 2 interrupt flag
+            CC3IF: u1, // Capture/Compare 3 interrupt flag
+            CC4IF: u1, // Capture/Compare 4 interrupt flag
             reserved_5_5: u1,
-            TIF: u1, //Trigger interrupt flag
+            TIF: u1, // Trigger interrupt flag
             reserved_7_8: u2,
-            CC1OF: u1, //Capture/Compare 1 overcapture flag
-            CC2OF: u1, //Capture/compare 2 overcapture flag
-            CC3OF: u1, //Capture/Compare 3 overcapture flag
-            CC4OF: u1, //Capture/Compare 4 overcapture flag
+            CC1OF: u1, // Capture/Compare 1 overcapture flag
+            CC2OF: u1, // Capture/compare 2 overcapture flag
+            CC3OF: u1, // Capture/Compare 3 overcapture flag
+            CC4OF: u1, // Capture/Compare 4 overcapture flag
             padding_13_31: u19,
         }), base_address + 0x10);
 
         /// address: 0x40000014
         /// event generation register
         pub const EGR = @intToPtr(*volatile Mmio(32, packed struct {
-            UG: u1, //Update generation
-            CC1G: u1, //Capture/compare 1 generation
-            CC2G: u1, //Capture/compare 2 generation
-            CC3G: u1, //Capture/compare 3 generation
-            CC4G: u1, //Capture/compare 4 generation
+            UG: u1, // Update generation
+            CC1G: u1, // Capture/compare 1 generation
+            CC2G: u1, // Capture/compare 2 generation
+            CC3G: u1, // Capture/compare 3 generation
+            CC4G: u1, // Capture/compare 4 generation
             reserved_5_5: u1,
-            TG: u1, //Trigger generation
+            TG: u1, // Trigger generation
             padding_7_31: u25,
         }), base_address + 0x14);
 
         /// address: 0x40000018
         /// capture/compare mode register 1 (output mode)
         pub const CCMR1_Output = @intToPtr(*volatile Mmio(32, packed struct {
-            CC1S: u2, //CC1S
-            OC1FE: u1, //OC1FE
-            OC1PE: u1, //OC1PE
-            OC1M: u3, //OC1M
-            OC1CE: u1, //OC1CE
-            CC2S: u2, //CC2S
-            OC2FE: u1, //OC2FE
-            OC2PE: u1, //OC2PE
-            OC2M: u3, //OC2M
-            OC2CE: u1, //OC2CE
+            CC1S: u2, // CC1S
+            OC1FE: u1, // OC1FE
+            OC1PE: u1, // OC1PE
+            OC1M: u3, // OC1M
+            OC1CE: u1, // OC1CE
+            CC2S: u2, // CC2S
+            OC2FE: u1, // OC2FE
+            OC2PE: u1, // OC2PE
+            OC2M: u3, // OC2M
+            OC2CE: u1, // OC2CE
             padding_16_31: u16,
         }), base_address + 0x18);
 
         /// address: 0x40000018
         /// capture/compare mode register 1 (input mode)
         pub const CCMR1_Input = @intToPtr(*volatile Mmio(32, packed struct {
-            CC1S: u2, //Capture/Compare 1 selection
-            ICPCS: u2, //Input capture 1 prescaler
-            IC1F: u4, //Input capture 1 filter
-            CC2S: u2, //Capture/Compare 2 selection
-            IC2PCS: u2, //Input capture 2 prescaler
-            IC2F: u4, //Input capture 2 filter
+            CC1S: u2, // Capture/Compare 1 selection
+            ICPCS: u2, // Input capture 1 prescaler
+            IC1F: u4, // Input capture 1 filter
+            CC2S: u2, // Capture/Compare 2 selection
+            IC2PCS: u2, // Input capture 2 prescaler
+            IC2F: u4, // Input capture 2 filter
             padding_16_31: u16,
         }), base_address + 0x18);
 
         /// address: 0x4000001c
         /// capture/compare mode register 2 (output mode)
         pub const CCMR2_Output = @intToPtr(*volatile Mmio(32, packed struct {
-            CC3S: u2, //CC3S
-            OC3FE: u1, //OC3FE
-            OC3PE: u1, //OC3PE
-            OC3M: u3, //OC3M
-            OC3CE: u1, //OC3CE
-            CC4S: u2, //CC4S
-            OC4FE: u1, //OC4FE
-            OC4PE: u1, //OC4PE
-            OC4M: u3, //OC4M
-            O24CE: u1, //O24CE
+            CC3S: u2, // CC3S
+            OC3FE: u1, // OC3FE
+            OC3PE: u1, // OC3PE
+            OC3M: u3, // OC3M
+            OC3CE: u1, // OC3CE
+            CC4S: u2, // CC4S
+            OC4FE: u1, // OC4FE
+            OC4PE: u1, // OC4PE
+            OC4M: u3, // OC4M
+            O24CE: u1, // O24CE
             padding_16_31: u16,
         }), base_address + 0x1c);
 
         /// address: 0x4000001c
         /// capture/compare mode register 2 (input mode)
         pub const CCMR2_Input = @intToPtr(*volatile Mmio(32, packed struct {
-            CC3S: u2, //Capture/compare 3 selection
-            IC3PSC: u2, //Input capture 3 prescaler
-            IC3F: u4, //Input capture 3 filter
-            CC4S: u2, //Capture/Compare 4 selection
-            IC4PSC: u2, //Input capture 4 prescaler
-            IC4F: u4, //Input capture 4 filter
+            CC3S: u2, // Capture/compare 3 selection
+            IC3PSC: u2, // Input capture 3 prescaler
+            IC3F: u4, // Input capture 3 filter
+            CC4S: u2, // Capture/Compare 4 selection
+            IC4PSC: u2, // Input capture 4 prescaler
+            IC4F: u4, // Input capture 4 filter
             padding_16_31: u16,
         }), base_address + 0x1c);
 
         /// address: 0x40000020
         /// capture/compare enable register
         pub const CCER = @intToPtr(*volatile Mmio(32, packed struct {
-            CC1E: u1, //Capture/Compare 1 output enable
-            CC1P: u1, //Capture/Compare 1 output Polarity
+            CC1E: u1, // Capture/Compare 1 output enable
+            CC1P: u1, // Capture/Compare 1 output Polarity
             reserved_2_2: u1,
-            CC1NP: u1, //Capture/Compare 1 output Polarity
-            CC2E: u1, //Capture/Compare 2 output enable
-            CC2P: u1, //Capture/Compare 2 output Polarity
+            CC1NP: u1, // Capture/Compare 1 output Polarity
+            CC2E: u1, // Capture/Compare 2 output enable
+            CC2P: u1, // Capture/Compare 2 output Polarity
             reserved_6_6: u1,
-            CC2NP: u1, //Capture/Compare 2 output Polarity
-            CC3E: u1, //Capture/Compare 3 output enable
-            CC3P: u1, //Capture/Compare 3 output Polarity
+            CC2NP: u1, // Capture/Compare 2 output Polarity
+            CC3E: u1, // Capture/Compare 3 output enable
+            CC3P: u1, // Capture/Compare 3 output Polarity
             reserved_10_10: u1,
-            CC3NP: u1, //Capture/Compare 3 output Polarity
-            CC4E: u1, //Capture/Compare 4 output enable
-            CC4P: u1, //Capture/Compare 3 output Polarity
+            CC3NP: u1, // Capture/Compare 3 output Polarity
+            CC4E: u1, // Capture/Compare 4 output enable
+            CC4P: u1, // Capture/Compare 3 output Polarity
             reserved_14_14: u1,
-            CC4NP: u1, //Capture/Compare 4 output Polarity
+            CC4NP: u1, // Capture/Compare 4 output Polarity
             padding_16_31: u16,
         }), base_address + 0x20);
 
         /// address: 0x40000024
         /// counter
         pub const CNT = @intToPtr(*volatile Mmio(32, packed struct {
-            CNT_L: u16, //Low counter value
-            CNT_H: u16, //High counter value
+            CNT_L: u16, // Low counter value
+            CNT_H: u16, // High counter value
         }), base_address + 0x24);
 
         /// address: 0x40000028
@@ -3550,51 +3550,51 @@ pub const registers = struct {
         /// address: 0x4000002c
         /// auto-reload register
         pub const ARR = @intToPtr(*volatile Mmio(32, packed struct {
-            ARR_L: u16, //Low Auto-reload value
-            ARR_H: u16, //High Auto-reload value
+            ARR_L: u16, // Low Auto-reload value
+            ARR_H: u16, // High Auto-reload value
         }), base_address + 0x2c);
 
         /// address: 0x40000034
         /// capture/compare register 1
         pub const CCR1 = @intToPtr(*volatile Mmio(32, packed struct {
-            CCR1_L: u16, //Low Capture/Compare 1 value
-            CCR1_H: u16, //High Capture/Compare 1 value
+            CCR1_L: u16, // Low Capture/Compare 1 value
+            CCR1_H: u16, // High Capture/Compare 1 value
         }), base_address + 0x34);
 
         /// address: 0x40000038
         /// capture/compare register 2
         pub const CCR2 = @intToPtr(*volatile Mmio(32, packed struct {
-            CCR2_L: u16, //Low Capture/Compare 2 value
-            CCR2_H: u16, //High Capture/Compare 2 value
+            CCR2_L: u16, // Low Capture/Compare 2 value
+            CCR2_H: u16, // High Capture/Compare 2 value
         }), base_address + 0x38);
 
         /// address: 0x4000003c
         /// capture/compare register 3
         pub const CCR3 = @intToPtr(*volatile Mmio(32, packed struct {
-            CCR3_L: u16, //Low Capture/Compare value
-            CCR3_H: u16, //High Capture/Compare value
+            CCR3_L: u16, // Low Capture/Compare value
+            CCR3_H: u16, // High Capture/Compare value
         }), base_address + 0x3c);
 
         /// address: 0x40000040
         /// capture/compare register 4
         pub const CCR4 = @intToPtr(*volatile Mmio(32, packed struct {
-            CCR4_L: u16, //Low Capture/Compare value
-            CCR4_H: u16, //High Capture/Compare value
+            CCR4_L: u16, // Low Capture/Compare value
+            CCR4_H: u16, // High Capture/Compare value
         }), base_address + 0x40);
 
         /// address: 0x40000048
         /// DMA control register
         pub const DCR = @intToPtr(*volatile Mmio(32, packed struct {
-            DBA: u5, //DMA base address
+            DBA: u5, // DMA base address
             reserved_5_7: u3,
-            DBL: u5, //DMA burst length
+            DBL: u5, // DMA burst length
             padding_13_31: u19,
         }), base_address + 0x48);
 
         /// address: 0x4000004c
         /// DMA address for full transfer
         pub const DMAR = @intToPtr(*volatile Mmio(32, packed struct {
-            DMAB: u16, //DMA register for burst accesses
+            DMAB: u16, // DMA register for burst accesses
             padding_16_31: u16,
         }), base_address + 0x4c);
 
@@ -3602,7 +3602,7 @@ pub const registers = struct {
         /// TIM5 option register
         pub const OR = @intToPtr(*volatile Mmio(32, packed struct {
             reserved_0_9: u10,
-            ITR1_RMP: u2, //Timer Input 4 remap
+            ITR1_RMP: u2, // Timer Input 4 remap
             padding_12_31: u20,
         }), base_address + 0x50);
     };
@@ -3614,14 +3614,14 @@ pub const registers = struct {
         /// address: 0x40000400
         /// control register 1
         pub const CR1 = @intToPtr(*volatile Mmio(32, packed struct {
-            CEN: u1, //Counter enable
-            UDIS: u1, //Update disable
-            URS: u1, //Update request source
-            OPM: u1, //One-pulse mode
-            DIR: u1, //Direction
-            CMS: u2, //Center-aligned mode selection
-            ARPE: u1, //Auto-reload preload enable
-            CKD: u2, //Clock division
+            CEN: u1, // Counter enable
+            UDIS: u1, // Update disable
+            URS: u1, // Update request source
+            OPM: u1, // One-pulse mode
+            DIR: u1, // Direction
+            CMS: u2, // Center-aligned mode selection
+            ARPE: u1, // Auto-reload preload enable
+            CKD: u2, // Clock division
             padding_10_31: u22,
         }), base_address + 0x0);
 
@@ -3629,161 +3629,161 @@ pub const registers = struct {
         /// control register 2
         pub const CR2 = @intToPtr(*volatile Mmio(32, packed struct {
             reserved_0_2: u3,
-            CCDS: u1, //Capture/compare DMA selection
-            MMS: u3, //Master mode selection
-            TI1S: u1, //TI1 selection
+            CCDS: u1, // Capture/compare DMA selection
+            MMS: u3, // Master mode selection
+            TI1S: u1, // TI1 selection
             padding_8_31: u24,
         }), base_address + 0x4);
 
         /// address: 0x40000408
         /// slave mode control register
         pub const SMCR = @intToPtr(*volatile Mmio(32, packed struct {
-            SMS: u3, //Slave mode selection
+            SMS: u3, // Slave mode selection
             reserved_3_3: u1,
-            TS: u3, //Trigger selection
-            MSM: u1, //Master/Slave mode
-            ETF: u4, //External trigger filter
-            ETPS: u2, //External trigger prescaler
-            ECE: u1, //External clock enable
-            ETP: u1, //External trigger polarity
+            TS: u3, // Trigger selection
+            MSM: u1, // Master/Slave mode
+            ETF: u4, // External trigger filter
+            ETPS: u2, // External trigger prescaler
+            ECE: u1, // External clock enable
+            ETP: u1, // External trigger polarity
             padding_16_31: u16,
         }), base_address + 0x8);
 
         /// address: 0x4000040c
         /// DMA/Interrupt enable register
         pub const DIER = @intToPtr(*volatile Mmio(32, packed struct {
-            UIE: u1, //Update interrupt enable
-            CC1IE: u1, //Capture/Compare 1 interrupt enable
-            CC2IE: u1, //Capture/Compare 2 interrupt enable
-            CC3IE: u1, //Capture/Compare 3 interrupt enable
-            CC4IE: u1, //Capture/Compare 4 interrupt enable
+            UIE: u1, // Update interrupt enable
+            CC1IE: u1, // Capture/Compare 1 interrupt enable
+            CC2IE: u1, // Capture/Compare 2 interrupt enable
+            CC3IE: u1, // Capture/Compare 3 interrupt enable
+            CC4IE: u1, // Capture/Compare 4 interrupt enable
             reserved_5_5: u1,
-            TIE: u1, //Trigger interrupt enable
+            TIE: u1, // Trigger interrupt enable
             reserved_7_7: u1,
-            UDE: u1, //Update DMA request enable
-            CC1DE: u1, //Capture/Compare 1 DMA request enable
-            CC2DE: u1, //Capture/Compare 2 DMA request enable
-            CC3DE: u1, //Capture/Compare 3 DMA request enable
-            CC4DE: u1, //Capture/Compare 4 DMA request enable
+            UDE: u1, // Update DMA request enable
+            CC1DE: u1, // Capture/Compare 1 DMA request enable
+            CC2DE: u1, // Capture/Compare 2 DMA request enable
+            CC3DE: u1, // Capture/Compare 3 DMA request enable
+            CC4DE: u1, // Capture/Compare 4 DMA request enable
             reserved_13_13: u1,
-            TDE: u1, //Trigger DMA request enable
+            TDE: u1, // Trigger DMA request enable
             padding_15_31: u17,
         }), base_address + 0xc);
 
         /// address: 0x40000410
         /// status register
         pub const SR = @intToPtr(*volatile Mmio(32, packed struct {
-            UIF: u1, //Update interrupt flag
-            CC1IF: u1, //Capture/compare 1 interrupt flag
-            CC2IF: u1, //Capture/Compare 2 interrupt flag
-            CC3IF: u1, //Capture/Compare 3 interrupt flag
-            CC4IF: u1, //Capture/Compare 4 interrupt flag
+            UIF: u1, // Update interrupt flag
+            CC1IF: u1, // Capture/compare 1 interrupt flag
+            CC2IF: u1, // Capture/Compare 2 interrupt flag
+            CC3IF: u1, // Capture/Compare 3 interrupt flag
+            CC4IF: u1, // Capture/Compare 4 interrupt flag
             reserved_5_5: u1,
-            TIF: u1, //Trigger interrupt flag
+            TIF: u1, // Trigger interrupt flag
             reserved_7_8: u2,
-            CC1OF: u1, //Capture/Compare 1 overcapture flag
-            CC2OF: u1, //Capture/compare 2 overcapture flag
-            CC3OF: u1, //Capture/Compare 3 overcapture flag
-            CC4OF: u1, //Capture/Compare 4 overcapture flag
+            CC1OF: u1, // Capture/Compare 1 overcapture flag
+            CC2OF: u1, // Capture/compare 2 overcapture flag
+            CC3OF: u1, // Capture/Compare 3 overcapture flag
+            CC4OF: u1, // Capture/Compare 4 overcapture flag
             padding_13_31: u19,
         }), base_address + 0x10);
 
         /// address: 0x40000414
         /// event generation register
         pub const EGR = @intToPtr(*volatile Mmio(32, packed struct {
-            UG: u1, //Update generation
-            CC1G: u1, //Capture/compare 1 generation
-            CC2G: u1, //Capture/compare 2 generation
-            CC3G: u1, //Capture/compare 3 generation
-            CC4G: u1, //Capture/compare 4 generation
+            UG: u1, // Update generation
+            CC1G: u1, // Capture/compare 1 generation
+            CC2G: u1, // Capture/compare 2 generation
+            CC3G: u1, // Capture/compare 3 generation
+            CC4G: u1, // Capture/compare 4 generation
             reserved_5_5: u1,
-            TG: u1, //Trigger generation
+            TG: u1, // Trigger generation
             padding_7_31: u25,
         }), base_address + 0x14);
 
         /// address: 0x40000418
         /// capture/compare mode register 1 (output mode)
         pub const CCMR1_Output = @intToPtr(*volatile Mmio(32, packed struct {
-            CC1S: u2, //CC1S
-            OC1FE: u1, //OC1FE
-            OC1PE: u1, //OC1PE
-            OC1M: u3, //OC1M
-            OC1CE: u1, //OC1CE
-            CC2S: u2, //CC2S
-            OC2FE: u1, //OC2FE
-            OC2PE: u1, //OC2PE
-            OC2M: u3, //OC2M
-            OC2CE: u1, //OC2CE
+            CC1S: u2, // CC1S
+            OC1FE: u1, // OC1FE
+            OC1PE: u1, // OC1PE
+            OC1M: u3, // OC1M
+            OC1CE: u1, // OC1CE
+            CC2S: u2, // CC2S
+            OC2FE: u1, // OC2FE
+            OC2PE: u1, // OC2PE
+            OC2M: u3, // OC2M
+            OC2CE: u1, // OC2CE
             padding_16_31: u16,
         }), base_address + 0x18);
 
         /// address: 0x40000418
         /// capture/compare mode register 1 (input mode)
         pub const CCMR1_Input = @intToPtr(*volatile Mmio(32, packed struct {
-            CC1S: u2, //Capture/Compare 1 selection
-            ICPCS: u2, //Input capture 1 prescaler
-            IC1F: u4, //Input capture 1 filter
-            CC2S: u2, //Capture/Compare 2 selection
-            IC2PCS: u2, //Input capture 2 prescaler
-            IC2F: u4, //Input capture 2 filter
+            CC1S: u2, // Capture/Compare 1 selection
+            ICPCS: u2, // Input capture 1 prescaler
+            IC1F: u4, // Input capture 1 filter
+            CC2S: u2, // Capture/Compare 2 selection
+            IC2PCS: u2, // Input capture 2 prescaler
+            IC2F: u4, // Input capture 2 filter
             padding_16_31: u16,
         }), base_address + 0x18);
 
         /// address: 0x4000041c
         /// capture/compare mode register 2 (output mode)
         pub const CCMR2_Output = @intToPtr(*volatile Mmio(32, packed struct {
-            CC3S: u2, //CC3S
-            OC3FE: u1, //OC3FE
-            OC3PE: u1, //OC3PE
-            OC3M: u3, //OC3M
-            OC3CE: u1, //OC3CE
-            CC4S: u2, //CC4S
-            OC4FE: u1, //OC4FE
-            OC4PE: u1, //OC4PE
-            OC4M: u3, //OC4M
-            O24CE: u1, //O24CE
+            CC3S: u2, // CC3S
+            OC3FE: u1, // OC3FE
+            OC3PE: u1, // OC3PE
+            OC3M: u3, // OC3M
+            OC3CE: u1, // OC3CE
+            CC4S: u2, // CC4S
+            OC4FE: u1, // OC4FE
+            OC4PE: u1, // OC4PE
+            OC4M: u3, // OC4M
+            O24CE: u1, // O24CE
             padding_16_31: u16,
         }), base_address + 0x1c);
 
         /// address: 0x4000041c
         /// capture/compare mode register 2 (input mode)
         pub const CCMR2_Input = @intToPtr(*volatile Mmio(32, packed struct {
-            CC3S: u2, //Capture/compare 3 selection
-            IC3PSC: u2, //Input capture 3 prescaler
-            IC3F: u4, //Input capture 3 filter
-            CC4S: u2, //Capture/Compare 4 selection
-            IC4PSC: u2, //Input capture 4 prescaler
-            IC4F: u4, //Input capture 4 filter
+            CC3S: u2, // Capture/compare 3 selection
+            IC3PSC: u2, // Input capture 3 prescaler
+            IC3F: u4, // Input capture 3 filter
+            CC4S: u2, // Capture/Compare 4 selection
+            IC4PSC: u2, // Input capture 4 prescaler
+            IC4F: u4, // Input capture 4 filter
             padding_16_31: u16,
         }), base_address + 0x1c);
 
         /// address: 0x40000420
         /// capture/compare enable register
         pub const CCER = @intToPtr(*volatile Mmio(32, packed struct {
-            CC1E: u1, //Capture/Compare 1 output enable
-            CC1P: u1, //Capture/Compare 1 output Polarity
+            CC1E: u1, // Capture/Compare 1 output enable
+            CC1P: u1, // Capture/Compare 1 output Polarity
             reserved_2_2: u1,
-            CC1NP: u1, //Capture/Compare 1 output Polarity
-            CC2E: u1, //Capture/Compare 2 output enable
-            CC2P: u1, //Capture/Compare 2 output Polarity
+            CC1NP: u1, // Capture/Compare 1 output Polarity
+            CC2E: u1, // Capture/Compare 2 output enable
+            CC2P: u1, // Capture/Compare 2 output Polarity
             reserved_6_6: u1,
-            CC2NP: u1, //Capture/Compare 2 output Polarity
-            CC3E: u1, //Capture/Compare 3 output enable
-            CC3P: u1, //Capture/Compare 3 output Polarity
+            CC2NP: u1, // Capture/Compare 2 output Polarity
+            CC3E: u1, // Capture/Compare 3 output enable
+            CC3P: u1, // Capture/Compare 3 output Polarity
             reserved_10_10: u1,
-            CC3NP: u1, //Capture/Compare 3 output Polarity
-            CC4E: u1, //Capture/Compare 4 output enable
-            CC4P: u1, //Capture/Compare 3 output Polarity
+            CC3NP: u1, // Capture/Compare 3 output Polarity
+            CC4E: u1, // Capture/Compare 4 output enable
+            CC4P: u1, // Capture/Compare 3 output Polarity
             reserved_14_14: u1,
-            CC4NP: u1, //Capture/Compare 4 output Polarity
+            CC4NP: u1, // Capture/Compare 4 output Polarity
             padding_16_31: u16,
         }), base_address + 0x20);
 
         /// address: 0x40000424
         /// counter
         pub const CNT = @intToPtr(*volatile Mmio(32, packed struct {
-            CNT_L: u16, //Low counter value
-            CNT_H: u16, //High counter value
+            CNT_L: u16, // Low counter value
+            CNT_H: u16, // High counter value
         }), base_address + 0x24);
 
         /// address: 0x40000428
@@ -3793,51 +3793,51 @@ pub const registers = struct {
         /// address: 0x4000042c
         /// auto-reload register
         pub const ARR = @intToPtr(*volatile Mmio(32, packed struct {
-            ARR_L: u16, //Low Auto-reload value
-            ARR_H: u16, //High Auto-reload value
+            ARR_L: u16, // Low Auto-reload value
+            ARR_H: u16, // High Auto-reload value
         }), base_address + 0x2c);
 
         /// address: 0x40000434
         /// capture/compare register 1
         pub const CCR1 = @intToPtr(*volatile Mmio(32, packed struct {
-            CCR1_L: u16, //Low Capture/Compare 1 value
-            CCR1_H: u16, //High Capture/Compare 1 value
+            CCR1_L: u16, // Low Capture/Compare 1 value
+            CCR1_H: u16, // High Capture/Compare 1 value
         }), base_address + 0x34);
 
         /// address: 0x40000438
         /// capture/compare register 2
         pub const CCR2 = @intToPtr(*volatile Mmio(32, packed struct {
-            CCR2_L: u16, //Low Capture/Compare 2 value
-            CCR2_H: u16, //High Capture/Compare 2 value
+            CCR2_L: u16, // Low Capture/Compare 2 value
+            CCR2_H: u16, // High Capture/Compare 2 value
         }), base_address + 0x38);
 
         /// address: 0x4000043c
         /// capture/compare register 3
         pub const CCR3 = @intToPtr(*volatile Mmio(32, packed struct {
-            CCR3_L: u16, //Low Capture/Compare value
-            CCR3_H: u16, //High Capture/Compare value
+            CCR3_L: u16, // Low Capture/Compare value
+            CCR3_H: u16, // High Capture/Compare value
         }), base_address + 0x3c);
 
         /// address: 0x40000440
         /// capture/compare register 4
         pub const CCR4 = @intToPtr(*volatile Mmio(32, packed struct {
-            CCR4_L: u16, //Low Capture/Compare value
-            CCR4_H: u16, //High Capture/Compare value
+            CCR4_L: u16, // Low Capture/Compare value
+            CCR4_H: u16, // High Capture/Compare value
         }), base_address + 0x40);
 
         /// address: 0x40000448
         /// DMA control register
         pub const DCR = @intToPtr(*volatile Mmio(32, packed struct {
-            DBA: u5, //DMA base address
+            DBA: u5, // DMA base address
             reserved_5_7: u3,
-            DBL: u5, //DMA burst length
+            DBL: u5, // DMA burst length
             padding_13_31: u19,
         }), base_address + 0x48);
 
         /// address: 0x4000044c
         /// DMA address for full transfer
         pub const DMAR = @intToPtr(*volatile Mmio(32, packed struct {
-            DMAB: u16, //DMA register for burst accesses
+            DMAB: u16, // DMA register for burst accesses
             padding_16_31: u16,
         }), base_address + 0x4c);
     };
@@ -3849,14 +3849,14 @@ pub const registers = struct {
         /// address: 0x40000c00
         /// control register 1
         pub const CR1 = @intToPtr(*volatile Mmio(32, packed struct {
-            CEN: u1, //Counter enable
-            UDIS: u1, //Update disable
-            URS: u1, //Update request source
-            OPM: u1, //One-pulse mode
-            DIR: u1, //Direction
-            CMS: u2, //Center-aligned mode selection
-            ARPE: u1, //Auto-reload preload enable
-            CKD: u2, //Clock division
+            CEN: u1, // Counter enable
+            UDIS: u1, // Update disable
+            URS: u1, // Update request source
+            OPM: u1, // One-pulse mode
+            DIR: u1, // Direction
+            CMS: u2, // Center-aligned mode selection
+            ARPE: u1, // Auto-reload preload enable
+            CKD: u2, // Clock division
             padding_10_31: u22,
         }), base_address + 0x0);
 
@@ -3864,161 +3864,161 @@ pub const registers = struct {
         /// control register 2
         pub const CR2 = @intToPtr(*volatile Mmio(32, packed struct {
             reserved_0_2: u3,
-            CCDS: u1, //Capture/compare DMA selection
-            MMS: u3, //Master mode selection
-            TI1S: u1, //TI1 selection
+            CCDS: u1, // Capture/compare DMA selection
+            MMS: u3, // Master mode selection
+            TI1S: u1, // TI1 selection
             padding_8_31: u24,
         }), base_address + 0x4);
 
         /// address: 0x40000c08
         /// slave mode control register
         pub const SMCR = @intToPtr(*volatile Mmio(32, packed struct {
-            SMS: u3, //Slave mode selection
+            SMS: u3, // Slave mode selection
             reserved_3_3: u1,
-            TS: u3, //Trigger selection
-            MSM: u1, //Master/Slave mode
-            ETF: u4, //External trigger filter
-            ETPS: u2, //External trigger prescaler
-            ECE: u1, //External clock enable
-            ETP: u1, //External trigger polarity
+            TS: u3, // Trigger selection
+            MSM: u1, // Master/Slave mode
+            ETF: u4, // External trigger filter
+            ETPS: u2, // External trigger prescaler
+            ECE: u1, // External clock enable
+            ETP: u1, // External trigger polarity
             padding_16_31: u16,
         }), base_address + 0x8);
 
         /// address: 0x40000c0c
         /// DMA/Interrupt enable register
         pub const DIER = @intToPtr(*volatile Mmio(32, packed struct {
-            UIE: u1, //Update interrupt enable
-            CC1IE: u1, //Capture/Compare 1 interrupt enable
-            CC2IE: u1, //Capture/Compare 2 interrupt enable
-            CC3IE: u1, //Capture/Compare 3 interrupt enable
-            CC4IE: u1, //Capture/Compare 4 interrupt enable
+            UIE: u1, // Update interrupt enable
+            CC1IE: u1, // Capture/Compare 1 interrupt enable
+            CC2IE: u1, // Capture/Compare 2 interrupt enable
+            CC3IE: u1, // Capture/Compare 3 interrupt enable
+            CC4IE: u1, // Capture/Compare 4 interrupt enable
             reserved_5_5: u1,
-            TIE: u1, //Trigger interrupt enable
+            TIE: u1, // Trigger interrupt enable
             reserved_7_7: u1,
-            UDE: u1, //Update DMA request enable
-            CC1DE: u1, //Capture/Compare 1 DMA request enable
-            CC2DE: u1, //Capture/Compare 2 DMA request enable
-            CC3DE: u1, //Capture/Compare 3 DMA request enable
-            CC4DE: u1, //Capture/Compare 4 DMA request enable
+            UDE: u1, // Update DMA request enable
+            CC1DE: u1, // Capture/Compare 1 DMA request enable
+            CC2DE: u1, // Capture/Compare 2 DMA request enable
+            CC3DE: u1, // Capture/Compare 3 DMA request enable
+            CC4DE: u1, // Capture/Compare 4 DMA request enable
             reserved_13_13: u1,
-            TDE: u1, //Trigger DMA request enable
+            TDE: u1, // Trigger DMA request enable
             padding_15_31: u17,
         }), base_address + 0xc);
 
         /// address: 0x40000c10
         /// status register
         pub const SR = @intToPtr(*volatile Mmio(32, packed struct {
-            UIF: u1, //Update interrupt flag
-            CC1IF: u1, //Capture/compare 1 interrupt flag
-            CC2IF: u1, //Capture/Compare 2 interrupt flag
-            CC3IF: u1, //Capture/Compare 3 interrupt flag
-            CC4IF: u1, //Capture/Compare 4 interrupt flag
+            UIF: u1, // Update interrupt flag
+            CC1IF: u1, // Capture/compare 1 interrupt flag
+            CC2IF: u1, // Capture/Compare 2 interrupt flag
+            CC3IF: u1, // Capture/Compare 3 interrupt flag
+            CC4IF: u1, // Capture/Compare 4 interrupt flag
             reserved_5_5: u1,
-            TIF: u1, //Trigger interrupt flag
+            TIF: u1, // Trigger interrupt flag
             reserved_7_8: u2,
-            CC1OF: u1, //Capture/Compare 1 overcapture flag
-            CC2OF: u1, //Capture/compare 2 overcapture flag
-            CC3OF: u1, //Capture/Compare 3 overcapture flag
-            CC4OF: u1, //Capture/Compare 4 overcapture flag
+            CC1OF: u1, // Capture/Compare 1 overcapture flag
+            CC2OF: u1, // Capture/compare 2 overcapture flag
+            CC3OF: u1, // Capture/Compare 3 overcapture flag
+            CC4OF: u1, // Capture/Compare 4 overcapture flag
             padding_13_31: u19,
         }), base_address + 0x10);
 
         /// address: 0x40000c14
         /// event generation register
         pub const EGR = @intToPtr(*volatile Mmio(32, packed struct {
-            UG: u1, //Update generation
-            CC1G: u1, //Capture/compare 1 generation
-            CC2G: u1, //Capture/compare 2 generation
-            CC3G: u1, //Capture/compare 3 generation
-            CC4G: u1, //Capture/compare 4 generation
+            UG: u1, // Update generation
+            CC1G: u1, // Capture/compare 1 generation
+            CC2G: u1, // Capture/compare 2 generation
+            CC3G: u1, // Capture/compare 3 generation
+            CC4G: u1, // Capture/compare 4 generation
             reserved_5_5: u1,
-            TG: u1, //Trigger generation
+            TG: u1, // Trigger generation
             padding_7_31: u25,
         }), base_address + 0x14);
 
         /// address: 0x40000c18
         /// capture/compare mode register 1 (output mode)
         pub const CCMR1_Output = @intToPtr(*volatile Mmio(32, packed struct {
-            CC1S: u2, //CC1S
-            OC1FE: u1, //OC1FE
-            OC1PE: u1, //OC1PE
-            OC1M: u3, //OC1M
-            OC1CE: u1, //OC1CE
-            CC2S: u2, //CC2S
-            OC2FE: u1, //OC2FE
-            OC2PE: u1, //OC2PE
-            OC2M: u3, //OC2M
-            OC2CE: u1, //OC2CE
+            CC1S: u2, // CC1S
+            OC1FE: u1, // OC1FE
+            OC1PE: u1, // OC1PE
+            OC1M: u3, // OC1M
+            OC1CE: u1, // OC1CE
+            CC2S: u2, // CC2S
+            OC2FE: u1, // OC2FE
+            OC2PE: u1, // OC2PE
+            OC2M: u3, // OC2M
+            OC2CE: u1, // OC2CE
             padding_16_31: u16,
         }), base_address + 0x18);
 
         /// address: 0x40000c18
         /// capture/compare mode register 1 (input mode)
         pub const CCMR1_Input = @intToPtr(*volatile Mmio(32, packed struct {
-            CC1S: u2, //Capture/Compare 1 selection
-            ICPCS: u2, //Input capture 1 prescaler
-            IC1F: u4, //Input capture 1 filter
-            CC2S: u2, //Capture/Compare 2 selection
-            IC2PCS: u2, //Input capture 2 prescaler
-            IC2F: u4, //Input capture 2 filter
+            CC1S: u2, // Capture/Compare 1 selection
+            ICPCS: u2, // Input capture 1 prescaler
+            IC1F: u4, // Input capture 1 filter
+            CC2S: u2, // Capture/Compare 2 selection
+            IC2PCS: u2, // Input capture 2 prescaler
+            IC2F: u4, // Input capture 2 filter
             padding_16_31: u16,
         }), base_address + 0x18);
 
         /// address: 0x40000c1c
         /// capture/compare mode register 2 (output mode)
         pub const CCMR2_Output = @intToPtr(*volatile Mmio(32, packed struct {
-            CC3S: u2, //CC3S
-            OC3FE: u1, //OC3FE
-            OC3PE: u1, //OC3PE
-            OC3M: u3, //OC3M
-            OC3CE: u1, //OC3CE
-            CC4S: u2, //CC4S
-            OC4FE: u1, //OC4FE
-            OC4PE: u1, //OC4PE
-            OC4M: u3, //OC4M
-            O24CE: u1, //O24CE
+            CC3S: u2, // CC3S
+            OC3FE: u1, // OC3FE
+            OC3PE: u1, // OC3PE
+            OC3M: u3, // OC3M
+            OC3CE: u1, // OC3CE
+            CC4S: u2, // CC4S
+            OC4FE: u1, // OC4FE
+            OC4PE: u1, // OC4PE
+            OC4M: u3, // OC4M
+            O24CE: u1, // O24CE
             padding_16_31: u16,
         }), base_address + 0x1c);
 
         /// address: 0x40000c1c
         /// capture/compare mode register 2 (input mode)
         pub const CCMR2_Input = @intToPtr(*volatile Mmio(32, packed struct {
-            CC3S: u2, //Capture/compare 3 selection
-            IC3PSC: u2, //Input capture 3 prescaler
-            IC3F: u4, //Input capture 3 filter
-            CC4S: u2, //Capture/Compare 4 selection
-            IC4PSC: u2, //Input capture 4 prescaler
-            IC4F: u4, //Input capture 4 filter
+            CC3S: u2, // Capture/compare 3 selection
+            IC3PSC: u2, // Input capture 3 prescaler
+            IC3F: u4, // Input capture 3 filter
+            CC4S: u2, // Capture/Compare 4 selection
+            IC4PSC: u2, // Input capture 4 prescaler
+            IC4F: u4, // Input capture 4 filter
             padding_16_31: u16,
         }), base_address + 0x1c);
 
         /// address: 0x40000c20
         /// capture/compare enable register
         pub const CCER = @intToPtr(*volatile Mmio(32, packed struct {
-            CC1E: u1, //Capture/Compare 1 output enable
-            CC1P: u1, //Capture/Compare 1 output Polarity
+            CC1E: u1, // Capture/Compare 1 output enable
+            CC1P: u1, // Capture/Compare 1 output Polarity
             reserved_2_2: u1,
-            CC1NP: u1, //Capture/Compare 1 output Polarity
-            CC2E: u1, //Capture/Compare 2 output enable
-            CC2P: u1, //Capture/Compare 2 output Polarity
+            CC1NP: u1, // Capture/Compare 1 output Polarity
+            CC2E: u1, // Capture/Compare 2 output enable
+            CC2P: u1, // Capture/Compare 2 output Polarity
             reserved_6_6: u1,
-            CC2NP: u1, //Capture/Compare 2 output Polarity
-            CC3E: u1, //Capture/Compare 3 output enable
-            CC3P: u1, //Capture/Compare 3 output Polarity
+            CC2NP: u1, // Capture/Compare 2 output Polarity
+            CC3E: u1, // Capture/Compare 3 output enable
+            CC3P: u1, // Capture/Compare 3 output Polarity
             reserved_10_10: u1,
-            CC3NP: u1, //Capture/Compare 3 output Polarity
-            CC4E: u1, //Capture/Compare 4 output enable
-            CC4P: u1, //Capture/Compare 3 output Polarity
+            CC3NP: u1, // Capture/Compare 3 output Polarity
+            CC4E: u1, // Capture/Compare 4 output enable
+            CC4P: u1, // Capture/Compare 3 output Polarity
             reserved_14_14: u1,
-            CC4NP: u1, //Capture/Compare 4 output Polarity
+            CC4NP: u1, // Capture/Compare 4 output Polarity
             padding_16_31: u16,
         }), base_address + 0x20);
 
         /// address: 0x40000c24
         /// counter
         pub const CNT = @intToPtr(*volatile Mmio(32, packed struct {
-            CNT_L: u16, //Low counter value
-            CNT_H: u16, //High counter value
+            CNT_L: u16, // Low counter value
+            CNT_H: u16, // High counter value
         }), base_address + 0x24);
 
         /// address: 0x40000c28
@@ -4028,51 +4028,51 @@ pub const registers = struct {
         /// address: 0x40000c2c
         /// auto-reload register
         pub const ARR = @intToPtr(*volatile Mmio(32, packed struct {
-            ARR_L: u16, //Low Auto-reload value
-            ARR_H: u16, //High Auto-reload value
+            ARR_L: u16, // Low Auto-reload value
+            ARR_H: u16, // High Auto-reload value
         }), base_address + 0x2c);
 
         /// address: 0x40000c34
         /// capture/compare register 1
         pub const CCR1 = @intToPtr(*volatile Mmio(32, packed struct {
-            CCR1_L: u16, //Low Capture/Compare 1 value
-            CCR1_H: u16, //High Capture/Compare 1 value
+            CCR1_L: u16, // Low Capture/Compare 1 value
+            CCR1_H: u16, // High Capture/Compare 1 value
         }), base_address + 0x34);
 
         /// address: 0x40000c38
         /// capture/compare register 2
         pub const CCR2 = @intToPtr(*volatile Mmio(32, packed struct {
-            CCR2_L: u16, //Low Capture/Compare 2 value
-            CCR2_H: u16, //High Capture/Compare 2 value
+            CCR2_L: u16, // Low Capture/Compare 2 value
+            CCR2_H: u16, // High Capture/Compare 2 value
         }), base_address + 0x38);
 
         /// address: 0x40000c3c
         /// capture/compare register 3
         pub const CCR3 = @intToPtr(*volatile Mmio(32, packed struct {
-            CCR3_L: u16, //Low Capture/Compare value
-            CCR3_H: u16, //High Capture/Compare value
+            CCR3_L: u16, // Low Capture/Compare value
+            CCR3_H: u16, // High Capture/Compare value
         }), base_address + 0x3c);
 
         /// address: 0x40000c40
         /// capture/compare register 4
         pub const CCR4 = @intToPtr(*volatile Mmio(32, packed struct {
-            CCR4_L: u16, //Low Capture/Compare value
-            CCR4_H: u16, //High Capture/Compare value
+            CCR4_L: u16, // Low Capture/Compare value
+            CCR4_H: u16, // High Capture/Compare value
         }), base_address + 0x40);
 
         /// address: 0x40000c48
         /// DMA control register
         pub const DCR = @intToPtr(*volatile Mmio(32, packed struct {
-            DBA: u5, //DMA base address
+            DBA: u5, // DMA base address
             reserved_5_7: u3,
-            DBL: u5, //DMA burst length
+            DBL: u5, // DMA burst length
             padding_13_31: u19,
         }), base_address + 0x48);
 
         /// address: 0x40000c4c
         /// DMA address for full transfer
         pub const DMAR = @intToPtr(*volatile Mmio(32, packed struct {
-            DMAB: u16, //DMA register for burst accesses
+            DMAB: u16, // DMA register for burst accesses
             padding_16_31: u16,
         }), base_address + 0x4c);
 
@@ -4080,7 +4080,7 @@ pub const registers = struct {
         /// TIM5 option register
         pub const OR = @intToPtr(*volatile Mmio(32, packed struct {
             reserved_0_5: u6,
-            IT4_RMP: u2, //Timer Input 4 remap
+            IT4_RMP: u2, // Timer Input 4 remap
             padding_8_31: u24,
         }), base_address + 0x50);
     };
@@ -4092,13 +4092,13 @@ pub const registers = struct {
         /// address: 0x40014000
         /// control register 1
         pub const CR1 = @intToPtr(*volatile Mmio(32, packed struct {
-            CEN: u1, //Counter enable
-            UDIS: u1, //Update disable
-            URS: u1, //Update request source
-            OPM: u1, //One-pulse mode
+            CEN: u1, // Counter enable
+            UDIS: u1, // Update disable
+            URS: u1, // Update request source
+            OPM: u1, // One-pulse mode
             reserved_4_6: u3,
-            ARPE: u1, //Auto-reload preload enable
-            CKD: u2, //Clock division
+            ARPE: u1, // Auto-reload preload enable
+            CKD: u2, // Clock division
             padding_10_31: u22,
         }), base_address + 0x0);
 
@@ -4106,95 +4106,95 @@ pub const registers = struct {
         /// control register 2
         pub const CR2 = @intToPtr(*volatile Mmio(32, packed struct {
             reserved_0_3: u4,
-            MMS: u3, //Master mode selection
+            MMS: u3, // Master mode selection
             padding_7_31: u25,
         }), base_address + 0x4);
 
         /// address: 0x40014008
         /// slave mode control register
         pub const SMCR = @intToPtr(*volatile Mmio(32, packed struct {
-            SMS: u3, //Slave mode selection
+            SMS: u3, // Slave mode selection
             reserved_3_3: u1,
-            TS: u3, //Trigger selection
-            MSM: u1, //Master/Slave mode
+            TS: u3, // Trigger selection
+            MSM: u1, // Master/Slave mode
             padding_8_31: u24,
         }), base_address + 0x8);
 
         /// address: 0x4001400c
         /// DMA/Interrupt enable register
         pub const DIER = @intToPtr(*volatile Mmio(32, packed struct {
-            UIE: u1, //Update interrupt enable
-            CC1IE: u1, //Capture/Compare 1 interrupt enable
-            CC2IE: u1, //Capture/Compare 2 interrupt enable
+            UIE: u1, // Update interrupt enable
+            CC1IE: u1, // Capture/Compare 1 interrupt enable
+            CC2IE: u1, // Capture/Compare 2 interrupt enable
             reserved_3_5: u3,
-            TIE: u1, //Trigger interrupt enable
+            TIE: u1, // Trigger interrupt enable
             padding_7_31: u25,
         }), base_address + 0xc);
 
         /// address: 0x40014010
         /// status register
         pub const SR = @intToPtr(*volatile Mmio(32, packed struct {
-            UIF: u1, //Update interrupt flag
-            CC1IF: u1, //Capture/compare 1 interrupt flag
-            CC2IF: u1, //Capture/Compare 2 interrupt flag
+            UIF: u1, // Update interrupt flag
+            CC1IF: u1, // Capture/compare 1 interrupt flag
+            CC2IF: u1, // Capture/Compare 2 interrupt flag
             reserved_3_5: u3,
-            TIF: u1, //Trigger interrupt flag
+            TIF: u1, // Trigger interrupt flag
             reserved_7_8: u2,
-            CC1OF: u1, //Capture/Compare 1 overcapture flag
-            CC2OF: u1, //Capture/compare 2 overcapture flag
+            CC1OF: u1, // Capture/Compare 1 overcapture flag
+            CC2OF: u1, // Capture/compare 2 overcapture flag
             padding_11_31: u21,
         }), base_address + 0x10);
 
         /// address: 0x40014014
         /// event generation register
         pub const EGR = @intToPtr(*volatile Mmio(32, packed struct {
-            UG: u1, //Update generation
-            CC1G: u1, //Capture/compare 1 generation
-            CC2G: u1, //Capture/compare 2 generation
+            UG: u1, // Update generation
+            CC1G: u1, // Capture/compare 1 generation
+            CC2G: u1, // Capture/compare 2 generation
             reserved_3_5: u3,
-            TG: u1, //Trigger generation
+            TG: u1, // Trigger generation
             padding_7_31: u25,
         }), base_address + 0x14);
 
         /// address: 0x40014018
         /// capture/compare mode register 1 (output mode)
         pub const CCMR1_Output = @intToPtr(*volatile Mmio(32, packed struct {
-            CC1S: u2, //Capture/Compare 1 selection
-            OC1FE: u1, //Output Compare 1 fast enable
-            OC1PE: u1, //Output Compare 1 preload enable
-            OC1M: u3, //Output Compare 1 mode
+            CC1S: u2, // Capture/Compare 1 selection
+            OC1FE: u1, // Output Compare 1 fast enable
+            OC1PE: u1, // Output Compare 1 preload enable
+            OC1M: u3, // Output Compare 1 mode
             reserved_7_7: u1,
-            CC2S: u2, //Capture/Compare 2 selection
-            OC2FE: u1, //Output Compare 2 fast enable
-            OC2PE: u1, //Output Compare 2 preload enable
-            OC2M: u3, //Output Compare 2 mode
+            CC2S: u2, // Capture/Compare 2 selection
+            OC2FE: u1, // Output Compare 2 fast enable
+            OC2PE: u1, // Output Compare 2 preload enable
+            OC2M: u3, // Output Compare 2 mode
             padding_15_31: u17,
         }), base_address + 0x18);
 
         /// address: 0x40014018
         /// capture/compare mode register 1 (input mode)
         pub const CCMR1_Input = @intToPtr(*volatile Mmio(32, packed struct {
-            CC1S: u2, //Capture/Compare 1 selection
-            ICPCS: u2, //Input capture 1 prescaler
-            IC1F: u3, //Input capture 1 filter
+            CC1S: u2, // Capture/Compare 1 selection
+            ICPCS: u2, // Input capture 1 prescaler
+            IC1F: u3, // Input capture 1 filter
             reserved_7_7: u1,
-            CC2S: u2, //Capture/Compare 2 selection
-            IC2PCS: u2, //Input capture 2 prescaler
-            IC2F: u3, //Input capture 2 filter
+            CC2S: u2, // Capture/Compare 2 selection
+            IC2PCS: u2, // Input capture 2 prescaler
+            IC2F: u3, // Input capture 2 filter
             padding_15_31: u17,
         }), base_address + 0x18);
 
         /// address: 0x40014020
         /// capture/compare enable register
         pub const CCER = @intToPtr(*volatile Mmio(32, packed struct {
-            CC1E: u1, //Capture/Compare 1 output enable
-            CC1P: u1, //Capture/Compare 1 output Polarity
+            CC1E: u1, // Capture/Compare 1 output enable
+            CC1P: u1, // Capture/Compare 1 output Polarity
             reserved_2_2: u1,
-            CC1NP: u1, //Capture/Compare 1 output Polarity
-            CC2E: u1, //Capture/Compare 2 output enable
-            CC2P: u1, //Capture/Compare 2 output Polarity
+            CC1NP: u1, // Capture/Compare 1 output Polarity
+            CC2E: u1, // Capture/Compare 2 output enable
+            CC2P: u1, // Capture/Compare 2 output Polarity
             reserved_6_6: u1,
-            CC2NP: u1, //Capture/Compare 2 output Polarity
+            CC2NP: u1, // Capture/Compare 2 output Polarity
             padding_8_31: u24,
         }), base_address + 0x20);
 
@@ -4226,16 +4226,16 @@ pub const registers = struct {
         /// address: 0x40011000
         /// Status register
         pub const SR = @intToPtr(*volatile Mmio(32, packed struct {
-            PE: u1, //Parity error
-            FE: u1, //Framing error
-            NF: u1, //Noise detected flag
-            ORE: u1, //Overrun error
-            IDLE: u1, //IDLE line detected
-            RXNE: u1, //Read data register not empty
-            TC: u1, //Transmission complete
-            TXE: u1, //Transmit data register empty
-            LBD: u1, //LIN break detection flag
-            CTS: u1, //CTS flag
+            PE: u1, // Parity error
+            FE: u1, // Framing error
+            NF: u1, // Noise detected flag
+            ORE: u1, // Overrun error
+            IDLE: u1, // IDLE line detected
+            RXNE: u1, // Read data register not empty
+            TC: u1, // Transmission complete
+            TXE: u1, // Transmit data register empty
+            LBD: u1, // LIN break detection flag
+            CTS: u1, // CTS flag
             padding_10_31: u22,
         }), base_address + 0x0);
 
@@ -4246,73 +4246,73 @@ pub const registers = struct {
         /// address: 0x40011008
         /// Baud rate register
         pub const BRR = @intToPtr(*volatile Mmio(32, packed struct {
-            DIV_Fraction: u4, //fraction of USARTDIV
-            DIV_Mantissa: u12, //mantissa of USARTDIV
+            DIV_Fraction: u4, // fraction of USARTDIV
+            DIV_Mantissa: u12, // mantissa of USARTDIV
             padding_16_31: u16,
         }), base_address + 0x8);
 
         /// address: 0x4001100c
         /// Control register 1
         pub const CR1 = @intToPtr(*volatile Mmio(32, packed struct {
-            SBK: u1, //Send break
-            RWU: u1, //Receiver wakeup
-            RE: u1, //Receiver enable
-            TE: u1, //Transmitter enable
-            IDLEIE: u1, //IDLE interrupt enable
-            RXNEIE: u1, //RXNE interrupt enable
-            TCIE: u1, //Transmission complete interrupt enable
-            TXEIE: u1, //TXE interrupt enable
-            PEIE: u1, //PE interrupt enable
-            PS: u1, //Parity selection
-            PCE: u1, //Parity control enable
-            WAKE: u1, //Wakeup method
-            M: u1, //Word length
-            UE: u1, //USART enable
+            SBK: u1, // Send break
+            RWU: u1, // Receiver wakeup
+            RE: u1, // Receiver enable
+            TE: u1, // Transmitter enable
+            IDLEIE: u1, // IDLE interrupt enable
+            RXNEIE: u1, // RXNE interrupt enable
+            TCIE: u1, // Transmission complete interrupt enable
+            TXEIE: u1, // TXE interrupt enable
+            PEIE: u1, // PE interrupt enable
+            PS: u1, // Parity selection
+            PCE: u1, // Parity control enable
+            WAKE: u1, // Wakeup method
+            M: u1, // Word length
+            UE: u1, // USART enable
             reserved_14_14: u1,
-            OVER8: u1, //Oversampling mode
+            OVER8: u1, // Oversampling mode
             padding_16_31: u16,
         }), base_address + 0xc);
 
         /// address: 0x40011010
         /// Control register 2
         pub const CR2 = @intToPtr(*volatile Mmio(32, packed struct {
-            ADD: u4, //Address of the USART node
+            ADD: u4, // Address of the USART node
             reserved_4_4: u1,
-            LBDL: u1, //lin break detection length
-            LBDIE: u1, //LIN break detection interrupt enable
+            LBDL: u1, // lin break detection length
+            LBDIE: u1, // LIN break detection interrupt enable
             reserved_7_7: u1,
-            LBCL: u1, //Last bit clock pulse
-            CPHA: u1, //Clock phase
-            CPOL: u1, //Clock polarity
-            CLKEN: u1, //Clock enable
-            STOP: u2, //STOP bits
-            LINEN: u1, //LIN mode enable
+            LBCL: u1, // Last bit clock pulse
+            CPHA: u1, // Clock phase
+            CPOL: u1, // Clock polarity
+            CLKEN: u1, // Clock enable
+            STOP: u2, // STOP bits
+            LINEN: u1, // LIN mode enable
             padding_15_31: u17,
         }), base_address + 0x10);
 
         /// address: 0x40011014
         /// Control register 3
         pub const CR3 = @intToPtr(*volatile Mmio(32, packed struct {
-            EIE: u1, //Error interrupt enable
-            IREN: u1, //IrDA mode enable
-            IRLP: u1, //IrDA low-power
-            HDSEL: u1, //Half-duplex selection
-            NACK: u1, //Smartcard NACK enable
-            SCEN: u1, //Smartcard mode enable
-            DMAR: u1, //DMA enable receiver
-            DMAT: u1, //DMA enable transmitter
-            RTSE: u1, //RTS enable
-            CTSE: u1, //CTS enable
-            CTSIE: u1, //CTS interrupt enable
-            ONEBIT: u1, //One sample bit method enable
+            EIE: u1, // Error interrupt enable
+            IREN: u1, // IrDA mode enable
+            IRLP: u1, // IrDA low-power
+            HDSEL: u1, // Half-duplex selection
+            NACK: u1, // Smartcard NACK enable
+            SCEN: u1, // Smartcard mode enable
+            DMAR: u1, // DMA enable receiver
+            DMAT: u1, // DMA enable transmitter
+            RTSE: u1, // RTS enable
+            CTSE: u1, // CTS enable
+            CTSIE: u1, // CTS interrupt enable
+            ONEBIT: u1, // One sample bit method enable
             padding_12_31: u20,
         }), base_address + 0x14);
 
         /// address: 0x40011018
         /// Guard time and prescaler register
         pub const GTPR = @intToPtr(*volatile Mmio(32, packed struct {
-            PSC: u8, //Prescaler value
-            GT: u8, //Guard time value
+            PSC: u8, // Prescaler value
+            GT: u8, // Guard time value
             padding_16_31: u16,
         }), base_address + 0x18);
     };
@@ -4324,25 +4324,25 @@ pub const registers = struct {
         /// address: 0x40002c00
         /// Control register
         pub const CR = @intToPtr(*volatile Mmio(32, packed struct {
-            T: u7, //7-bit counter (MSB to LSB)
-            WDGA: u1, //Activation bit
+            T: u7, // 7-bit counter (MSB to LSB)
+            WDGA: u1, // Activation bit
             padding_8_31: u24,
         }), base_address + 0x0);
 
         /// address: 0x40002c04
         /// Configuration register
         pub const CFR = @intToPtr(*volatile Mmio(32, packed struct {
-            W: u7, //7-bit window value
-            WDGTB0: u1, //Timer base
-            WDGTB1: u1, //Timer base
-            EWI: u1, //Early wakeup interrupt
+            W: u7, // 7-bit window value
+            WDGTB0: u1, // Timer base
+            WDGTB1: u1, // Timer base
+            EWI: u1, // Early wakeup interrupt
             padding_10_31: u22,
         }), base_address + 0x4);
 
         /// address: 0x40002c08
         /// Status register
         pub const SR = @intToPtr(*volatile Mmio(32, packed struct {
-            EWIF: u1, //Early wakeup interrupt flag
+            EWIF: u1, // Early wakeup interrupt flag
             padding_1_31: u31,
         }), base_address + 0x8);
     };
@@ -4354,620 +4354,620 @@ pub const registers = struct {
         /// address: 0x40026400
         /// low interrupt status register
         pub const LISR = @intToPtr(*volatile Mmio(32, packed struct {
-            FEIF0: u1, //Stream x FIFO error interrupt flag (x=3..0)
+            FEIF0: u1, // Stream x FIFO error interrupt flag (x=3..0)
             reserved_1_1: u1,
-            DMEIF0: u1, //Stream x direct mode error interrupt flag (x=3..0)
-            TEIF0: u1, //Stream x transfer error interrupt flag (x=3..0)
-            HTIF0: u1, //Stream x half transfer interrupt flag (x=3..0)
-            TCIF0: u1, //Stream x transfer complete interrupt flag (x = 3..0)
-            FEIF1: u1, //Stream x FIFO error interrupt flag (x=3..0)
+            DMEIF0: u1, // Stream x direct mode error interrupt flag (x=3..0)
+            TEIF0: u1, // Stream x transfer error interrupt flag (x=3..0)
+            HTIF0: u1, // Stream x half transfer interrupt flag (x=3..0)
+            TCIF0: u1, // Stream x transfer complete interrupt flag (x = 3..0)
+            FEIF1: u1, // Stream x FIFO error interrupt flag (x=3..0)
             reserved_7_7: u1,
-            DMEIF1: u1, //Stream x direct mode error interrupt flag (x=3..0)
-            TEIF1: u1, //Stream x transfer error interrupt flag (x=3..0)
-            HTIF1: u1, //Stream x half transfer interrupt flag (x=3..0)
-            TCIF1: u1, //Stream x transfer complete interrupt flag (x = 3..0)
+            DMEIF1: u1, // Stream x direct mode error interrupt flag (x=3..0)
+            TEIF1: u1, // Stream x transfer error interrupt flag (x=3..0)
+            HTIF1: u1, // Stream x half transfer interrupt flag (x=3..0)
+            TCIF1: u1, // Stream x transfer complete interrupt flag (x = 3..0)
             reserved_12_15: u4,
-            FEIF2: u1, //Stream x FIFO error interrupt flag (x=3..0)
+            FEIF2: u1, // Stream x FIFO error interrupt flag (x=3..0)
             reserved_17_17: u1,
-            DMEIF2: u1, //Stream x direct mode error interrupt flag (x=3..0)
-            TEIF2: u1, //Stream x transfer error interrupt flag (x=3..0)
-            HTIF2: u1, //Stream x half transfer interrupt flag (x=3..0)
-            TCIF2: u1, //Stream x transfer complete interrupt flag (x = 3..0)
-            FEIF3: u1, //Stream x FIFO error interrupt flag (x=3..0)
+            DMEIF2: u1, // Stream x direct mode error interrupt flag (x=3..0)
+            TEIF2: u1, // Stream x transfer error interrupt flag (x=3..0)
+            HTIF2: u1, // Stream x half transfer interrupt flag (x=3..0)
+            TCIF2: u1, // Stream x transfer complete interrupt flag (x = 3..0)
+            FEIF3: u1, // Stream x FIFO error interrupt flag (x=3..0)
             reserved_23_23: u1,
-            DMEIF3: u1, //Stream x direct mode error interrupt flag (x=3..0)
-            TEIF3: u1, //Stream x transfer error interrupt flag (x=3..0)
-            HTIF3: u1, //Stream x half transfer interrupt flag (x=3..0)
-            TCIF3: u1, //Stream x transfer complete interrupt flag (x = 3..0)
+            DMEIF3: u1, // Stream x direct mode error interrupt flag (x=3..0)
+            TEIF3: u1, // Stream x transfer error interrupt flag (x=3..0)
+            HTIF3: u1, // Stream x half transfer interrupt flag (x=3..0)
+            TCIF3: u1, // Stream x transfer complete interrupt flag (x = 3..0)
             padding_28_31: u4,
         }), base_address + 0x0);
 
         /// address: 0x40026404
         /// high interrupt status register
         pub const HISR = @intToPtr(*volatile Mmio(32, packed struct {
-            FEIF4: u1, //Stream x FIFO error interrupt flag (x=7..4)
+            FEIF4: u1, // Stream x FIFO error interrupt flag (x=7..4)
             reserved_1_1: u1,
-            DMEIF4: u1, //Stream x direct mode error interrupt flag (x=7..4)
-            TEIF4: u1, //Stream x transfer error interrupt flag (x=7..4)
-            HTIF4: u1, //Stream x half transfer interrupt flag (x=7..4)
-            TCIF4: u1, //Stream x transfer complete interrupt flag (x=7..4)
-            FEIF5: u1, //Stream x FIFO error interrupt flag (x=7..4)
+            DMEIF4: u1, // Stream x direct mode error interrupt flag (x=7..4)
+            TEIF4: u1, // Stream x transfer error interrupt flag (x=7..4)
+            HTIF4: u1, // Stream x half transfer interrupt flag (x=7..4)
+            TCIF4: u1, // Stream x transfer complete interrupt flag (x=7..4)
+            FEIF5: u1, // Stream x FIFO error interrupt flag (x=7..4)
             reserved_7_7: u1,
-            DMEIF5: u1, //Stream x direct mode error interrupt flag (x=7..4)
-            TEIF5: u1, //Stream x transfer error interrupt flag (x=7..4)
-            HTIF5: u1, //Stream x half transfer interrupt flag (x=7..4)
-            TCIF5: u1, //Stream x transfer complete interrupt flag (x=7..4)
+            DMEIF5: u1, // Stream x direct mode error interrupt flag (x=7..4)
+            TEIF5: u1, // Stream x transfer error interrupt flag (x=7..4)
+            HTIF5: u1, // Stream x half transfer interrupt flag (x=7..4)
+            TCIF5: u1, // Stream x transfer complete interrupt flag (x=7..4)
             reserved_12_15: u4,
-            FEIF6: u1, //Stream x FIFO error interrupt flag (x=7..4)
+            FEIF6: u1, // Stream x FIFO error interrupt flag (x=7..4)
             reserved_17_17: u1,
-            DMEIF6: u1, //Stream x direct mode error interrupt flag (x=7..4)
-            TEIF6: u1, //Stream x transfer error interrupt flag (x=7..4)
-            HTIF6: u1, //Stream x half transfer interrupt flag (x=7..4)
-            TCIF6: u1, //Stream x transfer complete interrupt flag (x=7..4)
-            FEIF7: u1, //Stream x FIFO error interrupt flag (x=7..4)
+            DMEIF6: u1, // Stream x direct mode error interrupt flag (x=7..4)
+            TEIF6: u1, // Stream x transfer error interrupt flag (x=7..4)
+            HTIF6: u1, // Stream x half transfer interrupt flag (x=7..4)
+            TCIF6: u1, // Stream x transfer complete interrupt flag (x=7..4)
+            FEIF7: u1, // Stream x FIFO error interrupt flag (x=7..4)
             reserved_23_23: u1,
-            DMEIF7: u1, //Stream x direct mode error interrupt flag (x=7..4)
-            TEIF7: u1, //Stream x transfer error interrupt flag (x=7..4)
-            HTIF7: u1, //Stream x half transfer interrupt flag (x=7..4)
-            TCIF7: u1, //Stream x transfer complete interrupt flag (x=7..4)
+            DMEIF7: u1, // Stream x direct mode error interrupt flag (x=7..4)
+            TEIF7: u1, // Stream x transfer error interrupt flag (x=7..4)
+            HTIF7: u1, // Stream x half transfer interrupt flag (x=7..4)
+            TCIF7: u1, // Stream x transfer complete interrupt flag (x=7..4)
             padding_28_31: u4,
         }), base_address + 0x4);
 
         /// address: 0x40026408
         /// low interrupt flag clear register
         pub const LIFCR = @intToPtr(*volatile Mmio(32, packed struct {
-            CFEIF0: u1, //Stream x clear FIFO error interrupt flag (x = 3..0)
+            CFEIF0: u1, // Stream x clear FIFO error interrupt flag (x = 3..0)
             reserved_1_1: u1,
-            CDMEIF0: u1, //Stream x clear direct mode error interrupt flag (x = 3..0)
-            CTEIF0: u1, //Stream x clear transfer error interrupt flag (x = 3..0)
-            CHTIF0: u1, //Stream x clear half transfer interrupt flag (x = 3..0)
-            CTCIF0: u1, //Stream x clear transfer complete interrupt flag (x = 3..0)
-            CFEIF1: u1, //Stream x clear FIFO error interrupt flag (x = 3..0)
+            CDMEIF0: u1, // Stream x clear direct mode error interrupt flag (x = 3..0)
+            CTEIF0: u1, // Stream x clear transfer error interrupt flag (x = 3..0)
+            CHTIF0: u1, // Stream x clear half transfer interrupt flag (x = 3..0)
+            CTCIF0: u1, // Stream x clear transfer complete interrupt flag (x = 3..0)
+            CFEIF1: u1, // Stream x clear FIFO error interrupt flag (x = 3..0)
             reserved_7_7: u1,
-            CDMEIF1: u1, //Stream x clear direct mode error interrupt flag (x = 3..0)
-            CTEIF1: u1, //Stream x clear transfer error interrupt flag (x = 3..0)
-            CHTIF1: u1, //Stream x clear half transfer interrupt flag (x = 3..0)
-            CTCIF1: u1, //Stream x clear transfer complete interrupt flag (x = 3..0)
+            CDMEIF1: u1, // Stream x clear direct mode error interrupt flag (x = 3..0)
+            CTEIF1: u1, // Stream x clear transfer error interrupt flag (x = 3..0)
+            CHTIF1: u1, // Stream x clear half transfer interrupt flag (x = 3..0)
+            CTCIF1: u1, // Stream x clear transfer complete interrupt flag (x = 3..0)
             reserved_12_15: u4,
-            CFEIF2: u1, //Stream x clear FIFO error interrupt flag (x = 3..0)
+            CFEIF2: u1, // Stream x clear FIFO error interrupt flag (x = 3..0)
             reserved_17_17: u1,
-            CDMEIF2: u1, //Stream x clear direct mode error interrupt flag (x = 3..0)
-            CTEIF2: u1, //Stream x clear transfer error interrupt flag (x = 3..0)
-            CHTIF2: u1, //Stream x clear half transfer interrupt flag (x = 3..0)
-            CTCIF2: u1, //Stream x clear transfer complete interrupt flag (x = 3..0)
-            CFEIF3: u1, //Stream x clear FIFO error interrupt flag (x = 3..0)
+            CDMEIF2: u1, // Stream x clear direct mode error interrupt flag (x = 3..0)
+            CTEIF2: u1, // Stream x clear transfer error interrupt flag (x = 3..0)
+            CHTIF2: u1, // Stream x clear half transfer interrupt flag (x = 3..0)
+            CTCIF2: u1, // Stream x clear transfer complete interrupt flag (x = 3..0)
+            CFEIF3: u1, // Stream x clear FIFO error interrupt flag (x = 3..0)
             reserved_23_23: u1,
-            CDMEIF3: u1, //Stream x clear direct mode error interrupt flag (x = 3..0)
-            CTEIF3: u1, //Stream x clear transfer error interrupt flag (x = 3..0)
-            CHTIF3: u1, //Stream x clear half transfer interrupt flag (x = 3..0)
-            CTCIF3: u1, //Stream x clear transfer complete interrupt flag (x = 3..0)
+            CDMEIF3: u1, // Stream x clear direct mode error interrupt flag (x = 3..0)
+            CTEIF3: u1, // Stream x clear transfer error interrupt flag (x = 3..0)
+            CHTIF3: u1, // Stream x clear half transfer interrupt flag (x = 3..0)
+            CTCIF3: u1, // Stream x clear transfer complete interrupt flag (x = 3..0)
             padding_28_31: u4,
         }), base_address + 0x8);
 
         /// address: 0x4002640c
         /// high interrupt flag clear register
         pub const HIFCR = @intToPtr(*volatile Mmio(32, packed struct {
-            CFEIF4: u1, //Stream x clear FIFO error interrupt flag (x = 7..4)
+            CFEIF4: u1, // Stream x clear FIFO error interrupt flag (x = 7..4)
             reserved_1_1: u1,
-            CDMEIF4: u1, //Stream x clear direct mode error interrupt flag (x = 7..4)
-            CTEIF4: u1, //Stream x clear transfer error interrupt flag (x = 7..4)
-            CHTIF4: u1, //Stream x clear half transfer interrupt flag (x = 7..4)
-            CTCIF4: u1, //Stream x clear transfer complete interrupt flag (x = 7..4)
-            CFEIF5: u1, //Stream x clear FIFO error interrupt flag (x = 7..4)
+            CDMEIF4: u1, // Stream x clear direct mode error interrupt flag (x = 7..4)
+            CTEIF4: u1, // Stream x clear transfer error interrupt flag (x = 7..4)
+            CHTIF4: u1, // Stream x clear half transfer interrupt flag (x = 7..4)
+            CTCIF4: u1, // Stream x clear transfer complete interrupt flag (x = 7..4)
+            CFEIF5: u1, // Stream x clear FIFO error interrupt flag (x = 7..4)
             reserved_7_7: u1,
-            CDMEIF5: u1, //Stream x clear direct mode error interrupt flag (x = 7..4)
-            CTEIF5: u1, //Stream x clear transfer error interrupt flag (x = 7..4)
-            CHTIF5: u1, //Stream x clear half transfer interrupt flag (x = 7..4)
-            CTCIF5: u1, //Stream x clear transfer complete interrupt flag (x = 7..4)
+            CDMEIF5: u1, // Stream x clear direct mode error interrupt flag (x = 7..4)
+            CTEIF5: u1, // Stream x clear transfer error interrupt flag (x = 7..4)
+            CHTIF5: u1, // Stream x clear half transfer interrupt flag (x = 7..4)
+            CTCIF5: u1, // Stream x clear transfer complete interrupt flag (x = 7..4)
             reserved_12_15: u4,
-            CFEIF6: u1, //Stream x clear FIFO error interrupt flag (x = 7..4)
+            CFEIF6: u1, // Stream x clear FIFO error interrupt flag (x = 7..4)
             reserved_17_17: u1,
-            CDMEIF6: u1, //Stream x clear direct mode error interrupt flag (x = 7..4)
-            CTEIF6: u1, //Stream x clear transfer error interrupt flag (x = 7..4)
-            CHTIF6: u1, //Stream x clear half transfer interrupt flag (x = 7..4)
-            CTCIF6: u1, //Stream x clear transfer complete interrupt flag (x = 7..4)
-            CFEIF7: u1, //Stream x clear FIFO error interrupt flag (x = 7..4)
+            CDMEIF6: u1, // Stream x clear direct mode error interrupt flag (x = 7..4)
+            CTEIF6: u1, // Stream x clear transfer error interrupt flag (x = 7..4)
+            CHTIF6: u1, // Stream x clear half transfer interrupt flag (x = 7..4)
+            CTCIF6: u1, // Stream x clear transfer complete interrupt flag (x = 7..4)
+            CFEIF7: u1, // Stream x clear FIFO error interrupt flag (x = 7..4)
             reserved_23_23: u1,
-            CDMEIF7: u1, //Stream x clear direct mode error interrupt flag (x = 7..4)
-            CTEIF7: u1, //Stream x clear transfer error interrupt flag (x = 7..4)
-            CHTIF7: u1, //Stream x clear half transfer interrupt flag (x = 7..4)
-            CTCIF7: u1, //Stream x clear transfer complete interrupt flag (x = 7..4)
+            CDMEIF7: u1, // Stream x clear direct mode error interrupt flag (x = 7..4)
+            CTEIF7: u1, // Stream x clear transfer error interrupt flag (x = 7..4)
+            CHTIF7: u1, // Stream x clear half transfer interrupt flag (x = 7..4)
+            CTCIF7: u1, // Stream x clear transfer complete interrupt flag (x = 7..4)
             padding_28_31: u4,
         }), base_address + 0xc);
 
         /// address: 0x40026410
         /// stream x configuration register
         pub const S0CR = @intToPtr(*volatile Mmio(32, packed struct {
-            EN: u1, //Stream enable / flag stream ready when read low
-            DMEIE: u1, //Direct mode error interrupt enable
-            TEIE: u1, //Transfer error interrupt enable
-            HTIE: u1, //Half transfer interrupt enable
-            TCIE: u1, //Transfer complete interrupt enable
-            PFCTRL: u1, //Peripheral flow controller
-            DIR: u2, //Data transfer direction
-            CIRC: u1, //Circular mode
-            PINC: u1, //Peripheral increment mode
-            MINC: u1, //Memory increment mode
-            PSIZE: u2, //Peripheral data size
-            MSIZE: u2, //Memory data size
-            PINCOS: u1, //Peripheral increment offset size
-            PL: u2, //Priority level
-            DBM: u1, //Double buffer mode
-            CT: u1, //Current target (only in double buffer mode)
+            EN: u1, // Stream enable / flag stream ready when read low
+            DMEIE: u1, // Direct mode error interrupt enable
+            TEIE: u1, // Transfer error interrupt enable
+            HTIE: u1, // Half transfer interrupt enable
+            TCIE: u1, // Transfer complete interrupt enable
+            PFCTRL: u1, // Peripheral flow controller
+            DIR: u2, // Data transfer direction
+            CIRC: u1, // Circular mode
+            PINC: u1, // Peripheral increment mode
+            MINC: u1, // Memory increment mode
+            PSIZE: u2, // Peripheral data size
+            MSIZE: u2, // Memory data size
+            PINCOS: u1, // Peripheral increment offset size
+            PL: u2, // Priority level
+            DBM: u1, // Double buffer mode
+            CT: u1, // Current target (only in double buffer mode)
             reserved_20_20: u1,
-            PBURST: u2, //Peripheral burst transfer configuration
-            MBURST: u2, //Memory burst transfer configuration
-            CHSEL: u3, //Channel selection
+            PBURST: u2, // Peripheral burst transfer configuration
+            MBURST: u2, // Memory burst transfer configuration
+            CHSEL: u3, // Channel selection
             padding_28_31: u4,
         }), base_address + 0x10);
 
         /// address: 0x40026414
         /// stream x number of data register
         pub const S0NDTR = @intToPtr(*volatile Mmio(32, packed struct {
-            NDT: u16, //Number of data items to transfer
+            NDT: u16, // Number of data items to transfer
             padding_16_31: u16,
         }), base_address + 0x14);
 
         /// address: 0x40026418
         /// stream x peripheral address register
         pub const S0PAR = @intToPtr(*volatile Mmio(32, packed struct {
-            PA: u32, //Peripheral address
+            PA: u32, // Peripheral address
         }), base_address + 0x18);
 
         /// address: 0x4002641c
         /// stream x memory 0 address register
         pub const S0M0AR = @intToPtr(*volatile Mmio(32, packed struct {
-            M0A: u32, //Memory 0 address
+            M0A: u32, // Memory 0 address
         }), base_address + 0x1c);
 
         /// address: 0x40026420
         /// stream x memory 1 address register
         pub const S0M1AR = @intToPtr(*volatile Mmio(32, packed struct {
-            M1A: u32, //Memory 1 address (used in case of Double buffer mode)
+            M1A: u32, // Memory 1 address (used in case of Double buffer mode)
         }), base_address + 0x20);
 
         /// address: 0x40026424
         /// stream x FIFO control register
         pub const S0FCR = @intToPtr(*volatile Mmio(32, packed struct {
-            FTH: u2, //FIFO threshold selection
-            DMDIS: u1, //Direct mode disable
-            FS: u3, //FIFO status
+            FTH: u2, // FIFO threshold selection
+            DMDIS: u1, // Direct mode disable
+            FS: u3, // FIFO status
             reserved_6_6: u1,
-            FEIE: u1, //FIFO error interrupt enable
+            FEIE: u1, // FIFO error interrupt enable
             padding_8_31: u24,
         }), base_address + 0x24);
 
         /// address: 0x40026428
         /// stream x configuration register
         pub const S1CR = @intToPtr(*volatile Mmio(32, packed struct {
-            EN: u1, //Stream enable / flag stream ready when read low
-            DMEIE: u1, //Direct mode error interrupt enable
-            TEIE: u1, //Transfer error interrupt enable
-            HTIE: u1, //Half transfer interrupt enable
-            TCIE: u1, //Transfer complete interrupt enable
-            PFCTRL: u1, //Peripheral flow controller
-            DIR: u2, //Data transfer direction
-            CIRC: u1, //Circular mode
-            PINC: u1, //Peripheral increment mode
-            MINC: u1, //Memory increment mode
-            PSIZE: u2, //Peripheral data size
-            MSIZE: u2, //Memory data size
-            PINCOS: u1, //Peripheral increment offset size
-            PL: u2, //Priority level
-            DBM: u1, //Double buffer mode
-            CT: u1, //Current target (only in double buffer mode)
-            ACK: u1, //ACK
-            PBURST: u2, //Peripheral burst transfer configuration
-            MBURST: u2, //Memory burst transfer configuration
-            CHSEL: u3, //Channel selection
+            EN: u1, // Stream enable / flag stream ready when read low
+            DMEIE: u1, // Direct mode error interrupt enable
+            TEIE: u1, // Transfer error interrupt enable
+            HTIE: u1, // Half transfer interrupt enable
+            TCIE: u1, // Transfer complete interrupt enable
+            PFCTRL: u1, // Peripheral flow controller
+            DIR: u2, // Data transfer direction
+            CIRC: u1, // Circular mode
+            PINC: u1, // Peripheral increment mode
+            MINC: u1, // Memory increment mode
+            PSIZE: u2, // Peripheral data size
+            MSIZE: u2, // Memory data size
+            PINCOS: u1, // Peripheral increment offset size
+            PL: u2, // Priority level
+            DBM: u1, // Double buffer mode
+            CT: u1, // Current target (only in double buffer mode)
+            ACK: u1, // ACK
+            PBURST: u2, // Peripheral burst transfer configuration
+            MBURST: u2, // Memory burst transfer configuration
+            CHSEL: u3, // Channel selection
             padding_28_31: u4,
         }), base_address + 0x28);
 
         /// address: 0x4002642c
         /// stream x number of data register
         pub const S1NDTR = @intToPtr(*volatile Mmio(32, packed struct {
-            NDT: u16, //Number of data items to transfer
+            NDT: u16, // Number of data items to transfer
             padding_16_31: u16,
         }), base_address + 0x2c);
 
         /// address: 0x40026430
         /// stream x peripheral address register
         pub const S1PAR = @intToPtr(*volatile Mmio(32, packed struct {
-            PA: u32, //Peripheral address
+            PA: u32, // Peripheral address
         }), base_address + 0x30);
 
         /// address: 0x40026434
         /// stream x memory 0 address register
         pub const S1M0AR = @intToPtr(*volatile Mmio(32, packed struct {
-            M0A: u32, //Memory 0 address
+            M0A: u32, // Memory 0 address
         }), base_address + 0x34);
 
         /// address: 0x40026438
         /// stream x memory 1 address register
         pub const S1M1AR = @intToPtr(*volatile Mmio(32, packed struct {
-            M1A: u32, //Memory 1 address (used in case of Double buffer mode)
+            M1A: u32, // Memory 1 address (used in case of Double buffer mode)
         }), base_address + 0x38);
 
         /// address: 0x4002643c
         /// stream x FIFO control register
         pub const S1FCR = @intToPtr(*volatile Mmio(32, packed struct {
-            FTH: u2, //FIFO threshold selection
-            DMDIS: u1, //Direct mode disable
-            FS: u3, //FIFO status
+            FTH: u2, // FIFO threshold selection
+            DMDIS: u1, // Direct mode disable
+            FS: u3, // FIFO status
             reserved_6_6: u1,
-            FEIE: u1, //FIFO error interrupt enable
+            FEIE: u1, // FIFO error interrupt enable
             padding_8_31: u24,
         }), base_address + 0x3c);
 
         /// address: 0x40026440
         /// stream x configuration register
         pub const S2CR = @intToPtr(*volatile Mmio(32, packed struct {
-            EN: u1, //Stream enable / flag stream ready when read low
-            DMEIE: u1, //Direct mode error interrupt enable
-            TEIE: u1, //Transfer error interrupt enable
-            HTIE: u1, //Half transfer interrupt enable
-            TCIE: u1, //Transfer complete interrupt enable
-            PFCTRL: u1, //Peripheral flow controller
-            DIR: u2, //Data transfer direction
-            CIRC: u1, //Circular mode
-            PINC: u1, //Peripheral increment mode
-            MINC: u1, //Memory increment mode
-            PSIZE: u2, //Peripheral data size
-            MSIZE: u2, //Memory data size
-            PINCOS: u1, //Peripheral increment offset size
-            PL: u2, //Priority level
-            DBM: u1, //Double buffer mode
-            CT: u1, //Current target (only in double buffer mode)
-            ACK: u1, //ACK
-            PBURST: u2, //Peripheral burst transfer configuration
-            MBURST: u2, //Memory burst transfer configuration
-            CHSEL: u3, //Channel selection
+            EN: u1, // Stream enable / flag stream ready when read low
+            DMEIE: u1, // Direct mode error interrupt enable
+            TEIE: u1, // Transfer error interrupt enable
+            HTIE: u1, // Half transfer interrupt enable
+            TCIE: u1, // Transfer complete interrupt enable
+            PFCTRL: u1, // Peripheral flow controller
+            DIR: u2, // Data transfer direction
+            CIRC: u1, // Circular mode
+            PINC: u1, // Peripheral increment mode
+            MINC: u1, // Memory increment mode
+            PSIZE: u2, // Peripheral data size
+            MSIZE: u2, // Memory data size
+            PINCOS: u1, // Peripheral increment offset size
+            PL: u2, // Priority level
+            DBM: u1, // Double buffer mode
+            CT: u1, // Current target (only in double buffer mode)
+            ACK: u1, // ACK
+            PBURST: u2, // Peripheral burst transfer configuration
+            MBURST: u2, // Memory burst transfer configuration
+            CHSEL: u3, // Channel selection
             padding_28_31: u4,
         }), base_address + 0x40);
 
         /// address: 0x40026444
         /// stream x number of data register
         pub const S2NDTR = @intToPtr(*volatile Mmio(32, packed struct {
-            NDT: u16, //Number of data items to transfer
+            NDT: u16, // Number of data items to transfer
             padding_16_31: u16,
         }), base_address + 0x44);
 
         /// address: 0x40026448
         /// stream x peripheral address register
         pub const S2PAR = @intToPtr(*volatile Mmio(32, packed struct {
-            PA: u32, //Peripheral address
+            PA: u32, // Peripheral address
         }), base_address + 0x48);
 
         /// address: 0x4002644c
         /// stream x memory 0 address register
         pub const S2M0AR = @intToPtr(*volatile Mmio(32, packed struct {
-            M0A: u32, //Memory 0 address
+            M0A: u32, // Memory 0 address
         }), base_address + 0x4c);
 
         /// address: 0x40026450
         /// stream x memory 1 address register
         pub const S2M1AR = @intToPtr(*volatile Mmio(32, packed struct {
-            M1A: u32, //Memory 1 address (used in case of Double buffer mode)
+            M1A: u32, // Memory 1 address (used in case of Double buffer mode)
         }), base_address + 0x50);
 
         /// address: 0x40026454
         /// stream x FIFO control register
         pub const S2FCR = @intToPtr(*volatile Mmio(32, packed struct {
-            FTH: u2, //FIFO threshold selection
-            DMDIS: u1, //Direct mode disable
-            FS: u3, //FIFO status
+            FTH: u2, // FIFO threshold selection
+            DMDIS: u1, // Direct mode disable
+            FS: u3, // FIFO status
             reserved_6_6: u1,
-            FEIE: u1, //FIFO error interrupt enable
+            FEIE: u1, // FIFO error interrupt enable
             padding_8_31: u24,
         }), base_address + 0x54);
 
         /// address: 0x40026458
         /// stream x configuration register
         pub const S3CR = @intToPtr(*volatile Mmio(32, packed struct {
-            EN: u1, //Stream enable / flag stream ready when read low
-            DMEIE: u1, //Direct mode error interrupt enable
-            TEIE: u1, //Transfer error interrupt enable
-            HTIE: u1, //Half transfer interrupt enable
-            TCIE: u1, //Transfer complete interrupt enable
-            PFCTRL: u1, //Peripheral flow controller
-            DIR: u2, //Data transfer direction
-            CIRC: u1, //Circular mode
-            PINC: u1, //Peripheral increment mode
-            MINC: u1, //Memory increment mode
-            PSIZE: u2, //Peripheral data size
-            MSIZE: u2, //Memory data size
-            PINCOS: u1, //Peripheral increment offset size
-            PL: u2, //Priority level
-            DBM: u1, //Double buffer mode
-            CT: u1, //Current target (only in double buffer mode)
-            ACK: u1, //ACK
-            PBURST: u2, //Peripheral burst transfer configuration
-            MBURST: u2, //Memory burst transfer configuration
-            CHSEL: u3, //Channel selection
+            EN: u1, // Stream enable / flag stream ready when read low
+            DMEIE: u1, // Direct mode error interrupt enable
+            TEIE: u1, // Transfer error interrupt enable
+            HTIE: u1, // Half transfer interrupt enable
+            TCIE: u1, // Transfer complete interrupt enable
+            PFCTRL: u1, // Peripheral flow controller
+            DIR: u2, // Data transfer direction
+            CIRC: u1, // Circular mode
+            PINC: u1, // Peripheral increment mode
+            MINC: u1, // Memory increment mode
+            PSIZE: u2, // Peripheral data size
+            MSIZE: u2, // Memory data size
+            PINCOS: u1, // Peripheral increment offset size
+            PL: u2, // Priority level
+            DBM: u1, // Double buffer mode
+            CT: u1, // Current target (only in double buffer mode)
+            ACK: u1, // ACK
+            PBURST: u2, // Peripheral burst transfer configuration
+            MBURST: u2, // Memory burst transfer configuration
+            CHSEL: u3, // Channel selection
             padding_28_31: u4,
         }), base_address + 0x58);
 
         /// address: 0x4002645c
         /// stream x number of data register
         pub const S3NDTR = @intToPtr(*volatile Mmio(32, packed struct {
-            NDT: u16, //Number of data items to transfer
+            NDT: u16, // Number of data items to transfer
             padding_16_31: u16,
         }), base_address + 0x5c);
 
         /// address: 0x40026460
         /// stream x peripheral address register
         pub const S3PAR = @intToPtr(*volatile Mmio(32, packed struct {
-            PA: u32, //Peripheral address
+            PA: u32, // Peripheral address
         }), base_address + 0x60);
 
         /// address: 0x40026464
         /// stream x memory 0 address register
         pub const S3M0AR = @intToPtr(*volatile Mmio(32, packed struct {
-            M0A: u32, //Memory 0 address
+            M0A: u32, // Memory 0 address
         }), base_address + 0x64);
 
         /// address: 0x40026468
         /// stream x memory 1 address register
         pub const S3M1AR = @intToPtr(*volatile Mmio(32, packed struct {
-            M1A: u32, //Memory 1 address (used in case of Double buffer mode)
+            M1A: u32, // Memory 1 address (used in case of Double buffer mode)
         }), base_address + 0x68);
 
         /// address: 0x4002646c
         /// stream x FIFO control register
         pub const S3FCR = @intToPtr(*volatile Mmio(32, packed struct {
-            FTH: u2, //FIFO threshold selection
-            DMDIS: u1, //Direct mode disable
-            FS: u3, //FIFO status
+            FTH: u2, // FIFO threshold selection
+            DMDIS: u1, // Direct mode disable
+            FS: u3, // FIFO status
             reserved_6_6: u1,
-            FEIE: u1, //FIFO error interrupt enable
+            FEIE: u1, // FIFO error interrupt enable
             padding_8_31: u24,
         }), base_address + 0x6c);
 
         /// address: 0x40026470
         /// stream x configuration register
         pub const S4CR = @intToPtr(*volatile Mmio(32, packed struct {
-            EN: u1, //Stream enable / flag stream ready when read low
-            DMEIE: u1, //Direct mode error interrupt enable
-            TEIE: u1, //Transfer error interrupt enable
-            HTIE: u1, //Half transfer interrupt enable
-            TCIE: u1, //Transfer complete interrupt enable
-            PFCTRL: u1, //Peripheral flow controller
-            DIR: u2, //Data transfer direction
-            CIRC: u1, //Circular mode
-            PINC: u1, //Peripheral increment mode
-            MINC: u1, //Memory increment mode
-            PSIZE: u2, //Peripheral data size
-            MSIZE: u2, //Memory data size
-            PINCOS: u1, //Peripheral increment offset size
-            PL: u2, //Priority level
-            DBM: u1, //Double buffer mode
-            CT: u1, //Current target (only in double buffer mode)
-            ACK: u1, //ACK
-            PBURST: u2, //Peripheral burst transfer configuration
-            MBURST: u2, //Memory burst transfer configuration
-            CHSEL: u3, //Channel selection
+            EN: u1, // Stream enable / flag stream ready when read low
+            DMEIE: u1, // Direct mode error interrupt enable
+            TEIE: u1, // Transfer error interrupt enable
+            HTIE: u1, // Half transfer interrupt enable
+            TCIE: u1, // Transfer complete interrupt enable
+            PFCTRL: u1, // Peripheral flow controller
+            DIR: u2, // Data transfer direction
+            CIRC: u1, // Circular mode
+            PINC: u1, // Peripheral increment mode
+            MINC: u1, // Memory increment mode
+            PSIZE: u2, // Peripheral data size
+            MSIZE: u2, // Memory data size
+            PINCOS: u1, // Peripheral increment offset size
+            PL: u2, // Priority level
+            DBM: u1, // Double buffer mode
+            CT: u1, // Current target (only in double buffer mode)
+            ACK: u1, // ACK
+            PBURST: u2, // Peripheral burst transfer configuration
+            MBURST: u2, // Memory burst transfer configuration
+            CHSEL: u3, // Channel selection
             padding_28_31: u4,
         }), base_address + 0x70);
 
         /// address: 0x40026474
         /// stream x number of data register
         pub const S4NDTR = @intToPtr(*volatile Mmio(32, packed struct {
-            NDT: u16, //Number of data items to transfer
+            NDT: u16, // Number of data items to transfer
             padding_16_31: u16,
         }), base_address + 0x74);
 
         /// address: 0x40026478
         /// stream x peripheral address register
         pub const S4PAR = @intToPtr(*volatile Mmio(32, packed struct {
-            PA: u32, //Peripheral address
+            PA: u32, // Peripheral address
         }), base_address + 0x78);
 
         /// address: 0x4002647c
         /// stream x memory 0 address register
         pub const S4M0AR = @intToPtr(*volatile Mmio(32, packed struct {
-            M0A: u32, //Memory 0 address
+            M0A: u32, // Memory 0 address
         }), base_address + 0x7c);
 
         /// address: 0x40026480
         /// stream x memory 1 address register
         pub const S4M1AR = @intToPtr(*volatile Mmio(32, packed struct {
-            M1A: u32, //Memory 1 address (used in case of Double buffer mode)
+            M1A: u32, // Memory 1 address (used in case of Double buffer mode)
         }), base_address + 0x80);
 
         /// address: 0x40026484
         /// stream x FIFO control register
         pub const S4FCR = @intToPtr(*volatile Mmio(32, packed struct {
-            FTH: u2, //FIFO threshold selection
-            DMDIS: u1, //Direct mode disable
-            FS: u3, //FIFO status
+            FTH: u2, // FIFO threshold selection
+            DMDIS: u1, // Direct mode disable
+            FS: u3, // FIFO status
             reserved_6_6: u1,
-            FEIE: u1, //FIFO error interrupt enable
+            FEIE: u1, // FIFO error interrupt enable
             padding_8_31: u24,
         }), base_address + 0x84);
 
         /// address: 0x40026488
         /// stream x configuration register
         pub const S5CR = @intToPtr(*volatile Mmio(32, packed struct {
-            EN: u1, //Stream enable / flag stream ready when read low
-            DMEIE: u1, //Direct mode error interrupt enable
-            TEIE: u1, //Transfer error interrupt enable
-            HTIE: u1, //Half transfer interrupt enable
-            TCIE: u1, //Transfer complete interrupt enable
-            PFCTRL: u1, //Peripheral flow controller
-            DIR: u2, //Data transfer direction
-            CIRC: u1, //Circular mode
-            PINC: u1, //Peripheral increment mode
-            MINC: u1, //Memory increment mode
-            PSIZE: u2, //Peripheral data size
-            MSIZE: u2, //Memory data size
-            PINCOS: u1, //Peripheral increment offset size
-            PL: u2, //Priority level
-            DBM: u1, //Double buffer mode
-            CT: u1, //Current target (only in double buffer mode)
-            ACK: u1, //ACK
-            PBURST: u2, //Peripheral burst transfer configuration
-            MBURST: u2, //Memory burst transfer configuration
-            CHSEL: u3, //Channel selection
+            EN: u1, // Stream enable / flag stream ready when read low
+            DMEIE: u1, // Direct mode error interrupt enable
+            TEIE: u1, // Transfer error interrupt enable
+            HTIE: u1, // Half transfer interrupt enable
+            TCIE: u1, // Transfer complete interrupt enable
+            PFCTRL: u1, // Peripheral flow controller
+            DIR: u2, // Data transfer direction
+            CIRC: u1, // Circular mode
+            PINC: u1, // Peripheral increment mode
+            MINC: u1, // Memory increment mode
+            PSIZE: u2, // Peripheral data size
+            MSIZE: u2, // Memory data size
+            PINCOS: u1, // Peripheral increment offset size
+            PL: u2, // Priority level
+            DBM: u1, // Double buffer mode
+            CT: u1, // Current target (only in double buffer mode)
+            ACK: u1, // ACK
+            PBURST: u2, // Peripheral burst transfer configuration
+            MBURST: u2, // Memory burst transfer configuration
+            CHSEL: u3, // Channel selection
             padding_28_31: u4,
         }), base_address + 0x88);
 
         /// address: 0x4002648c
         /// stream x number of data register
         pub const S5NDTR = @intToPtr(*volatile Mmio(32, packed struct {
-            NDT: u16, //Number of data items to transfer
+            NDT: u16, // Number of data items to transfer
             padding_16_31: u16,
         }), base_address + 0x8c);
 
         /// address: 0x40026490
         /// stream x peripheral address register
         pub const S5PAR = @intToPtr(*volatile Mmio(32, packed struct {
-            PA: u32, //Peripheral address
+            PA: u32, // Peripheral address
         }), base_address + 0x90);
 
         /// address: 0x40026494
         /// stream x memory 0 address register
         pub const S5M0AR = @intToPtr(*volatile Mmio(32, packed struct {
-            M0A: u32, //Memory 0 address
+            M0A: u32, // Memory 0 address
         }), base_address + 0x94);
 
         /// address: 0x40026498
         /// stream x memory 1 address register
         pub const S5M1AR = @intToPtr(*volatile Mmio(32, packed struct {
-            M1A: u32, //Memory 1 address (used in case of Double buffer mode)
+            M1A: u32, // Memory 1 address (used in case of Double buffer mode)
         }), base_address + 0x98);
 
         /// address: 0x4002649c
         /// stream x FIFO control register
         pub const S5FCR = @intToPtr(*volatile Mmio(32, packed struct {
-            FTH: u2, //FIFO threshold selection
-            DMDIS: u1, //Direct mode disable
-            FS: u3, //FIFO status
+            FTH: u2, // FIFO threshold selection
+            DMDIS: u1, // Direct mode disable
+            FS: u3, // FIFO status
             reserved_6_6: u1,
-            FEIE: u1, //FIFO error interrupt enable
+            FEIE: u1, // FIFO error interrupt enable
             padding_8_31: u24,
         }), base_address + 0x9c);
 
         /// address: 0x400264a0
         /// stream x configuration register
         pub const S6CR = @intToPtr(*volatile Mmio(32, packed struct {
-            EN: u1, //Stream enable / flag stream ready when read low
-            DMEIE: u1, //Direct mode error interrupt enable
-            TEIE: u1, //Transfer error interrupt enable
-            HTIE: u1, //Half transfer interrupt enable
-            TCIE: u1, //Transfer complete interrupt enable
-            PFCTRL: u1, //Peripheral flow controller
-            DIR: u2, //Data transfer direction
-            CIRC: u1, //Circular mode
-            PINC: u1, //Peripheral increment mode
-            MINC: u1, //Memory increment mode
-            PSIZE: u2, //Peripheral data size
-            MSIZE: u2, //Memory data size
-            PINCOS: u1, //Peripheral increment offset size
-            PL: u2, //Priority level
-            DBM: u1, //Double buffer mode
-            CT: u1, //Current target (only in double buffer mode)
-            ACK: u1, //ACK
-            PBURST: u2, //Peripheral burst transfer configuration
-            MBURST: u2, //Memory burst transfer configuration
-            CHSEL: u3, //Channel selection
+            EN: u1, // Stream enable / flag stream ready when read low
+            DMEIE: u1, // Direct mode error interrupt enable
+            TEIE: u1, // Transfer error interrupt enable
+            HTIE: u1, // Half transfer interrupt enable
+            TCIE: u1, // Transfer complete interrupt enable
+            PFCTRL: u1, // Peripheral flow controller
+            DIR: u2, // Data transfer direction
+            CIRC: u1, // Circular mode
+            PINC: u1, // Peripheral increment mode
+            MINC: u1, // Memory increment mode
+            PSIZE: u2, // Peripheral data size
+            MSIZE: u2, // Memory data size
+            PINCOS: u1, // Peripheral increment offset size
+            PL: u2, // Priority level
+            DBM: u1, // Double buffer mode
+            CT: u1, // Current target (only in double buffer mode)
+            ACK: u1, // ACK
+            PBURST: u2, // Peripheral burst transfer configuration
+            MBURST: u2, // Memory burst transfer configuration
+            CHSEL: u3, // Channel selection
             padding_28_31: u4,
         }), base_address + 0xa0);
 
         /// address: 0x400264a4
         /// stream x number of data register
         pub const S6NDTR = @intToPtr(*volatile Mmio(32, packed struct {
-            NDT: u16, //Number of data items to transfer
+            NDT: u16, // Number of data items to transfer
             padding_16_31: u16,
         }), base_address + 0xa4);
 
         /// address: 0x400264a8
         /// stream x peripheral address register
         pub const S6PAR = @intToPtr(*volatile Mmio(32, packed struct {
-            PA: u32, //Peripheral address
+            PA: u32, // Peripheral address
         }), base_address + 0xa8);
 
         /// address: 0x400264ac
         /// stream x memory 0 address register
         pub const S6M0AR = @intToPtr(*volatile Mmio(32, packed struct {
-            M0A: u32, //Memory 0 address
+            M0A: u32, // Memory 0 address
         }), base_address + 0xac);
 
         /// address: 0x400264b0
         /// stream x memory 1 address register
         pub const S6M1AR = @intToPtr(*volatile Mmio(32, packed struct {
-            M1A: u32, //Memory 1 address (used in case of Double buffer mode)
+            M1A: u32, // Memory 1 address (used in case of Double buffer mode)
         }), base_address + 0xb0);
 
         /// address: 0x400264b4
         /// stream x FIFO control register
         pub const S6FCR = @intToPtr(*volatile Mmio(32, packed struct {
-            FTH: u2, //FIFO threshold selection
-            DMDIS: u1, //Direct mode disable
-            FS: u3, //FIFO status
+            FTH: u2, // FIFO threshold selection
+            DMDIS: u1, // Direct mode disable
+            FS: u3, // FIFO status
             reserved_6_6: u1,
-            FEIE: u1, //FIFO error interrupt enable
+            FEIE: u1, // FIFO error interrupt enable
             padding_8_31: u24,
         }), base_address + 0xb4);
 
         /// address: 0x400264b8
         /// stream x configuration register
         pub const S7CR = @intToPtr(*volatile Mmio(32, packed struct {
-            EN: u1, //Stream enable / flag stream ready when read low
-            DMEIE: u1, //Direct mode error interrupt enable
-            TEIE: u1, //Transfer error interrupt enable
-            HTIE: u1, //Half transfer interrupt enable
-            TCIE: u1, //Transfer complete interrupt enable
-            PFCTRL: u1, //Peripheral flow controller
-            DIR: u2, //Data transfer direction
-            CIRC: u1, //Circular mode
-            PINC: u1, //Peripheral increment mode
-            MINC: u1, //Memory increment mode
-            PSIZE: u2, //Peripheral data size
-            MSIZE: u2, //Memory data size
-            PINCOS: u1, //Peripheral increment offset size
-            PL: u2, //Priority level
-            DBM: u1, //Double buffer mode
-            CT: u1, //Current target (only in double buffer mode)
-            ACK: u1, //ACK
-            PBURST: u2, //Peripheral burst transfer configuration
-            MBURST: u2, //Memory burst transfer configuration
-            CHSEL: u3, //Channel selection
+            EN: u1, // Stream enable / flag stream ready when read low
+            DMEIE: u1, // Direct mode error interrupt enable
+            TEIE: u1, // Transfer error interrupt enable
+            HTIE: u1, // Half transfer interrupt enable
+            TCIE: u1, // Transfer complete interrupt enable
+            PFCTRL: u1, // Peripheral flow controller
+            DIR: u2, // Data transfer direction
+            CIRC: u1, // Circular mode
+            PINC: u1, // Peripheral increment mode
+            MINC: u1, // Memory increment mode
+            PSIZE: u2, // Peripheral data size
+            MSIZE: u2, // Memory data size
+            PINCOS: u1, // Peripheral increment offset size
+            PL: u2, // Priority level
+            DBM: u1, // Double buffer mode
+            CT: u1, // Current target (only in double buffer mode)
+            ACK: u1, // ACK
+            PBURST: u2, // Peripheral burst transfer configuration
+            MBURST: u2, // Memory burst transfer configuration
+            CHSEL: u3, // Channel selection
             padding_28_31: u4,
         }), base_address + 0xb8);
 
         /// address: 0x400264bc
         /// stream x number of data register
         pub const S7NDTR = @intToPtr(*volatile Mmio(32, packed struct {
-            NDT: u16, //Number of data items to transfer
+            NDT: u16, // Number of data items to transfer
             padding_16_31: u16,
         }), base_address + 0xbc);
 
         /// address: 0x400264c0
         /// stream x peripheral address register
         pub const S7PAR = @intToPtr(*volatile Mmio(32, packed struct {
-            PA: u32, //Peripheral address
+            PA: u32, // Peripheral address
         }), base_address + 0xc0);
 
         /// address: 0x400264c4
         /// stream x memory 0 address register
         pub const S7M0AR = @intToPtr(*volatile Mmio(32, packed struct {
-            M0A: u32, //Memory 0 address
+            M0A: u32, // Memory 0 address
         }), base_address + 0xc4);
 
         /// address: 0x400264c8
         /// stream x memory 1 address register
         pub const S7M1AR = @intToPtr(*volatile Mmio(32, packed struct {
-            M1A: u32, //Memory 1 address (used in case of Double buffer mode)
+            M1A: u32, // Memory 1 address (used in case of Double buffer mode)
         }), base_address + 0xc8);
 
         /// address: 0x400264cc
         /// stream x FIFO control register
         pub const S7FCR = @intToPtr(*volatile Mmio(32, packed struct {
-            FTH: u2, //FIFO threshold selection
-            DMDIS: u1, //Direct mode disable
-            FS: u3, //FIFO status
+            FTH: u2, // FIFO threshold selection
+            DMDIS: u1, // Direct mode disable
+            FS: u3, // FIFO status
             reserved_6_6: u1,
-            FEIE: u1, //FIFO error interrupt enable
+            FEIE: u1, // FIFO error interrupt enable
             padding_8_31: u24,
         }), base_address + 0xcc);
     };
@@ -4979,216 +4979,216 @@ pub const registers = struct {
         /// address: 0x40021c00
         /// GPIO port mode register
         pub const MODER = @intToPtr(*volatile Mmio(32, packed struct {
-            MODER0: u2, //Port x configuration bits (y = 0..15)
-            MODER1: u2, //Port x configuration bits (y = 0..15)
-            MODER2: u2, //Port x configuration bits (y = 0..15)
-            MODER3: u2, //Port x configuration bits (y = 0..15)
-            MODER4: u2, //Port x configuration bits (y = 0..15)
-            MODER5: u2, //Port x configuration bits (y = 0..15)
-            MODER6: u2, //Port x configuration bits (y = 0..15)
-            MODER7: u2, //Port x configuration bits (y = 0..15)
-            MODER8: u2, //Port x configuration bits (y = 0..15)
-            MODER9: u2, //Port x configuration bits (y = 0..15)
-            MODER10: u2, //Port x configuration bits (y = 0..15)
-            MODER11: u2, //Port x configuration bits (y = 0..15)
-            MODER12: u2, //Port x configuration bits (y = 0..15)
-            MODER13: u2, //Port x configuration bits (y = 0..15)
-            MODER14: u2, //Port x configuration bits (y = 0..15)
-            MODER15: u2, //Port x configuration bits (y = 0..15)
+            MODER0: u2, // Port x configuration bits (y = 0..15)
+            MODER1: u2, // Port x configuration bits (y = 0..15)
+            MODER2: u2, // Port x configuration bits (y = 0..15)
+            MODER3: u2, // Port x configuration bits (y = 0..15)
+            MODER4: u2, // Port x configuration bits (y = 0..15)
+            MODER5: u2, // Port x configuration bits (y = 0..15)
+            MODER6: u2, // Port x configuration bits (y = 0..15)
+            MODER7: u2, // Port x configuration bits (y = 0..15)
+            MODER8: u2, // Port x configuration bits (y = 0..15)
+            MODER9: u2, // Port x configuration bits (y = 0..15)
+            MODER10: u2, // Port x configuration bits (y = 0..15)
+            MODER11: u2, // Port x configuration bits (y = 0..15)
+            MODER12: u2, // Port x configuration bits (y = 0..15)
+            MODER13: u2, // Port x configuration bits (y = 0..15)
+            MODER14: u2, // Port x configuration bits (y = 0..15)
+            MODER15: u2, // Port x configuration bits (y = 0..15)
         }), base_address + 0x0);
 
         /// address: 0x40021c04
         /// GPIO port output type register
         pub const OTYPER = @intToPtr(*volatile Mmio(32, packed struct {
-            OT0: u1, //Port x configuration bits (y = 0..15)
-            OT1: u1, //Port x configuration bits (y = 0..15)
-            OT2: u1, //Port x configuration bits (y = 0..15)
-            OT3: u1, //Port x configuration bits (y = 0..15)
-            OT4: u1, //Port x configuration bits (y = 0..15)
-            OT5: u1, //Port x configuration bits (y = 0..15)
-            OT6: u1, //Port x configuration bits (y = 0..15)
-            OT7: u1, //Port x configuration bits (y = 0..15)
-            OT8: u1, //Port x configuration bits (y = 0..15)
-            OT9: u1, //Port x configuration bits (y = 0..15)
-            OT10: u1, //Port x configuration bits (y = 0..15)
-            OT11: u1, //Port x configuration bits (y = 0..15)
-            OT12: u1, //Port x configuration bits (y = 0..15)
-            OT13: u1, //Port x configuration bits (y = 0..15)
-            OT14: u1, //Port x configuration bits (y = 0..15)
-            OT15: u1, //Port x configuration bits (y = 0..15)
+            OT0: u1, // Port x configuration bits (y = 0..15)
+            OT1: u1, // Port x configuration bits (y = 0..15)
+            OT2: u1, // Port x configuration bits (y = 0..15)
+            OT3: u1, // Port x configuration bits (y = 0..15)
+            OT4: u1, // Port x configuration bits (y = 0..15)
+            OT5: u1, // Port x configuration bits (y = 0..15)
+            OT6: u1, // Port x configuration bits (y = 0..15)
+            OT7: u1, // Port x configuration bits (y = 0..15)
+            OT8: u1, // Port x configuration bits (y = 0..15)
+            OT9: u1, // Port x configuration bits (y = 0..15)
+            OT10: u1, // Port x configuration bits (y = 0..15)
+            OT11: u1, // Port x configuration bits (y = 0..15)
+            OT12: u1, // Port x configuration bits (y = 0..15)
+            OT13: u1, // Port x configuration bits (y = 0..15)
+            OT14: u1, // Port x configuration bits (y = 0..15)
+            OT15: u1, // Port x configuration bits (y = 0..15)
             padding_16_31: u16,
         }), base_address + 0x4);
 
         /// address: 0x40021c08
         /// GPIO port output speed register
         pub const OSPEEDR = @intToPtr(*volatile Mmio(32, packed struct {
-            OSPEEDR0: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR1: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR2: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR3: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR4: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR5: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR6: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR7: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR8: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR9: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR10: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR11: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR12: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR13: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR14: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR15: u2, //Port x configuration bits (y = 0..15)
+            OSPEEDR0: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR1: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR2: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR3: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR4: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR5: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR6: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR7: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR8: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR9: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR10: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR11: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR12: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR13: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR14: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR15: u2, // Port x configuration bits (y = 0..15)
         }), base_address + 0x8);
 
         /// address: 0x40021c0c
         /// GPIO port pull-up/pull-down register
         pub const PUPDR = @intToPtr(*volatile Mmio(32, packed struct {
-            PUPDR0: u2, //Port x configuration bits (y = 0..15)
-            PUPDR1: u2, //Port x configuration bits (y = 0..15)
-            PUPDR2: u2, //Port x configuration bits (y = 0..15)
-            PUPDR3: u2, //Port x configuration bits (y = 0..15)
-            PUPDR4: u2, //Port x configuration bits (y = 0..15)
-            PUPDR5: u2, //Port x configuration bits (y = 0..15)
-            PUPDR6: u2, //Port x configuration bits (y = 0..15)
-            PUPDR7: u2, //Port x configuration bits (y = 0..15)
-            PUPDR8: u2, //Port x configuration bits (y = 0..15)
-            PUPDR9: u2, //Port x configuration bits (y = 0..15)
-            PUPDR10: u2, //Port x configuration bits (y = 0..15)
-            PUPDR11: u2, //Port x configuration bits (y = 0..15)
-            PUPDR12: u2, //Port x configuration bits (y = 0..15)
-            PUPDR13: u2, //Port x configuration bits (y = 0..15)
-            PUPDR14: u2, //Port x configuration bits (y = 0..15)
-            PUPDR15: u2, //Port x configuration bits (y = 0..15)
+            PUPDR0: u2, // Port x configuration bits (y = 0..15)
+            PUPDR1: u2, // Port x configuration bits (y = 0..15)
+            PUPDR2: u2, // Port x configuration bits (y = 0..15)
+            PUPDR3: u2, // Port x configuration bits (y = 0..15)
+            PUPDR4: u2, // Port x configuration bits (y = 0..15)
+            PUPDR5: u2, // Port x configuration bits (y = 0..15)
+            PUPDR6: u2, // Port x configuration bits (y = 0..15)
+            PUPDR7: u2, // Port x configuration bits (y = 0..15)
+            PUPDR8: u2, // Port x configuration bits (y = 0..15)
+            PUPDR9: u2, // Port x configuration bits (y = 0..15)
+            PUPDR10: u2, // Port x configuration bits (y = 0..15)
+            PUPDR11: u2, // Port x configuration bits (y = 0..15)
+            PUPDR12: u2, // Port x configuration bits (y = 0..15)
+            PUPDR13: u2, // Port x configuration bits (y = 0..15)
+            PUPDR14: u2, // Port x configuration bits (y = 0..15)
+            PUPDR15: u2, // Port x configuration bits (y = 0..15)
         }), base_address + 0xc);
 
         /// address: 0x40021c10
         /// GPIO port input data register
         pub const IDR = @intToPtr(*volatile Mmio(32, packed struct {
-            IDR0: u1, //Port input data (y = 0..15)
-            IDR1: u1, //Port input data (y = 0..15)
-            IDR2: u1, //Port input data (y = 0..15)
-            IDR3: u1, //Port input data (y = 0..15)
-            IDR4: u1, //Port input data (y = 0..15)
-            IDR5: u1, //Port input data (y = 0..15)
-            IDR6: u1, //Port input data (y = 0..15)
-            IDR7: u1, //Port input data (y = 0..15)
-            IDR8: u1, //Port input data (y = 0..15)
-            IDR9: u1, //Port input data (y = 0..15)
-            IDR10: u1, //Port input data (y = 0..15)
-            IDR11: u1, //Port input data (y = 0..15)
-            IDR12: u1, //Port input data (y = 0..15)
-            IDR13: u1, //Port input data (y = 0..15)
-            IDR14: u1, //Port input data (y = 0..15)
-            IDR15: u1, //Port input data (y = 0..15)
+            IDR0: u1, // Port input data (y = 0..15)
+            IDR1: u1, // Port input data (y = 0..15)
+            IDR2: u1, // Port input data (y = 0..15)
+            IDR3: u1, // Port input data (y = 0..15)
+            IDR4: u1, // Port input data (y = 0..15)
+            IDR5: u1, // Port input data (y = 0..15)
+            IDR6: u1, // Port input data (y = 0..15)
+            IDR7: u1, // Port input data (y = 0..15)
+            IDR8: u1, // Port input data (y = 0..15)
+            IDR9: u1, // Port input data (y = 0..15)
+            IDR10: u1, // Port input data (y = 0..15)
+            IDR11: u1, // Port input data (y = 0..15)
+            IDR12: u1, // Port input data (y = 0..15)
+            IDR13: u1, // Port input data (y = 0..15)
+            IDR14: u1, // Port input data (y = 0..15)
+            IDR15: u1, // Port input data (y = 0..15)
             padding_16_31: u16,
         }), base_address + 0x10);
 
         /// address: 0x40021c14
         /// GPIO port output data register
         pub const ODR = @intToPtr(*volatile Mmio(32, packed struct {
-            ODR0: u1, //Port output data (y = 0..15)
-            ODR1: u1, //Port output data (y = 0..15)
-            ODR2: u1, //Port output data (y = 0..15)
-            ODR3: u1, //Port output data (y = 0..15)
-            ODR4: u1, //Port output data (y = 0..15)
-            ODR5: u1, //Port output data (y = 0..15)
-            ODR6: u1, //Port output data (y = 0..15)
-            ODR7: u1, //Port output data (y = 0..15)
-            ODR8: u1, //Port output data (y = 0..15)
-            ODR9: u1, //Port output data (y = 0..15)
-            ODR10: u1, //Port output data (y = 0..15)
-            ODR11: u1, //Port output data (y = 0..15)
-            ODR12: u1, //Port output data (y = 0..15)
-            ODR13: u1, //Port output data (y = 0..15)
-            ODR14: u1, //Port output data (y = 0..15)
-            ODR15: u1, //Port output data (y = 0..15)
+            ODR0: u1, // Port output data (y = 0..15)
+            ODR1: u1, // Port output data (y = 0..15)
+            ODR2: u1, // Port output data (y = 0..15)
+            ODR3: u1, // Port output data (y = 0..15)
+            ODR4: u1, // Port output data (y = 0..15)
+            ODR5: u1, // Port output data (y = 0..15)
+            ODR6: u1, // Port output data (y = 0..15)
+            ODR7: u1, // Port output data (y = 0..15)
+            ODR8: u1, // Port output data (y = 0..15)
+            ODR9: u1, // Port output data (y = 0..15)
+            ODR10: u1, // Port output data (y = 0..15)
+            ODR11: u1, // Port output data (y = 0..15)
+            ODR12: u1, // Port output data (y = 0..15)
+            ODR13: u1, // Port output data (y = 0..15)
+            ODR14: u1, // Port output data (y = 0..15)
+            ODR15: u1, // Port output data (y = 0..15)
             padding_16_31: u16,
         }), base_address + 0x14);
 
         /// address: 0x40021c18
         /// GPIO port bit set/reset register
         pub const BSRR = @intToPtr(*volatile Mmio(32, packed struct {
-            BS0: u1, //Port x set bit y (y= 0..15)
-            BS1: u1, //Port x set bit y (y= 0..15)
-            BS2: u1, //Port x set bit y (y= 0..15)
-            BS3: u1, //Port x set bit y (y= 0..15)
-            BS4: u1, //Port x set bit y (y= 0..15)
-            BS5: u1, //Port x set bit y (y= 0..15)
-            BS6: u1, //Port x set bit y (y= 0..15)
-            BS7: u1, //Port x set bit y (y= 0..15)
-            BS8: u1, //Port x set bit y (y= 0..15)
-            BS9: u1, //Port x set bit y (y= 0..15)
-            BS10: u1, //Port x set bit y (y= 0..15)
-            BS11: u1, //Port x set bit y (y= 0..15)
-            BS12: u1, //Port x set bit y (y= 0..15)
-            BS13: u1, //Port x set bit y (y= 0..15)
-            BS14: u1, //Port x set bit y (y= 0..15)
-            BS15: u1, //Port x set bit y (y= 0..15)
-            BR0: u1, //Port x set bit y (y= 0..15)
-            BR1: u1, //Port x reset bit y (y = 0..15)
-            BR2: u1, //Port x reset bit y (y = 0..15)
-            BR3: u1, //Port x reset bit y (y = 0..15)
-            BR4: u1, //Port x reset bit y (y = 0..15)
-            BR5: u1, //Port x reset bit y (y = 0..15)
-            BR6: u1, //Port x reset bit y (y = 0..15)
-            BR7: u1, //Port x reset bit y (y = 0..15)
-            BR8: u1, //Port x reset bit y (y = 0..15)
-            BR9: u1, //Port x reset bit y (y = 0..15)
-            BR10: u1, //Port x reset bit y (y = 0..15)
-            BR11: u1, //Port x reset bit y (y = 0..15)
-            BR12: u1, //Port x reset bit y (y = 0..15)
-            BR13: u1, //Port x reset bit y (y = 0..15)
-            BR14: u1, //Port x reset bit y (y = 0..15)
-            BR15: u1, //Port x reset bit y (y = 0..15)
+            BS0: u1, // Port x set bit y (y= 0..15)
+            BS1: u1, // Port x set bit y (y= 0..15)
+            BS2: u1, // Port x set bit y (y= 0..15)
+            BS3: u1, // Port x set bit y (y= 0..15)
+            BS4: u1, // Port x set bit y (y= 0..15)
+            BS5: u1, // Port x set bit y (y= 0..15)
+            BS6: u1, // Port x set bit y (y= 0..15)
+            BS7: u1, // Port x set bit y (y= 0..15)
+            BS8: u1, // Port x set bit y (y= 0..15)
+            BS9: u1, // Port x set bit y (y= 0..15)
+            BS10: u1, // Port x set bit y (y= 0..15)
+            BS11: u1, // Port x set bit y (y= 0..15)
+            BS12: u1, // Port x set bit y (y= 0..15)
+            BS13: u1, // Port x set bit y (y= 0..15)
+            BS14: u1, // Port x set bit y (y= 0..15)
+            BS15: u1, // Port x set bit y (y= 0..15)
+            BR0: u1, // Port x set bit y (y= 0..15)
+            BR1: u1, // Port x reset bit y (y = 0..15)
+            BR2: u1, // Port x reset bit y (y = 0..15)
+            BR3: u1, // Port x reset bit y (y = 0..15)
+            BR4: u1, // Port x reset bit y (y = 0..15)
+            BR5: u1, // Port x reset bit y (y = 0..15)
+            BR6: u1, // Port x reset bit y (y = 0..15)
+            BR7: u1, // Port x reset bit y (y = 0..15)
+            BR8: u1, // Port x reset bit y (y = 0..15)
+            BR9: u1, // Port x reset bit y (y = 0..15)
+            BR10: u1, // Port x reset bit y (y = 0..15)
+            BR11: u1, // Port x reset bit y (y = 0..15)
+            BR12: u1, // Port x reset bit y (y = 0..15)
+            BR13: u1, // Port x reset bit y (y = 0..15)
+            BR14: u1, // Port x reset bit y (y = 0..15)
+            BR15: u1, // Port x reset bit y (y = 0..15)
         }), base_address + 0x18);
 
         /// address: 0x40021c1c
         /// GPIO port configuration lock register
         pub const LCKR = @intToPtr(*volatile Mmio(32, packed struct {
-            LCK0: u1, //Port x lock bit y (y= 0..15)
-            LCK1: u1, //Port x lock bit y (y= 0..15)
-            LCK2: u1, //Port x lock bit y (y= 0..15)
-            LCK3: u1, //Port x lock bit y (y= 0..15)
-            LCK4: u1, //Port x lock bit y (y= 0..15)
-            LCK5: u1, //Port x lock bit y (y= 0..15)
-            LCK6: u1, //Port x lock bit y (y= 0..15)
-            LCK7: u1, //Port x lock bit y (y= 0..15)
-            LCK8: u1, //Port x lock bit y (y= 0..15)
-            LCK9: u1, //Port x lock bit y (y= 0..15)
-            LCK10: u1, //Port x lock bit y (y= 0..15)
-            LCK11: u1, //Port x lock bit y (y= 0..15)
-            LCK12: u1, //Port x lock bit y (y= 0..15)
-            LCK13: u1, //Port x lock bit y (y= 0..15)
-            LCK14: u1, //Port x lock bit y (y= 0..15)
-            LCK15: u1, //Port x lock bit y (y= 0..15)
-            LCKK: u1, //Port x lock bit y (y= 0..15)
+            LCK0: u1, // Port x lock bit y (y= 0..15)
+            LCK1: u1, // Port x lock bit y (y= 0..15)
+            LCK2: u1, // Port x lock bit y (y= 0..15)
+            LCK3: u1, // Port x lock bit y (y= 0..15)
+            LCK4: u1, // Port x lock bit y (y= 0..15)
+            LCK5: u1, // Port x lock bit y (y= 0..15)
+            LCK6: u1, // Port x lock bit y (y= 0..15)
+            LCK7: u1, // Port x lock bit y (y= 0..15)
+            LCK8: u1, // Port x lock bit y (y= 0..15)
+            LCK9: u1, // Port x lock bit y (y= 0..15)
+            LCK10: u1, // Port x lock bit y (y= 0..15)
+            LCK11: u1, // Port x lock bit y (y= 0..15)
+            LCK12: u1, // Port x lock bit y (y= 0..15)
+            LCK13: u1, // Port x lock bit y (y= 0..15)
+            LCK14: u1, // Port x lock bit y (y= 0..15)
+            LCK15: u1, // Port x lock bit y (y= 0..15)
+            LCKK: u1, // Port x lock bit y (y= 0..15)
             padding_17_31: u15,
         }), base_address + 0x1c);
 
         /// address: 0x40021c20
         /// GPIO alternate function low register
         pub const AFRL = @intToPtr(*volatile Mmio(32, packed struct {
-            AFRL0: u4, //Alternate function selection for port x bit y (y = 0..7)
-            AFRL1: u4, //Alternate function selection for port x bit y (y = 0..7)
-            AFRL2: u4, //Alternate function selection for port x bit y (y = 0..7)
-            AFRL3: u4, //Alternate function selection for port x bit y (y = 0..7)
-            AFRL4: u4, //Alternate function selection for port x bit y (y = 0..7)
-            AFRL5: u4, //Alternate function selection for port x bit y (y = 0..7)
-            AFRL6: u4, //Alternate function selection for port x bit y (y = 0..7)
-            AFRL7: u4, //Alternate function selection for port x bit y (y = 0..7)
+            AFRL0: u4, // Alternate function selection for port x bit y (y = 0..7)
+            AFRL1: u4, // Alternate function selection for port x bit y (y = 0..7)
+            AFRL2: u4, // Alternate function selection for port x bit y (y = 0..7)
+            AFRL3: u4, // Alternate function selection for port x bit y (y = 0..7)
+            AFRL4: u4, // Alternate function selection for port x bit y (y = 0..7)
+            AFRL5: u4, // Alternate function selection for port x bit y (y = 0..7)
+            AFRL6: u4, // Alternate function selection for port x bit y (y = 0..7)
+            AFRL7: u4, // Alternate function selection for port x bit y (y = 0..7)
         }), base_address + 0x20);
 
         /// address: 0x40021c24
         /// GPIO alternate function high register
         pub const AFRH = @intToPtr(*volatile Mmio(32, packed struct {
-            AFRH8: u4, //Alternate function selection for port x bit y (y = 8..15)
-            AFRH9: u4, //Alternate function selection for port x bit y (y = 8..15)
-            AFRH10: u4, //Alternate function selection for port x bit y (y = 8..15)
-            AFRH11: u4, //Alternate function selection for port x bit y (y = 8..15)
-            AFRH12: u4, //Alternate function selection for port x bit y (y = 8..15)
-            AFRH13: u4, //Alternate function selection for port x bit y (y = 8..15)
-            AFRH14: u4, //Alternate function selection for port x bit y (y = 8..15)
-            AFRH15: u4, //Alternate function selection for port x bit y (y = 8..15)
+            AFRH8: u4, // Alternate function selection for port x bit y (y = 8..15)
+            AFRH9: u4, // Alternate function selection for port x bit y (y = 8..15)
+            AFRH10: u4, // Alternate function selection for port x bit y (y = 8..15)
+            AFRH11: u4, // Alternate function selection for port x bit y (y = 8..15)
+            AFRH12: u4, // Alternate function selection for port x bit y (y = 8..15)
+            AFRH13: u4, // Alternate function selection for port x bit y (y = 8..15)
+            AFRH14: u4, // Alternate function selection for port x bit y (y = 8..15)
+            AFRH15: u4, // Alternate function selection for port x bit y (y = 8..15)
         }), base_address + 0x24);
     };
 
@@ -5199,216 +5199,216 @@ pub const registers = struct {
         /// address: 0x40020400
         /// GPIO port mode register
         pub const MODER = @intToPtr(*volatile Mmio(32, packed struct {
-            MODER0: u2, //Port x configuration bits (y = 0..15)
-            MODER1: u2, //Port x configuration bits (y = 0..15)
-            MODER2: u2, //Port x configuration bits (y = 0..15)
-            MODER3: u2, //Port x configuration bits (y = 0..15)
-            MODER4: u2, //Port x configuration bits (y = 0..15)
-            MODER5: u2, //Port x configuration bits (y = 0..15)
-            MODER6: u2, //Port x configuration bits (y = 0..15)
-            MODER7: u2, //Port x configuration bits (y = 0..15)
-            MODER8: u2, //Port x configuration bits (y = 0..15)
-            MODER9: u2, //Port x configuration bits (y = 0..15)
-            MODER10: u2, //Port x configuration bits (y = 0..15)
-            MODER11: u2, //Port x configuration bits (y = 0..15)
-            MODER12: u2, //Port x configuration bits (y = 0..15)
-            MODER13: u2, //Port x configuration bits (y = 0..15)
-            MODER14: u2, //Port x configuration bits (y = 0..15)
-            MODER15: u2, //Port x configuration bits (y = 0..15)
+            MODER0: u2, // Port x configuration bits (y = 0..15)
+            MODER1: u2, // Port x configuration bits (y = 0..15)
+            MODER2: u2, // Port x configuration bits (y = 0..15)
+            MODER3: u2, // Port x configuration bits (y = 0..15)
+            MODER4: u2, // Port x configuration bits (y = 0..15)
+            MODER5: u2, // Port x configuration bits (y = 0..15)
+            MODER6: u2, // Port x configuration bits (y = 0..15)
+            MODER7: u2, // Port x configuration bits (y = 0..15)
+            MODER8: u2, // Port x configuration bits (y = 0..15)
+            MODER9: u2, // Port x configuration bits (y = 0..15)
+            MODER10: u2, // Port x configuration bits (y = 0..15)
+            MODER11: u2, // Port x configuration bits (y = 0..15)
+            MODER12: u2, // Port x configuration bits (y = 0..15)
+            MODER13: u2, // Port x configuration bits (y = 0..15)
+            MODER14: u2, // Port x configuration bits (y = 0..15)
+            MODER15: u2, // Port x configuration bits (y = 0..15)
         }), base_address + 0x0);
 
         /// address: 0x40020404
         /// GPIO port output type register
         pub const OTYPER = @intToPtr(*volatile Mmio(32, packed struct {
-            OT0: u1, //Port x configuration bits (y = 0..15)
-            OT1: u1, //Port x configuration bits (y = 0..15)
-            OT2: u1, //Port x configuration bits (y = 0..15)
-            OT3: u1, //Port x configuration bits (y = 0..15)
-            OT4: u1, //Port x configuration bits (y = 0..15)
-            OT5: u1, //Port x configuration bits (y = 0..15)
-            OT6: u1, //Port x configuration bits (y = 0..15)
-            OT7: u1, //Port x configuration bits (y = 0..15)
-            OT8: u1, //Port x configuration bits (y = 0..15)
-            OT9: u1, //Port x configuration bits (y = 0..15)
-            OT10: u1, //Port x configuration bits (y = 0..15)
-            OT11: u1, //Port x configuration bits (y = 0..15)
-            OT12: u1, //Port x configuration bits (y = 0..15)
-            OT13: u1, //Port x configuration bits (y = 0..15)
-            OT14: u1, //Port x configuration bits (y = 0..15)
-            OT15: u1, //Port x configuration bits (y = 0..15)
+            OT0: u1, // Port x configuration bits (y = 0..15)
+            OT1: u1, // Port x configuration bits (y = 0..15)
+            OT2: u1, // Port x configuration bits (y = 0..15)
+            OT3: u1, // Port x configuration bits (y = 0..15)
+            OT4: u1, // Port x configuration bits (y = 0..15)
+            OT5: u1, // Port x configuration bits (y = 0..15)
+            OT6: u1, // Port x configuration bits (y = 0..15)
+            OT7: u1, // Port x configuration bits (y = 0..15)
+            OT8: u1, // Port x configuration bits (y = 0..15)
+            OT9: u1, // Port x configuration bits (y = 0..15)
+            OT10: u1, // Port x configuration bits (y = 0..15)
+            OT11: u1, // Port x configuration bits (y = 0..15)
+            OT12: u1, // Port x configuration bits (y = 0..15)
+            OT13: u1, // Port x configuration bits (y = 0..15)
+            OT14: u1, // Port x configuration bits (y = 0..15)
+            OT15: u1, // Port x configuration bits (y = 0..15)
             padding_16_31: u16,
         }), base_address + 0x4);
 
         /// address: 0x40020408
         /// GPIO port output speed register
         pub const OSPEEDR = @intToPtr(*volatile Mmio(32, packed struct {
-            OSPEEDR0: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR1: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR2: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR3: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR4: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR5: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR6: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR7: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR8: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR9: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR10: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR11: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR12: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR13: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR14: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR15: u2, //Port x configuration bits (y = 0..15)
+            OSPEEDR0: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR1: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR2: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR3: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR4: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR5: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR6: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR7: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR8: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR9: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR10: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR11: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR12: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR13: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR14: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR15: u2, // Port x configuration bits (y = 0..15)
         }), base_address + 0x8);
 
         /// address: 0x4002040c
         /// GPIO port pull-up/pull-down register
         pub const PUPDR = @intToPtr(*volatile Mmio(32, packed struct {
-            PUPDR0: u2, //Port x configuration bits (y = 0..15)
-            PUPDR1: u2, //Port x configuration bits (y = 0..15)
-            PUPDR2: u2, //Port x configuration bits (y = 0..15)
-            PUPDR3: u2, //Port x configuration bits (y = 0..15)
-            PUPDR4: u2, //Port x configuration bits (y = 0..15)
-            PUPDR5: u2, //Port x configuration bits (y = 0..15)
-            PUPDR6: u2, //Port x configuration bits (y = 0..15)
-            PUPDR7: u2, //Port x configuration bits (y = 0..15)
-            PUPDR8: u2, //Port x configuration bits (y = 0..15)
-            PUPDR9: u2, //Port x configuration bits (y = 0..15)
-            PUPDR10: u2, //Port x configuration bits (y = 0..15)
-            PUPDR11: u2, //Port x configuration bits (y = 0..15)
-            PUPDR12: u2, //Port x configuration bits (y = 0..15)
-            PUPDR13: u2, //Port x configuration bits (y = 0..15)
-            PUPDR14: u2, //Port x configuration bits (y = 0..15)
-            PUPDR15: u2, //Port x configuration bits (y = 0..15)
+            PUPDR0: u2, // Port x configuration bits (y = 0..15)
+            PUPDR1: u2, // Port x configuration bits (y = 0..15)
+            PUPDR2: u2, // Port x configuration bits (y = 0..15)
+            PUPDR3: u2, // Port x configuration bits (y = 0..15)
+            PUPDR4: u2, // Port x configuration bits (y = 0..15)
+            PUPDR5: u2, // Port x configuration bits (y = 0..15)
+            PUPDR6: u2, // Port x configuration bits (y = 0..15)
+            PUPDR7: u2, // Port x configuration bits (y = 0..15)
+            PUPDR8: u2, // Port x configuration bits (y = 0..15)
+            PUPDR9: u2, // Port x configuration bits (y = 0..15)
+            PUPDR10: u2, // Port x configuration bits (y = 0..15)
+            PUPDR11: u2, // Port x configuration bits (y = 0..15)
+            PUPDR12: u2, // Port x configuration bits (y = 0..15)
+            PUPDR13: u2, // Port x configuration bits (y = 0..15)
+            PUPDR14: u2, // Port x configuration bits (y = 0..15)
+            PUPDR15: u2, // Port x configuration bits (y = 0..15)
         }), base_address + 0xc);
 
         /// address: 0x40020410
         /// GPIO port input data register
         pub const IDR = @intToPtr(*volatile Mmio(32, packed struct {
-            IDR0: u1, //Port input data (y = 0..15)
-            IDR1: u1, //Port input data (y = 0..15)
-            IDR2: u1, //Port input data (y = 0..15)
-            IDR3: u1, //Port input data (y = 0..15)
-            IDR4: u1, //Port input data (y = 0..15)
-            IDR5: u1, //Port input data (y = 0..15)
-            IDR6: u1, //Port input data (y = 0..15)
-            IDR7: u1, //Port input data (y = 0..15)
-            IDR8: u1, //Port input data (y = 0..15)
-            IDR9: u1, //Port input data (y = 0..15)
-            IDR10: u1, //Port input data (y = 0..15)
-            IDR11: u1, //Port input data (y = 0..15)
-            IDR12: u1, //Port input data (y = 0..15)
-            IDR13: u1, //Port input data (y = 0..15)
-            IDR14: u1, //Port input data (y = 0..15)
-            IDR15: u1, //Port input data (y = 0..15)
+            IDR0: u1, // Port input data (y = 0..15)
+            IDR1: u1, // Port input data (y = 0..15)
+            IDR2: u1, // Port input data (y = 0..15)
+            IDR3: u1, // Port input data (y = 0..15)
+            IDR4: u1, // Port input data (y = 0..15)
+            IDR5: u1, // Port input data (y = 0..15)
+            IDR6: u1, // Port input data (y = 0..15)
+            IDR7: u1, // Port input data (y = 0..15)
+            IDR8: u1, // Port input data (y = 0..15)
+            IDR9: u1, // Port input data (y = 0..15)
+            IDR10: u1, // Port input data (y = 0..15)
+            IDR11: u1, // Port input data (y = 0..15)
+            IDR12: u1, // Port input data (y = 0..15)
+            IDR13: u1, // Port input data (y = 0..15)
+            IDR14: u1, // Port input data (y = 0..15)
+            IDR15: u1, // Port input data (y = 0..15)
             padding_16_31: u16,
         }), base_address + 0x10);
 
         /// address: 0x40020414
         /// GPIO port output data register
         pub const ODR = @intToPtr(*volatile Mmio(32, packed struct {
-            ODR0: u1, //Port output data (y = 0..15)
-            ODR1: u1, //Port output data (y = 0..15)
-            ODR2: u1, //Port output data (y = 0..15)
-            ODR3: u1, //Port output data (y = 0..15)
-            ODR4: u1, //Port output data (y = 0..15)
-            ODR5: u1, //Port output data (y = 0..15)
-            ODR6: u1, //Port output data (y = 0..15)
-            ODR7: u1, //Port output data (y = 0..15)
-            ODR8: u1, //Port output data (y = 0..15)
-            ODR9: u1, //Port output data (y = 0..15)
-            ODR10: u1, //Port output data (y = 0..15)
-            ODR11: u1, //Port output data (y = 0..15)
-            ODR12: u1, //Port output data (y = 0..15)
-            ODR13: u1, //Port output data (y = 0..15)
-            ODR14: u1, //Port output data (y = 0..15)
-            ODR15: u1, //Port output data (y = 0..15)
+            ODR0: u1, // Port output data (y = 0..15)
+            ODR1: u1, // Port output data (y = 0..15)
+            ODR2: u1, // Port output data (y = 0..15)
+            ODR3: u1, // Port output data (y = 0..15)
+            ODR4: u1, // Port output data (y = 0..15)
+            ODR5: u1, // Port output data (y = 0..15)
+            ODR6: u1, // Port output data (y = 0..15)
+            ODR7: u1, // Port output data (y = 0..15)
+            ODR8: u1, // Port output data (y = 0..15)
+            ODR9: u1, // Port output data (y = 0..15)
+            ODR10: u1, // Port output data (y = 0..15)
+            ODR11: u1, // Port output data (y = 0..15)
+            ODR12: u1, // Port output data (y = 0..15)
+            ODR13: u1, // Port output data (y = 0..15)
+            ODR14: u1, // Port output data (y = 0..15)
+            ODR15: u1, // Port output data (y = 0..15)
             padding_16_31: u16,
         }), base_address + 0x14);
 
         /// address: 0x40020418
         /// GPIO port bit set/reset register
         pub const BSRR = @intToPtr(*volatile Mmio(32, packed struct {
-            BS0: u1, //Port x set bit y (y= 0..15)
-            BS1: u1, //Port x set bit y (y= 0..15)
-            BS2: u1, //Port x set bit y (y= 0..15)
-            BS3: u1, //Port x set bit y (y= 0..15)
-            BS4: u1, //Port x set bit y (y= 0..15)
-            BS5: u1, //Port x set bit y (y= 0..15)
-            BS6: u1, //Port x set bit y (y= 0..15)
-            BS7: u1, //Port x set bit y (y= 0..15)
-            BS8: u1, //Port x set bit y (y= 0..15)
-            BS9: u1, //Port x set bit y (y= 0..15)
-            BS10: u1, //Port x set bit y (y= 0..15)
-            BS11: u1, //Port x set bit y (y= 0..15)
-            BS12: u1, //Port x set bit y (y= 0..15)
-            BS13: u1, //Port x set bit y (y= 0..15)
-            BS14: u1, //Port x set bit y (y= 0..15)
-            BS15: u1, //Port x set bit y (y= 0..15)
-            BR0: u1, //Port x set bit y (y= 0..15)
-            BR1: u1, //Port x reset bit y (y = 0..15)
-            BR2: u1, //Port x reset bit y (y = 0..15)
-            BR3: u1, //Port x reset bit y (y = 0..15)
-            BR4: u1, //Port x reset bit y (y = 0..15)
-            BR5: u1, //Port x reset bit y (y = 0..15)
-            BR6: u1, //Port x reset bit y (y = 0..15)
-            BR7: u1, //Port x reset bit y (y = 0..15)
-            BR8: u1, //Port x reset bit y (y = 0..15)
-            BR9: u1, //Port x reset bit y (y = 0..15)
-            BR10: u1, //Port x reset bit y (y = 0..15)
-            BR11: u1, //Port x reset bit y (y = 0..15)
-            BR12: u1, //Port x reset bit y (y = 0..15)
-            BR13: u1, //Port x reset bit y (y = 0..15)
-            BR14: u1, //Port x reset bit y (y = 0..15)
-            BR15: u1, //Port x reset bit y (y = 0..15)
+            BS0: u1, // Port x set bit y (y= 0..15)
+            BS1: u1, // Port x set bit y (y= 0..15)
+            BS2: u1, // Port x set bit y (y= 0..15)
+            BS3: u1, // Port x set bit y (y= 0..15)
+            BS4: u1, // Port x set bit y (y= 0..15)
+            BS5: u1, // Port x set bit y (y= 0..15)
+            BS6: u1, // Port x set bit y (y= 0..15)
+            BS7: u1, // Port x set bit y (y= 0..15)
+            BS8: u1, // Port x set bit y (y= 0..15)
+            BS9: u1, // Port x set bit y (y= 0..15)
+            BS10: u1, // Port x set bit y (y= 0..15)
+            BS11: u1, // Port x set bit y (y= 0..15)
+            BS12: u1, // Port x set bit y (y= 0..15)
+            BS13: u1, // Port x set bit y (y= 0..15)
+            BS14: u1, // Port x set bit y (y= 0..15)
+            BS15: u1, // Port x set bit y (y= 0..15)
+            BR0: u1, // Port x set bit y (y= 0..15)
+            BR1: u1, // Port x reset bit y (y = 0..15)
+            BR2: u1, // Port x reset bit y (y = 0..15)
+            BR3: u1, // Port x reset bit y (y = 0..15)
+            BR4: u1, // Port x reset bit y (y = 0..15)
+            BR5: u1, // Port x reset bit y (y = 0..15)
+            BR6: u1, // Port x reset bit y (y = 0..15)
+            BR7: u1, // Port x reset bit y (y = 0..15)
+            BR8: u1, // Port x reset bit y (y = 0..15)
+            BR9: u1, // Port x reset bit y (y = 0..15)
+            BR10: u1, // Port x reset bit y (y = 0..15)
+            BR11: u1, // Port x reset bit y (y = 0..15)
+            BR12: u1, // Port x reset bit y (y = 0..15)
+            BR13: u1, // Port x reset bit y (y = 0..15)
+            BR14: u1, // Port x reset bit y (y = 0..15)
+            BR15: u1, // Port x reset bit y (y = 0..15)
         }), base_address + 0x18);
 
         /// address: 0x4002041c
         /// GPIO port configuration lock register
         pub const LCKR = @intToPtr(*volatile Mmio(32, packed struct {
-            LCK0: u1, //Port x lock bit y (y= 0..15)
-            LCK1: u1, //Port x lock bit y (y= 0..15)
-            LCK2: u1, //Port x lock bit y (y= 0..15)
-            LCK3: u1, //Port x lock bit y (y= 0..15)
-            LCK4: u1, //Port x lock bit y (y= 0..15)
-            LCK5: u1, //Port x lock bit y (y= 0..15)
-            LCK6: u1, //Port x lock bit y (y= 0..15)
-            LCK7: u1, //Port x lock bit y (y= 0..15)
-            LCK8: u1, //Port x lock bit y (y= 0..15)
-            LCK9: u1, //Port x lock bit y (y= 0..15)
-            LCK10: u1, //Port x lock bit y (y= 0..15)
-            LCK11: u1, //Port x lock bit y (y= 0..15)
-            LCK12: u1, //Port x lock bit y (y= 0..15)
-            LCK13: u1, //Port x lock bit y (y= 0..15)
-            LCK14: u1, //Port x lock bit y (y= 0..15)
-            LCK15: u1, //Port x lock bit y (y= 0..15)
-            LCKK: u1, //Port x lock bit y (y= 0..15)
+            LCK0: u1, // Port x lock bit y (y= 0..15)
+            LCK1: u1, // Port x lock bit y (y= 0..15)
+            LCK2: u1, // Port x lock bit y (y= 0..15)
+            LCK3: u1, // Port x lock bit y (y= 0..15)
+            LCK4: u1, // Port x lock bit y (y= 0..15)
+            LCK5: u1, // Port x lock bit y (y= 0..15)
+            LCK6: u1, // Port x lock bit y (y= 0..15)
+            LCK7: u1, // Port x lock bit y (y= 0..15)
+            LCK8: u1, // Port x lock bit y (y= 0..15)
+            LCK9: u1, // Port x lock bit y (y= 0..15)
+            LCK10: u1, // Port x lock bit y (y= 0..15)
+            LCK11: u1, // Port x lock bit y (y= 0..15)
+            LCK12: u1, // Port x lock bit y (y= 0..15)
+            LCK13: u1, // Port x lock bit y (y= 0..15)
+            LCK14: u1, // Port x lock bit y (y= 0..15)
+            LCK15: u1, // Port x lock bit y (y= 0..15)
+            LCKK: u1, // Port x lock bit y (y= 0..15)
             padding_17_31: u15,
         }), base_address + 0x1c);
 
         /// address: 0x40020420
         /// GPIO alternate function low register
         pub const AFRL = @intToPtr(*volatile Mmio(32, packed struct {
-            AFRL0: u4, //Alternate function selection for port x bit y (y = 0..7)
-            AFRL1: u4, //Alternate function selection for port x bit y (y = 0..7)
-            AFRL2: u4, //Alternate function selection for port x bit y (y = 0..7)
-            AFRL3: u4, //Alternate function selection for port x bit y (y = 0..7)
-            AFRL4: u4, //Alternate function selection for port x bit y (y = 0..7)
-            AFRL5: u4, //Alternate function selection for port x bit y (y = 0..7)
-            AFRL6: u4, //Alternate function selection for port x bit y (y = 0..7)
-            AFRL7: u4, //Alternate function selection for port x bit y (y = 0..7)
+            AFRL0: u4, // Alternate function selection for port x bit y (y = 0..7)
+            AFRL1: u4, // Alternate function selection for port x bit y (y = 0..7)
+            AFRL2: u4, // Alternate function selection for port x bit y (y = 0..7)
+            AFRL3: u4, // Alternate function selection for port x bit y (y = 0..7)
+            AFRL4: u4, // Alternate function selection for port x bit y (y = 0..7)
+            AFRL5: u4, // Alternate function selection for port x bit y (y = 0..7)
+            AFRL6: u4, // Alternate function selection for port x bit y (y = 0..7)
+            AFRL7: u4, // Alternate function selection for port x bit y (y = 0..7)
         }), base_address + 0x20);
 
         /// address: 0x40020424
         /// GPIO alternate function high register
         pub const AFRH = @intToPtr(*volatile Mmio(32, packed struct {
-            AFRH8: u4, //Alternate function selection for port x bit y (y = 8..15)
-            AFRH9: u4, //Alternate function selection for port x bit y (y = 8..15)
-            AFRH10: u4, //Alternate function selection for port x bit y (y = 8..15)
-            AFRH11: u4, //Alternate function selection for port x bit y (y = 8..15)
-            AFRH12: u4, //Alternate function selection for port x bit y (y = 8..15)
-            AFRH13: u4, //Alternate function selection for port x bit y (y = 8..15)
-            AFRH14: u4, //Alternate function selection for port x bit y (y = 8..15)
-            AFRH15: u4, //Alternate function selection for port x bit y (y = 8..15)
+            AFRH8: u4, // Alternate function selection for port x bit y (y = 8..15)
+            AFRH9: u4, // Alternate function selection for port x bit y (y = 8..15)
+            AFRH10: u4, // Alternate function selection for port x bit y (y = 8..15)
+            AFRH11: u4, // Alternate function selection for port x bit y (y = 8..15)
+            AFRH12: u4, // Alternate function selection for port x bit y (y = 8..15)
+            AFRH13: u4, // Alternate function selection for port x bit y (y = 8..15)
+            AFRH14: u4, // Alternate function selection for port x bit y (y = 8..15)
+            AFRH15: u4, // Alternate function selection for port x bit y (y = 8..15)
         }), base_address + 0x24);
     };
 
@@ -5419,216 +5419,216 @@ pub const registers = struct {
         /// address: 0x40020000
         /// GPIO port mode register
         pub const MODER = @intToPtr(*volatile Mmio(32, packed struct {
-            MODER0: u2, //Port x configuration bits (y = 0..15)
-            MODER1: u2, //Port x configuration bits (y = 0..15)
-            MODER2: u2, //Port x configuration bits (y = 0..15)
-            MODER3: u2, //Port x configuration bits (y = 0..15)
-            MODER4: u2, //Port x configuration bits (y = 0..15)
-            MODER5: u2, //Port x configuration bits (y = 0..15)
-            MODER6: u2, //Port x configuration bits (y = 0..15)
-            MODER7: u2, //Port x configuration bits (y = 0..15)
-            MODER8: u2, //Port x configuration bits (y = 0..15)
-            MODER9: u2, //Port x configuration bits (y = 0..15)
-            MODER10: u2, //Port x configuration bits (y = 0..15)
-            MODER11: u2, //Port x configuration bits (y = 0..15)
-            MODER12: u2, //Port x configuration bits (y = 0..15)
-            MODER13: u2, //Port x configuration bits (y = 0..15)
-            MODER14: u2, //Port x configuration bits (y = 0..15)
-            MODER15: u2, //Port x configuration bits (y = 0..15)
+            MODER0: u2, // Port x configuration bits (y = 0..15)
+            MODER1: u2, // Port x configuration bits (y = 0..15)
+            MODER2: u2, // Port x configuration bits (y = 0..15)
+            MODER3: u2, // Port x configuration bits (y = 0..15)
+            MODER4: u2, // Port x configuration bits (y = 0..15)
+            MODER5: u2, // Port x configuration bits (y = 0..15)
+            MODER6: u2, // Port x configuration bits (y = 0..15)
+            MODER7: u2, // Port x configuration bits (y = 0..15)
+            MODER8: u2, // Port x configuration bits (y = 0..15)
+            MODER9: u2, // Port x configuration bits (y = 0..15)
+            MODER10: u2, // Port x configuration bits (y = 0..15)
+            MODER11: u2, // Port x configuration bits (y = 0..15)
+            MODER12: u2, // Port x configuration bits (y = 0..15)
+            MODER13: u2, // Port x configuration bits (y = 0..15)
+            MODER14: u2, // Port x configuration bits (y = 0..15)
+            MODER15: u2, // Port x configuration bits (y = 0..15)
         }), base_address + 0x0);
 
         /// address: 0x40020004
         /// GPIO port output type register
         pub const OTYPER = @intToPtr(*volatile Mmio(32, packed struct {
-            OT0: u1, //Port x configuration bits (y = 0..15)
-            OT1: u1, //Port x configuration bits (y = 0..15)
-            OT2: u1, //Port x configuration bits (y = 0..15)
-            OT3: u1, //Port x configuration bits (y = 0..15)
-            OT4: u1, //Port x configuration bits (y = 0..15)
-            OT5: u1, //Port x configuration bits (y = 0..15)
-            OT6: u1, //Port x configuration bits (y = 0..15)
-            OT7: u1, //Port x configuration bits (y = 0..15)
-            OT8: u1, //Port x configuration bits (y = 0..15)
-            OT9: u1, //Port x configuration bits (y = 0..15)
-            OT10: u1, //Port x configuration bits (y = 0..15)
-            OT11: u1, //Port x configuration bits (y = 0..15)
-            OT12: u1, //Port x configuration bits (y = 0..15)
-            OT13: u1, //Port x configuration bits (y = 0..15)
-            OT14: u1, //Port x configuration bits (y = 0..15)
-            OT15: u1, //Port x configuration bits (y = 0..15)
+            OT0: u1, // Port x configuration bits (y = 0..15)
+            OT1: u1, // Port x configuration bits (y = 0..15)
+            OT2: u1, // Port x configuration bits (y = 0..15)
+            OT3: u1, // Port x configuration bits (y = 0..15)
+            OT4: u1, // Port x configuration bits (y = 0..15)
+            OT5: u1, // Port x configuration bits (y = 0..15)
+            OT6: u1, // Port x configuration bits (y = 0..15)
+            OT7: u1, // Port x configuration bits (y = 0..15)
+            OT8: u1, // Port x configuration bits (y = 0..15)
+            OT9: u1, // Port x configuration bits (y = 0..15)
+            OT10: u1, // Port x configuration bits (y = 0..15)
+            OT11: u1, // Port x configuration bits (y = 0..15)
+            OT12: u1, // Port x configuration bits (y = 0..15)
+            OT13: u1, // Port x configuration bits (y = 0..15)
+            OT14: u1, // Port x configuration bits (y = 0..15)
+            OT15: u1, // Port x configuration bits (y = 0..15)
             padding_16_31: u16,
         }), base_address + 0x4);
 
         /// address: 0x40020008
         /// GPIO port output speed register
         pub const OSPEEDR = @intToPtr(*volatile Mmio(32, packed struct {
-            OSPEEDR0: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR1: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR2: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR3: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR4: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR5: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR6: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR7: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR8: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR9: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR10: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR11: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR12: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR13: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR14: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR15: u2, //Port x configuration bits (y = 0..15)
+            OSPEEDR0: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR1: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR2: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR3: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR4: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR5: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR6: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR7: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR8: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR9: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR10: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR11: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR12: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR13: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR14: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR15: u2, // Port x configuration bits (y = 0..15)
         }), base_address + 0x8);
 
         /// address: 0x4002000c
         /// GPIO port pull-up/pull-down register
         pub const PUPDR = @intToPtr(*volatile Mmio(32, packed struct {
-            PUPDR0: u2, //Port x configuration bits (y = 0..15)
-            PUPDR1: u2, //Port x configuration bits (y = 0..15)
-            PUPDR2: u2, //Port x configuration bits (y = 0..15)
-            PUPDR3: u2, //Port x configuration bits (y = 0..15)
-            PUPDR4: u2, //Port x configuration bits (y = 0..15)
-            PUPDR5: u2, //Port x configuration bits (y = 0..15)
-            PUPDR6: u2, //Port x configuration bits (y = 0..15)
-            PUPDR7: u2, //Port x configuration bits (y = 0..15)
-            PUPDR8: u2, //Port x configuration bits (y = 0..15)
-            PUPDR9: u2, //Port x configuration bits (y = 0..15)
-            PUPDR10: u2, //Port x configuration bits (y = 0..15)
-            PUPDR11: u2, //Port x configuration bits (y = 0..15)
-            PUPDR12: u2, //Port x configuration bits (y = 0..15)
-            PUPDR13: u2, //Port x configuration bits (y = 0..15)
-            PUPDR14: u2, //Port x configuration bits (y = 0..15)
-            PUPDR15: u2, //Port x configuration bits (y = 0..15)
+            PUPDR0: u2, // Port x configuration bits (y = 0..15)
+            PUPDR1: u2, // Port x configuration bits (y = 0..15)
+            PUPDR2: u2, // Port x configuration bits (y = 0..15)
+            PUPDR3: u2, // Port x configuration bits (y = 0..15)
+            PUPDR4: u2, // Port x configuration bits (y = 0..15)
+            PUPDR5: u2, // Port x configuration bits (y = 0..15)
+            PUPDR6: u2, // Port x configuration bits (y = 0..15)
+            PUPDR7: u2, // Port x configuration bits (y = 0..15)
+            PUPDR8: u2, // Port x configuration bits (y = 0..15)
+            PUPDR9: u2, // Port x configuration bits (y = 0..15)
+            PUPDR10: u2, // Port x configuration bits (y = 0..15)
+            PUPDR11: u2, // Port x configuration bits (y = 0..15)
+            PUPDR12: u2, // Port x configuration bits (y = 0..15)
+            PUPDR13: u2, // Port x configuration bits (y = 0..15)
+            PUPDR14: u2, // Port x configuration bits (y = 0..15)
+            PUPDR15: u2, // Port x configuration bits (y = 0..15)
         }), base_address + 0xc);
 
         /// address: 0x40020010
         /// GPIO port input data register
         pub const IDR = @intToPtr(*volatile Mmio(32, packed struct {
-            IDR0: u1, //Port input data (y = 0..15)
-            IDR1: u1, //Port input data (y = 0..15)
-            IDR2: u1, //Port input data (y = 0..15)
-            IDR3: u1, //Port input data (y = 0..15)
-            IDR4: u1, //Port input data (y = 0..15)
-            IDR5: u1, //Port input data (y = 0..15)
-            IDR6: u1, //Port input data (y = 0..15)
-            IDR7: u1, //Port input data (y = 0..15)
-            IDR8: u1, //Port input data (y = 0..15)
-            IDR9: u1, //Port input data (y = 0..15)
-            IDR10: u1, //Port input data (y = 0..15)
-            IDR11: u1, //Port input data (y = 0..15)
-            IDR12: u1, //Port input data (y = 0..15)
-            IDR13: u1, //Port input data (y = 0..15)
-            IDR14: u1, //Port input data (y = 0..15)
-            IDR15: u1, //Port input data (y = 0..15)
+            IDR0: u1, // Port input data (y = 0..15)
+            IDR1: u1, // Port input data (y = 0..15)
+            IDR2: u1, // Port input data (y = 0..15)
+            IDR3: u1, // Port input data (y = 0..15)
+            IDR4: u1, // Port input data (y = 0..15)
+            IDR5: u1, // Port input data (y = 0..15)
+            IDR6: u1, // Port input data (y = 0..15)
+            IDR7: u1, // Port input data (y = 0..15)
+            IDR8: u1, // Port input data (y = 0..15)
+            IDR9: u1, // Port input data (y = 0..15)
+            IDR10: u1, // Port input data (y = 0..15)
+            IDR11: u1, // Port input data (y = 0..15)
+            IDR12: u1, // Port input data (y = 0..15)
+            IDR13: u1, // Port input data (y = 0..15)
+            IDR14: u1, // Port input data (y = 0..15)
+            IDR15: u1, // Port input data (y = 0..15)
             padding_16_31: u16,
         }), base_address + 0x10);
 
         /// address: 0x40020014
         /// GPIO port output data register
         pub const ODR = @intToPtr(*volatile Mmio(32, packed struct {
-            ODR0: u1, //Port output data (y = 0..15)
-            ODR1: u1, //Port output data (y = 0..15)
-            ODR2: u1, //Port output data (y = 0..15)
-            ODR3: u1, //Port output data (y = 0..15)
-            ODR4: u1, //Port output data (y = 0..15)
-            ODR5: u1, //Port output data (y = 0..15)
-            ODR6: u1, //Port output data (y = 0..15)
-            ODR7: u1, //Port output data (y = 0..15)
-            ODR8: u1, //Port output data (y = 0..15)
-            ODR9: u1, //Port output data (y = 0..15)
-            ODR10: u1, //Port output data (y = 0..15)
-            ODR11: u1, //Port output data (y = 0..15)
-            ODR12: u1, //Port output data (y = 0..15)
-            ODR13: u1, //Port output data (y = 0..15)
-            ODR14: u1, //Port output data (y = 0..15)
-            ODR15: u1, //Port output data (y = 0..15)
+            ODR0: u1, // Port output data (y = 0..15)
+            ODR1: u1, // Port output data (y = 0..15)
+            ODR2: u1, // Port output data (y = 0..15)
+            ODR3: u1, // Port output data (y = 0..15)
+            ODR4: u1, // Port output data (y = 0..15)
+            ODR5: u1, // Port output data (y = 0..15)
+            ODR6: u1, // Port output data (y = 0..15)
+            ODR7: u1, // Port output data (y = 0..15)
+            ODR8: u1, // Port output data (y = 0..15)
+            ODR9: u1, // Port output data (y = 0..15)
+            ODR10: u1, // Port output data (y = 0..15)
+            ODR11: u1, // Port output data (y = 0..15)
+            ODR12: u1, // Port output data (y = 0..15)
+            ODR13: u1, // Port output data (y = 0..15)
+            ODR14: u1, // Port output data (y = 0..15)
+            ODR15: u1, // Port output data (y = 0..15)
             padding_16_31: u16,
         }), base_address + 0x14);
 
         /// address: 0x40020018
         /// GPIO port bit set/reset register
         pub const BSRR = @intToPtr(*volatile Mmio(32, packed struct {
-            BS0: u1, //Port x set bit y (y= 0..15)
-            BS1: u1, //Port x set bit y (y= 0..15)
-            BS2: u1, //Port x set bit y (y= 0..15)
-            BS3: u1, //Port x set bit y (y= 0..15)
-            BS4: u1, //Port x set bit y (y= 0..15)
-            BS5: u1, //Port x set bit y (y= 0..15)
-            BS6: u1, //Port x set bit y (y= 0..15)
-            BS7: u1, //Port x set bit y (y= 0..15)
-            BS8: u1, //Port x set bit y (y= 0..15)
-            BS9: u1, //Port x set bit y (y= 0..15)
-            BS10: u1, //Port x set bit y (y= 0..15)
-            BS11: u1, //Port x set bit y (y= 0..15)
-            BS12: u1, //Port x set bit y (y= 0..15)
-            BS13: u1, //Port x set bit y (y= 0..15)
-            BS14: u1, //Port x set bit y (y= 0..15)
-            BS15: u1, //Port x set bit y (y= 0..15)
-            BR0: u1, //Port x set bit y (y= 0..15)
-            BR1: u1, //Port x reset bit y (y = 0..15)
-            BR2: u1, //Port x reset bit y (y = 0..15)
-            BR3: u1, //Port x reset bit y (y = 0..15)
-            BR4: u1, //Port x reset bit y (y = 0..15)
-            BR5: u1, //Port x reset bit y (y = 0..15)
-            BR6: u1, //Port x reset bit y (y = 0..15)
-            BR7: u1, //Port x reset bit y (y = 0..15)
-            BR8: u1, //Port x reset bit y (y = 0..15)
-            BR9: u1, //Port x reset bit y (y = 0..15)
-            BR10: u1, //Port x reset bit y (y = 0..15)
-            BR11: u1, //Port x reset bit y (y = 0..15)
-            BR12: u1, //Port x reset bit y (y = 0..15)
-            BR13: u1, //Port x reset bit y (y = 0..15)
-            BR14: u1, //Port x reset bit y (y = 0..15)
-            BR15: u1, //Port x reset bit y (y = 0..15)
+            BS0: u1, // Port x set bit y (y= 0..15)
+            BS1: u1, // Port x set bit y (y= 0..15)
+            BS2: u1, // Port x set bit y (y= 0..15)
+            BS3: u1, // Port x set bit y (y= 0..15)
+            BS4: u1, // Port x set bit y (y= 0..15)
+            BS5: u1, // Port x set bit y (y= 0..15)
+            BS6: u1, // Port x set bit y (y= 0..15)
+            BS7: u1, // Port x set bit y (y= 0..15)
+            BS8: u1, // Port x set bit y (y= 0..15)
+            BS9: u1, // Port x set bit y (y= 0..15)
+            BS10: u1, // Port x set bit y (y= 0..15)
+            BS11: u1, // Port x set bit y (y= 0..15)
+            BS12: u1, // Port x set bit y (y= 0..15)
+            BS13: u1, // Port x set bit y (y= 0..15)
+            BS14: u1, // Port x set bit y (y= 0..15)
+            BS15: u1, // Port x set bit y (y= 0..15)
+            BR0: u1, // Port x set bit y (y= 0..15)
+            BR1: u1, // Port x reset bit y (y = 0..15)
+            BR2: u1, // Port x reset bit y (y = 0..15)
+            BR3: u1, // Port x reset bit y (y = 0..15)
+            BR4: u1, // Port x reset bit y (y = 0..15)
+            BR5: u1, // Port x reset bit y (y = 0..15)
+            BR6: u1, // Port x reset bit y (y = 0..15)
+            BR7: u1, // Port x reset bit y (y = 0..15)
+            BR8: u1, // Port x reset bit y (y = 0..15)
+            BR9: u1, // Port x reset bit y (y = 0..15)
+            BR10: u1, // Port x reset bit y (y = 0..15)
+            BR11: u1, // Port x reset bit y (y = 0..15)
+            BR12: u1, // Port x reset bit y (y = 0..15)
+            BR13: u1, // Port x reset bit y (y = 0..15)
+            BR14: u1, // Port x reset bit y (y = 0..15)
+            BR15: u1, // Port x reset bit y (y = 0..15)
         }), base_address + 0x18);
 
         /// address: 0x4002001c
         /// GPIO port configuration lock register
         pub const LCKR = @intToPtr(*volatile Mmio(32, packed struct {
-            LCK0: u1, //Port x lock bit y (y= 0..15)
-            LCK1: u1, //Port x lock bit y (y= 0..15)
-            LCK2: u1, //Port x lock bit y (y= 0..15)
-            LCK3: u1, //Port x lock bit y (y= 0..15)
-            LCK4: u1, //Port x lock bit y (y= 0..15)
-            LCK5: u1, //Port x lock bit y (y= 0..15)
-            LCK6: u1, //Port x lock bit y (y= 0..15)
-            LCK7: u1, //Port x lock bit y (y= 0..15)
-            LCK8: u1, //Port x lock bit y (y= 0..15)
-            LCK9: u1, //Port x lock bit y (y= 0..15)
-            LCK10: u1, //Port x lock bit y (y= 0..15)
-            LCK11: u1, //Port x lock bit y (y= 0..15)
-            LCK12: u1, //Port x lock bit y (y= 0..15)
-            LCK13: u1, //Port x lock bit y (y= 0..15)
-            LCK14: u1, //Port x lock bit y (y= 0..15)
-            LCK15: u1, //Port x lock bit y (y= 0..15)
-            LCKK: u1, //Port x lock bit y (y= 0..15)
+            LCK0: u1, // Port x lock bit y (y= 0..15)
+            LCK1: u1, // Port x lock bit y (y= 0..15)
+            LCK2: u1, // Port x lock bit y (y= 0..15)
+            LCK3: u1, // Port x lock bit y (y= 0..15)
+            LCK4: u1, // Port x lock bit y (y= 0..15)
+            LCK5: u1, // Port x lock bit y (y= 0..15)
+            LCK6: u1, // Port x lock bit y (y= 0..15)
+            LCK7: u1, // Port x lock bit y (y= 0..15)
+            LCK8: u1, // Port x lock bit y (y= 0..15)
+            LCK9: u1, // Port x lock bit y (y= 0..15)
+            LCK10: u1, // Port x lock bit y (y= 0..15)
+            LCK11: u1, // Port x lock bit y (y= 0..15)
+            LCK12: u1, // Port x lock bit y (y= 0..15)
+            LCK13: u1, // Port x lock bit y (y= 0..15)
+            LCK14: u1, // Port x lock bit y (y= 0..15)
+            LCK15: u1, // Port x lock bit y (y= 0..15)
+            LCKK: u1, // Port x lock bit y (y= 0..15)
             padding_17_31: u15,
         }), base_address + 0x1c);
 
         /// address: 0x40020020
         /// GPIO alternate function low register
         pub const AFRL = @intToPtr(*volatile Mmio(32, packed struct {
-            AFRL0: u4, //Alternate function selection for port x bit y (y = 0..7)
-            AFRL1: u4, //Alternate function selection for port x bit y (y = 0..7)
-            AFRL2: u4, //Alternate function selection for port x bit y (y = 0..7)
-            AFRL3: u4, //Alternate function selection for port x bit y (y = 0..7)
-            AFRL4: u4, //Alternate function selection for port x bit y (y = 0..7)
-            AFRL5: u4, //Alternate function selection for port x bit y (y = 0..7)
-            AFRL6: u4, //Alternate function selection for port x bit y (y = 0..7)
-            AFRL7: u4, //Alternate function selection for port x bit y (y = 0..7)
+            AFRL0: u4, // Alternate function selection for port x bit y (y = 0..7)
+            AFRL1: u4, // Alternate function selection for port x bit y (y = 0..7)
+            AFRL2: u4, // Alternate function selection for port x bit y (y = 0..7)
+            AFRL3: u4, // Alternate function selection for port x bit y (y = 0..7)
+            AFRL4: u4, // Alternate function selection for port x bit y (y = 0..7)
+            AFRL5: u4, // Alternate function selection for port x bit y (y = 0..7)
+            AFRL6: u4, // Alternate function selection for port x bit y (y = 0..7)
+            AFRL7: u4, // Alternate function selection for port x bit y (y = 0..7)
         }), base_address + 0x20);
 
         /// address: 0x40020024
         /// GPIO alternate function high register
         pub const AFRH = @intToPtr(*volatile Mmio(32, packed struct {
-            AFRH8: u4, //Alternate function selection for port x bit y (y = 8..15)
-            AFRH9: u4, //Alternate function selection for port x bit y (y = 8..15)
-            AFRH10: u4, //Alternate function selection for port x bit y (y = 8..15)
-            AFRH11: u4, //Alternate function selection for port x bit y (y = 8..15)
-            AFRH12: u4, //Alternate function selection for port x bit y (y = 8..15)
-            AFRH13: u4, //Alternate function selection for port x bit y (y = 8..15)
-            AFRH14: u4, //Alternate function selection for port x bit y (y = 8..15)
-            AFRH15: u4, //Alternate function selection for port x bit y (y = 8..15)
+            AFRH8: u4, // Alternate function selection for port x bit y (y = 8..15)
+            AFRH9: u4, // Alternate function selection for port x bit y (y = 8..15)
+            AFRH10: u4, // Alternate function selection for port x bit y (y = 8..15)
+            AFRH11: u4, // Alternate function selection for port x bit y (y = 8..15)
+            AFRH12: u4, // Alternate function selection for port x bit y (y = 8..15)
+            AFRH13: u4, // Alternate function selection for port x bit y (y = 8..15)
+            AFRH14: u4, // Alternate function selection for port x bit y (y = 8..15)
+            AFRH15: u4, // Alternate function selection for port x bit y (y = 8..15)
         }), base_address + 0x24);
     };
 
@@ -5639,54 +5639,54 @@ pub const registers = struct {
         /// address: 0x40005c00
         /// Control register 1
         pub const CR1 = @intToPtr(*volatile Mmio(32, packed struct {
-            PE: u1, //Peripheral enable
-            SMBUS: u1, //SMBus mode
+            PE: u1, // Peripheral enable
+            SMBUS: u1, // SMBus mode
             reserved_2_2: u1,
-            SMBTYPE: u1, //SMBus type
-            ENARP: u1, //ARP enable
-            ENPEC: u1, //PEC enable
-            ENGC: u1, //General call enable
-            NOSTRETCH: u1, //Clock stretching disable (Slave mode)
-            START: u1, //Start generation
-            STOP: u1, //Stop generation
-            ACK: u1, //Acknowledge enable
-            POS: u1, //Acknowledge/PEC Position (for data reception)
-            PEC: u1, //Packet error checking
-            ALERT: u1, //SMBus alert
+            SMBTYPE: u1, // SMBus type
+            ENARP: u1, // ARP enable
+            ENPEC: u1, // PEC enable
+            ENGC: u1, // General call enable
+            NOSTRETCH: u1, // Clock stretching disable (Slave mode)
+            START: u1, // Start generation
+            STOP: u1, // Stop generation
+            ACK: u1, // Acknowledge enable
+            POS: u1, // Acknowledge/PEC Position (for data reception)
+            PEC: u1, // Packet error checking
+            ALERT: u1, // SMBus alert
             reserved_14_14: u1,
-            SWRST: u1, //Software reset
+            SWRST: u1, // Software reset
             padding_16_31: u16,
         }), base_address + 0x0);
 
         /// address: 0x40005c04
         /// Control register 2
         pub const CR2 = @intToPtr(*volatile Mmio(32, packed struct {
-            FREQ: u6, //Peripheral clock frequency
+            FREQ: u6, // Peripheral clock frequency
             reserved_6_7: u2,
-            ITERREN: u1, //Error interrupt enable
-            ITEVTEN: u1, //Event interrupt enable
-            ITBUFEN: u1, //Buffer interrupt enable
-            DMAEN: u1, //DMA requests enable
-            LAST: u1, //DMA last transfer
+            ITERREN: u1, // Error interrupt enable
+            ITEVTEN: u1, // Event interrupt enable
+            ITBUFEN: u1, // Buffer interrupt enable
+            DMAEN: u1, // DMA requests enable
+            LAST: u1, // DMA last transfer
             padding_13_31: u19,
         }), base_address + 0x4);
 
         /// address: 0x40005c08
         /// Own address register 1
         pub const OAR1 = @intToPtr(*volatile Mmio(32, packed struct {
-            ADD0: u1, //Interface address
-            ADD7: u7, //Interface address
-            ADD10: u2, //Interface address
+            ADD0: u1, // Interface address
+            ADD7: u7, // Interface address
+            ADD10: u2, // Interface address
             reserved_10_14: u5,
-            ADDMODE: u1, //Addressing mode (slave mode)
+            ADDMODE: u1, // Addressing mode (slave mode)
             padding_16_31: u16,
         }), base_address + 0x8);
 
         /// address: 0x40005c0c
         /// Own address register 2
         pub const OAR2 = @intToPtr(*volatile Mmio(32, packed struct {
-            ENDUAL: u1, //Dual addressing mode enable
-            ADD2: u7, //Interface address
+            ENDUAL: u1, // Dual addressing mode enable
+            ADD2: u7, // Interface address
             padding_8_31: u24,
         }), base_address + 0xc);
 
@@ -5697,47 +5697,47 @@ pub const registers = struct {
         /// address: 0x40005c14
         /// Status register 1
         pub const SR1 = @intToPtr(*volatile Mmio(32, packed struct {
-            SB: u1, //Start bit (Master mode)
-            ADDR: u1, //Address sent (master mode)/matched (slave mode)
-            BTF: u1, //Byte transfer finished
-            ADD10: u1, //10-bit header sent (Master mode)
-            STOPF: u1, //Stop detection (slave mode)
+            SB: u1, // Start bit (Master mode)
+            ADDR: u1, // Address sent (master mode)/matched (slave mode)
+            BTF: u1, // Byte transfer finished
+            ADD10: u1, // 10-bit header sent (Master mode)
+            STOPF: u1, // Stop detection (slave mode)
             reserved_5_5: u1,
-            RxNE: u1, //Data register not empty (receivers)
-            TxE: u1, //Data register empty (transmitters)
-            BERR: u1, //Bus error
-            ARLO: u1, //Arbitration lost (master mode)
-            AF: u1, //Acknowledge failure
-            OVR: u1, //Overrun/Underrun
-            PECERR: u1, //PEC Error in reception
+            RxNE: u1, // Data register not empty (receivers)
+            TxE: u1, // Data register empty (transmitters)
+            BERR: u1, // Bus error
+            ARLO: u1, // Arbitration lost (master mode)
+            AF: u1, // Acknowledge failure
+            OVR: u1, // Overrun/Underrun
+            PECERR: u1, // PEC Error in reception
             reserved_13_13: u1,
-            TIMEOUT: u1, //Timeout or Tlow error
-            SMBALERT: u1, //SMBus alert
+            TIMEOUT: u1, // Timeout or Tlow error
+            SMBALERT: u1, // SMBus alert
             padding_16_31: u16,
         }), base_address + 0x14);
 
         /// address: 0x40005c18
         /// Status register 2
         pub const SR2 = @intToPtr(*volatile Mmio(32, packed struct {
-            MSL: u1, //Master/slave
-            BUSY: u1, //Bus busy
-            TRA: u1, //Transmitter/receiver
+            MSL: u1, // Master/slave
+            BUSY: u1, // Bus busy
+            TRA: u1, // Transmitter/receiver
             reserved_3_3: u1,
-            GENCALL: u1, //General call address (Slave mode)
-            SMBDEFAULT: u1, //SMBus device default address (Slave mode)
-            SMBHOST: u1, //SMBus host header (Slave mode)
-            DUALF: u1, //Dual flag (Slave mode)
-            PEC: u8, //acket error checking register
+            GENCALL: u1, // General call address (Slave mode)
+            SMBDEFAULT: u1, // SMBus device default address (Slave mode)
+            SMBHOST: u1, // SMBus host header (Slave mode)
+            DUALF: u1, // Dual flag (Slave mode)
+            PEC: u8, // acket error checking register
             padding_16_31: u16,
         }), base_address + 0x18);
 
         /// address: 0x40005c1c
         /// Clock control register
         pub const CCR = @intToPtr(*volatile Mmio(32, packed struct {
-            CCR: u12, //Clock control register in Fast/Standard mode (Master mode)
+            CCR: u12, // Clock control register in Fast/Standard mode (Master mode)
             reserved_12_13: u2,
-            DUTY: u1, //Fast mode duty cycle
-            F_S: u1, //I2C master mode selection
+            DUTY: u1, // Fast mode duty cycle
+            F_S: u1, // I2C master mode selection
             padding_16_31: u16,
         }), base_address + 0x1c);
 
@@ -5753,49 +5753,49 @@ pub const registers = struct {
         /// address: 0x40003400
         /// control register 1
         pub const CR1 = @intToPtr(*volatile Mmio(32, packed struct {
-            CPHA: u1, //Clock phase
-            CPOL: u1, //Clock polarity
-            MSTR: u1, //Master selection
-            BR: u3, //Baud rate control
-            SPE: u1, //SPI enable
-            LSBFIRST: u1, //Frame format
-            SSI: u1, //Internal slave select
-            SSM: u1, //Software slave management
-            RXONLY: u1, //Receive only
-            DFF: u1, //Data frame format
-            CRCNEXT: u1, //CRC transfer next
-            CRCEN: u1, //Hardware CRC calculation enable
-            BIDIOE: u1, //Output enable in bidirectional mode
-            BIDIMODE: u1, //Bidirectional data mode enable
+            CPHA: u1, // Clock phase
+            CPOL: u1, // Clock polarity
+            MSTR: u1, // Master selection
+            BR: u3, // Baud rate control
+            SPE: u1, // SPI enable
+            LSBFIRST: u1, // Frame format
+            SSI: u1, // Internal slave select
+            SSM: u1, // Software slave management
+            RXONLY: u1, // Receive only
+            DFF: u1, // Data frame format
+            CRCNEXT: u1, // CRC transfer next
+            CRCEN: u1, // Hardware CRC calculation enable
+            BIDIOE: u1, // Output enable in bidirectional mode
+            BIDIMODE: u1, // Bidirectional data mode enable
             padding_16_31: u16,
         }), base_address + 0x0);
 
         /// address: 0x40003404
         /// control register 2
         pub const CR2 = @intToPtr(*volatile Mmio(32, packed struct {
-            RXDMAEN: u1, //Rx buffer DMA enable
-            TXDMAEN: u1, //Tx buffer DMA enable
-            SSOE: u1, //SS output enable
+            RXDMAEN: u1, // Rx buffer DMA enable
+            TXDMAEN: u1, // Tx buffer DMA enable
+            SSOE: u1, // SS output enable
             reserved_3_3: u1,
-            FRF: u1, //Frame format
-            ERRIE: u1, //Error interrupt enable
-            RXNEIE: u1, //RX buffer not empty interrupt enable
-            TXEIE: u1, //Tx buffer empty interrupt enable
+            FRF: u1, // Frame format
+            ERRIE: u1, // Error interrupt enable
+            RXNEIE: u1, // RX buffer not empty interrupt enable
+            TXEIE: u1, // Tx buffer empty interrupt enable
             padding_8_31: u24,
         }), base_address + 0x4);
 
         /// address: 0x40003408
         /// status register
         pub const SR = @intToPtr(*volatile Mmio(32, packed struct {
-            RXNE: u1, //Receive buffer not empty
-            TXE: u1, //Transmit buffer empty
-            CHSIDE: u1, //Channel side
-            UDR: u1, //Underrun flag
-            CRCERR: u1, //CRC error flag
-            MODF: u1, //Mode fault
-            OVR: u1, //Overrun flag
-            BSY: u1, //Busy flag
-            TIFRFE: u1, //TI frame format error
+            RXNE: u1, // Receive buffer not empty
+            TXE: u1, // Transmit buffer empty
+            CHSIDE: u1, // Channel side
+            UDR: u1, // Underrun flag
+            CRCERR: u1, // CRC error flag
+            MODF: u1, // Mode fault
+            OVR: u1, // Overrun flag
+            BSY: u1, // Busy flag
+            TIFRFE: u1, // TI frame format error
             padding_9_31: u23,
         }), base_address + 0x8);
 
@@ -5806,45 +5806,45 @@ pub const registers = struct {
         /// address: 0x40003410
         /// CRC polynomial register
         pub const CRCPR = @intToPtr(*volatile Mmio(32, packed struct {
-            CRCPOLY: u16, //CRC polynomial register
+            CRCPOLY: u16, // CRC polynomial register
             padding_16_31: u16,
         }), base_address + 0x10);
 
         /// address: 0x40003414
         /// RX CRC register
         pub const RXCRCR = @intToPtr(*volatile Mmio(32, packed struct {
-            RxCRC: u16, //Rx CRC register
+            RxCRC: u16, // Rx CRC register
             padding_16_31: u16,
         }), base_address + 0x14);
 
         /// address: 0x40003418
         /// TX CRC register
         pub const TXCRCR = @intToPtr(*volatile Mmio(32, packed struct {
-            TxCRC: u16, //Tx CRC register
+            TxCRC: u16, // Tx CRC register
             padding_16_31: u16,
         }), base_address + 0x18);
 
         /// address: 0x4000341c
         /// I2S configuration register
         pub const I2SCFGR = @intToPtr(*volatile Mmio(32, packed struct {
-            CHLEN: u1, //Channel length (number of bits per audio channel)
-            DATLEN: u2, //Data length to be transferred
-            CKPOL: u1, //Steady state clock polarity
-            I2SSTD: u2, //I2S standard selection
+            CHLEN: u1, // Channel length (number of bits per audio channel)
+            DATLEN: u2, // Data length to be transferred
+            CKPOL: u1, // Steady state clock polarity
+            I2SSTD: u2, // I2S standard selection
             reserved_6_6: u1,
-            PCMSYNC: u1, //PCM frame synchronization
-            I2SCFG: u2, //I2S configuration mode
-            I2SE: u1, //I2S Enable
-            I2SMOD: u1, //I2S mode selection
+            PCMSYNC: u1, // PCM frame synchronization
+            I2SCFG: u2, // I2S configuration mode
+            I2SE: u1, // I2S Enable
+            I2SMOD: u1, // I2S mode selection
             padding_12_31: u20,
         }), base_address + 0x1c);
 
         /// address: 0x40003420
         /// I2S prescaler register
         pub const I2SPR = @intToPtr(*volatile Mmio(32, packed struct {
-            I2SDIV: u8, //I2S Linear prescaler
-            ODD: u1, //Odd factor for the prescaler
-            MCKOE: u1, //Master clock output enable
+            I2SDIV: u8, // I2S Linear prescaler
+            ODD: u1, // Odd factor for the prescaler
+            MCKOE: u1, // Master clock output enable
             padding_10_31: u22,
         }), base_address + 0x20);
     };
@@ -5856,271 +5856,271 @@ pub const registers = struct {
         /// address: 0xe000e100
         /// Interrupt Set-Enable Register
         pub const ISER0 = @intToPtr(*volatile Mmio(32, packed struct {
-            SETENA: u32, //SETENA
+            SETENA: u32, // SETENA
         }), base_address + 0x0);
 
         /// address: 0xe000e104
         /// Interrupt Set-Enable Register
         pub const ISER1 = @intToPtr(*volatile Mmio(32, packed struct {
-            SETENA: u32, //SETENA
+            SETENA: u32, // SETENA
         }), base_address + 0x4);
 
         /// address: 0xe000e108
         /// Interrupt Set-Enable Register
         pub const ISER2 = @intToPtr(*volatile Mmio(32, packed struct {
-            SETENA: u32, //SETENA
+            SETENA: u32, // SETENA
         }), base_address + 0x8);
 
         /// address: 0xe000e180
         /// Interrupt Clear-Enable Register
         pub const ICER0 = @intToPtr(*volatile Mmio(32, packed struct {
-            CLRENA: u32, //CLRENA
+            CLRENA: u32, // CLRENA
         }), base_address + 0x80);
 
         /// address: 0xe000e184
         /// Interrupt Clear-Enable Register
         pub const ICER1 = @intToPtr(*volatile Mmio(32, packed struct {
-            CLRENA: u32, //CLRENA
+            CLRENA: u32, // CLRENA
         }), base_address + 0x84);
 
         /// address: 0xe000e188
         /// Interrupt Clear-Enable Register
         pub const ICER2 = @intToPtr(*volatile Mmio(32, packed struct {
-            CLRENA: u32, //CLRENA
+            CLRENA: u32, // CLRENA
         }), base_address + 0x88);
 
         /// address: 0xe000e200
         /// Interrupt Set-Pending Register
         pub const ISPR0 = @intToPtr(*volatile Mmio(32, packed struct {
-            SETPEND: u32, //SETPEND
+            SETPEND: u32, // SETPEND
         }), base_address + 0x100);
 
         /// address: 0xe000e204
         /// Interrupt Set-Pending Register
         pub const ISPR1 = @intToPtr(*volatile Mmio(32, packed struct {
-            SETPEND: u32, //SETPEND
+            SETPEND: u32, // SETPEND
         }), base_address + 0x104);
 
         /// address: 0xe000e208
         /// Interrupt Set-Pending Register
         pub const ISPR2 = @intToPtr(*volatile Mmio(32, packed struct {
-            SETPEND: u32, //SETPEND
+            SETPEND: u32, // SETPEND
         }), base_address + 0x108);
 
         /// address: 0xe000e280
         /// Interrupt Clear-Pending Register
         pub const ICPR0 = @intToPtr(*volatile Mmio(32, packed struct {
-            CLRPEND: u32, //CLRPEND
+            CLRPEND: u32, // CLRPEND
         }), base_address + 0x180);
 
         /// address: 0xe000e284
         /// Interrupt Clear-Pending Register
         pub const ICPR1 = @intToPtr(*volatile Mmio(32, packed struct {
-            CLRPEND: u32, //CLRPEND
+            CLRPEND: u32, // CLRPEND
         }), base_address + 0x184);
 
         /// address: 0xe000e288
         /// Interrupt Clear-Pending Register
         pub const ICPR2 = @intToPtr(*volatile Mmio(32, packed struct {
-            CLRPEND: u32, //CLRPEND
+            CLRPEND: u32, // CLRPEND
         }), base_address + 0x188);
 
         /// address: 0xe000e300
         /// Interrupt Active Bit Register
         pub const IABR0 = @intToPtr(*volatile Mmio(32, packed struct {
-            ACTIVE: u32, //ACTIVE
+            ACTIVE: u32, // ACTIVE
         }), base_address + 0x200);
 
         /// address: 0xe000e304
         /// Interrupt Active Bit Register
         pub const IABR1 = @intToPtr(*volatile Mmio(32, packed struct {
-            ACTIVE: u32, //ACTIVE
+            ACTIVE: u32, // ACTIVE
         }), base_address + 0x204);
 
         /// address: 0xe000e308
         /// Interrupt Active Bit Register
         pub const IABR2 = @intToPtr(*volatile Mmio(32, packed struct {
-            ACTIVE: u32, //ACTIVE
+            ACTIVE: u32, // ACTIVE
         }), base_address + 0x208);
 
         /// address: 0xe000e400
         /// Interrupt Priority Register
         pub const IPR0 = @intToPtr(*volatile Mmio(32, packed struct {
-            IPR_N0: u8, //IPR_N0
-            IPR_N1: u8, //IPR_N1
-            IPR_N2: u8, //IPR_N2
-            IPR_N3: u8, //IPR_N3
+            IPR_N0: u8, // IPR_N0
+            IPR_N1: u8, // IPR_N1
+            IPR_N2: u8, // IPR_N2
+            IPR_N3: u8, // IPR_N3
         }), base_address + 0x300);
 
         /// address: 0xe000e404
         /// Interrupt Priority Register
         pub const IPR1 = @intToPtr(*volatile Mmio(32, packed struct {
-            IPR_N0: u8, //IPR_N0
-            IPR_N1: u8, //IPR_N1
-            IPR_N2: u8, //IPR_N2
-            IPR_N3: u8, //IPR_N3
+            IPR_N0: u8, // IPR_N0
+            IPR_N1: u8, // IPR_N1
+            IPR_N2: u8, // IPR_N2
+            IPR_N3: u8, // IPR_N3
         }), base_address + 0x304);
 
         /// address: 0xe000e408
         /// Interrupt Priority Register
         pub const IPR2 = @intToPtr(*volatile Mmio(32, packed struct {
-            IPR_N0: u8, //IPR_N0
-            IPR_N1: u8, //IPR_N1
-            IPR_N2: u8, //IPR_N2
-            IPR_N3: u8, //IPR_N3
+            IPR_N0: u8, // IPR_N0
+            IPR_N1: u8, // IPR_N1
+            IPR_N2: u8, // IPR_N2
+            IPR_N3: u8, // IPR_N3
         }), base_address + 0x308);
 
         /// address: 0xe000e40c
         /// Interrupt Priority Register
         pub const IPR3 = @intToPtr(*volatile Mmio(32, packed struct {
-            IPR_N0: u8, //IPR_N0
-            IPR_N1: u8, //IPR_N1
-            IPR_N2: u8, //IPR_N2
-            IPR_N3: u8, //IPR_N3
+            IPR_N0: u8, // IPR_N0
+            IPR_N1: u8, // IPR_N1
+            IPR_N2: u8, // IPR_N2
+            IPR_N3: u8, // IPR_N3
         }), base_address + 0x30c);
 
         /// address: 0xe000e410
         /// Interrupt Priority Register
         pub const IPR4 = @intToPtr(*volatile Mmio(32, packed struct {
-            IPR_N0: u8, //IPR_N0
-            IPR_N1: u8, //IPR_N1
-            IPR_N2: u8, //IPR_N2
-            IPR_N3: u8, //IPR_N3
+            IPR_N0: u8, // IPR_N0
+            IPR_N1: u8, // IPR_N1
+            IPR_N2: u8, // IPR_N2
+            IPR_N3: u8, // IPR_N3
         }), base_address + 0x310);
 
         /// address: 0xe000e414
         /// Interrupt Priority Register
         pub const IPR5 = @intToPtr(*volatile Mmio(32, packed struct {
-            IPR_N0: u8, //IPR_N0
-            IPR_N1: u8, //IPR_N1
-            IPR_N2: u8, //IPR_N2
-            IPR_N3: u8, //IPR_N3
+            IPR_N0: u8, // IPR_N0
+            IPR_N1: u8, // IPR_N1
+            IPR_N2: u8, // IPR_N2
+            IPR_N3: u8, // IPR_N3
         }), base_address + 0x314);
 
         /// address: 0xe000e418
         /// Interrupt Priority Register
         pub const IPR6 = @intToPtr(*volatile Mmio(32, packed struct {
-            IPR_N0: u8, //IPR_N0
-            IPR_N1: u8, //IPR_N1
-            IPR_N2: u8, //IPR_N2
-            IPR_N3: u8, //IPR_N3
+            IPR_N0: u8, // IPR_N0
+            IPR_N1: u8, // IPR_N1
+            IPR_N2: u8, // IPR_N2
+            IPR_N3: u8, // IPR_N3
         }), base_address + 0x318);
 
         /// address: 0xe000e41c
         /// Interrupt Priority Register
         pub const IPR7 = @intToPtr(*volatile Mmio(32, packed struct {
-            IPR_N0: u8, //IPR_N0
-            IPR_N1: u8, //IPR_N1
-            IPR_N2: u8, //IPR_N2
-            IPR_N3: u8, //IPR_N3
+            IPR_N0: u8, // IPR_N0
+            IPR_N1: u8, // IPR_N1
+            IPR_N2: u8, // IPR_N2
+            IPR_N3: u8, // IPR_N3
         }), base_address + 0x31c);
 
         /// address: 0xe000e420
         /// Interrupt Priority Register
         pub const IPR8 = @intToPtr(*volatile Mmio(32, packed struct {
-            IPR_N0: u8, //IPR_N0
-            IPR_N1: u8, //IPR_N1
-            IPR_N2: u8, //IPR_N2
-            IPR_N3: u8, //IPR_N3
+            IPR_N0: u8, // IPR_N0
+            IPR_N1: u8, // IPR_N1
+            IPR_N2: u8, // IPR_N2
+            IPR_N3: u8, // IPR_N3
         }), base_address + 0x320);
 
         /// address: 0xe000e424
         /// Interrupt Priority Register
         pub const IPR9 = @intToPtr(*volatile Mmio(32, packed struct {
-            IPR_N0: u8, //IPR_N0
-            IPR_N1: u8, //IPR_N1
-            IPR_N2: u8, //IPR_N2
-            IPR_N3: u8, //IPR_N3
+            IPR_N0: u8, // IPR_N0
+            IPR_N1: u8, // IPR_N1
+            IPR_N2: u8, // IPR_N2
+            IPR_N3: u8, // IPR_N3
         }), base_address + 0x324);
 
         /// address: 0xe000e428
         /// Interrupt Priority Register
         pub const IPR10 = @intToPtr(*volatile Mmio(32, packed struct {
-            IPR_N0: u8, //IPR_N0
-            IPR_N1: u8, //IPR_N1
-            IPR_N2: u8, //IPR_N2
-            IPR_N3: u8, //IPR_N3
+            IPR_N0: u8, // IPR_N0
+            IPR_N1: u8, // IPR_N1
+            IPR_N2: u8, // IPR_N2
+            IPR_N3: u8, // IPR_N3
         }), base_address + 0x328);
 
         /// address: 0xe000e42c
         /// Interrupt Priority Register
         pub const IPR11 = @intToPtr(*volatile Mmio(32, packed struct {
-            IPR_N0: u8, //IPR_N0
-            IPR_N1: u8, //IPR_N1
-            IPR_N2: u8, //IPR_N2
-            IPR_N3: u8, //IPR_N3
+            IPR_N0: u8, // IPR_N0
+            IPR_N1: u8, // IPR_N1
+            IPR_N2: u8, // IPR_N2
+            IPR_N3: u8, // IPR_N3
         }), base_address + 0x32c);
 
         /// address: 0xe000e430
         /// Interrupt Priority Register
         pub const IPR12 = @intToPtr(*volatile Mmio(32, packed struct {
-            IPR_N0: u8, //IPR_N0
-            IPR_N1: u8, //IPR_N1
-            IPR_N2: u8, //IPR_N2
-            IPR_N3: u8, //IPR_N3
+            IPR_N0: u8, // IPR_N0
+            IPR_N1: u8, // IPR_N1
+            IPR_N2: u8, // IPR_N2
+            IPR_N3: u8, // IPR_N3
         }), base_address + 0x330);
 
         /// address: 0xe000e434
         /// Interrupt Priority Register
         pub const IPR13 = @intToPtr(*volatile Mmio(32, packed struct {
-            IPR_N0: u8, //IPR_N0
-            IPR_N1: u8, //IPR_N1
-            IPR_N2: u8, //IPR_N2
-            IPR_N3: u8, //IPR_N3
+            IPR_N0: u8, // IPR_N0
+            IPR_N1: u8, // IPR_N1
+            IPR_N2: u8, // IPR_N2
+            IPR_N3: u8, // IPR_N3
         }), base_address + 0x334);
 
         /// address: 0xe000e438
         /// Interrupt Priority Register
         pub const IPR14 = @intToPtr(*volatile Mmio(32, packed struct {
-            IPR_N0: u8, //IPR_N0
-            IPR_N1: u8, //IPR_N1
-            IPR_N2: u8, //IPR_N2
-            IPR_N3: u8, //IPR_N3
+            IPR_N0: u8, // IPR_N0
+            IPR_N1: u8, // IPR_N1
+            IPR_N2: u8, // IPR_N2
+            IPR_N3: u8, // IPR_N3
         }), base_address + 0x338);
 
         /// address: 0xe000e43c
         /// Interrupt Priority Register
         pub const IPR15 = @intToPtr(*volatile Mmio(32, packed struct {
-            IPR_N0: u8, //IPR_N0
-            IPR_N1: u8, //IPR_N1
-            IPR_N2: u8, //IPR_N2
-            IPR_N3: u8, //IPR_N3
+            IPR_N0: u8, // IPR_N0
+            IPR_N1: u8, // IPR_N1
+            IPR_N2: u8, // IPR_N2
+            IPR_N3: u8, // IPR_N3
         }), base_address + 0x33c);
 
         /// address: 0xe000e440
         /// Interrupt Priority Register
         pub const IPR16 = @intToPtr(*volatile Mmio(32, packed struct {
-            IPR_N0: u8, //IPR_N0
-            IPR_N1: u8, //IPR_N1
-            IPR_N2: u8, //IPR_N2
-            IPR_N3: u8, //IPR_N3
+            IPR_N0: u8, // IPR_N0
+            IPR_N1: u8, // IPR_N1
+            IPR_N2: u8, // IPR_N2
+            IPR_N3: u8, // IPR_N3
         }), base_address + 0x340);
 
         /// address: 0xe000e444
         /// Interrupt Priority Register
         pub const IPR17 = @intToPtr(*volatile Mmio(32, packed struct {
-            IPR_N0: u8, //IPR_N0
-            IPR_N1: u8, //IPR_N1
-            IPR_N2: u8, //IPR_N2
-            IPR_N3: u8, //IPR_N3
+            IPR_N0: u8, // IPR_N0
+            IPR_N1: u8, // IPR_N1
+            IPR_N2: u8, // IPR_N2
+            IPR_N3: u8, // IPR_N3
         }), base_address + 0x344);
 
         /// address: 0xe000e448
         /// Interrupt Priority Register
         pub const IPR18 = @intToPtr(*volatile Mmio(32, packed struct {
-            IPR_N0: u8, //IPR_N0
-            IPR_N1: u8, //IPR_N1
-            IPR_N2: u8, //IPR_N2
-            IPR_N3: u8, //IPR_N3
+            IPR_N0: u8, // IPR_N0
+            IPR_N1: u8, // IPR_N1
+            IPR_N2: u8, // IPR_N2
+            IPR_N3: u8, // IPR_N3
         }), base_address + 0x348);
 
         /// address: 0xe000e44c
         /// Interrupt Priority Register
         pub const IPR19 = @intToPtr(*volatile Mmio(32, packed struct {
-            IPR_N0: u8, //IPR_N0
-            IPR_N1: u8, //IPR_N1
-            IPR_N2: u8, //IPR_N2
-            IPR_N3: u8, //IPR_N3
+            IPR_N0: u8, // IPR_N0
+            IPR_N1: u8, // IPR_N1
+            IPR_N2: u8, // IPR_N2
+            IPR_N3: u8, // IPR_N3
         }), base_address + 0x34c);
     };
 
@@ -6131,47 +6131,47 @@ pub const registers = struct {
         /// address: 0xe000ef34
         /// Floating-point context control register
         pub const FPCCR = @intToPtr(*volatile Mmio(32, packed struct {
-            LSPACT: u1, //LSPACT
-            USER: u1, //USER
+            LSPACT: u1, // LSPACT
+            USER: u1, // USER
             reserved_2_2: u1,
-            THREAD: u1, //THREAD
-            HFRDY: u1, //HFRDY
-            MMRDY: u1, //MMRDY
-            BFRDY: u1, //BFRDY
+            THREAD: u1, // THREAD
+            HFRDY: u1, // HFRDY
+            MMRDY: u1, // MMRDY
+            BFRDY: u1, // BFRDY
             reserved_7_7: u1,
-            MONRDY: u1, //MONRDY
+            MONRDY: u1, // MONRDY
             reserved_9_29: u21,
-            LSPEN: u1, //LSPEN
-            ASPEN: u1, //ASPEN
+            LSPEN: u1, // LSPEN
+            ASPEN: u1, // ASPEN
         }), base_address + 0x0);
 
         /// address: 0xe000ef38
         /// Floating-point context address register
         pub const FPCAR = @intToPtr(*volatile Mmio(32, packed struct {
             reserved_0_2: u3,
-            ADDRESS: u29, //Location of unpopulated floating-point
+            ADDRESS: u29, // Location of unpopulated floating-point
         }), base_address + 0x4);
 
         /// address: 0xe000ef3c
         /// Floating-point status control register
         pub const FPSCR = @intToPtr(*volatile Mmio(32, packed struct {
-            IOC: u1, //Invalid operation cumulative exception bit
-            DZC: u1, //Division by zero cumulative exception bit.
-            OFC: u1, //Overflow cumulative exception bit
-            UFC: u1, //Underflow cumulative exception bit
-            IXC: u1, //Inexact cumulative exception bit
+            IOC: u1, // Invalid operation cumulative exception bit
+            DZC: u1, // Division by zero cumulative exception bit.
+            OFC: u1, // Overflow cumulative exception bit
+            UFC: u1, // Underflow cumulative exception bit
+            IXC: u1, // Inexact cumulative exception bit
             reserved_5_6: u2,
-            IDC: u1, //Input denormal cumulative exception bit.
+            IDC: u1, // Input denormal cumulative exception bit.
             reserved_8_21: u14,
-            RMode: u2, //Rounding Mode control field
-            FZ: u1, //Flush-to-zero mode control bit:
-            DN: u1, //Default NaN mode control bit
-            AHP: u1, //Alternative half-precision control bit
+            RMode: u2, // Rounding Mode control field
+            FZ: u1, // Flush-to-zero mode control bit:
+            DN: u1, // Default NaN mode control bit
+            AHP: u1, // Alternative half-precision control bit
             reserved_27_27: u1,
-            V: u1, //Overflow condition code flag
-            C: u1, //Carry condition code flag
-            Z: u1, //Zero condition code flag
-            N: u1, //Negative condition code flag
+            V: u1, // Overflow condition code flag
+            C: u1, // Carry condition code flag
+            Z: u1, // Zero condition code flag
+            N: u1, // Negative condition code flag
         }), base_address + 0x8);
     };
 
@@ -6182,52 +6182,52 @@ pub const registers = struct {
         /// address: 0xe000ed90
         /// MPU type register
         pub const MPU_TYPER = @intToPtr(*volatile Mmio(32, packed struct {
-            SEPARATE: u1, //Separate flag
+            SEPARATE: u1, // Separate flag
             reserved_1_7: u7,
-            DREGION: u8, //Number of MPU data regions
-            IREGION: u8, //Number of MPU instruction regions
+            DREGION: u8, // Number of MPU data regions
+            IREGION: u8, // Number of MPU instruction regions
             padding_24_31: u8,
         }), base_address + 0x0);
 
         /// address: 0xe000ed94
         /// MPU control register
         pub const MPU_CTRL = @intToPtr(*volatile Mmio(32, packed struct {
-            ENABLE: u1, //Enables the MPU
-            HFNMIENA: u1, //Enables the operation of MPU during hard fault
-            PRIVDEFENA: u1, //Enable priviliged software access to default memory map
+            ENABLE: u1, // Enables the MPU
+            HFNMIENA: u1, // Enables the operation of MPU during hard fault
+            PRIVDEFENA: u1, // Enable priviliged software access to default memory map
             padding_3_31: u29,
         }), base_address + 0x4);
 
         /// address: 0xe000ed98
         /// MPU region number register
         pub const MPU_RNR = @intToPtr(*volatile Mmio(32, packed struct {
-            REGION: u8, //MPU region
+            REGION: u8, // MPU region
             padding_8_31: u24,
         }), base_address + 0x8);
 
         /// address: 0xe000ed9c
         /// MPU region base address register
         pub const MPU_RBAR = @intToPtr(*volatile Mmio(32, packed struct {
-            REGION: u4, //MPU region field
-            VALID: u1, //MPU region number valid
-            ADDR: u27, //Region base address field
+            REGION: u4, // MPU region field
+            VALID: u1, // MPU region number valid
+            ADDR: u27, // Region base address field
         }), base_address + 0xc);
 
         /// address: 0xe000eda0
         /// MPU region attribute and size register
         pub const MPU_RASR = @intToPtr(*volatile Mmio(32, packed struct {
-            ENABLE: u1, //Region enable bit.
-            SIZE: u5, //Size of the MPU protection region
+            ENABLE: u1, // Region enable bit.
+            SIZE: u5, // Size of the MPU protection region
             reserved_6_7: u2,
-            SRD: u8, //Subregion disable bits
-            B: u1, //memory attribute
-            C: u1, //memory attribute
-            S: u1, //Shareable memory attribute
-            TEX: u3, //memory attribute
+            SRD: u8, // Subregion disable bits
+            B: u1, // memory attribute
+            C: u1, // memory attribute
+            S: u1, // Shareable memory attribute
+            TEX: u3, // memory attribute
             reserved_22_23: u2,
-            AP: u3, //Access permission
+            AP: u3, // Access permission
             reserved_27_27: u1,
-            XN: u1, //Instruction access disable bit
+            XN: u1, // Instruction access disable bit
             padding_29_31: u3,
         }), base_address + 0x10);
     };
@@ -6239,35 +6239,35 @@ pub const registers = struct {
         /// address: 0xe000e010
         /// SysTick control and status register
         pub const CTRL = @intToPtr(*volatile Mmio(32, packed struct {
-            ENABLE: u1, //Counter enable
-            TICKINT: u1, //SysTick exception request enable
-            CLKSOURCE: u1, //Clock source selection
+            ENABLE: u1, // Counter enable
+            TICKINT: u1, // SysTick exception request enable
+            CLKSOURCE: u1, // Clock source selection
             reserved_3_15: u13,
-            COUNTFLAG: u1, //COUNTFLAG
+            COUNTFLAG: u1, // COUNTFLAG
             padding_17_31: u15,
         }), base_address + 0x0);
 
         /// address: 0xe000e014
         /// SysTick reload value register
         pub const LOAD = @intToPtr(*volatile Mmio(32, packed struct {
-            RELOAD: u24, //RELOAD value
+            RELOAD: u24, // RELOAD value
             padding_24_31: u8,
         }), base_address + 0x4);
 
         /// address: 0xe000e018
         /// SysTick current value register
         pub const VAL = @intToPtr(*volatile Mmio(32, packed struct {
-            CURRENT: u24, //Current counter value
+            CURRENT: u24, // Current counter value
             padding_24_31: u8,
         }), base_address + 0x8);
 
         /// address: 0xe000e01c
         /// SysTick calibration value register
         pub const CALIB = @intToPtr(*volatile Mmio(32, packed struct {
-            TENMS: u24, //Calibration value
+            TENMS: u24, // Calibration value
             reserved_24_29: u6,
-            SKEW: u1, //SKEW flag: Indicates whether the TENMS value is exact
-            NOREF: u1, //NOREF flag. Reads as zero
+            SKEW: u1, // SKEW flag: Indicates whether the TENMS value is exact
+            NOREF: u1, // NOREF flag. Reads as zero
         }), base_address + 0xc);
     };
 
@@ -6278,83 +6278,83 @@ pub const registers = struct {
         /// address: 0xe000ed00
         /// CPUID base register
         pub const CPUID = @intToPtr(*volatile Mmio(32, packed struct {
-            Revision: u4, //Revision number
-            PartNo: u12, //Part number of the processor
-            Constant: u4, //Reads as 0xF
-            Variant: u4, //Variant number
-            Implementer: u8, //Implementer code
+            Revision: u4, // Revision number
+            PartNo: u12, // Part number of the processor
+            Constant: u4, // Reads as 0xF
+            Variant: u4, // Variant number
+            Implementer: u8, // Implementer code
         }), base_address + 0x0);
 
         /// address: 0xe000ed04
         /// Interrupt control and state register
         pub const ICSR = @intToPtr(*volatile Mmio(32, packed struct {
-            VECTACTIVE: u9, //Active vector
+            VECTACTIVE: u9, // Active vector
             reserved_9_10: u2,
-            RETTOBASE: u1, //Return to base level
-            VECTPENDING: u7, //Pending vector
+            RETTOBASE: u1, // Return to base level
+            VECTPENDING: u7, // Pending vector
             reserved_19_21: u3,
-            ISRPENDING: u1, //Interrupt pending flag
+            ISRPENDING: u1, // Interrupt pending flag
             reserved_23_24: u2,
-            PENDSTCLR: u1, //SysTick exception clear-pending bit
-            PENDSTSET: u1, //SysTick exception set-pending bit
-            PENDSVCLR: u1, //PendSV clear-pending bit
-            PENDSVSET: u1, //PendSV set-pending bit
+            PENDSTCLR: u1, // SysTick exception clear-pending bit
+            PENDSTSET: u1, // SysTick exception set-pending bit
+            PENDSVCLR: u1, // PendSV clear-pending bit
+            PENDSVSET: u1, // PendSV set-pending bit
             reserved_29_30: u2,
-            NMIPENDSET: u1, //NMI set-pending bit.
+            NMIPENDSET: u1, // NMI set-pending bit.
         }), base_address + 0x4);
 
         /// address: 0xe000ed08
         /// Vector table offset register
         pub const VTOR = @intToPtr(*volatile Mmio(32, packed struct {
             reserved_0_8: u9,
-            TBLOFF: u21, //Vector table base offset field
+            TBLOFF: u21, // Vector table base offset field
             padding_30_31: u2,
         }), base_address + 0x8);
 
         /// address: 0xe000ed0c
         /// Application interrupt and reset control register
         pub const AIRCR = @intToPtr(*volatile Mmio(32, packed struct {
-            VECTRESET: u1, //VECTRESET
-            VECTCLRACTIVE: u1, //VECTCLRACTIVE
-            SYSRESETREQ: u1, //SYSRESETREQ
+            VECTRESET: u1, // VECTRESET
+            VECTCLRACTIVE: u1, // VECTCLRACTIVE
+            SYSRESETREQ: u1, // SYSRESETREQ
             reserved_3_7: u5,
-            PRIGROUP: u3, //PRIGROUP
+            PRIGROUP: u3, // PRIGROUP
             reserved_11_14: u4,
-            ENDIANESS: u1, //ENDIANESS
-            VECTKEYSTAT: u16, //Register key
+            ENDIANESS: u1, // ENDIANESS
+            VECTKEYSTAT: u16, // Register key
         }), base_address + 0xc);
 
         /// address: 0xe000ed10
         /// System control register
         pub const SCR = @intToPtr(*volatile Mmio(32, packed struct {
             reserved_0_0: u1,
-            SLEEPONEXIT: u1, //SLEEPONEXIT
-            SLEEPDEEP: u1, //SLEEPDEEP
+            SLEEPONEXIT: u1, // SLEEPONEXIT
+            SLEEPDEEP: u1, // SLEEPDEEP
             reserved_3_3: u1,
-            SEVEONPEND: u1, //Send Event on Pending bit
+            SEVEONPEND: u1, // Send Event on Pending bit
             padding_5_31: u27,
         }), base_address + 0x10);
 
         /// address: 0xe000ed14
         /// Configuration and control register
         pub const CCR = @intToPtr(*volatile Mmio(32, packed struct {
-            NONBASETHRDENA: u1, //Configures how the processor enters Thread mode
-            USERSETMPEND: u1, //USERSETMPEND
+            NONBASETHRDENA: u1, // Configures how the processor enters Thread mode
+            USERSETMPEND: u1, // USERSETMPEND
             reserved_2_2: u1,
-            UNALIGN__TRP: u1, //UNALIGN_ TRP
-            DIV_0_TRP: u1, //DIV_0_TRP
+            UNALIGN__TRP: u1, // UNALIGN_ TRP
+            DIV_0_TRP: u1, // DIV_0_TRP
             reserved_5_7: u3,
-            BFHFNMIGN: u1, //BFHFNMIGN
-            STKALIGN: u1, //STKALIGN
+            BFHFNMIGN: u1, // BFHFNMIGN
+            STKALIGN: u1, // STKALIGN
             padding_10_31: u22,
         }), base_address + 0x14);
 
         /// address: 0xe000ed18
         /// System handler priority registers
         pub const SHPR1 = @intToPtr(*volatile Mmio(32, packed struct {
-            PRI_4: u8, //Priority of system handler 4
-            PRI_5: u8, //Priority of system handler 5
-            PRI_6: u8, //Priority of system handler 6
+            PRI_4: u8, // Priority of system handler 4
+            PRI_5: u8, // Priority of system handler 5
+            PRI_6: u8, // Priority of system handler 6
             padding_24_31: u8,
         }), base_address + 0x18);
 
@@ -6362,37 +6362,37 @@ pub const registers = struct {
         /// System handler priority registers
         pub const SHPR2 = @intToPtr(*volatile Mmio(32, packed struct {
             reserved_0_23: u24,
-            PRI_11: u8, //Priority of system handler 11
+            PRI_11: u8, // Priority of system handler 11
         }), base_address + 0x1c);
 
         /// address: 0xe000ed20
         /// System handler priority registers
         pub const SHPR3 = @intToPtr(*volatile Mmio(32, packed struct {
             reserved_0_15: u16,
-            PRI_14: u8, //Priority of system handler 14
-            PRI_15: u8, //Priority of system handler 15
+            PRI_14: u8, // Priority of system handler 14
+            PRI_15: u8, // Priority of system handler 15
         }), base_address + 0x20);
 
         /// address: 0xe000ed24
         /// System handler control and state register
         pub const SHCRS = @intToPtr(*volatile Mmio(32, packed struct {
-            MEMFAULTACT: u1, //Memory management fault exception active bit
-            BUSFAULTACT: u1, //Bus fault exception active bit
+            MEMFAULTACT: u1, // Memory management fault exception active bit
+            BUSFAULTACT: u1, // Bus fault exception active bit
             reserved_2_2: u1,
-            USGFAULTACT: u1, //Usage fault exception active bit
+            USGFAULTACT: u1, // Usage fault exception active bit
             reserved_4_6: u3,
-            SVCALLACT: u1, //SVC call active bit
-            MONITORACT: u1, //Debug monitor active bit
+            SVCALLACT: u1, // SVC call active bit
+            MONITORACT: u1, // Debug monitor active bit
             reserved_9_9: u1,
-            PENDSVACT: u1, //PendSV exception active bit
-            SYSTICKACT: u1, //SysTick exception active bit
-            USGFAULTPENDED: u1, //Usage fault exception pending bit
-            MEMFAULTPENDED: u1, //Memory management fault exception pending bit
-            BUSFAULTPENDED: u1, //Bus fault exception pending bit
-            SVCALLPENDED: u1, //SVC call pending bit
-            MEMFAULTENA: u1, //Memory management fault enable bit
-            BUSFAULTENA: u1, //Bus fault enable bit
-            USGFAULTENA: u1, //Usage fault enable bit
+            PENDSVACT: u1, // PendSV exception active bit
+            SYSTICKACT: u1, // SysTick exception active bit
+            USGFAULTPENDED: u1, // Usage fault exception pending bit
+            MEMFAULTPENDED: u1, // Memory management fault exception pending bit
+            BUSFAULTPENDED: u1, // Bus fault exception pending bit
+            SVCALLPENDED: u1, // SVC call pending bit
+            MEMFAULTENA: u1, // Memory management fault enable bit
+            BUSFAULTENA: u1, // Bus fault enable bit
+            USGFAULTENA: u1, // Usage fault enable bit
             padding_19_31: u13,
         }), base_address + 0x24);
 
@@ -6400,28 +6400,28 @@ pub const registers = struct {
         /// Configurable fault status register
         pub const CFSR_UFSR_BFSR_MMFSR = @intToPtr(*volatile Mmio(32, packed struct {
             reserved_0_0: u1,
-            IACCVIOL: u1, //Instruction access violation flag
+            IACCVIOL: u1, // Instruction access violation flag
             reserved_2_2: u1,
-            MUNSTKERR: u1, //Memory manager fault on unstacking for a return from exception
-            MSTKERR: u1, //Memory manager fault on stacking for exception entry.
-            MLSPERR: u1, //MLSPERR
+            MUNSTKERR: u1, // Memory manager fault on unstacking for a return from exception
+            MSTKERR: u1, // Memory manager fault on stacking for exception entry.
+            MLSPERR: u1, // MLSPERR
             reserved_6_6: u1,
-            MMARVALID: u1, //Memory Management Fault Address Register (MMAR) valid flag
-            IBUSERR: u1, //Instruction bus error
-            PRECISERR: u1, //Precise data bus error
-            IMPRECISERR: u1, //Imprecise data bus error
-            UNSTKERR: u1, //Bus fault on unstacking for a return from exception
-            STKERR: u1, //Bus fault on stacking for exception entry
-            LSPERR: u1, //Bus fault on floating-point lazy state preservation
+            MMARVALID: u1, // Memory Management Fault Address Register (MMAR) valid flag
+            IBUSERR: u1, // Instruction bus error
+            PRECISERR: u1, // Precise data bus error
+            IMPRECISERR: u1, // Imprecise data bus error
+            UNSTKERR: u1, // Bus fault on unstacking for a return from exception
+            STKERR: u1, // Bus fault on stacking for exception entry
+            LSPERR: u1, // Bus fault on floating-point lazy state preservation
             reserved_14_14: u1,
-            BFARVALID: u1, //Bus Fault Address Register (BFAR) valid flag
-            UNDEFINSTR: u1, //Undefined instruction usage fault
-            INVSTATE: u1, //Invalid state usage fault
-            INVPC: u1, //Invalid PC load usage fault
-            NOCP: u1, //No coprocessor usage fault.
+            BFARVALID: u1, // Bus Fault Address Register (BFAR) valid flag
+            UNDEFINSTR: u1, // Undefined instruction usage fault
+            INVSTATE: u1, // Invalid state usage fault
+            INVPC: u1, // Invalid PC load usage fault
+            NOCP: u1, // No coprocessor usage fault.
             reserved_20_23: u4,
-            UNALIGNED: u1, //Unaligned access usage fault
-            DIVBYZERO: u1, //Divide by zero usage fault
+            UNALIGNED: u1, // Unaligned access usage fault
+            DIVBYZERO: u1, // Divide by zero usage fault
             padding_26_31: u6,
         }), base_address + 0x28);
 
@@ -6429,10 +6429,10 @@ pub const registers = struct {
         /// Hard fault status register
         pub const HFSR = @intToPtr(*volatile Mmio(32, packed struct {
             reserved_0_0: u1,
-            VECTTBL: u1, //Vector table hard fault
+            VECTTBL: u1, // Vector table hard fault
             reserved_2_29: u28,
-            FORCED: u1, //Forced hard fault
-            DEBUG_VT: u1, //Reserved for Debug use
+            FORCED: u1, // Forced hard fault
+            DEBUG_VT: u1, // Reserved for Debug use
         }), base_address + 0x2c);
 
         /// address: 0xe000ed34
@@ -6446,7 +6446,7 @@ pub const registers = struct {
         /// address: 0xe000ed3c
         /// Auxiliary fault status register
         pub const AFSR = @intToPtr(*volatile Mmio(32, packed struct {
-            IMPDEF: u32, //Implementation defined
+            IMPDEF: u32, // Implementation defined
         }), base_address + 0x3c);
     };
 
@@ -6457,7 +6457,7 @@ pub const registers = struct {
         /// address: 0xe000ef00
         /// Software trigger interrupt register
         pub const STIR = @intToPtr(*volatile Mmio(32, packed struct {
-            INTID: u9, //Software generated interrupt ID
+            INTID: u9, // Software generated interrupt ID
             padding_9_31: u23,
         }), base_address + 0x0);
     };
@@ -6470,7 +6470,7 @@ pub const registers = struct {
         /// Coprocessor access control register
         pub const CPACR = @intToPtr(*volatile Mmio(32, packed struct {
             reserved_0_19: u20,
-            CP: u4, //CP
+            CP: u4, // CP
             padding_24_31: u8,
         }), base_address + 0x0);
     };
@@ -6482,12 +6482,12 @@ pub const registers = struct {
         /// address: 0xe000e008
         /// Auxiliary control register
         pub const ACTRL = @intToPtr(*volatile Mmio(32, packed struct {
-            DISMCYCINT: u1, //DISMCYCINT
-            DISDEFWBUF: u1, //DISDEFWBUF
-            DISFOLD: u1, //DISFOLD
+            DISMCYCINT: u1, // DISMCYCINT
+            DISDEFWBUF: u1, // DISDEFWBUF
+            DISFOLD: u1, // DISFOLD
             reserved_3_7: u5,
-            DISFPCA: u1, //DISFPCA
-            DISOOFP: u1, //DISOOFP
+            DISFPCA: u1, // DISFPCA
+            DISOOFP: u1, // DISOOFP
             padding_10_31: u22,
         }), base_address + 0x0);
     };
@@ -6499,177 +6499,177 @@ pub const registers = struct {
         /// address: 0x40010400
         /// control register 1
         pub const CR1 = @intToPtr(*volatile Mmio(32, packed struct {
-            CEN: u1, //Counter enable
-            UDIS: u1, //Update disable
-            URS: u1, //Update request source
-            OPM: u1, //One-pulse mode
-            DIR: u1, //Direction
-            CMS: u2, //Center-aligned mode selection
-            ARPE: u1, //Auto-reload preload enable
-            CKD: u2, //Clock division
+            CEN: u1, // Counter enable
+            UDIS: u1, // Update disable
+            URS: u1, // Update request source
+            OPM: u1, // One-pulse mode
+            DIR: u1, // Direction
+            CMS: u2, // Center-aligned mode selection
+            ARPE: u1, // Auto-reload preload enable
+            CKD: u2, // Clock division
             padding_10_31: u22,
         }), base_address + 0x0);
 
         /// address: 0x40010404
         /// control register 2
         pub const CR2 = @intToPtr(*volatile Mmio(32, packed struct {
-            CCPC: u1, //Capture/compare preloaded control
+            CCPC: u1, // Capture/compare preloaded control
             reserved_1_1: u1,
-            CCUS: u1, //Capture/compare control update selection
-            CCDS: u1, //Capture/compare DMA selection
-            MMS: u3, //Master mode selection
-            TI1S: u1, //TI1 selection
-            OIS1: u1, //Output Idle state 1
-            OIS1N: u1, //Output Idle state 1
-            OIS2: u1, //Output Idle state 2
-            OIS2N: u1, //Output Idle state 2
-            OIS3: u1, //Output Idle state 3
-            OIS3N: u1, //Output Idle state 3
-            OIS4: u1, //Output Idle state 4
+            CCUS: u1, // Capture/compare control update selection
+            CCDS: u1, // Capture/compare DMA selection
+            MMS: u3, // Master mode selection
+            TI1S: u1, // TI1 selection
+            OIS1: u1, // Output Idle state 1
+            OIS1N: u1, // Output Idle state 1
+            OIS2: u1, // Output Idle state 2
+            OIS2N: u1, // Output Idle state 2
+            OIS3: u1, // Output Idle state 3
+            OIS3N: u1, // Output Idle state 3
+            OIS4: u1, // Output Idle state 4
             padding_15_31: u17,
         }), base_address + 0x4);
 
         /// address: 0x40010408
         /// slave mode control register
         pub const SMCR = @intToPtr(*volatile Mmio(32, packed struct {
-            SMS: u3, //Slave mode selection
+            SMS: u3, // Slave mode selection
             reserved_3_3: u1,
-            TS: u3, //Trigger selection
-            MSM: u1, //Master/Slave mode
-            ETF: u4, //External trigger filter
-            ETPS: u2, //External trigger prescaler
-            ECE: u1, //External clock enable
-            ETP: u1, //External trigger polarity
+            TS: u3, // Trigger selection
+            MSM: u1, // Master/Slave mode
+            ETF: u4, // External trigger filter
+            ETPS: u2, // External trigger prescaler
+            ECE: u1, // External clock enable
+            ETP: u1, // External trigger polarity
             padding_16_31: u16,
         }), base_address + 0x8);
 
         /// address: 0x4001040c
         /// DMA/Interrupt enable register
         pub const DIER = @intToPtr(*volatile Mmio(32, packed struct {
-            UIE: u1, //Update interrupt enable
-            CC1IE: u1, //Capture/Compare 1 interrupt enable
-            CC2IE: u1, //Capture/Compare 2 interrupt enable
-            CC3IE: u1, //Capture/Compare 3 interrupt enable
-            CC4IE: u1, //Capture/Compare 4 interrupt enable
-            COMIE: u1, //COM interrupt enable
-            TIE: u1, //Trigger interrupt enable
-            BIE: u1, //Break interrupt enable
-            UDE: u1, //Update DMA request enable
-            CC1DE: u1, //Capture/Compare 1 DMA request enable
-            CC2DE: u1, //Capture/Compare 2 DMA request enable
-            CC3DE: u1, //Capture/Compare 3 DMA request enable
-            CC4DE: u1, //Capture/Compare 4 DMA request enable
-            COMDE: u1, //COM DMA request enable
-            TDE: u1, //Trigger DMA request enable
+            UIE: u1, // Update interrupt enable
+            CC1IE: u1, // Capture/Compare 1 interrupt enable
+            CC2IE: u1, // Capture/Compare 2 interrupt enable
+            CC3IE: u1, // Capture/Compare 3 interrupt enable
+            CC4IE: u1, // Capture/Compare 4 interrupt enable
+            COMIE: u1, // COM interrupt enable
+            TIE: u1, // Trigger interrupt enable
+            BIE: u1, // Break interrupt enable
+            UDE: u1, // Update DMA request enable
+            CC1DE: u1, // Capture/Compare 1 DMA request enable
+            CC2DE: u1, // Capture/Compare 2 DMA request enable
+            CC3DE: u1, // Capture/Compare 3 DMA request enable
+            CC4DE: u1, // Capture/Compare 4 DMA request enable
+            COMDE: u1, // COM DMA request enable
+            TDE: u1, // Trigger DMA request enable
             padding_15_31: u17,
         }), base_address + 0xc);
 
         /// address: 0x40010410
         /// status register
         pub const SR = @intToPtr(*volatile Mmio(32, packed struct {
-            UIF: u1, //Update interrupt flag
-            CC1IF: u1, //Capture/compare 1 interrupt flag
-            CC2IF: u1, //Capture/Compare 2 interrupt flag
-            CC3IF: u1, //Capture/Compare 3 interrupt flag
-            CC4IF: u1, //Capture/Compare 4 interrupt flag
-            COMIF: u1, //COM interrupt flag
-            TIF: u1, //Trigger interrupt flag
-            BIF: u1, //Break interrupt flag
+            UIF: u1, // Update interrupt flag
+            CC1IF: u1, // Capture/compare 1 interrupt flag
+            CC2IF: u1, // Capture/Compare 2 interrupt flag
+            CC3IF: u1, // Capture/Compare 3 interrupt flag
+            CC4IF: u1, // Capture/Compare 4 interrupt flag
+            COMIF: u1, // COM interrupt flag
+            TIF: u1, // Trigger interrupt flag
+            BIF: u1, // Break interrupt flag
             reserved_8_8: u1,
-            CC1OF: u1, //Capture/Compare 1 overcapture flag
-            CC2OF: u1, //Capture/compare 2 overcapture flag
-            CC3OF: u1, //Capture/Compare 3 overcapture flag
-            CC4OF: u1, //Capture/Compare 4 overcapture flag
+            CC1OF: u1, // Capture/Compare 1 overcapture flag
+            CC2OF: u1, // Capture/compare 2 overcapture flag
+            CC3OF: u1, // Capture/Compare 3 overcapture flag
+            CC4OF: u1, // Capture/Compare 4 overcapture flag
             padding_13_31: u19,
         }), base_address + 0x10);
 
         /// address: 0x40010414
         /// event generation register
         pub const EGR = @intToPtr(*volatile Mmio(32, packed struct {
-            UG: u1, //Update generation
-            CC1G: u1, //Capture/compare 1 generation
-            CC2G: u1, //Capture/compare 2 generation
-            CC3G: u1, //Capture/compare 3 generation
-            CC4G: u1, //Capture/compare 4 generation
-            COMG: u1, //Capture/Compare control update generation
-            TG: u1, //Trigger generation
-            BG: u1, //Break generation
+            UG: u1, // Update generation
+            CC1G: u1, // Capture/compare 1 generation
+            CC2G: u1, // Capture/compare 2 generation
+            CC3G: u1, // Capture/compare 3 generation
+            CC4G: u1, // Capture/compare 4 generation
+            COMG: u1, // Capture/Compare control update generation
+            TG: u1, // Trigger generation
+            BG: u1, // Break generation
             padding_8_31: u24,
         }), base_address + 0x14);
 
         /// address: 0x40010418
         /// capture/compare mode register 1 (output mode)
         pub const CCMR1_Output = @intToPtr(*volatile Mmio(32, packed struct {
-            CC1S: u2, //Capture/Compare 1 selection
-            OC1FE: u1, //Output Compare 1 fast enable
-            OC1PE: u1, //Output Compare 1 preload enable
-            OC1M: u3, //Output Compare 1 mode
-            OC1CE: u1, //Output Compare 1 clear enable
-            CC2S: u2, //Capture/Compare 2 selection
-            OC2FE: u1, //Output Compare 2 fast enable
-            OC2PE: u1, //Output Compare 2 preload enable
-            OC2M: u3, //Output Compare 2 mode
-            OC2CE: u1, //Output Compare 2 clear enable
+            CC1S: u2, // Capture/Compare 1 selection
+            OC1FE: u1, // Output Compare 1 fast enable
+            OC1PE: u1, // Output Compare 1 preload enable
+            OC1M: u3, // Output Compare 1 mode
+            OC1CE: u1, // Output Compare 1 clear enable
+            CC2S: u2, // Capture/Compare 2 selection
+            OC2FE: u1, // Output Compare 2 fast enable
+            OC2PE: u1, // Output Compare 2 preload enable
+            OC2M: u3, // Output Compare 2 mode
+            OC2CE: u1, // Output Compare 2 clear enable
             padding_16_31: u16,
         }), base_address + 0x18);
 
         /// address: 0x40010418
         /// capture/compare mode register 1 (input mode)
         pub const CCMR1_Input = @intToPtr(*volatile Mmio(32, packed struct {
-            CC1S: u2, //Capture/Compare 1 selection
-            ICPCS: u2, //Input capture 1 prescaler
-            IC1F: u4, //Input capture 1 filter
-            CC2S: u2, //Capture/Compare 2 selection
-            IC2PCS: u2, //Input capture 2 prescaler
-            IC2F: u4, //Input capture 2 filter
+            CC1S: u2, // Capture/Compare 1 selection
+            ICPCS: u2, // Input capture 1 prescaler
+            IC1F: u4, // Input capture 1 filter
+            CC2S: u2, // Capture/Compare 2 selection
+            IC2PCS: u2, // Input capture 2 prescaler
+            IC2F: u4, // Input capture 2 filter
             padding_16_31: u16,
         }), base_address + 0x18);
 
         /// address: 0x4001041c
         /// capture/compare mode register 2 (output mode)
         pub const CCMR2_Output = @intToPtr(*volatile Mmio(32, packed struct {
-            CC3S: u2, //Capture/Compare 3 selection
-            OC3FE: u1, //Output compare 3 fast enable
-            OC3PE: u1, //Output compare 3 preload enable
-            OC3M: u3, //Output compare 3 mode
-            OC3CE: u1, //Output compare 3 clear enable
-            CC4S: u2, //Capture/Compare 4 selection
-            OC4FE: u1, //Output compare 4 fast enable
-            OC4PE: u1, //Output compare 4 preload enable
-            OC4M: u3, //Output compare 4 mode
-            OC4CE: u1, //Output compare 4 clear enable
+            CC3S: u2, // Capture/Compare 3 selection
+            OC3FE: u1, // Output compare 3 fast enable
+            OC3PE: u1, // Output compare 3 preload enable
+            OC3M: u3, // Output compare 3 mode
+            OC3CE: u1, // Output compare 3 clear enable
+            CC4S: u2, // Capture/Compare 4 selection
+            OC4FE: u1, // Output compare 4 fast enable
+            OC4PE: u1, // Output compare 4 preload enable
+            OC4M: u3, // Output compare 4 mode
+            OC4CE: u1, // Output compare 4 clear enable
             padding_16_31: u16,
         }), base_address + 0x1c);
 
         /// address: 0x4001041c
         /// capture/compare mode register 2 (input mode)
         pub const CCMR2_Input = @intToPtr(*volatile Mmio(32, packed struct {
-            CC3S: u2, //Capture/compare 3 selection
-            IC3PSC: u2, //Input capture 3 prescaler
-            IC3F: u4, //Input capture 3 filter
-            CC4S: u2, //Capture/Compare 4 selection
-            IC4PSC: u2, //Input capture 4 prescaler
-            IC4F: u4, //Input capture 4 filter
+            CC3S: u2, // Capture/compare 3 selection
+            IC3PSC: u2, // Input capture 3 prescaler
+            IC3F: u4, // Input capture 3 filter
+            CC4S: u2, // Capture/Compare 4 selection
+            IC4PSC: u2, // Input capture 4 prescaler
+            IC4F: u4, // Input capture 4 filter
             padding_16_31: u16,
         }), base_address + 0x1c);
 
         /// address: 0x40010420
         /// capture/compare enable register
         pub const CCER = @intToPtr(*volatile Mmio(32, packed struct {
-            CC1E: u1, //Capture/Compare 1 output enable
-            CC1P: u1, //Capture/Compare 1 output Polarity
-            CC1NE: u1, //Capture/Compare 1 complementary output enable
-            CC1NP: u1, //Capture/Compare 1 output Polarity
-            CC2E: u1, //Capture/Compare 2 output enable
-            CC2P: u1, //Capture/Compare 2 output Polarity
-            CC2NE: u1, //Capture/Compare 2 complementary output enable
-            CC2NP: u1, //Capture/Compare 2 output Polarity
-            CC3E: u1, //Capture/Compare 3 output enable
-            CC3P: u1, //Capture/Compare 3 output Polarity
-            CC3NE: u1, //Capture/Compare 3 complementary output enable
-            CC3NP: u1, //Capture/Compare 3 output Polarity
-            CC4E: u1, //Capture/Compare 4 output enable
-            CC4P: u1, //Capture/Compare 3 output Polarity
+            CC1E: u1, // Capture/Compare 1 output enable
+            CC1P: u1, // Capture/Compare 1 output Polarity
+            CC1NE: u1, // Capture/Compare 1 complementary output enable
+            CC1NP: u1, // Capture/Compare 1 output Polarity
+            CC2E: u1, // Capture/Compare 2 output enable
+            CC2P: u1, // Capture/Compare 2 output Polarity
+            CC2NE: u1, // Capture/Compare 2 complementary output enable
+            CC2NP: u1, // Capture/Compare 2 output Polarity
+            CC3E: u1, // Capture/Compare 3 output enable
+            CC3P: u1, // Capture/Compare 3 output Polarity
+            CC3NE: u1, // Capture/Compare 3 complementary output enable
+            CC3NP: u1, // Capture/Compare 3 output Polarity
+            CC4E: u1, // Capture/Compare 4 output enable
+            CC4P: u1, // Capture/Compare 3 output Polarity
             padding_14_31: u18,
         }), base_address + 0x20);
 
@@ -6704,37 +6704,37 @@ pub const registers = struct {
         /// address: 0x40010448
         /// DMA control register
         pub const DCR = @intToPtr(*volatile Mmio(32, packed struct {
-            DBA: u5, //DMA base address
+            DBA: u5, // DMA base address
             reserved_5_7: u3,
-            DBL: u5, //DMA burst length
+            DBL: u5, // DMA burst length
             padding_13_31: u19,
         }), base_address + 0x48);
 
         /// address: 0x4001044c
         /// DMA address for full transfer
         pub const DMAR = @intToPtr(*volatile Mmio(32, packed struct {
-            DMAB: u16, //DMA register for burst accesses
+            DMAB: u16, // DMA register for burst accesses
             padding_16_31: u16,
         }), base_address + 0x4c);
 
         /// address: 0x40010430
         /// repetition counter register
         pub const RCR = @intToPtr(*volatile Mmio(32, packed struct {
-            REP: u8, //Repetition counter value
+            REP: u8, // Repetition counter value
             padding_8_31: u24,
         }), base_address + 0x30);
 
         /// address: 0x40010444
         /// break and dead-time register
         pub const BDTR = @intToPtr(*volatile Mmio(32, packed struct {
-            DTG: u8, //Dead-time generator setup
-            LOCK: u2, //Lock configuration
-            OSSI: u1, //Off-state selection for Idle mode
-            OSSR: u1, //Off-state selection for Run mode
-            BKE: u1, //Break enable
-            BKP: u1, //Break polarity
-            AOE: u1, //Automatic output enable
-            MOE: u1, //Main output enable
+            DTG: u8, // Dead-time generator setup
+            LOCK: u2, // Lock configuration
+            OSSI: u1, // Off-state selection for Idle mode
+            OSSR: u1, // Off-state selection for Run mode
+            BKE: u1, // Break enable
+            BKP: u1, // Break polarity
+            AOE: u1, // Automatic output enable
+            MOE: u1, // Main output enable
             padding_16_31: u16,
         }), base_address + 0x44);
     };
@@ -6746,14 +6746,14 @@ pub const registers = struct {
         /// address: 0x40000800
         /// control register 1
         pub const CR1 = @intToPtr(*volatile Mmio(32, packed struct {
-            CEN: u1, //Counter enable
-            UDIS: u1, //Update disable
-            URS: u1, //Update request source
-            OPM: u1, //One-pulse mode
-            DIR: u1, //Direction
-            CMS: u2, //Center-aligned mode selection
-            ARPE: u1, //Auto-reload preload enable
-            CKD: u2, //Clock division
+            CEN: u1, // Counter enable
+            UDIS: u1, // Update disable
+            URS: u1, // Update request source
+            OPM: u1, // One-pulse mode
+            DIR: u1, // Direction
+            CMS: u2, // Center-aligned mode selection
+            ARPE: u1, // Auto-reload preload enable
+            CKD: u2, // Clock division
             padding_10_31: u22,
         }), base_address + 0x0);
 
@@ -6761,161 +6761,161 @@ pub const registers = struct {
         /// control register 2
         pub const CR2 = @intToPtr(*volatile Mmio(32, packed struct {
             reserved_0_2: u3,
-            CCDS: u1, //Capture/compare DMA selection
-            MMS: u3, //Master mode selection
-            TI1S: u1, //TI1 selection
+            CCDS: u1, // Capture/compare DMA selection
+            MMS: u3, // Master mode selection
+            TI1S: u1, // TI1 selection
             padding_8_31: u24,
         }), base_address + 0x4);
 
         /// address: 0x40000808
         /// slave mode control register
         pub const SMCR = @intToPtr(*volatile Mmio(32, packed struct {
-            SMS: u3, //Slave mode selection
+            SMS: u3, // Slave mode selection
             reserved_3_3: u1,
-            TS: u3, //Trigger selection
-            MSM: u1, //Master/Slave mode
-            ETF: u4, //External trigger filter
-            ETPS: u2, //External trigger prescaler
-            ECE: u1, //External clock enable
-            ETP: u1, //External trigger polarity
+            TS: u3, // Trigger selection
+            MSM: u1, // Master/Slave mode
+            ETF: u4, // External trigger filter
+            ETPS: u2, // External trigger prescaler
+            ECE: u1, // External clock enable
+            ETP: u1, // External trigger polarity
             padding_16_31: u16,
         }), base_address + 0x8);
 
         /// address: 0x4000080c
         /// DMA/Interrupt enable register
         pub const DIER = @intToPtr(*volatile Mmio(32, packed struct {
-            UIE: u1, //Update interrupt enable
-            CC1IE: u1, //Capture/Compare 1 interrupt enable
-            CC2IE: u1, //Capture/Compare 2 interrupt enable
-            CC3IE: u1, //Capture/Compare 3 interrupt enable
-            CC4IE: u1, //Capture/Compare 4 interrupt enable
+            UIE: u1, // Update interrupt enable
+            CC1IE: u1, // Capture/Compare 1 interrupt enable
+            CC2IE: u1, // Capture/Compare 2 interrupt enable
+            CC3IE: u1, // Capture/Compare 3 interrupt enable
+            CC4IE: u1, // Capture/Compare 4 interrupt enable
             reserved_5_5: u1,
-            TIE: u1, //Trigger interrupt enable
+            TIE: u1, // Trigger interrupt enable
             reserved_7_7: u1,
-            UDE: u1, //Update DMA request enable
-            CC1DE: u1, //Capture/Compare 1 DMA request enable
-            CC2DE: u1, //Capture/Compare 2 DMA request enable
-            CC3DE: u1, //Capture/Compare 3 DMA request enable
-            CC4DE: u1, //Capture/Compare 4 DMA request enable
+            UDE: u1, // Update DMA request enable
+            CC1DE: u1, // Capture/Compare 1 DMA request enable
+            CC2DE: u1, // Capture/Compare 2 DMA request enable
+            CC3DE: u1, // Capture/Compare 3 DMA request enable
+            CC4DE: u1, // Capture/Compare 4 DMA request enable
             reserved_13_13: u1,
-            TDE: u1, //Trigger DMA request enable
+            TDE: u1, // Trigger DMA request enable
             padding_15_31: u17,
         }), base_address + 0xc);
 
         /// address: 0x40000810
         /// status register
         pub const SR = @intToPtr(*volatile Mmio(32, packed struct {
-            UIF: u1, //Update interrupt flag
-            CC1IF: u1, //Capture/compare 1 interrupt flag
-            CC2IF: u1, //Capture/Compare 2 interrupt flag
-            CC3IF: u1, //Capture/Compare 3 interrupt flag
-            CC4IF: u1, //Capture/Compare 4 interrupt flag
+            UIF: u1, // Update interrupt flag
+            CC1IF: u1, // Capture/compare 1 interrupt flag
+            CC2IF: u1, // Capture/Compare 2 interrupt flag
+            CC3IF: u1, // Capture/Compare 3 interrupt flag
+            CC4IF: u1, // Capture/Compare 4 interrupt flag
             reserved_5_5: u1,
-            TIF: u1, //Trigger interrupt flag
+            TIF: u1, // Trigger interrupt flag
             reserved_7_8: u2,
-            CC1OF: u1, //Capture/Compare 1 overcapture flag
-            CC2OF: u1, //Capture/compare 2 overcapture flag
-            CC3OF: u1, //Capture/Compare 3 overcapture flag
-            CC4OF: u1, //Capture/Compare 4 overcapture flag
+            CC1OF: u1, // Capture/Compare 1 overcapture flag
+            CC2OF: u1, // Capture/compare 2 overcapture flag
+            CC3OF: u1, // Capture/Compare 3 overcapture flag
+            CC4OF: u1, // Capture/Compare 4 overcapture flag
             padding_13_31: u19,
         }), base_address + 0x10);
 
         /// address: 0x40000814
         /// event generation register
         pub const EGR = @intToPtr(*volatile Mmio(32, packed struct {
-            UG: u1, //Update generation
-            CC1G: u1, //Capture/compare 1 generation
-            CC2G: u1, //Capture/compare 2 generation
-            CC3G: u1, //Capture/compare 3 generation
-            CC4G: u1, //Capture/compare 4 generation
+            UG: u1, // Update generation
+            CC1G: u1, // Capture/compare 1 generation
+            CC2G: u1, // Capture/compare 2 generation
+            CC3G: u1, // Capture/compare 3 generation
+            CC4G: u1, // Capture/compare 4 generation
             reserved_5_5: u1,
-            TG: u1, //Trigger generation
+            TG: u1, // Trigger generation
             padding_7_31: u25,
         }), base_address + 0x14);
 
         /// address: 0x40000818
         /// capture/compare mode register 1 (output mode)
         pub const CCMR1_Output = @intToPtr(*volatile Mmio(32, packed struct {
-            CC1S: u2, //CC1S
-            OC1FE: u1, //OC1FE
-            OC1PE: u1, //OC1PE
-            OC1M: u3, //OC1M
-            OC1CE: u1, //OC1CE
-            CC2S: u2, //CC2S
-            OC2FE: u1, //OC2FE
-            OC2PE: u1, //OC2PE
-            OC2M: u3, //OC2M
-            OC2CE: u1, //OC2CE
+            CC1S: u2, // CC1S
+            OC1FE: u1, // OC1FE
+            OC1PE: u1, // OC1PE
+            OC1M: u3, // OC1M
+            OC1CE: u1, // OC1CE
+            CC2S: u2, // CC2S
+            OC2FE: u1, // OC2FE
+            OC2PE: u1, // OC2PE
+            OC2M: u3, // OC2M
+            OC2CE: u1, // OC2CE
             padding_16_31: u16,
         }), base_address + 0x18);
 
         /// address: 0x40000818
         /// capture/compare mode register 1 (input mode)
         pub const CCMR1_Input = @intToPtr(*volatile Mmio(32, packed struct {
-            CC1S: u2, //Capture/Compare 1 selection
-            ICPCS: u2, //Input capture 1 prescaler
-            IC1F: u4, //Input capture 1 filter
-            CC2S: u2, //Capture/Compare 2 selection
-            IC2PCS: u2, //Input capture 2 prescaler
-            IC2F: u4, //Input capture 2 filter
+            CC1S: u2, // Capture/Compare 1 selection
+            ICPCS: u2, // Input capture 1 prescaler
+            IC1F: u4, // Input capture 1 filter
+            CC2S: u2, // Capture/Compare 2 selection
+            IC2PCS: u2, // Input capture 2 prescaler
+            IC2F: u4, // Input capture 2 filter
             padding_16_31: u16,
         }), base_address + 0x18);
 
         /// address: 0x4000081c
         /// capture/compare mode register 2 (output mode)
         pub const CCMR2_Output = @intToPtr(*volatile Mmio(32, packed struct {
-            CC3S: u2, //CC3S
-            OC3FE: u1, //OC3FE
-            OC3PE: u1, //OC3PE
-            OC3M: u3, //OC3M
-            OC3CE: u1, //OC3CE
-            CC4S: u2, //CC4S
-            OC4FE: u1, //OC4FE
-            OC4PE: u1, //OC4PE
-            OC4M: u3, //OC4M
-            O24CE: u1, //O24CE
+            CC3S: u2, // CC3S
+            OC3FE: u1, // OC3FE
+            OC3PE: u1, // OC3PE
+            OC3M: u3, // OC3M
+            OC3CE: u1, // OC3CE
+            CC4S: u2, // CC4S
+            OC4FE: u1, // OC4FE
+            OC4PE: u1, // OC4PE
+            OC4M: u3, // OC4M
+            O24CE: u1, // O24CE
             padding_16_31: u16,
         }), base_address + 0x1c);
 
         /// address: 0x4000081c
         /// capture/compare mode register 2 (input mode)
         pub const CCMR2_Input = @intToPtr(*volatile Mmio(32, packed struct {
-            CC3S: u2, //Capture/compare 3 selection
-            IC3PSC: u2, //Input capture 3 prescaler
-            IC3F: u4, //Input capture 3 filter
-            CC4S: u2, //Capture/Compare 4 selection
-            IC4PSC: u2, //Input capture 4 prescaler
-            IC4F: u4, //Input capture 4 filter
+            CC3S: u2, // Capture/compare 3 selection
+            IC3PSC: u2, // Input capture 3 prescaler
+            IC3F: u4, // Input capture 3 filter
+            CC4S: u2, // Capture/Compare 4 selection
+            IC4PSC: u2, // Input capture 4 prescaler
+            IC4F: u4, // Input capture 4 filter
             padding_16_31: u16,
         }), base_address + 0x1c);
 
         /// address: 0x40000820
         /// capture/compare enable register
         pub const CCER = @intToPtr(*volatile Mmio(32, packed struct {
-            CC1E: u1, //Capture/Compare 1 output enable
-            CC1P: u1, //Capture/Compare 1 output Polarity
+            CC1E: u1, // Capture/Compare 1 output enable
+            CC1P: u1, // Capture/Compare 1 output Polarity
             reserved_2_2: u1,
-            CC1NP: u1, //Capture/Compare 1 output Polarity
-            CC2E: u1, //Capture/Compare 2 output enable
-            CC2P: u1, //Capture/Compare 2 output Polarity
+            CC1NP: u1, // Capture/Compare 1 output Polarity
+            CC2E: u1, // Capture/Compare 2 output enable
+            CC2P: u1, // Capture/Compare 2 output Polarity
             reserved_6_6: u1,
-            CC2NP: u1, //Capture/Compare 2 output Polarity
-            CC3E: u1, //Capture/Compare 3 output enable
-            CC3P: u1, //Capture/Compare 3 output Polarity
+            CC2NP: u1, // Capture/Compare 2 output Polarity
+            CC3E: u1, // Capture/Compare 3 output enable
+            CC3P: u1, // Capture/Compare 3 output Polarity
             reserved_10_10: u1,
-            CC3NP: u1, //Capture/Compare 3 output Polarity
-            CC4E: u1, //Capture/Compare 4 output enable
-            CC4P: u1, //Capture/Compare 3 output Polarity
+            CC3NP: u1, // Capture/Compare 3 output Polarity
+            CC4E: u1, // Capture/Compare 4 output enable
+            CC4P: u1, // Capture/Compare 3 output Polarity
             reserved_14_14: u1,
-            CC4NP: u1, //Capture/Compare 4 output Polarity
+            CC4NP: u1, // Capture/Compare 4 output Polarity
             padding_16_31: u16,
         }), base_address + 0x20);
 
         /// address: 0x40000824
         /// counter
         pub const CNT = @intToPtr(*volatile Mmio(32, packed struct {
-            CNT_L: u16, //Low counter value
-            CNT_H: u16, //High counter value
+            CNT_L: u16, // Low counter value
+            CNT_H: u16, // High counter value
         }), base_address + 0x24);
 
         /// address: 0x40000828
@@ -6925,51 +6925,51 @@ pub const registers = struct {
         /// address: 0x4000082c
         /// auto-reload register
         pub const ARR = @intToPtr(*volatile Mmio(32, packed struct {
-            ARR_L: u16, //Low Auto-reload value
-            ARR_H: u16, //High Auto-reload value
+            ARR_L: u16, // Low Auto-reload value
+            ARR_H: u16, // High Auto-reload value
         }), base_address + 0x2c);
 
         /// address: 0x40000834
         /// capture/compare register 1
         pub const CCR1 = @intToPtr(*volatile Mmio(32, packed struct {
-            CCR1_L: u16, //Low Capture/Compare 1 value
-            CCR1_H: u16, //High Capture/Compare 1 value
+            CCR1_L: u16, // Low Capture/Compare 1 value
+            CCR1_H: u16, // High Capture/Compare 1 value
         }), base_address + 0x34);
 
         /// address: 0x40000838
         /// capture/compare register 2
         pub const CCR2 = @intToPtr(*volatile Mmio(32, packed struct {
-            CCR2_L: u16, //Low Capture/Compare 2 value
-            CCR2_H: u16, //High Capture/Compare 2 value
+            CCR2_L: u16, // Low Capture/Compare 2 value
+            CCR2_H: u16, // High Capture/Compare 2 value
         }), base_address + 0x38);
 
         /// address: 0x4000083c
         /// capture/compare register 3
         pub const CCR3 = @intToPtr(*volatile Mmio(32, packed struct {
-            CCR3_L: u16, //Low Capture/Compare value
-            CCR3_H: u16, //High Capture/Compare value
+            CCR3_L: u16, // Low Capture/Compare value
+            CCR3_H: u16, // High Capture/Compare value
         }), base_address + 0x3c);
 
         /// address: 0x40000840
         /// capture/compare register 4
         pub const CCR4 = @intToPtr(*volatile Mmio(32, packed struct {
-            CCR4_L: u16, //Low Capture/Compare value
-            CCR4_H: u16, //High Capture/Compare value
+            CCR4_L: u16, // Low Capture/Compare value
+            CCR4_H: u16, // High Capture/Compare value
         }), base_address + 0x40);
 
         /// address: 0x40000848
         /// DMA control register
         pub const DCR = @intToPtr(*volatile Mmio(32, packed struct {
-            DBA: u5, //DMA base address
+            DBA: u5, // DMA base address
             reserved_5_7: u3,
-            DBL: u5, //DMA burst length
+            DBL: u5, // DMA burst length
             padding_13_31: u19,
         }), base_address + 0x48);
 
         /// address: 0x4000084c
         /// DMA address for full transfer
         pub const DMAR = @intToPtr(*volatile Mmio(32, packed struct {
-            DMAB: u16, //DMA register for burst accesses
+            DMAB: u16, // DMA register for burst accesses
             padding_16_31: u16,
         }), base_address + 0x4c);
     };
@@ -6981,16 +6981,16 @@ pub const registers = struct {
         /// address: 0x40004400
         /// Status register
         pub const SR = @intToPtr(*volatile Mmio(32, packed struct {
-            PE: u1, //Parity error
-            FE: u1, //Framing error
-            NF: u1, //Noise detected flag
-            ORE: u1, //Overrun error
-            IDLE: u1, //IDLE line detected
-            RXNE: u1, //Read data register not empty
-            TC: u1, //Transmission complete
-            TXE: u1, //Transmit data register empty
-            LBD: u1, //LIN break detection flag
-            CTS: u1, //CTS flag
+            PE: u1, // Parity error
+            FE: u1, // Framing error
+            NF: u1, // Noise detected flag
+            ORE: u1, // Overrun error
+            IDLE: u1, // IDLE line detected
+            RXNE: u1, // Read data register not empty
+            TC: u1, // Transmission complete
+            TXE: u1, // Transmit data register empty
+            LBD: u1, // LIN break detection flag
+            CTS: u1, // CTS flag
             padding_10_31: u22,
         }), base_address + 0x0);
 
@@ -7001,73 +7001,73 @@ pub const registers = struct {
         /// address: 0x40004408
         /// Baud rate register
         pub const BRR = @intToPtr(*volatile Mmio(32, packed struct {
-            DIV_Fraction: u4, //fraction of USARTDIV
-            DIV_Mantissa: u12, //mantissa of USARTDIV
+            DIV_Fraction: u4, // fraction of USARTDIV
+            DIV_Mantissa: u12, // mantissa of USARTDIV
             padding_16_31: u16,
         }), base_address + 0x8);
 
         /// address: 0x4000440c
         /// Control register 1
         pub const CR1 = @intToPtr(*volatile Mmio(32, packed struct {
-            SBK: u1, //Send break
-            RWU: u1, //Receiver wakeup
-            RE: u1, //Receiver enable
-            TE: u1, //Transmitter enable
-            IDLEIE: u1, //IDLE interrupt enable
-            RXNEIE: u1, //RXNE interrupt enable
-            TCIE: u1, //Transmission complete interrupt enable
-            TXEIE: u1, //TXE interrupt enable
-            PEIE: u1, //PE interrupt enable
-            PS: u1, //Parity selection
-            PCE: u1, //Parity control enable
-            WAKE: u1, //Wakeup method
-            M: u1, //Word length
-            UE: u1, //USART enable
+            SBK: u1, // Send break
+            RWU: u1, // Receiver wakeup
+            RE: u1, // Receiver enable
+            TE: u1, // Transmitter enable
+            IDLEIE: u1, // IDLE interrupt enable
+            RXNEIE: u1, // RXNE interrupt enable
+            TCIE: u1, // Transmission complete interrupt enable
+            TXEIE: u1, // TXE interrupt enable
+            PEIE: u1, // PE interrupt enable
+            PS: u1, // Parity selection
+            PCE: u1, // Parity control enable
+            WAKE: u1, // Wakeup method
+            M: u1, // Word length
+            UE: u1, // USART enable
             reserved_14_14: u1,
-            OVER8: u1, //Oversampling mode
+            OVER8: u1, // Oversampling mode
             padding_16_31: u16,
         }), base_address + 0xc);
 
         /// address: 0x40004410
         /// Control register 2
         pub const CR2 = @intToPtr(*volatile Mmio(32, packed struct {
-            ADD: u4, //Address of the USART node
+            ADD: u4, // Address of the USART node
             reserved_4_4: u1,
-            LBDL: u1, //lin break detection length
-            LBDIE: u1, //LIN break detection interrupt enable
+            LBDL: u1, // lin break detection length
+            LBDIE: u1, // LIN break detection interrupt enable
             reserved_7_7: u1,
-            LBCL: u1, //Last bit clock pulse
-            CPHA: u1, //Clock phase
-            CPOL: u1, //Clock polarity
-            CLKEN: u1, //Clock enable
-            STOP: u2, //STOP bits
-            LINEN: u1, //LIN mode enable
+            LBCL: u1, // Last bit clock pulse
+            CPHA: u1, // Clock phase
+            CPOL: u1, // Clock polarity
+            CLKEN: u1, // Clock enable
+            STOP: u2, // STOP bits
+            LINEN: u1, // LIN mode enable
             padding_15_31: u17,
         }), base_address + 0x10);
 
         /// address: 0x40004414
         /// Control register 3
         pub const CR3 = @intToPtr(*volatile Mmio(32, packed struct {
-            EIE: u1, //Error interrupt enable
-            IREN: u1, //IrDA mode enable
-            IRLP: u1, //IrDA low-power
-            HDSEL: u1, //Half-duplex selection
-            NACK: u1, //Smartcard NACK enable
-            SCEN: u1, //Smartcard mode enable
-            DMAR: u1, //DMA enable receiver
-            DMAT: u1, //DMA enable transmitter
-            RTSE: u1, //RTS enable
-            CTSE: u1, //CTS enable
-            CTSIE: u1, //CTS interrupt enable
-            ONEBIT: u1, //One sample bit method enable
+            EIE: u1, // Error interrupt enable
+            IREN: u1, // IrDA mode enable
+            IRLP: u1, // IrDA low-power
+            HDSEL: u1, // Half-duplex selection
+            NACK: u1, // Smartcard NACK enable
+            SCEN: u1, // Smartcard mode enable
+            DMAR: u1, // DMA enable receiver
+            DMAT: u1, // DMA enable transmitter
+            RTSE: u1, // RTS enable
+            CTSE: u1, // CTS enable
+            CTSIE: u1, // CTS interrupt enable
+            ONEBIT: u1, // One sample bit method enable
             padding_12_31: u20,
         }), base_address + 0x14);
 
         /// address: 0x40004418
         /// Guard time and prescaler register
         pub const GTPR = @intToPtr(*volatile Mmio(32, packed struct {
-            PSC: u8, //Prescaler value
-            GT: u8, //Guard time value
+            PSC: u8, // Prescaler value
+            GT: u8, // Guard time value
             padding_16_31: u16,
         }), base_address + 0x18);
     };
@@ -7079,16 +7079,16 @@ pub const registers = struct {
         /// address: 0x40011400
         /// Status register
         pub const SR = @intToPtr(*volatile Mmio(32, packed struct {
-            PE: u1, //Parity error
-            FE: u1, //Framing error
-            NF: u1, //Noise detected flag
-            ORE: u1, //Overrun error
-            IDLE: u1, //IDLE line detected
-            RXNE: u1, //Read data register not empty
-            TC: u1, //Transmission complete
-            TXE: u1, //Transmit data register empty
-            LBD: u1, //LIN break detection flag
-            CTS: u1, //CTS flag
+            PE: u1, // Parity error
+            FE: u1, // Framing error
+            NF: u1, // Noise detected flag
+            ORE: u1, // Overrun error
+            IDLE: u1, // IDLE line detected
+            RXNE: u1, // Read data register not empty
+            TC: u1, // Transmission complete
+            TXE: u1, // Transmit data register empty
+            LBD: u1, // LIN break detection flag
+            CTS: u1, // CTS flag
             padding_10_31: u22,
         }), base_address + 0x0);
 
@@ -7099,73 +7099,73 @@ pub const registers = struct {
         /// address: 0x40011408
         /// Baud rate register
         pub const BRR = @intToPtr(*volatile Mmio(32, packed struct {
-            DIV_Fraction: u4, //fraction of USARTDIV
-            DIV_Mantissa: u12, //mantissa of USARTDIV
+            DIV_Fraction: u4, // fraction of USARTDIV
+            DIV_Mantissa: u12, // mantissa of USARTDIV
             padding_16_31: u16,
         }), base_address + 0x8);
 
         /// address: 0x4001140c
         /// Control register 1
         pub const CR1 = @intToPtr(*volatile Mmio(32, packed struct {
-            SBK: u1, //Send break
-            RWU: u1, //Receiver wakeup
-            RE: u1, //Receiver enable
-            TE: u1, //Transmitter enable
-            IDLEIE: u1, //IDLE interrupt enable
-            RXNEIE: u1, //RXNE interrupt enable
-            TCIE: u1, //Transmission complete interrupt enable
-            TXEIE: u1, //TXE interrupt enable
-            PEIE: u1, //PE interrupt enable
-            PS: u1, //Parity selection
-            PCE: u1, //Parity control enable
-            WAKE: u1, //Wakeup method
-            M: u1, //Word length
-            UE: u1, //USART enable
+            SBK: u1, // Send break
+            RWU: u1, // Receiver wakeup
+            RE: u1, // Receiver enable
+            TE: u1, // Transmitter enable
+            IDLEIE: u1, // IDLE interrupt enable
+            RXNEIE: u1, // RXNE interrupt enable
+            TCIE: u1, // Transmission complete interrupt enable
+            TXEIE: u1, // TXE interrupt enable
+            PEIE: u1, // PE interrupt enable
+            PS: u1, // Parity selection
+            PCE: u1, // Parity control enable
+            WAKE: u1, // Wakeup method
+            M: u1, // Word length
+            UE: u1, // USART enable
             reserved_14_14: u1,
-            OVER8: u1, //Oversampling mode
+            OVER8: u1, // Oversampling mode
             padding_16_31: u16,
         }), base_address + 0xc);
 
         /// address: 0x40011410
         /// Control register 2
         pub const CR2 = @intToPtr(*volatile Mmio(32, packed struct {
-            ADD: u4, //Address of the USART node
+            ADD: u4, // Address of the USART node
             reserved_4_4: u1,
-            LBDL: u1, //lin break detection length
-            LBDIE: u1, //LIN break detection interrupt enable
+            LBDL: u1, // lin break detection length
+            LBDIE: u1, // LIN break detection interrupt enable
             reserved_7_7: u1,
-            LBCL: u1, //Last bit clock pulse
-            CPHA: u1, //Clock phase
-            CPOL: u1, //Clock polarity
-            CLKEN: u1, //Clock enable
-            STOP: u2, //STOP bits
-            LINEN: u1, //LIN mode enable
+            LBCL: u1, // Last bit clock pulse
+            CPHA: u1, // Clock phase
+            CPOL: u1, // Clock polarity
+            CLKEN: u1, // Clock enable
+            STOP: u2, // STOP bits
+            LINEN: u1, // LIN mode enable
             padding_15_31: u17,
         }), base_address + 0x10);
 
         /// address: 0x40011414
         /// Control register 3
         pub const CR3 = @intToPtr(*volatile Mmio(32, packed struct {
-            EIE: u1, //Error interrupt enable
-            IREN: u1, //IrDA mode enable
-            IRLP: u1, //IrDA low-power
-            HDSEL: u1, //Half-duplex selection
-            NACK: u1, //Smartcard NACK enable
-            SCEN: u1, //Smartcard mode enable
-            DMAR: u1, //DMA enable receiver
-            DMAT: u1, //DMA enable transmitter
-            RTSE: u1, //RTS enable
-            CTSE: u1, //CTS enable
-            CTSIE: u1, //CTS interrupt enable
-            ONEBIT: u1, //One sample bit method enable
+            EIE: u1, // Error interrupt enable
+            IREN: u1, // IrDA mode enable
+            IRLP: u1, // IrDA low-power
+            HDSEL: u1, // Half-duplex selection
+            NACK: u1, // Smartcard NACK enable
+            SCEN: u1, // Smartcard mode enable
+            DMAR: u1, // DMA enable receiver
+            DMAT: u1, // DMA enable transmitter
+            RTSE: u1, // RTS enable
+            CTSE: u1, // CTS enable
+            CTSIE: u1, // CTS interrupt enable
+            ONEBIT: u1, // One sample bit method enable
             padding_12_31: u20,
         }), base_address + 0x14);
 
         /// address: 0x40011418
         /// Guard time and prescaler register
         pub const GTPR = @intToPtr(*volatile Mmio(32, packed struct {
-            PSC: u8, //Prescaler value
-            GT: u8, //Guard time value
+            PSC: u8, // Prescaler value
+            GT: u8, // Guard time value
             padding_16_31: u16,
         }), base_address + 0x18);
     };
@@ -7177,620 +7177,620 @@ pub const registers = struct {
         /// address: 0x40026000
         /// low interrupt status register
         pub const LISR = @intToPtr(*volatile Mmio(32, packed struct {
-            FEIF0: u1, //Stream x FIFO error interrupt flag (x=3..0)
+            FEIF0: u1, // Stream x FIFO error interrupt flag (x=3..0)
             reserved_1_1: u1,
-            DMEIF0: u1, //Stream x direct mode error interrupt flag (x=3..0)
-            TEIF0: u1, //Stream x transfer error interrupt flag (x=3..0)
-            HTIF0: u1, //Stream x half transfer interrupt flag (x=3..0)
-            TCIF0: u1, //Stream x transfer complete interrupt flag (x = 3..0)
-            FEIF1: u1, //Stream x FIFO error interrupt flag (x=3..0)
+            DMEIF0: u1, // Stream x direct mode error interrupt flag (x=3..0)
+            TEIF0: u1, // Stream x transfer error interrupt flag (x=3..0)
+            HTIF0: u1, // Stream x half transfer interrupt flag (x=3..0)
+            TCIF0: u1, // Stream x transfer complete interrupt flag (x = 3..0)
+            FEIF1: u1, // Stream x FIFO error interrupt flag (x=3..0)
             reserved_7_7: u1,
-            DMEIF1: u1, //Stream x direct mode error interrupt flag (x=3..0)
-            TEIF1: u1, //Stream x transfer error interrupt flag (x=3..0)
-            HTIF1: u1, //Stream x half transfer interrupt flag (x=3..0)
-            TCIF1: u1, //Stream x transfer complete interrupt flag (x = 3..0)
+            DMEIF1: u1, // Stream x direct mode error interrupt flag (x=3..0)
+            TEIF1: u1, // Stream x transfer error interrupt flag (x=3..0)
+            HTIF1: u1, // Stream x half transfer interrupt flag (x=3..0)
+            TCIF1: u1, // Stream x transfer complete interrupt flag (x = 3..0)
             reserved_12_15: u4,
-            FEIF2: u1, //Stream x FIFO error interrupt flag (x=3..0)
+            FEIF2: u1, // Stream x FIFO error interrupt flag (x=3..0)
             reserved_17_17: u1,
-            DMEIF2: u1, //Stream x direct mode error interrupt flag (x=3..0)
-            TEIF2: u1, //Stream x transfer error interrupt flag (x=3..0)
-            HTIF2: u1, //Stream x half transfer interrupt flag (x=3..0)
-            TCIF2: u1, //Stream x transfer complete interrupt flag (x = 3..0)
-            FEIF3: u1, //Stream x FIFO error interrupt flag (x=3..0)
+            DMEIF2: u1, // Stream x direct mode error interrupt flag (x=3..0)
+            TEIF2: u1, // Stream x transfer error interrupt flag (x=3..0)
+            HTIF2: u1, // Stream x half transfer interrupt flag (x=3..0)
+            TCIF2: u1, // Stream x transfer complete interrupt flag (x = 3..0)
+            FEIF3: u1, // Stream x FIFO error interrupt flag (x=3..0)
             reserved_23_23: u1,
-            DMEIF3: u1, //Stream x direct mode error interrupt flag (x=3..0)
-            TEIF3: u1, //Stream x transfer error interrupt flag (x=3..0)
-            HTIF3: u1, //Stream x half transfer interrupt flag (x=3..0)
-            TCIF3: u1, //Stream x transfer complete interrupt flag (x = 3..0)
+            DMEIF3: u1, // Stream x direct mode error interrupt flag (x=3..0)
+            TEIF3: u1, // Stream x transfer error interrupt flag (x=3..0)
+            HTIF3: u1, // Stream x half transfer interrupt flag (x=3..0)
+            TCIF3: u1, // Stream x transfer complete interrupt flag (x = 3..0)
             padding_28_31: u4,
         }), base_address + 0x0);
 
         /// address: 0x40026004
         /// high interrupt status register
         pub const HISR = @intToPtr(*volatile Mmio(32, packed struct {
-            FEIF4: u1, //Stream x FIFO error interrupt flag (x=7..4)
+            FEIF4: u1, // Stream x FIFO error interrupt flag (x=7..4)
             reserved_1_1: u1,
-            DMEIF4: u1, //Stream x direct mode error interrupt flag (x=7..4)
-            TEIF4: u1, //Stream x transfer error interrupt flag (x=7..4)
-            HTIF4: u1, //Stream x half transfer interrupt flag (x=7..4)
-            TCIF4: u1, //Stream x transfer complete interrupt flag (x=7..4)
-            FEIF5: u1, //Stream x FIFO error interrupt flag (x=7..4)
+            DMEIF4: u1, // Stream x direct mode error interrupt flag (x=7..4)
+            TEIF4: u1, // Stream x transfer error interrupt flag (x=7..4)
+            HTIF4: u1, // Stream x half transfer interrupt flag (x=7..4)
+            TCIF4: u1, // Stream x transfer complete interrupt flag (x=7..4)
+            FEIF5: u1, // Stream x FIFO error interrupt flag (x=7..4)
             reserved_7_7: u1,
-            DMEIF5: u1, //Stream x direct mode error interrupt flag (x=7..4)
-            TEIF5: u1, //Stream x transfer error interrupt flag (x=7..4)
-            HTIF5: u1, //Stream x half transfer interrupt flag (x=7..4)
-            TCIF5: u1, //Stream x transfer complete interrupt flag (x=7..4)
+            DMEIF5: u1, // Stream x direct mode error interrupt flag (x=7..4)
+            TEIF5: u1, // Stream x transfer error interrupt flag (x=7..4)
+            HTIF5: u1, // Stream x half transfer interrupt flag (x=7..4)
+            TCIF5: u1, // Stream x transfer complete interrupt flag (x=7..4)
             reserved_12_15: u4,
-            FEIF6: u1, //Stream x FIFO error interrupt flag (x=7..4)
+            FEIF6: u1, // Stream x FIFO error interrupt flag (x=7..4)
             reserved_17_17: u1,
-            DMEIF6: u1, //Stream x direct mode error interrupt flag (x=7..4)
-            TEIF6: u1, //Stream x transfer error interrupt flag (x=7..4)
-            HTIF6: u1, //Stream x half transfer interrupt flag (x=7..4)
-            TCIF6: u1, //Stream x transfer complete interrupt flag (x=7..4)
-            FEIF7: u1, //Stream x FIFO error interrupt flag (x=7..4)
+            DMEIF6: u1, // Stream x direct mode error interrupt flag (x=7..4)
+            TEIF6: u1, // Stream x transfer error interrupt flag (x=7..4)
+            HTIF6: u1, // Stream x half transfer interrupt flag (x=7..4)
+            TCIF6: u1, // Stream x transfer complete interrupt flag (x=7..4)
+            FEIF7: u1, // Stream x FIFO error interrupt flag (x=7..4)
             reserved_23_23: u1,
-            DMEIF7: u1, //Stream x direct mode error interrupt flag (x=7..4)
-            TEIF7: u1, //Stream x transfer error interrupt flag (x=7..4)
-            HTIF7: u1, //Stream x half transfer interrupt flag (x=7..4)
-            TCIF7: u1, //Stream x transfer complete interrupt flag (x=7..4)
+            DMEIF7: u1, // Stream x direct mode error interrupt flag (x=7..4)
+            TEIF7: u1, // Stream x transfer error interrupt flag (x=7..4)
+            HTIF7: u1, // Stream x half transfer interrupt flag (x=7..4)
+            TCIF7: u1, // Stream x transfer complete interrupt flag (x=7..4)
             padding_28_31: u4,
         }), base_address + 0x4);
 
         /// address: 0x40026008
         /// low interrupt flag clear register
         pub const LIFCR = @intToPtr(*volatile Mmio(32, packed struct {
-            CFEIF0: u1, //Stream x clear FIFO error interrupt flag (x = 3..0)
+            CFEIF0: u1, // Stream x clear FIFO error interrupt flag (x = 3..0)
             reserved_1_1: u1,
-            CDMEIF0: u1, //Stream x clear direct mode error interrupt flag (x = 3..0)
-            CTEIF0: u1, //Stream x clear transfer error interrupt flag (x = 3..0)
-            CHTIF0: u1, //Stream x clear half transfer interrupt flag (x = 3..0)
-            CTCIF0: u1, //Stream x clear transfer complete interrupt flag (x = 3..0)
-            CFEIF1: u1, //Stream x clear FIFO error interrupt flag (x = 3..0)
+            CDMEIF0: u1, // Stream x clear direct mode error interrupt flag (x = 3..0)
+            CTEIF0: u1, // Stream x clear transfer error interrupt flag (x = 3..0)
+            CHTIF0: u1, // Stream x clear half transfer interrupt flag (x = 3..0)
+            CTCIF0: u1, // Stream x clear transfer complete interrupt flag (x = 3..0)
+            CFEIF1: u1, // Stream x clear FIFO error interrupt flag (x = 3..0)
             reserved_7_7: u1,
-            CDMEIF1: u1, //Stream x clear direct mode error interrupt flag (x = 3..0)
-            CTEIF1: u1, //Stream x clear transfer error interrupt flag (x = 3..0)
-            CHTIF1: u1, //Stream x clear half transfer interrupt flag (x = 3..0)
-            CTCIF1: u1, //Stream x clear transfer complete interrupt flag (x = 3..0)
+            CDMEIF1: u1, // Stream x clear direct mode error interrupt flag (x = 3..0)
+            CTEIF1: u1, // Stream x clear transfer error interrupt flag (x = 3..0)
+            CHTIF1: u1, // Stream x clear half transfer interrupt flag (x = 3..0)
+            CTCIF1: u1, // Stream x clear transfer complete interrupt flag (x = 3..0)
             reserved_12_15: u4,
-            CFEIF2: u1, //Stream x clear FIFO error interrupt flag (x = 3..0)
+            CFEIF2: u1, // Stream x clear FIFO error interrupt flag (x = 3..0)
             reserved_17_17: u1,
-            CDMEIF2: u1, //Stream x clear direct mode error interrupt flag (x = 3..0)
-            CTEIF2: u1, //Stream x clear transfer error interrupt flag (x = 3..0)
-            CHTIF2: u1, //Stream x clear half transfer interrupt flag (x = 3..0)
-            CTCIF2: u1, //Stream x clear transfer complete interrupt flag (x = 3..0)
-            CFEIF3: u1, //Stream x clear FIFO error interrupt flag (x = 3..0)
+            CDMEIF2: u1, // Stream x clear direct mode error interrupt flag (x = 3..0)
+            CTEIF2: u1, // Stream x clear transfer error interrupt flag (x = 3..0)
+            CHTIF2: u1, // Stream x clear half transfer interrupt flag (x = 3..0)
+            CTCIF2: u1, // Stream x clear transfer complete interrupt flag (x = 3..0)
+            CFEIF3: u1, // Stream x clear FIFO error interrupt flag (x = 3..0)
             reserved_23_23: u1,
-            CDMEIF3: u1, //Stream x clear direct mode error interrupt flag (x = 3..0)
-            CTEIF3: u1, //Stream x clear transfer error interrupt flag (x = 3..0)
-            CHTIF3: u1, //Stream x clear half transfer interrupt flag (x = 3..0)
-            CTCIF3: u1, //Stream x clear transfer complete interrupt flag (x = 3..0)
+            CDMEIF3: u1, // Stream x clear direct mode error interrupt flag (x = 3..0)
+            CTEIF3: u1, // Stream x clear transfer error interrupt flag (x = 3..0)
+            CHTIF3: u1, // Stream x clear half transfer interrupt flag (x = 3..0)
+            CTCIF3: u1, // Stream x clear transfer complete interrupt flag (x = 3..0)
             padding_28_31: u4,
         }), base_address + 0x8);
 
         /// address: 0x4002600c
         /// high interrupt flag clear register
         pub const HIFCR = @intToPtr(*volatile Mmio(32, packed struct {
-            CFEIF4: u1, //Stream x clear FIFO error interrupt flag (x = 7..4)
+            CFEIF4: u1, // Stream x clear FIFO error interrupt flag (x = 7..4)
             reserved_1_1: u1,
-            CDMEIF4: u1, //Stream x clear direct mode error interrupt flag (x = 7..4)
-            CTEIF4: u1, //Stream x clear transfer error interrupt flag (x = 7..4)
-            CHTIF4: u1, //Stream x clear half transfer interrupt flag (x = 7..4)
-            CTCIF4: u1, //Stream x clear transfer complete interrupt flag (x = 7..4)
-            CFEIF5: u1, //Stream x clear FIFO error interrupt flag (x = 7..4)
+            CDMEIF4: u1, // Stream x clear direct mode error interrupt flag (x = 7..4)
+            CTEIF4: u1, // Stream x clear transfer error interrupt flag (x = 7..4)
+            CHTIF4: u1, // Stream x clear half transfer interrupt flag (x = 7..4)
+            CTCIF4: u1, // Stream x clear transfer complete interrupt flag (x = 7..4)
+            CFEIF5: u1, // Stream x clear FIFO error interrupt flag (x = 7..4)
             reserved_7_7: u1,
-            CDMEIF5: u1, //Stream x clear direct mode error interrupt flag (x = 7..4)
-            CTEIF5: u1, //Stream x clear transfer error interrupt flag (x = 7..4)
-            CHTIF5: u1, //Stream x clear half transfer interrupt flag (x = 7..4)
-            CTCIF5: u1, //Stream x clear transfer complete interrupt flag (x = 7..4)
+            CDMEIF5: u1, // Stream x clear direct mode error interrupt flag (x = 7..4)
+            CTEIF5: u1, // Stream x clear transfer error interrupt flag (x = 7..4)
+            CHTIF5: u1, // Stream x clear half transfer interrupt flag (x = 7..4)
+            CTCIF5: u1, // Stream x clear transfer complete interrupt flag (x = 7..4)
             reserved_12_15: u4,
-            CFEIF6: u1, //Stream x clear FIFO error interrupt flag (x = 7..4)
+            CFEIF6: u1, // Stream x clear FIFO error interrupt flag (x = 7..4)
             reserved_17_17: u1,
-            CDMEIF6: u1, //Stream x clear direct mode error interrupt flag (x = 7..4)
-            CTEIF6: u1, //Stream x clear transfer error interrupt flag (x = 7..4)
-            CHTIF6: u1, //Stream x clear half transfer interrupt flag (x = 7..4)
-            CTCIF6: u1, //Stream x clear transfer complete interrupt flag (x = 7..4)
-            CFEIF7: u1, //Stream x clear FIFO error interrupt flag (x = 7..4)
+            CDMEIF6: u1, // Stream x clear direct mode error interrupt flag (x = 7..4)
+            CTEIF6: u1, // Stream x clear transfer error interrupt flag (x = 7..4)
+            CHTIF6: u1, // Stream x clear half transfer interrupt flag (x = 7..4)
+            CTCIF6: u1, // Stream x clear transfer complete interrupt flag (x = 7..4)
+            CFEIF7: u1, // Stream x clear FIFO error interrupt flag (x = 7..4)
             reserved_23_23: u1,
-            CDMEIF7: u1, //Stream x clear direct mode error interrupt flag (x = 7..4)
-            CTEIF7: u1, //Stream x clear transfer error interrupt flag (x = 7..4)
-            CHTIF7: u1, //Stream x clear half transfer interrupt flag (x = 7..4)
-            CTCIF7: u1, //Stream x clear transfer complete interrupt flag (x = 7..4)
+            CDMEIF7: u1, // Stream x clear direct mode error interrupt flag (x = 7..4)
+            CTEIF7: u1, // Stream x clear transfer error interrupt flag (x = 7..4)
+            CHTIF7: u1, // Stream x clear half transfer interrupt flag (x = 7..4)
+            CTCIF7: u1, // Stream x clear transfer complete interrupt flag (x = 7..4)
             padding_28_31: u4,
         }), base_address + 0xc);
 
         /// address: 0x40026010
         /// stream x configuration register
         pub const S0CR = @intToPtr(*volatile Mmio(32, packed struct {
-            EN: u1, //Stream enable / flag stream ready when read low
-            DMEIE: u1, //Direct mode error interrupt enable
-            TEIE: u1, //Transfer error interrupt enable
-            HTIE: u1, //Half transfer interrupt enable
-            TCIE: u1, //Transfer complete interrupt enable
-            PFCTRL: u1, //Peripheral flow controller
-            DIR: u2, //Data transfer direction
-            CIRC: u1, //Circular mode
-            PINC: u1, //Peripheral increment mode
-            MINC: u1, //Memory increment mode
-            PSIZE: u2, //Peripheral data size
-            MSIZE: u2, //Memory data size
-            PINCOS: u1, //Peripheral increment offset size
-            PL: u2, //Priority level
-            DBM: u1, //Double buffer mode
-            CT: u1, //Current target (only in double buffer mode)
+            EN: u1, // Stream enable / flag stream ready when read low
+            DMEIE: u1, // Direct mode error interrupt enable
+            TEIE: u1, // Transfer error interrupt enable
+            HTIE: u1, // Half transfer interrupt enable
+            TCIE: u1, // Transfer complete interrupt enable
+            PFCTRL: u1, // Peripheral flow controller
+            DIR: u2, // Data transfer direction
+            CIRC: u1, // Circular mode
+            PINC: u1, // Peripheral increment mode
+            MINC: u1, // Memory increment mode
+            PSIZE: u2, // Peripheral data size
+            MSIZE: u2, // Memory data size
+            PINCOS: u1, // Peripheral increment offset size
+            PL: u2, // Priority level
+            DBM: u1, // Double buffer mode
+            CT: u1, // Current target (only in double buffer mode)
             reserved_20_20: u1,
-            PBURST: u2, //Peripheral burst transfer configuration
-            MBURST: u2, //Memory burst transfer configuration
-            CHSEL: u3, //Channel selection
+            PBURST: u2, // Peripheral burst transfer configuration
+            MBURST: u2, // Memory burst transfer configuration
+            CHSEL: u3, // Channel selection
             padding_28_31: u4,
         }), base_address + 0x10);
 
         /// address: 0x40026014
         /// stream x number of data register
         pub const S0NDTR = @intToPtr(*volatile Mmio(32, packed struct {
-            NDT: u16, //Number of data items to transfer
+            NDT: u16, // Number of data items to transfer
             padding_16_31: u16,
         }), base_address + 0x14);
 
         /// address: 0x40026018
         /// stream x peripheral address register
         pub const S0PAR = @intToPtr(*volatile Mmio(32, packed struct {
-            PA: u32, //Peripheral address
+            PA: u32, // Peripheral address
         }), base_address + 0x18);
 
         /// address: 0x4002601c
         /// stream x memory 0 address register
         pub const S0M0AR = @intToPtr(*volatile Mmio(32, packed struct {
-            M0A: u32, //Memory 0 address
+            M0A: u32, // Memory 0 address
         }), base_address + 0x1c);
 
         /// address: 0x40026020
         /// stream x memory 1 address register
         pub const S0M1AR = @intToPtr(*volatile Mmio(32, packed struct {
-            M1A: u32, //Memory 1 address (used in case of Double buffer mode)
+            M1A: u32, // Memory 1 address (used in case of Double buffer mode)
         }), base_address + 0x20);
 
         /// address: 0x40026024
         /// stream x FIFO control register
         pub const S0FCR = @intToPtr(*volatile Mmio(32, packed struct {
-            FTH: u2, //FIFO threshold selection
-            DMDIS: u1, //Direct mode disable
-            FS: u3, //FIFO status
+            FTH: u2, // FIFO threshold selection
+            DMDIS: u1, // Direct mode disable
+            FS: u3, // FIFO status
             reserved_6_6: u1,
-            FEIE: u1, //FIFO error interrupt enable
+            FEIE: u1, // FIFO error interrupt enable
             padding_8_31: u24,
         }), base_address + 0x24);
 
         /// address: 0x40026028
         /// stream x configuration register
         pub const S1CR = @intToPtr(*volatile Mmio(32, packed struct {
-            EN: u1, //Stream enable / flag stream ready when read low
-            DMEIE: u1, //Direct mode error interrupt enable
-            TEIE: u1, //Transfer error interrupt enable
-            HTIE: u1, //Half transfer interrupt enable
-            TCIE: u1, //Transfer complete interrupt enable
-            PFCTRL: u1, //Peripheral flow controller
-            DIR: u2, //Data transfer direction
-            CIRC: u1, //Circular mode
-            PINC: u1, //Peripheral increment mode
-            MINC: u1, //Memory increment mode
-            PSIZE: u2, //Peripheral data size
-            MSIZE: u2, //Memory data size
-            PINCOS: u1, //Peripheral increment offset size
-            PL: u2, //Priority level
-            DBM: u1, //Double buffer mode
-            CT: u1, //Current target (only in double buffer mode)
-            ACK: u1, //ACK
-            PBURST: u2, //Peripheral burst transfer configuration
-            MBURST: u2, //Memory burst transfer configuration
-            CHSEL: u3, //Channel selection
+            EN: u1, // Stream enable / flag stream ready when read low
+            DMEIE: u1, // Direct mode error interrupt enable
+            TEIE: u1, // Transfer error interrupt enable
+            HTIE: u1, // Half transfer interrupt enable
+            TCIE: u1, // Transfer complete interrupt enable
+            PFCTRL: u1, // Peripheral flow controller
+            DIR: u2, // Data transfer direction
+            CIRC: u1, // Circular mode
+            PINC: u1, // Peripheral increment mode
+            MINC: u1, // Memory increment mode
+            PSIZE: u2, // Peripheral data size
+            MSIZE: u2, // Memory data size
+            PINCOS: u1, // Peripheral increment offset size
+            PL: u2, // Priority level
+            DBM: u1, // Double buffer mode
+            CT: u1, // Current target (only in double buffer mode)
+            ACK: u1, // ACK
+            PBURST: u2, // Peripheral burst transfer configuration
+            MBURST: u2, // Memory burst transfer configuration
+            CHSEL: u3, // Channel selection
             padding_28_31: u4,
         }), base_address + 0x28);
 
         /// address: 0x4002602c
         /// stream x number of data register
         pub const S1NDTR = @intToPtr(*volatile Mmio(32, packed struct {
-            NDT: u16, //Number of data items to transfer
+            NDT: u16, // Number of data items to transfer
             padding_16_31: u16,
         }), base_address + 0x2c);
 
         /// address: 0x40026030
         /// stream x peripheral address register
         pub const S1PAR = @intToPtr(*volatile Mmio(32, packed struct {
-            PA: u32, //Peripheral address
+            PA: u32, // Peripheral address
         }), base_address + 0x30);
 
         /// address: 0x40026034
         /// stream x memory 0 address register
         pub const S1M0AR = @intToPtr(*volatile Mmio(32, packed struct {
-            M0A: u32, //Memory 0 address
+            M0A: u32, // Memory 0 address
         }), base_address + 0x34);
 
         /// address: 0x40026038
         /// stream x memory 1 address register
         pub const S1M1AR = @intToPtr(*volatile Mmio(32, packed struct {
-            M1A: u32, //Memory 1 address (used in case of Double buffer mode)
+            M1A: u32, // Memory 1 address (used in case of Double buffer mode)
         }), base_address + 0x38);
 
         /// address: 0x4002603c
         /// stream x FIFO control register
         pub const S1FCR = @intToPtr(*volatile Mmio(32, packed struct {
-            FTH: u2, //FIFO threshold selection
-            DMDIS: u1, //Direct mode disable
-            FS: u3, //FIFO status
+            FTH: u2, // FIFO threshold selection
+            DMDIS: u1, // Direct mode disable
+            FS: u3, // FIFO status
             reserved_6_6: u1,
-            FEIE: u1, //FIFO error interrupt enable
+            FEIE: u1, // FIFO error interrupt enable
             padding_8_31: u24,
         }), base_address + 0x3c);
 
         /// address: 0x40026040
         /// stream x configuration register
         pub const S2CR = @intToPtr(*volatile Mmio(32, packed struct {
-            EN: u1, //Stream enable / flag stream ready when read low
-            DMEIE: u1, //Direct mode error interrupt enable
-            TEIE: u1, //Transfer error interrupt enable
-            HTIE: u1, //Half transfer interrupt enable
-            TCIE: u1, //Transfer complete interrupt enable
-            PFCTRL: u1, //Peripheral flow controller
-            DIR: u2, //Data transfer direction
-            CIRC: u1, //Circular mode
-            PINC: u1, //Peripheral increment mode
-            MINC: u1, //Memory increment mode
-            PSIZE: u2, //Peripheral data size
-            MSIZE: u2, //Memory data size
-            PINCOS: u1, //Peripheral increment offset size
-            PL: u2, //Priority level
-            DBM: u1, //Double buffer mode
-            CT: u1, //Current target (only in double buffer mode)
-            ACK: u1, //ACK
-            PBURST: u2, //Peripheral burst transfer configuration
-            MBURST: u2, //Memory burst transfer configuration
-            CHSEL: u3, //Channel selection
+            EN: u1, // Stream enable / flag stream ready when read low
+            DMEIE: u1, // Direct mode error interrupt enable
+            TEIE: u1, // Transfer error interrupt enable
+            HTIE: u1, // Half transfer interrupt enable
+            TCIE: u1, // Transfer complete interrupt enable
+            PFCTRL: u1, // Peripheral flow controller
+            DIR: u2, // Data transfer direction
+            CIRC: u1, // Circular mode
+            PINC: u1, // Peripheral increment mode
+            MINC: u1, // Memory increment mode
+            PSIZE: u2, // Peripheral data size
+            MSIZE: u2, // Memory data size
+            PINCOS: u1, // Peripheral increment offset size
+            PL: u2, // Priority level
+            DBM: u1, // Double buffer mode
+            CT: u1, // Current target (only in double buffer mode)
+            ACK: u1, // ACK
+            PBURST: u2, // Peripheral burst transfer configuration
+            MBURST: u2, // Memory burst transfer configuration
+            CHSEL: u3, // Channel selection
             padding_28_31: u4,
         }), base_address + 0x40);
 
         /// address: 0x40026044
         /// stream x number of data register
         pub const S2NDTR = @intToPtr(*volatile Mmio(32, packed struct {
-            NDT: u16, //Number of data items to transfer
+            NDT: u16, // Number of data items to transfer
             padding_16_31: u16,
         }), base_address + 0x44);
 
         /// address: 0x40026048
         /// stream x peripheral address register
         pub const S2PAR = @intToPtr(*volatile Mmio(32, packed struct {
-            PA: u32, //Peripheral address
+            PA: u32, // Peripheral address
         }), base_address + 0x48);
 
         /// address: 0x4002604c
         /// stream x memory 0 address register
         pub const S2M0AR = @intToPtr(*volatile Mmio(32, packed struct {
-            M0A: u32, //Memory 0 address
+            M0A: u32, // Memory 0 address
         }), base_address + 0x4c);
 
         /// address: 0x40026050
         /// stream x memory 1 address register
         pub const S2M1AR = @intToPtr(*volatile Mmio(32, packed struct {
-            M1A: u32, //Memory 1 address (used in case of Double buffer mode)
+            M1A: u32, // Memory 1 address (used in case of Double buffer mode)
         }), base_address + 0x50);
 
         /// address: 0x40026054
         /// stream x FIFO control register
         pub const S2FCR = @intToPtr(*volatile Mmio(32, packed struct {
-            FTH: u2, //FIFO threshold selection
-            DMDIS: u1, //Direct mode disable
-            FS: u3, //FIFO status
+            FTH: u2, // FIFO threshold selection
+            DMDIS: u1, // Direct mode disable
+            FS: u3, // FIFO status
             reserved_6_6: u1,
-            FEIE: u1, //FIFO error interrupt enable
+            FEIE: u1, // FIFO error interrupt enable
             padding_8_31: u24,
         }), base_address + 0x54);
 
         /// address: 0x40026058
         /// stream x configuration register
         pub const S3CR = @intToPtr(*volatile Mmio(32, packed struct {
-            EN: u1, //Stream enable / flag stream ready when read low
-            DMEIE: u1, //Direct mode error interrupt enable
-            TEIE: u1, //Transfer error interrupt enable
-            HTIE: u1, //Half transfer interrupt enable
-            TCIE: u1, //Transfer complete interrupt enable
-            PFCTRL: u1, //Peripheral flow controller
-            DIR: u2, //Data transfer direction
-            CIRC: u1, //Circular mode
-            PINC: u1, //Peripheral increment mode
-            MINC: u1, //Memory increment mode
-            PSIZE: u2, //Peripheral data size
-            MSIZE: u2, //Memory data size
-            PINCOS: u1, //Peripheral increment offset size
-            PL: u2, //Priority level
-            DBM: u1, //Double buffer mode
-            CT: u1, //Current target (only in double buffer mode)
-            ACK: u1, //ACK
-            PBURST: u2, //Peripheral burst transfer configuration
-            MBURST: u2, //Memory burst transfer configuration
-            CHSEL: u3, //Channel selection
+            EN: u1, // Stream enable / flag stream ready when read low
+            DMEIE: u1, // Direct mode error interrupt enable
+            TEIE: u1, // Transfer error interrupt enable
+            HTIE: u1, // Half transfer interrupt enable
+            TCIE: u1, // Transfer complete interrupt enable
+            PFCTRL: u1, // Peripheral flow controller
+            DIR: u2, // Data transfer direction
+            CIRC: u1, // Circular mode
+            PINC: u1, // Peripheral increment mode
+            MINC: u1, // Memory increment mode
+            PSIZE: u2, // Peripheral data size
+            MSIZE: u2, // Memory data size
+            PINCOS: u1, // Peripheral increment offset size
+            PL: u2, // Priority level
+            DBM: u1, // Double buffer mode
+            CT: u1, // Current target (only in double buffer mode)
+            ACK: u1, // ACK
+            PBURST: u2, // Peripheral burst transfer configuration
+            MBURST: u2, // Memory burst transfer configuration
+            CHSEL: u3, // Channel selection
             padding_28_31: u4,
         }), base_address + 0x58);
 
         /// address: 0x4002605c
         /// stream x number of data register
         pub const S3NDTR = @intToPtr(*volatile Mmio(32, packed struct {
-            NDT: u16, //Number of data items to transfer
+            NDT: u16, // Number of data items to transfer
             padding_16_31: u16,
         }), base_address + 0x5c);
 
         /// address: 0x40026060
         /// stream x peripheral address register
         pub const S3PAR = @intToPtr(*volatile Mmio(32, packed struct {
-            PA: u32, //Peripheral address
+            PA: u32, // Peripheral address
         }), base_address + 0x60);
 
         /// address: 0x40026064
         /// stream x memory 0 address register
         pub const S3M0AR = @intToPtr(*volatile Mmio(32, packed struct {
-            M0A: u32, //Memory 0 address
+            M0A: u32, // Memory 0 address
         }), base_address + 0x64);
 
         /// address: 0x40026068
         /// stream x memory 1 address register
         pub const S3M1AR = @intToPtr(*volatile Mmio(32, packed struct {
-            M1A: u32, //Memory 1 address (used in case of Double buffer mode)
+            M1A: u32, // Memory 1 address (used in case of Double buffer mode)
         }), base_address + 0x68);
 
         /// address: 0x4002606c
         /// stream x FIFO control register
         pub const S3FCR = @intToPtr(*volatile Mmio(32, packed struct {
-            FTH: u2, //FIFO threshold selection
-            DMDIS: u1, //Direct mode disable
-            FS: u3, //FIFO status
+            FTH: u2, // FIFO threshold selection
+            DMDIS: u1, // Direct mode disable
+            FS: u3, // FIFO status
             reserved_6_6: u1,
-            FEIE: u1, //FIFO error interrupt enable
+            FEIE: u1, // FIFO error interrupt enable
             padding_8_31: u24,
         }), base_address + 0x6c);
 
         /// address: 0x40026070
         /// stream x configuration register
         pub const S4CR = @intToPtr(*volatile Mmio(32, packed struct {
-            EN: u1, //Stream enable / flag stream ready when read low
-            DMEIE: u1, //Direct mode error interrupt enable
-            TEIE: u1, //Transfer error interrupt enable
-            HTIE: u1, //Half transfer interrupt enable
-            TCIE: u1, //Transfer complete interrupt enable
-            PFCTRL: u1, //Peripheral flow controller
-            DIR: u2, //Data transfer direction
-            CIRC: u1, //Circular mode
-            PINC: u1, //Peripheral increment mode
-            MINC: u1, //Memory increment mode
-            PSIZE: u2, //Peripheral data size
-            MSIZE: u2, //Memory data size
-            PINCOS: u1, //Peripheral increment offset size
-            PL: u2, //Priority level
-            DBM: u1, //Double buffer mode
-            CT: u1, //Current target (only in double buffer mode)
-            ACK: u1, //ACK
-            PBURST: u2, //Peripheral burst transfer configuration
-            MBURST: u2, //Memory burst transfer configuration
-            CHSEL: u3, //Channel selection
+            EN: u1, // Stream enable / flag stream ready when read low
+            DMEIE: u1, // Direct mode error interrupt enable
+            TEIE: u1, // Transfer error interrupt enable
+            HTIE: u1, // Half transfer interrupt enable
+            TCIE: u1, // Transfer complete interrupt enable
+            PFCTRL: u1, // Peripheral flow controller
+            DIR: u2, // Data transfer direction
+            CIRC: u1, // Circular mode
+            PINC: u1, // Peripheral increment mode
+            MINC: u1, // Memory increment mode
+            PSIZE: u2, // Peripheral data size
+            MSIZE: u2, // Memory data size
+            PINCOS: u1, // Peripheral increment offset size
+            PL: u2, // Priority level
+            DBM: u1, // Double buffer mode
+            CT: u1, // Current target (only in double buffer mode)
+            ACK: u1, // ACK
+            PBURST: u2, // Peripheral burst transfer configuration
+            MBURST: u2, // Memory burst transfer configuration
+            CHSEL: u3, // Channel selection
             padding_28_31: u4,
         }), base_address + 0x70);
 
         /// address: 0x40026074
         /// stream x number of data register
         pub const S4NDTR = @intToPtr(*volatile Mmio(32, packed struct {
-            NDT: u16, //Number of data items to transfer
+            NDT: u16, // Number of data items to transfer
             padding_16_31: u16,
         }), base_address + 0x74);
 
         /// address: 0x40026078
         /// stream x peripheral address register
         pub const S4PAR = @intToPtr(*volatile Mmio(32, packed struct {
-            PA: u32, //Peripheral address
+            PA: u32, // Peripheral address
         }), base_address + 0x78);
 
         /// address: 0x4002607c
         /// stream x memory 0 address register
         pub const S4M0AR = @intToPtr(*volatile Mmio(32, packed struct {
-            M0A: u32, //Memory 0 address
+            M0A: u32, // Memory 0 address
         }), base_address + 0x7c);
 
         /// address: 0x40026080
         /// stream x memory 1 address register
         pub const S4M1AR = @intToPtr(*volatile Mmio(32, packed struct {
-            M1A: u32, //Memory 1 address (used in case of Double buffer mode)
+            M1A: u32, // Memory 1 address (used in case of Double buffer mode)
         }), base_address + 0x80);
 
         /// address: 0x40026084
         /// stream x FIFO control register
         pub const S4FCR = @intToPtr(*volatile Mmio(32, packed struct {
-            FTH: u2, //FIFO threshold selection
-            DMDIS: u1, //Direct mode disable
-            FS: u3, //FIFO status
+            FTH: u2, // FIFO threshold selection
+            DMDIS: u1, // Direct mode disable
+            FS: u3, // FIFO status
             reserved_6_6: u1,
-            FEIE: u1, //FIFO error interrupt enable
+            FEIE: u1, // FIFO error interrupt enable
             padding_8_31: u24,
         }), base_address + 0x84);
 
         /// address: 0x40026088
         /// stream x configuration register
         pub const S5CR = @intToPtr(*volatile Mmio(32, packed struct {
-            EN: u1, //Stream enable / flag stream ready when read low
-            DMEIE: u1, //Direct mode error interrupt enable
-            TEIE: u1, //Transfer error interrupt enable
-            HTIE: u1, //Half transfer interrupt enable
-            TCIE: u1, //Transfer complete interrupt enable
-            PFCTRL: u1, //Peripheral flow controller
-            DIR: u2, //Data transfer direction
-            CIRC: u1, //Circular mode
-            PINC: u1, //Peripheral increment mode
-            MINC: u1, //Memory increment mode
-            PSIZE: u2, //Peripheral data size
-            MSIZE: u2, //Memory data size
-            PINCOS: u1, //Peripheral increment offset size
-            PL: u2, //Priority level
-            DBM: u1, //Double buffer mode
-            CT: u1, //Current target (only in double buffer mode)
-            ACK: u1, //ACK
-            PBURST: u2, //Peripheral burst transfer configuration
-            MBURST: u2, //Memory burst transfer configuration
-            CHSEL: u3, //Channel selection
+            EN: u1, // Stream enable / flag stream ready when read low
+            DMEIE: u1, // Direct mode error interrupt enable
+            TEIE: u1, // Transfer error interrupt enable
+            HTIE: u1, // Half transfer interrupt enable
+            TCIE: u1, // Transfer complete interrupt enable
+            PFCTRL: u1, // Peripheral flow controller
+            DIR: u2, // Data transfer direction
+            CIRC: u1, // Circular mode
+            PINC: u1, // Peripheral increment mode
+            MINC: u1, // Memory increment mode
+            PSIZE: u2, // Peripheral data size
+            MSIZE: u2, // Memory data size
+            PINCOS: u1, // Peripheral increment offset size
+            PL: u2, // Priority level
+            DBM: u1, // Double buffer mode
+            CT: u1, // Current target (only in double buffer mode)
+            ACK: u1, // ACK
+            PBURST: u2, // Peripheral burst transfer configuration
+            MBURST: u2, // Memory burst transfer configuration
+            CHSEL: u3, // Channel selection
             padding_28_31: u4,
         }), base_address + 0x88);
 
         /// address: 0x4002608c
         /// stream x number of data register
         pub const S5NDTR = @intToPtr(*volatile Mmio(32, packed struct {
-            NDT: u16, //Number of data items to transfer
+            NDT: u16, // Number of data items to transfer
             padding_16_31: u16,
         }), base_address + 0x8c);
 
         /// address: 0x40026090
         /// stream x peripheral address register
         pub const S5PAR = @intToPtr(*volatile Mmio(32, packed struct {
-            PA: u32, //Peripheral address
+            PA: u32, // Peripheral address
         }), base_address + 0x90);
 
         /// address: 0x40026094
         /// stream x memory 0 address register
         pub const S5M0AR = @intToPtr(*volatile Mmio(32, packed struct {
-            M0A: u32, //Memory 0 address
+            M0A: u32, // Memory 0 address
         }), base_address + 0x94);
 
         /// address: 0x40026098
         /// stream x memory 1 address register
         pub const S5M1AR = @intToPtr(*volatile Mmio(32, packed struct {
-            M1A: u32, //Memory 1 address (used in case of Double buffer mode)
+            M1A: u32, // Memory 1 address (used in case of Double buffer mode)
         }), base_address + 0x98);
 
         /// address: 0x4002609c
         /// stream x FIFO control register
         pub const S5FCR = @intToPtr(*volatile Mmio(32, packed struct {
-            FTH: u2, //FIFO threshold selection
-            DMDIS: u1, //Direct mode disable
-            FS: u3, //FIFO status
+            FTH: u2, // FIFO threshold selection
+            DMDIS: u1, // Direct mode disable
+            FS: u3, // FIFO status
             reserved_6_6: u1,
-            FEIE: u1, //FIFO error interrupt enable
+            FEIE: u1, // FIFO error interrupt enable
             padding_8_31: u24,
         }), base_address + 0x9c);
 
         /// address: 0x400260a0
         /// stream x configuration register
         pub const S6CR = @intToPtr(*volatile Mmio(32, packed struct {
-            EN: u1, //Stream enable / flag stream ready when read low
-            DMEIE: u1, //Direct mode error interrupt enable
-            TEIE: u1, //Transfer error interrupt enable
-            HTIE: u1, //Half transfer interrupt enable
-            TCIE: u1, //Transfer complete interrupt enable
-            PFCTRL: u1, //Peripheral flow controller
-            DIR: u2, //Data transfer direction
-            CIRC: u1, //Circular mode
-            PINC: u1, //Peripheral increment mode
-            MINC: u1, //Memory increment mode
-            PSIZE: u2, //Peripheral data size
-            MSIZE: u2, //Memory data size
-            PINCOS: u1, //Peripheral increment offset size
-            PL: u2, //Priority level
-            DBM: u1, //Double buffer mode
-            CT: u1, //Current target (only in double buffer mode)
-            ACK: u1, //ACK
-            PBURST: u2, //Peripheral burst transfer configuration
-            MBURST: u2, //Memory burst transfer configuration
-            CHSEL: u3, //Channel selection
+            EN: u1, // Stream enable / flag stream ready when read low
+            DMEIE: u1, // Direct mode error interrupt enable
+            TEIE: u1, // Transfer error interrupt enable
+            HTIE: u1, // Half transfer interrupt enable
+            TCIE: u1, // Transfer complete interrupt enable
+            PFCTRL: u1, // Peripheral flow controller
+            DIR: u2, // Data transfer direction
+            CIRC: u1, // Circular mode
+            PINC: u1, // Peripheral increment mode
+            MINC: u1, // Memory increment mode
+            PSIZE: u2, // Peripheral data size
+            MSIZE: u2, // Memory data size
+            PINCOS: u1, // Peripheral increment offset size
+            PL: u2, // Priority level
+            DBM: u1, // Double buffer mode
+            CT: u1, // Current target (only in double buffer mode)
+            ACK: u1, // ACK
+            PBURST: u2, // Peripheral burst transfer configuration
+            MBURST: u2, // Memory burst transfer configuration
+            CHSEL: u3, // Channel selection
             padding_28_31: u4,
         }), base_address + 0xa0);
 
         /// address: 0x400260a4
         /// stream x number of data register
         pub const S6NDTR = @intToPtr(*volatile Mmio(32, packed struct {
-            NDT: u16, //Number of data items to transfer
+            NDT: u16, // Number of data items to transfer
             padding_16_31: u16,
         }), base_address + 0xa4);
 
         /// address: 0x400260a8
         /// stream x peripheral address register
         pub const S6PAR = @intToPtr(*volatile Mmio(32, packed struct {
-            PA: u32, //Peripheral address
+            PA: u32, // Peripheral address
         }), base_address + 0xa8);
 
         /// address: 0x400260ac
         /// stream x memory 0 address register
         pub const S6M0AR = @intToPtr(*volatile Mmio(32, packed struct {
-            M0A: u32, //Memory 0 address
+            M0A: u32, // Memory 0 address
         }), base_address + 0xac);
 
         /// address: 0x400260b0
         /// stream x memory 1 address register
         pub const S6M1AR = @intToPtr(*volatile Mmio(32, packed struct {
-            M1A: u32, //Memory 1 address (used in case of Double buffer mode)
+            M1A: u32, // Memory 1 address (used in case of Double buffer mode)
         }), base_address + 0xb0);
 
         /// address: 0x400260b4
         /// stream x FIFO control register
         pub const S6FCR = @intToPtr(*volatile Mmio(32, packed struct {
-            FTH: u2, //FIFO threshold selection
-            DMDIS: u1, //Direct mode disable
-            FS: u3, //FIFO status
+            FTH: u2, // FIFO threshold selection
+            DMDIS: u1, // Direct mode disable
+            FS: u3, // FIFO status
             reserved_6_6: u1,
-            FEIE: u1, //FIFO error interrupt enable
+            FEIE: u1, // FIFO error interrupt enable
             padding_8_31: u24,
         }), base_address + 0xb4);
 
         /// address: 0x400260b8
         /// stream x configuration register
         pub const S7CR = @intToPtr(*volatile Mmio(32, packed struct {
-            EN: u1, //Stream enable / flag stream ready when read low
-            DMEIE: u1, //Direct mode error interrupt enable
-            TEIE: u1, //Transfer error interrupt enable
-            HTIE: u1, //Half transfer interrupt enable
-            TCIE: u1, //Transfer complete interrupt enable
-            PFCTRL: u1, //Peripheral flow controller
-            DIR: u2, //Data transfer direction
-            CIRC: u1, //Circular mode
-            PINC: u1, //Peripheral increment mode
-            MINC: u1, //Memory increment mode
-            PSIZE: u2, //Peripheral data size
-            MSIZE: u2, //Memory data size
-            PINCOS: u1, //Peripheral increment offset size
-            PL: u2, //Priority level
-            DBM: u1, //Double buffer mode
-            CT: u1, //Current target (only in double buffer mode)
-            ACK: u1, //ACK
-            PBURST: u2, //Peripheral burst transfer configuration
-            MBURST: u2, //Memory burst transfer configuration
-            CHSEL: u3, //Channel selection
+            EN: u1, // Stream enable / flag stream ready when read low
+            DMEIE: u1, // Direct mode error interrupt enable
+            TEIE: u1, // Transfer error interrupt enable
+            HTIE: u1, // Half transfer interrupt enable
+            TCIE: u1, // Transfer complete interrupt enable
+            PFCTRL: u1, // Peripheral flow controller
+            DIR: u2, // Data transfer direction
+            CIRC: u1, // Circular mode
+            PINC: u1, // Peripheral increment mode
+            MINC: u1, // Memory increment mode
+            PSIZE: u2, // Peripheral data size
+            MSIZE: u2, // Memory data size
+            PINCOS: u1, // Peripheral increment offset size
+            PL: u2, // Priority level
+            DBM: u1, // Double buffer mode
+            CT: u1, // Current target (only in double buffer mode)
+            ACK: u1, // ACK
+            PBURST: u2, // Peripheral burst transfer configuration
+            MBURST: u2, // Memory burst transfer configuration
+            CHSEL: u3, // Channel selection
             padding_28_31: u4,
         }), base_address + 0xb8);
 
         /// address: 0x400260bc
         /// stream x number of data register
         pub const S7NDTR = @intToPtr(*volatile Mmio(32, packed struct {
-            NDT: u16, //Number of data items to transfer
+            NDT: u16, // Number of data items to transfer
             padding_16_31: u16,
         }), base_address + 0xbc);
 
         /// address: 0x400260c0
         /// stream x peripheral address register
         pub const S7PAR = @intToPtr(*volatile Mmio(32, packed struct {
-            PA: u32, //Peripheral address
+            PA: u32, // Peripheral address
         }), base_address + 0xc0);
 
         /// address: 0x400260c4
         /// stream x memory 0 address register
         pub const S7M0AR = @intToPtr(*volatile Mmio(32, packed struct {
-            M0A: u32, //Memory 0 address
+            M0A: u32, // Memory 0 address
         }), base_address + 0xc4);
 
         /// address: 0x400260c8
         /// stream x memory 1 address register
         pub const S7M1AR = @intToPtr(*volatile Mmio(32, packed struct {
-            M1A: u32, //Memory 1 address (used in case of Double buffer mode)
+            M1A: u32, // Memory 1 address (used in case of Double buffer mode)
         }), base_address + 0xc8);
 
         /// address: 0x400260cc
         /// stream x FIFO control register
         pub const S7FCR = @intToPtr(*volatile Mmio(32, packed struct {
-            FTH: u2, //FIFO threshold selection
-            DMDIS: u1, //Direct mode disable
-            FS: u3, //FIFO status
+            FTH: u2, // FIFO threshold selection
+            DMDIS: u1, // Direct mode disable
+            FS: u3, // FIFO status
             reserved_6_6: u1,
-            FEIE: u1, //FIFO error interrupt enable
+            FEIE: u1, // FIFO error interrupt enable
             padding_8_31: u24,
         }), base_address + 0xcc);
     };
@@ -7802,216 +7802,216 @@ pub const registers = struct {
         /// address: 0x40021000
         /// GPIO port mode register
         pub const MODER = @intToPtr(*volatile Mmio(32, packed struct {
-            MODER0: u2, //Port x configuration bits (y = 0..15)
-            MODER1: u2, //Port x configuration bits (y = 0..15)
-            MODER2: u2, //Port x configuration bits (y = 0..15)
-            MODER3: u2, //Port x configuration bits (y = 0..15)
-            MODER4: u2, //Port x configuration bits (y = 0..15)
-            MODER5: u2, //Port x configuration bits (y = 0..15)
-            MODER6: u2, //Port x configuration bits (y = 0..15)
-            MODER7: u2, //Port x configuration bits (y = 0..15)
-            MODER8: u2, //Port x configuration bits (y = 0..15)
-            MODER9: u2, //Port x configuration bits (y = 0..15)
-            MODER10: u2, //Port x configuration bits (y = 0..15)
-            MODER11: u2, //Port x configuration bits (y = 0..15)
-            MODER12: u2, //Port x configuration bits (y = 0..15)
-            MODER13: u2, //Port x configuration bits (y = 0..15)
-            MODER14: u2, //Port x configuration bits (y = 0..15)
-            MODER15: u2, //Port x configuration bits (y = 0..15)
+            MODER0: u2, // Port x configuration bits (y = 0..15)
+            MODER1: u2, // Port x configuration bits (y = 0..15)
+            MODER2: u2, // Port x configuration bits (y = 0..15)
+            MODER3: u2, // Port x configuration bits (y = 0..15)
+            MODER4: u2, // Port x configuration bits (y = 0..15)
+            MODER5: u2, // Port x configuration bits (y = 0..15)
+            MODER6: u2, // Port x configuration bits (y = 0..15)
+            MODER7: u2, // Port x configuration bits (y = 0..15)
+            MODER8: u2, // Port x configuration bits (y = 0..15)
+            MODER9: u2, // Port x configuration bits (y = 0..15)
+            MODER10: u2, // Port x configuration bits (y = 0..15)
+            MODER11: u2, // Port x configuration bits (y = 0..15)
+            MODER12: u2, // Port x configuration bits (y = 0..15)
+            MODER13: u2, // Port x configuration bits (y = 0..15)
+            MODER14: u2, // Port x configuration bits (y = 0..15)
+            MODER15: u2, // Port x configuration bits (y = 0..15)
         }), base_address + 0x0);
 
         /// address: 0x40021004
         /// GPIO port output type register
         pub const OTYPER = @intToPtr(*volatile Mmio(32, packed struct {
-            OT0: u1, //Port x configuration bits (y = 0..15)
-            OT1: u1, //Port x configuration bits (y = 0..15)
-            OT2: u1, //Port x configuration bits (y = 0..15)
-            OT3: u1, //Port x configuration bits (y = 0..15)
-            OT4: u1, //Port x configuration bits (y = 0..15)
-            OT5: u1, //Port x configuration bits (y = 0..15)
-            OT6: u1, //Port x configuration bits (y = 0..15)
-            OT7: u1, //Port x configuration bits (y = 0..15)
-            OT8: u1, //Port x configuration bits (y = 0..15)
-            OT9: u1, //Port x configuration bits (y = 0..15)
-            OT10: u1, //Port x configuration bits (y = 0..15)
-            OT11: u1, //Port x configuration bits (y = 0..15)
-            OT12: u1, //Port x configuration bits (y = 0..15)
-            OT13: u1, //Port x configuration bits (y = 0..15)
-            OT14: u1, //Port x configuration bits (y = 0..15)
-            OT15: u1, //Port x configuration bits (y = 0..15)
+            OT0: u1, // Port x configuration bits (y = 0..15)
+            OT1: u1, // Port x configuration bits (y = 0..15)
+            OT2: u1, // Port x configuration bits (y = 0..15)
+            OT3: u1, // Port x configuration bits (y = 0..15)
+            OT4: u1, // Port x configuration bits (y = 0..15)
+            OT5: u1, // Port x configuration bits (y = 0..15)
+            OT6: u1, // Port x configuration bits (y = 0..15)
+            OT7: u1, // Port x configuration bits (y = 0..15)
+            OT8: u1, // Port x configuration bits (y = 0..15)
+            OT9: u1, // Port x configuration bits (y = 0..15)
+            OT10: u1, // Port x configuration bits (y = 0..15)
+            OT11: u1, // Port x configuration bits (y = 0..15)
+            OT12: u1, // Port x configuration bits (y = 0..15)
+            OT13: u1, // Port x configuration bits (y = 0..15)
+            OT14: u1, // Port x configuration bits (y = 0..15)
+            OT15: u1, // Port x configuration bits (y = 0..15)
             padding_16_31: u16,
         }), base_address + 0x4);
 
         /// address: 0x40021008
         /// GPIO port output speed register
         pub const OSPEEDR = @intToPtr(*volatile Mmio(32, packed struct {
-            OSPEEDR0: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR1: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR2: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR3: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR4: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR5: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR6: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR7: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR8: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR9: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR10: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR11: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR12: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR13: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR14: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR15: u2, //Port x configuration bits (y = 0..15)
+            OSPEEDR0: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR1: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR2: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR3: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR4: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR5: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR6: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR7: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR8: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR9: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR10: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR11: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR12: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR13: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR14: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR15: u2, // Port x configuration bits (y = 0..15)
         }), base_address + 0x8);
 
         /// address: 0x4002100c
         /// GPIO port pull-up/pull-down register
         pub const PUPDR = @intToPtr(*volatile Mmio(32, packed struct {
-            PUPDR0: u2, //Port x configuration bits (y = 0..15)
-            PUPDR1: u2, //Port x configuration bits (y = 0..15)
-            PUPDR2: u2, //Port x configuration bits (y = 0..15)
-            PUPDR3: u2, //Port x configuration bits (y = 0..15)
-            PUPDR4: u2, //Port x configuration bits (y = 0..15)
-            PUPDR5: u2, //Port x configuration bits (y = 0..15)
-            PUPDR6: u2, //Port x configuration bits (y = 0..15)
-            PUPDR7: u2, //Port x configuration bits (y = 0..15)
-            PUPDR8: u2, //Port x configuration bits (y = 0..15)
-            PUPDR9: u2, //Port x configuration bits (y = 0..15)
-            PUPDR10: u2, //Port x configuration bits (y = 0..15)
-            PUPDR11: u2, //Port x configuration bits (y = 0..15)
-            PUPDR12: u2, //Port x configuration bits (y = 0..15)
-            PUPDR13: u2, //Port x configuration bits (y = 0..15)
-            PUPDR14: u2, //Port x configuration bits (y = 0..15)
-            PUPDR15: u2, //Port x configuration bits (y = 0..15)
+            PUPDR0: u2, // Port x configuration bits (y = 0..15)
+            PUPDR1: u2, // Port x configuration bits (y = 0..15)
+            PUPDR2: u2, // Port x configuration bits (y = 0..15)
+            PUPDR3: u2, // Port x configuration bits (y = 0..15)
+            PUPDR4: u2, // Port x configuration bits (y = 0..15)
+            PUPDR5: u2, // Port x configuration bits (y = 0..15)
+            PUPDR6: u2, // Port x configuration bits (y = 0..15)
+            PUPDR7: u2, // Port x configuration bits (y = 0..15)
+            PUPDR8: u2, // Port x configuration bits (y = 0..15)
+            PUPDR9: u2, // Port x configuration bits (y = 0..15)
+            PUPDR10: u2, // Port x configuration bits (y = 0..15)
+            PUPDR11: u2, // Port x configuration bits (y = 0..15)
+            PUPDR12: u2, // Port x configuration bits (y = 0..15)
+            PUPDR13: u2, // Port x configuration bits (y = 0..15)
+            PUPDR14: u2, // Port x configuration bits (y = 0..15)
+            PUPDR15: u2, // Port x configuration bits (y = 0..15)
         }), base_address + 0xc);
 
         /// address: 0x40021010
         /// GPIO port input data register
         pub const IDR = @intToPtr(*volatile Mmio(32, packed struct {
-            IDR0: u1, //Port input data (y = 0..15)
-            IDR1: u1, //Port input data (y = 0..15)
-            IDR2: u1, //Port input data (y = 0..15)
-            IDR3: u1, //Port input data (y = 0..15)
-            IDR4: u1, //Port input data (y = 0..15)
-            IDR5: u1, //Port input data (y = 0..15)
-            IDR6: u1, //Port input data (y = 0..15)
-            IDR7: u1, //Port input data (y = 0..15)
-            IDR8: u1, //Port input data (y = 0..15)
-            IDR9: u1, //Port input data (y = 0..15)
-            IDR10: u1, //Port input data (y = 0..15)
-            IDR11: u1, //Port input data (y = 0..15)
-            IDR12: u1, //Port input data (y = 0..15)
-            IDR13: u1, //Port input data (y = 0..15)
-            IDR14: u1, //Port input data (y = 0..15)
-            IDR15: u1, //Port input data (y = 0..15)
+            IDR0: u1, // Port input data (y = 0..15)
+            IDR1: u1, // Port input data (y = 0..15)
+            IDR2: u1, // Port input data (y = 0..15)
+            IDR3: u1, // Port input data (y = 0..15)
+            IDR4: u1, // Port input data (y = 0..15)
+            IDR5: u1, // Port input data (y = 0..15)
+            IDR6: u1, // Port input data (y = 0..15)
+            IDR7: u1, // Port input data (y = 0..15)
+            IDR8: u1, // Port input data (y = 0..15)
+            IDR9: u1, // Port input data (y = 0..15)
+            IDR10: u1, // Port input data (y = 0..15)
+            IDR11: u1, // Port input data (y = 0..15)
+            IDR12: u1, // Port input data (y = 0..15)
+            IDR13: u1, // Port input data (y = 0..15)
+            IDR14: u1, // Port input data (y = 0..15)
+            IDR15: u1, // Port input data (y = 0..15)
             padding_16_31: u16,
         }), base_address + 0x10);
 
         /// address: 0x40021014
         /// GPIO port output data register
         pub const ODR = @intToPtr(*volatile Mmio(32, packed struct {
-            ODR0: u1, //Port output data (y = 0..15)
-            ODR1: u1, //Port output data (y = 0..15)
-            ODR2: u1, //Port output data (y = 0..15)
-            ODR3: u1, //Port output data (y = 0..15)
-            ODR4: u1, //Port output data (y = 0..15)
-            ODR5: u1, //Port output data (y = 0..15)
-            ODR6: u1, //Port output data (y = 0..15)
-            ODR7: u1, //Port output data (y = 0..15)
-            ODR8: u1, //Port output data (y = 0..15)
-            ODR9: u1, //Port output data (y = 0..15)
-            ODR10: u1, //Port output data (y = 0..15)
-            ODR11: u1, //Port output data (y = 0..15)
-            ODR12: u1, //Port output data (y = 0..15)
-            ODR13: u1, //Port output data (y = 0..15)
-            ODR14: u1, //Port output data (y = 0..15)
-            ODR15: u1, //Port output data (y = 0..15)
+            ODR0: u1, // Port output data (y = 0..15)
+            ODR1: u1, // Port output data (y = 0..15)
+            ODR2: u1, // Port output data (y = 0..15)
+            ODR3: u1, // Port output data (y = 0..15)
+            ODR4: u1, // Port output data (y = 0..15)
+            ODR5: u1, // Port output data (y = 0..15)
+            ODR6: u1, // Port output data (y = 0..15)
+            ODR7: u1, // Port output data (y = 0..15)
+            ODR8: u1, // Port output data (y = 0..15)
+            ODR9: u1, // Port output data (y = 0..15)
+            ODR10: u1, // Port output data (y = 0..15)
+            ODR11: u1, // Port output data (y = 0..15)
+            ODR12: u1, // Port output data (y = 0..15)
+            ODR13: u1, // Port output data (y = 0..15)
+            ODR14: u1, // Port output data (y = 0..15)
+            ODR15: u1, // Port output data (y = 0..15)
             padding_16_31: u16,
         }), base_address + 0x14);
 
         /// address: 0x40021018
         /// GPIO port bit set/reset register
         pub const BSRR = @intToPtr(*volatile Mmio(32, packed struct {
-            BS0: u1, //Port x set bit y (y= 0..15)
-            BS1: u1, //Port x set bit y (y= 0..15)
-            BS2: u1, //Port x set bit y (y= 0..15)
-            BS3: u1, //Port x set bit y (y= 0..15)
-            BS4: u1, //Port x set bit y (y= 0..15)
-            BS5: u1, //Port x set bit y (y= 0..15)
-            BS6: u1, //Port x set bit y (y= 0..15)
-            BS7: u1, //Port x set bit y (y= 0..15)
-            BS8: u1, //Port x set bit y (y= 0..15)
-            BS9: u1, //Port x set bit y (y= 0..15)
-            BS10: u1, //Port x set bit y (y= 0..15)
-            BS11: u1, //Port x set bit y (y= 0..15)
-            BS12: u1, //Port x set bit y (y= 0..15)
-            BS13: u1, //Port x set bit y (y= 0..15)
-            BS14: u1, //Port x set bit y (y= 0..15)
-            BS15: u1, //Port x set bit y (y= 0..15)
-            BR0: u1, //Port x set bit y (y= 0..15)
-            BR1: u1, //Port x reset bit y (y = 0..15)
-            BR2: u1, //Port x reset bit y (y = 0..15)
-            BR3: u1, //Port x reset bit y (y = 0..15)
-            BR4: u1, //Port x reset bit y (y = 0..15)
-            BR5: u1, //Port x reset bit y (y = 0..15)
-            BR6: u1, //Port x reset bit y (y = 0..15)
-            BR7: u1, //Port x reset bit y (y = 0..15)
-            BR8: u1, //Port x reset bit y (y = 0..15)
-            BR9: u1, //Port x reset bit y (y = 0..15)
-            BR10: u1, //Port x reset bit y (y = 0..15)
-            BR11: u1, //Port x reset bit y (y = 0..15)
-            BR12: u1, //Port x reset bit y (y = 0..15)
-            BR13: u1, //Port x reset bit y (y = 0..15)
-            BR14: u1, //Port x reset bit y (y = 0..15)
-            BR15: u1, //Port x reset bit y (y = 0..15)
+            BS0: u1, // Port x set bit y (y= 0..15)
+            BS1: u1, // Port x set bit y (y= 0..15)
+            BS2: u1, // Port x set bit y (y= 0..15)
+            BS3: u1, // Port x set bit y (y= 0..15)
+            BS4: u1, // Port x set bit y (y= 0..15)
+            BS5: u1, // Port x set bit y (y= 0..15)
+            BS6: u1, // Port x set bit y (y= 0..15)
+            BS7: u1, // Port x set bit y (y= 0..15)
+            BS8: u1, // Port x set bit y (y= 0..15)
+            BS9: u1, // Port x set bit y (y= 0..15)
+            BS10: u1, // Port x set bit y (y= 0..15)
+            BS11: u1, // Port x set bit y (y= 0..15)
+            BS12: u1, // Port x set bit y (y= 0..15)
+            BS13: u1, // Port x set bit y (y= 0..15)
+            BS14: u1, // Port x set bit y (y= 0..15)
+            BS15: u1, // Port x set bit y (y= 0..15)
+            BR0: u1, // Port x set bit y (y= 0..15)
+            BR1: u1, // Port x reset bit y (y = 0..15)
+            BR2: u1, // Port x reset bit y (y = 0..15)
+            BR3: u1, // Port x reset bit y (y = 0..15)
+            BR4: u1, // Port x reset bit y (y = 0..15)
+            BR5: u1, // Port x reset bit y (y = 0..15)
+            BR6: u1, // Port x reset bit y (y = 0..15)
+            BR7: u1, // Port x reset bit y (y = 0..15)
+            BR8: u1, // Port x reset bit y (y = 0..15)
+            BR9: u1, // Port x reset bit y (y = 0..15)
+            BR10: u1, // Port x reset bit y (y = 0..15)
+            BR11: u1, // Port x reset bit y (y = 0..15)
+            BR12: u1, // Port x reset bit y (y = 0..15)
+            BR13: u1, // Port x reset bit y (y = 0..15)
+            BR14: u1, // Port x reset bit y (y = 0..15)
+            BR15: u1, // Port x reset bit y (y = 0..15)
         }), base_address + 0x18);
 
         /// address: 0x4002101c
         /// GPIO port configuration lock register
         pub const LCKR = @intToPtr(*volatile Mmio(32, packed struct {
-            LCK0: u1, //Port x lock bit y (y= 0..15)
-            LCK1: u1, //Port x lock bit y (y= 0..15)
-            LCK2: u1, //Port x lock bit y (y= 0..15)
-            LCK3: u1, //Port x lock bit y (y= 0..15)
-            LCK4: u1, //Port x lock bit y (y= 0..15)
-            LCK5: u1, //Port x lock bit y (y= 0..15)
-            LCK6: u1, //Port x lock bit y (y= 0..15)
-            LCK7: u1, //Port x lock bit y (y= 0..15)
-            LCK8: u1, //Port x lock bit y (y= 0..15)
-            LCK9: u1, //Port x lock bit y (y= 0..15)
-            LCK10: u1, //Port x lock bit y (y= 0..15)
-            LCK11: u1, //Port x lock bit y (y= 0..15)
-            LCK12: u1, //Port x lock bit y (y= 0..15)
-            LCK13: u1, //Port x lock bit y (y= 0..15)
-            LCK14: u1, //Port x lock bit y (y= 0..15)
-            LCK15: u1, //Port x lock bit y (y= 0..15)
-            LCKK: u1, //Port x lock bit y (y= 0..15)
+            LCK0: u1, // Port x lock bit y (y= 0..15)
+            LCK1: u1, // Port x lock bit y (y= 0..15)
+            LCK2: u1, // Port x lock bit y (y= 0..15)
+            LCK3: u1, // Port x lock bit y (y= 0..15)
+            LCK4: u1, // Port x lock bit y (y= 0..15)
+            LCK5: u1, // Port x lock bit y (y= 0..15)
+            LCK6: u1, // Port x lock bit y (y= 0..15)
+            LCK7: u1, // Port x lock bit y (y= 0..15)
+            LCK8: u1, // Port x lock bit y (y= 0..15)
+            LCK9: u1, // Port x lock bit y (y= 0..15)
+            LCK10: u1, // Port x lock bit y (y= 0..15)
+            LCK11: u1, // Port x lock bit y (y= 0..15)
+            LCK12: u1, // Port x lock bit y (y= 0..15)
+            LCK13: u1, // Port x lock bit y (y= 0..15)
+            LCK14: u1, // Port x lock bit y (y= 0..15)
+            LCK15: u1, // Port x lock bit y (y= 0..15)
+            LCKK: u1, // Port x lock bit y (y= 0..15)
             padding_17_31: u15,
         }), base_address + 0x1c);
 
         /// address: 0x40021020
         /// GPIO alternate function low register
         pub const AFRL = @intToPtr(*volatile Mmio(32, packed struct {
-            AFRL0: u4, //Alternate function selection for port x bit y (y = 0..7)
-            AFRL1: u4, //Alternate function selection for port x bit y (y = 0..7)
-            AFRL2: u4, //Alternate function selection for port x bit y (y = 0..7)
-            AFRL3: u4, //Alternate function selection for port x bit y (y = 0..7)
-            AFRL4: u4, //Alternate function selection for port x bit y (y = 0..7)
-            AFRL5: u4, //Alternate function selection for port x bit y (y = 0..7)
-            AFRL6: u4, //Alternate function selection for port x bit y (y = 0..7)
-            AFRL7: u4, //Alternate function selection for port x bit y (y = 0..7)
+            AFRL0: u4, // Alternate function selection for port x bit y (y = 0..7)
+            AFRL1: u4, // Alternate function selection for port x bit y (y = 0..7)
+            AFRL2: u4, // Alternate function selection for port x bit y (y = 0..7)
+            AFRL3: u4, // Alternate function selection for port x bit y (y = 0..7)
+            AFRL4: u4, // Alternate function selection for port x bit y (y = 0..7)
+            AFRL5: u4, // Alternate function selection for port x bit y (y = 0..7)
+            AFRL6: u4, // Alternate function selection for port x bit y (y = 0..7)
+            AFRL7: u4, // Alternate function selection for port x bit y (y = 0..7)
         }), base_address + 0x20);
 
         /// address: 0x40021024
         /// GPIO alternate function high register
         pub const AFRH = @intToPtr(*volatile Mmio(32, packed struct {
-            AFRH8: u4, //Alternate function selection for port x bit y (y = 8..15)
-            AFRH9: u4, //Alternate function selection for port x bit y (y = 8..15)
-            AFRH10: u4, //Alternate function selection for port x bit y (y = 8..15)
-            AFRH11: u4, //Alternate function selection for port x bit y (y = 8..15)
-            AFRH12: u4, //Alternate function selection for port x bit y (y = 8..15)
-            AFRH13: u4, //Alternate function selection for port x bit y (y = 8..15)
-            AFRH14: u4, //Alternate function selection for port x bit y (y = 8..15)
-            AFRH15: u4, //Alternate function selection for port x bit y (y = 8..15)
+            AFRH8: u4, // Alternate function selection for port x bit y (y = 8..15)
+            AFRH9: u4, // Alternate function selection for port x bit y (y = 8..15)
+            AFRH10: u4, // Alternate function selection for port x bit y (y = 8..15)
+            AFRH11: u4, // Alternate function selection for port x bit y (y = 8..15)
+            AFRH12: u4, // Alternate function selection for port x bit y (y = 8..15)
+            AFRH13: u4, // Alternate function selection for port x bit y (y = 8..15)
+            AFRH14: u4, // Alternate function selection for port x bit y (y = 8..15)
+            AFRH15: u4, // Alternate function selection for port x bit y (y = 8..15)
         }), base_address + 0x24);
     };
 
@@ -8022,216 +8022,216 @@ pub const registers = struct {
         /// address: 0x40020c00
         /// GPIO port mode register
         pub const MODER = @intToPtr(*volatile Mmio(32, packed struct {
-            MODER0: u2, //Port x configuration bits (y = 0..15)
-            MODER1: u2, //Port x configuration bits (y = 0..15)
-            MODER2: u2, //Port x configuration bits (y = 0..15)
-            MODER3: u2, //Port x configuration bits (y = 0..15)
-            MODER4: u2, //Port x configuration bits (y = 0..15)
-            MODER5: u2, //Port x configuration bits (y = 0..15)
-            MODER6: u2, //Port x configuration bits (y = 0..15)
-            MODER7: u2, //Port x configuration bits (y = 0..15)
-            MODER8: u2, //Port x configuration bits (y = 0..15)
-            MODER9: u2, //Port x configuration bits (y = 0..15)
-            MODER10: u2, //Port x configuration bits (y = 0..15)
-            MODER11: u2, //Port x configuration bits (y = 0..15)
-            MODER12: u2, //Port x configuration bits (y = 0..15)
-            MODER13: u2, //Port x configuration bits (y = 0..15)
-            MODER14: u2, //Port x configuration bits (y = 0..15)
-            MODER15: u2, //Port x configuration bits (y = 0..15)
+            MODER0: u2, // Port x configuration bits (y = 0..15)
+            MODER1: u2, // Port x configuration bits (y = 0..15)
+            MODER2: u2, // Port x configuration bits (y = 0..15)
+            MODER3: u2, // Port x configuration bits (y = 0..15)
+            MODER4: u2, // Port x configuration bits (y = 0..15)
+            MODER5: u2, // Port x configuration bits (y = 0..15)
+            MODER6: u2, // Port x configuration bits (y = 0..15)
+            MODER7: u2, // Port x configuration bits (y = 0..15)
+            MODER8: u2, // Port x configuration bits (y = 0..15)
+            MODER9: u2, // Port x configuration bits (y = 0..15)
+            MODER10: u2, // Port x configuration bits (y = 0..15)
+            MODER11: u2, // Port x configuration bits (y = 0..15)
+            MODER12: u2, // Port x configuration bits (y = 0..15)
+            MODER13: u2, // Port x configuration bits (y = 0..15)
+            MODER14: u2, // Port x configuration bits (y = 0..15)
+            MODER15: u2, // Port x configuration bits (y = 0..15)
         }), base_address + 0x0);
 
         /// address: 0x40020c04
         /// GPIO port output type register
         pub const OTYPER = @intToPtr(*volatile Mmio(32, packed struct {
-            OT0: u1, //Port x configuration bits (y = 0..15)
-            OT1: u1, //Port x configuration bits (y = 0..15)
-            OT2: u1, //Port x configuration bits (y = 0..15)
-            OT3: u1, //Port x configuration bits (y = 0..15)
-            OT4: u1, //Port x configuration bits (y = 0..15)
-            OT5: u1, //Port x configuration bits (y = 0..15)
-            OT6: u1, //Port x configuration bits (y = 0..15)
-            OT7: u1, //Port x configuration bits (y = 0..15)
-            OT8: u1, //Port x configuration bits (y = 0..15)
-            OT9: u1, //Port x configuration bits (y = 0..15)
-            OT10: u1, //Port x configuration bits (y = 0..15)
-            OT11: u1, //Port x configuration bits (y = 0..15)
-            OT12: u1, //Port x configuration bits (y = 0..15)
-            OT13: u1, //Port x configuration bits (y = 0..15)
-            OT14: u1, //Port x configuration bits (y = 0..15)
-            OT15: u1, //Port x configuration bits (y = 0..15)
+            OT0: u1, // Port x configuration bits (y = 0..15)
+            OT1: u1, // Port x configuration bits (y = 0..15)
+            OT2: u1, // Port x configuration bits (y = 0..15)
+            OT3: u1, // Port x configuration bits (y = 0..15)
+            OT4: u1, // Port x configuration bits (y = 0..15)
+            OT5: u1, // Port x configuration bits (y = 0..15)
+            OT6: u1, // Port x configuration bits (y = 0..15)
+            OT7: u1, // Port x configuration bits (y = 0..15)
+            OT8: u1, // Port x configuration bits (y = 0..15)
+            OT9: u1, // Port x configuration bits (y = 0..15)
+            OT10: u1, // Port x configuration bits (y = 0..15)
+            OT11: u1, // Port x configuration bits (y = 0..15)
+            OT12: u1, // Port x configuration bits (y = 0..15)
+            OT13: u1, // Port x configuration bits (y = 0..15)
+            OT14: u1, // Port x configuration bits (y = 0..15)
+            OT15: u1, // Port x configuration bits (y = 0..15)
             padding_16_31: u16,
         }), base_address + 0x4);
 
         /// address: 0x40020c08
         /// GPIO port output speed register
         pub const OSPEEDR = @intToPtr(*volatile Mmio(32, packed struct {
-            OSPEEDR0: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR1: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR2: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR3: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR4: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR5: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR6: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR7: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR8: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR9: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR10: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR11: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR12: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR13: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR14: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR15: u2, //Port x configuration bits (y = 0..15)
+            OSPEEDR0: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR1: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR2: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR3: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR4: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR5: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR6: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR7: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR8: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR9: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR10: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR11: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR12: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR13: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR14: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR15: u2, // Port x configuration bits (y = 0..15)
         }), base_address + 0x8);
 
         /// address: 0x40020c0c
         /// GPIO port pull-up/pull-down register
         pub const PUPDR = @intToPtr(*volatile Mmio(32, packed struct {
-            PUPDR0: u2, //Port x configuration bits (y = 0..15)
-            PUPDR1: u2, //Port x configuration bits (y = 0..15)
-            PUPDR2: u2, //Port x configuration bits (y = 0..15)
-            PUPDR3: u2, //Port x configuration bits (y = 0..15)
-            PUPDR4: u2, //Port x configuration bits (y = 0..15)
-            PUPDR5: u2, //Port x configuration bits (y = 0..15)
-            PUPDR6: u2, //Port x configuration bits (y = 0..15)
-            PUPDR7: u2, //Port x configuration bits (y = 0..15)
-            PUPDR8: u2, //Port x configuration bits (y = 0..15)
-            PUPDR9: u2, //Port x configuration bits (y = 0..15)
-            PUPDR10: u2, //Port x configuration bits (y = 0..15)
-            PUPDR11: u2, //Port x configuration bits (y = 0..15)
-            PUPDR12: u2, //Port x configuration bits (y = 0..15)
-            PUPDR13: u2, //Port x configuration bits (y = 0..15)
-            PUPDR14: u2, //Port x configuration bits (y = 0..15)
-            PUPDR15: u2, //Port x configuration bits (y = 0..15)
+            PUPDR0: u2, // Port x configuration bits (y = 0..15)
+            PUPDR1: u2, // Port x configuration bits (y = 0..15)
+            PUPDR2: u2, // Port x configuration bits (y = 0..15)
+            PUPDR3: u2, // Port x configuration bits (y = 0..15)
+            PUPDR4: u2, // Port x configuration bits (y = 0..15)
+            PUPDR5: u2, // Port x configuration bits (y = 0..15)
+            PUPDR6: u2, // Port x configuration bits (y = 0..15)
+            PUPDR7: u2, // Port x configuration bits (y = 0..15)
+            PUPDR8: u2, // Port x configuration bits (y = 0..15)
+            PUPDR9: u2, // Port x configuration bits (y = 0..15)
+            PUPDR10: u2, // Port x configuration bits (y = 0..15)
+            PUPDR11: u2, // Port x configuration bits (y = 0..15)
+            PUPDR12: u2, // Port x configuration bits (y = 0..15)
+            PUPDR13: u2, // Port x configuration bits (y = 0..15)
+            PUPDR14: u2, // Port x configuration bits (y = 0..15)
+            PUPDR15: u2, // Port x configuration bits (y = 0..15)
         }), base_address + 0xc);
 
         /// address: 0x40020c10
         /// GPIO port input data register
         pub const IDR = @intToPtr(*volatile Mmio(32, packed struct {
-            IDR0: u1, //Port input data (y = 0..15)
-            IDR1: u1, //Port input data (y = 0..15)
-            IDR2: u1, //Port input data (y = 0..15)
-            IDR3: u1, //Port input data (y = 0..15)
-            IDR4: u1, //Port input data (y = 0..15)
-            IDR5: u1, //Port input data (y = 0..15)
-            IDR6: u1, //Port input data (y = 0..15)
-            IDR7: u1, //Port input data (y = 0..15)
-            IDR8: u1, //Port input data (y = 0..15)
-            IDR9: u1, //Port input data (y = 0..15)
-            IDR10: u1, //Port input data (y = 0..15)
-            IDR11: u1, //Port input data (y = 0..15)
-            IDR12: u1, //Port input data (y = 0..15)
-            IDR13: u1, //Port input data (y = 0..15)
-            IDR14: u1, //Port input data (y = 0..15)
-            IDR15: u1, //Port input data (y = 0..15)
+            IDR0: u1, // Port input data (y = 0..15)
+            IDR1: u1, // Port input data (y = 0..15)
+            IDR2: u1, // Port input data (y = 0..15)
+            IDR3: u1, // Port input data (y = 0..15)
+            IDR4: u1, // Port input data (y = 0..15)
+            IDR5: u1, // Port input data (y = 0..15)
+            IDR6: u1, // Port input data (y = 0..15)
+            IDR7: u1, // Port input data (y = 0..15)
+            IDR8: u1, // Port input data (y = 0..15)
+            IDR9: u1, // Port input data (y = 0..15)
+            IDR10: u1, // Port input data (y = 0..15)
+            IDR11: u1, // Port input data (y = 0..15)
+            IDR12: u1, // Port input data (y = 0..15)
+            IDR13: u1, // Port input data (y = 0..15)
+            IDR14: u1, // Port input data (y = 0..15)
+            IDR15: u1, // Port input data (y = 0..15)
             padding_16_31: u16,
         }), base_address + 0x10);
 
         /// address: 0x40020c14
         /// GPIO port output data register
         pub const ODR = @intToPtr(*volatile Mmio(32, packed struct {
-            ODR0: u1, //Port output data (y = 0..15)
-            ODR1: u1, //Port output data (y = 0..15)
-            ODR2: u1, //Port output data (y = 0..15)
-            ODR3: u1, //Port output data (y = 0..15)
-            ODR4: u1, //Port output data (y = 0..15)
-            ODR5: u1, //Port output data (y = 0..15)
-            ODR6: u1, //Port output data (y = 0..15)
-            ODR7: u1, //Port output data (y = 0..15)
-            ODR8: u1, //Port output data (y = 0..15)
-            ODR9: u1, //Port output data (y = 0..15)
-            ODR10: u1, //Port output data (y = 0..15)
-            ODR11: u1, //Port output data (y = 0..15)
-            ODR12: u1, //Port output data (y = 0..15)
-            ODR13: u1, //Port output data (y = 0..15)
-            ODR14: u1, //Port output data (y = 0..15)
-            ODR15: u1, //Port output data (y = 0..15)
+            ODR0: u1, // Port output data (y = 0..15)
+            ODR1: u1, // Port output data (y = 0..15)
+            ODR2: u1, // Port output data (y = 0..15)
+            ODR3: u1, // Port output data (y = 0..15)
+            ODR4: u1, // Port output data (y = 0..15)
+            ODR5: u1, // Port output data (y = 0..15)
+            ODR6: u1, // Port output data (y = 0..15)
+            ODR7: u1, // Port output data (y = 0..15)
+            ODR8: u1, // Port output data (y = 0..15)
+            ODR9: u1, // Port output data (y = 0..15)
+            ODR10: u1, // Port output data (y = 0..15)
+            ODR11: u1, // Port output data (y = 0..15)
+            ODR12: u1, // Port output data (y = 0..15)
+            ODR13: u1, // Port output data (y = 0..15)
+            ODR14: u1, // Port output data (y = 0..15)
+            ODR15: u1, // Port output data (y = 0..15)
             padding_16_31: u16,
         }), base_address + 0x14);
 
         /// address: 0x40020c18
         /// GPIO port bit set/reset register
         pub const BSRR = @intToPtr(*volatile Mmio(32, packed struct {
-            BS0: u1, //Port x set bit y (y= 0..15)
-            BS1: u1, //Port x set bit y (y= 0..15)
-            BS2: u1, //Port x set bit y (y= 0..15)
-            BS3: u1, //Port x set bit y (y= 0..15)
-            BS4: u1, //Port x set bit y (y= 0..15)
-            BS5: u1, //Port x set bit y (y= 0..15)
-            BS6: u1, //Port x set bit y (y= 0..15)
-            BS7: u1, //Port x set bit y (y= 0..15)
-            BS8: u1, //Port x set bit y (y= 0..15)
-            BS9: u1, //Port x set bit y (y= 0..15)
-            BS10: u1, //Port x set bit y (y= 0..15)
-            BS11: u1, //Port x set bit y (y= 0..15)
-            BS12: u1, //Port x set bit y (y= 0..15)
-            BS13: u1, //Port x set bit y (y= 0..15)
-            BS14: u1, //Port x set bit y (y= 0..15)
-            BS15: u1, //Port x set bit y (y= 0..15)
-            BR0: u1, //Port x set bit y (y= 0..15)
-            BR1: u1, //Port x reset bit y (y = 0..15)
-            BR2: u1, //Port x reset bit y (y = 0..15)
-            BR3: u1, //Port x reset bit y (y = 0..15)
-            BR4: u1, //Port x reset bit y (y = 0..15)
-            BR5: u1, //Port x reset bit y (y = 0..15)
-            BR6: u1, //Port x reset bit y (y = 0..15)
-            BR7: u1, //Port x reset bit y (y = 0..15)
-            BR8: u1, //Port x reset bit y (y = 0..15)
-            BR9: u1, //Port x reset bit y (y = 0..15)
-            BR10: u1, //Port x reset bit y (y = 0..15)
-            BR11: u1, //Port x reset bit y (y = 0..15)
-            BR12: u1, //Port x reset bit y (y = 0..15)
-            BR13: u1, //Port x reset bit y (y = 0..15)
-            BR14: u1, //Port x reset bit y (y = 0..15)
-            BR15: u1, //Port x reset bit y (y = 0..15)
+            BS0: u1, // Port x set bit y (y= 0..15)
+            BS1: u1, // Port x set bit y (y= 0..15)
+            BS2: u1, // Port x set bit y (y= 0..15)
+            BS3: u1, // Port x set bit y (y= 0..15)
+            BS4: u1, // Port x set bit y (y= 0..15)
+            BS5: u1, // Port x set bit y (y= 0..15)
+            BS6: u1, // Port x set bit y (y= 0..15)
+            BS7: u1, // Port x set bit y (y= 0..15)
+            BS8: u1, // Port x set bit y (y= 0..15)
+            BS9: u1, // Port x set bit y (y= 0..15)
+            BS10: u1, // Port x set bit y (y= 0..15)
+            BS11: u1, // Port x set bit y (y= 0..15)
+            BS12: u1, // Port x set bit y (y= 0..15)
+            BS13: u1, // Port x set bit y (y= 0..15)
+            BS14: u1, // Port x set bit y (y= 0..15)
+            BS15: u1, // Port x set bit y (y= 0..15)
+            BR0: u1, // Port x set bit y (y= 0..15)
+            BR1: u1, // Port x reset bit y (y = 0..15)
+            BR2: u1, // Port x reset bit y (y = 0..15)
+            BR3: u1, // Port x reset bit y (y = 0..15)
+            BR4: u1, // Port x reset bit y (y = 0..15)
+            BR5: u1, // Port x reset bit y (y = 0..15)
+            BR6: u1, // Port x reset bit y (y = 0..15)
+            BR7: u1, // Port x reset bit y (y = 0..15)
+            BR8: u1, // Port x reset bit y (y = 0..15)
+            BR9: u1, // Port x reset bit y (y = 0..15)
+            BR10: u1, // Port x reset bit y (y = 0..15)
+            BR11: u1, // Port x reset bit y (y = 0..15)
+            BR12: u1, // Port x reset bit y (y = 0..15)
+            BR13: u1, // Port x reset bit y (y = 0..15)
+            BR14: u1, // Port x reset bit y (y = 0..15)
+            BR15: u1, // Port x reset bit y (y = 0..15)
         }), base_address + 0x18);
 
         /// address: 0x40020c1c
         /// GPIO port configuration lock register
         pub const LCKR = @intToPtr(*volatile Mmio(32, packed struct {
-            LCK0: u1, //Port x lock bit y (y= 0..15)
-            LCK1: u1, //Port x lock bit y (y= 0..15)
-            LCK2: u1, //Port x lock bit y (y= 0..15)
-            LCK3: u1, //Port x lock bit y (y= 0..15)
-            LCK4: u1, //Port x lock bit y (y= 0..15)
-            LCK5: u1, //Port x lock bit y (y= 0..15)
-            LCK6: u1, //Port x lock bit y (y= 0..15)
-            LCK7: u1, //Port x lock bit y (y= 0..15)
-            LCK8: u1, //Port x lock bit y (y= 0..15)
-            LCK9: u1, //Port x lock bit y (y= 0..15)
-            LCK10: u1, //Port x lock bit y (y= 0..15)
-            LCK11: u1, //Port x lock bit y (y= 0..15)
-            LCK12: u1, //Port x lock bit y (y= 0..15)
-            LCK13: u1, //Port x lock bit y (y= 0..15)
-            LCK14: u1, //Port x lock bit y (y= 0..15)
-            LCK15: u1, //Port x lock bit y (y= 0..15)
-            LCKK: u1, //Port x lock bit y (y= 0..15)
+            LCK0: u1, // Port x lock bit y (y= 0..15)
+            LCK1: u1, // Port x lock bit y (y= 0..15)
+            LCK2: u1, // Port x lock bit y (y= 0..15)
+            LCK3: u1, // Port x lock bit y (y= 0..15)
+            LCK4: u1, // Port x lock bit y (y= 0..15)
+            LCK5: u1, // Port x lock bit y (y= 0..15)
+            LCK6: u1, // Port x lock bit y (y= 0..15)
+            LCK7: u1, // Port x lock bit y (y= 0..15)
+            LCK8: u1, // Port x lock bit y (y= 0..15)
+            LCK9: u1, // Port x lock bit y (y= 0..15)
+            LCK10: u1, // Port x lock bit y (y= 0..15)
+            LCK11: u1, // Port x lock bit y (y= 0..15)
+            LCK12: u1, // Port x lock bit y (y= 0..15)
+            LCK13: u1, // Port x lock bit y (y= 0..15)
+            LCK14: u1, // Port x lock bit y (y= 0..15)
+            LCK15: u1, // Port x lock bit y (y= 0..15)
+            LCKK: u1, // Port x lock bit y (y= 0..15)
             padding_17_31: u15,
         }), base_address + 0x1c);
 
         /// address: 0x40020c20
         /// GPIO alternate function low register
         pub const AFRL = @intToPtr(*volatile Mmio(32, packed struct {
-            AFRL0: u4, //Alternate function selection for port x bit y (y = 0..7)
-            AFRL1: u4, //Alternate function selection for port x bit y (y = 0..7)
-            AFRL2: u4, //Alternate function selection for port x bit y (y = 0..7)
-            AFRL3: u4, //Alternate function selection for port x bit y (y = 0..7)
-            AFRL4: u4, //Alternate function selection for port x bit y (y = 0..7)
-            AFRL5: u4, //Alternate function selection for port x bit y (y = 0..7)
-            AFRL6: u4, //Alternate function selection for port x bit y (y = 0..7)
-            AFRL7: u4, //Alternate function selection for port x bit y (y = 0..7)
+            AFRL0: u4, // Alternate function selection for port x bit y (y = 0..7)
+            AFRL1: u4, // Alternate function selection for port x bit y (y = 0..7)
+            AFRL2: u4, // Alternate function selection for port x bit y (y = 0..7)
+            AFRL3: u4, // Alternate function selection for port x bit y (y = 0..7)
+            AFRL4: u4, // Alternate function selection for port x bit y (y = 0..7)
+            AFRL5: u4, // Alternate function selection for port x bit y (y = 0..7)
+            AFRL6: u4, // Alternate function selection for port x bit y (y = 0..7)
+            AFRL7: u4, // Alternate function selection for port x bit y (y = 0..7)
         }), base_address + 0x20);
 
         /// address: 0x40020c24
         /// GPIO alternate function high register
         pub const AFRH = @intToPtr(*volatile Mmio(32, packed struct {
-            AFRH8: u4, //Alternate function selection for port x bit y (y = 8..15)
-            AFRH9: u4, //Alternate function selection for port x bit y (y = 8..15)
-            AFRH10: u4, //Alternate function selection for port x bit y (y = 8..15)
-            AFRH11: u4, //Alternate function selection for port x bit y (y = 8..15)
-            AFRH12: u4, //Alternate function selection for port x bit y (y = 8..15)
-            AFRH13: u4, //Alternate function selection for port x bit y (y = 8..15)
-            AFRH14: u4, //Alternate function selection for port x bit y (y = 8..15)
-            AFRH15: u4, //Alternate function selection for port x bit y (y = 8..15)
+            AFRH8: u4, // Alternate function selection for port x bit y (y = 8..15)
+            AFRH9: u4, // Alternate function selection for port x bit y (y = 8..15)
+            AFRH10: u4, // Alternate function selection for port x bit y (y = 8..15)
+            AFRH11: u4, // Alternate function selection for port x bit y (y = 8..15)
+            AFRH12: u4, // Alternate function selection for port x bit y (y = 8..15)
+            AFRH13: u4, // Alternate function selection for port x bit y (y = 8..15)
+            AFRH14: u4, // Alternate function selection for port x bit y (y = 8..15)
+            AFRH15: u4, // Alternate function selection for port x bit y (y = 8..15)
         }), base_address + 0x24);
     };
 
@@ -8242,216 +8242,216 @@ pub const registers = struct {
         /// address: 0x40020800
         /// GPIO port mode register
         pub const MODER = @intToPtr(*volatile Mmio(32, packed struct {
-            MODER0: u2, //Port x configuration bits (y = 0..15)
-            MODER1: u2, //Port x configuration bits (y = 0..15)
-            MODER2: u2, //Port x configuration bits (y = 0..15)
-            MODER3: u2, //Port x configuration bits (y = 0..15)
-            MODER4: u2, //Port x configuration bits (y = 0..15)
-            MODER5: u2, //Port x configuration bits (y = 0..15)
-            MODER6: u2, //Port x configuration bits (y = 0..15)
-            MODER7: u2, //Port x configuration bits (y = 0..15)
-            MODER8: u2, //Port x configuration bits (y = 0..15)
-            MODER9: u2, //Port x configuration bits (y = 0..15)
-            MODER10: u2, //Port x configuration bits (y = 0..15)
-            MODER11: u2, //Port x configuration bits (y = 0..15)
-            MODER12: u2, //Port x configuration bits (y = 0..15)
-            MODER13: u2, //Port x configuration bits (y = 0..15)
-            MODER14: u2, //Port x configuration bits (y = 0..15)
-            MODER15: u2, //Port x configuration bits (y = 0..15)
+            MODER0: u2, // Port x configuration bits (y = 0..15)
+            MODER1: u2, // Port x configuration bits (y = 0..15)
+            MODER2: u2, // Port x configuration bits (y = 0..15)
+            MODER3: u2, // Port x configuration bits (y = 0..15)
+            MODER4: u2, // Port x configuration bits (y = 0..15)
+            MODER5: u2, // Port x configuration bits (y = 0..15)
+            MODER6: u2, // Port x configuration bits (y = 0..15)
+            MODER7: u2, // Port x configuration bits (y = 0..15)
+            MODER8: u2, // Port x configuration bits (y = 0..15)
+            MODER9: u2, // Port x configuration bits (y = 0..15)
+            MODER10: u2, // Port x configuration bits (y = 0..15)
+            MODER11: u2, // Port x configuration bits (y = 0..15)
+            MODER12: u2, // Port x configuration bits (y = 0..15)
+            MODER13: u2, // Port x configuration bits (y = 0..15)
+            MODER14: u2, // Port x configuration bits (y = 0..15)
+            MODER15: u2, // Port x configuration bits (y = 0..15)
         }), base_address + 0x0);
 
         /// address: 0x40020804
         /// GPIO port output type register
         pub const OTYPER = @intToPtr(*volatile Mmio(32, packed struct {
-            OT0: u1, //Port x configuration bits (y = 0..15)
-            OT1: u1, //Port x configuration bits (y = 0..15)
-            OT2: u1, //Port x configuration bits (y = 0..15)
-            OT3: u1, //Port x configuration bits (y = 0..15)
-            OT4: u1, //Port x configuration bits (y = 0..15)
-            OT5: u1, //Port x configuration bits (y = 0..15)
-            OT6: u1, //Port x configuration bits (y = 0..15)
-            OT7: u1, //Port x configuration bits (y = 0..15)
-            OT8: u1, //Port x configuration bits (y = 0..15)
-            OT9: u1, //Port x configuration bits (y = 0..15)
-            OT10: u1, //Port x configuration bits (y = 0..15)
-            OT11: u1, //Port x configuration bits (y = 0..15)
-            OT12: u1, //Port x configuration bits (y = 0..15)
-            OT13: u1, //Port x configuration bits (y = 0..15)
-            OT14: u1, //Port x configuration bits (y = 0..15)
-            OT15: u1, //Port x configuration bits (y = 0..15)
+            OT0: u1, // Port x configuration bits (y = 0..15)
+            OT1: u1, // Port x configuration bits (y = 0..15)
+            OT2: u1, // Port x configuration bits (y = 0..15)
+            OT3: u1, // Port x configuration bits (y = 0..15)
+            OT4: u1, // Port x configuration bits (y = 0..15)
+            OT5: u1, // Port x configuration bits (y = 0..15)
+            OT6: u1, // Port x configuration bits (y = 0..15)
+            OT7: u1, // Port x configuration bits (y = 0..15)
+            OT8: u1, // Port x configuration bits (y = 0..15)
+            OT9: u1, // Port x configuration bits (y = 0..15)
+            OT10: u1, // Port x configuration bits (y = 0..15)
+            OT11: u1, // Port x configuration bits (y = 0..15)
+            OT12: u1, // Port x configuration bits (y = 0..15)
+            OT13: u1, // Port x configuration bits (y = 0..15)
+            OT14: u1, // Port x configuration bits (y = 0..15)
+            OT15: u1, // Port x configuration bits (y = 0..15)
             padding_16_31: u16,
         }), base_address + 0x4);
 
         /// address: 0x40020808
         /// GPIO port output speed register
         pub const OSPEEDR = @intToPtr(*volatile Mmio(32, packed struct {
-            OSPEEDR0: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR1: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR2: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR3: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR4: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR5: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR6: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR7: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR8: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR9: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR10: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR11: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR12: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR13: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR14: u2, //Port x configuration bits (y = 0..15)
-            OSPEEDR15: u2, //Port x configuration bits (y = 0..15)
+            OSPEEDR0: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR1: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR2: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR3: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR4: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR5: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR6: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR7: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR8: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR9: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR10: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR11: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR12: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR13: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR14: u2, // Port x configuration bits (y = 0..15)
+            OSPEEDR15: u2, // Port x configuration bits (y = 0..15)
         }), base_address + 0x8);
 
         /// address: 0x4002080c
         /// GPIO port pull-up/pull-down register
         pub const PUPDR = @intToPtr(*volatile Mmio(32, packed struct {
-            PUPDR0: u2, //Port x configuration bits (y = 0..15)
-            PUPDR1: u2, //Port x configuration bits (y = 0..15)
-            PUPDR2: u2, //Port x configuration bits (y = 0..15)
-            PUPDR3: u2, //Port x configuration bits (y = 0..15)
-            PUPDR4: u2, //Port x configuration bits (y = 0..15)
-            PUPDR5: u2, //Port x configuration bits (y = 0..15)
-            PUPDR6: u2, //Port x configuration bits (y = 0..15)
-            PUPDR7: u2, //Port x configuration bits (y = 0..15)
-            PUPDR8: u2, //Port x configuration bits (y = 0..15)
-            PUPDR9: u2, //Port x configuration bits (y = 0..15)
-            PUPDR10: u2, //Port x configuration bits (y = 0..15)
-            PUPDR11: u2, //Port x configuration bits (y = 0..15)
-            PUPDR12: u2, //Port x configuration bits (y = 0..15)
-            PUPDR13: u2, //Port x configuration bits (y = 0..15)
-            PUPDR14: u2, //Port x configuration bits (y = 0..15)
-            PUPDR15: u2, //Port x configuration bits (y = 0..15)
+            PUPDR0: u2, // Port x configuration bits (y = 0..15)
+            PUPDR1: u2, // Port x configuration bits (y = 0..15)
+            PUPDR2: u2, // Port x configuration bits (y = 0..15)
+            PUPDR3: u2, // Port x configuration bits (y = 0..15)
+            PUPDR4: u2, // Port x configuration bits (y = 0..15)
+            PUPDR5: u2, // Port x configuration bits (y = 0..15)
+            PUPDR6: u2, // Port x configuration bits (y = 0..15)
+            PUPDR7: u2, // Port x configuration bits (y = 0..15)
+            PUPDR8: u2, // Port x configuration bits (y = 0..15)
+            PUPDR9: u2, // Port x configuration bits (y = 0..15)
+            PUPDR10: u2, // Port x configuration bits (y = 0..15)
+            PUPDR11: u2, // Port x configuration bits (y = 0..15)
+            PUPDR12: u2, // Port x configuration bits (y = 0..15)
+            PUPDR13: u2, // Port x configuration bits (y = 0..15)
+            PUPDR14: u2, // Port x configuration bits (y = 0..15)
+            PUPDR15: u2, // Port x configuration bits (y = 0..15)
         }), base_address + 0xc);
 
         /// address: 0x40020810
         /// GPIO port input data register
         pub const IDR = @intToPtr(*volatile Mmio(32, packed struct {
-            IDR0: u1, //Port input data (y = 0..15)
-            IDR1: u1, //Port input data (y = 0..15)
-            IDR2: u1, //Port input data (y = 0..15)
-            IDR3: u1, //Port input data (y = 0..15)
-            IDR4: u1, //Port input data (y = 0..15)
-            IDR5: u1, //Port input data (y = 0..15)
-            IDR6: u1, //Port input data (y = 0..15)
-            IDR7: u1, //Port input data (y = 0..15)
-            IDR8: u1, //Port input data (y = 0..15)
-            IDR9: u1, //Port input data (y = 0..15)
-            IDR10: u1, //Port input data (y = 0..15)
-            IDR11: u1, //Port input data (y = 0..15)
-            IDR12: u1, //Port input data (y = 0..15)
-            IDR13: u1, //Port input data (y = 0..15)
-            IDR14: u1, //Port input data (y = 0..15)
-            IDR15: u1, //Port input data (y = 0..15)
+            IDR0: u1, // Port input data (y = 0..15)
+            IDR1: u1, // Port input data (y = 0..15)
+            IDR2: u1, // Port input data (y = 0..15)
+            IDR3: u1, // Port input data (y = 0..15)
+            IDR4: u1, // Port input data (y = 0..15)
+            IDR5: u1, // Port input data (y = 0..15)
+            IDR6: u1, // Port input data (y = 0..15)
+            IDR7: u1, // Port input data (y = 0..15)
+            IDR8: u1, // Port input data (y = 0..15)
+            IDR9: u1, // Port input data (y = 0..15)
+            IDR10: u1, // Port input data (y = 0..15)
+            IDR11: u1, // Port input data (y = 0..15)
+            IDR12: u1, // Port input data (y = 0..15)
+            IDR13: u1, // Port input data (y = 0..15)
+            IDR14: u1, // Port input data (y = 0..15)
+            IDR15: u1, // Port input data (y = 0..15)
             padding_16_31: u16,
         }), base_address + 0x10);
 
         /// address: 0x40020814
         /// GPIO port output data register
         pub const ODR = @intToPtr(*volatile Mmio(32, packed struct {
-            ODR0: u1, //Port output data (y = 0..15)
-            ODR1: u1, //Port output data (y = 0..15)
-            ODR2: u1, //Port output data (y = 0..15)
-            ODR3: u1, //Port output data (y = 0..15)
-            ODR4: u1, //Port output data (y = 0..15)
-            ODR5: u1, //Port output data (y = 0..15)
-            ODR6: u1, //Port output data (y = 0..15)
-            ODR7: u1, //Port output data (y = 0..15)
-            ODR8: u1, //Port output data (y = 0..15)
-            ODR9: u1, //Port output data (y = 0..15)
-            ODR10: u1, //Port output data (y = 0..15)
-            ODR11: u1, //Port output data (y = 0..15)
-            ODR12: u1, //Port output data (y = 0..15)
-            ODR13: u1, //Port output data (y = 0..15)
-            ODR14: u1, //Port output data (y = 0..15)
-            ODR15: u1, //Port output data (y = 0..15)
+            ODR0: u1, // Port output data (y = 0..15)
+            ODR1: u1, // Port output data (y = 0..15)
+            ODR2: u1, // Port output data (y = 0..15)
+            ODR3: u1, // Port output data (y = 0..15)
+            ODR4: u1, // Port output data (y = 0..15)
+            ODR5: u1, // Port output data (y = 0..15)
+            ODR6: u1, // Port output data (y = 0..15)
+            ODR7: u1, // Port output data (y = 0..15)
+            ODR8: u1, // Port output data (y = 0..15)
+            ODR9: u1, // Port output data (y = 0..15)
+            ODR10: u1, // Port output data (y = 0..15)
+            ODR11: u1, // Port output data (y = 0..15)
+            ODR12: u1, // Port output data (y = 0..15)
+            ODR13: u1, // Port output data (y = 0..15)
+            ODR14: u1, // Port output data (y = 0..15)
+            ODR15: u1, // Port output data (y = 0..15)
             padding_16_31: u16,
         }), base_address + 0x14);
 
         /// address: 0x40020818
         /// GPIO port bit set/reset register
         pub const BSRR = @intToPtr(*volatile Mmio(32, packed struct {
-            BS0: u1, //Port x set bit y (y= 0..15)
-            BS1: u1, //Port x set bit y (y= 0..15)
-            BS2: u1, //Port x set bit y (y= 0..15)
-            BS3: u1, //Port x set bit y (y= 0..15)
-            BS4: u1, //Port x set bit y (y= 0..15)
-            BS5: u1, //Port x set bit y (y= 0..15)
-            BS6: u1, //Port x set bit y (y= 0..15)
-            BS7: u1, //Port x set bit y (y= 0..15)
-            BS8: u1, //Port x set bit y (y= 0..15)
-            BS9: u1, //Port x set bit y (y= 0..15)
-            BS10: u1, //Port x set bit y (y= 0..15)
-            BS11: u1, //Port x set bit y (y= 0..15)
-            BS12: u1, //Port x set bit y (y= 0..15)
-            BS13: u1, //Port x set bit y (y= 0..15)
-            BS14: u1, //Port x set bit y (y= 0..15)
-            BS15: u1, //Port x set bit y (y= 0..15)
-            BR0: u1, //Port x set bit y (y= 0..15)
-            BR1: u1, //Port x reset bit y (y = 0..15)
-            BR2: u1, //Port x reset bit y (y = 0..15)
-            BR3: u1, //Port x reset bit y (y = 0..15)
-            BR4: u1, //Port x reset bit y (y = 0..15)
-            BR5: u1, //Port x reset bit y (y = 0..15)
-            BR6: u1, //Port x reset bit y (y = 0..15)
-            BR7: u1, //Port x reset bit y (y = 0..15)
-            BR8: u1, //Port x reset bit y (y = 0..15)
-            BR9: u1, //Port x reset bit y (y = 0..15)
-            BR10: u1, //Port x reset bit y (y = 0..15)
-            BR11: u1, //Port x reset bit y (y = 0..15)
-            BR12: u1, //Port x reset bit y (y = 0..15)
-            BR13: u1, //Port x reset bit y (y = 0..15)
-            BR14: u1, //Port x reset bit y (y = 0..15)
-            BR15: u1, //Port x reset bit y (y = 0..15)
+            BS0: u1, // Port x set bit y (y= 0..15)
+            BS1: u1, // Port x set bit y (y= 0..15)
+            BS2: u1, // Port x set bit y (y= 0..15)
+            BS3: u1, // Port x set bit y (y= 0..15)
+            BS4: u1, // Port x set bit y (y= 0..15)
+            BS5: u1, // Port x set bit y (y= 0..15)
+            BS6: u1, // Port x set bit y (y= 0..15)
+            BS7: u1, // Port x set bit y (y= 0..15)
+            BS8: u1, // Port x set bit y (y= 0..15)
+            BS9: u1, // Port x set bit y (y= 0..15)
+            BS10: u1, // Port x set bit y (y= 0..15)
+            BS11: u1, // Port x set bit y (y= 0..15)
+            BS12: u1, // Port x set bit y (y= 0..15)
+            BS13: u1, // Port x set bit y (y= 0..15)
+            BS14: u1, // Port x set bit y (y= 0..15)
+            BS15: u1, // Port x set bit y (y= 0..15)
+            BR0: u1, // Port x set bit y (y= 0..15)
+            BR1: u1, // Port x reset bit y (y = 0..15)
+            BR2: u1, // Port x reset bit y (y = 0..15)
+            BR3: u1, // Port x reset bit y (y = 0..15)
+            BR4: u1, // Port x reset bit y (y = 0..15)
+            BR5: u1, // Port x reset bit y (y = 0..15)
+            BR6: u1, // Port x reset bit y (y = 0..15)
+            BR7: u1, // Port x reset bit y (y = 0..15)
+            BR8: u1, // Port x reset bit y (y = 0..15)
+            BR9: u1, // Port x reset bit y (y = 0..15)
+            BR10: u1, // Port x reset bit y (y = 0..15)
+            BR11: u1, // Port x reset bit y (y = 0..15)
+            BR12: u1, // Port x reset bit y (y = 0..15)
+            BR13: u1, // Port x reset bit y (y = 0..15)
+            BR14: u1, // Port x reset bit y (y = 0..15)
+            BR15: u1, // Port x reset bit y (y = 0..15)
         }), base_address + 0x18);
 
         /// address: 0x4002081c
         /// GPIO port configuration lock register
         pub const LCKR = @intToPtr(*volatile Mmio(32, packed struct {
-            LCK0: u1, //Port x lock bit y (y= 0..15)
-            LCK1: u1, //Port x lock bit y (y= 0..15)
-            LCK2: u1, //Port x lock bit y (y= 0..15)
-            LCK3: u1, //Port x lock bit y (y= 0..15)
-            LCK4: u1, //Port x lock bit y (y= 0..15)
-            LCK5: u1, //Port x lock bit y (y= 0..15)
-            LCK6: u1, //Port x lock bit y (y= 0..15)
-            LCK7: u1, //Port x lock bit y (y= 0..15)
-            LCK8: u1, //Port x lock bit y (y= 0..15)
-            LCK9: u1, //Port x lock bit y (y= 0..15)
-            LCK10: u1, //Port x lock bit y (y= 0..15)
-            LCK11: u1, //Port x lock bit y (y= 0..15)
-            LCK12: u1, //Port x lock bit y (y= 0..15)
-            LCK13: u1, //Port x lock bit y (y= 0..15)
-            LCK14: u1, //Port x lock bit y (y= 0..15)
-            LCK15: u1, //Port x lock bit y (y= 0..15)
-            LCKK: u1, //Port x lock bit y (y= 0..15)
+            LCK0: u1, // Port x lock bit y (y= 0..15)
+            LCK1: u1, // Port x lock bit y (y= 0..15)
+            LCK2: u1, // Port x lock bit y (y= 0..15)
+            LCK3: u1, // Port x lock bit y (y= 0..15)
+            LCK4: u1, // Port x lock bit y (y= 0..15)
+            LCK5: u1, // Port x lock bit y (y= 0..15)
+            LCK6: u1, // Port x lock bit y (y= 0..15)
+            LCK7: u1, // Port x lock bit y (y= 0..15)
+            LCK8: u1, // Port x lock bit y (y= 0..15)
+            LCK9: u1, // Port x lock bit y (y= 0..15)
+            LCK10: u1, // Port x lock bit y (y= 0..15)
+            LCK11: u1, // Port x lock bit y (y= 0..15)
+            LCK12: u1, // Port x lock bit y (y= 0..15)
+            LCK13: u1, // Port x lock bit y (y= 0..15)
+            LCK14: u1, // Port x lock bit y (y= 0..15)
+            LCK15: u1, // Port x lock bit y (y= 0..15)
+            LCKK: u1, // Port x lock bit y (y= 0..15)
             padding_17_31: u15,
         }), base_address + 0x1c);
 
         /// address: 0x40020820
         /// GPIO alternate function low register
         pub const AFRL = @intToPtr(*volatile Mmio(32, packed struct {
-            AFRL0: u4, //Alternate function selection for port x bit y (y = 0..7)
-            AFRL1: u4, //Alternate function selection for port x bit y (y = 0..7)
-            AFRL2: u4, //Alternate function selection for port x bit y (y = 0..7)
-            AFRL3: u4, //Alternate function selection for port x bit y (y = 0..7)
-            AFRL4: u4, //Alternate function selection for port x bit y (y = 0..7)
-            AFRL5: u4, //Alternate function selection for port x bit y (y = 0..7)
-            AFRL6: u4, //Alternate function selection for port x bit y (y = 0..7)
-            AFRL7: u4, //Alternate function selection for port x bit y (y = 0..7)
+            AFRL0: u4, // Alternate function selection for port x bit y (y = 0..7)
+            AFRL1: u4, // Alternate function selection for port x bit y (y = 0..7)
+            AFRL2: u4, // Alternate function selection for port x bit y (y = 0..7)
+            AFRL3: u4, // Alternate function selection for port x bit y (y = 0..7)
+            AFRL4: u4, // Alternate function selection for port x bit y (y = 0..7)
+            AFRL5: u4, // Alternate function selection for port x bit y (y = 0..7)
+            AFRL6: u4, // Alternate function selection for port x bit y (y = 0..7)
+            AFRL7: u4, // Alternate function selection for port x bit y (y = 0..7)
         }), base_address + 0x20);
 
         /// address: 0x40020824
         /// GPIO alternate function high register
         pub const AFRH = @intToPtr(*volatile Mmio(32, packed struct {
-            AFRH8: u4, //Alternate function selection for port x bit y (y = 8..15)
-            AFRH9: u4, //Alternate function selection for port x bit y (y = 8..15)
-            AFRH10: u4, //Alternate function selection for port x bit y (y = 8..15)
-            AFRH11: u4, //Alternate function selection for port x bit y (y = 8..15)
-            AFRH12: u4, //Alternate function selection for port x bit y (y = 8..15)
-            AFRH13: u4, //Alternate function selection for port x bit y (y = 8..15)
-            AFRH14: u4, //Alternate function selection for port x bit y (y = 8..15)
-            AFRH15: u4, //Alternate function selection for port x bit y (y = 8..15)
+            AFRH8: u4, // Alternate function selection for port x bit y (y = 8..15)
+            AFRH9: u4, // Alternate function selection for port x bit y (y = 8..15)
+            AFRH10: u4, // Alternate function selection for port x bit y (y = 8..15)
+            AFRH11: u4, // Alternate function selection for port x bit y (y = 8..15)
+            AFRH12: u4, // Alternate function selection for port x bit y (y = 8..15)
+            AFRH13: u4, // Alternate function selection for port x bit y (y = 8..15)
+            AFRH14: u4, // Alternate function selection for port x bit y (y = 8..15)
+            AFRH15: u4, // Alternate function selection for port x bit y (y = 8..15)
         }), base_address + 0x24);
     };
 
@@ -8462,54 +8462,54 @@ pub const registers = struct {
         /// address: 0x40005800
         /// Control register 1
         pub const CR1 = @intToPtr(*volatile Mmio(32, packed struct {
-            PE: u1, //Peripheral enable
-            SMBUS: u1, //SMBus mode
+            PE: u1, // Peripheral enable
+            SMBUS: u1, // SMBus mode
             reserved_2_2: u1,
-            SMBTYPE: u1, //SMBus type
-            ENARP: u1, //ARP enable
-            ENPEC: u1, //PEC enable
-            ENGC: u1, //General call enable
-            NOSTRETCH: u1, //Clock stretching disable (Slave mode)
-            START: u1, //Start generation
-            STOP: u1, //Stop generation
-            ACK: u1, //Acknowledge enable
-            POS: u1, //Acknowledge/PEC Position (for data reception)
-            PEC: u1, //Packet error checking
-            ALERT: u1, //SMBus alert
+            SMBTYPE: u1, // SMBus type
+            ENARP: u1, // ARP enable
+            ENPEC: u1, // PEC enable
+            ENGC: u1, // General call enable
+            NOSTRETCH: u1, // Clock stretching disable (Slave mode)
+            START: u1, // Start generation
+            STOP: u1, // Stop generation
+            ACK: u1, // Acknowledge enable
+            POS: u1, // Acknowledge/PEC Position (for data reception)
+            PEC: u1, // Packet error checking
+            ALERT: u1, // SMBus alert
             reserved_14_14: u1,
-            SWRST: u1, //Software reset
+            SWRST: u1, // Software reset
             padding_16_31: u16,
         }), base_address + 0x0);
 
         /// address: 0x40005804
         /// Control register 2
         pub const CR2 = @intToPtr(*volatile Mmio(32, packed struct {
-            FREQ: u6, //Peripheral clock frequency
+            FREQ: u6, // Peripheral clock frequency
             reserved_6_7: u2,
-            ITERREN: u1, //Error interrupt enable
-            ITEVTEN: u1, //Event interrupt enable
-            ITBUFEN: u1, //Buffer interrupt enable
-            DMAEN: u1, //DMA requests enable
-            LAST: u1, //DMA last transfer
+            ITERREN: u1, // Error interrupt enable
+            ITEVTEN: u1, // Event interrupt enable
+            ITBUFEN: u1, // Buffer interrupt enable
+            DMAEN: u1, // DMA requests enable
+            LAST: u1, // DMA last transfer
             padding_13_31: u19,
         }), base_address + 0x4);
 
         /// address: 0x40005808
         /// Own address register 1
         pub const OAR1 = @intToPtr(*volatile Mmio(32, packed struct {
-            ADD0: u1, //Interface address
-            ADD7: u7, //Interface address
-            ADD10: u2, //Interface address
+            ADD0: u1, // Interface address
+            ADD7: u7, // Interface address
+            ADD10: u2, // Interface address
             reserved_10_14: u5,
-            ADDMODE: u1, //Addressing mode (slave mode)
+            ADDMODE: u1, // Addressing mode (slave mode)
             padding_16_31: u16,
         }), base_address + 0x8);
 
         /// address: 0x4000580c
         /// Own address register 2
         pub const OAR2 = @intToPtr(*volatile Mmio(32, packed struct {
-            ENDUAL: u1, //Dual addressing mode enable
-            ADD2: u7, //Interface address
+            ENDUAL: u1, // Dual addressing mode enable
+            ADD2: u7, // Interface address
             padding_8_31: u24,
         }), base_address + 0xc);
 
@@ -8520,47 +8520,47 @@ pub const registers = struct {
         /// address: 0x40005814
         /// Status register 1
         pub const SR1 = @intToPtr(*volatile Mmio(32, packed struct {
-            SB: u1, //Start bit (Master mode)
-            ADDR: u1, //Address sent (master mode)/matched (slave mode)
-            BTF: u1, //Byte transfer finished
-            ADD10: u1, //10-bit header sent (Master mode)
-            STOPF: u1, //Stop detection (slave mode)
+            SB: u1, // Start bit (Master mode)
+            ADDR: u1, // Address sent (master mode)/matched (slave mode)
+            BTF: u1, // Byte transfer finished
+            ADD10: u1, // 10-bit header sent (Master mode)
+            STOPF: u1, // Stop detection (slave mode)
             reserved_5_5: u1,
-            RxNE: u1, //Data register not empty (receivers)
-            TxE: u1, //Data register empty (transmitters)
-            BERR: u1, //Bus error
-            ARLO: u1, //Arbitration lost (master mode)
-            AF: u1, //Acknowledge failure
-            OVR: u1, //Overrun/Underrun
-            PECERR: u1, //PEC Error in reception
+            RxNE: u1, // Data register not empty (receivers)
+            TxE: u1, // Data register empty (transmitters)
+            BERR: u1, // Bus error
+            ARLO: u1, // Arbitration lost (master mode)
+            AF: u1, // Acknowledge failure
+            OVR: u1, // Overrun/Underrun
+            PECERR: u1, // PEC Error in reception
             reserved_13_13: u1,
-            TIMEOUT: u1, //Timeout or Tlow error
-            SMBALERT: u1, //SMBus alert
+            TIMEOUT: u1, // Timeout or Tlow error
+            SMBALERT: u1, // SMBus alert
             padding_16_31: u16,
         }), base_address + 0x14);
 
         /// address: 0x40005818
         /// Status register 2
         pub const SR2 = @intToPtr(*volatile Mmio(32, packed struct {
-            MSL: u1, //Master/slave
-            BUSY: u1, //Bus busy
-            TRA: u1, //Transmitter/receiver
+            MSL: u1, // Master/slave
+            BUSY: u1, // Bus busy
+            TRA: u1, // Transmitter/receiver
             reserved_3_3: u1,
-            GENCALL: u1, //General call address (Slave mode)
-            SMBDEFAULT: u1, //SMBus device default address (Slave mode)
-            SMBHOST: u1, //SMBus host header (Slave mode)
-            DUALF: u1, //Dual flag (Slave mode)
-            PEC: u8, //acket error checking register
+            GENCALL: u1, // General call address (Slave mode)
+            SMBDEFAULT: u1, // SMBus device default address (Slave mode)
+            SMBHOST: u1, // SMBus host header (Slave mode)
+            DUALF: u1, // Dual flag (Slave mode)
+            PEC: u8, // acket error checking register
             padding_16_31: u16,
         }), base_address + 0x18);
 
         /// address: 0x4000581c
         /// Clock control register
         pub const CCR = @intToPtr(*volatile Mmio(32, packed struct {
-            CCR: u12, //Clock control register in Fast/Standard mode (Master mode)
+            CCR: u12, // Clock control register in Fast/Standard mode (Master mode)
             reserved_12_13: u2,
-            DUTY: u1, //Fast mode duty cycle
-            F_S: u1, //I2C master mode selection
+            DUTY: u1, // Fast mode duty cycle
+            F_S: u1, // I2C master mode selection
             padding_16_31: u16,
         }), base_address + 0x1c);
 
@@ -8576,54 +8576,54 @@ pub const registers = struct {
         /// address: 0x40005400
         /// Control register 1
         pub const CR1 = @intToPtr(*volatile Mmio(32, packed struct {
-            PE: u1, //Peripheral enable
-            SMBUS: u1, //SMBus mode
+            PE: u1, // Peripheral enable
+            SMBUS: u1, // SMBus mode
             reserved_2_2: u1,
-            SMBTYPE: u1, //SMBus type
-            ENARP: u1, //ARP enable
-            ENPEC: u1, //PEC enable
-            ENGC: u1, //General call enable
-            NOSTRETCH: u1, //Clock stretching disable (Slave mode)
-            START: u1, //Start generation
-            STOP: u1, //Stop generation
-            ACK: u1, //Acknowledge enable
-            POS: u1, //Acknowledge/PEC Position (for data reception)
-            PEC: u1, //Packet error checking
-            ALERT: u1, //SMBus alert
+            SMBTYPE: u1, // SMBus type
+            ENARP: u1, // ARP enable
+            ENPEC: u1, // PEC enable
+            ENGC: u1, // General call enable
+            NOSTRETCH: u1, // Clock stretching disable (Slave mode)
+            START: u1, // Start generation
+            STOP: u1, // Stop generation
+            ACK: u1, // Acknowledge enable
+            POS: u1, // Acknowledge/PEC Position (for data reception)
+            PEC: u1, // Packet error checking
+            ALERT: u1, // SMBus alert
             reserved_14_14: u1,
-            SWRST: u1, //Software reset
+            SWRST: u1, // Software reset
             padding_16_31: u16,
         }), base_address + 0x0);
 
         /// address: 0x40005404
         /// Control register 2
         pub const CR2 = @intToPtr(*volatile Mmio(32, packed struct {
-            FREQ: u6, //Peripheral clock frequency
+            FREQ: u6, // Peripheral clock frequency
             reserved_6_7: u2,
-            ITERREN: u1, //Error interrupt enable
-            ITEVTEN: u1, //Event interrupt enable
-            ITBUFEN: u1, //Buffer interrupt enable
-            DMAEN: u1, //DMA requests enable
-            LAST: u1, //DMA last transfer
+            ITERREN: u1, // Error interrupt enable
+            ITEVTEN: u1, // Event interrupt enable
+            ITBUFEN: u1, // Buffer interrupt enable
+            DMAEN: u1, // DMA requests enable
+            LAST: u1, // DMA last transfer
             padding_13_31: u19,
         }), base_address + 0x4);
 
         /// address: 0x40005408
         /// Own address register 1
         pub const OAR1 = @intToPtr(*volatile Mmio(32, packed struct {
-            ADD0: u1, //Interface address
-            ADD7: u7, //Interface address
-            ADD10: u2, //Interface address
+            ADD0: u1, // Interface address
+            ADD7: u7, // Interface address
+            ADD10: u2, // Interface address
             reserved_10_14: u5,
-            ADDMODE: u1, //Addressing mode (slave mode)
+            ADDMODE: u1, // Addressing mode (slave mode)
             padding_16_31: u16,
         }), base_address + 0x8);
 
         /// address: 0x4000540c
         /// Own address register 2
         pub const OAR2 = @intToPtr(*volatile Mmio(32, packed struct {
-            ENDUAL: u1, //Dual addressing mode enable
-            ADD2: u7, //Interface address
+            ENDUAL: u1, // Dual addressing mode enable
+            ADD2: u7, // Interface address
             padding_8_31: u24,
         }), base_address + 0xc);
 
@@ -8634,47 +8634,47 @@ pub const registers = struct {
         /// address: 0x40005414
         /// Status register 1
         pub const SR1 = @intToPtr(*volatile Mmio(32, packed struct {
-            SB: u1, //Start bit (Master mode)
-            ADDR: u1, //Address sent (master mode)/matched (slave mode)
-            BTF: u1, //Byte transfer finished
-            ADD10: u1, //10-bit header sent (Master mode)
-            STOPF: u1, //Stop detection (slave mode)
+            SB: u1, // Start bit (Master mode)
+            ADDR: u1, // Address sent (master mode)/matched (slave mode)
+            BTF: u1, // Byte transfer finished
+            ADD10: u1, // 10-bit header sent (Master mode)
+            STOPF: u1, // Stop detection (slave mode)
             reserved_5_5: u1,
-            RxNE: u1, //Data register not empty (receivers)
-            TxE: u1, //Data register empty (transmitters)
-            BERR: u1, //Bus error
-            ARLO: u1, //Arbitration lost (master mode)
-            AF: u1, //Acknowledge failure
-            OVR: u1, //Overrun/Underrun
-            PECERR: u1, //PEC Error in reception
+            RxNE: u1, // Data register not empty (receivers)
+            TxE: u1, // Data register empty (transmitters)
+            BERR: u1, // Bus error
+            ARLO: u1, // Arbitration lost (master mode)
+            AF: u1, // Acknowledge failure
+            OVR: u1, // Overrun/Underrun
+            PECERR: u1, // PEC Error in reception
             reserved_13_13: u1,
-            TIMEOUT: u1, //Timeout or Tlow error
-            SMBALERT: u1, //SMBus alert
+            TIMEOUT: u1, // Timeout or Tlow error
+            SMBALERT: u1, // SMBus alert
             padding_16_31: u16,
         }), base_address + 0x14);
 
         /// address: 0x40005418
         /// Status register 2
         pub const SR2 = @intToPtr(*volatile Mmio(32, packed struct {
-            MSL: u1, //Master/slave
-            BUSY: u1, //Bus busy
-            TRA: u1, //Transmitter/receiver
+            MSL: u1, // Master/slave
+            BUSY: u1, // Bus busy
+            TRA: u1, // Transmitter/receiver
             reserved_3_3: u1,
-            GENCALL: u1, //General call address (Slave mode)
-            SMBDEFAULT: u1, //SMBus device default address (Slave mode)
-            SMBHOST: u1, //SMBus host header (Slave mode)
-            DUALF: u1, //Dual flag (Slave mode)
-            PEC: u8, //acket error checking register
+            GENCALL: u1, // General call address (Slave mode)
+            SMBDEFAULT: u1, // SMBus device default address (Slave mode)
+            SMBHOST: u1, // SMBus host header (Slave mode)
+            DUALF: u1, // Dual flag (Slave mode)
+            PEC: u8, // acket error checking register
             padding_16_31: u16,
         }), base_address + 0x18);
 
         /// address: 0x4000541c
         /// Clock control register
         pub const CCR = @intToPtr(*volatile Mmio(32, packed struct {
-            CCR: u12, //Clock control register in Fast/Standard mode (Master mode)
+            CCR: u12, // Clock control register in Fast/Standard mode (Master mode)
             reserved_12_13: u2,
-            DUTY: u1, //Fast mode duty cycle
-            F_S: u1, //I2C master mode selection
+            DUTY: u1, // Fast mode duty cycle
+            F_S: u1, // I2C master mode selection
             padding_16_31: u16,
         }), base_address + 0x1c);
 
@@ -8690,49 +8690,49 @@ pub const registers = struct {
         /// address: 0x40004000
         /// control register 1
         pub const CR1 = @intToPtr(*volatile Mmio(32, packed struct {
-            CPHA: u1, //Clock phase
-            CPOL: u1, //Clock polarity
-            MSTR: u1, //Master selection
-            BR: u3, //Baud rate control
-            SPE: u1, //SPI enable
-            LSBFIRST: u1, //Frame format
-            SSI: u1, //Internal slave select
-            SSM: u1, //Software slave management
-            RXONLY: u1, //Receive only
-            DFF: u1, //Data frame format
-            CRCNEXT: u1, //CRC transfer next
-            CRCEN: u1, //Hardware CRC calculation enable
-            BIDIOE: u1, //Output enable in bidirectional mode
-            BIDIMODE: u1, //Bidirectional data mode enable
+            CPHA: u1, // Clock phase
+            CPOL: u1, // Clock polarity
+            MSTR: u1, // Master selection
+            BR: u3, // Baud rate control
+            SPE: u1, // SPI enable
+            LSBFIRST: u1, // Frame format
+            SSI: u1, // Internal slave select
+            SSM: u1, // Software slave management
+            RXONLY: u1, // Receive only
+            DFF: u1, // Data frame format
+            CRCNEXT: u1, // CRC transfer next
+            CRCEN: u1, // Hardware CRC calculation enable
+            BIDIOE: u1, // Output enable in bidirectional mode
+            BIDIMODE: u1, // Bidirectional data mode enable
             padding_16_31: u16,
         }), base_address + 0x0);
 
         /// address: 0x40004004
         /// control register 2
         pub const CR2 = @intToPtr(*volatile Mmio(32, packed struct {
-            RXDMAEN: u1, //Rx buffer DMA enable
-            TXDMAEN: u1, //Tx buffer DMA enable
-            SSOE: u1, //SS output enable
+            RXDMAEN: u1, // Rx buffer DMA enable
+            TXDMAEN: u1, // Tx buffer DMA enable
+            SSOE: u1, // SS output enable
             reserved_3_3: u1,
-            FRF: u1, //Frame format
-            ERRIE: u1, //Error interrupt enable
-            RXNEIE: u1, //RX buffer not empty interrupt enable
-            TXEIE: u1, //Tx buffer empty interrupt enable
+            FRF: u1, // Frame format
+            ERRIE: u1, // Error interrupt enable
+            RXNEIE: u1, // RX buffer not empty interrupt enable
+            TXEIE: u1, // Tx buffer empty interrupt enable
             padding_8_31: u24,
         }), base_address + 0x4);
 
         /// address: 0x40004008
         /// status register
         pub const SR = @intToPtr(*volatile Mmio(32, packed struct {
-            RXNE: u1, //Receive buffer not empty
-            TXE: u1, //Transmit buffer empty
-            CHSIDE: u1, //Channel side
-            UDR: u1, //Underrun flag
-            CRCERR: u1, //CRC error flag
-            MODF: u1, //Mode fault
-            OVR: u1, //Overrun flag
-            BSY: u1, //Busy flag
-            TIFRFE: u1, //TI frame format error
+            RXNE: u1, // Receive buffer not empty
+            TXE: u1, // Transmit buffer empty
+            CHSIDE: u1, // Channel side
+            UDR: u1, // Underrun flag
+            CRCERR: u1, // CRC error flag
+            MODF: u1, // Mode fault
+            OVR: u1, // Overrun flag
+            BSY: u1, // Busy flag
+            TIFRFE: u1, // TI frame format error
             padding_9_31: u23,
         }), base_address + 0x8);
 
@@ -8743,45 +8743,45 @@ pub const registers = struct {
         /// address: 0x40004010
         /// CRC polynomial register
         pub const CRCPR = @intToPtr(*volatile Mmio(32, packed struct {
-            CRCPOLY: u16, //CRC polynomial register
+            CRCPOLY: u16, // CRC polynomial register
             padding_16_31: u16,
         }), base_address + 0x10);
 
         /// address: 0x40004014
         /// RX CRC register
         pub const RXCRCR = @intToPtr(*volatile Mmio(32, packed struct {
-            RxCRC: u16, //Rx CRC register
+            RxCRC: u16, // Rx CRC register
             padding_16_31: u16,
         }), base_address + 0x14);
 
         /// address: 0x40004018
         /// TX CRC register
         pub const TXCRCR = @intToPtr(*volatile Mmio(32, packed struct {
-            TxCRC: u16, //Tx CRC register
+            TxCRC: u16, // Tx CRC register
             padding_16_31: u16,
         }), base_address + 0x18);
 
         /// address: 0x4000401c
         /// I2S configuration register
         pub const I2SCFGR = @intToPtr(*volatile Mmio(32, packed struct {
-            CHLEN: u1, //Channel length (number of bits per audio channel)
-            DATLEN: u2, //Data length to be transferred
-            CKPOL: u1, //Steady state clock polarity
-            I2SSTD: u2, //I2S standard selection
+            CHLEN: u1, // Channel length (number of bits per audio channel)
+            DATLEN: u2, // Data length to be transferred
+            CKPOL: u1, // Steady state clock polarity
+            I2SSTD: u2, // I2S standard selection
             reserved_6_6: u1,
-            PCMSYNC: u1, //PCM frame synchronization
-            I2SCFG: u2, //I2S configuration mode
-            I2SE: u1, //I2S Enable
-            I2SMOD: u1, //I2S mode selection
+            PCMSYNC: u1, // PCM frame synchronization
+            I2SCFG: u2, // I2S configuration mode
+            I2SE: u1, // I2S Enable
+            I2SMOD: u1, // I2S mode selection
             padding_12_31: u20,
         }), base_address + 0x1c);
 
         /// address: 0x40004020
         /// I2S prescaler register
         pub const I2SPR = @intToPtr(*volatile Mmio(32, packed struct {
-            I2SDIV: u8, //I2S Linear prescaler
-            ODD: u1, //Odd factor for the prescaler
-            MCKOE: u1, //Master clock output enable
+            I2SDIV: u8, // I2S Linear prescaler
+            ODD: u1, // Odd factor for the prescaler
+            MCKOE: u1, // Master clock output enable
             padding_10_31: u22,
         }), base_address + 0x20);
     };
@@ -8793,49 +8793,49 @@ pub const registers = struct {
         /// address: 0x40013000
         /// control register 1
         pub const CR1 = @intToPtr(*volatile Mmio(32, packed struct {
-            CPHA: u1, //Clock phase
-            CPOL: u1, //Clock polarity
-            MSTR: u1, //Master selection
-            BR: u3, //Baud rate control
-            SPE: u1, //SPI enable
-            LSBFIRST: u1, //Frame format
-            SSI: u1, //Internal slave select
-            SSM: u1, //Software slave management
-            RXONLY: u1, //Receive only
-            DFF: u1, //Data frame format
-            CRCNEXT: u1, //CRC transfer next
-            CRCEN: u1, //Hardware CRC calculation enable
-            BIDIOE: u1, //Output enable in bidirectional mode
-            BIDIMODE: u1, //Bidirectional data mode enable
+            CPHA: u1, // Clock phase
+            CPOL: u1, // Clock polarity
+            MSTR: u1, // Master selection
+            BR: u3, // Baud rate control
+            SPE: u1, // SPI enable
+            LSBFIRST: u1, // Frame format
+            SSI: u1, // Internal slave select
+            SSM: u1, // Software slave management
+            RXONLY: u1, // Receive only
+            DFF: u1, // Data frame format
+            CRCNEXT: u1, // CRC transfer next
+            CRCEN: u1, // Hardware CRC calculation enable
+            BIDIOE: u1, // Output enable in bidirectional mode
+            BIDIMODE: u1, // Bidirectional data mode enable
             padding_16_31: u16,
         }), base_address + 0x0);
 
         /// address: 0x40013004
         /// control register 2
         pub const CR2 = @intToPtr(*volatile Mmio(32, packed struct {
-            RXDMAEN: u1, //Rx buffer DMA enable
-            TXDMAEN: u1, //Tx buffer DMA enable
-            SSOE: u1, //SS output enable
+            RXDMAEN: u1, // Rx buffer DMA enable
+            TXDMAEN: u1, // Tx buffer DMA enable
+            SSOE: u1, // SS output enable
             reserved_3_3: u1,
-            FRF: u1, //Frame format
-            ERRIE: u1, //Error interrupt enable
-            RXNEIE: u1, //RX buffer not empty interrupt enable
-            TXEIE: u1, //Tx buffer empty interrupt enable
+            FRF: u1, // Frame format
+            ERRIE: u1, // Error interrupt enable
+            RXNEIE: u1, // RX buffer not empty interrupt enable
+            TXEIE: u1, // Tx buffer empty interrupt enable
             padding_8_31: u24,
         }), base_address + 0x4);
 
         /// address: 0x40013008
         /// status register
         pub const SR = @intToPtr(*volatile Mmio(32, packed struct {
-            RXNE: u1, //Receive buffer not empty
-            TXE: u1, //Transmit buffer empty
-            CHSIDE: u1, //Channel side
-            UDR: u1, //Underrun flag
-            CRCERR: u1, //CRC error flag
-            MODF: u1, //Mode fault
-            OVR: u1, //Overrun flag
-            BSY: u1, //Busy flag
-            TIFRFE: u1, //TI frame format error
+            RXNE: u1, // Receive buffer not empty
+            TXE: u1, // Transmit buffer empty
+            CHSIDE: u1, // Channel side
+            UDR: u1, // Underrun flag
+            CRCERR: u1, // CRC error flag
+            MODF: u1, // Mode fault
+            OVR: u1, // Overrun flag
+            BSY: u1, // Busy flag
+            TIFRFE: u1, // TI frame format error
             padding_9_31: u23,
         }), base_address + 0x8);
 
@@ -8846,45 +8846,45 @@ pub const registers = struct {
         /// address: 0x40013010
         /// CRC polynomial register
         pub const CRCPR = @intToPtr(*volatile Mmio(32, packed struct {
-            CRCPOLY: u16, //CRC polynomial register
+            CRCPOLY: u16, // CRC polynomial register
             padding_16_31: u16,
         }), base_address + 0x10);
 
         /// address: 0x40013014
         /// RX CRC register
         pub const RXCRCR = @intToPtr(*volatile Mmio(32, packed struct {
-            RxCRC: u16, //Rx CRC register
+            RxCRC: u16, // Rx CRC register
             padding_16_31: u16,
         }), base_address + 0x14);
 
         /// address: 0x40013018
         /// TX CRC register
         pub const TXCRCR = @intToPtr(*volatile Mmio(32, packed struct {
-            TxCRC: u16, //Tx CRC register
+            TxCRC: u16, // Tx CRC register
             padding_16_31: u16,
         }), base_address + 0x18);
 
         /// address: 0x4001301c
         /// I2S configuration register
         pub const I2SCFGR = @intToPtr(*volatile Mmio(32, packed struct {
-            CHLEN: u1, //Channel length (number of bits per audio channel)
-            DATLEN: u2, //Data length to be transferred
-            CKPOL: u1, //Steady state clock polarity
-            I2SSTD: u2, //I2S standard selection
+            CHLEN: u1, // Channel length (number of bits per audio channel)
+            DATLEN: u2, // Data length to be transferred
+            CKPOL: u1, // Steady state clock polarity
+            I2SSTD: u2, // I2S standard selection
             reserved_6_6: u1,
-            PCMSYNC: u1, //PCM frame synchronization
-            I2SCFG: u2, //I2S configuration mode
-            I2SE: u1, //I2S Enable
-            I2SMOD: u1, //I2S mode selection
+            PCMSYNC: u1, // PCM frame synchronization
+            I2SCFG: u2, // I2S configuration mode
+            I2SE: u1, // I2S Enable
+            I2SMOD: u1, // I2S mode selection
             padding_12_31: u20,
         }), base_address + 0x1c);
 
         /// address: 0x40013020
         /// I2S prescaler register
         pub const I2SPR = @intToPtr(*volatile Mmio(32, packed struct {
-            I2SDIV: u8, //I2S Linear prescaler
-            ODD: u1, //Odd factor for the prescaler
-            MCKOE: u1, //Master clock output enable
+            I2SDIV: u8, // I2S Linear prescaler
+            ODD: u1, // Odd factor for the prescaler
+            MCKOE: u1, // Master clock output enable
             padding_10_31: u22,
         }), base_address + 0x20);
     };
@@ -8896,49 +8896,49 @@ pub const registers = struct {
         /// address: 0x40003800
         /// control register 1
         pub const CR1 = @intToPtr(*volatile Mmio(32, packed struct {
-            CPHA: u1, //Clock phase
-            CPOL: u1, //Clock polarity
-            MSTR: u1, //Master selection
-            BR: u3, //Baud rate control
-            SPE: u1, //SPI enable
-            LSBFIRST: u1, //Frame format
-            SSI: u1, //Internal slave select
-            SSM: u1, //Software slave management
-            RXONLY: u1, //Receive only
-            DFF: u1, //Data frame format
-            CRCNEXT: u1, //CRC transfer next
-            CRCEN: u1, //Hardware CRC calculation enable
-            BIDIOE: u1, //Output enable in bidirectional mode
-            BIDIMODE: u1, //Bidirectional data mode enable
+            CPHA: u1, // Clock phase
+            CPOL: u1, // Clock polarity
+            MSTR: u1, // Master selection
+            BR: u3, // Baud rate control
+            SPE: u1, // SPI enable
+            LSBFIRST: u1, // Frame format
+            SSI: u1, // Internal slave select
+            SSM: u1, // Software slave management
+            RXONLY: u1, // Receive only
+            DFF: u1, // Data frame format
+            CRCNEXT: u1, // CRC transfer next
+            CRCEN: u1, // Hardware CRC calculation enable
+            BIDIOE: u1, // Output enable in bidirectional mode
+            BIDIMODE: u1, // Bidirectional data mode enable
             padding_16_31: u16,
         }), base_address + 0x0);
 
         /// address: 0x40003804
         /// control register 2
         pub const CR2 = @intToPtr(*volatile Mmio(32, packed struct {
-            RXDMAEN: u1, //Rx buffer DMA enable
-            TXDMAEN: u1, //Tx buffer DMA enable
-            SSOE: u1, //SS output enable
+            RXDMAEN: u1, // Rx buffer DMA enable
+            TXDMAEN: u1, // Tx buffer DMA enable
+            SSOE: u1, // SS output enable
             reserved_3_3: u1,
-            FRF: u1, //Frame format
-            ERRIE: u1, //Error interrupt enable
-            RXNEIE: u1, //RX buffer not empty interrupt enable
-            TXEIE: u1, //Tx buffer empty interrupt enable
+            FRF: u1, // Frame format
+            ERRIE: u1, // Error interrupt enable
+            RXNEIE: u1, // RX buffer not empty interrupt enable
+            TXEIE: u1, // Tx buffer empty interrupt enable
             padding_8_31: u24,
         }), base_address + 0x4);
 
         /// address: 0x40003808
         /// status register
         pub const SR = @intToPtr(*volatile Mmio(32, packed struct {
-            RXNE: u1, //Receive buffer not empty
-            TXE: u1, //Transmit buffer empty
-            CHSIDE: u1, //Channel side
-            UDR: u1, //Underrun flag
-            CRCERR: u1, //CRC error flag
-            MODF: u1, //Mode fault
-            OVR: u1, //Overrun flag
-            BSY: u1, //Busy flag
-            TIFRFE: u1, //TI frame format error
+            RXNE: u1, // Receive buffer not empty
+            TXE: u1, // Transmit buffer empty
+            CHSIDE: u1, // Channel side
+            UDR: u1, // Underrun flag
+            CRCERR: u1, // CRC error flag
+            MODF: u1, // Mode fault
+            OVR: u1, // Overrun flag
+            BSY: u1, // Busy flag
+            TIFRFE: u1, // TI frame format error
             padding_9_31: u23,
         }), base_address + 0x8);
 
@@ -8949,45 +8949,45 @@ pub const registers = struct {
         /// address: 0x40003810
         /// CRC polynomial register
         pub const CRCPR = @intToPtr(*volatile Mmio(32, packed struct {
-            CRCPOLY: u16, //CRC polynomial register
+            CRCPOLY: u16, // CRC polynomial register
             padding_16_31: u16,
         }), base_address + 0x10);
 
         /// address: 0x40003814
         /// RX CRC register
         pub const RXCRCR = @intToPtr(*volatile Mmio(32, packed struct {
-            RxCRC: u16, //Rx CRC register
+            RxCRC: u16, // Rx CRC register
             padding_16_31: u16,
         }), base_address + 0x14);
 
         /// address: 0x40003818
         /// TX CRC register
         pub const TXCRCR = @intToPtr(*volatile Mmio(32, packed struct {
-            TxCRC: u16, //Tx CRC register
+            TxCRC: u16, // Tx CRC register
             padding_16_31: u16,
         }), base_address + 0x18);
 
         /// address: 0x4000381c
         /// I2S configuration register
         pub const I2SCFGR = @intToPtr(*volatile Mmio(32, packed struct {
-            CHLEN: u1, //Channel length (number of bits per audio channel)
-            DATLEN: u2, //Data length to be transferred
-            CKPOL: u1, //Steady state clock polarity
-            I2SSTD: u2, //I2S standard selection
+            CHLEN: u1, // Channel length (number of bits per audio channel)
+            DATLEN: u2, // Data length to be transferred
+            CKPOL: u1, // Steady state clock polarity
+            I2SSTD: u2, // I2S standard selection
             reserved_6_6: u1,
-            PCMSYNC: u1, //PCM frame synchronization
-            I2SCFG: u2, //I2S configuration mode
-            I2SE: u1, //I2S Enable
-            I2SMOD: u1, //I2S mode selection
+            PCMSYNC: u1, // PCM frame synchronization
+            I2SCFG: u2, // I2S configuration mode
+            I2SE: u1, // I2S Enable
+            I2SMOD: u1, // I2S mode selection
             padding_12_31: u20,
         }), base_address + 0x1c);
 
         /// address: 0x40003820
         /// I2S prescaler register
         pub const I2SPR = @intToPtr(*volatile Mmio(32, packed struct {
-            I2SDIV: u8, //I2S Linear prescaler
-            ODD: u1, //Odd factor for the prescaler
-            MCKOE: u1, //Master clock output enable
+            I2SDIV: u8, // I2S Linear prescaler
+            ODD: u1, // Odd factor for the prescaler
+            MCKOE: u1, // Master clock output enable
             padding_10_31: u22,
         }), base_address + 0x20);
     };
@@ -8999,49 +8999,49 @@ pub const registers = struct {
         /// address: 0x40003c00
         /// control register 1
         pub const CR1 = @intToPtr(*volatile Mmio(32, packed struct {
-            CPHA: u1, //Clock phase
-            CPOL: u1, //Clock polarity
-            MSTR: u1, //Master selection
-            BR: u3, //Baud rate control
-            SPE: u1, //SPI enable
-            LSBFIRST: u1, //Frame format
-            SSI: u1, //Internal slave select
-            SSM: u1, //Software slave management
-            RXONLY: u1, //Receive only
-            DFF: u1, //Data frame format
-            CRCNEXT: u1, //CRC transfer next
-            CRCEN: u1, //Hardware CRC calculation enable
-            BIDIOE: u1, //Output enable in bidirectional mode
-            BIDIMODE: u1, //Bidirectional data mode enable
+            CPHA: u1, // Clock phase
+            CPOL: u1, // Clock polarity
+            MSTR: u1, // Master selection
+            BR: u3, // Baud rate control
+            SPE: u1, // SPI enable
+            LSBFIRST: u1, // Frame format
+            SSI: u1, // Internal slave select
+            SSM: u1, // Software slave management
+            RXONLY: u1, // Receive only
+            DFF: u1, // Data frame format
+            CRCNEXT: u1, // CRC transfer next
+            CRCEN: u1, // Hardware CRC calculation enable
+            BIDIOE: u1, // Output enable in bidirectional mode
+            BIDIMODE: u1, // Bidirectional data mode enable
             padding_16_31: u16,
         }), base_address + 0x0);
 
         /// address: 0x40003c04
         /// control register 2
         pub const CR2 = @intToPtr(*volatile Mmio(32, packed struct {
-            RXDMAEN: u1, //Rx buffer DMA enable
-            TXDMAEN: u1, //Tx buffer DMA enable
-            SSOE: u1, //SS output enable
+            RXDMAEN: u1, // Rx buffer DMA enable
+            TXDMAEN: u1, // Tx buffer DMA enable
+            SSOE: u1, // SS output enable
             reserved_3_3: u1,
-            FRF: u1, //Frame format
-            ERRIE: u1, //Error interrupt enable
-            RXNEIE: u1, //RX buffer not empty interrupt enable
-            TXEIE: u1, //Tx buffer empty interrupt enable
+            FRF: u1, // Frame format
+            ERRIE: u1, // Error interrupt enable
+            RXNEIE: u1, // RX buffer not empty interrupt enable
+            TXEIE: u1, // Tx buffer empty interrupt enable
             padding_8_31: u24,
         }), base_address + 0x4);
 
         /// address: 0x40003c08
         /// status register
         pub const SR = @intToPtr(*volatile Mmio(32, packed struct {
-            RXNE: u1, //Receive buffer not empty
-            TXE: u1, //Transmit buffer empty
-            CHSIDE: u1, //Channel side
-            UDR: u1, //Underrun flag
-            CRCERR: u1, //CRC error flag
-            MODF: u1, //Mode fault
-            OVR: u1, //Overrun flag
-            BSY: u1, //Busy flag
-            TIFRFE: u1, //TI frame format error
+            RXNE: u1, // Receive buffer not empty
+            TXE: u1, // Transmit buffer empty
+            CHSIDE: u1, // Channel side
+            UDR: u1, // Underrun flag
+            CRCERR: u1, // CRC error flag
+            MODF: u1, // Mode fault
+            OVR: u1, // Overrun flag
+            BSY: u1, // Busy flag
+            TIFRFE: u1, // TI frame format error
             padding_9_31: u23,
         }), base_address + 0x8);
 
@@ -9052,45 +9052,45 @@ pub const registers = struct {
         /// address: 0x40003c10
         /// CRC polynomial register
         pub const CRCPR = @intToPtr(*volatile Mmio(32, packed struct {
-            CRCPOLY: u16, //CRC polynomial register
+            CRCPOLY: u16, // CRC polynomial register
             padding_16_31: u16,
         }), base_address + 0x10);
 
         /// address: 0x40003c14
         /// RX CRC register
         pub const RXCRCR = @intToPtr(*volatile Mmio(32, packed struct {
-            RxCRC: u16, //Rx CRC register
+            RxCRC: u16, // Rx CRC register
             padding_16_31: u16,
         }), base_address + 0x14);
 
         /// address: 0x40003c18
         /// TX CRC register
         pub const TXCRCR = @intToPtr(*volatile Mmio(32, packed struct {
-            TxCRC: u16, //Tx CRC register
+            TxCRC: u16, // Tx CRC register
             padding_16_31: u16,
         }), base_address + 0x18);
 
         /// address: 0x40003c1c
         /// I2S configuration register
         pub const I2SCFGR = @intToPtr(*volatile Mmio(32, packed struct {
-            CHLEN: u1, //Channel length (number of bits per audio channel)
-            DATLEN: u2, //Data length to be transferred
-            CKPOL: u1, //Steady state clock polarity
-            I2SSTD: u2, //I2S standard selection
+            CHLEN: u1, // Channel length (number of bits per audio channel)
+            DATLEN: u2, // Data length to be transferred
+            CKPOL: u1, // Steady state clock polarity
+            I2SSTD: u2, // I2S standard selection
             reserved_6_6: u1,
-            PCMSYNC: u1, //PCM frame synchronization
-            I2SCFG: u2, //I2S configuration mode
-            I2SE: u1, //I2S Enable
-            I2SMOD: u1, //I2S mode selection
+            PCMSYNC: u1, // PCM frame synchronization
+            I2SCFG: u2, // I2S configuration mode
+            I2SE: u1, // I2S Enable
+            I2SMOD: u1, // I2S mode selection
             padding_12_31: u20,
         }), base_address + 0x1c);
 
         /// address: 0x40003c20
         /// I2S prescaler register
         pub const I2SPR = @intToPtr(*volatile Mmio(32, packed struct {
-            I2SDIV: u8, //I2S Linear prescaler
-            ODD: u1, //Odd factor for the prescaler
-            MCKOE: u1, //Master clock output enable
+            I2SDIV: u8, // I2S Linear prescaler
+            ODD: u1, // Odd factor for the prescaler
+            MCKOE: u1, // Master clock output enable
             padding_10_31: u22,
         }), base_address + 0x20);
     };
@@ -9102,49 +9102,49 @@ pub const registers = struct {
         /// address: 0x40013400
         /// control register 1
         pub const CR1 = @intToPtr(*volatile Mmio(32, packed struct {
-            CPHA: u1, //Clock phase
-            CPOL: u1, //Clock polarity
-            MSTR: u1, //Master selection
-            BR: u3, //Baud rate control
-            SPE: u1, //SPI enable
-            LSBFIRST: u1, //Frame format
-            SSI: u1, //Internal slave select
-            SSM: u1, //Software slave management
-            RXONLY: u1, //Receive only
-            DFF: u1, //Data frame format
-            CRCNEXT: u1, //CRC transfer next
-            CRCEN: u1, //Hardware CRC calculation enable
-            BIDIOE: u1, //Output enable in bidirectional mode
-            BIDIMODE: u1, //Bidirectional data mode enable
+            CPHA: u1, // Clock phase
+            CPOL: u1, // Clock polarity
+            MSTR: u1, // Master selection
+            BR: u3, // Baud rate control
+            SPE: u1, // SPI enable
+            LSBFIRST: u1, // Frame format
+            SSI: u1, // Internal slave select
+            SSM: u1, // Software slave management
+            RXONLY: u1, // Receive only
+            DFF: u1, // Data frame format
+            CRCNEXT: u1, // CRC transfer next
+            CRCEN: u1, // Hardware CRC calculation enable
+            BIDIOE: u1, // Output enable in bidirectional mode
+            BIDIMODE: u1, // Bidirectional data mode enable
             padding_16_31: u16,
         }), base_address + 0x0);
 
         /// address: 0x40013404
         /// control register 2
         pub const CR2 = @intToPtr(*volatile Mmio(32, packed struct {
-            RXDMAEN: u1, //Rx buffer DMA enable
-            TXDMAEN: u1, //Tx buffer DMA enable
-            SSOE: u1, //SS output enable
+            RXDMAEN: u1, // Rx buffer DMA enable
+            TXDMAEN: u1, // Tx buffer DMA enable
+            SSOE: u1, // SS output enable
             reserved_3_3: u1,
-            FRF: u1, //Frame format
-            ERRIE: u1, //Error interrupt enable
-            RXNEIE: u1, //RX buffer not empty interrupt enable
-            TXEIE: u1, //Tx buffer empty interrupt enable
+            FRF: u1, // Frame format
+            ERRIE: u1, // Error interrupt enable
+            RXNEIE: u1, // RX buffer not empty interrupt enable
+            TXEIE: u1, // Tx buffer empty interrupt enable
             padding_8_31: u24,
         }), base_address + 0x4);
 
         /// address: 0x40013408
         /// status register
         pub const SR = @intToPtr(*volatile Mmio(32, packed struct {
-            RXNE: u1, //Receive buffer not empty
-            TXE: u1, //Transmit buffer empty
-            CHSIDE: u1, //Channel side
-            UDR: u1, //Underrun flag
-            CRCERR: u1, //CRC error flag
-            MODF: u1, //Mode fault
-            OVR: u1, //Overrun flag
-            BSY: u1, //Busy flag
-            TIFRFE: u1, //TI frame format error
+            RXNE: u1, // Receive buffer not empty
+            TXE: u1, // Transmit buffer empty
+            CHSIDE: u1, // Channel side
+            UDR: u1, // Underrun flag
+            CRCERR: u1, // CRC error flag
+            MODF: u1, // Mode fault
+            OVR: u1, // Overrun flag
+            BSY: u1, // Busy flag
+            TIFRFE: u1, // TI frame format error
             padding_9_31: u23,
         }), base_address + 0x8);
 
@@ -9155,45 +9155,45 @@ pub const registers = struct {
         /// address: 0x40013410
         /// CRC polynomial register
         pub const CRCPR = @intToPtr(*volatile Mmio(32, packed struct {
-            CRCPOLY: u16, //CRC polynomial register
+            CRCPOLY: u16, // CRC polynomial register
             padding_16_31: u16,
         }), base_address + 0x10);
 
         /// address: 0x40013414
         /// RX CRC register
         pub const RXCRCR = @intToPtr(*volatile Mmio(32, packed struct {
-            RxCRC: u16, //Rx CRC register
+            RxCRC: u16, // Rx CRC register
             padding_16_31: u16,
         }), base_address + 0x14);
 
         /// address: 0x40013418
         /// TX CRC register
         pub const TXCRCR = @intToPtr(*volatile Mmio(32, packed struct {
-            TxCRC: u16, //Tx CRC register
+            TxCRC: u16, // Tx CRC register
             padding_16_31: u16,
         }), base_address + 0x18);
 
         /// address: 0x4001341c
         /// I2S configuration register
         pub const I2SCFGR = @intToPtr(*volatile Mmio(32, packed struct {
-            CHLEN: u1, //Channel length (number of bits per audio channel)
-            DATLEN: u2, //Data length to be transferred
-            CKPOL: u1, //Steady state clock polarity
-            I2SSTD: u2, //I2S standard selection
+            CHLEN: u1, // Channel length (number of bits per audio channel)
+            DATLEN: u2, // Data length to be transferred
+            CKPOL: u1, // Steady state clock polarity
+            I2SSTD: u2, // I2S standard selection
             reserved_6_6: u1,
-            PCMSYNC: u1, //PCM frame synchronization
-            I2SCFG: u2, //I2S configuration mode
-            I2SE: u1, //I2S Enable
-            I2SMOD: u1, //I2S mode selection
+            PCMSYNC: u1, // PCM frame synchronization
+            I2SCFG: u2, // I2S configuration mode
+            I2SE: u1, // I2S Enable
+            I2SMOD: u1, // I2S mode selection
             padding_12_31: u20,
         }), base_address + 0x1c);
 
         /// address: 0x40013420
         /// I2S prescaler register
         pub const I2SPR = @intToPtr(*volatile Mmio(32, packed struct {
-            I2SDIV: u8, //I2S Linear prescaler
-            ODD: u1, //Odd factor for the prescaler
-            MCKOE: u1, //Master clock output enable
+            I2SDIV: u8, // I2S Linear prescaler
+            ODD: u1, // Odd factor for the prescaler
+            MCKOE: u1, // Master clock output enable
             padding_10_31: u22,
         }), base_address + 0x20);
     };
@@ -9205,49 +9205,49 @@ pub const registers = struct {
         /// address: 0x40015000
         /// control register 1
         pub const CR1 = @intToPtr(*volatile Mmio(32, packed struct {
-            CPHA: u1, //Clock phase
-            CPOL: u1, //Clock polarity
-            MSTR: u1, //Master selection
-            BR: u3, //Baud rate control
-            SPE: u1, //SPI enable
-            LSBFIRST: u1, //Frame format
-            SSI: u1, //Internal slave select
-            SSM: u1, //Software slave management
-            RXONLY: u1, //Receive only
-            DFF: u1, //Data frame format
-            CRCNEXT: u1, //CRC transfer next
-            CRCEN: u1, //Hardware CRC calculation enable
-            BIDIOE: u1, //Output enable in bidirectional mode
-            BIDIMODE: u1, //Bidirectional data mode enable
+            CPHA: u1, // Clock phase
+            CPOL: u1, // Clock polarity
+            MSTR: u1, // Master selection
+            BR: u3, // Baud rate control
+            SPE: u1, // SPI enable
+            LSBFIRST: u1, // Frame format
+            SSI: u1, // Internal slave select
+            SSM: u1, // Software slave management
+            RXONLY: u1, // Receive only
+            DFF: u1, // Data frame format
+            CRCNEXT: u1, // CRC transfer next
+            CRCEN: u1, // Hardware CRC calculation enable
+            BIDIOE: u1, // Output enable in bidirectional mode
+            BIDIMODE: u1, // Bidirectional data mode enable
             padding_16_31: u16,
         }), base_address + 0x0);
 
         /// address: 0x40015004
         /// control register 2
         pub const CR2 = @intToPtr(*volatile Mmio(32, packed struct {
-            RXDMAEN: u1, //Rx buffer DMA enable
-            TXDMAEN: u1, //Tx buffer DMA enable
-            SSOE: u1, //SS output enable
+            RXDMAEN: u1, // Rx buffer DMA enable
+            TXDMAEN: u1, // Tx buffer DMA enable
+            SSOE: u1, // SS output enable
             reserved_3_3: u1,
-            FRF: u1, //Frame format
-            ERRIE: u1, //Error interrupt enable
-            RXNEIE: u1, //RX buffer not empty interrupt enable
-            TXEIE: u1, //Tx buffer empty interrupt enable
+            FRF: u1, // Frame format
+            ERRIE: u1, // Error interrupt enable
+            RXNEIE: u1, // RX buffer not empty interrupt enable
+            TXEIE: u1, // Tx buffer empty interrupt enable
             padding_8_31: u24,
         }), base_address + 0x4);
 
         /// address: 0x40015008
         /// status register
         pub const SR = @intToPtr(*volatile Mmio(32, packed struct {
-            RXNE: u1, //Receive buffer not empty
-            TXE: u1, //Transmit buffer empty
-            CHSIDE: u1, //Channel side
-            UDR: u1, //Underrun flag
-            CRCERR: u1, //CRC error flag
-            MODF: u1, //Mode fault
-            OVR: u1, //Overrun flag
-            BSY: u1, //Busy flag
-            TIFRFE: u1, //TI frame format error
+            RXNE: u1, // Receive buffer not empty
+            TXE: u1, // Transmit buffer empty
+            CHSIDE: u1, // Channel side
+            UDR: u1, // Underrun flag
+            CRCERR: u1, // CRC error flag
+            MODF: u1, // Mode fault
+            OVR: u1, // Overrun flag
+            BSY: u1, // Busy flag
+            TIFRFE: u1, // TI frame format error
             padding_9_31: u23,
         }), base_address + 0x8);
 
@@ -9258,45 +9258,45 @@ pub const registers = struct {
         /// address: 0x40015010
         /// CRC polynomial register
         pub const CRCPR = @intToPtr(*volatile Mmio(32, packed struct {
-            CRCPOLY: u16, //CRC polynomial register
+            CRCPOLY: u16, // CRC polynomial register
             padding_16_31: u16,
         }), base_address + 0x10);
 
         /// address: 0x40015014
         /// RX CRC register
         pub const RXCRCR = @intToPtr(*volatile Mmio(32, packed struct {
-            RxCRC: u16, //Rx CRC register
+            RxCRC: u16, // Rx CRC register
             padding_16_31: u16,
         }), base_address + 0x14);
 
         /// address: 0x40015018
         /// TX CRC register
         pub const TXCRCR = @intToPtr(*volatile Mmio(32, packed struct {
-            TxCRC: u16, //Tx CRC register
+            TxCRC: u16, // Tx CRC register
             padding_16_31: u16,
         }), base_address + 0x18);
 
         /// address: 0x4001501c
         /// I2S configuration register
         pub const I2SCFGR = @intToPtr(*volatile Mmio(32, packed struct {
-            CHLEN: u1, //Channel length (number of bits per audio channel)
-            DATLEN: u2, //Data length to be transferred
-            CKPOL: u1, //Steady state clock polarity
-            I2SSTD: u2, //I2S standard selection
+            CHLEN: u1, // Channel length (number of bits per audio channel)
+            DATLEN: u2, // Data length to be transferred
+            CKPOL: u1, // Steady state clock polarity
+            I2SSTD: u2, // I2S standard selection
             reserved_6_6: u1,
-            PCMSYNC: u1, //PCM frame synchronization
-            I2SCFG: u2, //I2S configuration mode
-            I2SE: u1, //I2S Enable
-            I2SMOD: u1, //I2S mode selection
+            PCMSYNC: u1, // PCM frame synchronization
+            I2SCFG: u2, // I2S configuration mode
+            I2SE: u1, // I2S Enable
+            I2SMOD: u1, // I2S mode selection
             padding_12_31: u20,
         }), base_address + 0x1c);
 
         /// address: 0x40015020
         /// I2S prescaler register
         pub const I2SPR = @intToPtr(*volatile Mmio(32, packed struct {
-            I2SDIV: u8, //I2S Linear prescaler
-            ODD: u1, //Odd factor for the prescaler
-            MCKOE: u1, //Master clock output enable
+            I2SDIV: u8, // I2S Linear prescaler
+            ODD: u1, // Odd factor for the prescaler
+            MCKOE: u1, // Master clock output enable
             padding_10_31: u22,
         }), base_address + 0x20);
     };
