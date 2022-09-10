@@ -1,0 +1,104 @@
+<device xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="1.1" xs:noNamespaceSchemaLocation="CMSIS-SVD_Schema_1_1.xsd">
+  <name>STM32F411</name>
+  <version>1.1</version>
+  <description>STM32F411</description>
+  <cpu>
+    <name>CM4</name>
+    <revision>r1p0</revision>
+    <endian>little</endian>
+    <mpuPresent>false</mpuPresent>
+    <fpuPresent>false</fpuPresent>
+    <nvicPrioBits>4</nvicPrioBits>
+    <vendorSystickConfig>false</vendorSystickConfig>
+  </cpu>
+  <addressUnitBits>8</addressUnitBits>
+  <width>32</width>
+  <size>0x20</size>
+  <resetValue>0x0</resetValue>
+  <resetMask>0xFFFFFFFF</resetMask>
+  <peripherals>
+    <peripheral>
+      <name>ADC_Common</name>
+      <description>ADC common registers</description>
+      <groupName>ADC_Common</groupName>
+      <baseAddress>0x40012300</baseAddress>
+      <addressBlock>
+        <offset>0x0</offset>
+        <size>0x9</size>
+        <usage>registers</usage>
+      </addressBlock>
+      <interrupt>
+        <name>FPU</name>
+        <description>FPU interrupt</description>
+        <value>81</value>
+      </interrupt>
+      <registers>
+        <register>
+          <name>CCR</name>
+          <displayName>CCR</displayName>
+          <description>ADC common control register</description>
+          <addressOffset>0x4</addressOffset>
+          <size>0x20</size>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <fields>
+            <field>
+              <name>TSVREFE</name>
+              <description>Temperature sensor and VREFINT
+              enable</description>
+              <bitOffset>23</bitOffset>
+              <bitWidth>1</bitWidth>
+            <enumeratedValues><name>TSVREFE</name><usage>read-write</usage><enumeratedValue><name>Disabled</name><description>Temperature sensor and V_REFINT channel disabled</description><value>0</value></enumeratedValue><enumeratedValue><name>Enabled</name><description>Temperature sensor and V_REFINT channel enabled</description><value>1</value></enumeratedValue></enumeratedValues>
+            </field>
+
+
+            <field>
+              <name>TSOVF</name>
+              <description>Time-stamp overflow flag</description>
+              <bitOffset>12</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>read-write</access>
+            <enumeratedValues><name>TSOVFR</name><usage>read</usage><enumeratedValue><name>Overflow</name><description>This flag is set by hardware when a time-stamp event occurs while TSF is already set</description><value>1</value></enumeratedValue></enumeratedValues>
+            <enumeratedValues><name>TSOVFW</name><usage>write</usage><enumeratedValue><name>Clear</name><description>This flag is cleared by software by writing 0</description><value>0</value></enumeratedValue></enumeratedValues>
+            </field>
+            <field>
+              <name>TAMP1F</name>
+              <description>Tamper detection flag</description>
+              <bitOffset>13</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>read-write</access>
+            <enumeratedValues><name>TAMP1FR</name><usage>read</usage><enumeratedValue><name>Tampered</name><description>This flag is set by hardware when a tamper detection event is detected on the RTC_TAMPx input</description><value>1</value></enumeratedValue></enumeratedValues>
+            <enumeratedValues><name>TAMP1FW</name><usage>write</usage><enumeratedValue><name>Clear</name><description>Flag cleared by software writing 0</description><value>0</value></enumeratedValue></enumeratedValues>
+            </field>
+            <field>
+              <name>TAMP2F</name>
+              <description>TAMPER2 detection flag</description>
+              <bitOffset>14</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>read-write</access>
+            <enumeratedValues derivedFrom="TAMP1FR"/>
+            <enumeratedValues derivedFrom="TAMP1FW"/>
+            </field>
+
+            <field>
+              <name>MR0</name>
+              <description>Interrupt Mask on line 0</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+            <enumeratedValues><name>MR0</name><usage>read-write</usage><enumeratedValue><name>Masked</name><description>Interrupt request line is masked</description><value>0</value></enumeratedValue><enumeratedValue><name>Unmasked</name><description>Interrupt request line is unmasked</description><value>1</value></enumeratedValue></enumeratedValues>
+            </field>
+            <field>
+              <name>MR1</name>
+              <description>Interrupt Mask on line 1</description>
+              <bitOffset>1</bitOffset>
+              <bitWidth>1</bitWidth>
+            <enumeratedValues derivedFrom="MR0"/>
+            </field>
+
+
+          </fields>
+        </register>
+      </registers>
+    </peripheral>
+  </peripherals>
+</device>
