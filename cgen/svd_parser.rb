@@ -3,6 +3,7 @@ class SvdParser
   def initialize(chip)
     filename = "../tmp/stm32-svd/svd/stm32f#{chip[0..2].upcase}.svd"
     filename = "data/test.svd" if $is_test
+    filename = "data/STM32F#{chip[0..2].upcase}.svd"
     @doc = File.open(filename) { |f| Nokogiri::XML(f) }
     @peripherals = []
   end

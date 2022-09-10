@@ -4,6 +4,8 @@ require 'erb'
 require 'json'
 require 'nokogiri'
 require 'csv'
+require File.dirname(__FILE__) + '/common.rb'
+require File.dirname(__FILE__) + '/svd_parser.rb'
 
 if ARGV[0].nil?
   print "Usage: registers.rb [chip-name]\n"
@@ -11,8 +13,7 @@ if ARGV[0].nil?
 end
 
 def read_data(chip)
-  #filename = "data/STM32F#{chip[0..2].upcase}.svd"
-  filename = "stm32F#{chip[0..2].upcase}.svd"
+  filename = "data/STM32F#{chip[0..2].upcase}.svd"
   doc = File.open(filename) { |f| Nokogiri::XML(f) }
   peripherals = []
   for pd in doc.xpath("//peripheral") do
@@ -170,6 +171,7 @@ peripherals = peripherals.map do |p|
   p
 end
 
+peripherals = SvdParser.new(ARGV[0]).parse
 fix_adc_smpr(peripherals)
 
 def generate(peripherals)
