@@ -15,6 +15,14 @@ class String
     return "@\"#{self}\"" if ["error", "break"].include?(self)
     self
   end
+
+  def underscore
+    self.gsub(/::/, '/').
+    gsub(/([A-Z]+)([A-Z][a-z])/,'\1_\2').
+    gsub(/([a-z\d])([A-Z])/,'\1_\2').
+    tr("-", "_").
+    downcase
+  end
 end
 
 class Hash
@@ -88,11 +96,11 @@ class SvdParser
     return nil if evs.nil?
     if evs.attribute("derivedFrom")
       return {
-        "name" => evs.attribute("derivedFrom").value,
+        "name" => evs.map{ |e| e.attribute("derivedFrom").value}.join("_"),
       }
     end
     {
-      "name" => evs.xpath("name").text,
+      "name" => evs.map{ |e| e.xpath("name").text}.join("_"),
       "values" => evs.xpath("enumeratedValue").map do |ev|
         {
           "name" => ev.xpath("name").text,
@@ -229,7 +237,7 @@ pub const registers = struct {
             <%- if (f.enum and f.enum.values and f.enum.values.length > 0) -%>
             pub const <%= f.enum.name.titlecase %> = enum(u<%= f.bit_width %>) {
                 <%- for v in f.enum.values -%>
-                <%= v.name.downcase.identifier %> = <%= v.value %>, // <%= v.desc %>
+                <%= v.name.underscore.identifier %> = <%= v.value %>, // <%= v.desc %>
                 <%- end -%>
             };
             <%- end -%>
@@ -237,9 +245,8 @@ pub const registers = struct {
 
             <%- for f in r.fields -%>
             <%- if f.desc -%>
-            /// <%= f.desc %>
             <%- end -%>
-            <%= f.name %>: <%- if f.enum -%><%= f.enum.name.titlecase %><%- else -%>u<%= f.bit_width %><%- end -%>,
+            <%= f.name %>: <%- if f.enum -%><%= f.enum.name.titlecase %><%- else -%>u<%= f.bit_width %><%- end -%>, <%- if f.desc or f.enum -%>// <%= f.desc %> <%- if f.enum %> (u<%= f.bit_width %>) <%- end -%> <%- end %>
             <%- end -%>
         }), base_address + <%= r.address_offset %>);
         <%- end -%>
