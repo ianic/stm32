@@ -15,7 +15,6 @@ pub const registers = struct {
             padding_24_31: u8,
         }), base_address + 0x4);
     };
-
     /// Analog-to-digital converter
     pub const ADC1 = struct {
         pub const base_address = 0x40012000;
@@ -228,7 +227,6 @@ pub const registers = struct {
             padding_16_31: u16,
         }), base_address + 0x4c);
     };
-
     /// Cryptographic processor
     pub const CRC = struct {
         pub const base_address = 0x40023000;
@@ -248,7 +246,6 @@ pub const registers = struct {
             padding_1_31: u31,
         }), base_address + 0x8);
     };
-
     /// Debug support
     pub const DBGMCU = struct {
         pub const base_address = 0xe0042000;
@@ -302,7 +299,6 @@ pub const registers = struct {
             padding_19_31: u13,
         }), base_address + 0xc);
     };
-
     /// External interrupt/event controller
     pub const EXTI = struct {
         pub const base_address = 0x40013c00;
@@ -481,7 +477,6 @@ pub const registers = struct {
             padding_23_31: u9,
         }), base_address + 0x14);
     };
-
     /// FLASH
     pub const FLASH = struct {
         pub const base_address = 0x40023c00;
@@ -559,7 +554,6 @@ pub const registers = struct {
             padding_28_31: u4,
         }), base_address + 0x14);
     };
-
     /// Independent watchdog
     pub const IWDG = struct {
         pub const base_address = 0x40003000;
@@ -590,7 +584,6 @@ pub const registers = struct {
             padding_2_31: u30,
         }), base_address + 0xc);
     };
-
     /// USB on the go full speed
     pub const OTG_FS_DEVICE = struct {
         pub const base_address = 0x50000800;
@@ -1060,7 +1053,6 @@ pub const registers = struct {
             padding_31_31: u1,
         }), base_address + 0x370);
     };
-
     /// USB on the go full speed
     pub const OTG_FS_GLOBAL = struct {
         pub const base_address = 0x50000000;
@@ -1218,14 +1210,14 @@ pub const registers = struct {
             padding_25_31: u7,
         }), base_address + 0x1c);
 
-        /// address: 0x50000028
+        /// address: 0x5000001c
         /// OTG status debug read (host mode)
-        pub const GRXSTSR_Host = @intToPtr(*volatile Mmio(50, packed struct {
+        pub const GRXSTSR_Host = @intToPtr(*volatile Mmio(32, packed struct {
             CHNUM: u4, // Channel number
             BCNT: u11, // Byte count
             DPID: u2, // Data PID
             PKTSTS: u4, // Packet status
-            padding_21_49: u29,
+            padding_21_31: u11,
         }), base_address + 28);
 
         /// address: 0x50000024
@@ -1305,28 +1297,27 @@ pub const registers = struct {
             INEPTXFD: u16, // IN endpoint TxFIFO depth
         }), base_address + 0x10c);
 
-        /// address: 0x50000032
+        /// address: 0x50000020
         /// OTG status read and pop (device mode)
-        pub const GRXSTSP_Device = @intToPtr(*volatile Mmio(50, packed struct {
+        pub const GRXSTSP_Device = @intToPtr(*volatile Mmio(32, packed struct {
             EPNUM: u4, // Endpoint number
             BCNT: u11, // Byte count
             DPID: u2, // Data PID
             PKTSTS: u4, // Packet status
             FRMNUM: u4, // Frame number
-            padding_25_49: u25,
+            padding_25_31: u7,
         }), base_address + 32);
 
-        /// address: 0x50000032
+        /// address: 0x50000020
         /// OTG status read and pop (host mode)
-        pub const GRXSTSP_Host = @intToPtr(*volatile Mmio(50, packed struct {
+        pub const GRXSTSP_Host = @intToPtr(*volatile Mmio(32, packed struct {
             CHNUM: u4, // Channel number
             BCNT: u11, // Byte count
             DPID: u2, // Data PID
             PKTSTS: u4, // Packet status
-            padding_21_49: u29,
+            padding_21_31: u11,
         }), base_address + 32);
     };
-
     /// USB on the go full speed
     pub const OTG_FS_HOST = struct {
         pub const base_address = 0x50000400;
@@ -1864,7 +1855,6 @@ pub const registers = struct {
             padding_31_31: u1,
         }), base_address + 0x1f0);
     };
-
     /// USB on the go full speed
     pub const OTG_FS_PWRCLK = struct {
         pub const base_address = 0x50000e00;
@@ -1879,7 +1869,6 @@ pub const registers = struct {
             padding_5_31: u27,
         }), base_address + 0x0);
     };
-
     /// Power control
     pub const PWR = struct {
         pub const base_address = 0x40007000;
@@ -1916,7 +1905,6 @@ pub const registers = struct {
             padding_15_31: u17,
         }), base_address + 0x4);
     };
-
     /// Reset and clock control
     pub const RCC = struct {
         pub const base_address = 0x40023800;
@@ -2271,15 +2259,14 @@ pub const registers = struct {
             padding_31_31: u1,
         }), base_address + 0x84);
 
-        /// address: 0x40023940
+        /// address: 0x4002388c
         /// RCC Dedicated Clock Configuration Register
-        pub const DCKCFGR = @intToPtr(*volatile Mmio(50, packed struct {
+        pub const DCKCFGR = @intToPtr(*volatile Mmio(32, packed struct {
             reserved_0_23: u24,
             TIMPRE: u1, // Timers clocks prescalers selection
-            padding_25_49: u25,
+            padding_25_31: u7,
         }), base_address + 140);
     };
-
     /// Real-time clock
     pub const RTC = struct {
         pub const base_address = 0x40002800;
@@ -2447,18 +2434,6 @@ pub const registers = struct {
             reserved_15_30: u16,
             ADD1S: u1, // Add one second
         }), base_address + 0x2c);
-
-        /// address: 0x40002830
-        /// time stamp time register
-        pub const TSTR = @intToPtr(*volatile Mmio(0, packed struct {}), base_address + 0x30);
-
-        /// address: 0x40002834
-        /// time stamp date register
-        pub const TSDR = @intToPtr(*volatile Mmio(0, packed struct {}), base_address + 0x34);
-
-        /// address: 0x40002838
-        /// timestamp sub second register
-        pub const TSSSR = @intToPtr(*volatile Mmio(0, packed struct {}), base_address + 0x38);
 
         /// address: 0x4000283c
         /// calibration register
@@ -2628,8 +2603,43 @@ pub const registers = struct {
         pub const BKP19R = @intToPtr(*volatile Mmio(32, packed struct {
             BKP: u32, // BKP
         }), base_address + 0x9c);
-    };
 
+        /// address: 0x40002830
+        /// time stamp time register
+        pub const TSTR = @intToPtr(*volatile Mmio(32, packed struct {
+            SU: u4, // Second units in BCD format
+            ST: u3, // Second tens in BCD format
+            reserved_7_7: u1,
+            MNU: u4, // Minute units in BCD format
+            MNT: u3, // Minute tens in BCD format
+            reserved_15_15: u1,
+            HU: u4, // Hour units in BCD format
+            HT: u2, // Hour tens in BCD format
+            PM: u1, // AM/PM notation
+            padding_23_31: u9,
+        }), base_address + 0x30);
+
+        /// address: 0x40002834
+        /// time stamp date register
+        pub const TSDR = @intToPtr(*volatile Mmio(32, packed struct {
+            DU: u4, // Date units in BCD format
+            DT: u2, // Date tens in BCD format
+            reserved_6_7: u2,
+            MU: u4, // Month units in BCD format
+            MT: u1, // Month tens in BCD format
+            WDU: u3, // Week day units
+            YU: u4, // Year units in BCD format
+            YT: u4, // Year tens in BCD format
+            padding_24_31: u8,
+        }), base_address + 0x34);
+
+        /// address: 0x40002838
+        /// timestamp sub second register
+        pub const TSSSR = @intToPtr(*volatile Mmio(32, packed struct {
+            SS: u16, // Sub second value
+            padding_16_31: u16,
+        }), base_address + 0x38);
+    };
     /// Secure digital input/output interface
     pub const SDIO = struct {
         pub const base_address = 0x40012c00;
@@ -2831,7 +2841,6 @@ pub const registers = struct {
             FIFOData: u32, // Receive and transmit FIFO data
         }), base_address + 0x80);
     };
-
     /// System configuration controller
     pub const SYSCFG = struct {
         pub const base_address = 0x40013800;
@@ -2900,7 +2909,6 @@ pub const registers = struct {
             padding_9_31: u23,
         }), base_address + 0x20);
     };
-
     /// Advanced-timers
     pub const TIM1 = struct {
         pub const base_address = 0x40010000;
@@ -3159,7 +3167,6 @@ pub const registers = struct {
             padding_16_31: u16,
         }), base_address + 0x44);
     };
-
     /// General-purpose-timers
     pub const TIM10 = struct {
         pub const base_address = 0x40014400;
@@ -3251,7 +3258,6 @@ pub const registers = struct {
             padding_16_31: u16,
         }), base_address + 0x34);
     };
-
     /// General-purpose-timers
     pub const TIM11 = struct {
         pub const base_address = 0x40014800;
@@ -3350,7 +3356,6 @@ pub const registers = struct {
             padding_2_31: u30,
         }), base_address + 0x50);
     };
-
     /// General purpose timers
     pub const TIM2 = struct {
         pub const base_address = 0x40000000;
@@ -3583,7 +3588,6 @@ pub const registers = struct {
             padding_12_31: u20,
         }), base_address + 0x50);
     };
-
     /// General purpose timers
     pub const TIM3 = struct {
         pub const base_address = 0x40000400;
@@ -3812,7 +3816,6 @@ pub const registers = struct {
             padding_16_31: u16,
         }), base_address + 0x4c);
     };
-
     /// General-purpose-timers
     pub const TIM5 = struct {
         pub const base_address = 0x40000c00;
@@ -4045,7 +4048,6 @@ pub const registers = struct {
             padding_8_31: u24,
         }), base_address + 0x50);
     };
-
     /// General purpose timers
     pub const TIM9 = struct {
         pub const base_address = 0x40014000;
@@ -4185,7 +4187,6 @@ pub const registers = struct {
             padding_16_31: u16,
         }), base_address + 0x38);
     };
-
     /// Universal synchronous asynchronous receiver transmitter
     pub const USART1 = struct {
         pub const base_address = 0x40011000;
@@ -4283,7 +4284,6 @@ pub const registers = struct {
             padding_16_31: u16,
         }), base_address + 0x18);
     };
-
     /// Window watchdog
     pub const WWDG = struct {
         pub const base_address = 0x40002c00;
@@ -4312,7 +4312,6 @@ pub const registers = struct {
             padding_1_31: u31,
         }), base_address + 0x8);
     };
-
     /// DMA controller
     pub const DMA1 = struct {
         pub const base_address = 0x40026000;
@@ -4937,7 +4936,6 @@ pub const registers = struct {
             padding_8_31: u24,
         }), base_address + 0xcc);
     };
-
     /// General-purpose I/Os
     pub const GPIOH = struct {
         pub const base_address = 0x40021c00;
@@ -5157,7 +5155,6 @@ pub const registers = struct {
             AFRH15: u4, // Alternate function selection for port x bit y (y = 8..15)
         }), base_address + 0x24);
     };
-
     /// General-purpose I/Os
     pub const GPIOB = struct {
         pub const base_address = 0x40020400;
@@ -5377,7 +5374,6 @@ pub const registers = struct {
             AFRH15: u4, // Alternate function selection for port x bit y (y = 8..15)
         }), base_address + 0x24);
     };
-
     /// General-purpose I/Os
     pub const GPIOA = struct {
         pub const base_address = 0x40020000;
@@ -5597,7 +5593,6 @@ pub const registers = struct {
             AFRH15: u4, // Alternate function selection for port x bit y (y = 8..15)
         }), base_address + 0x24);
     };
-
     /// Inter-integrated circuit
     pub const I2C1 = struct {
         pub const base_address = 0x40005400;
@@ -5709,14 +5704,14 @@ pub const registers = struct {
         /// TRISE register
         pub const TRISE = @intToPtr(*volatile MmioInt(32, u6), base_address + 0x20);
 
-        /// address: 0x40005436
+        /// address: 0x40005424
         /// FLTR register
-        pub const FLTR = @intToPtr(*volatile Mmio(0, packed struct {
+        pub const FLTR = @intToPtr(*volatile Mmio(32, packed struct {
             DNF: u4, // Digital noise filter
             ANOFF: u1, // Analog noise filter
+            padding_5_31: u27,
         }), base_address + 36);
     };
-
     /// Serial peripheral interface
     pub const SPI1 = struct {
         pub const base_address = 0x40013000;
@@ -5819,7 +5814,6 @@ pub const registers = struct {
             padding_10_31: u22,
         }), base_address + 0x20);
     };
-
     /// Nested Vectored Interrupt Controller
     pub const NVIC = struct {
         pub const base_address = 0xe000e100;
@@ -6094,7 +6088,6 @@ pub const registers = struct {
             IPR_N3: u8, // IPR_N3
         }), base_address + 0x34c);
     };
-
     /// Floting point unit
     pub const FPU = struct {
         pub const base_address = 0xe000ef34;
@@ -6145,7 +6138,6 @@ pub const registers = struct {
             N: u1, // Negative condition code flag
         }), base_address + 0x8);
     };
-
     /// Memory protection unit
     pub const MPU = struct {
         pub const base_address = 0xe000ed90;
@@ -6202,7 +6194,6 @@ pub const registers = struct {
             padding_29_31: u3,
         }), base_address + 0x10);
     };
-
     /// SysTick timer
     pub const STK = struct {
         pub const base_address = 0xe000e010;
@@ -6241,7 +6232,6 @@ pub const registers = struct {
             NOREF: u1, // NOREF flag. Reads as zero
         }), base_address + 0xc);
     };
-
     /// System control block
     pub const SCB = struct {
         pub const base_address = 0xe000ed00;
@@ -6420,7 +6410,6 @@ pub const registers = struct {
             IMPDEF: u32, // Implementation defined
         }), base_address + 0x3c);
     };
-
     /// Nested vectored interrupt controller
     pub const NVIC_STIR = struct {
         pub const base_address = 0xe000ef00;
@@ -6432,7 +6421,6 @@ pub const registers = struct {
             padding_9_31: u23,
         }), base_address + 0x0);
     };
-
     /// Floating point unit CPACR
     pub const FPU_CPACR = struct {
         pub const base_address = 0xe000ed88;
@@ -6445,7 +6433,6 @@ pub const registers = struct {
             padding_24_31: u8,
         }), base_address + 0x0);
     };
-
     /// System control block ACTLR
     pub const SCB_ACTRL = struct {
         pub const base_address = 0xe000e008;
@@ -6462,7 +6449,6 @@ pub const registers = struct {
             padding_10_31: u22,
         }), base_address + 0x0);
     };
-
     /// Advanced-timers
     pub const TIM8 = struct {
         pub const base_address = 0x40010400;
@@ -6721,7 +6707,6 @@ pub const registers = struct {
             padding_16_31: u16,
         }), base_address + 0x44);
     };
-
     /// General purpose timers
     pub const TIM4 = struct {
         pub const base_address = 0x40000800;
@@ -6950,7 +6935,6 @@ pub const registers = struct {
             padding_16_31: u16,
         }), base_address + 0x4c);
     };
-
     /// Universal synchronous asynchronous receiver transmitter
     pub const USART2 = struct {
         pub const base_address = 0x40004400;
@@ -7048,7 +7032,6 @@ pub const registers = struct {
             padding_16_31: u16,
         }), base_address + 0x18);
     };
-
     /// Universal synchronous asynchronous receiver transmitter
     pub const USART6 = struct {
         pub const base_address = 0x40011400;
@@ -7146,7 +7129,6 @@ pub const registers = struct {
             padding_16_31: u16,
         }), base_address + 0x18);
     };
-
     /// DMA controller
     pub const DMA2 = struct {
         pub const base_address = 0x40026400;
@@ -7771,7 +7753,6 @@ pub const registers = struct {
             padding_8_31: u24,
         }), base_address + 0xcc);
     };
-
     /// General-purpose I/Os
     pub const GPIOE = struct {
         pub const base_address = 0x40021000;
@@ -7991,7 +7972,6 @@ pub const registers = struct {
             AFRH15: u4, // Alternate function selection for port x bit y (y = 8..15)
         }), base_address + 0x24);
     };
-
     /// General-purpose I/Os
     pub const GPIOD = struct {
         pub const base_address = 0x40020c00;
@@ -8211,7 +8191,6 @@ pub const registers = struct {
             AFRH15: u4, // Alternate function selection for port x bit y (y = 8..15)
         }), base_address + 0x24);
     };
-
     /// General-purpose I/Os
     pub const GPIOC = struct {
         pub const base_address = 0x40020800;
@@ -8431,7 +8410,6 @@ pub const registers = struct {
             AFRH15: u4, // Alternate function selection for port x bit y (y = 8..15)
         }), base_address + 0x24);
     };
-
     /// Inter-integrated circuit
     pub const I2C3 = struct {
         pub const base_address = 0x40005c00;
@@ -8543,14 +8521,14 @@ pub const registers = struct {
         /// TRISE register
         pub const TRISE = @intToPtr(*volatile MmioInt(32, u6), base_address + 0x20);
 
-        /// address: 0x40005c36
+        /// address: 0x40005c24
         /// FLTR register
-        pub const FLTR = @intToPtr(*volatile Mmio(0, packed struct {
+        pub const FLTR = @intToPtr(*volatile Mmio(32, packed struct {
             DNF: u4, // Digital noise filter
             ANOFF: u1, // Analog noise filter
+            padding_5_31: u27,
         }), base_address + 36);
     };
-
     /// Inter-integrated circuit
     pub const I2C2 = struct {
         pub const base_address = 0x40005800;
@@ -8662,14 +8640,14 @@ pub const registers = struct {
         /// TRISE register
         pub const TRISE = @intToPtr(*volatile MmioInt(32, u6), base_address + 0x20);
 
-        /// address: 0x40005836
+        /// address: 0x40005824
         /// FLTR register
-        pub const FLTR = @intToPtr(*volatile Mmio(0, packed struct {
+        pub const FLTR = @intToPtr(*volatile Mmio(32, packed struct {
             DNF: u4, // Digital noise filter
             ANOFF: u1, // Analog noise filter
+            padding_5_31: u27,
         }), base_address + 36);
     };
-
     /// Serial peripheral interface
     pub const I2S2ext = struct {
         pub const base_address = 0x40003400;
@@ -8772,7 +8750,6 @@ pub const registers = struct {
             padding_10_31: u22,
         }), base_address + 0x20);
     };
-
     /// Serial peripheral interface
     pub const I2S3ext = struct {
         pub const base_address = 0x40004000;
@@ -8875,7 +8852,6 @@ pub const registers = struct {
             padding_10_31: u22,
         }), base_address + 0x20);
     };
-
     /// Serial peripheral interface
     pub const SPI2 = struct {
         pub const base_address = 0x40003800;
@@ -8978,7 +8954,6 @@ pub const registers = struct {
             padding_10_31: u22,
         }), base_address + 0x20);
     };
-
     /// Serial peripheral interface
     pub const SPI3 = struct {
         pub const base_address = 0x40003c00;
@@ -9081,7 +9056,6 @@ pub const registers = struct {
             padding_10_31: u22,
         }), base_address + 0x20);
     };
-
     /// Serial peripheral interface
     pub const SPI4 = struct {
         pub const base_address = 0x40013400;
@@ -9184,7 +9158,6 @@ pub const registers = struct {
             padding_10_31: u22,
         }), base_address + 0x20);
     };
-
     /// Serial peripheral interface
     pub const SPI5 = struct {
         pub const base_address = 0x40015000;
