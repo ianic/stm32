@@ -3,7 +3,7 @@ class SvdParser
   def initialize(chip)
     filename = "../tmp/stm32-svd/svd/stm32f#{chip[0..2].upcase}.svd"
     filename = "data/test.svd" if $is_test
-    filename = "data/STM32F#{chip[0..2].upcase}.svd"
+    #filename = "data/STM32F#{chip[0..2].upcase}.svd"
     @doc = File.open(filename) { |f| Nokogiri::XML(f) }
     @peripherals = []
   end
@@ -40,10 +40,10 @@ class SvdParser
       "bit_offset" => fd.xpath("bitOffset").text.to_i,
       "bit_width" => fd.xpath("bitWidth").text.to_i,
     }
-    evs = fd.xpath("enumeratedValues")
-    unless evs.empty?
-      f["enum"] = self.enum(evs)
-    end
+    # evs = fd.xpath("enumeratedValues")
+    # unless evs.empty?
+    #   f["enum"] = self.enum(evs)
+    # end
     f
   end
 
@@ -66,15 +66,41 @@ class SvdParser
     }
   end
 
+  def registers(rp)
+    rp.map do |rd|
+      r = self.register(rd)
+      r["fields"] = rd.xpath("fields/field").map{ |fd| self.field(fd) }
+      r["dim"] == 0 ? r : self.dim_duplicate(r)
+    end.flatten
+  end
+
+  def cluster(pd)
+    return [] if pd.xpath("registers/cluster").empty?
+    cd = pd.xpath("registers/cluster")
+    dim = cd.xpath("dim").text.to_i
+    increment = cd.xpath("dimIncrement").text.to_i(16)
+    address_offset = cd.xpath("addressOffset").text.to_i(16)
+    index = cd.xpath("dimIndex").text.split(",")
+    name = cd.xpath("name").text
+    regs = registers(cd.xpath("register"))
+    cluster_regs = []
+    (0..dim-1).map do |i|
+      prefix = name.sub("%s", index[i])
+      cluster_regs << regs.map{ |r|
+        r = r.clone()
+        r["name"] = prefix + r["name"]
+        r["address_offset"] = "0x" + (r["address_offset"].to_i(16) + address_offset + increment * i).to_s(16)
+        r
+      }
+    end
+    cluster_regs.flatten
+  end
+
   def regular
     @peripherals = @doc.xpath("//peripheral").map do |pd|
       next unless pd.attribute("derivedFrom").nil? # skip derived
       p = self.peripheral(pd)
-      p["registers"] = pd.xpath("registers/register").map do |rd|
-        r = self.register(rd)
-        r["fields"] = rd.xpath("fields/field").map{ |fd| self.field(fd) }
-        r["dim"] == 0 ? r : self.dim_duplicate(r)
-      end.flatten
+      p["registers"] = (registers(pd.xpath("registers/register")) + cluster(pd)).flatten
       p
     end.compact
   end
