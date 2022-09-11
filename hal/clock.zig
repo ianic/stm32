@@ -50,7 +50,7 @@ pub fn Chip(comptime chip_frequencies: type) type {
 
             regs.RCC.CR.modify(.{ .HSION = 1 }); // Enable HSI
             while (regs.RCC.CR.read().HSIRDY != 1) {} // Wait for HSI ready
-            regs.RCC.CFGR.modify(.{ .SW0 = 0, .SW1 = 0 }); // Select HSI as clock source
+            regs.RCC.CFGR.modify(.{ .SW = 0b00 }); // Select HSI as clock source
 
             if (cfg.source == .hse) {
                 regs.RCC.CR.modify(.{ .HSEON = 1 }); // Enable external high-speed oscillator (HSE)
@@ -137,36 +137,21 @@ pub fn Chip(comptime chip_frequencies: type) type {
             regs.RCC.CR.modify(.{ .PLLON = 0 }); // Disable PLL before changing its configuration
 
             const pll = cfg.pll;
-            var p0: u1 = if (pll.p == 4 or pll.p == 8) 1 else 0;
-            var p1: u1 = if (pll.p == 6 or pll.p == 8) 1 else 0;
+
+            const pllp = switch (pll.p) {
+                2 => 0b00,
+                4 => 0b01,
+                6 => 0b10,
+                8 => 0b11,
+                else => unreachable,
+            };
             var src: u1 = if (cfg.source == .hse) 1 else 0;
             regs.RCC.PLLCFGR.modify(.{
                 .PLLSRC = src,
-                // PLLM
-                .PLLM0 = bitOf(pll.m, 0),
-                .PLLM1 = bitOf(pll.m, 1),
-                .PLLM2 = bitOf(pll.m, 2),
-                .PLLM3 = bitOf(pll.m, 3),
-                .PLLM4 = bitOf(pll.m, 4),
-                .PLLM5 = bitOf(pll.m, 5),
-                // PLLN
-                .PLLN0 = bitOf(pll.n, 0),
-                .PLLN1 = bitOf(pll.n, 1),
-                .PLLN2 = bitOf(pll.n, 2),
-                .PLLN3 = bitOf(pll.n, 3),
-                .PLLN4 = bitOf(pll.n, 4),
-                .PLLN5 = bitOf(pll.n, 5),
-                .PLLN6 = bitOf(pll.n, 6),
-                .PLLN7 = bitOf(pll.n, 7),
-                .PLLN8 = bitOf(pll.n, 8),
-                // PLLP
-                .PLLP0 = p0,
-                .PLLP1 = p1,
-                // PLLQ
-                .PLLQ0 = bitOf(pll.q, 0),
-                .PLLQ1 = bitOf(pll.q, 1),
-                .PLLQ2 = bitOf(pll.q, 2),
-                .PLLQ3 = bitOf(pll.q, 3),
+                .PLLM = pll.m,
+                .PLLN = pll.n,
+                .PLLP = pllp,
+                .PLLQ = pll.q,
             });
 
             regs.RCC.CR.modify(.{ .PLLON = 1 }); // Enable PLL
@@ -174,10 +159,10 @@ pub fn Chip(comptime chip_frequencies: type) type {
 
             regs.FLASH.ACR.modify(.{ .LATENCY = cfg.latency }); // Set flash latency wait states
 
-            regs.RCC.CFGR.modify(.{ .SW1 = 1, .SW0 = 0 }); //Select PLL as clock source
+            regs.RCC.CFGR.modify(.{ .SW = 0b10 }); //Select PLL as clock source
 
             var cfgr = regs.RCC.CFGR.read(); // Wait for PLL selected as clock source
-            while (cfgr.SWS1 != 1 and cfgr.SWS0 != 0) : (cfgr = regs.RCC.CFGR.read()) {}
+            while (cfgr.SWS != 0b10) : (cfgr = regs.RCC.CFGR.read()) {}
         }
 
         // init SysTick interrupt every ms milliseconds

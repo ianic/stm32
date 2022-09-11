@@ -83,8 +83,8 @@ fn initInputs(inputs: []const Input, sample_time: u3) void {
 fn dma_init(data_items: u16, destination: usize) void {
     regs.RCC.AHB1ENR.modify(.{ .DMA2EN = 1 }); // enable clock for dma2
 
-    regs.DMA2.S0CR.modify(.{ .EN = 0 }); // disable DMA
-    regs.DMA2.S0CR.modify(.{
+    regs.DMA2.ST0CR.modify(.{ .EN = 0 }); // disable DMA
+    regs.DMA2.ST0CR.modify(.{
         .DIR = 0b00, // direction peripheral to memoy
         .CIRC = 1, // circular mode
         .MINC = 1, // memory increment mode
@@ -93,10 +93,10 @@ fn dma_init(data_items: u16, destination: usize) void {
         .PSIZE = 0b01, // peripheral data size 16 bits
         .CHSEL = 0b000, // channel 0 sleected
     });
-    regs.DMA2.S0NDTR.modify(.{ .NDT = data_items }); // number of data items, that we want transfer using the DMA
-    regs.DMA2.S0PAR.modify(.{ .PA = @ptrToInt(regs.ADC1.DR) }); // address of the Peripheral Register, ADC1 DR
-    regs.DMA2.S0M0AR.modify(.{ .M0A = destination }); // memory destination address
-    regs.DMA2.S0CR.modify(.{ .EN = 1 }); // enable DMA
+    regs.DMA2.ST0NDTR.modify(.{ .NDT = data_items }); // number of data items, that we want transfer using the DMA
+    regs.DMA2.ST0PAR.modify(.{ .PA = @ptrToInt(regs.ADC1.DR) }); // address of the Peripheral Register, ADC1 DR
+    regs.DMA2.ST0M0AR.modify(.{ .M0A = destination }); // memory destination address
+    regs.DMA2.ST0CR.modify(.{ .EN = 1 }); // enable DMA
 }
 
 pub const Input = enum(u5) {

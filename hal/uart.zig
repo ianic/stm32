@@ -333,10 +333,10 @@ fn UartDma(comptime config: DmaConfig) type {
     const stream = std.fmt.comptimePrint("{d}", .{config.stream}); // to string
     const base = @field(regs, config.controller); // regs.DMAx
 
-    const cr_reg = @field(base, "S" ++ stream ++ "CR"); // control register: regs.DMAx.SyCR
-    const ndtr_reg = @field(base, "S" ++ stream ++ "NDTR"); // number of data register, regs.DMAx.SyNDTR
-    const pa_reg = @field(base, "S" ++ stream ++ "PAR"); // peripheral address register, regs.DMAx.SyPAR
-    const ma_reg = @field(base, "S" ++ stream ++ "M0AR"); // memory address register, regs.DMAx.SyM0AR
+    const cr_reg = @field(base, "ST" ++ stream ++ "CR"); // control register: regs.DMAx.SyCR
+    const ndtr_reg = @field(base, "ST" ++ stream ++ "NDTR"); // number of data register, regs.DMAx.SyNDTR
+    const pa_reg = @field(base, "ST" ++ stream ++ "PAR"); // peripheral address register, regs.DMAx.SyPAR
+    const ma_reg = @field(base, "ST" ++ stream ++ "M0AR"); // memory address register, regs.DMAx.SyM0AR
 
     const hl_pre = if (config.stream > 3) "H" else "L"; // high/low interrupt status/flag register preffix
     const st_reg = @field(base, hl_pre ++ "ISR"); // interrupt status register, regs.DMAx.[H/L]ISR

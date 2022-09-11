@@ -193,10 +193,7 @@ pub const registers = struct {
         <%- else -%>
         pub const <%= r.name %> = @intToPtr(*volatile Mmio(<%= r.size %>, packed struct {
             <%- for f in r.fields -%>
-            <%- if f.desc -%>
-            /// <%= f.desc %>
-            <%- end -%>
-            <%= f.name %>: u<%= f.bit_width %>,
+            <%= f.name %>: u<%= f.bit_width %>, <%- if f.desc -%> // <%= f.desc %> <%- end %>
             <%- end -%>
         }), base_address + <%= r.address_offset %>);
         <%- end -%>

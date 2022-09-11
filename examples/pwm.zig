@@ -64,7 +64,7 @@ fn pwm() void {
     // configure timer 10 channel 1
     regs.TIM10.CCMR1_Output.modify(.{ .OC1M = 0b110, .OC1PE = 1 }); // output compare mode, and enable
     regs.TIM10.CCER.modify(.{ .CC1E = 1 }); // enable output
-    regs.TIM10.CCR1.modify(100); // upper limit of count
+    regs.TIM10.CCR1.modify(.{ .CCR = 100 }); // upper limit of count
 
     // enable the counter
     regs.TIM10.CR1.modify(.{ .CEN = 1 });
