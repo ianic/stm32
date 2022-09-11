@@ -11,20 +11,30 @@ if ARGV[0].nil?
   exit 1
 end
 
-$is_test = ARGV[0] == "test"
+chip = ARGV[0]
+$is_test = chip == "test"
+filename = "data/stm32f#{chip[0..2]}.svd"
+filename = "data/test.svd" if $is_test
+@doc = File.open(filename) { |f| Nokogiri::XML(f) }
+device = Device.new(@doc)
 
-peripherals = SvdParser.new(ARGV[0]).parse
+#peripherals = SvdParser.new(ARGV[0]).parse
+peripherals = device.peripherals
+
+def address(base_address, address_offset)
+  "0x" + (as_int(base_address) + as_int(address_offset)).to_s(16)
+end
+
 
 def generate(peripherals)
   tmpl = <<-EOF
 pub const registers = struct {
-    <%- for p in peripherals %>
+    <%- for p in peripherals -%>
     /// <%= p.desc %>
     pub const <%= p.name %> = struct {
         pub const base_address = <%= p.base_address %>;
-
         <%- for r in p.registers %>
-        /// address: <%= r.address %>
+        /// address: <%= address(p.base_address, r.address_offset) %>
         /// <%= r.desc %>
         <%- case r.type -%>
         <%- when :int -%>
@@ -42,11 +52,8 @@ pub const registers = struct {
             };
             <%- end -%>
             <%- end -%>
-
             <%- for f in r.fields -%>
-            <%- if f.desc -%>
-            <%- end -%>
-            <%= f.name %>: <%- if f.enum -%><%= f.enum.name.titlecase %><%- else -%>u<%= f.bit_width %><%- end -%>, <%- if f.desc or f.enum -%>// <%= f.desc %> <%- if f.enum %> (u<%= f.bit_width %>) <%- end -%> <%- end %>
+            <%= f.name %>: <%- if f.enum -%><%= f.enum.name.titlecase %><%- else -%>u<%= f.bit_width %><%- end -%>,<%- if f.desc or f.enum -%> // <%= f.desc %> <%- if f.enum %> (u<%= f.bit_width %>) <%- end -%> <%- end %>
             <%- end -%>
         }), base_address + <%= r.address_offset %>);
         <%- end -%>

@@ -1,11 +1,254 @@
+require 'erb'
+require 'nokogiri'
+require File.dirname(__FILE__) + '/common.rb'
+
+class Document
+  def initialize(doc)
+    @doc = doc
+  end
+
+  def respond_to_missing?(m, stuff)
+    return false if m == :to_ary
+    super
+  end
+
+  def attr(name)
+    pd.attribute(name.to_s).text
+  end
+
+  def method_missing(m, *args, &block)
+    m = :description if m.to_sym == :desc
+    path = m.to_s.camelcase
+    raise "#{path} xpath not found in #{self.class} #{self.name}" if @doc.xpath(path).empty?
+    text = @doc.xpath(path).text
+
+    text = text.delete("\n").squeeze(" ") if m == :description
+    text.fix_hex
+    return text.to_i if text.is_integer?
+    text
+  end
+end
+
+class Field < Document
+  #TODO
+  def enum
+    nil
+  end
+end
+
+class PaddingField
+  attr_reader :name, :bit_offset, :bit_width, :desc
+
+  def initialize(name, bit_offset, bit_width)
+    @name = name
+    @bit_offset = bit_offset
+    @bit_width = bit_width
+    @desc = nil
+  end
+
+  def enum
+    return nil
+  end
+end
+
+class Register < Document
+  attr_reader :address, :bit_width, :type
+
+  def initialize(doc)
+    super(doc)
+    self.fields
+  end
+
+  def fields
+    @fields ||= add_reserved_padding(@doc.xpath("fields/field").map{ |fd| Field.new(fd) })
+  end
+
+  def add_reserved_padding(fields)
+    if fields.length == 1  and fields.first.bit_offset == 0 and fields.first.name == self.name
+      @bit_width = fields.first.bit_width
+      @type = self.bit_width == 32 ? :int : :mmio_int
+      return
+    end
+    @bit_width = self.size
+    @type = :mmio
+
+    fields.sort_by!(&:bit_offset)
+    fields_with_padding = []
+    bit_offset = 0
+    for f in fields do
+      if f.bit_offset != bit_offset
+        fields_with_padding << PaddingField.new("reserved_#{bit_offset}_#{f.bit_offset-1}",
+                                                bit_offset,
+                                                f.bit_offset - bit_offset)
+      end
+      fields_with_padding << f
+      bit_offset = f.bit_offset + f.bit_width
+    end
+    if bit_offset < self.size
+      fields_with_padding << PaddingField.new("padding_#{bit_offset}_#{self.size-1}",
+                                              bit_offset,
+                                              self.size - bit_offset)
+    end
+    return fields_with_padding
+  end
+
+  def dim
+    d = @doc.xpath("dim")
+    return 0 if d.empty?
+    d.text.to_i
+  end
+
+  def size
+    return 32 if @doc.xpath("size").empty?
+    as_int(@doc.xpath("size").text.fix_hex)
+  end
+end
+
+def as_int(str)
+  return str if str.is_a?(Integer)
+  return str.to_i(16) if str.is_hexadecimal_literal?
+  str.to_i
+end
+
+class Child
+  def method_missing(m, *args, &block)
+    @parent.send m, *args
+  end
+
+  def respond_to_missing?(m, stuff)
+    return false if m == :to_ary
+    super
+  end
+end
+
+class ClusterRegister < Child
+  attr_reader :name, :address_offset, :address
+
+  def initialize(parent, name, offset)
+    @parent = parent
+    @name = name
+    @address_offset = "0x" + (parent.address_offset.to_i(16) + offset).to_s(16)
+  end
+end
+
+class DerivedRegister < Child
+  attr_reader :name, :address_offset, :desc, :address
+
+  def initialize(parent, name, address_offset, desc)
+    @parent = parent
+    @name = name
+    @address_offset = address_offset
+    @desc = desc
+  end
+end
+
+class Peripheral < Document
+  def registers
+    @registers ||= all_registers
+  end
+
+  private
+  def all_registers
+    regs = @doc.xpath("registers/register").map do |d|
+      next unless d.attribute("derivedFrom").nil? # only derived
+      Register.new(d)
+    end.compact
+    ((regs + cluster_registers).flatten.
+      map{ |r| r.dim > 0 ? dim_duplicate(r) : r }.flatten +
+      derived(regs)
+    ).compact
+  end
+
+  def derived(regs)
+    @doc.xpath("registers/register").map do |rd|
+      next if rd.attribute("derivedFrom").nil? # only derived
+      from_name = rd.attribute("derivedFrom").text
+      parent = regs.find{ |p| p.name == from_name }
+      pp regs.map{ |r| r.name } unless parent
+      raise "parent #{from_name} not found for #{rd.xpath('name').text}" unless parent
+      DerivedRegister.new(parent,
+                          rd.xpath("name").text,
+                          rd.xpath("addressOffset").text.fix_hex,
+                          rd.xpath("description").text,
+                         )
+    end.compact
+  end
+
+  def dim_duplicate(r)
+    dim = r.dim
+    increment = r.dim_increment.to_i(16)
+    subs = r.dim_index.split(",")
+    (0..dim-1).map do |i|
+      sub = subs[i].split("-")[0] # fix for "1-1" string for TIM10.CCR
+      ClusterRegister.new r, r.name.sub("%s", sub), increment * i
+    end
+  end
+
+  def cluster_registers
+    return [] if @doc.xpath("registers/cluster").empty?
+    cd = @doc.xpath("registers/cluster")
+    dim = cd.xpath("dim").text.to_i
+    increment = cd.xpath("dimIncrement").text.to_i(16)
+    address_offset = cd.xpath("addressOffset").text.to_i(16)
+    index = cd.xpath("dimIndex").text.split(",")
+    name = cd.xpath("name").text
+    regs = cd.xpath("register").map{ |d| Register.new(d) }
+
+    (0..dim-1).map do |i|
+      prefix = name.sub("%s", index[i])
+      regs.map{ |r| ClusterRegister.new(r, prefix + r.name, address_offset + increment * i) }
+    end.flatten
+  end
+end
+
+class DerivedPeripheral < Child
+  attr_reader :name, :base_address
+
+  def initialize(parent, name, base_address)
+    @parent = parent
+    @name = name
+    @base_address = base_address
+  end
+end
+
+class Device < Document
+  def peripherals
+    @peripherals ||= all_peripherals
+  end
+
+  private
+  def all_peripherals
+    regular = @doc.xpath("//peripheral").map do |d|
+      next unless d.attribute("derivedFrom").nil? # skip derived
+      Peripheral.new(d)
+    end.compact
+    (regular + derived(regular)).flatten
+  end
+
+  # if derivedFrom is defined on peripheral
+  # copy from parent except name and base_address
+  def derived(regular)
+    @doc.xpath("//peripheral").map do |pd|
+      next if pd.attribute("derivedFrom").nil? # only derived
+      from_name = pd.attribute("derivedFrom").text
+      parent = regular.find{ |p| p.name == from_name }
+      raise "parent #{from_name} not found for #{pd.xpath('name').text}" unless parent
+      DerivedPeripheral.new(parent, pd.xpath("name").text, pd.xpath("baseAddress").text.fix_hex)
+    end.compact
+  end
+end
+
+
 class SvdParser
 
   def initialize(chip)
-    filename = "../tmp/stm32-svd/svd/stm32f#{chip[0..2].upcase}.svd"
+    filename = "data/stm32f#{chip[0..2].upcase}.svd"
     filename = "data/test.svd" if $is_test
     #filename = "data/STM32F#{chip[0..2].upcase}.svd"
     @doc = File.open(filename) { |f| Nokogiri::XML(f) }
     @peripherals = []
+
+    Device.new(@doc)
   end
 
   # xml doc to hash
