@@ -1,0 +1,39 @@
+pub const registers = struct {
+<%- for p in device.peripherals -%>
+    /// <%= p.desc %>
+    pub const <%= p.name.nscase %> = struct {
+    pub const base_address = <%= p.base_address %>;
+    <%- for r in p.registers %>
+        /// address: <%= address(p.base_address, r.address_offset) %>
+        /// <%= r.desc %>
+        <%- case r.type -%>
+        <%- when :int -%>
+            pub const <%= r.name.nscase %> = @intToPtr(*volatile u<%= r.size %>, base_address + <%= r.address_offset %>);
+        <%- when :mmio_int -%>
+            pub const <%= r.name.nscase %> = mmioInt(base_address + <%= r.address_offset %> , <%= r.size %>, u<%= r.bit_width %>);
+        <%- else -%>
+            pub const <%= r.name.titlecase %> = packed struct {
+            <%- for f in r.fields -%>
+                <%- if (f.enum and f.enum.values) -%>
+                    pub const <%= f.enum.name.titlecase %> = enum(u<%= f.bit_width %>) {
+                    <%- for v in f.enum.values -%>
+                        <%- next if v.alias -%>
+                        <%= v.name.underscore.nscase %> = <%= enum_value(v.value, f.bit_width) %>, // <%= v.desc %>
+                    <%- end -%>
+                    <%- for v in f.enum.values -%>
+                        <%- next unless v.alias -%>
+                        pub const <%= v.name.underscore.nscase %> = @intToEnum(<%= f.enum.name.titlecase %>,<%= enum_value(v.value, f.bit_width) %>); // <%= v.desc %>
+                    <%- end -%>
+                    };
+                <%- end -%>
+            <%- end -%>
+            <%- for f in r.fields -%>
+                <%= "_" if f.is_a?(PaddingField) %><%= f.name.nscase %>: <%- if f.enum -%><%= f.enum.name.titlecase %><%- else -%>u<%= f.bit_width %><%- end -%>,<%- if f.desc or f.enum -%> // <%= f.desc %> <%- if f.enum %> (u<%= f.bit_width %>) <%- end -%> <%- end %>
+            <%- end -%>
+            };
+            pub const <%= r.name.nscase %> = mmio(base_address + <%= r.address_offset %>, <%= r.size %>, <%= r.name.titlecase %>);
+        <%- end -%>
+    <%- end -%>
+    };
+<%- end -%>
+};

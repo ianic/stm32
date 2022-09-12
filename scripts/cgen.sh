@@ -13,6 +13,7 @@ fi
 ./gpio.rb 411re | zig fmt --stdin > ../chips/stm32f411re/gpio.zig
 ./vector_table.rb 411re | zig fmt --stdin > ../chips/stm32f411re/vector_table.zig
 ./registers.rb 411re | zig fmt --stdin > ../chips/stm32f411re/registers.zig
+./registers_with_enums.rb 411re | zig fmt --stdin > ../chips/stm32f411re/registers_with_enums.zig
 
 # TODO: have some modifications in generated file
 # regz/zig-out/bin/regz ./data/STM32F411.svd > ../chips/stm32f411re/registers.zig

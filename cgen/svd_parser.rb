@@ -1,5 +1,5 @@
-require 'erb'
 require 'nokogiri'
+require 'ostruct'
 require File.dirname(__FILE__) + '/common.rb'
 
 class Document
@@ -54,7 +54,11 @@ class Enum
           "name" => ev.xpath("name").text,
           "desc" => ev.xpath("description").text.delete("\n").squeeze(" "),
           "value" => ev.xpath("value").text.to_i,
+          "alias" => false,
         })
+    end
+    @values.each_with_index do |v, i|
+      v.alias = !@values.find.with_index{ |v2, j| j < i and v.value == v2.value }.nil?
     end
   end
 end

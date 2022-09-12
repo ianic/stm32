@@ -122,6 +122,7 @@
           </fields>
         </register>
 
+
       </registers>
     </peripheral>
 
@@ -1101,6 +1102,217 @@
         </register>
         </registers>
 
+    </peripheral>
+
+    <peripheral>
+      <name>EXTI</name>
+      <description>External interrupt/event
+      controller</description>
+      <groupName>EXTI</groupName>
+      <baseAddress>0x40013C00</baseAddress>
+      <addressBlock>
+        <offset>0x0</offset>
+        <size>0x400</size>
+        <usage>registers</usage>
+      </addressBlock>
+
+<registers>
+        <register>
+          <name>PR</name>
+          <displayName>PR</displayName>
+          <description>Pending register (EXTI_PR)</description>
+          <addressOffset>0x14</addressOffset>
+          <size>0x20</size>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <fields>
+            <field>
+              <name>PR0</name>
+              <description>Pending bit 0</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+            <enumeratedValues><name>PR0R</name><usage>read</usage><enumeratedValue><name>NotPending</name><description>No trigger request occurred</description><value>0</value></enumeratedValue><enumeratedValue><name>Pending</name><description>Selected trigger request occurred</description><value>1</value></enumeratedValue></enumeratedValues>
+            <enumeratedValues><name>PR0W</name><usage>write</usage><enumeratedValue><name>Clear</name><description>Clears pending bit</description><value>1</value></enumeratedValue></enumeratedValues>
+            </field>
+            <field>
+              <name>PR1</name>
+              <description>Pending bit 1</description>
+              <bitOffset>1</bitOffset>
+              <bitWidth>1</bitWidth>
+            <enumeratedValues derivedFrom="PR0R"/>
+            <enumeratedValues derivedFrom="PR0W"/>
+            </field>
+            <field>
+              <name>PR2</name>
+              <description>Pending bit 2</description>
+              <bitOffset>2</bitOffset>
+              <bitWidth>1</bitWidth>
+            <enumeratedValues derivedFrom="PR0R"/>
+            <enumeratedValues derivedFrom="PR0W"/>
+            </field>
+            <field>
+              <name>PR3</name>
+              <description>Pending bit 3</description>
+              <bitOffset>3</bitOffset>
+              <bitWidth>1</bitWidth>
+            <enumeratedValues derivedFrom="PR0R"/>
+            <enumeratedValues derivedFrom="PR0W"/>
+            </field>
+            <field>
+              <name>PR4</name>
+              <description>Pending bit 4</description>
+              <bitOffset>4</bitOffset>
+              <bitWidth>1</bitWidth>
+            <enumeratedValues derivedFrom="PR0R"/>
+            <enumeratedValues derivedFrom="PR0W"/>
+            </field>
+            <field>
+              <name>PR5</name>
+              <description>Pending bit 5</description>
+              <bitOffset>5</bitOffset>
+              <bitWidth>1</bitWidth>
+            <enumeratedValues derivedFrom="PR0R"/>
+            <enumeratedValues derivedFrom="PR0W"/>
+            </field>
+            <field>
+              <name>PR6</name>
+              <description>Pending bit 6</description>
+              <bitOffset>6</bitOffset>
+              <bitWidth>1</bitWidth>
+            <enumeratedValues derivedFrom="PR0R"/>
+            <enumeratedValues derivedFrom="PR0W"/>
+            </field>
+            <field>
+              <name>PR7</name>
+              <description>Pending bit 7</description>
+              <bitOffset>7</bitOffset>
+              <bitWidth>1</bitWidth>
+            <enumeratedValues derivedFrom="PR0R"/>
+            <enumeratedValues derivedFrom="PR0W"/>
+            </field>
+            <field>
+              <name>PR8</name>
+              <description>Pending bit 8</description>
+              <bitOffset>8</bitOffset>
+              <bitWidth>1</bitWidth>
+            <enumeratedValues derivedFrom="PR0R"/>
+            <enumeratedValues derivedFrom="PR0W"/>
+            </field>
+            <field>
+              <name>PR9</name>
+              <description>Pending bit 9</description>
+              <bitOffset>9</bitOffset>
+              <bitWidth>1</bitWidth>
+            <enumeratedValues derivedFrom="PR0R"/>
+            <enumeratedValues derivedFrom="PR0W"/>
+            </field>
+            <field>
+              <name>PR10</name>
+              <description>Pending bit 10</description>
+              <bitOffset>10</bitOffset>
+              <bitWidth>1</bitWidth>
+            <enumeratedValues derivedFrom="PR0R"/>
+            <enumeratedValues derivedFrom="PR0W"/>
+            </field>
+            <field>
+              <name>PR11</name>
+              <description>Pending bit 11</description>
+              <bitOffset>11</bitOffset>
+              <bitWidth>1</bitWidth>
+            <enumeratedValues derivedFrom="PR0R"/>
+            <enumeratedValues derivedFrom="PR0W"/>
+            </field>
+            <field>
+              <name>PR12</name>
+              <description>Pending bit 12</description>
+              <bitOffset>12</bitOffset>
+              <bitWidth>1</bitWidth>
+            <enumeratedValues derivedFrom="PR0R"/>
+            <enumeratedValues derivedFrom="PR0W"/>
+            </field>
+            <field>
+              <name>PR13</name>
+              <description>Pending bit 13</description>
+              <bitOffset>13</bitOffset>
+              <bitWidth>1</bitWidth>
+            <enumeratedValues derivedFrom="PR0R"/>
+            <enumeratedValues derivedFrom="PR0W"/>
+            </field>
+            <field>
+              <name>PR14</name>
+              <description>Pending bit 14</description>
+              <bitOffset>14</bitOffset>
+              <bitWidth>1</bitWidth>
+            <enumeratedValues derivedFrom="PR0R"/>
+            <enumeratedValues derivedFrom="PR0W"/>
+            </field>
+            <field>
+              <name>PR15</name>
+              <description>Pending bit 15</description>
+              <bitOffset>15</bitOffset>
+              <bitWidth>1</bitWidth>
+            <enumeratedValues derivedFrom="PR0R"/>
+            <enumeratedValues derivedFrom="PR0W"/>
+            </field>
+            <field>
+              <name>PR16</name>
+              <description>Pending bit 16</description>
+              <bitOffset>16</bitOffset>
+              <bitWidth>1</bitWidth>
+            <enumeratedValues derivedFrom="PR0R"/>
+            <enumeratedValues derivedFrom="PR0W"/>
+            </field>
+            <field>
+              <name>PR17</name>
+              <description>Pending bit 17</description>
+              <bitOffset>17</bitOffset>
+              <bitWidth>1</bitWidth>
+            <enumeratedValues derivedFrom="PR0R"/>
+            <enumeratedValues derivedFrom="PR0W"/>
+            </field>
+            <field>
+              <name>PR18</name>
+              <description>Pending bit 18</description>
+              <bitOffset>18</bitOffset>
+              <bitWidth>1</bitWidth>
+            <enumeratedValues derivedFrom="PR0R"/>
+            <enumeratedValues derivedFrom="PR0W"/>
+            </field>
+            <field>
+              <name>PR19</name>
+              <description>Pending bit 19</description>
+              <bitOffset>19</bitOffset>
+              <bitWidth>1</bitWidth>
+            <enumeratedValues derivedFrom="PR0R"/>
+            <enumeratedValues derivedFrom="PR0W"/>
+            </field>
+            <field>
+              <name>PR20</name>
+              <description>Pending bit 20</description>
+              <bitOffset>20</bitOffset>
+              <bitWidth>1</bitWidth>
+            <enumeratedValues derivedFrom="PR0R"/>
+            <enumeratedValues derivedFrom="PR0W"/>
+            </field>
+            <field>
+              <name>PR21</name>
+              <description>Pending bit 21</description>
+              <bitOffset>21</bitOffset>
+              <bitWidth>1</bitWidth>
+            <enumeratedValues derivedFrom="PR0R"/>
+            <enumeratedValues derivedFrom="PR0W"/>
+            </field>
+            <field>
+              <name>PR22</name>
+              <description>Pending bit 22</description>
+              <bitOffset>22</bitOffset>
+              <bitWidth>1</bitWidth>
+            <enumeratedValues derivedFrom="PR0R"/>
+            <enumeratedValues derivedFrom="PR0W"/>
+            </field>
+          </fields>
+        </register>
+        </registers>
     </peripheral>
   </peripherals>
 </device>

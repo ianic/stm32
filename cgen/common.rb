@@ -13,9 +13,15 @@ class String
     tc[0].downcase + tc[1..]
   end
 
-  def identifier()
-    return "@\"#{self}\"" if ["error", "break"].include?(self)
+  # zig languge keyword encoding with @"name"
+  def keyword
+    return "@\"#{self}\"" if ["error", "break", "or", "align"].include?(self)
     self
+  end
+
+  # zig namespace casing
+  def nscase
+    self.downcase.keyword
   end
 
   def underscore
