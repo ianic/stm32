@@ -44,7 +44,7 @@ pub const registers = struct {
         <%- else -%>
         pub const <%= r.name %> = @intToPtr(*volatile Mmio(<%= r.size %>, packed struct {
             <%- for f in r.fields -%>
-            <%- if (f.enum and f.enum.values and f.enum.values.length > 0) -%>
+            <%- if (f.enum and f.enum.values) -%>
             pub const <%= f.enum.name.titlecase %> = enum(u<%= f.bit_width %>) {
                 <%- for v in f.enum.values -%>
                 <%= v.name.underscore.identifier %> = <%= v.value %>, // <%= v.desc %>

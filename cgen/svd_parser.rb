@@ -30,9 +30,32 @@ class Document
 end
 
 class Field < Document
-  #TODO
   def enum
-    nil
+    evs = @doc.xpath("enumeratedValues")
+    return nil if evs.empty?
+
+    name = if evs.attribute("derivedFrom")
+             evs.map{ |e| e.attribute("derivedFrom").value}.join("_")
+           else
+             evs.map{ |e| e.xpath("name").text}.join("_")
+           end
+    Enum.new(name, evs.xpath("enumeratedValue"))
+  end
+end
+
+class Enum
+  attr_reader :name, :values
+
+  def initialize(name, doc)
+    @name = name
+    return if doc.empty?
+    @values = doc.map do |ev|
+        OpenStruct.new({
+          "name" => ev.xpath("name").text,
+          "desc" => ev.xpath("description").text.delete("\n").squeeze(" "),
+          "value" => ev.xpath("value").text.to_i,
+        })
+    end
   end
 end
 
