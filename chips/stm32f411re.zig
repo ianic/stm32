@@ -8,6 +8,7 @@ pub const adc = @import("stm32f411re/adc.zig");
 pub const gpio = @import("stm32f411re/gpio.zig").gpio;
 pub const uart = @import("stm32f411re/uart.zig");
 pub const Ticker = hal.Ticker;
+pub const eregs = @import("stm32f411re/registers_with_enums.zig").registers;
 
 const clock = hal.clock.Chip(chip_frequencies); // clock hal initialized with chip frequencies
 
@@ -36,11 +37,11 @@ pub fn init(comptime cfg: Config) void {
 }
 
 fn initFeatures(comptime cfg: Config) void {
-    regs.FPU_CPACR.CPACR.modify(.{ .CP = 0b1111 }); // Enable FPU coprocessor
-    regs.FLASH.ACR.modify(.{ .DCEN = 1, .ICEN = 1, .PRFTEN = 1 }); // Enable flash data and instruction cache
+    eregs.fpu_cpacr.cpacr.modify(.{ .cp = 0b1111 }); // Enable FPU coprocessor
+    eregs.flash.acr.modify(.{ .dcen = .enabled, .icen = .enabled, .prften = .enabled }); // Enable flash data and instruction cache
 
     // On writes, write 0x5FA to VECTKEY, otherwise the write is ignored.
-    regs.SCB.AIRCR.modify(.{ .PRIGROUP = cfg.prigroup, .VECTKEYSTAT = 0x5FA });
+    eregs.scb.aircr.modify(.{ .prigroup = cfg.prigroup, .vectkeystat = 0x5FA });
 }
 
 // chip clock frequency operating conditions
