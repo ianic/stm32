@@ -11,7 +11,7 @@ end
 
 chip = ARGV[0]
 is_test = chip == 'test'
-filename = "data/stm32f#{chip[0..2]}.svd"
+filename = "svd/stm32f#{chip[0..2]}.svd"
 filename = 'data/test.svd' if is_test
 @doc = File.open(filename) { |f| Nokogiri::XML(f) }
 device = Device.new(@doc)
