@@ -65,10 +65,6 @@ or:
 gpio.usart1.tx.pa15(.{});
 ```
 
-'classis'
-with enums, zig naming convention
-in modify is possible to pass any valid value for that type which is not necessary valid register value. Registers can have some unused bit combinations. Using enums it is not possible to set unsupported value. 
-
 ## Running code generator
 
 ```
