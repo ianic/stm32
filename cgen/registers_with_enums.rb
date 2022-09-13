@@ -15,7 +15,7 @@ def open_doc(chip)
 end
 
 device = Device.new(open_doc(ARGV[0])) # used in template binding
-_ = device # remove unused warning
+# device.calc_enum_redirect_to
 
 # formatting functions used in template
 def address(base_address, address_offset)

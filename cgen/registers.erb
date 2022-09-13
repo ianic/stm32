@@ -15,16 +15,20 @@ pub const registers = struct {
             pub const <%= r.name.titlecase %> = packed struct {
             <%- for f in r.fields -%>
                 <%- if (f.enum and f.enum.values) -%>
-                    pub const <%= f.enum.name.titlecase %> = enum(u<%= f.bit_width %>) {
-                    <%- for v in f.enum.values -%>
-                        <%- next if v.alias -%>
-                        <%= v.name.underscore.nscase %> = <%= enum_value(v.value, f.bit_width) %>, // <%= v.desc %>
+                    <%- if f.enum.redirect_to  -%>
+                        pub const <%= f.enum.name.titlecase %> = <%= f.enum.redirect_to.path.downcase %>.<%= f.enum.name.titlecase %>;
+                    <%- else -%>
+                        pub const <%= f.enum.name.titlecase %> = enum(u<%= f.bit_width %>) {
+                        <%- for v in f.enum.values -%>
+                            <%- next if v.alias -%>
+                            <%= v.name.underscore.nscase %> = <%= enum_value(v.value, f.bit_width) %>, // <%= v.desc %>
+                        <%- end -%>
+                        <%- for v in f.enum.values -%>
+                            <%- next unless v.alias -%>
+                            pub const <%= v.name.underscore.nscase %> = @intToEnum(<%= f.enum.name.titlecase %>,<%= enum_value(v.value, f.bit_width) %>); // <%= v.desc %>
+                        <%- end -%>
+                        };
                     <%- end -%>
-                    <%- for v in f.enum.values -%>
-                        <%- next unless v.alias -%>
-                        pub const <%= v.name.underscore.nscase %> = @intToEnum(<%= f.enum.name.titlecase %>,<%= enum_value(v.value, f.bit_width) %>); // <%= v.desc %>
-                    <%- end -%>
-                    };
                 <%- end -%>
             <%- end -%>
             <%- for f in r.fields -%>
