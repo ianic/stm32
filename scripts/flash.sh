@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -e
-name="${1:-blink}"
+name="${1:-?}"
 git_root=$(git rev-parse --show-toplevel)
 
 bin_file=$git_root/zig-out/bin/$name.bin
