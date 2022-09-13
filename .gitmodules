@@ -4,3 +4,6 @@
 [submodule "cgen/stm32-rs"]
 	path = cgen/stm32-rs
 	url = git@github.com:ianic/stm32-rs.git
+[submodule "cgen/stm32-data"]
+	path = cgen/stm32-data
+	url = git@github.com:embassy-rs/stm32-data.git

@@ -16,7 +16,7 @@ if ARGV[0].nil?
 end
 
 def read_data(chip)
-	filename = "data/STM32F#{chip.upcase}.json"
+	filename = "stm32-data/data/chips/STM32F#{chip.upcase}.json"
 	file = File.read(filename)
 
 	data = JSON.parse(file, object_class: OpenStruct)
