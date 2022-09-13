@@ -39,7 +39,7 @@ no checking wether port/pin exists
 zig naming
 -->
 
-```
+```zig
 const led_pin = micro.Pin("PC13");
 const led = micro.Gpio(led_pin, .{
   .mode = .output,
@@ -50,18 +50,18 @@ led.init();
 led.toggle();
 ```
 
-```
+```zig
 pub const led = gpio.pa5.Output();
 led.init(.{});
 ...
 led.toggle();
 ```
 
-```
+```zig
 gpio.pa15.usart1.tx(.{});
 ```
 or:
-```
+```zig
 gpio.usart1.tx.pa15(.{});
 ```
 
