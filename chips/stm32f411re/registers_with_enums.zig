@@ -241,7 +241,7 @@ pub const registers = struct {
         /// address: 0x4001200c, path: adc1.smpr1
         /// sample time register 1
         pub const Smpr1 = packed struct {
-            pub const SmpxX = enum(u3) {
+            pub const Smp10 = enum(u3) {
                 cycles3 = 0b000, // 3 cycles
                 cycles15 = 0b001, // 15 cycles
                 cycles28 = 0b010, // 28 cycles
@@ -251,15 +251,15 @@ pub const registers = struct {
                 cycles144 = 0b110, // 144 cycles
                 cycles480 = 0b111, // 480 cycles
             };
-            smp10: u3, // Channel 10 sampling time selection
-            smp11: u3, // Channel 11 sampling time selection
-            smp12: u3, // Channel 12 sampling time selection
-            smp13: u3, // Channel 13 sampling time selection
-            smp14: u3, // Channel 14 sampling time selection
-            smp15: u3, // Channel 15 sampling time selection
-            smp16: u3, // Channel 16 sampling time selection
-            smp17: u3, // Channel 17 sampling time selection
-            smp18: SmpxX, // Channel 18 sampling time selection (u3)
+            smp10: Smp10, // Channel 10 sampling time selection (u3)
+            smp11: Smp10, // Channel 11 sampling time selection (u3)
+            smp12: Smp10, // Channel 12 sampling time selection (u3)
+            smp13: Smp10, // Channel 13 sampling time selection (u3)
+            smp14: Smp10, // Channel 14 sampling time selection (u3)
+            smp15: Smp10, // Channel 15 sampling time selection (u3)
+            smp16: Smp10, // Channel 16 sampling time selection (u3)
+            smp17: Smp10, // Channel 17 sampling time selection (u3)
+            smp18: Smp10, // Channel 18 sampling time selection (u3)
             _padding_27_31: u5,
         };
         pub const smpr1 = mmio(base_address + 0xc, 32, Smpr1);
@@ -267,17 +267,26 @@ pub const registers = struct {
         /// address: 0x40012010, path: adc1.smpr2
         /// sample time register 2
         pub const Smpr2 = packed struct {
-            pub const SmpxX = adc1.smpr1.SmpxX;
-            smp0: u3, // Channel 0 sampling time selection
-            smp1: u3, // Channel 1 sampling time selection
-            smp2: u3, // Channel 2 sampling time selection
-            smp3: u3, // Channel 3 sampling time selection
-            smp4: u3, // Channel 4 sampling time selection
-            smp5: u3, // Channel 5 sampling time selection
-            smp6: u3, // Channel 6 sampling time selection
-            smp7: u3, // Channel 7 sampling time selection
-            smp8: u3, // Channel 8 sampling time selection
-            smp9: SmpxX, // Channel 9 sampling time selection (u3)
+            pub const Smp0 = enum(u3) {
+                cycles3 = 0b000, // 3 cycles
+                cycles15 = 0b001, // 15 cycles
+                cycles28 = 0b010, // 28 cycles
+                cycles56 = 0b011, // 56 cycles
+                cycles84 = 0b100, // 84 cycles
+                cycles112 = 0b101, // 112 cycles
+                cycles144 = 0b110, // 144 cycles
+                cycles480 = 0b111, // 480 cycles
+            };
+            smp0: Smp0, // Channel 0 sampling time selection (u3)
+            smp1: Smp0, // Channel 1 sampling time selection (u3)
+            smp2: Smp0, // Channel 2 sampling time selection (u3)
+            smp3: Smp0, // Channel 3 sampling time selection (u3)
+            smp4: Smp0, // Channel 4 sampling time selection (u3)
+            smp5: Smp0, // Channel 5 sampling time selection (u3)
+            smp6: Smp0, // Channel 6 sampling time selection (u3)
+            smp7: Smp0, // Channel 7 sampling time selection (u3)
+            smp8: Smp0, // Channel 8 sampling time selection (u3)
+            smp9: Smp0, // Channel 9 sampling time selection (u3)
             _padding_30_31: u2,
         };
         pub const smpr2 = mmio(base_address + 0x10, 32, Smpr2);
