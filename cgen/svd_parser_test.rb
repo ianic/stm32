@@ -25,7 +25,7 @@ class TestSvdParser < Test::Unit::TestCase
   end
 
   def test_register
-    reg = Register.new @doc.xpath('//peripheral/registers/register').first
+    reg = Register.new @doc.xpath('//peripheral/registers/register').first, nil
 
     assert_equal 'CCR', reg.name
     assert_equal 'ADC common control register', reg.desc
@@ -118,5 +118,15 @@ class TestSvdParser < Test::Unit::TestCase
     assert_equal false, e.values[0].alias
     assert_equal false, e.values[1].alias
     assert_equal true, e.values[2].alias
+  end
+
+  def test_enum_to_peripheral
+    filename = 'data/stm32f411.svd'
+    @doc = File.open(filename) { |f| Nokogiri::XML(f) }
+    dev = Device.new(@doc)
+    dev.recurring_enums
+    dev.enums.each do |e|
+      print "#{e.path} => #{e.redirect_to.path}\n" if e.redirect_to
+    end
   end
 end

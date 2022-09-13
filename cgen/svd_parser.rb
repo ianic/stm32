@@ -3,8 +3,11 @@ require 'ostruct'
 require File.dirname(__FILE__) + '/common.rb'
 
 class Document
-  def initialize(doc)
+  attr_reader :parent
+
+  def initialize(doc, parent = nil)
     @doc = doc
+    @parent = parent
   end
 
   def respond_to_missing?(m, stuff)
@@ -31,35 +34,61 @@ end
 
 class Field < Document
   def enum
-    evs = @doc.xpath("enumeratedValues")
-    return nil if evs.empty?
+    @enum ||= begin
+                evs = @doc.xpath("enumeratedValues")
+                return nil if evs.empty?
 
-    name = if evs.attribute("derivedFrom")
-             evs.map{ |e| e.attribute("derivedFrom").value}.join("_")
-           else
-             evs.map{ |e| e.xpath("name").text}.join("_")
-           end
-    Enum.new(name, evs.xpath("enumeratedValue"))
+                name = if evs.attribute("derivedFrom")
+                         evs.map{ |e| e.attribute("derivedFrom").value}.join("_")
+                       else
+                         evs.map{ |e| e.xpath("name").text}.join("_")
+                       end
+                Enum.new(name, evs.xpath("enumeratedValue"), self)
+              end
   end
 end
 
 class Enum
-  attr_reader :name, :values
+  attr_accessor :redirect_to
+  attr_reader :name, :values, :key, :field
 
-  def initialize(name, doc)
+  def initialize(name, doc, field)
+    @field = field
+    # shorten compositer read write name
+    # PR0R_PR0W => PR0
+    if name.include?("_")
+      parts = name.split("_")
+      if parts.size == 2 and parts[0].size > 1 and parts[1].size > 1
+        if parts[0][0..-2] == parts[1][0..-2]
+          name = parts[0][0..-2] #+ parts[0][-1] + parts[1][-1]
+        end
+      end
+    end
     @name = name
+    key = name
     return if doc.empty?
     @values = doc.map do |ev|
-        OpenStruct.new({
+        e = OpenStruct.new({
           "name" => ev.xpath("name").text,
           "desc" => ev.xpath("description").text.delete("\n").squeeze(" "),
           "value" => ev.xpath("value").text.to_i,
           "alias" => false,
         })
+        key += " #{e.name} #{e.value} #{e.desc}"
+        e
     end
+    @key = key.hash
     @values.each_with_index do |v, i|
       v.alias = !@values.find.with_index{ |v2, j| j < i and v.value == v2.value }.nil?
     end
+  end
+
+  def bit_width
+    @field.bit_width
+  end
+
+  def path
+    "#{@field.parent.parent.name}.#{@field.parent.name}"
   end
 end
 
@@ -81,13 +110,13 @@ end
 class Register < Document
   attr_reader :address, :bit_width, :type
 
-  def initialize(doc)
-    super(doc)
+  def initialize(doc, parent)
+    super(doc, parent)
     self.fields
   end
 
   def fields
-    @fields ||= add_reserved_padding(@doc.xpath("fields/field").map{ |fd| Field.new(fd) })
+    @fields ||= add_reserved_padding(@doc.xpath("fields/field").map{ |fd| Field.new(fd, self) })
   end
 
   def add_reserved_padding(fields)
@@ -139,7 +168,7 @@ end
 
 class Child
   def method_missing(m, *args, &block)
-    @parent.send m, *args
+    @orig.send m, *args
   end
 
   def respond_to_missing?(m, stuff)
@@ -151,21 +180,23 @@ end
 class ClusterRegister < Child
   attr_reader :name, :address_offset, :address
 
-  def initialize(parent, name, offset)
-    @parent = parent
+  def initialize(orig, name, offset, parent)
+    @orig = orig
     @name = name
-    @address_offset = "0x" + (parent.address_offset.to_i(16) + offset).to_s(16)
+    @address_offset = "0x" + (orig.address_offset.to_i(16) + offset).to_s(16)
+    @parent = parent
   end
 end
 
 class DerivedRegister < Child
   attr_reader :name, :address_offset, :desc, :address
 
-  def initialize(parent, name, address_offset, desc)
-    @parent = parent
+  def initialize(orig, name, address_offset, desc, parent)
+    @orig = orig
     @name = name
     @address_offset = address_offset
     @desc = desc
+    @parent = parent
   end
 end
 
@@ -175,10 +206,11 @@ class Peripheral < Document
   end
 
   private
+
   def all_registers
     regs = @doc.xpath("registers/register").map do |d|
       next unless d.attribute("derivedFrom").nil? # only derived
-      Register.new(d)
+      Register.new(d, self)
     end.compact
     ((regs + cluster_registers).flatten.
       map{ |r| r.dim > 0 ? dim_duplicate(r) : r }.flatten +
@@ -190,13 +222,13 @@ class Peripheral < Document
     @doc.xpath("registers/register").map do |rd|
       next if rd.attribute("derivedFrom").nil? # only derived
       from_name = rd.attribute("derivedFrom").text
-      parent = regs.find{ |p| p.name == from_name }
-      pp regs.map{ |r| r.name } unless parent
-      raise "parent #{from_name} not found for #{rd.xpath('name').text}" unless parent
-      DerivedRegister.new(parent,
+      orig = regs.find{ |p| p.name == from_name }
+      raise "orig #{from_name} not found for #{rd.xpath('name').text}" unless orig
+      DerivedRegister.new(orig,
                           rd.xpath("name").text,
                           rd.xpath("addressOffset").text.fix_hex,
                           rd.xpath("description").text,
+                          self
                          )
     end.compact
   end
@@ -207,7 +239,7 @@ class Peripheral < Document
     subs = r.dim_index.split(",")
     (0..dim-1).map do |i|
       sub = subs[i].split("-")[0] # fix for "1-1" string for TIM10.CCR
-      ClusterRegister.new r, r.name.sub("%s", sub), increment * i
+      ClusterRegister.new(r, r.name.sub("%s", sub), increment * i, self)
     end
   end
 
@@ -219,11 +251,11 @@ class Peripheral < Document
     address_offset = cd.xpath("addressOffset").text.to_i(16)
     index = cd.xpath("dimIndex").text.split(",")
     name = cd.xpath("name").text
-    regs = cd.xpath("register").map{ |d| Register.new(d) }
+    regs = cd.xpath("register").map{ |d| Register.new(d, self) }
 
     (0..dim-1).map do |i|
       prefix = name.sub("%s", index[i])
-      regs.map{ |r| ClusterRegister.new(r, prefix + r.name, address_offset + increment * i) }
+      regs.map{ |r| ClusterRegister.new(r, prefix + r.name, address_offset + increment * i, self) }
     end.flatten
   end
 end
@@ -231,8 +263,8 @@ end
 class DerivedPeripheral < Child
   attr_reader :name, :base_address
 
-  def initialize(parent, name, base_address)
-    @parent = parent
+  def initialize(orig, name, base_address)
+    @orig = orig
     @name = name
     @base_address = base_address
   end
@@ -243,7 +275,39 @@ class Device < Document
     @peripherals ||= all_peripherals
   end
 
+  def recurring_enums
+    keys = {}
+    self.enums.each do |e|
+      if e.name == "MODER0"
+        print "#{e.key} #{e.path} #{keys[e.key].nil?} #{e.object_id}\n"
+      end
+      # if !keys[e.key].nil?
+      #   o = keys[e.key]
+      #   e.redirect_to = o unless e.object_id == o.object_id
+      # else
+      #   keys[e.key] = e
+      #   e.redirect_to = nil
+      # end
+    end
+  end
+
+  def enums
+    return @enums if @enums
+    @enums = []
+    self.peripherals.each do |per|
+      per.registers.each do |reg|
+        next if reg.fields.nil?
+        reg.fields.each do |fld|
+          next unless fld.enum && fld.enum.values
+          @enums << fld.enum
+        end
+      end
+    end
+    @enums
+  end
+
   private
+
   def all_peripherals
     regular = @doc.xpath("//peripheral").map do |d|
       next unless d.attribute("derivedFrom").nil? # skip derived
@@ -253,14 +317,14 @@ class Device < Document
   end
 
   # if derivedFrom is defined on peripheral
-  # copy from parent except name and base_address
+  # copy from orig except name and base_address
   def derived(regular)
     @doc.xpath("//peripheral").map do |pd|
       next if pd.attribute("derivedFrom").nil? # only derived
       from_name = pd.attribute("derivedFrom").text
-      parent = regular.find{ |p| p.name == from_name }
-      raise "parent #{from_name} not found for #{pd.xpath('name').text}" unless parent
-      DerivedPeripheral.new(parent, pd.xpath("name").text, pd.xpath("baseAddress").text.fix_hex)
+      orig = regular.find{ |p| p.name == from_name }
+      raise "orig #{from_name} not found for #{pd.xpath('name').text}" unless orig
+      DerivedPeripheral.new(orig, pd.xpath("name").text, pd.xpath("baseAddress").text.fix_hex)
     end.compact
   end
 end
