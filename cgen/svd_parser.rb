@@ -75,7 +75,6 @@ end
 class Enum
   attr_accessor :redirect_to
   attr_reader :name, :values, :key, :field
-
   def initialize(name, doc, field)
     @field = field
     # shorten compositer read write name
@@ -322,9 +321,13 @@ class Device < Document
     @enums = []
     self.peripherals.each do |per|
       per.registers.each do |reg|
+        reg.instance_variable_set(:@parent, per)
         next if reg.fields.nil?
         reg.fields.each do |fld|
-          next unless fld.enum && fld.enum.values
+          fld.instance_variable_set(:@parent, reg)
+          next unless fld.enum
+          fld.enum.instance_variable_set(:@field, fld)
+          next unless fld.enum.values
           @enums << fld.enum
         end
       end

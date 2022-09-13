@@ -4,7 +4,7 @@ pub const registers = struct {
     pub const adc_common = struct {
         pub const base_address = 0x40012300;
 
-        /// address: 0x40012304
+        /// address: 0x40012304, path: adc_common.ccr
         /// ADC common control register
         pub const Ccr = packed struct {
             pub const Adcpre = enum(u2) {
@@ -34,7 +34,7 @@ pub const registers = struct {
     pub const adc1 = struct {
         pub const base_address = 0x40012000;
 
-        /// address: 0x40012000
+        /// address: 0x40012000, path: adc1.sr
         /// status register
         pub const Sr = packed struct {
             pub const Awd = enum(u1) {
@@ -71,7 +71,7 @@ pub const registers = struct {
         };
         pub const sr = mmio(base_address + 0x0, 32, Sr);
 
-        /// address: 0x40012004
+        /// address: 0x40012004, path: adc1.cr1
         /// control register 1
         pub const Cr1 = packed struct {
             pub const Eocie = enum(u1) {
@@ -143,7 +143,7 @@ pub const registers = struct {
         };
         pub const cr1 = mmio(base_address + 0x4, 32, Cr1);
 
-        /// address: 0x40012008
+        /// address: 0x40012008, path: adc1.cr2
         /// control register 2
         pub const Cr2 = packed struct {
             pub const Adon = enum(u1) {
@@ -238,7 +238,7 @@ pub const registers = struct {
         };
         pub const cr2 = mmio(base_address + 0x8, 32, Cr2);
 
-        /// address: 0x4001200c
+        /// address: 0x4001200c, path: adc1.smpr1
         /// sample time register 1
         pub const Smpr1 = packed struct {
             pub const SmpxX = enum(u3) {
@@ -264,19 +264,10 @@ pub const registers = struct {
         };
         pub const smpr1 = mmio(base_address + 0xc, 32, Smpr1);
 
-        /// address: 0x40012010
+        /// address: 0x40012010, path: adc1.smpr2
         /// sample time register 2
         pub const Smpr2 = packed struct {
-            pub const SmpxX = enum(u3) {
-                cycles3 = 0b000, // 3 cycles
-                cycles15 = 0b001, // 15 cycles
-                cycles28 = 0b010, // 28 cycles
-                cycles56 = 0b011, // 56 cycles
-                cycles84 = 0b100, // 84 cycles
-                cycles112 = 0b101, // 112 cycles
-                cycles144 = 0b110, // 144 cycles
-                cycles480 = 0b111, // 480 cycles
-            };
+            pub const SmpxX = adc1.smpr1.SmpxX;
             smp0: u3, // Channel 0 sampling time selection
             smp1: u3, // Channel 1 sampling time selection
             smp2: u3, // Channel 2 sampling time selection
@@ -291,7 +282,7 @@ pub const registers = struct {
         };
         pub const smpr2 = mmio(base_address + 0x10, 32, Smpr2);
 
-        /// address: 0x40012014
+        /// address: 0x40012014, path: adc1.jofr1
         /// injected channel data offset register x
         pub const Jofr1 = packed struct {
             joffset: u12, // Data offset for injected channel x
@@ -299,7 +290,7 @@ pub const registers = struct {
         };
         pub const jofr1 = mmio(base_address + 0x14, 32, Jofr1);
 
-        /// address: 0x40012018
+        /// address: 0x40012018, path: adc1.jofr2
         /// injected channel data offset register x
         pub const Jofr2 = packed struct {
             joffset: u12, // Data offset for injected channel x
@@ -307,7 +298,7 @@ pub const registers = struct {
         };
         pub const jofr2 = mmio(base_address + 0x18, 32, Jofr2);
 
-        /// address: 0x4001201c
+        /// address: 0x4001201c, path: adc1.jofr3
         /// injected channel data offset register x
         pub const Jofr3 = packed struct {
             joffset: u12, // Data offset for injected channel x
@@ -315,7 +306,7 @@ pub const registers = struct {
         };
         pub const jofr3 = mmio(base_address + 0x1c, 32, Jofr3);
 
-        /// address: 0x40012020
+        /// address: 0x40012020, path: adc1.jofr4
         /// injected channel data offset register x
         pub const Jofr4 = packed struct {
             joffset: u12, // Data offset for injected channel x
@@ -323,7 +314,7 @@ pub const registers = struct {
         };
         pub const jofr4 = mmio(base_address + 0x20, 32, Jofr4);
 
-        /// address: 0x40012024
+        /// address: 0x40012024, path: adc1.htr
         /// watchdog higher threshold register
         pub const Htr = packed struct {
             ht: u12, // Analog watchdog higher threshold
@@ -331,7 +322,7 @@ pub const registers = struct {
         };
         pub const htr = mmio(base_address + 0x24, 32, Htr);
 
-        /// address: 0x40012028
+        /// address: 0x40012028, path: adc1.ltr
         /// watchdog lower threshold register
         pub const Ltr = packed struct {
             lt: u12, // Analog watchdog lower threshold
@@ -339,7 +330,7 @@ pub const registers = struct {
         };
         pub const ltr = mmio(base_address + 0x28, 32, Ltr);
 
-        /// address: 0x4001202c
+        /// address: 0x4001202c, path: adc1.sqr1
         /// regular sequence register 1
         pub const Sqr1 = packed struct {
             sq13: u5, // 13th conversion in regular sequence
@@ -351,7 +342,7 @@ pub const registers = struct {
         };
         pub const sqr1 = mmio(base_address + 0x2c, 32, Sqr1);
 
-        /// address: 0x40012030
+        /// address: 0x40012030, path: adc1.sqr2
         /// regular sequence register 2
         pub const Sqr2 = packed struct {
             sq7: u5, // 7th conversion in regular sequence
@@ -364,7 +355,7 @@ pub const registers = struct {
         };
         pub const sqr2 = mmio(base_address + 0x30, 32, Sqr2);
 
-        /// address: 0x40012034
+        /// address: 0x40012034, path: adc1.sqr3
         /// regular sequence register 3
         pub const Sqr3 = packed struct {
             sq1: u5, // 1st conversion in regular sequence
@@ -377,7 +368,7 @@ pub const registers = struct {
         };
         pub const sqr3 = mmio(base_address + 0x34, 32, Sqr3);
 
-        /// address: 0x40012038
+        /// address: 0x40012038, path: adc1.jsqr
         /// injected sequence register
         pub const Jsqr = packed struct {
             jsq1: u5, // 1st conversion in injected sequence
@@ -389,7 +380,7 @@ pub const registers = struct {
         };
         pub const jsqr = mmio(base_address + 0x38, 32, Jsqr);
 
-        /// address: 0x4001203c
+        /// address: 0x4001203c, path: adc1.jdr1
         /// injected data register x
         pub const Jdr1 = packed struct {
             jdata: u16, // Injected data
@@ -397,7 +388,7 @@ pub const registers = struct {
         };
         pub const jdr1 = mmio(base_address + 0x3c, 32, Jdr1);
 
-        /// address: 0x40012040
+        /// address: 0x40012040, path: adc1.jdr2
         /// injected data register x
         pub const Jdr2 = packed struct {
             jdata: u16, // Injected data
@@ -405,7 +396,7 @@ pub const registers = struct {
         };
         pub const jdr2 = mmio(base_address + 0x40, 32, Jdr2);
 
-        /// address: 0x40012044
+        /// address: 0x40012044, path: adc1.jdr3
         /// injected data register x
         pub const Jdr3 = packed struct {
             jdata: u16, // Injected data
@@ -413,7 +404,7 @@ pub const registers = struct {
         };
         pub const jdr3 = mmio(base_address + 0x44, 32, Jdr3);
 
-        /// address: 0x40012048
+        /// address: 0x40012048, path: adc1.jdr4
         /// injected data register x
         pub const Jdr4 = packed struct {
             jdata: u16, // Injected data
@@ -421,7 +412,7 @@ pub const registers = struct {
         };
         pub const jdr4 = mmio(base_address + 0x48, 32, Jdr4);
 
-        /// address: 0x4001204c
+        /// address: 0x4001204c, path: adc1.dr
         /// regular data register
         pub const Dr = packed struct {
             data: u16, // Regular data
@@ -433,15 +424,15 @@ pub const registers = struct {
     pub const crc = struct {
         pub const base_address = 0x40023000;
 
-        /// address: 0x40023000
+        /// address: 0x40023000, path: crc.dr
         /// Data register
         pub const dr = @intToPtr(*volatile u32, base_address + 0x0);
 
-        /// address: 0x40023004
+        /// address: 0x40023004, path: crc.idr
         /// Independent Data register
         pub const idr = mmioInt(base_address + 0x4, 32, u8);
 
-        /// address: 0x40023008
+        /// address: 0x40023008, path: crc.cr
         /// Control register
         pub const Cr = packed struct {
             pub const Resetw = enum(u1) {
@@ -456,7 +447,7 @@ pub const registers = struct {
     pub const dbgmcu = struct {
         pub const base_address = 0xe0042000;
 
-        /// address: 0xe0042000
+        /// address: 0xe0042000, path: dbgmcu.idcode
         /// IDCODE
         pub const Idcode = packed struct {
             dev_id: u12, // DEV_ID
@@ -465,7 +456,7 @@ pub const registers = struct {
         };
         pub const idcode = mmio(base_address + 0x0, 32, Idcode);
 
-        /// address: 0xe0042004
+        /// address: 0xe0042004, path: dbgmcu.cr
         /// Control Register
         pub const Cr = packed struct {
             dbg_sleep: u1, // DBG_SLEEP
@@ -478,7 +469,7 @@ pub const registers = struct {
         };
         pub const cr = mmio(base_address + 0x4, 32, Cr);
 
-        /// address: 0xe0042008
+        /// address: 0xe0042008, path: dbgmcu.apb1_fz
         /// Debug MCU APB1 Freeze registe
         pub const Apb1Fz = packed struct {
             dbg_tim2_stop: u1, // DBG_TIM2_STOP
@@ -497,7 +488,7 @@ pub const registers = struct {
         };
         pub const apb1_fz = mmio(base_address + 0x8, 32, Apb1Fz);
 
-        /// address: 0xe004200c
+        /// address: 0xe004200c, path: dbgmcu.apb2_fz
         /// Debug MCU APB2 Freeze registe
         pub const Apb2Fz = packed struct {
             dbg_tim1_stop: u1, // TIM1 counter stopped when core is halted
@@ -513,7 +504,7 @@ pub const registers = struct {
     pub const exti = struct {
         pub const base_address = 0x40013c00;
 
-        /// address: 0x40013c00
+        /// address: 0x40013c00, path: exti.imr
         /// Interrupt mask register (EXTI_IMR)
         pub const Imr = packed struct {
             pub const Mr0 = enum(u1) {
@@ -547,13 +538,10 @@ pub const registers = struct {
         };
         pub const imr = mmio(base_address + 0x0, 32, Imr);
 
-        /// address: 0x40013c04
+        /// address: 0x40013c04, path: exti.emr
         /// Event mask register (EXTI_EMR)
         pub const Emr = packed struct {
-            pub const Mr0 = enum(u1) {
-                masked = 0, // Interrupt request line is masked
-                unmasked = 1, // Interrupt request line is unmasked
-            };
+            pub const Mr0 = exti.imr.Mr0;
             mr0: Mr0, // Event Mask on line 0 (u1)
             mr1: Mr0, // Event Mask on line 1 (u1)
             mr2: Mr0, // Event Mask on line 2 (u1)
@@ -581,7 +569,7 @@ pub const registers = struct {
         };
         pub const emr = mmio(base_address + 0x4, 32, Emr);
 
-        /// address: 0x40013c08
+        /// address: 0x40013c08, path: exti.rtsr
         /// Rising Trigger selection register (EXTI_RTSR)
         pub const Rtsr = packed struct {
             pub const Tr0 = enum(u1) {
@@ -615,7 +603,7 @@ pub const registers = struct {
         };
         pub const rtsr = mmio(base_address + 0x8, 32, Rtsr);
 
-        /// address: 0x40013c0c
+        /// address: 0x40013c0c, path: exti.ftsr
         /// Falling Trigger selection register (EXTI_FTSR)
         pub const Ftsr = packed struct {
             pub const Tr0 = enum(u1) {
@@ -649,7 +637,7 @@ pub const registers = struct {
         };
         pub const ftsr = mmio(base_address + 0xc, 32, Ftsr);
 
-        /// address: 0x40013c10
+        /// address: 0x40013c10, path: exti.swier
         /// Software interrupt event register (EXTI_SWIER)
         pub const Swier = packed struct {
             pub const Swier0w = enum(u1) {
@@ -682,7 +670,7 @@ pub const registers = struct {
         };
         pub const swier = mmio(base_address + 0x10, 32, Swier);
 
-        /// address: 0x40013c14
+        /// address: 0x40013c14, path: exti.pr
         /// Pending register (EXTI_PR)
         pub const Pr = packed struct {
             pub const Pr0 = enum(u1) {
@@ -721,7 +709,7 @@ pub const registers = struct {
     pub const flash = struct {
         pub const base_address = 0x40023c00;
 
-        /// address: 0x40023c00
+        /// address: 0x40023c00, path: flash.acr
         /// Flash access control register
         pub const Acr = packed struct {
             pub const Latency = enum(u4) {
@@ -773,21 +761,21 @@ pub const registers = struct {
         };
         pub const acr = mmio(base_address + 0x0, 32, Acr);
 
-        /// address: 0x40023c04
+        /// address: 0x40023c04, path: flash.keyr
         /// Flash key register
         pub const Keyr = packed struct {
             key: u32, // FPEC key
         };
         pub const keyr = mmio(base_address + 0x4, 32, Keyr);
 
-        /// address: 0x40023c08
+        /// address: 0x40023c08, path: flash.optkeyr
         /// Flash option key register
         pub const Optkeyr = packed struct {
             optkey: u32, // Option byte key
         };
         pub const optkeyr = mmio(base_address + 0x8, 32, Optkeyr);
 
-        /// address: 0x40023c0c
+        /// address: 0x40023c0c, path: flash.sr
         /// Status register
         pub const Sr = packed struct {
             eop: u1, // End of operation
@@ -803,7 +791,7 @@ pub const registers = struct {
         };
         pub const sr = mmio(base_address + 0xc, 32, Sr);
 
-        /// address: 0x40023c10
+        /// address: 0x40023c10, path: flash.cr
         /// Control register
         pub const Cr = packed struct {
             pub const Pg = enum(u1) {
@@ -852,7 +840,7 @@ pub const registers = struct {
         };
         pub const cr = mmio(base_address + 0x10, 32, Cr);
 
-        /// address: 0x40023c14
+        /// address: 0x40023c14, path: flash.optcr
         /// Flash option control register
         pub const Optcr = packed struct {
             optlock: u1, // Option lock
@@ -872,7 +860,7 @@ pub const registers = struct {
     pub const iwdg = struct {
         pub const base_address = 0x40003000;
 
-        /// address: 0x40003000
+        /// address: 0x40003000, path: iwdg.kr
         /// Key register
         pub const Kr = packed struct {
             pub const Key = enum(u16) {
@@ -885,11 +873,11 @@ pub const registers = struct {
         };
         pub const kr = mmio(base_address + 0x0, 32, Kr);
 
-        /// address: 0x40003004
+        /// address: 0x40003004, path: iwdg.pr
         /// Prescaler register
         pub const pr = mmioInt(base_address + 0x4, 32, u3);
 
-        /// address: 0x40003008
+        /// address: 0x40003008, path: iwdg.rlr
         /// Reload register
         pub const Rlr = packed struct {
             rl: u12, // Watchdog counter reload value
@@ -897,7 +885,7 @@ pub const registers = struct {
         };
         pub const rlr = mmio(base_address + 0x8, 32, Rlr);
 
-        /// address: 0x4000300c
+        /// address: 0x4000300c, path: iwdg.sr
         /// Status register
         pub const Sr = packed struct {
             pvu: u1, // Watchdog prescaler value update
@@ -910,7 +898,7 @@ pub const registers = struct {
     pub const otg_fs_device = struct {
         pub const base_address = 0x50000800;
 
-        /// address: 0x50000800
+        /// address: 0x50000800, path: otg_fs_device.dcfg
         /// OTG_FS device configuration register (OTG_FS_DCFG)
         pub const Dcfg = packed struct {
             dspd: u2, // Device speed
@@ -922,7 +910,7 @@ pub const registers = struct {
         };
         pub const dcfg = mmio(base_address + 0x0, 32, Dcfg);
 
-        /// address: 0x50000804
+        /// address: 0x50000804, path: otg_fs_device.dctl
         /// OTG_FS device control register (OTG_FS_DCTL)
         pub const Dctl = packed struct {
             rwusig: u1, // Remote wakeup signaling
@@ -939,7 +927,7 @@ pub const registers = struct {
         };
         pub const dctl = mmio(base_address + 0x4, 32, Dctl);
 
-        /// address: 0x50000808
+        /// address: 0x50000808, path: otg_fs_device.dsts
         /// OTG_FS device status register (OTG_FS_DSTS)
         pub const Dsts = packed struct {
             suspsts: u1, // Suspend status
@@ -951,7 +939,7 @@ pub const registers = struct {
         };
         pub const dsts = mmio(base_address + 0x8, 32, Dsts);
 
-        /// address: 0x50000810
+        /// address: 0x50000810, path: otg_fs_device.diepmsk
         /// OTG_FS device IN endpoint common interrupt mask register (OTG_FS_DIEPMSK)
         pub const Diepmsk = packed struct {
             xfrcm: u1, // Transfer completed interrupt mask
@@ -965,7 +953,7 @@ pub const registers = struct {
         };
         pub const diepmsk = mmio(base_address + 0x10, 32, Diepmsk);
 
-        /// address: 0x50000814
+        /// address: 0x50000814, path: otg_fs_device.doepmsk
         /// OTG_FS device OUT endpoint common interrupt mask register (OTG_FS_DOEPMSK)
         pub const Doepmsk = packed struct {
             xfrcm: u1, // Transfer completed interrupt mask
@@ -977,7 +965,7 @@ pub const registers = struct {
         };
         pub const doepmsk = mmio(base_address + 0x14, 32, Doepmsk);
 
-        /// address: 0x50000818
+        /// address: 0x50000818, path: otg_fs_device.daint
         /// OTG_FS device all endpoints interrupt register (OTG_FS_DAINT)
         pub const Daint = packed struct {
             iepint: u16, // IN endpoint interrupt bits
@@ -985,7 +973,7 @@ pub const registers = struct {
         };
         pub const daint = mmio(base_address + 0x18, 32, Daint);
 
-        /// address: 0x5000081c
+        /// address: 0x5000081c, path: otg_fs_device.daintmsk
         /// OTG_FS all endpoints interrupt mask register (OTG_FS_DAINTMSK)
         pub const Daintmsk = packed struct {
             iepm: u16, // IN EP interrupt mask bits
@@ -993,7 +981,7 @@ pub const registers = struct {
         };
         pub const daintmsk = mmio(base_address + 0x1c, 32, Daintmsk);
 
-        /// address: 0x50000828
+        /// address: 0x50000828, path: otg_fs_device.dvbusdis
         /// OTG_FS device VBUS discharge time register
         pub const Dvbusdis = packed struct {
             vbusdt: u16, // Device VBUS discharge time
@@ -1001,7 +989,7 @@ pub const registers = struct {
         };
         pub const dvbusdis = mmio(base_address + 0x28, 32, Dvbusdis);
 
-        /// address: 0x5000082c
+        /// address: 0x5000082c, path: otg_fs_device.dvbuspulse
         /// OTG_FS device VBUS pulsing time register
         pub const Dvbuspulse = packed struct {
             dvbusp: u12, // Device VBUS pulsing time
@@ -1009,7 +997,7 @@ pub const registers = struct {
         };
         pub const dvbuspulse = mmio(base_address + 0x2c, 32, Dvbuspulse);
 
-        /// address: 0x50000834
+        /// address: 0x50000834, path: otg_fs_device.diepempmsk
         /// OTG_FS device IN endpoint FIFO empty interrupt mask register
         pub const Diepempmsk = packed struct {
             ineptxfem: u16, // IN EP Tx FIFO empty interrupt mask bits
@@ -1017,7 +1005,7 @@ pub const registers = struct {
         };
         pub const diepempmsk = mmio(base_address + 0x34, 32, Diepempmsk);
 
-        /// address: 0x50000900
+        /// address: 0x50000900, path: otg_fs_device.diepctl0
         /// OTG_FS device control IN endpoint 0 control register (OTG_FS_DIEPCTL0)
         pub const Diepctl0 = packed struct {
             mpsiz: u2, // Maximum packet size
@@ -1037,7 +1025,7 @@ pub const registers = struct {
         };
         pub const diepctl0 = mmio(base_address + 0x100, 32, Diepctl0);
 
-        /// address: 0x50000920
+        /// address: 0x50000920, path: otg_fs_device.diepctl1
         /// OTG_FS device endpoint %s IN control register
         pub const Diepctl1 = packed struct {
             mpsiz: u11, // MPSIZ
@@ -1058,7 +1046,7 @@ pub const registers = struct {
         };
         pub const diepctl1 = mmio(base_address + 0x120, 32, Diepctl1);
 
-        /// address: 0x50000940
+        /// address: 0x50000940, path: otg_fs_device.diepctl2
         /// OTG_FS device endpoint %s IN control register
         pub const Diepctl2 = packed struct {
             mpsiz: u11, // MPSIZ
@@ -1079,7 +1067,7 @@ pub const registers = struct {
         };
         pub const diepctl2 = mmio(base_address + 0x140, 32, Diepctl2);
 
-        /// address: 0x50000960
+        /// address: 0x50000960, path: otg_fs_device.diepctl3
         /// OTG_FS device endpoint %s IN control register
         pub const Diepctl3 = packed struct {
             mpsiz: u11, // MPSIZ
@@ -1100,7 +1088,7 @@ pub const registers = struct {
         };
         pub const diepctl3 = mmio(base_address + 0x160, 32, Diepctl3);
 
-        /// address: 0x50000b00
+        /// address: 0x50000b00, path: otg_fs_device.doepctl0
         /// device endpoint-0 control register
         pub const Doepctl0 = packed struct {
             mpsiz: u2, // MPSIZ
@@ -1120,7 +1108,7 @@ pub const registers = struct {
         };
         pub const doepctl0 = mmio(base_address + 0x300, 32, Doepctl0);
 
-        /// address: 0x50000b20
+        /// address: 0x50000b20, path: otg_fs_device.doepctl1
         /// OTG_FS device endpoint %s OUT control register
         pub const Doepctl1 = packed struct {
             mpsiz: u11, // MPSIZ
@@ -1141,7 +1129,7 @@ pub const registers = struct {
         };
         pub const doepctl1 = mmio(base_address + 0x320, 32, Doepctl1);
 
-        /// address: 0x50000b40
+        /// address: 0x50000b40, path: otg_fs_device.doepctl2
         /// OTG_FS device endpoint %s OUT control register
         pub const Doepctl2 = packed struct {
             mpsiz: u11, // MPSIZ
@@ -1162,7 +1150,7 @@ pub const registers = struct {
         };
         pub const doepctl2 = mmio(base_address + 0x340, 32, Doepctl2);
 
-        /// address: 0x50000b60
+        /// address: 0x50000b60, path: otg_fs_device.doepctl3
         /// OTG_FS device endpoint %s OUT control register
         pub const Doepctl3 = packed struct {
             mpsiz: u11, // MPSIZ
@@ -1183,7 +1171,7 @@ pub const registers = struct {
         };
         pub const doepctl3 = mmio(base_address + 0x360, 32, Doepctl3);
 
-        /// address: 0x50000908
+        /// address: 0x50000908, path: otg_fs_device.diepint0
         /// device endpoint-x interrupt register
         pub const Diepint0 = packed struct {
             xfrc: u1, // XFRC
@@ -1198,7 +1186,7 @@ pub const registers = struct {
         };
         pub const diepint0 = mmio(base_address + 0x108, 32, Diepint0);
 
-        /// address: 0x50000928
+        /// address: 0x50000928, path: otg_fs_device.diepint1
         /// device endpoint-1 interrupt register
         pub const Diepint1 = packed struct {
             xfrc: u1, // XFRC
@@ -1213,7 +1201,7 @@ pub const registers = struct {
         };
         pub const diepint1 = mmio(base_address + 0x128, 32, Diepint1);
 
-        /// address: 0x50000948
+        /// address: 0x50000948, path: otg_fs_device.diepint2
         /// device endpoint-2 interrupt register
         pub const Diepint2 = packed struct {
             xfrc: u1, // XFRC
@@ -1228,7 +1216,7 @@ pub const registers = struct {
         };
         pub const diepint2 = mmio(base_address + 0x148, 32, Diepint2);
 
-        /// address: 0x50000968
+        /// address: 0x50000968, path: otg_fs_device.diepint3
         /// device endpoint-3 interrupt register
         pub const Diepint3 = packed struct {
             xfrc: u1, // XFRC
@@ -1243,7 +1231,7 @@ pub const registers = struct {
         };
         pub const diepint3 = mmio(base_address + 0x168, 32, Diepint3);
 
-        /// address: 0x50000b08
+        /// address: 0x50000b08, path: otg_fs_device.doepint0
         /// device endpoint-0 interrupt register
         pub const Doepint0 = packed struct {
             xfrc: u1, // XFRC
@@ -1257,7 +1245,7 @@ pub const registers = struct {
         };
         pub const doepint0 = mmio(base_address + 0x308, 32, Doepint0);
 
-        /// address: 0x50000b28
+        /// address: 0x50000b28, path: otg_fs_device.doepint1
         /// device endpoint-1 interrupt register
         pub const Doepint1 = packed struct {
             xfrc: u1, // XFRC
@@ -1271,7 +1259,7 @@ pub const registers = struct {
         };
         pub const doepint1 = mmio(base_address + 0x328, 32, Doepint1);
 
-        /// address: 0x50000b48
+        /// address: 0x50000b48, path: otg_fs_device.doepint2
         /// device endpoint-2 interrupt register
         pub const Doepint2 = packed struct {
             xfrc: u1, // XFRC
@@ -1285,7 +1273,7 @@ pub const registers = struct {
         };
         pub const doepint2 = mmio(base_address + 0x348, 32, Doepint2);
 
-        /// address: 0x50000b68
+        /// address: 0x50000b68, path: otg_fs_device.doepint3
         /// device endpoint-3 interrupt register
         pub const Doepint3 = packed struct {
             xfrc: u1, // XFRC
@@ -1299,7 +1287,7 @@ pub const registers = struct {
         };
         pub const doepint3 = mmio(base_address + 0x368, 32, Doepint3);
 
-        /// address: 0x50000910
+        /// address: 0x50000910, path: otg_fs_device.dieptsiz0
         /// device endpoint-0 transfer size register
         pub const Dieptsiz0 = packed struct {
             xfrsiz: u7, // Transfer size
@@ -1309,7 +1297,7 @@ pub const registers = struct {
         };
         pub const dieptsiz0 = mmio(base_address + 0x110, 32, Dieptsiz0);
 
-        /// address: 0x50000b10
+        /// address: 0x50000b10, path: otg_fs_device.doeptsiz0
         /// device OUT endpoint-0 transfer size register
         pub const Doeptsiz0 = packed struct {
             xfrsiz: u7, // Transfer size
@@ -1321,7 +1309,7 @@ pub const registers = struct {
         };
         pub const doeptsiz0 = mmio(base_address + 0x310, 32, Doeptsiz0);
 
-        /// address: 0x50000930
+        /// address: 0x50000930, path: otg_fs_device.dieptsiz1
         /// device endpoint-1 transfer size register
         pub const Dieptsiz1 = packed struct {
             xfrsiz: u19, // Transfer size
@@ -1331,7 +1319,7 @@ pub const registers = struct {
         };
         pub const dieptsiz1 = mmio(base_address + 0x130, 32, Dieptsiz1);
 
-        /// address: 0x50000950
+        /// address: 0x50000950, path: otg_fs_device.dieptsiz2
         /// device endpoint-2 transfer size register
         pub const Dieptsiz2 = packed struct {
             xfrsiz: u19, // Transfer size
@@ -1341,7 +1329,7 @@ pub const registers = struct {
         };
         pub const dieptsiz2 = mmio(base_address + 0x150, 32, Dieptsiz2);
 
-        /// address: 0x50000970
+        /// address: 0x50000970, path: otg_fs_device.dieptsiz3
         /// device endpoint-3 transfer size register
         pub const Dieptsiz3 = packed struct {
             xfrsiz: u19, // Transfer size
@@ -1351,7 +1339,7 @@ pub const registers = struct {
         };
         pub const dieptsiz3 = mmio(base_address + 0x170, 32, Dieptsiz3);
 
-        /// address: 0x50000918
+        /// address: 0x50000918, path: otg_fs_device.dtxfsts0
         /// OTG_FS device IN endpoint transmit FIFO status register
         pub const Dtxfsts0 = packed struct {
             ineptfsav: u16, // IN endpoint TxFIFO space available
@@ -1359,7 +1347,7 @@ pub const registers = struct {
         };
         pub const dtxfsts0 = mmio(base_address + 0x118, 32, Dtxfsts0);
 
-        /// address: 0x50000938
+        /// address: 0x50000938, path: otg_fs_device.dtxfsts1
         /// OTG_FS device IN endpoint transmit FIFO status register
         pub const Dtxfsts1 = packed struct {
             ineptfsav: u16, // IN endpoint TxFIFO space available
@@ -1367,7 +1355,7 @@ pub const registers = struct {
         };
         pub const dtxfsts1 = mmio(base_address + 0x138, 32, Dtxfsts1);
 
-        /// address: 0x50000958
+        /// address: 0x50000958, path: otg_fs_device.dtxfsts2
         /// OTG_FS device IN endpoint transmit FIFO status register
         pub const Dtxfsts2 = packed struct {
             ineptfsav: u16, // IN endpoint TxFIFO space available
@@ -1375,7 +1363,7 @@ pub const registers = struct {
         };
         pub const dtxfsts2 = mmio(base_address + 0x158, 32, Dtxfsts2);
 
-        /// address: 0x50000978
+        /// address: 0x50000978, path: otg_fs_device.dtxfsts3
         /// OTG_FS device IN endpoint transmit FIFO status register
         pub const Dtxfsts3 = packed struct {
             ineptfsav: u16, // IN endpoint TxFIFO space available
@@ -1383,7 +1371,7 @@ pub const registers = struct {
         };
         pub const dtxfsts3 = mmio(base_address + 0x178, 32, Dtxfsts3);
 
-        /// address: 0x50000b30
+        /// address: 0x50000b30, path: otg_fs_device.doeptsiz1
         /// device OUT endpoint-1 transfer size register
         pub const Doeptsiz1 = packed struct {
             xfrsiz: u19, // Transfer size
@@ -1393,7 +1381,7 @@ pub const registers = struct {
         };
         pub const doeptsiz1 = mmio(base_address + 0x330, 32, Doeptsiz1);
 
-        /// address: 0x50000b50
+        /// address: 0x50000b50, path: otg_fs_device.doeptsiz2
         /// device OUT endpoint-2 transfer size register
         pub const Doeptsiz2 = packed struct {
             xfrsiz: u19, // Transfer size
@@ -1403,7 +1391,7 @@ pub const registers = struct {
         };
         pub const doeptsiz2 = mmio(base_address + 0x350, 32, Doeptsiz2);
 
-        /// address: 0x50000b70
+        /// address: 0x50000b70, path: otg_fs_device.doeptsiz3
         /// device OUT endpoint-3 transfer size register
         pub const Doeptsiz3 = packed struct {
             xfrsiz: u19, // Transfer size
@@ -1417,7 +1405,7 @@ pub const registers = struct {
     pub const otg_fs_global = struct {
         pub const base_address = 0x50000000;
 
-        /// address: 0x50000000
+        /// address: 0x50000000, path: otg_fs_global.gotgctl
         /// OTG_FS control and status register (OTG_FS_GOTGCTL)
         pub const Gotgctl = packed struct {
             srqscs: u1, // Session request success
@@ -1436,7 +1424,7 @@ pub const registers = struct {
         };
         pub const gotgctl = mmio(base_address + 0x0, 32, Gotgctl);
 
-        /// address: 0x50000004
+        /// address: 0x50000004, path: otg_fs_global.gotgint
         /// OTG_FS interrupt register (OTG_FS_GOTGINT)
         pub const Gotgint = packed struct {
             _reserved_0_1: u2,
@@ -1452,7 +1440,7 @@ pub const registers = struct {
         };
         pub const gotgint = mmio(base_address + 0x4, 32, Gotgint);
 
-        /// address: 0x50000008
+        /// address: 0x50000008, path: otg_fs_global.gahbcfg
         /// OTG_FS AHB configuration register (OTG_FS_GAHBCFG)
         pub const Gahbcfg = packed struct {
             gint: u1, // Global interrupt mask
@@ -1463,7 +1451,7 @@ pub const registers = struct {
         };
         pub const gahbcfg = mmio(base_address + 0x8, 32, Gahbcfg);
 
-        /// address: 0x5000000c
+        /// address: 0x5000000c, path: otg_fs_global.gusbcfg
         /// OTG_FS USB configuration register (OTG_FS_GUSBCFG)
         pub const Gusbcfg = packed struct {
             tocal: u3, // FS timeout calibration
@@ -1480,7 +1468,7 @@ pub const registers = struct {
         };
         pub const gusbcfg = mmio(base_address + 0xc, 32, Gusbcfg);
 
-        /// address: 0x50000010
+        /// address: 0x50000010, path: otg_fs_global.grstctl
         /// OTG_FS reset register (OTG_FS_GRSTCTL)
         pub const Grstctl = packed struct {
             csrst: u1, // Core soft reset
@@ -1495,7 +1483,7 @@ pub const registers = struct {
         };
         pub const grstctl = mmio(base_address + 0x10, 32, Grstctl);
 
-        /// address: 0x50000014
+        /// address: 0x50000014, path: otg_fs_global.gintsts
         /// OTG_FS core interrupt register (OTG_FS_GINTSTS)
         pub const Gintsts = packed struct {
             cmod: u1, // Current mode of operation
@@ -1530,7 +1518,7 @@ pub const registers = struct {
         };
         pub const gintsts = mmio(base_address + 0x14, 32, Gintsts);
 
-        /// address: 0x50000018
+        /// address: 0x50000018, path: otg_fs_global.gintmsk
         /// OTG_FS interrupt mask register (OTG_FS_GINTMSK)
         pub const Gintmsk = packed struct {
             _reserved_0_0: u1,
@@ -1566,7 +1554,7 @@ pub const registers = struct {
         };
         pub const gintmsk = mmio(base_address + 0x18, 32, Gintmsk);
 
-        /// address: 0x5000001c
+        /// address: 0x5000001c, path: otg_fs_global.grxstsr_device
         /// OTG_FS Receive status debug read(Device mode)
         pub const GrxstsrDevice = packed struct {
             epnum: u4, // Endpoint number
@@ -1578,7 +1566,7 @@ pub const registers = struct {
         };
         pub const grxstsr_device = mmio(base_address + 0x1c, 32, GrxstsrDevice);
 
-        /// address: 0x5000001c
+        /// address: 0x5000001c, path: otg_fs_global.grxstsr_host
         /// OTG status debug read (host mode)
         pub const GrxstsrHost = packed struct {
             chnum: u4, // Channel number
@@ -1589,7 +1577,7 @@ pub const registers = struct {
         };
         pub const grxstsr_host = mmio(base_address + 28, 32, GrxstsrHost);
 
-        /// address: 0x50000024
+        /// address: 0x50000024, path: otg_fs_global.grxfsiz
         /// OTG_FS Receive FIFO size register (OTG_FS_GRXFSIZ)
         pub const Grxfsiz = packed struct {
             rxfd: u16, // RxFIFO depth
@@ -1597,7 +1585,7 @@ pub const registers = struct {
         };
         pub const grxfsiz = mmio(base_address + 0x24, 32, Grxfsiz);
 
-        /// address: 0x50000028
+        /// address: 0x50000028, path: otg_fs_global.dieptxf0
         /// OTG_FS non-periodic transmit FIFO size register (Device mode)
         pub const Dieptxf0 = packed struct {
             tx0fsa: u16, // Endpoint 0 transmit RAM start address
@@ -1605,7 +1593,7 @@ pub const registers = struct {
         };
         pub const dieptxf0 = mmio(base_address + 0x28, 32, Dieptxf0);
 
-        /// address: 0x50000028
+        /// address: 0x50000028, path: otg_fs_global.hnptxfsiz
         /// OTG_FS non-periodic transmit FIFO size register (Host mode)
         pub const Hnptxfsiz = packed struct {
             nptxfsa: u16, // Non-periodic transmit RAM start address
@@ -1613,7 +1601,7 @@ pub const registers = struct {
         };
         pub const hnptxfsiz = mmio(base_address + 0x28, 32, Hnptxfsiz);
 
-        /// address: 0x5000002c
+        /// address: 0x5000002c, path: otg_fs_global.gnptxsts
         /// OTG_FS non-periodic transmit FIFO/queue status register (OTG_FS_GNPTXSTS)
         pub const Gnptxsts = packed struct {
             nptxfsav: u16, // Non-periodic TxFIFO space available
@@ -1623,7 +1611,7 @@ pub const registers = struct {
         };
         pub const gnptxsts = mmio(base_address + 0x2c, 32, Gnptxsts);
 
-        /// address: 0x50000038
+        /// address: 0x50000038, path: otg_fs_global.gccfg
         /// OTG_FS general core configuration register (OTG_FS_GCCFG)
         pub const Gccfg = packed struct {
             _reserved_0_15: u16,
@@ -1637,14 +1625,14 @@ pub const registers = struct {
         };
         pub const gccfg = mmio(base_address + 0x38, 32, Gccfg);
 
-        /// address: 0x5000003c
+        /// address: 0x5000003c, path: otg_fs_global.cid
         /// core ID register
         pub const Cid = packed struct {
             product_id: u32, // Product ID field
         };
         pub const cid = mmio(base_address + 0x3c, 32, Cid);
 
-        /// address: 0x50000100
+        /// address: 0x50000100, path: otg_fs_global.hptxfsiz
         /// OTG_FS Host periodic transmit FIFO size register (OTG_FS_HPTXFSIZ)
         pub const Hptxfsiz = packed struct {
             ptxsa: u16, // Host periodic TxFIFO start address
@@ -1652,7 +1640,7 @@ pub const registers = struct {
         };
         pub const hptxfsiz = mmio(base_address + 0x100, 32, Hptxfsiz);
 
-        /// address: 0x50000104
+        /// address: 0x50000104, path: otg_fs_global.dieptxf1
         /// OTF_FS device IN endpoint transmit FIFO size register
         pub const Dieptxf1 = packed struct {
             ineptxsa: u16, // IN endpoint FIFO2 transmit RAM start address
@@ -1660,7 +1648,7 @@ pub const registers = struct {
         };
         pub const dieptxf1 = mmio(base_address + 0x104, 32, Dieptxf1);
 
-        /// address: 0x50000108
+        /// address: 0x50000108, path: otg_fs_global.dieptxf2
         /// OTF_FS device IN endpoint transmit FIFO size register
         pub const Dieptxf2 = packed struct {
             ineptxsa: u16, // IN endpoint FIFO2 transmit RAM start address
@@ -1668,7 +1656,7 @@ pub const registers = struct {
         };
         pub const dieptxf2 = mmio(base_address + 0x108, 32, Dieptxf2);
 
-        /// address: 0x5000010c
+        /// address: 0x5000010c, path: otg_fs_global.dieptxf3
         /// OTF_FS device IN endpoint transmit FIFO size register
         pub const Dieptxf3 = packed struct {
             ineptxsa: u16, // IN endpoint FIFO2 transmit RAM start address
@@ -1676,7 +1664,7 @@ pub const registers = struct {
         };
         pub const dieptxf3 = mmio(base_address + 0x10c, 32, Dieptxf3);
 
-        /// address: 0x50000020
+        /// address: 0x50000020, path: otg_fs_global.grxstsp_device
         /// OTG status read and pop (device mode)
         pub const GrxstspDevice = packed struct {
             epnum: u4, // Endpoint number
@@ -1688,7 +1676,7 @@ pub const registers = struct {
         };
         pub const grxstsp_device = mmio(base_address + 32, 32, GrxstspDevice);
 
-        /// address: 0x50000020
+        /// address: 0x50000020, path: otg_fs_global.grxstsp_host
         /// OTG status read and pop (host mode)
         pub const GrxstspHost = packed struct {
             chnum: u4, // Channel number
@@ -1703,7 +1691,7 @@ pub const registers = struct {
     pub const otg_fs_host = struct {
         pub const base_address = 0x50000400;
 
-        /// address: 0x50000400
+        /// address: 0x50000400, path: otg_fs_host.hcfg
         /// OTG_FS host configuration register (OTG_FS_HCFG)
         pub const Hcfg = packed struct {
             fslspcs: u2, // FS/LS PHY clock select
@@ -1712,7 +1700,7 @@ pub const registers = struct {
         };
         pub const hcfg = mmio(base_address + 0x0, 32, Hcfg);
 
-        /// address: 0x50000404
+        /// address: 0x50000404, path: otg_fs_host.hfir
         /// OTG_FS Host frame interval register
         pub const Hfir = packed struct {
             frivl: u16, // Frame interval
@@ -1720,7 +1708,7 @@ pub const registers = struct {
         };
         pub const hfir = mmio(base_address + 0x4, 32, Hfir);
 
-        /// address: 0x50000408
+        /// address: 0x50000408, path: otg_fs_host.hfnum
         /// OTG_FS host frame number/frame time remaining register (OTG_FS_HFNUM)
         pub const Hfnum = packed struct {
             frnum: u16, // Frame number
@@ -1728,7 +1716,7 @@ pub const registers = struct {
         };
         pub const hfnum = mmio(base_address + 0x8, 32, Hfnum);
 
-        /// address: 0x50000410
+        /// address: 0x50000410, path: otg_fs_host.hptxsts
         /// OTG_FS_Host periodic transmit FIFO/queue status register (OTG_FS_HPTXSTS)
         pub const Hptxsts = packed struct {
             ptxfsavl: u16, // Periodic transmit data FIFO space available
@@ -1737,11 +1725,11 @@ pub const registers = struct {
         };
         pub const hptxsts = mmio(base_address + 0x10, 32, Hptxsts);
 
-        /// address: 0x50000414
+        /// address: 0x50000414, path: otg_fs_host.haint
         /// OTG_FS Host all channels interrupt register
         pub const haint = mmioInt(base_address + 0x14, 32, u16);
 
-        /// address: 0x50000418
+        /// address: 0x50000418, path: otg_fs_host.haintmsk
         /// OTG_FS host all channels interrupt mask register
         pub const Haintmsk = packed struct {
             haintm: u16, // Channel interrupt mask
@@ -1749,7 +1737,7 @@ pub const registers = struct {
         };
         pub const haintmsk = mmio(base_address + 0x18, 32, Haintmsk);
 
-        /// address: 0x50000440
+        /// address: 0x50000440, path: otg_fs_host.hprt
         /// OTG_FS host port control and status register (OTG_FS_HPRT)
         pub const Hprt = packed struct {
             pcsts: u1, // Port connect status
@@ -1770,7 +1758,7 @@ pub const registers = struct {
         };
         pub const hprt = mmio(base_address + 0x40, 32, Hprt);
 
-        /// address: 0x50000500
+        /// address: 0x50000500, path: otg_fs_host.hcchar0
         /// OTG_FS host channel-0 characteristics register (OTG_FS_HCCHAR0)
         pub const Hcchar0 = packed struct {
             mpsiz: u11, // Maximum packet size
@@ -1787,7 +1775,7 @@ pub const registers = struct {
         };
         pub const hcchar0 = mmio(base_address + 0x100, 32, Hcchar0);
 
-        /// address: 0x50000520
+        /// address: 0x50000520, path: otg_fs_host.hcchar1
         /// OTG_FS host channel-1 characteristics register (OTG_FS_HCCHAR1)
         pub const Hcchar1 = packed struct {
             mpsiz: u11, // Maximum packet size
@@ -1804,7 +1792,7 @@ pub const registers = struct {
         };
         pub const hcchar1 = mmio(base_address + 0x120, 32, Hcchar1);
 
-        /// address: 0x50000540
+        /// address: 0x50000540, path: otg_fs_host.hcchar2
         /// OTG_FS host channel-2 characteristics register (OTG_FS_HCCHAR2)
         pub const Hcchar2 = packed struct {
             mpsiz: u11, // Maximum packet size
@@ -1821,7 +1809,7 @@ pub const registers = struct {
         };
         pub const hcchar2 = mmio(base_address + 0x140, 32, Hcchar2);
 
-        /// address: 0x50000560
+        /// address: 0x50000560, path: otg_fs_host.hcchar3
         /// OTG_FS host channel-3 characteristics register (OTG_FS_HCCHAR3)
         pub const Hcchar3 = packed struct {
             mpsiz: u11, // Maximum packet size
@@ -1838,7 +1826,7 @@ pub const registers = struct {
         };
         pub const hcchar3 = mmio(base_address + 0x160, 32, Hcchar3);
 
-        /// address: 0x50000580
+        /// address: 0x50000580, path: otg_fs_host.hcchar4
         /// OTG_FS host channel-4 characteristics register (OTG_FS_HCCHAR4)
         pub const Hcchar4 = packed struct {
             mpsiz: u11, // Maximum packet size
@@ -1855,7 +1843,7 @@ pub const registers = struct {
         };
         pub const hcchar4 = mmio(base_address + 0x180, 32, Hcchar4);
 
-        /// address: 0x500005a0
+        /// address: 0x500005a0, path: otg_fs_host.hcchar5
         /// OTG_FS host channel-5 characteristics register (OTG_FS_HCCHAR5)
         pub const Hcchar5 = packed struct {
             mpsiz: u11, // Maximum packet size
@@ -1872,7 +1860,7 @@ pub const registers = struct {
         };
         pub const hcchar5 = mmio(base_address + 0x1a0, 32, Hcchar5);
 
-        /// address: 0x500005c0
+        /// address: 0x500005c0, path: otg_fs_host.hcchar6
         /// OTG_FS host channel-6 characteristics register (OTG_FS_HCCHAR6)
         pub const Hcchar6 = packed struct {
             mpsiz: u11, // Maximum packet size
@@ -1889,7 +1877,7 @@ pub const registers = struct {
         };
         pub const hcchar6 = mmio(base_address + 0x1c0, 32, Hcchar6);
 
-        /// address: 0x500005e0
+        /// address: 0x500005e0, path: otg_fs_host.hcchar7
         /// OTG_FS host channel-7 characteristics register (OTG_FS_HCCHAR7)
         pub const Hcchar7 = packed struct {
             mpsiz: u11, // Maximum packet size
@@ -1906,7 +1894,7 @@ pub const registers = struct {
         };
         pub const hcchar7 = mmio(base_address + 0x1e0, 32, Hcchar7);
 
-        /// address: 0x50000508
+        /// address: 0x50000508, path: otg_fs_host.hcint0
         /// OTG_FS host channel-0 interrupt register (OTG_FS_HCINT0)
         pub const Hcint0 = packed struct {
             xfrc: u1, // Transfer completed
@@ -1924,7 +1912,7 @@ pub const registers = struct {
         };
         pub const hcint0 = mmio(base_address + 0x108, 32, Hcint0);
 
-        /// address: 0x50000528
+        /// address: 0x50000528, path: otg_fs_host.hcint1
         /// OTG_FS host channel-1 interrupt register (OTG_FS_HCINT1)
         pub const Hcint1 = packed struct {
             xfrc: u1, // Transfer completed
@@ -1942,7 +1930,7 @@ pub const registers = struct {
         };
         pub const hcint1 = mmio(base_address + 0x128, 32, Hcint1);
 
-        /// address: 0x50000548
+        /// address: 0x50000548, path: otg_fs_host.hcint2
         /// OTG_FS host channel-2 interrupt register (OTG_FS_HCINT2)
         pub const Hcint2 = packed struct {
             xfrc: u1, // Transfer completed
@@ -1960,7 +1948,7 @@ pub const registers = struct {
         };
         pub const hcint2 = mmio(base_address + 0x148, 32, Hcint2);
 
-        /// address: 0x50000568
+        /// address: 0x50000568, path: otg_fs_host.hcint3
         /// OTG_FS host channel-3 interrupt register (OTG_FS_HCINT3)
         pub const Hcint3 = packed struct {
             xfrc: u1, // Transfer completed
@@ -1978,7 +1966,7 @@ pub const registers = struct {
         };
         pub const hcint3 = mmio(base_address + 0x168, 32, Hcint3);
 
-        /// address: 0x50000588
+        /// address: 0x50000588, path: otg_fs_host.hcint4
         /// OTG_FS host channel-4 interrupt register (OTG_FS_HCINT4)
         pub const Hcint4 = packed struct {
             xfrc: u1, // Transfer completed
@@ -1996,7 +1984,7 @@ pub const registers = struct {
         };
         pub const hcint4 = mmio(base_address + 0x188, 32, Hcint4);
 
-        /// address: 0x500005a8
+        /// address: 0x500005a8, path: otg_fs_host.hcint5
         /// OTG_FS host channel-5 interrupt register (OTG_FS_HCINT5)
         pub const Hcint5 = packed struct {
             xfrc: u1, // Transfer completed
@@ -2014,7 +2002,7 @@ pub const registers = struct {
         };
         pub const hcint5 = mmio(base_address + 0x1a8, 32, Hcint5);
 
-        /// address: 0x500005c8
+        /// address: 0x500005c8, path: otg_fs_host.hcint6
         /// OTG_FS host channel-6 interrupt register (OTG_FS_HCINT6)
         pub const Hcint6 = packed struct {
             xfrc: u1, // Transfer completed
@@ -2032,7 +2020,7 @@ pub const registers = struct {
         };
         pub const hcint6 = mmio(base_address + 0x1c8, 32, Hcint6);
 
-        /// address: 0x500005e8
+        /// address: 0x500005e8, path: otg_fs_host.hcint7
         /// OTG_FS host channel-7 interrupt register (OTG_FS_HCINT7)
         pub const Hcint7 = packed struct {
             xfrc: u1, // Transfer completed
@@ -2050,7 +2038,7 @@ pub const registers = struct {
         };
         pub const hcint7 = mmio(base_address + 0x1e8, 32, Hcint7);
 
-        /// address: 0x5000050c
+        /// address: 0x5000050c, path: otg_fs_host.hcintmsk0
         /// OTG_FS host channel-0 mask register (OTG_FS_HCINTMSK0)
         pub const Hcintmsk0 = packed struct {
             xfrcm: u1, // Transfer completed mask
@@ -2068,7 +2056,7 @@ pub const registers = struct {
         };
         pub const hcintmsk0 = mmio(base_address + 0x10c, 32, Hcintmsk0);
 
-        /// address: 0x5000052c
+        /// address: 0x5000052c, path: otg_fs_host.hcintmsk1
         /// OTG_FS host channel-1 mask register (OTG_FS_HCINTMSK1)
         pub const Hcintmsk1 = packed struct {
             xfrcm: u1, // Transfer completed mask
@@ -2086,7 +2074,7 @@ pub const registers = struct {
         };
         pub const hcintmsk1 = mmio(base_address + 0x12c, 32, Hcintmsk1);
 
-        /// address: 0x5000054c
+        /// address: 0x5000054c, path: otg_fs_host.hcintmsk2
         /// OTG_FS host channel-2 mask register (OTG_FS_HCINTMSK2)
         pub const Hcintmsk2 = packed struct {
             xfrcm: u1, // Transfer completed mask
@@ -2104,7 +2092,7 @@ pub const registers = struct {
         };
         pub const hcintmsk2 = mmio(base_address + 0x14c, 32, Hcintmsk2);
 
-        /// address: 0x5000056c
+        /// address: 0x5000056c, path: otg_fs_host.hcintmsk3
         /// OTG_FS host channel-3 mask register (OTG_FS_HCINTMSK3)
         pub const Hcintmsk3 = packed struct {
             xfrcm: u1, // Transfer completed mask
@@ -2122,7 +2110,7 @@ pub const registers = struct {
         };
         pub const hcintmsk3 = mmio(base_address + 0x16c, 32, Hcintmsk3);
 
-        /// address: 0x5000058c
+        /// address: 0x5000058c, path: otg_fs_host.hcintmsk4
         /// OTG_FS host channel-4 mask register (OTG_FS_HCINTMSK4)
         pub const Hcintmsk4 = packed struct {
             xfrcm: u1, // Transfer completed mask
@@ -2140,7 +2128,7 @@ pub const registers = struct {
         };
         pub const hcintmsk4 = mmio(base_address + 0x18c, 32, Hcintmsk4);
 
-        /// address: 0x500005ac
+        /// address: 0x500005ac, path: otg_fs_host.hcintmsk5
         /// OTG_FS host channel-5 mask register (OTG_FS_HCINTMSK5)
         pub const Hcintmsk5 = packed struct {
             xfrcm: u1, // Transfer completed mask
@@ -2158,7 +2146,7 @@ pub const registers = struct {
         };
         pub const hcintmsk5 = mmio(base_address + 0x1ac, 32, Hcintmsk5);
 
-        /// address: 0x500005cc
+        /// address: 0x500005cc, path: otg_fs_host.hcintmsk6
         /// OTG_FS host channel-6 mask register (OTG_FS_HCINTMSK6)
         pub const Hcintmsk6 = packed struct {
             xfrcm: u1, // Transfer completed mask
@@ -2176,7 +2164,7 @@ pub const registers = struct {
         };
         pub const hcintmsk6 = mmio(base_address + 0x1cc, 32, Hcintmsk6);
 
-        /// address: 0x500005ec
+        /// address: 0x500005ec, path: otg_fs_host.hcintmsk7
         /// OTG_FS host channel-7 mask register (OTG_FS_HCINTMSK7)
         pub const Hcintmsk7 = packed struct {
             xfrcm: u1, // Transfer completed mask
@@ -2194,7 +2182,7 @@ pub const registers = struct {
         };
         pub const hcintmsk7 = mmio(base_address + 0x1ec, 32, Hcintmsk7);
 
-        /// address: 0x50000510
+        /// address: 0x50000510, path: otg_fs_host.hctsiz0
         /// OTG_FS host channel-0 transfer size register
         pub const Hctsiz0 = packed struct {
             xfrsiz: u19, // Transfer size
@@ -2204,7 +2192,7 @@ pub const registers = struct {
         };
         pub const hctsiz0 = mmio(base_address + 0x110, 32, Hctsiz0);
 
-        /// address: 0x50000530
+        /// address: 0x50000530, path: otg_fs_host.hctsiz1
         /// OTG_FS host channel-1 transfer size register
         pub const Hctsiz1 = packed struct {
             xfrsiz: u19, // Transfer size
@@ -2214,7 +2202,7 @@ pub const registers = struct {
         };
         pub const hctsiz1 = mmio(base_address + 0x130, 32, Hctsiz1);
 
-        /// address: 0x50000550
+        /// address: 0x50000550, path: otg_fs_host.hctsiz2
         /// OTG_FS host channel-2 transfer size register
         pub const Hctsiz2 = packed struct {
             xfrsiz: u19, // Transfer size
@@ -2224,7 +2212,7 @@ pub const registers = struct {
         };
         pub const hctsiz2 = mmio(base_address + 0x150, 32, Hctsiz2);
 
-        /// address: 0x50000570
+        /// address: 0x50000570, path: otg_fs_host.hctsiz3
         /// OTG_FS host channel-3 transfer size register
         pub const Hctsiz3 = packed struct {
             xfrsiz: u19, // Transfer size
@@ -2234,7 +2222,7 @@ pub const registers = struct {
         };
         pub const hctsiz3 = mmio(base_address + 0x170, 32, Hctsiz3);
 
-        /// address: 0x50000590
+        /// address: 0x50000590, path: otg_fs_host.hctsiz4
         /// OTG_FS host channel-x transfer size register
         pub const Hctsiz4 = packed struct {
             xfrsiz: u19, // Transfer size
@@ -2244,7 +2232,7 @@ pub const registers = struct {
         };
         pub const hctsiz4 = mmio(base_address + 0x190, 32, Hctsiz4);
 
-        /// address: 0x500005b0
+        /// address: 0x500005b0, path: otg_fs_host.hctsiz5
         /// OTG_FS host channel-5 transfer size register
         pub const Hctsiz5 = packed struct {
             xfrsiz: u19, // Transfer size
@@ -2254,7 +2242,7 @@ pub const registers = struct {
         };
         pub const hctsiz5 = mmio(base_address + 0x1b0, 32, Hctsiz5);
 
-        /// address: 0x500005d0
+        /// address: 0x500005d0, path: otg_fs_host.hctsiz6
         /// OTG_FS host channel-6 transfer size register
         pub const Hctsiz6 = packed struct {
             xfrsiz: u19, // Transfer size
@@ -2264,7 +2252,7 @@ pub const registers = struct {
         };
         pub const hctsiz6 = mmio(base_address + 0x1d0, 32, Hctsiz6);
 
-        /// address: 0x500005f0
+        /// address: 0x500005f0, path: otg_fs_host.hctsiz7
         /// OTG_FS host channel-7 transfer size register
         pub const Hctsiz7 = packed struct {
             xfrsiz: u19, // Transfer size
@@ -2278,7 +2266,7 @@ pub const registers = struct {
     pub const otg_fs_pwrclk = struct {
         pub const base_address = 0x50000e00;
 
-        /// address: 0x50000e00
+        /// address: 0x50000e00, path: otg_fs_pwrclk.pcgcctl
         /// OTG_FS power and clock gating control register
         pub const Pcgcctl = packed struct {
             stppclk: u1, // Stop PHY clock
@@ -2293,7 +2281,7 @@ pub const registers = struct {
     pub const pwr = struct {
         pub const base_address = 0x40007000;
 
-        /// address: 0x40007000
+        /// address: 0x40007000, path: pwr.cr
         /// power control register
         pub const Cr = packed struct {
             lpds: u1, // Low-power deep sleep
@@ -2311,7 +2299,7 @@ pub const registers = struct {
         };
         pub const cr = mmio(base_address + 0x0, 32, Cr);
 
-        /// address: 0x40007004
+        /// address: 0x40007004, path: pwr.csr
         /// power control/status register
         pub const Csr = packed struct {
             wuf: u1, // Wakeup flag
@@ -2331,7 +2319,7 @@ pub const registers = struct {
     pub const rcc = struct {
         pub const base_address = 0x40023800;
 
-        /// address: 0x40023800
+        /// address: 0x40023800, path: rcc.cr
         /// clock control register
         pub const Cr = packed struct {
             pub const Hsion = enum(u1) {
@@ -2368,7 +2356,7 @@ pub const registers = struct {
         };
         pub const cr = mmio(base_address + 0x0, 32, Cr);
 
-        /// address: 0x40023804
+        /// address: 0x40023804, path: rcc.pllcfgr
         /// PLL configuration register
         pub const Pllcfgr = packed struct {
             pub const Pllp = enum(u2) {
@@ -2393,7 +2381,7 @@ pub const registers = struct {
         };
         pub const pllcfgr = mmio(base_address + 0x4, 32, Pllcfgr);
 
-        /// address: 0x40023808
+        /// address: 0x40023808, path: rcc.cfgr
         /// clock configuration register
         pub const Cfgr = packed struct {
             pub const Sw = enum(u2) {
@@ -2462,7 +2450,7 @@ pub const registers = struct {
         };
         pub const cfgr = mmio(base_address + 0x8, 32, Cfgr);
 
-        /// address: 0x4002380c
+        /// address: 0x4002380c, path: rcc.cir
         /// clock interrupt register
         pub const Cir = packed struct {
             pub const Lsirdyfr = enum(u1) {
@@ -2510,7 +2498,7 @@ pub const registers = struct {
         };
         pub const cir = mmio(base_address + 0xc, 32, Cir);
 
-        /// address: 0x40023810
+        /// address: 0x40023810, path: rcc.ahb1rstr
         /// AHB1 peripheral reset register
         pub const Ahb1rstr = packed struct {
             pub const Gpioarst = enum(u1) {
@@ -2532,7 +2520,7 @@ pub const registers = struct {
         };
         pub const ahb1rstr = mmio(base_address + 0x10, 32, Ahb1rstr);
 
-        /// address: 0x40023814
+        /// address: 0x40023814, path: rcc.ahb2rstr
         /// AHB2 peripheral reset register
         pub const Ahb2rstr = packed struct {
             pub const Otgfsrst = enum(u1) {
@@ -2544,7 +2532,7 @@ pub const registers = struct {
         };
         pub const ahb2rstr = mmio(base_address + 0x14, 32, Ahb2rstr);
 
-        /// address: 0x40023820
+        /// address: 0x40023820, path: rcc.apb1rstr
         /// APB1 peripheral reset register
         pub const Apb1rstr = packed struct {
             pub const Tim2rst = enum(u1) {
@@ -2571,7 +2559,7 @@ pub const registers = struct {
         };
         pub const apb1rstr = mmio(base_address + 0x20, 32, Apb1rstr);
 
-        /// address: 0x40023824
+        /// address: 0x40023824, path: rcc.apb2rstr
         /// APB2 peripheral reset register
         pub const Apb2rstr = packed struct {
             pub const Tim1rst = enum(u1) {
@@ -2598,7 +2586,7 @@ pub const registers = struct {
         };
         pub const apb2rstr = mmio(base_address + 0x24, 32, Apb2rstr);
 
-        /// address: 0x40023830
+        /// address: 0x40023830, path: rcc.ahb1enr
         /// AHB1 peripheral clock register
         pub const Ahb1enr = packed struct {
             pub const Gpioaen = enum(u1) {
@@ -2621,7 +2609,7 @@ pub const registers = struct {
         };
         pub const ahb1enr = mmio(base_address + 0x30, 32, Ahb1enr);
 
-        /// address: 0x40023834
+        /// address: 0x40023834, path: rcc.ahb2enr
         /// AHB2 peripheral clock enable register
         pub const Ahb2enr = packed struct {
             pub const Otgfsen = enum(u1) {
@@ -2634,7 +2622,7 @@ pub const registers = struct {
         };
         pub const ahb2enr = mmio(base_address + 0x34, 32, Ahb2enr);
 
-        /// address: 0x40023840
+        /// address: 0x40023840, path: rcc.apb1enr
         /// APB1 peripheral clock enable register
         pub const Apb1enr = packed struct {
             pub const Tim2en = enum(u1) {
@@ -2662,7 +2650,7 @@ pub const registers = struct {
         };
         pub const apb1enr = mmio(base_address + 0x40, 32, Apb1enr);
 
-        /// address: 0x40023844
+        /// address: 0x40023844, path: rcc.apb2enr
         /// APB2 peripheral clock enable register
         pub const Apb2enr = packed struct {
             pub const Tim1en = enum(u1) {
@@ -2690,7 +2678,7 @@ pub const registers = struct {
         };
         pub const apb2enr = mmio(base_address + 0x44, 32, Apb2enr);
 
-        /// address: 0x40023850
+        /// address: 0x40023850, path: rcc.ahb1lpenr
         /// AHB1 peripheral clock enable in low power mode register
         pub const Ahb1lpenr = packed struct {
             pub const Gpioalpen = enum(u1) {
@@ -2716,7 +2704,7 @@ pub const registers = struct {
         };
         pub const ahb1lpenr = mmio(base_address + 0x50, 32, Ahb1lpenr);
 
-        /// address: 0x40023854
+        /// address: 0x40023854, path: rcc.ahb2lpenr
         /// AHB2 peripheral clock enable in low power mode register
         pub const Ahb2lpenr = packed struct {
             pub const Otgfslpen = enum(u1) {
@@ -2729,7 +2717,7 @@ pub const registers = struct {
         };
         pub const ahb2lpenr = mmio(base_address + 0x54, 32, Ahb2lpenr);
 
-        /// address: 0x40023860
+        /// address: 0x40023860, path: rcc.apb1lpenr
         /// APB1 peripheral clock enable in low power mode register
         pub const Apb1lpenr = packed struct {
             pub const Tim2lpen = enum(u1) {
@@ -2757,7 +2745,7 @@ pub const registers = struct {
         };
         pub const apb1lpenr = mmio(base_address + 0x60, 32, Apb1lpenr);
 
-        /// address: 0x40023864
+        /// address: 0x40023864, path: rcc.apb2lpenr
         /// APB2 peripheral clock enabled in low power mode register
         pub const Apb2lpenr = packed struct {
             pub const Tim1lpen = enum(u1) {
@@ -2785,7 +2773,7 @@ pub const registers = struct {
         };
         pub const apb2lpenr = mmio(base_address + 0x64, 32, Apb2lpenr);
 
-        /// address: 0x40023870
+        /// address: 0x40023870, path: rcc.bdcr
         /// Backup domain control register
         pub const Bdcr = packed struct {
             pub const Lseon = enum(u1) {
@@ -2831,7 +2819,7 @@ pub const registers = struct {
         };
         pub const bdcr = mmio(base_address + 0x70, 32, Bdcr);
 
-        /// address: 0x40023874
+        /// address: 0x40023874, path: rcc.csr
         /// clock control & status register
         pub const Csr = packed struct {
             pub const Lsion = enum(u1) {
@@ -2863,7 +2851,7 @@ pub const registers = struct {
         };
         pub const csr = mmio(base_address + 0x74, 32, Csr);
 
-        /// address: 0x40023880
+        /// address: 0x40023880, path: rcc.sscgr
         /// spread spectrum clock generation register
         pub const Sscgr = packed struct {
             pub const Spreadsel = enum(u1) {
@@ -2882,7 +2870,7 @@ pub const registers = struct {
         };
         pub const sscgr = mmio(base_address + 0x80, 32, Sscgr);
 
-        /// address: 0x40023884
+        /// address: 0x40023884, path: rcc.plli2scfgr
         /// PLLI2S configuration register
         pub const Plli2scfgr = packed struct {
             plli2sm: u6, // Division factor for the audio PLL (PLLI2S) input clock
@@ -2893,7 +2881,7 @@ pub const registers = struct {
         };
         pub const plli2scfgr = mmio(base_address + 0x84, 32, Plli2scfgr);
 
-        /// address: 0x4002388c
+        /// address: 0x4002388c, path: rcc.dckcfgr
         /// RCC Dedicated Clock Configuration Register
         pub const Dckcfgr = packed struct {
             pub const Timpre = enum(u1) {
@@ -2910,7 +2898,7 @@ pub const registers = struct {
     pub const rtc = struct {
         pub const base_address = 0x40002800;
 
-        /// address: 0x40002800
+        /// address: 0x40002800, path: rtc.tr
         /// time register
         pub const Tr = packed struct {
             pub const Pm = enum(u1) {
@@ -2930,7 +2918,7 @@ pub const registers = struct {
         };
         pub const tr = mmio(base_address + 0x0, 32, Tr);
 
-        /// address: 0x40002804
+        /// address: 0x40002804, path: rtc.dr
         /// date register
         pub const Dr = packed struct {
             du: u4, // Date units in BCD format
@@ -2945,7 +2933,7 @@ pub const registers = struct {
         };
         pub const dr = mmio(base_address + 0x4, 32, Dr);
 
-        /// address: 0x40002808
+        /// address: 0x40002808, path: rtc.cr
         /// control register
         pub const Cr = packed struct {
             pub const Wucksel = enum(u3) {
@@ -3057,7 +3045,7 @@ pub const registers = struct {
         };
         pub const cr = mmio(base_address + 0x8, 32, Cr);
 
-        /// address: 0x4000280c
+        /// address: 0x4000280c, path: rtc.isr
         /// initialization and status register
         pub const Isr = packed struct {
             pub const Alrawfr = enum(u1) {
@@ -3137,7 +3125,7 @@ pub const registers = struct {
         };
         pub const isr = mmio(base_address + 0xc, 32, Isr);
 
-        /// address: 0x40002810
+        /// address: 0x40002810, path: rtc.prer
         /// prescaler register
         pub const Prer = packed struct {
             prediv_s: u15, // Synchronous prescaler factor
@@ -3147,7 +3135,7 @@ pub const registers = struct {
         };
         pub const prer = mmio(base_address + 0x10, 32, Prer);
 
-        /// address: 0x40002814
+        /// address: 0x40002814, path: rtc.wutr
         /// wakeup timer register
         pub const Wutr = packed struct {
             wut: u16, // Wakeup auto-reload value bits
@@ -3155,7 +3143,7 @@ pub const registers = struct {
         };
         pub const wutr = mmio(base_address + 0x14, 32, Wutr);
 
-        /// address: 0x40002818
+        /// address: 0x40002818, path: rtc.calibr
         /// calibration register
         pub const Calibr = packed struct {
             dc: u5, // Digital calibration
@@ -3165,17 +3153,14 @@ pub const registers = struct {
         };
         pub const calibr = mmio(base_address + 0x18, 32, Calibr);
 
-        /// address: 0x4000281c
+        /// address: 0x4000281c, path: rtc.alrmar
         /// Alarm register
         pub const Alrmar = packed struct {
             pub const Msk1 = enum(u1) {
                 mask = 0, // Alarm set if the date/day match
                 not_mask = 1, // Date/day don’t care in Alarm comparison
             };
-            pub const Pm = enum(u1) {
-                am = 0, // AM or 24-hour format
-                pm = 1, // PM
-            };
+            pub const Pm = rtc.tr.Pm;
             pub const Wdsel = enum(u1) {
                 date_units = 0, // DU[3:0] represents the date units
                 week_day = 1, // DU[3:0] represents the week day. DT[1:0] is don’t care.
@@ -3197,21 +3182,12 @@ pub const registers = struct {
         };
         pub const alrmar = mmio(base_address + 0x1c, 32, Alrmar);
 
-        /// address: 0x40002820
+        /// address: 0x40002820, path: rtc.alrmbr
         /// Alarm register
         pub const Alrmbr = packed struct {
-            pub const Msk1 = enum(u1) {
-                mask = 0, // Alarm set if the date/day match
-                not_mask = 1, // Date/day don’t care in Alarm comparison
-            };
-            pub const Pm = enum(u1) {
-                am = 0, // AM or 24-hour format
-                pm = 1, // PM
-            };
-            pub const Wdsel = enum(u1) {
-                date_units = 0, // DU[3:0] represents the date units
-                week_day = 1, // DU[3:0] represents the week day. DT[1:0] is don’t care.
-            };
+            pub const Msk1 = rtc.alrmar.Msk1;
+            pub const Pm = rtc.tr.Pm;
+            pub const Wdsel = rtc.alrmar.Wdsel;
             su: u4, // Second units in BCD format
             st: u3, // Second tens in BCD format
             msk1: Msk1, // Alarm seconds mask (u1)
@@ -3229,7 +3205,7 @@ pub const registers = struct {
         };
         pub const alrmbr = mmio(base_address + 0x20, 32, Alrmbr);
 
-        /// address: 0x40002824
+        /// address: 0x40002824, path: rtc.wpr
         /// write protection register
         pub const Wpr = packed struct {
             key: u8, // Write protection key
@@ -3237,7 +3213,7 @@ pub const registers = struct {
         };
         pub const wpr = mmio(base_address + 0x24, 32, Wpr);
 
-        /// address: 0x40002828
+        /// address: 0x40002828, path: rtc.ssr
         /// sub second register
         pub const Ssr = packed struct {
             ss: u16, // Sub second value
@@ -3245,7 +3221,7 @@ pub const registers = struct {
         };
         pub const ssr = mmio(base_address + 0x28, 32, Ssr);
 
-        /// address: 0x4000282c
+        /// address: 0x4000282c, path: rtc.shiftr
         /// shift control register
         pub const Shiftr = packed struct {
             pub const Add1sw = enum(u1) {
@@ -3257,7 +3233,7 @@ pub const registers = struct {
         };
         pub const shiftr = mmio(base_address + 0x2c, 32, Shiftr);
 
-        /// address: 0x4000283c
+        /// address: 0x4000283c, path: rtc.calr
         /// calibration register
         pub const Calr = packed struct {
             pub const Calw16 = enum(u1) {
@@ -3279,7 +3255,7 @@ pub const registers = struct {
         };
         pub const calr = mmio(base_address + 0x3c, 32, Calr);
 
-        /// address: 0x40002840
+        /// address: 0x40002840, path: rtc.tafcr
         /// tamper and alternate function configuration register
         pub const Tafcr = packed struct {
             tamp1e: u1, // Tamper 1 detection enable
@@ -3300,7 +3276,7 @@ pub const registers = struct {
         };
         pub const tafcr = mmio(base_address + 0x40, 32, Tafcr);
 
-        /// address: 0x40002844
+        /// address: 0x40002844, path: rtc.alrmassr
         /// Alarm sub-second register
         pub const Alrmassr = packed struct {
             ss: u15, // Sub seconds value
@@ -3310,7 +3286,7 @@ pub const registers = struct {
         };
         pub const alrmassr = mmio(base_address + 0x44, 32, Alrmassr);
 
-        /// address: 0x40002848
+        /// address: 0x40002848, path: rtc.alrmbssr
         /// Alarm sub-second register
         pub const Alrmbssr = packed struct {
             ss: u15, // Sub seconds value
@@ -3320,153 +3296,150 @@ pub const registers = struct {
         };
         pub const alrmbssr = mmio(base_address + 0x48, 32, Alrmbssr);
 
-        /// address: 0x40002850
+        /// address: 0x40002850, path: rtc.bkp0r
         /// backup register
         pub const Bkp0r = packed struct {
             bkp: u32, // BKP
         };
         pub const bkp0r = mmio(base_address + 0x50, 32, Bkp0r);
 
-        /// address: 0x40002854
+        /// address: 0x40002854, path: rtc.bkp1r
         /// backup register
         pub const Bkp1r = packed struct {
             bkp: u32, // BKP
         };
         pub const bkp1r = mmio(base_address + 0x54, 32, Bkp1r);
 
-        /// address: 0x40002858
+        /// address: 0x40002858, path: rtc.bkp2r
         /// backup register
         pub const Bkp2r = packed struct {
             bkp: u32, // BKP
         };
         pub const bkp2r = mmio(base_address + 0x58, 32, Bkp2r);
 
-        /// address: 0x4000285c
+        /// address: 0x4000285c, path: rtc.bkp3r
         /// backup register
         pub const Bkp3r = packed struct {
             bkp: u32, // BKP
         };
         pub const bkp3r = mmio(base_address + 0x5c, 32, Bkp3r);
 
-        /// address: 0x40002860
+        /// address: 0x40002860, path: rtc.bkp4r
         /// backup register
         pub const Bkp4r = packed struct {
             bkp: u32, // BKP
         };
         pub const bkp4r = mmio(base_address + 0x60, 32, Bkp4r);
 
-        /// address: 0x40002864
+        /// address: 0x40002864, path: rtc.bkp5r
         /// backup register
         pub const Bkp5r = packed struct {
             bkp: u32, // BKP
         };
         pub const bkp5r = mmio(base_address + 0x64, 32, Bkp5r);
 
-        /// address: 0x40002868
+        /// address: 0x40002868, path: rtc.bkp6r
         /// backup register
         pub const Bkp6r = packed struct {
             bkp: u32, // BKP
         };
         pub const bkp6r = mmio(base_address + 0x68, 32, Bkp6r);
 
-        /// address: 0x4000286c
+        /// address: 0x4000286c, path: rtc.bkp7r
         /// backup register
         pub const Bkp7r = packed struct {
             bkp: u32, // BKP
         };
         pub const bkp7r = mmio(base_address + 0x6c, 32, Bkp7r);
 
-        /// address: 0x40002870
+        /// address: 0x40002870, path: rtc.bkp8r
         /// backup register
         pub const Bkp8r = packed struct {
             bkp: u32, // BKP
         };
         pub const bkp8r = mmio(base_address + 0x70, 32, Bkp8r);
 
-        /// address: 0x40002874
+        /// address: 0x40002874, path: rtc.bkp9r
         /// backup register
         pub const Bkp9r = packed struct {
             bkp: u32, // BKP
         };
         pub const bkp9r = mmio(base_address + 0x74, 32, Bkp9r);
 
-        /// address: 0x40002878
+        /// address: 0x40002878, path: rtc.bkp10r
         /// backup register
         pub const Bkp10r = packed struct {
             bkp: u32, // BKP
         };
         pub const bkp10r = mmio(base_address + 0x78, 32, Bkp10r);
 
-        /// address: 0x4000287c
+        /// address: 0x4000287c, path: rtc.bkp11r
         /// backup register
         pub const Bkp11r = packed struct {
             bkp: u32, // BKP
         };
         pub const bkp11r = mmio(base_address + 0x7c, 32, Bkp11r);
 
-        /// address: 0x40002880
+        /// address: 0x40002880, path: rtc.bkp12r
         /// backup register
         pub const Bkp12r = packed struct {
             bkp: u32, // BKP
         };
         pub const bkp12r = mmio(base_address + 0x80, 32, Bkp12r);
 
-        /// address: 0x40002884
+        /// address: 0x40002884, path: rtc.bkp13r
         /// backup register
         pub const Bkp13r = packed struct {
             bkp: u32, // BKP
         };
         pub const bkp13r = mmio(base_address + 0x84, 32, Bkp13r);
 
-        /// address: 0x40002888
+        /// address: 0x40002888, path: rtc.bkp14r
         /// backup register
         pub const Bkp14r = packed struct {
             bkp: u32, // BKP
         };
         pub const bkp14r = mmio(base_address + 0x88, 32, Bkp14r);
 
-        /// address: 0x4000288c
+        /// address: 0x4000288c, path: rtc.bkp15r
         /// backup register
         pub const Bkp15r = packed struct {
             bkp: u32, // BKP
         };
         pub const bkp15r = mmio(base_address + 0x8c, 32, Bkp15r);
 
-        /// address: 0x40002890
+        /// address: 0x40002890, path: rtc.bkp16r
         /// backup register
         pub const Bkp16r = packed struct {
             bkp: u32, // BKP
         };
         pub const bkp16r = mmio(base_address + 0x90, 32, Bkp16r);
 
-        /// address: 0x40002894
+        /// address: 0x40002894, path: rtc.bkp17r
         /// backup register
         pub const Bkp17r = packed struct {
             bkp: u32, // BKP
         };
         pub const bkp17r = mmio(base_address + 0x94, 32, Bkp17r);
 
-        /// address: 0x40002898
+        /// address: 0x40002898, path: rtc.bkp18r
         /// backup register
         pub const Bkp18r = packed struct {
             bkp: u32, // BKP
         };
         pub const bkp18r = mmio(base_address + 0x98, 32, Bkp18r);
 
-        /// address: 0x4000289c
+        /// address: 0x4000289c, path: rtc.bkp19r
         /// backup register
         pub const Bkp19r = packed struct {
             bkp: u32, // BKP
         };
         pub const bkp19r = mmio(base_address + 0x9c, 32, Bkp19r);
 
-        /// address: 0x40002830
+        /// address: 0x40002830, path: rtc.tstr
         /// time stamp time register
         pub const Tstr = packed struct {
-            pub const Pm = enum(u1) {
-                am = 0, // AM or 24-hour format
-                pm = 1, // PM
-            };
+            pub const Pm = rtc.tr.Pm;
             su: u4, // Second units in BCD format
             st: u3, // Second tens in BCD format
             _reserved_7_7: u1,
@@ -3480,7 +3453,7 @@ pub const registers = struct {
         };
         pub const tstr = mmio(base_address + 0x30, 32, Tstr);
 
-        /// address: 0x40002834
+        /// address: 0x40002834, path: rtc.tsdr
         /// time stamp date register
         pub const Tsdr = packed struct {
             du: u4, // Date units in BCD format
@@ -3495,7 +3468,7 @@ pub const registers = struct {
         };
         pub const tsdr = mmio(base_address + 0x34, 32, Tsdr);
 
-        /// address: 0x40002838
+        /// address: 0x40002838, path: rtc.tsssr
         /// timestamp sub second register
         pub const Tsssr = packed struct {
             ss: u16, // Sub second value
@@ -3507,7 +3480,7 @@ pub const registers = struct {
     pub const sdio = struct {
         pub const base_address = 0x40012c00;
 
-        /// address: 0x40012c00
+        /// address: 0x40012c00, path: sdio.power
         /// power control register
         pub const Power = packed struct {
             pub const Pwrctrl = enum(u2) {
@@ -3519,7 +3492,7 @@ pub const registers = struct {
         };
         pub const power = mmio(base_address + 0x0, 32, Power);
 
-        /// address: 0x40012c04
+        /// address: 0x40012c04, path: sdio.clkcr
         /// SDI clock control register
         pub const Clkcr = packed struct {
             pub const Clken = enum(u1) {
@@ -3558,14 +3531,14 @@ pub const registers = struct {
         };
         pub const clkcr = mmio(base_address + 0x4, 32, Clkcr);
 
-        /// address: 0x40012c08
+        /// address: 0x40012c08, path: sdio.arg
         /// argument register
         pub const Arg = packed struct {
             cmdarg: u32, // Command argument
         };
         pub const arg = mmio(base_address + 0x8, 32, Arg);
 
-        /// address: 0x40012c0c
+        /// address: 0x40012c0c, path: sdio.cmd
         /// command register
         pub const Cmd = packed struct {
             pub const Waitresp = enum(u2) {
@@ -3615,46 +3588,46 @@ pub const registers = struct {
         };
         pub const cmd = mmio(base_address + 0xc, 32, Cmd);
 
-        /// address: 0x40012c10
+        /// address: 0x40012c10, path: sdio.respcmd
         /// command response register
         pub const respcmd = mmioInt(base_address + 0x10, 32, u6);
 
-        /// address: 0x40012c14
+        /// address: 0x40012c14, path: sdio.resp1
         /// response 1..4 register
         pub const Resp1 = packed struct {
             cardstatus1: u32, // Card Status
         };
         pub const resp1 = mmio(base_address + 0x14, 32, Resp1);
 
-        /// address: 0x40012c18
+        /// address: 0x40012c18, path: sdio.resp2
         /// response 1..4 register
         pub const Resp2 = packed struct {
             cardstatus2: u32, // Card Status
         };
         pub const resp2 = mmio(base_address + 0x18, 32, Resp2);
 
-        /// address: 0x40012c1c
+        /// address: 0x40012c1c, path: sdio.resp3
         /// response 1..4 register
         pub const Resp3 = packed struct {
             cardstatus3: u32, // Card Status
         };
         pub const resp3 = mmio(base_address + 0x1c, 32, Resp3);
 
-        /// address: 0x40012c20
+        /// address: 0x40012c20, path: sdio.resp4
         /// response 1..4 register
         pub const Resp4 = packed struct {
             cardstatus4: u32, // Card Status
         };
         pub const resp4 = mmio(base_address + 0x20, 32, Resp4);
 
-        /// address: 0x40012c24
+        /// address: 0x40012c24, path: sdio.dtimer
         /// data timer register
         pub const Dtimer = packed struct {
             datatime: u32, // Data timeout period
         };
         pub const dtimer = mmio(base_address + 0x24, 32, Dtimer);
 
-        /// address: 0x40012c28
+        /// address: 0x40012c28, path: sdio.dlen
         /// data length register
         pub const Dlen = packed struct {
             datalength: u25, // Data length value
@@ -3662,7 +3635,7 @@ pub const registers = struct {
         };
         pub const dlen = mmio(base_address + 0x28, 32, Dlen);
 
-        /// address: 0x40012c2c
+        /// address: 0x40012c2c, path: sdio.dctrl
         /// data control register
         pub const Dctrl = packed struct {
             pub const Dten = enum(u1) {
@@ -3710,7 +3683,7 @@ pub const registers = struct {
         };
         pub const dctrl = mmio(base_address + 0x2c, 32, Dctrl);
 
-        /// address: 0x40012c30
+        /// address: 0x40012c30, path: sdio.dcount
         /// data counter register
         pub const Dcount = packed struct {
             datacount: u25, // Data count value
@@ -3718,7 +3691,7 @@ pub const registers = struct {
         };
         pub const dcount = mmio(base_address + 0x30, 32, Dcount);
 
-        /// address: 0x40012c34
+        /// address: 0x40012c34, path: sdio.sta
         /// status register
         pub const Sta = packed struct {
             pub const Ccrcfail = enum(u1) {
@@ -3845,7 +3818,7 @@ pub const registers = struct {
         };
         pub const sta = mmio(base_address + 0x34, 32, Sta);
 
-        /// address: 0x40012c38
+        /// address: 0x40012c38, path: sdio.icr
         /// interrupt clear register
         pub const Icr = packed struct {
             pub const Ccrcfailcw = enum(u1) {
@@ -3869,7 +3842,7 @@ pub const registers = struct {
         };
         pub const icr = mmio(base_address + 0x38, 32, Icr);
 
-        /// address: 0x40012c3c
+        /// address: 0x40012c3c, path: sdio.mask
         /// mask register
         pub const Mask = packed struct {
             pub const Ccrcfailie = enum(u1) {
@@ -3904,7 +3877,7 @@ pub const registers = struct {
         };
         pub const mask = mmio(base_address + 0x3c, 32, Mask);
 
-        /// address: 0x40012c48
+        /// address: 0x40012c48, path: sdio.fifocnt
         /// FIFO counter register
         pub const Fifocnt = packed struct {
             fifocount: u24, // Remaining number of words to be written to or read from the FIFO.
@@ -3912,7 +3885,7 @@ pub const registers = struct {
         };
         pub const fifocnt = mmio(base_address + 0x48, 32, Fifocnt);
 
-        /// address: 0x40012c80
+        /// address: 0x40012c80, path: sdio.fifo
         /// data FIFO register
         pub const Fifo = packed struct {
             fifodata: u32, // Receive and transmit FIFO data
@@ -3923,7 +3896,7 @@ pub const registers = struct {
     pub const syscfg = struct {
         pub const base_address = 0x40013800;
 
-        /// address: 0x40013800
+        /// address: 0x40013800, path: syscfg.memrm
         /// memory remap register
         pub const Memrm = packed struct {
             mem_mode: u2, // MEM_MODE
@@ -3931,7 +3904,7 @@ pub const registers = struct {
         };
         pub const memrm = mmio(base_address + 0x0, 32, Memrm);
 
-        /// address: 0x40013804
+        /// address: 0x40013804, path: syscfg.pmc
         /// peripheral mode configuration register
         pub const Pmc = packed struct {
             _reserved_0_15: u16,
@@ -3940,7 +3913,7 @@ pub const registers = struct {
         };
         pub const pmc = mmio(base_address + 0x4, 32, Pmc);
 
-        /// address: 0x40013808
+        /// address: 0x40013808, path: syscfg.exticr1
         /// external interrupt configuration register 1
         pub const Exticr1 = packed struct {
             exti0: u4, // EXTI x configuration (x = 0 to 3)
@@ -3951,7 +3924,7 @@ pub const registers = struct {
         };
         pub const exticr1 = mmio(base_address + 0x8, 32, Exticr1);
 
-        /// address: 0x4001380c
+        /// address: 0x4001380c, path: syscfg.exticr2
         /// external interrupt configuration register 2
         pub const Exticr2 = packed struct {
             exti4: u4, // EXTI x configuration (x = 4 to 7)
@@ -3962,7 +3935,7 @@ pub const registers = struct {
         };
         pub const exticr2 = mmio(base_address + 0xc, 32, Exticr2);
 
-        /// address: 0x40013810
+        /// address: 0x40013810, path: syscfg.exticr3
         /// external interrupt configuration register 3
         pub const Exticr3 = packed struct {
             exti8: u4, // EXTI x configuration (x = 8 to 11)
@@ -3973,7 +3946,7 @@ pub const registers = struct {
         };
         pub const exticr3 = mmio(base_address + 0x10, 32, Exticr3);
 
-        /// address: 0x40013814
+        /// address: 0x40013814, path: syscfg.exticr4
         /// external interrupt configuration register 4
         pub const Exticr4 = packed struct {
             exti12: u4, // EXTI x configuration (x = 12 to 15)
@@ -3984,7 +3957,7 @@ pub const registers = struct {
         };
         pub const exticr4 = mmio(base_address + 0x14, 32, Exticr4);
 
-        /// address: 0x40013820
+        /// address: 0x40013820, path: syscfg.cmpcr
         /// Compensation cell control register
         pub const Cmpcr = packed struct {
             cmp_pd: u1, // Compensation cell power-down
@@ -3998,7 +3971,7 @@ pub const registers = struct {
     pub const tim1 = struct {
         pub const base_address = 0x40010000;
 
-        /// address: 0x40010000
+        /// address: 0x40010000, path: tim1.cr1
         /// control register 1
         pub const Cr1 = packed struct {
             pub const Cen = enum(u1) {
@@ -4048,7 +4021,7 @@ pub const registers = struct {
         };
         pub const cr1 = mmio(base_address + 0x0, 32, Cr1);
 
-        /// address: 0x40010004
+        /// address: 0x40010004, path: tim1.cr2
         /// control register 2
         pub const Cr2 = packed struct {
             pub const Ccds = enum(u1) {
@@ -4086,7 +4059,7 @@ pub const registers = struct {
         };
         pub const cr2 = mmio(base_address + 0x4, 32, Cr2);
 
-        /// address: 0x40010008
+        /// address: 0x40010008, path: tim1.smcr
         /// slave mode control register
         pub const Smcr = packed struct {
             pub const Sms = enum(u3) {
@@ -4156,7 +4129,7 @@ pub const registers = struct {
         };
         pub const smcr = mmio(base_address + 0x8, 32, Smcr);
 
-        /// address: 0x4001000c
+        /// address: 0x4001000c, path: tim1.dier
         /// DMA/Interrupt enable register
         pub const Dier = packed struct {
             pub const Uie = enum(u1) {
@@ -4202,7 +4175,7 @@ pub const registers = struct {
         };
         pub const dier = mmio(base_address + 0xc, 32, Dier);
 
-        /// address: 0x40010010
+        /// address: 0x40010010, path: tim1.sr
         /// status register
         pub const Sr = packed struct {
             pub const Uif = enum(u1) {
@@ -4239,7 +4212,7 @@ pub const registers = struct {
         };
         pub const sr = mmio(base_address + 0x10, 32, Sr);
 
-        /// address: 0x40010014
+        /// address: 0x40010014, path: tim1.egr
         /// event generation register
         pub const Egr = packed struct {
             pub const Ug = enum(u1) {
@@ -4263,7 +4236,7 @@ pub const registers = struct {
         };
         pub const egr = mmio(base_address + 0x14, 32, Egr);
 
-        /// address: 0x40010018
+        /// address: 0x40010018, path: tim1.ccmr1_output
         /// capture/compare mode register 1 (output mode)
         pub const Ccmr1Output = packed struct {
             pub const Cc1s = enum(u2) {
@@ -4304,7 +4277,7 @@ pub const registers = struct {
         };
         pub const ccmr1_output = mmio(base_address + 0x18, 32, Ccmr1Output);
 
-        /// address: 0x40010018
+        /// address: 0x40010018, path: tim1.ccmr1_input
         /// capture/compare mode register 1 (input mode)
         pub const Ccmr1Input = packed struct {
             pub const Cc1s = enum(u2) {
@@ -4345,7 +4318,7 @@ pub const registers = struct {
         };
         pub const ccmr1_input = mmio(base_address + 0x18, 32, Ccmr1Input);
 
-        /// address: 0x4001001c
+        /// address: 0x4001001c, path: tim1.ccmr2_output
         /// capture/compare mode register 2 (output mode)
         pub const Ccmr2Output = packed struct {
             pub const Cc3s = enum(u2) {
@@ -4386,7 +4359,7 @@ pub const registers = struct {
         };
         pub const ccmr2_output = mmio(base_address + 0x1c, 32, Ccmr2Output);
 
-        /// address: 0x4001001c
+        /// address: 0x4001001c, path: tim1.ccmr2_input
         /// capture/compare mode register 2 (input mode)
         pub const Ccmr2Input = packed struct {
             pub const Cc3s = enum(u2) {
@@ -4409,7 +4382,7 @@ pub const registers = struct {
         };
         pub const ccmr2_input = mmio(base_address + 0x1c, 32, Ccmr2Input);
 
-        /// address: 0x40010020
+        /// address: 0x40010020, path: tim1.ccer
         /// capture/compare enable register
         pub const Ccer = packed struct {
             cc1e: u1, // Capture/Compare 1 output enable
@@ -4430,19 +4403,19 @@ pub const registers = struct {
         };
         pub const ccer = mmio(base_address + 0x20, 32, Ccer);
 
-        /// address: 0x40010024
+        /// address: 0x40010024, path: tim1.cnt
         /// counter
         pub const cnt = mmioInt(base_address + 0x24, 32, u16);
 
-        /// address: 0x40010028
+        /// address: 0x40010028, path: tim1.psc
         /// prescaler
         pub const psc = mmioInt(base_address + 0x28, 32, u16);
 
-        /// address: 0x4001002c
+        /// address: 0x4001002c, path: tim1.arr
         /// auto-reload register
         pub const arr = mmioInt(base_address + 0x2c, 32, u16);
 
-        /// address: 0x40010034
+        /// address: 0x40010034, path: tim1.ccr1
         /// capture/compare register
         pub const Ccr1 = packed struct {
             ccr: u16, // Capture/Compare value
@@ -4450,7 +4423,7 @@ pub const registers = struct {
         };
         pub const ccr1 = mmio(base_address + 0x34, 32, Ccr1);
 
-        /// address: 0x40010038
+        /// address: 0x40010038, path: tim1.ccr2
         /// capture/compare register
         pub const Ccr2 = packed struct {
             ccr: u16, // Capture/Compare value
@@ -4458,7 +4431,7 @@ pub const registers = struct {
         };
         pub const ccr2 = mmio(base_address + 0x38, 32, Ccr2);
 
-        /// address: 0x4001003c
+        /// address: 0x4001003c, path: tim1.ccr3
         /// capture/compare register
         pub const Ccr3 = packed struct {
             ccr: u16, // Capture/Compare value
@@ -4466,7 +4439,7 @@ pub const registers = struct {
         };
         pub const ccr3 = mmio(base_address + 0x3c, 32, Ccr3);
 
-        /// address: 0x40010040
+        /// address: 0x40010040, path: tim1.ccr4
         /// capture/compare register
         pub const Ccr4 = packed struct {
             ccr: u16, // Capture/Compare value
@@ -4474,7 +4447,7 @@ pub const registers = struct {
         };
         pub const ccr4 = mmio(base_address + 0x40, 32, Ccr4);
 
-        /// address: 0x40010048
+        /// address: 0x40010048, path: tim1.dcr
         /// DMA control register
         pub const Dcr = packed struct {
             dba: u5, // DMA base address
@@ -4484,7 +4457,7 @@ pub const registers = struct {
         };
         pub const dcr = mmio(base_address + 0x48, 32, Dcr);
 
-        /// address: 0x4001004c
+        /// address: 0x4001004c, path: tim1.dmar
         /// DMA address for full transfer
         pub const Dmar = packed struct {
             dmab: u16, // DMA register for burst accesses
@@ -4492,7 +4465,7 @@ pub const registers = struct {
         };
         pub const dmar = mmio(base_address + 0x4c, 32, Dmar);
 
-        /// address: 0x40010030
+        /// address: 0x40010030, path: tim1.rcr
         /// repetition counter register
         pub const Rcr = packed struct {
             rep: u8, // Repetition counter value
@@ -4500,7 +4473,7 @@ pub const registers = struct {
         };
         pub const rcr = mmio(base_address + 0x30, 32, Rcr);
 
-        /// address: 0x40010044
+        /// address: 0x40010044, path: tim1.bdtr
         /// break and dead-time register
         pub const Bdtr = packed struct {
             pub const Ossi = enum(u1) {
@@ -4531,34 +4504,15 @@ pub const registers = struct {
     pub const tim10 = struct {
         pub const base_address = 0x40014400;
 
-        /// address: 0x40014400
+        /// address: 0x40014400, path: tim10.cr1
         /// control register 1
         pub const Cr1 = packed struct {
-            pub const Cen = enum(u1) {
-                disabled = 0, // Counter disabled
-                enabled = 1, // Counter enabled
-            };
-            pub const Udis = enum(u1) {
-                enabled = 0, // Update event enabled
-                disabled = 1, // Update event disabled
-            };
-            pub const Urs = enum(u1) {
-                any_event = 0, // Any of counter overflow/underflow, setting UG, or update through slave mode, generates an update interrupt or DMA request
-                counter_only = 1, // Only counter overflow/underflow generates an update interrupt or DMA request
-            };
-            pub const Opm = enum(u1) {
-                disabled = 0, // Counter is not stopped at update event
-                enabled = 1, // Counter stops counting at the next update event (clearing the CEN bit)
-            };
-            pub const Arpe = enum(u1) {
-                disabled = 0, // TIMx_APRR register is not buffered
-                enabled = 1, // TIMx_APRR register is buffered
-            };
-            pub const Ckd = enum(u2) {
-                div1 = 0b00, // t_DTS = t_CK_INT
-                div2 = 0b01, // t_DTS = 2 × t_CK_INT
-                div4 = 0b10, // t_DTS = 4 × t_CK_INT
-            };
+            pub const Cen = tim1.cr1.Cen;
+            pub const Udis = tim1.cr1.Udis;
+            pub const Urs = tim1.cr1.Urs;
+            pub const Opm = tim1.cr1.Opm;
+            pub const Arpe = tim1.cr1.Arpe;
+            pub const Ckd = tim1.cr1.Ckd;
             cen: Cen, // Counter enable (u1)
             udis: Udis, // Update disable (u1)
             urs: Urs, // Update request source (u1)
@@ -4570,26 +4524,20 @@ pub const registers = struct {
         };
         pub const cr1 = mmio(base_address + 0x0, 32, Cr1);
 
-        /// address: 0x4001440c
+        /// address: 0x4001440c, path: tim10.dier
         /// DMA/Interrupt enable register
         pub const Dier = packed struct {
-            pub const Uie = enum(u1) {
-                disabled = 0, // Update interrupt disabled
-                enabled = 1, // Update interrupt enabled
-            };
+            pub const Uie = tim1.dier.Uie;
             uie: Uie, // Update interrupt enable (u1)
             cc1ie: u1, // Capture/Compare 1 interrupt enable
             _padding_2_31: u30,
         };
         pub const dier = mmio(base_address + 0xc, 32, Dier);
 
-        /// address: 0x40014410
+        /// address: 0x40014410, path: tim10.sr
         /// status register
         pub const Sr = packed struct {
-            pub const Uif = enum(u1) {
-                clear = 0, // No update occurred
-                update_pending = 1, // Update interrupt pending.
-            };
+            pub const Uif = tim1.sr.Uif;
             uif: Uif, // Update interrupt flag (u1)
             cc1if: u1, // Capture/compare 1 interrupt flag
             _reserved_2_8: u7,
@@ -4598,31 +4546,20 @@ pub const registers = struct {
         };
         pub const sr = mmio(base_address + 0x10, 32, Sr);
 
-        /// address: 0x40014414
+        /// address: 0x40014414, path: tim10.egr
         /// event generation register
         pub const Egr = packed struct {
-            pub const Ug = enum(u1) {
-                update = 1, // Re-initializes the timer counter and generates an update of the registers.
-            };
+            pub const Ug = tim1.egr.Ug;
             ug: Ug, // Update generation (u1)
             cc1g: u1, // Capture/compare 1 generation
             _padding_2_31: u30,
         };
         pub const egr = mmio(base_address + 0x14, 32, Egr);
 
-        /// address: 0x40014418
+        /// address: 0x40014418, path: tim10.ccmr1_output
         /// capture/compare mode register 1 (output mode)
         pub const Ccmr1Output = packed struct {
-            pub const Oc1m = enum(u3) {
-                frozen = 0b000, // The comparison between the output compare register TIMx_CCRy and the counter TIMx_CNT has no effect on the outputs
-                active_on_match = 0b001, // Set channel to active level on match. OCyREF signal is forced high when the counter matches the capture/compare register
-                inactive_on_match = 0b010, // Set channel to inactive level on match. OCyREF signal is forced low when the counter matches the capture/compare register
-                toggle = 0b011, // OCyREF toggles when TIMx_CNT=TIMx_CCRy
-                force_inactive = 0b100, // OCyREF is forced low
-                force_active = 0b101, // OCyREF is forced high
-                pwm_mode1 = 0b110, // In upcounting, channel is active as long as TIMx_CNT<TIMx_CCRy else inactive. In downcounting, channel is inactive as long as TIMx_CNT>TIMx_CCRy else active
-                pwm_mode2 = 0b111, // Inversely to PwmMode1
-            };
+            pub const Oc1m = tim1.ccmr1_output.Oc1m;
             cc1s: u2, // Capture/Compare 1 selection
             oc1fe: u1, // Output Compare 1 fast enable
             oc1pe: u1, // Output Compare 1 preload enable
@@ -4631,7 +4568,7 @@ pub const registers = struct {
         };
         pub const ccmr1_output = mmio(base_address + 0x18, 32, Ccmr1Output);
 
-        /// address: 0x40014418
+        /// address: 0x40014418, path: tim10.ccmr1_input
         /// capture/compare mode register 1 (input mode)
         pub const Ccmr1Input = packed struct {
             cc1s: u2, // Capture/Compare 1 selection
@@ -4641,7 +4578,7 @@ pub const registers = struct {
         };
         pub const ccmr1_input = mmio(base_address + 0x18, 32, Ccmr1Input);
 
-        /// address: 0x40014420
+        /// address: 0x40014420, path: tim10.ccer
         /// capture/compare enable register
         pub const Ccer = packed struct {
             cc1e: u1, // Capture/Compare 1 output enable
@@ -4652,19 +4589,19 @@ pub const registers = struct {
         };
         pub const ccer = mmio(base_address + 0x20, 32, Ccer);
 
-        /// address: 0x40014424
+        /// address: 0x40014424, path: tim10.cnt
         /// counter
         pub const cnt = mmioInt(base_address + 0x24, 32, u16);
 
-        /// address: 0x40014428
+        /// address: 0x40014428, path: tim10.psc
         /// prescaler
         pub const psc = mmioInt(base_address + 0x28, 32, u16);
 
-        /// address: 0x4001442c
+        /// address: 0x4001442c, path: tim10.arr
         /// auto-reload register
         pub const arr = mmioInt(base_address + 0x2c, 32, u16);
 
-        /// address: 0x40014434
+        /// address: 0x40014434, path: tim10.ccr1
         /// capture/compare register
         pub const Ccr1 = packed struct {
             ccr: u16, // Capture/Compare value
@@ -4676,34 +4613,15 @@ pub const registers = struct {
     pub const tim11 = struct {
         pub const base_address = 0x40014800;
 
-        /// address: 0x40014800
+        /// address: 0x40014800, path: tim11.cr1
         /// control register 1
         pub const Cr1 = packed struct {
-            pub const Cen = enum(u1) {
-                disabled = 0, // Counter disabled
-                enabled = 1, // Counter enabled
-            };
-            pub const Udis = enum(u1) {
-                enabled = 0, // Update event enabled
-                disabled = 1, // Update event disabled
-            };
-            pub const Urs = enum(u1) {
-                any_event = 0, // Any of counter overflow/underflow, setting UG, or update through slave mode, generates an update interrupt or DMA request
-                counter_only = 1, // Only counter overflow/underflow generates an update interrupt or DMA request
-            };
-            pub const Opm = enum(u1) {
-                disabled = 0, // Counter is not stopped at update event
-                enabled = 1, // Counter stops counting at the next update event (clearing the CEN bit)
-            };
-            pub const Arpe = enum(u1) {
-                disabled = 0, // TIMx_APRR register is not buffered
-                enabled = 1, // TIMx_APRR register is buffered
-            };
-            pub const Ckd = enum(u2) {
-                div1 = 0b00, // t_DTS = t_CK_INT
-                div2 = 0b01, // t_DTS = 2 × t_CK_INT
-                div4 = 0b10, // t_DTS = 4 × t_CK_INT
-            };
+            pub const Cen = tim1.cr1.Cen;
+            pub const Udis = tim1.cr1.Udis;
+            pub const Urs = tim1.cr1.Urs;
+            pub const Opm = tim1.cr1.Opm;
+            pub const Arpe = tim1.cr1.Arpe;
+            pub const Ckd = tim1.cr1.Ckd;
             cen: Cen, // Counter enable (u1)
             udis: Udis, // Update disable (u1)
             urs: Urs, // Update request source (u1)
@@ -4715,26 +4633,20 @@ pub const registers = struct {
         };
         pub const cr1 = mmio(base_address + 0x0, 32, Cr1);
 
-        /// address: 0x4001480c
+        /// address: 0x4001480c, path: tim11.dier
         /// DMA/Interrupt enable register
         pub const Dier = packed struct {
-            pub const Uie = enum(u1) {
-                disabled = 0, // Update interrupt disabled
-                enabled = 1, // Update interrupt enabled
-            };
+            pub const Uie = tim1.dier.Uie;
             uie: Uie, // Update interrupt enable (u1)
             cc1ie: u1, // Capture/Compare 1 interrupt enable
             _padding_2_31: u30,
         };
         pub const dier = mmio(base_address + 0xc, 32, Dier);
 
-        /// address: 0x40014810
+        /// address: 0x40014810, path: tim11.sr
         /// status register
         pub const Sr = packed struct {
-            pub const Uif = enum(u1) {
-                clear = 0, // No update occurred
-                update_pending = 1, // Update interrupt pending.
-            };
+            pub const Uif = tim1.sr.Uif;
             uif: Uif, // Update interrupt flag (u1)
             cc1if: u1, // Capture/compare 1 interrupt flag
             _reserved_2_8: u7,
@@ -4743,31 +4655,20 @@ pub const registers = struct {
         };
         pub const sr = mmio(base_address + 0x10, 32, Sr);
 
-        /// address: 0x40014814
+        /// address: 0x40014814, path: tim11.egr
         /// event generation register
         pub const Egr = packed struct {
-            pub const Ug = enum(u1) {
-                update = 1, // Re-initializes the timer counter and generates an update of the registers.
-            };
+            pub const Ug = tim1.egr.Ug;
             ug: Ug, // Update generation (u1)
             cc1g: u1, // Capture/compare 1 generation
             _padding_2_31: u30,
         };
         pub const egr = mmio(base_address + 0x14, 32, Egr);
 
-        /// address: 0x40014818
+        /// address: 0x40014818, path: tim11.ccmr1_output
         /// capture/compare mode register 1 (output mode)
         pub const Ccmr1Output = packed struct {
-            pub const Oc1m = enum(u3) {
-                frozen = 0b000, // The comparison between the output compare register TIMx_CCRy and the counter TIMx_CNT has no effect on the outputs
-                active_on_match = 0b001, // Set channel to active level on match. OCyREF signal is forced high when the counter matches the capture/compare register
-                inactive_on_match = 0b010, // Set channel to inactive level on match. OCyREF signal is forced low when the counter matches the capture/compare register
-                toggle = 0b011, // OCyREF toggles when TIMx_CNT=TIMx_CCRy
-                force_inactive = 0b100, // OCyREF is forced low
-                force_active = 0b101, // OCyREF is forced high
-                pwm_mode1 = 0b110, // In upcounting, channel is active as long as TIMx_CNT<TIMx_CCRy else inactive. In downcounting, channel is inactive as long as TIMx_CNT>TIMx_CCRy else active
-                pwm_mode2 = 0b111, // Inversely to PwmMode1
-            };
+            pub const Oc1m = tim1.ccmr1_output.Oc1m;
             cc1s: u2, // Capture/Compare 1 selection
             oc1fe: u1, // Output Compare 1 fast enable
             oc1pe: u1, // Output Compare 1 preload enable
@@ -4776,7 +4677,7 @@ pub const registers = struct {
         };
         pub const ccmr1_output = mmio(base_address + 0x18, 32, Ccmr1Output);
 
-        /// address: 0x40014818
+        /// address: 0x40014818, path: tim11.ccmr1_input
         /// capture/compare mode register 1 (input mode)
         pub const Ccmr1Input = packed struct {
             cc1s: u2, // Capture/Compare 1 selection
@@ -4786,7 +4687,7 @@ pub const registers = struct {
         };
         pub const ccmr1_input = mmio(base_address + 0x18, 32, Ccmr1Input);
 
-        /// address: 0x40014820
+        /// address: 0x40014820, path: tim11.ccer
         /// capture/compare enable register
         pub const Ccer = packed struct {
             cc1e: u1, // Capture/Compare 1 output enable
@@ -4797,19 +4698,19 @@ pub const registers = struct {
         };
         pub const ccer = mmio(base_address + 0x20, 32, Ccer);
 
-        /// address: 0x40014824
+        /// address: 0x40014824, path: tim11.cnt
         /// counter
         pub const cnt = mmioInt(base_address + 0x24, 32, u16);
 
-        /// address: 0x40014828
+        /// address: 0x40014828, path: tim11.psc
         /// prescaler
         pub const psc = mmioInt(base_address + 0x28, 32, u16);
 
-        /// address: 0x4001482c
+        /// address: 0x4001482c, path: tim11.arr
         /// auto-reload register
         pub const arr = mmioInt(base_address + 0x2c, 32, u16);
 
-        /// address: 0x40014834
+        /// address: 0x40014834, path: tim11.ccr1
         /// capture/compare register
         pub const Ccr1 = packed struct {
             ccr: u16, // Capture/Compare value
@@ -4817,7 +4718,7 @@ pub const registers = struct {
         };
         pub const ccr1 = mmio(base_address + 0x34, 32, Ccr1);
 
-        /// address: 0x40014850
+        /// address: 0x40014850, path: tim11.@"or"
         /// option register
         pub const Or = packed struct {
             rmp: u2, // Input 1 remapping capability
@@ -4829,44 +4730,17 @@ pub const registers = struct {
     pub const tim2 = struct {
         pub const base_address = 0x40000000;
 
-        /// address: 0x40000000
+        /// address: 0x40000000, path: tim2.cr1
         /// control register 1
         pub const Cr1 = packed struct {
-            pub const Cen = enum(u1) {
-                disabled = 0, // Counter disabled
-                enabled = 1, // Counter enabled
-            };
-            pub const Udis = enum(u1) {
-                enabled = 0, // Update event enabled
-                disabled = 1, // Update event disabled
-            };
-            pub const Urs = enum(u1) {
-                any_event = 0, // Any of counter overflow/underflow, setting UG, or update through slave mode, generates an update interrupt or DMA request
-                counter_only = 1, // Only counter overflow/underflow generates an update interrupt or DMA request
-            };
-            pub const Opm = enum(u1) {
-                disabled = 0, // Counter is not stopped at update event
-                enabled = 1, // Counter stops counting at the next update event (clearing the CEN bit)
-            };
-            pub const Dir = enum(u1) {
-                up = 0, // Counter used as upcounter
-                down = 1, // Counter used as downcounter
-            };
-            pub const Cms = enum(u2) {
-                edge_aligned = 0b00, // The counter counts up or down depending on the direction bit
-                center_aligned1 = 0b01, // The counter counts up and down alternatively. Output compare interrupt flags are set only when the counter is counting down.
-                center_aligned2 = 0b10, // The counter counts up and down alternatively. Output compare interrupt flags are set only when the counter is counting up.
-                center_aligned3 = 0b11, // The counter counts up and down alternatively. Output compare interrupt flags are set both when the counter is counting up or down.
-            };
-            pub const Arpe = enum(u1) {
-                disabled = 0, // TIMx_APRR register is not buffered
-                enabled = 1, // TIMx_APRR register is buffered
-            };
-            pub const Ckd = enum(u2) {
-                div1 = 0b00, // t_DTS = t_CK_INT
-                div2 = 0b01, // t_DTS = 2 × t_CK_INT
-                div4 = 0b10, // t_DTS = 4 × t_CK_INT
-            };
+            pub const Cen = tim1.cr1.Cen;
+            pub const Udis = tim1.cr1.Udis;
+            pub const Urs = tim1.cr1.Urs;
+            pub const Opm = tim1.cr1.Opm;
+            pub const Dir = tim1.cr1.Dir;
+            pub const Cms = tim1.cr1.Cms;
+            pub const Arpe = tim1.cr1.Arpe;
+            pub const Ckd = tim1.cr1.Ckd;
             cen: Cen, // Counter enable (u1)
             udis: Udis, // Update disable (u1)
             urs: Urs, // Update request source (u1)
@@ -4879,27 +4753,12 @@ pub const registers = struct {
         };
         pub const cr1 = mmio(base_address + 0x0, 32, Cr1);
 
-        /// address: 0x40000004
+        /// address: 0x40000004, path: tim2.cr2
         /// control register 2
         pub const Cr2 = packed struct {
-            pub const Ccds = enum(u1) {
-                on_compare = 0, // CCx DMA request sent when CCx event occurs
-                on_update = 1, // CCx DMA request sent when update event occurs
-            };
-            pub const Mms = enum(u3) {
-                reset = 0b000, // The UG bit from the TIMx_EGR register is used as trigger output
-                enable = 0b001, // The counter enable signal, CNT_EN, is used as trigger output
-                update = 0b010, // The update event is selected as trigger output
-                compare_pulse = 0b011, // The trigger output send a positive pulse when the CC1IF flag it to be set, as soon as a capture or a compare match occurred
-                compare_oc1 = 0b100, // OC1REF signal is used as trigger output
-                compare_oc2 = 0b101, // OC2REF signal is used as trigger output
-                compare_oc3 = 0b110, // OC3REF signal is used as trigger output
-                compare_oc4 = 0b111, // OC4REF signal is used as trigger output
-            };
-            pub const Ti1s = enum(u1) {
-                normal = 0, // The TIMx_CH1 pin is connected to TI1 input
-                xor = 1, // The TIMx_CH1, CH2, CH3 pins are connected to TI1 input
-            };
+            pub const Ccds = tim1.cr2.Ccds;
+            pub const Mms = tim1.cr2.Mms;
+            pub const Ti1s = tim1.cr2.Ti1s;
             _reserved_0_2: u3,
             ccds: Ccds, // Capture/compare DMA selection (u1)
             mms: Mms, // Master mode selection (u3)
@@ -4908,64 +4767,16 @@ pub const registers = struct {
         };
         pub const cr2 = mmio(base_address + 0x4, 32, Cr2);
 
-        /// address: 0x40000008
+        /// address: 0x40000008, path: tim2.smcr
         /// slave mode control register
         pub const Smcr = packed struct {
-            pub const Sms = enum(u3) {
-                disabled = 0b000, // Slave mode disabled - if CEN = ‘1 then the prescaler is clocked directly by the internal clock.
-                encoder_mode_1 = 0b001, // Encoder mode 1 - Counter counts up/down on TI2FP1 edge depending on TI1FP2 level.
-                encoder_mode_2 = 0b010, // Encoder mode 2 - Counter counts up/down on TI1FP2 edge depending on TI2FP1 level.
-                encoder_mode_3 = 0b011, // Encoder mode 3 - Counter counts up/down on both TI1FP1 and TI2FP2 edges depending on the level of the other input.
-                reset_mode = 0b100, // Reset Mode - Rising edge of the selected trigger input (TRGI) reinitializes the counter and generates an update of the registers.
-                gated_mode = 0b101, // Gated Mode - The counter clock is enabled when the trigger input (TRGI) is high. The counter stops (but is not reset) as soon as the trigger becomes low. Both start and stop of the counter are controlled.
-                trigger_mode = 0b110, // Trigger Mode - The counter starts at a rising edge of the trigger TRGI (but it is not reset). Only the start of the counter is controlled.
-                ext_clock_mode = 0b111, // External Clock Mode 1 - Rising edges of the selected trigger (TRGI) clock the counter.
-            };
-            pub const Ts = enum(u3) {
-                itr0 = 0b000, // Internal Trigger 0 (ITR0)
-                itr1 = 0b001, // Internal Trigger 1 (ITR1)
-                itr2 = 0b010, // Internal Trigger 2 (ITR2)
-                ti1_f_ed = 0b100, // TI1 Edge Detector (TI1F_ED)
-                ti1_fp1 = 0b101, // Filtered Timer Input 1 (TI1FP1)
-                ti2_fp2 = 0b110, // Filtered Timer Input 2 (TI2FP2)
-                etrf = 0b111, // External Trigger input (ETRF)
-            };
-            pub const Msm = enum(u1) {
-                no_sync = 0, // No action
-                sync = 1, // The effect of an event on the trigger input (TRGI) is delayed to allow a perfect synchronization between the current timer and its slaves (through TRGO). It is useful if we want to synchronize several timers on a single external event.
-            };
-            pub const Etf = enum(u4) {
-                no_filter = 0b0000, // No filter, sampling is done at fDTS
-                fck_int_n2 = 0b0001, // fSAMPLING=fCK_INT, N=2
-                fck_int_n4 = 0b0010, // fSAMPLING=fCK_INT, N=4
-                fck_int_n8 = 0b0011, // fSAMPLING=fCK_INT, N=8
-                fdts_div2_n6 = 0b0100, // fSAMPLING=fDTS/2, N=6
-                fdts_div2_n8 = 0b0101, // fSAMPLING=fDTS/2, N=8
-                fdts_div4_n6 = 0b0110, // fSAMPLING=fDTS/4, N=6
-                fdts_div4_n8 = 0b0111, // fSAMPLING=fDTS/4, N=8
-                fdts_div8_n6 = 0b1000, // fSAMPLING=fDTS/8, N=6
-                fdts_div8_n8 = 0b1001, // fSAMPLING=fDTS/8, N=8
-                fdts_div16_n5 = 0b1010, // fSAMPLING=fDTS/16, N=5
-                fdts_div16_n6 = 0b1011, // fSAMPLING=fDTS/16, N=6
-                fdts_div16_n8 = 0b1100, // fSAMPLING=fDTS/16, N=8
-                fdts_div32_n5 = 0b1101, // fSAMPLING=fDTS/32, N=5
-                fdts_div32_n6 = 0b1110, // fSAMPLING=fDTS/32, N=6
-                fdts_div32_n8 = 0b1111, // fSAMPLING=fDTS/32, N=8
-            };
-            pub const Etps = enum(u2) {
-                div1 = 0b00, // Prescaler OFF
-                div2 = 0b01, // ETRP frequency divided by 2
-                div4 = 0b10, // ETRP frequency divided by 4
-                div8 = 0b11, // ETRP frequency divided by 8
-            };
-            pub const Ece = enum(u1) {
-                disabled = 0, // External clock mode 2 disabled
-                enabled = 1, // External clock mode 2 enabled. The counter is clocked by any active edge on the ETRF signal.
-            };
-            pub const Etp = enum(u1) {
-                not_inverted = 0, // ETR is noninverted, active at high level or rising edge
-                inverted = 1, // ETR is inverted, active at low level or falling edge
-            };
+            pub const Sms = tim1.smcr.Sms;
+            pub const Ts = tim1.smcr.Ts;
+            pub const Msm = tim1.smcr.Msm;
+            pub const Etf = tim1.smcr.Etf;
+            pub const Etps = tim1.smcr.Etps;
+            pub const Ece = tim1.smcr.Ece;
+            pub const Etp = tim1.smcr.Etp;
             sms: Sms, // Slave mode selection (u3)
             _reserved_3_3: u1,
             ts: Ts, // Trigger selection (u3)
@@ -4978,33 +4789,15 @@ pub const registers = struct {
         };
         pub const smcr = mmio(base_address + 0x8, 32, Smcr);
 
-        /// address: 0x4000000c
+        /// address: 0x4000000c, path: tim2.dier
         /// DMA/Interrupt enable register
         pub const Dier = packed struct {
-            pub const Uie = enum(u1) {
-                disabled = 0, // Update interrupt disabled
-                enabled = 1, // Update interrupt enabled
-            };
-            pub const Cc1ie = enum(u1) {
-                disabled = 0, // CCx interrupt disabled
-                enabled = 1, // CCx interrupt enabled
-            };
-            pub const Tie = enum(u1) {
-                disabled = 0, // Trigger interrupt disabled
-                enabled = 1, // Trigger interrupt enabled
-            };
-            pub const Ude = enum(u1) {
-                disabled = 0, // Update DMA request disabled
-                enabled = 1, // Update DMA request enabled
-            };
-            pub const Cc1de = enum(u1) {
-                disabled = 0, // CCx DMA request disabled
-                enabled = 1, // CCx DMA request enabled
-            };
-            pub const Tde = enum(u1) {
-                disabled = 0, // Trigger DMA request disabled
-                enabled = 1, // Trigger DMA request enabled
-            };
+            pub const Uie = tim1.dier.Uie;
+            pub const Cc1ie = tim1.dier.Cc1ie;
+            pub const Tie = tim1.dier.Tie;
+            pub const Ude = tim1.dier.Ude;
+            pub const Cc1de = tim1.dier.Cc1de;
+            pub const Tde = tim1.dier.Tde;
             uie: Uie, // Update interrupt enable (u1)
             cc1ie: Cc1ie, // Capture/Compare 1 interrupt enable (u1)
             cc2ie: Cc1ie, // Capture/Compare 2 interrupt enable (u1)
@@ -5024,26 +4817,13 @@ pub const registers = struct {
         };
         pub const dier = mmio(base_address + 0xc, 32, Dier);
 
-        /// address: 0x40000010
+        /// address: 0x40000010, path: tim2.sr
         /// status register
         pub const Sr = packed struct {
-            pub const Uif = enum(u1) {
-                clear = 0, // No update occurred
-                update_pending = 1, // Update interrupt pending.
-            };
-            pub const Cc1if = enum(u1) {
-                match = 1, // If CC1 is an output: The content of the counter TIMx_CNT matches the content of the TIMx_CCR1 register. If CC1 is an input: The counter value has been captured in TIMx_CCR1 register.
-                clear = 0, // Clear flag
-            };
-            pub const Tif = enum(u1) {
-                no_trigger = 0, // No trigger event occurred
-                trigger = 1, // Trigger interrupt pending
-                pub const clear = @intToEnum(Tif, 0); // Clear flag
-            };
-            pub const Cc1of = enum(u1) {
-                overcapture = 1, // The counter value has been captured in TIMx_CCRx register while CCxIF flag was already set
-                clear = 0, // Clear flag
-            };
+            pub const Uif = tim1.sr.Uif;
+            pub const Cc1if = tim1.sr.Cc1if;
+            pub const Tif = tim1.sr.Tif;
+            pub const Cc1of = tim1.sr.Cc1of;
             uif: Uif, // Update interrupt flag (u1)
             cc1if: Cc1if, // Capture/compare 1 interrupt flag (u1)
             cc2if: Cc1if, // Capture/Compare 2 interrupt flag (u1)
@@ -5060,18 +4840,12 @@ pub const registers = struct {
         };
         pub const sr = mmio(base_address + 0x10, 32, Sr);
 
-        /// address: 0x40000014
+        /// address: 0x40000014, path: tim2.egr
         /// event generation register
         pub const Egr = packed struct {
-            pub const Ug = enum(u1) {
-                update = 1, // Re-initializes the timer counter and generates an update of the registers.
-            };
-            pub const Cc1gw = enum(u1) {
-                trigger = 1, // If CC1 is an output: CC1IF flag is set, Corresponding interrupt or DMA request is sent if enabled. If CC1 is an input: The current value of the counter is captured in TIMx_CCR1 register.
-            };
-            pub const Tgw = enum(u1) {
-                trigger = 1, // The TIF flag is set in TIMx_SR register. Related interrupt or DMA transfer can occur if enabled.
-            };
+            pub const Ug = tim1.egr.Ug;
+            pub const Cc1gw = tim1.egr.Cc1gw;
+            pub const Tgw = tim1.egr.Tgw;
             ug: Ug, // Update generation (u1)
             cc1g: Cc1gw, // Capture/compare 1 generation (u1)
             cc2g: Cc1gw, // Capture/compare 2 generation (u1)
@@ -5083,33 +4857,14 @@ pub const registers = struct {
         };
         pub const egr = mmio(base_address + 0x14, 32, Egr);
 
-        /// address: 0x40000018
+        /// address: 0x40000018, path: tim2.ccmr1_output
         /// capture/compare mode register 1 (output mode)
         pub const Ccmr1Output = packed struct {
-            pub const Cc1s = enum(u2) {
-                output = 0b00, // CC1 channel is configured as output
-            };
-            pub const Oc1pe = enum(u1) {
-                disabled = 0, // Preload register on CCR1 disabled. New values written to CCR1 are taken into account immediately
-                enabled = 1, // Preload register on CCR1 enabled. Preload value is loaded into active register on each update event
-            };
-            pub const Oc1m = enum(u3) {
-                frozen = 0b000, // The comparison between the output compare register TIMx_CCRy and the counter TIMx_CNT has no effect on the outputs
-                active_on_match = 0b001, // Set channel to active level on match. OCyREF signal is forced high when the counter matches the capture/compare register
-                inactive_on_match = 0b010, // Set channel to inactive level on match. OCyREF signal is forced low when the counter matches the capture/compare register
-                toggle = 0b011, // OCyREF toggles when TIMx_CNT=TIMx_CCRy
-                force_inactive = 0b100, // OCyREF is forced low
-                force_active = 0b101, // OCyREF is forced high
-                pwm_mode1 = 0b110, // In upcounting, channel is active as long as TIMx_CNT<TIMx_CCRy else inactive. In downcounting, channel is inactive as long as TIMx_CNT>TIMx_CCRy else active
-                pwm_mode2 = 0b111, // Inversely to PwmMode1
-            };
-            pub const Cc2s = enum(u2) {
-                output = 0b00, // CC2 channel is configured as output
-            };
-            pub const Oc2pe = enum(u1) {
-                disabled = 0, // Preload register on CCR2 disabled. New values written to CCR2 are taken into account immediately
-                enabled = 1, // Preload register on CCR2 enabled. Preload value is loaded into active register on each update event
-            };
+            pub const Cc1s = tim1.ccmr1_output.Cc1s;
+            pub const Oc1pe = tim1.ccmr1_output.Oc1pe;
+            pub const Oc1m = tim1.ccmr1_output.Oc1m;
+            pub const Cc2s = tim1.ccmr1_output.Cc2s;
+            pub const Oc2pe = tim1.ccmr1_output.Oc2pe;
             cc1s: Cc1s, // CC1S (u2)
             oc1fe: u1, // OC1FE
             oc1pe: Oc1pe, // OC1PE (u1)
@@ -5124,37 +4879,12 @@ pub const registers = struct {
         };
         pub const ccmr1_output = mmio(base_address + 0x18, 32, Ccmr1Output);
 
-        /// address: 0x40000018
+        /// address: 0x40000018, path: tim2.ccmr1_input
         /// capture/compare mode register 1 (input mode)
         pub const Ccmr1Input = packed struct {
-            pub const Cc1s = enum(u2) {
-                ti1 = 0b01, // CC1 channel is configured as input, IC1 is mapped on TI1
-                ti2 = 0b10, // CC1 channel is configured as input, IC1 is mapped on TI2
-                trc = 0b11, // CC1 channel is configured as input, IC1 is mapped on TRC
-            };
-            pub const Ic1f = enum(u4) {
-                no_filter = 0b0000, // No filter, sampling is done at fDTS
-                fck_int_n2 = 0b0001, // fSAMPLING=fCK_INT, N=2
-                fck_int_n4 = 0b0010, // fSAMPLING=fCK_INT, N=4
-                fck_int_n8 = 0b0011, // fSAMPLING=fCK_INT, N=8
-                fdts_div2_n6 = 0b0100, // fSAMPLING=fDTS/2, N=6
-                fdts_div2_n8 = 0b0101, // fSAMPLING=fDTS/2, N=8
-                fdts_div4_n6 = 0b0110, // fSAMPLING=fDTS/4, N=6
-                fdts_div4_n8 = 0b0111, // fSAMPLING=fDTS/4, N=8
-                fdts_div8_n6 = 0b1000, // fSAMPLING=fDTS/8, N=6
-                fdts_div8_n8 = 0b1001, // fSAMPLING=fDTS/8, N=8
-                fdts_div16_n5 = 0b1010, // fSAMPLING=fDTS/16, N=5
-                fdts_div16_n6 = 0b1011, // fSAMPLING=fDTS/16, N=6
-                fdts_div16_n8 = 0b1100, // fSAMPLING=fDTS/16, N=8
-                fdts_div32_n5 = 0b1101, // fSAMPLING=fDTS/32, N=5
-                fdts_div32_n6 = 0b1110, // fSAMPLING=fDTS/32, N=6
-                fdts_div32_n8 = 0b1111, // fSAMPLING=fDTS/32, N=8
-            };
-            pub const Cc2s = enum(u2) {
-                ti2 = 0b01, // CC2 channel is configured as input, IC2 is mapped on TI2
-                ti1 = 0b10, // CC2 channel is configured as input, IC2 is mapped on TI1
-                trc = 0b11, // CC2 channel is configured as input, IC2 is mapped on TRC
-            };
+            pub const Cc1s = tim1.ccmr1_input.Cc1s;
+            pub const Ic1f = tim1.ccmr1_input.Ic1f;
+            pub const Cc2s = tim1.ccmr1_input.Cc2s;
             cc1s: Cc1s, // Capture/Compare 1 selection (u2)
             ic1psc: u2, // Input capture 1 prescaler
             ic1f: Ic1f, // Input capture 1 filter (u4)
@@ -5165,33 +4895,14 @@ pub const registers = struct {
         };
         pub const ccmr1_input = mmio(base_address + 0x18, 32, Ccmr1Input);
 
-        /// address: 0x4000001c
+        /// address: 0x4000001c, path: tim2.ccmr2_output
         /// capture/compare mode register 2 (output mode)
         pub const Ccmr2Output = packed struct {
-            pub const Cc3s = enum(u2) {
-                output = 0b00, // CC3 channel is configured as output
-            };
-            pub const Oc3pe = enum(u1) {
-                disabled = 0, // Preload register on CCR3 disabled. New values written to CCR3 are taken into account immediately
-                enabled = 1, // Preload register on CCR3 enabled. Preload value is loaded into active register on each update event
-            };
-            pub const Oc3m = enum(u3) {
-                frozen = 0b000, // The comparison between the output compare register TIMx_CCRy and the counter TIMx_CNT has no effect on the outputs
-                active_on_match = 0b001, // Set channel to active level on match. OCyREF signal is forced high when the counter matches the capture/compare register
-                inactive_on_match = 0b010, // Set channel to inactive level on match. OCyREF signal is forced low when the counter matches the capture/compare register
-                toggle = 0b011, // OCyREF toggles when TIMx_CNT=TIMx_CCRy
-                force_inactive = 0b100, // OCyREF is forced low
-                force_active = 0b101, // OCyREF is forced high
-                pwm_mode1 = 0b110, // In upcounting, channel is active as long as TIMx_CNT<TIMx_CCRy else inactive. In downcounting, channel is inactive as long as TIMx_CNT>TIMx_CCRy else active
-                pwm_mode2 = 0b111, // Inversely to PwmMode1
-            };
-            pub const Cc4s = enum(u2) {
-                output = 0b00, // CC4 channel is configured as output
-            };
-            pub const Oc4pe = enum(u1) {
-                disabled = 0, // Preload register on CCR4 disabled. New values written to CCR4 are taken into account immediately
-                enabled = 1, // Preload register on CCR4 enabled. Preload value is loaded into active register on each update event
-            };
+            pub const Cc3s = tim1.ccmr2_output.Cc3s;
+            pub const Oc3pe = tim1.ccmr2_output.Oc3pe;
+            pub const Oc3m = tim1.ccmr2_output.Oc3m;
+            pub const Cc4s = tim1.ccmr2_output.Cc4s;
+            pub const Oc4pe = tim1.ccmr2_output.Oc4pe;
             cc3s: Cc3s, // CC3S (u2)
             oc3fe: u1, // OC3FE
             oc3pe: Oc3pe, // OC3PE (u1)
@@ -5206,19 +4917,11 @@ pub const registers = struct {
         };
         pub const ccmr2_output = mmio(base_address + 0x1c, 32, Ccmr2Output);
 
-        /// address: 0x4000001c
+        /// address: 0x4000001c, path: tim2.ccmr2_input
         /// capture/compare mode register 2 (input mode)
         pub const Ccmr2Input = packed struct {
-            pub const Cc3s = enum(u2) {
-                ti3 = 0b01, // CC3 channel is configured as input, IC3 is mapped on TI3
-                ti4 = 0b10, // CC3 channel is configured as input, IC3 is mapped on TI4
-                trc = 0b11, // CC3 channel is configured as input, IC3 is mapped on TRC
-            };
-            pub const Cc4s = enum(u2) {
-                ti4 = 0b01, // CC4 channel is configured as input, IC4 is mapped on TI4
-                ti3 = 0b10, // CC4 channel is configured as input, IC4 is mapped on TI3
-                trc = 0b11, // CC4 channel is configured as input, IC4 is mapped on TRC
-            };
+            pub const Cc3s = tim1.ccmr2_input.Cc3s;
+            pub const Cc4s = tim1.ccmr2_input.Cc4s;
             cc3s: Cc3s, // Capture/compare 3 selection (u2)
             ic3psc: u2, // Input capture 3 prescaler
             ic3f: u4, // Input capture 3 filter
@@ -5229,7 +4932,7 @@ pub const registers = struct {
         };
         pub const ccmr2_input = mmio(base_address + 0x1c, 32, Ccmr2Input);
 
-        /// address: 0x40000020
+        /// address: 0x40000020, path: tim2.ccer
         /// capture/compare enable register
         pub const Ccer = packed struct {
             cc1e: u1, // Capture/Compare 1 output enable
@@ -5252,47 +4955,47 @@ pub const registers = struct {
         };
         pub const ccer = mmio(base_address + 0x20, 32, Ccer);
 
-        /// address: 0x40000024
+        /// address: 0x40000024, path: tim2.cnt
         /// counter
         pub const cnt = @intToPtr(*volatile u32, base_address + 0x24);
 
-        /// address: 0x40000028
+        /// address: 0x40000028, path: tim2.psc
         /// prescaler
         pub const psc = mmioInt(base_address + 0x28, 32, u16);
 
-        /// address: 0x4000002c
+        /// address: 0x4000002c, path: tim2.arr
         /// auto-reload register
         pub const arr = @intToPtr(*volatile u32, base_address + 0x2c);
 
-        /// address: 0x40000034
+        /// address: 0x40000034, path: tim2.ccr1
         /// capture/compare register
         pub const Ccr1 = packed struct {
             ccr: u32, // Capture/Compare value
         };
         pub const ccr1 = mmio(base_address + 0x34, 32, Ccr1);
 
-        /// address: 0x40000038
+        /// address: 0x40000038, path: tim2.ccr2
         /// capture/compare register
         pub const Ccr2 = packed struct {
             ccr: u32, // Capture/Compare value
         };
         pub const ccr2 = mmio(base_address + 0x38, 32, Ccr2);
 
-        /// address: 0x4000003c
+        /// address: 0x4000003c, path: tim2.ccr3
         /// capture/compare register
         pub const Ccr3 = packed struct {
             ccr: u32, // Capture/Compare value
         };
         pub const ccr3 = mmio(base_address + 0x3c, 32, Ccr3);
 
-        /// address: 0x40000040
+        /// address: 0x40000040, path: tim2.ccr4
         /// capture/compare register
         pub const Ccr4 = packed struct {
             ccr: u32, // Capture/Compare value
         };
         pub const ccr4 = mmio(base_address + 0x40, 32, Ccr4);
 
-        /// address: 0x40000048
+        /// address: 0x40000048, path: tim2.dcr
         /// DMA control register
         pub const Dcr = packed struct {
             dba: u5, // DMA base address
@@ -5302,7 +5005,7 @@ pub const registers = struct {
         };
         pub const dcr = mmio(base_address + 0x48, 32, Dcr);
 
-        /// address: 0x4000004c
+        /// address: 0x4000004c, path: tim2.dmar
         /// DMA address for full transfer
         pub const Dmar = packed struct {
             dmab: u16, // DMA register for burst accesses
@@ -5310,7 +5013,7 @@ pub const registers = struct {
         };
         pub const dmar = mmio(base_address + 0x4c, 32, Dmar);
 
-        /// address: 0x40000050
+        /// address: 0x40000050, path: tim2.@"or"
         /// TIM5 option register
         pub const Or = packed struct {
             _reserved_0_9: u10,
@@ -5323,44 +5026,17 @@ pub const registers = struct {
     pub const tim3 = struct {
         pub const base_address = 0x40000400;
 
-        /// address: 0x40000400
+        /// address: 0x40000400, path: tim3.cr1
         /// control register 1
         pub const Cr1 = packed struct {
-            pub const Cen = enum(u1) {
-                disabled = 0, // Counter disabled
-                enabled = 1, // Counter enabled
-            };
-            pub const Udis = enum(u1) {
-                enabled = 0, // Update event enabled
-                disabled = 1, // Update event disabled
-            };
-            pub const Urs = enum(u1) {
-                any_event = 0, // Any of counter overflow/underflow, setting UG, or update through slave mode, generates an update interrupt or DMA request
-                counter_only = 1, // Only counter overflow/underflow generates an update interrupt or DMA request
-            };
-            pub const Opm = enum(u1) {
-                disabled = 0, // Counter is not stopped at update event
-                enabled = 1, // Counter stops counting at the next update event (clearing the CEN bit)
-            };
-            pub const Dir = enum(u1) {
-                up = 0, // Counter used as upcounter
-                down = 1, // Counter used as downcounter
-            };
-            pub const Cms = enum(u2) {
-                edge_aligned = 0b00, // The counter counts up or down depending on the direction bit
-                center_aligned1 = 0b01, // The counter counts up and down alternatively. Output compare interrupt flags are set only when the counter is counting down.
-                center_aligned2 = 0b10, // The counter counts up and down alternatively. Output compare interrupt flags are set only when the counter is counting up.
-                center_aligned3 = 0b11, // The counter counts up and down alternatively. Output compare interrupt flags are set both when the counter is counting up or down.
-            };
-            pub const Arpe = enum(u1) {
-                disabled = 0, // TIMx_APRR register is not buffered
-                enabled = 1, // TIMx_APRR register is buffered
-            };
-            pub const Ckd = enum(u2) {
-                div1 = 0b00, // t_DTS = t_CK_INT
-                div2 = 0b01, // t_DTS = 2 × t_CK_INT
-                div4 = 0b10, // t_DTS = 4 × t_CK_INT
-            };
+            pub const Cen = tim1.cr1.Cen;
+            pub const Udis = tim1.cr1.Udis;
+            pub const Urs = tim1.cr1.Urs;
+            pub const Opm = tim1.cr1.Opm;
+            pub const Dir = tim1.cr1.Dir;
+            pub const Cms = tim1.cr1.Cms;
+            pub const Arpe = tim1.cr1.Arpe;
+            pub const Ckd = tim1.cr1.Ckd;
             cen: Cen, // Counter enable (u1)
             udis: Udis, // Update disable (u1)
             urs: Urs, // Update request source (u1)
@@ -5373,27 +5049,12 @@ pub const registers = struct {
         };
         pub const cr1 = mmio(base_address + 0x0, 32, Cr1);
 
-        /// address: 0x40000404
+        /// address: 0x40000404, path: tim3.cr2
         /// control register 2
         pub const Cr2 = packed struct {
-            pub const Ccds = enum(u1) {
-                on_compare = 0, // CCx DMA request sent when CCx event occurs
-                on_update = 1, // CCx DMA request sent when update event occurs
-            };
-            pub const Mms = enum(u3) {
-                reset = 0b000, // The UG bit from the TIMx_EGR register is used as trigger output
-                enable = 0b001, // The counter enable signal, CNT_EN, is used as trigger output
-                update = 0b010, // The update event is selected as trigger output
-                compare_pulse = 0b011, // The trigger output send a positive pulse when the CC1IF flag it to be set, as soon as a capture or a compare match occurred
-                compare_oc1 = 0b100, // OC1REF signal is used as trigger output
-                compare_oc2 = 0b101, // OC2REF signal is used as trigger output
-                compare_oc3 = 0b110, // OC3REF signal is used as trigger output
-                compare_oc4 = 0b111, // OC4REF signal is used as trigger output
-            };
-            pub const Ti1s = enum(u1) {
-                normal = 0, // The TIMx_CH1 pin is connected to TI1 input
-                xor = 1, // The TIMx_CH1, CH2, CH3 pins are connected to TI1 input
-            };
+            pub const Ccds = tim1.cr2.Ccds;
+            pub const Mms = tim1.cr2.Mms;
+            pub const Ti1s = tim1.cr2.Ti1s;
             _reserved_0_2: u3,
             ccds: Ccds, // Capture/compare DMA selection (u1)
             mms: Mms, // Master mode selection (u3)
@@ -5402,64 +5063,16 @@ pub const registers = struct {
         };
         pub const cr2 = mmio(base_address + 0x4, 32, Cr2);
 
-        /// address: 0x40000408
+        /// address: 0x40000408, path: tim3.smcr
         /// slave mode control register
         pub const Smcr = packed struct {
-            pub const Sms = enum(u3) {
-                disabled = 0b000, // Slave mode disabled - if CEN = ‘1 then the prescaler is clocked directly by the internal clock.
-                encoder_mode_1 = 0b001, // Encoder mode 1 - Counter counts up/down on TI2FP1 edge depending on TI1FP2 level.
-                encoder_mode_2 = 0b010, // Encoder mode 2 - Counter counts up/down on TI1FP2 edge depending on TI2FP1 level.
-                encoder_mode_3 = 0b011, // Encoder mode 3 - Counter counts up/down on both TI1FP1 and TI2FP2 edges depending on the level of the other input.
-                reset_mode = 0b100, // Reset Mode - Rising edge of the selected trigger input (TRGI) reinitializes the counter and generates an update of the registers.
-                gated_mode = 0b101, // Gated Mode - The counter clock is enabled when the trigger input (TRGI) is high. The counter stops (but is not reset) as soon as the trigger becomes low. Both start and stop of the counter are controlled.
-                trigger_mode = 0b110, // Trigger Mode - The counter starts at a rising edge of the trigger TRGI (but it is not reset). Only the start of the counter is controlled.
-                ext_clock_mode = 0b111, // External Clock Mode 1 - Rising edges of the selected trigger (TRGI) clock the counter.
-            };
-            pub const Ts = enum(u3) {
-                itr0 = 0b000, // Internal Trigger 0 (ITR0)
-                itr1 = 0b001, // Internal Trigger 1 (ITR1)
-                itr2 = 0b010, // Internal Trigger 2 (ITR2)
-                ti1_f_ed = 0b100, // TI1 Edge Detector (TI1F_ED)
-                ti1_fp1 = 0b101, // Filtered Timer Input 1 (TI1FP1)
-                ti2_fp2 = 0b110, // Filtered Timer Input 2 (TI2FP2)
-                etrf = 0b111, // External Trigger input (ETRF)
-            };
-            pub const Msm = enum(u1) {
-                no_sync = 0, // No action
-                sync = 1, // The effect of an event on the trigger input (TRGI) is delayed to allow a perfect synchronization between the current timer and its slaves (through TRGO). It is useful if we want to synchronize several timers on a single external event.
-            };
-            pub const Etf = enum(u4) {
-                no_filter = 0b0000, // No filter, sampling is done at fDTS
-                fck_int_n2 = 0b0001, // fSAMPLING=fCK_INT, N=2
-                fck_int_n4 = 0b0010, // fSAMPLING=fCK_INT, N=4
-                fck_int_n8 = 0b0011, // fSAMPLING=fCK_INT, N=8
-                fdts_div2_n6 = 0b0100, // fSAMPLING=fDTS/2, N=6
-                fdts_div2_n8 = 0b0101, // fSAMPLING=fDTS/2, N=8
-                fdts_div4_n6 = 0b0110, // fSAMPLING=fDTS/4, N=6
-                fdts_div4_n8 = 0b0111, // fSAMPLING=fDTS/4, N=8
-                fdts_div8_n6 = 0b1000, // fSAMPLING=fDTS/8, N=6
-                fdts_div8_n8 = 0b1001, // fSAMPLING=fDTS/8, N=8
-                fdts_div16_n5 = 0b1010, // fSAMPLING=fDTS/16, N=5
-                fdts_div16_n6 = 0b1011, // fSAMPLING=fDTS/16, N=6
-                fdts_div16_n8 = 0b1100, // fSAMPLING=fDTS/16, N=8
-                fdts_div32_n5 = 0b1101, // fSAMPLING=fDTS/32, N=5
-                fdts_div32_n6 = 0b1110, // fSAMPLING=fDTS/32, N=6
-                fdts_div32_n8 = 0b1111, // fSAMPLING=fDTS/32, N=8
-            };
-            pub const Etps = enum(u2) {
-                div1 = 0b00, // Prescaler OFF
-                div2 = 0b01, // ETRP frequency divided by 2
-                div4 = 0b10, // ETRP frequency divided by 4
-                div8 = 0b11, // ETRP frequency divided by 8
-            };
-            pub const Ece = enum(u1) {
-                disabled = 0, // External clock mode 2 disabled
-                enabled = 1, // External clock mode 2 enabled. The counter is clocked by any active edge on the ETRF signal.
-            };
-            pub const Etp = enum(u1) {
-                not_inverted = 0, // ETR is noninverted, active at high level or rising edge
-                inverted = 1, // ETR is inverted, active at low level or falling edge
-            };
+            pub const Sms = tim1.smcr.Sms;
+            pub const Ts = tim1.smcr.Ts;
+            pub const Msm = tim1.smcr.Msm;
+            pub const Etf = tim1.smcr.Etf;
+            pub const Etps = tim1.smcr.Etps;
+            pub const Ece = tim1.smcr.Ece;
+            pub const Etp = tim1.smcr.Etp;
             sms: Sms, // Slave mode selection (u3)
             _reserved_3_3: u1,
             ts: Ts, // Trigger selection (u3)
@@ -5472,33 +5085,15 @@ pub const registers = struct {
         };
         pub const smcr = mmio(base_address + 0x8, 32, Smcr);
 
-        /// address: 0x4000040c
+        /// address: 0x4000040c, path: tim3.dier
         /// DMA/Interrupt enable register
         pub const Dier = packed struct {
-            pub const Uie = enum(u1) {
-                disabled = 0, // Update interrupt disabled
-                enabled = 1, // Update interrupt enabled
-            };
-            pub const Cc1ie = enum(u1) {
-                disabled = 0, // CCx interrupt disabled
-                enabled = 1, // CCx interrupt enabled
-            };
-            pub const Tie = enum(u1) {
-                disabled = 0, // Trigger interrupt disabled
-                enabled = 1, // Trigger interrupt enabled
-            };
-            pub const Ude = enum(u1) {
-                disabled = 0, // Update DMA request disabled
-                enabled = 1, // Update DMA request enabled
-            };
-            pub const Cc1de = enum(u1) {
-                disabled = 0, // CCx DMA request disabled
-                enabled = 1, // CCx DMA request enabled
-            };
-            pub const Tde = enum(u1) {
-                disabled = 0, // Trigger DMA request disabled
-                enabled = 1, // Trigger DMA request enabled
-            };
+            pub const Uie = tim1.dier.Uie;
+            pub const Cc1ie = tim1.dier.Cc1ie;
+            pub const Tie = tim1.dier.Tie;
+            pub const Ude = tim1.dier.Ude;
+            pub const Cc1de = tim1.dier.Cc1de;
+            pub const Tde = tim1.dier.Tde;
             uie: Uie, // Update interrupt enable (u1)
             cc1ie: Cc1ie, // Capture/Compare 1 interrupt enable (u1)
             cc2ie: Cc1ie, // Capture/Compare 2 interrupt enable (u1)
@@ -5518,26 +5113,13 @@ pub const registers = struct {
         };
         pub const dier = mmio(base_address + 0xc, 32, Dier);
 
-        /// address: 0x40000410
+        /// address: 0x40000410, path: tim3.sr
         /// status register
         pub const Sr = packed struct {
-            pub const Uif = enum(u1) {
-                clear = 0, // No update occurred
-                update_pending = 1, // Update interrupt pending.
-            };
-            pub const Cc1if = enum(u1) {
-                match = 1, // If CC1 is an output: The content of the counter TIMx_CNT matches the content of the TIMx_CCR1 register. If CC1 is an input: The counter value has been captured in TIMx_CCR1 register.
-                clear = 0, // Clear flag
-            };
-            pub const Tif = enum(u1) {
-                no_trigger = 0, // No trigger event occurred
-                trigger = 1, // Trigger interrupt pending
-                pub const clear = @intToEnum(Tif, 0); // Clear flag
-            };
-            pub const Cc1of = enum(u1) {
-                overcapture = 1, // The counter value has been captured in TIMx_CCRx register while CCxIF flag was already set
-                clear = 0, // Clear flag
-            };
+            pub const Uif = tim1.sr.Uif;
+            pub const Cc1if = tim1.sr.Cc1if;
+            pub const Tif = tim1.sr.Tif;
+            pub const Cc1of = tim1.sr.Cc1of;
             uif: Uif, // Update interrupt flag (u1)
             cc1if: Cc1if, // Capture/compare 1 interrupt flag (u1)
             cc2if: Cc1if, // Capture/Compare 2 interrupt flag (u1)
@@ -5554,18 +5136,12 @@ pub const registers = struct {
         };
         pub const sr = mmio(base_address + 0x10, 32, Sr);
 
-        /// address: 0x40000414
+        /// address: 0x40000414, path: tim3.egr
         /// event generation register
         pub const Egr = packed struct {
-            pub const Ug = enum(u1) {
-                update = 1, // Re-initializes the timer counter and generates an update of the registers.
-            };
-            pub const Cc1gw = enum(u1) {
-                trigger = 1, // If CC1 is an output: CC1IF flag is set, Corresponding interrupt or DMA request is sent if enabled. If CC1 is an input: The current value of the counter is captured in TIMx_CCR1 register.
-            };
-            pub const Tgw = enum(u1) {
-                trigger = 1, // The TIF flag is set in TIMx_SR register. Related interrupt or DMA transfer can occur if enabled.
-            };
+            pub const Ug = tim1.egr.Ug;
+            pub const Cc1gw = tim1.egr.Cc1gw;
+            pub const Tgw = tim1.egr.Tgw;
             ug: Ug, // Update generation (u1)
             cc1g: Cc1gw, // Capture/compare 1 generation (u1)
             cc2g: Cc1gw, // Capture/compare 2 generation (u1)
@@ -5577,33 +5153,14 @@ pub const registers = struct {
         };
         pub const egr = mmio(base_address + 0x14, 32, Egr);
 
-        /// address: 0x40000418
+        /// address: 0x40000418, path: tim3.ccmr1_output
         /// capture/compare mode register 1 (output mode)
         pub const Ccmr1Output = packed struct {
-            pub const Cc1s = enum(u2) {
-                output = 0b00, // CC1 channel is configured as output
-            };
-            pub const Oc1pe = enum(u1) {
-                disabled = 0, // Preload register on CCR1 disabled. New values written to CCR1 are taken into account immediately
-                enabled = 1, // Preload register on CCR1 enabled. Preload value is loaded into active register on each update event
-            };
-            pub const Oc1m = enum(u3) {
-                frozen = 0b000, // The comparison between the output compare register TIMx_CCRy and the counter TIMx_CNT has no effect on the outputs
-                active_on_match = 0b001, // Set channel to active level on match. OCyREF signal is forced high when the counter matches the capture/compare register
-                inactive_on_match = 0b010, // Set channel to inactive level on match. OCyREF signal is forced low when the counter matches the capture/compare register
-                toggle = 0b011, // OCyREF toggles when TIMx_CNT=TIMx_CCRy
-                force_inactive = 0b100, // OCyREF is forced low
-                force_active = 0b101, // OCyREF is forced high
-                pwm_mode1 = 0b110, // In upcounting, channel is active as long as TIMx_CNT<TIMx_CCRy else inactive. In downcounting, channel is inactive as long as TIMx_CNT>TIMx_CCRy else active
-                pwm_mode2 = 0b111, // Inversely to PwmMode1
-            };
-            pub const Cc2s = enum(u2) {
-                output = 0b00, // CC2 channel is configured as output
-            };
-            pub const Oc2pe = enum(u1) {
-                disabled = 0, // Preload register on CCR2 disabled. New values written to CCR2 are taken into account immediately
-                enabled = 1, // Preload register on CCR2 enabled. Preload value is loaded into active register on each update event
-            };
+            pub const Cc1s = tim1.ccmr1_output.Cc1s;
+            pub const Oc1pe = tim1.ccmr1_output.Oc1pe;
+            pub const Oc1m = tim1.ccmr1_output.Oc1m;
+            pub const Cc2s = tim1.ccmr1_output.Cc2s;
+            pub const Oc2pe = tim1.ccmr1_output.Oc2pe;
             cc1s: Cc1s, // CC1S (u2)
             oc1fe: u1, // OC1FE
             oc1pe: Oc1pe, // OC1PE (u1)
@@ -5618,37 +5175,12 @@ pub const registers = struct {
         };
         pub const ccmr1_output = mmio(base_address + 0x18, 32, Ccmr1Output);
 
-        /// address: 0x40000418
+        /// address: 0x40000418, path: tim3.ccmr1_input
         /// capture/compare mode register 1 (input mode)
         pub const Ccmr1Input = packed struct {
-            pub const Cc1s = enum(u2) {
-                ti1 = 0b01, // CC1 channel is configured as input, IC1 is mapped on TI1
-                ti2 = 0b10, // CC1 channel is configured as input, IC1 is mapped on TI2
-                trc = 0b11, // CC1 channel is configured as input, IC1 is mapped on TRC
-            };
-            pub const Ic1f = enum(u4) {
-                no_filter = 0b0000, // No filter, sampling is done at fDTS
-                fck_int_n2 = 0b0001, // fSAMPLING=fCK_INT, N=2
-                fck_int_n4 = 0b0010, // fSAMPLING=fCK_INT, N=4
-                fck_int_n8 = 0b0011, // fSAMPLING=fCK_INT, N=8
-                fdts_div2_n6 = 0b0100, // fSAMPLING=fDTS/2, N=6
-                fdts_div2_n8 = 0b0101, // fSAMPLING=fDTS/2, N=8
-                fdts_div4_n6 = 0b0110, // fSAMPLING=fDTS/4, N=6
-                fdts_div4_n8 = 0b0111, // fSAMPLING=fDTS/4, N=8
-                fdts_div8_n6 = 0b1000, // fSAMPLING=fDTS/8, N=6
-                fdts_div8_n8 = 0b1001, // fSAMPLING=fDTS/8, N=8
-                fdts_div16_n5 = 0b1010, // fSAMPLING=fDTS/16, N=5
-                fdts_div16_n6 = 0b1011, // fSAMPLING=fDTS/16, N=6
-                fdts_div16_n8 = 0b1100, // fSAMPLING=fDTS/16, N=8
-                fdts_div32_n5 = 0b1101, // fSAMPLING=fDTS/32, N=5
-                fdts_div32_n6 = 0b1110, // fSAMPLING=fDTS/32, N=6
-                fdts_div32_n8 = 0b1111, // fSAMPLING=fDTS/32, N=8
-            };
-            pub const Cc2s = enum(u2) {
-                ti2 = 0b01, // CC2 channel is configured as input, IC2 is mapped on TI2
-                ti1 = 0b10, // CC2 channel is configured as input, IC2 is mapped on TI1
-                trc = 0b11, // CC2 channel is configured as input, IC2 is mapped on TRC
-            };
+            pub const Cc1s = tim1.ccmr1_input.Cc1s;
+            pub const Ic1f = tim1.ccmr1_input.Ic1f;
+            pub const Cc2s = tim1.ccmr1_input.Cc2s;
             cc1s: Cc1s, // Capture/Compare 1 selection (u2)
             ic1psc: u2, // Input capture 1 prescaler
             ic1f: Ic1f, // Input capture 1 filter (u4)
@@ -5659,33 +5191,14 @@ pub const registers = struct {
         };
         pub const ccmr1_input = mmio(base_address + 0x18, 32, Ccmr1Input);
 
-        /// address: 0x4000041c
+        /// address: 0x4000041c, path: tim3.ccmr2_output
         /// capture/compare mode register 2 (output mode)
         pub const Ccmr2Output = packed struct {
-            pub const Cc3s = enum(u2) {
-                output = 0b00, // CC3 channel is configured as output
-            };
-            pub const Oc3pe = enum(u1) {
-                disabled = 0, // Preload register on CCR3 disabled. New values written to CCR3 are taken into account immediately
-                enabled = 1, // Preload register on CCR3 enabled. Preload value is loaded into active register on each update event
-            };
-            pub const Oc3m = enum(u3) {
-                frozen = 0b000, // The comparison between the output compare register TIMx_CCRy and the counter TIMx_CNT has no effect on the outputs
-                active_on_match = 0b001, // Set channel to active level on match. OCyREF signal is forced high when the counter matches the capture/compare register
-                inactive_on_match = 0b010, // Set channel to inactive level on match. OCyREF signal is forced low when the counter matches the capture/compare register
-                toggle = 0b011, // OCyREF toggles when TIMx_CNT=TIMx_CCRy
-                force_inactive = 0b100, // OCyREF is forced low
-                force_active = 0b101, // OCyREF is forced high
-                pwm_mode1 = 0b110, // In upcounting, channel is active as long as TIMx_CNT<TIMx_CCRy else inactive. In downcounting, channel is inactive as long as TIMx_CNT>TIMx_CCRy else active
-                pwm_mode2 = 0b111, // Inversely to PwmMode1
-            };
-            pub const Cc4s = enum(u2) {
-                output = 0b00, // CC4 channel is configured as output
-            };
-            pub const Oc4pe = enum(u1) {
-                disabled = 0, // Preload register on CCR4 disabled. New values written to CCR4 are taken into account immediately
-                enabled = 1, // Preload register on CCR4 enabled. Preload value is loaded into active register on each update event
-            };
+            pub const Cc3s = tim1.ccmr2_output.Cc3s;
+            pub const Oc3pe = tim1.ccmr2_output.Oc3pe;
+            pub const Oc3m = tim1.ccmr2_output.Oc3m;
+            pub const Cc4s = tim1.ccmr2_output.Cc4s;
+            pub const Oc4pe = tim1.ccmr2_output.Oc4pe;
             cc3s: Cc3s, // CC3S (u2)
             oc3fe: u1, // OC3FE
             oc3pe: Oc3pe, // OC3PE (u1)
@@ -5700,19 +5213,11 @@ pub const registers = struct {
         };
         pub const ccmr2_output = mmio(base_address + 0x1c, 32, Ccmr2Output);
 
-        /// address: 0x4000041c
+        /// address: 0x4000041c, path: tim3.ccmr2_input
         /// capture/compare mode register 2 (input mode)
         pub const Ccmr2Input = packed struct {
-            pub const Cc3s = enum(u2) {
-                ti3 = 0b01, // CC3 channel is configured as input, IC3 is mapped on TI3
-                ti4 = 0b10, // CC3 channel is configured as input, IC3 is mapped on TI4
-                trc = 0b11, // CC3 channel is configured as input, IC3 is mapped on TRC
-            };
-            pub const Cc4s = enum(u2) {
-                ti4 = 0b01, // CC4 channel is configured as input, IC4 is mapped on TI4
-                ti3 = 0b10, // CC4 channel is configured as input, IC4 is mapped on TI3
-                trc = 0b11, // CC4 channel is configured as input, IC4 is mapped on TRC
-            };
+            pub const Cc3s = tim1.ccmr2_input.Cc3s;
+            pub const Cc4s = tim1.ccmr2_input.Cc4s;
             cc3s: Cc3s, // Capture/compare 3 selection (u2)
             ic3psc: u2, // Input capture 3 prescaler
             ic3f: u4, // Input capture 3 filter
@@ -5723,7 +5228,7 @@ pub const registers = struct {
         };
         pub const ccmr2_input = mmio(base_address + 0x1c, 32, Ccmr2Input);
 
-        /// address: 0x40000420
+        /// address: 0x40000420, path: tim3.ccer
         /// capture/compare enable register
         pub const Ccer = packed struct {
             cc1e: u1, // Capture/Compare 1 output enable
@@ -5746,19 +5251,19 @@ pub const registers = struct {
         };
         pub const ccer = mmio(base_address + 0x20, 32, Ccer);
 
-        /// address: 0x40000424
+        /// address: 0x40000424, path: tim3.cnt
         /// counter
         pub const cnt = mmioInt(base_address + 0x24, 32, u16);
 
-        /// address: 0x40000428
+        /// address: 0x40000428, path: tim3.psc
         /// prescaler
         pub const psc = mmioInt(base_address + 0x28, 32, u16);
 
-        /// address: 0x4000042c
+        /// address: 0x4000042c, path: tim3.arr
         /// auto-reload register
         pub const arr = mmioInt(base_address + 0x2c, 32, u16);
 
-        /// address: 0x40000434
+        /// address: 0x40000434, path: tim3.ccr1
         /// capture/compare register
         pub const Ccr1 = packed struct {
             ccr: u16, // Capture/Compare value
@@ -5766,7 +5271,7 @@ pub const registers = struct {
         };
         pub const ccr1 = mmio(base_address + 0x34, 32, Ccr1);
 
-        /// address: 0x40000438
+        /// address: 0x40000438, path: tim3.ccr2
         /// capture/compare register
         pub const Ccr2 = packed struct {
             ccr: u16, // Capture/Compare value
@@ -5774,7 +5279,7 @@ pub const registers = struct {
         };
         pub const ccr2 = mmio(base_address + 0x38, 32, Ccr2);
 
-        /// address: 0x4000043c
+        /// address: 0x4000043c, path: tim3.ccr3
         /// capture/compare register
         pub const Ccr3 = packed struct {
             ccr: u16, // Capture/Compare value
@@ -5782,7 +5287,7 @@ pub const registers = struct {
         };
         pub const ccr3 = mmio(base_address + 0x3c, 32, Ccr3);
 
-        /// address: 0x40000440
+        /// address: 0x40000440, path: tim3.ccr4
         /// capture/compare register
         pub const Ccr4 = packed struct {
             ccr: u16, // Capture/Compare value
@@ -5790,7 +5295,7 @@ pub const registers = struct {
         };
         pub const ccr4 = mmio(base_address + 0x40, 32, Ccr4);
 
-        /// address: 0x40000448
+        /// address: 0x40000448, path: tim3.dcr
         /// DMA control register
         pub const Dcr = packed struct {
             dba: u5, // DMA base address
@@ -5800,7 +5305,7 @@ pub const registers = struct {
         };
         pub const dcr = mmio(base_address + 0x48, 32, Dcr);
 
-        /// address: 0x4000044c
+        /// address: 0x4000044c, path: tim3.dmar
         /// DMA address for full transfer
         pub const Dmar = packed struct {
             dmab: u16, // DMA register for burst accesses
@@ -5812,44 +5317,17 @@ pub const registers = struct {
     pub const tim5 = struct {
         pub const base_address = 0x40000c00;
 
-        /// address: 0x40000c00
+        /// address: 0x40000c00, path: tim5.cr1
         /// control register 1
         pub const Cr1 = packed struct {
-            pub const Cen = enum(u1) {
-                disabled = 0, // Counter disabled
-                enabled = 1, // Counter enabled
-            };
-            pub const Udis = enum(u1) {
-                enabled = 0, // Update event enabled
-                disabled = 1, // Update event disabled
-            };
-            pub const Urs = enum(u1) {
-                any_event = 0, // Any of counter overflow/underflow, setting UG, or update through slave mode, generates an update interrupt or DMA request
-                counter_only = 1, // Only counter overflow/underflow generates an update interrupt or DMA request
-            };
-            pub const Opm = enum(u1) {
-                disabled = 0, // Counter is not stopped at update event
-                enabled = 1, // Counter stops counting at the next update event (clearing the CEN bit)
-            };
-            pub const Dir = enum(u1) {
-                up = 0, // Counter used as upcounter
-                down = 1, // Counter used as downcounter
-            };
-            pub const Cms = enum(u2) {
-                edge_aligned = 0b00, // The counter counts up or down depending on the direction bit
-                center_aligned1 = 0b01, // The counter counts up and down alternatively. Output compare interrupt flags are set only when the counter is counting down.
-                center_aligned2 = 0b10, // The counter counts up and down alternatively. Output compare interrupt flags are set only when the counter is counting up.
-                center_aligned3 = 0b11, // The counter counts up and down alternatively. Output compare interrupt flags are set both when the counter is counting up or down.
-            };
-            pub const Arpe = enum(u1) {
-                disabled = 0, // TIMx_APRR register is not buffered
-                enabled = 1, // TIMx_APRR register is buffered
-            };
-            pub const Ckd = enum(u2) {
-                div1 = 0b00, // t_DTS = t_CK_INT
-                div2 = 0b01, // t_DTS = 2 × t_CK_INT
-                div4 = 0b10, // t_DTS = 4 × t_CK_INT
-            };
+            pub const Cen = tim1.cr1.Cen;
+            pub const Udis = tim1.cr1.Udis;
+            pub const Urs = tim1.cr1.Urs;
+            pub const Opm = tim1.cr1.Opm;
+            pub const Dir = tim1.cr1.Dir;
+            pub const Cms = tim1.cr1.Cms;
+            pub const Arpe = tim1.cr1.Arpe;
+            pub const Ckd = tim1.cr1.Ckd;
             cen: Cen, // Counter enable (u1)
             udis: Udis, // Update disable (u1)
             urs: Urs, // Update request source (u1)
@@ -5862,27 +5340,12 @@ pub const registers = struct {
         };
         pub const cr1 = mmio(base_address + 0x0, 32, Cr1);
 
-        /// address: 0x40000c04
+        /// address: 0x40000c04, path: tim5.cr2
         /// control register 2
         pub const Cr2 = packed struct {
-            pub const Ccds = enum(u1) {
-                on_compare = 0, // CCx DMA request sent when CCx event occurs
-                on_update = 1, // CCx DMA request sent when update event occurs
-            };
-            pub const Mms = enum(u3) {
-                reset = 0b000, // The UG bit from the TIMx_EGR register is used as trigger output
-                enable = 0b001, // The counter enable signal, CNT_EN, is used as trigger output
-                update = 0b010, // The update event is selected as trigger output
-                compare_pulse = 0b011, // The trigger output send a positive pulse when the CC1IF flag it to be set, as soon as a capture or a compare match occurred
-                compare_oc1 = 0b100, // OC1REF signal is used as trigger output
-                compare_oc2 = 0b101, // OC2REF signal is used as trigger output
-                compare_oc3 = 0b110, // OC3REF signal is used as trigger output
-                compare_oc4 = 0b111, // OC4REF signal is used as trigger output
-            };
-            pub const Ti1s = enum(u1) {
-                normal = 0, // The TIMx_CH1 pin is connected to TI1 input
-                xor = 1, // The TIMx_CH1, CH2, CH3 pins are connected to TI1 input
-            };
+            pub const Ccds = tim1.cr2.Ccds;
+            pub const Mms = tim1.cr2.Mms;
+            pub const Ti1s = tim1.cr2.Ti1s;
             _reserved_0_2: u3,
             ccds: Ccds, // Capture/compare DMA selection (u1)
             mms: Mms, // Master mode selection (u3)
@@ -5891,64 +5354,16 @@ pub const registers = struct {
         };
         pub const cr2 = mmio(base_address + 0x4, 32, Cr2);
 
-        /// address: 0x40000c08
+        /// address: 0x40000c08, path: tim5.smcr
         /// slave mode control register
         pub const Smcr = packed struct {
-            pub const Sms = enum(u3) {
-                disabled = 0b000, // Slave mode disabled - if CEN = ‘1 then the prescaler is clocked directly by the internal clock.
-                encoder_mode_1 = 0b001, // Encoder mode 1 - Counter counts up/down on TI2FP1 edge depending on TI1FP2 level.
-                encoder_mode_2 = 0b010, // Encoder mode 2 - Counter counts up/down on TI1FP2 edge depending on TI2FP1 level.
-                encoder_mode_3 = 0b011, // Encoder mode 3 - Counter counts up/down on both TI1FP1 and TI2FP2 edges depending on the level of the other input.
-                reset_mode = 0b100, // Reset Mode - Rising edge of the selected trigger input (TRGI) reinitializes the counter and generates an update of the registers.
-                gated_mode = 0b101, // Gated Mode - The counter clock is enabled when the trigger input (TRGI) is high. The counter stops (but is not reset) as soon as the trigger becomes low. Both start and stop of the counter are controlled.
-                trigger_mode = 0b110, // Trigger Mode - The counter starts at a rising edge of the trigger TRGI (but it is not reset). Only the start of the counter is controlled.
-                ext_clock_mode = 0b111, // External Clock Mode 1 - Rising edges of the selected trigger (TRGI) clock the counter.
-            };
-            pub const Ts = enum(u3) {
-                itr0 = 0b000, // Internal Trigger 0 (ITR0)
-                itr1 = 0b001, // Internal Trigger 1 (ITR1)
-                itr2 = 0b010, // Internal Trigger 2 (ITR2)
-                ti1_f_ed = 0b100, // TI1 Edge Detector (TI1F_ED)
-                ti1_fp1 = 0b101, // Filtered Timer Input 1 (TI1FP1)
-                ti2_fp2 = 0b110, // Filtered Timer Input 2 (TI2FP2)
-                etrf = 0b111, // External Trigger input (ETRF)
-            };
-            pub const Msm = enum(u1) {
-                no_sync = 0, // No action
-                sync = 1, // The effect of an event on the trigger input (TRGI) is delayed to allow a perfect synchronization between the current timer and its slaves (through TRGO). It is useful if we want to synchronize several timers on a single external event.
-            };
-            pub const Etf = enum(u4) {
-                no_filter = 0b0000, // No filter, sampling is done at fDTS
-                fck_int_n2 = 0b0001, // fSAMPLING=fCK_INT, N=2
-                fck_int_n4 = 0b0010, // fSAMPLING=fCK_INT, N=4
-                fck_int_n8 = 0b0011, // fSAMPLING=fCK_INT, N=8
-                fdts_div2_n6 = 0b0100, // fSAMPLING=fDTS/2, N=6
-                fdts_div2_n8 = 0b0101, // fSAMPLING=fDTS/2, N=8
-                fdts_div4_n6 = 0b0110, // fSAMPLING=fDTS/4, N=6
-                fdts_div4_n8 = 0b0111, // fSAMPLING=fDTS/4, N=8
-                fdts_div8_n6 = 0b1000, // fSAMPLING=fDTS/8, N=6
-                fdts_div8_n8 = 0b1001, // fSAMPLING=fDTS/8, N=8
-                fdts_div16_n5 = 0b1010, // fSAMPLING=fDTS/16, N=5
-                fdts_div16_n6 = 0b1011, // fSAMPLING=fDTS/16, N=6
-                fdts_div16_n8 = 0b1100, // fSAMPLING=fDTS/16, N=8
-                fdts_div32_n5 = 0b1101, // fSAMPLING=fDTS/32, N=5
-                fdts_div32_n6 = 0b1110, // fSAMPLING=fDTS/32, N=6
-                fdts_div32_n8 = 0b1111, // fSAMPLING=fDTS/32, N=8
-            };
-            pub const Etps = enum(u2) {
-                div1 = 0b00, // Prescaler OFF
-                div2 = 0b01, // ETRP frequency divided by 2
-                div4 = 0b10, // ETRP frequency divided by 4
-                div8 = 0b11, // ETRP frequency divided by 8
-            };
-            pub const Ece = enum(u1) {
-                disabled = 0, // External clock mode 2 disabled
-                enabled = 1, // External clock mode 2 enabled. The counter is clocked by any active edge on the ETRF signal.
-            };
-            pub const Etp = enum(u1) {
-                not_inverted = 0, // ETR is noninverted, active at high level or rising edge
-                inverted = 1, // ETR is inverted, active at low level or falling edge
-            };
+            pub const Sms = tim1.smcr.Sms;
+            pub const Ts = tim1.smcr.Ts;
+            pub const Msm = tim1.smcr.Msm;
+            pub const Etf = tim1.smcr.Etf;
+            pub const Etps = tim1.smcr.Etps;
+            pub const Ece = tim1.smcr.Ece;
+            pub const Etp = tim1.smcr.Etp;
             sms: Sms, // Slave mode selection (u3)
             _reserved_3_3: u1,
             ts: Ts, // Trigger selection (u3)
@@ -5961,33 +5376,15 @@ pub const registers = struct {
         };
         pub const smcr = mmio(base_address + 0x8, 32, Smcr);
 
-        /// address: 0x40000c0c
+        /// address: 0x40000c0c, path: tim5.dier
         /// DMA/Interrupt enable register
         pub const Dier = packed struct {
-            pub const Uie = enum(u1) {
-                disabled = 0, // Update interrupt disabled
-                enabled = 1, // Update interrupt enabled
-            };
-            pub const Cc1ie = enum(u1) {
-                disabled = 0, // CCx interrupt disabled
-                enabled = 1, // CCx interrupt enabled
-            };
-            pub const Tie = enum(u1) {
-                disabled = 0, // Trigger interrupt disabled
-                enabled = 1, // Trigger interrupt enabled
-            };
-            pub const Ude = enum(u1) {
-                disabled = 0, // Update DMA request disabled
-                enabled = 1, // Update DMA request enabled
-            };
-            pub const Cc1de = enum(u1) {
-                disabled = 0, // CCx DMA request disabled
-                enabled = 1, // CCx DMA request enabled
-            };
-            pub const Tde = enum(u1) {
-                disabled = 0, // Trigger DMA request disabled
-                enabled = 1, // Trigger DMA request enabled
-            };
+            pub const Uie = tim1.dier.Uie;
+            pub const Cc1ie = tim1.dier.Cc1ie;
+            pub const Tie = tim1.dier.Tie;
+            pub const Ude = tim1.dier.Ude;
+            pub const Cc1de = tim1.dier.Cc1de;
+            pub const Tde = tim1.dier.Tde;
             uie: Uie, // Update interrupt enable (u1)
             cc1ie: Cc1ie, // Capture/Compare 1 interrupt enable (u1)
             cc2ie: Cc1ie, // Capture/Compare 2 interrupt enable (u1)
@@ -6007,26 +5404,13 @@ pub const registers = struct {
         };
         pub const dier = mmio(base_address + 0xc, 32, Dier);
 
-        /// address: 0x40000c10
+        /// address: 0x40000c10, path: tim5.sr
         /// status register
         pub const Sr = packed struct {
-            pub const Uif = enum(u1) {
-                clear = 0, // No update occurred
-                update_pending = 1, // Update interrupt pending.
-            };
-            pub const Cc1if = enum(u1) {
-                match = 1, // If CC1 is an output: The content of the counter TIMx_CNT matches the content of the TIMx_CCR1 register. If CC1 is an input: The counter value has been captured in TIMx_CCR1 register.
-                clear = 0, // Clear flag
-            };
-            pub const Tif = enum(u1) {
-                no_trigger = 0, // No trigger event occurred
-                trigger = 1, // Trigger interrupt pending
-                pub const clear = @intToEnum(Tif, 0); // Clear flag
-            };
-            pub const Cc1of = enum(u1) {
-                overcapture = 1, // The counter value has been captured in TIMx_CCRx register while CCxIF flag was already set
-                clear = 0, // Clear flag
-            };
+            pub const Uif = tim1.sr.Uif;
+            pub const Cc1if = tim1.sr.Cc1if;
+            pub const Tif = tim1.sr.Tif;
+            pub const Cc1of = tim1.sr.Cc1of;
             uif: Uif, // Update interrupt flag (u1)
             cc1if: Cc1if, // Capture/compare 1 interrupt flag (u1)
             cc2if: Cc1if, // Capture/Compare 2 interrupt flag (u1)
@@ -6043,18 +5427,12 @@ pub const registers = struct {
         };
         pub const sr = mmio(base_address + 0x10, 32, Sr);
 
-        /// address: 0x40000c14
+        /// address: 0x40000c14, path: tim5.egr
         /// event generation register
         pub const Egr = packed struct {
-            pub const Ug = enum(u1) {
-                update = 1, // Re-initializes the timer counter and generates an update of the registers.
-            };
-            pub const Cc1gw = enum(u1) {
-                trigger = 1, // If CC1 is an output: CC1IF flag is set, Corresponding interrupt or DMA request is sent if enabled. If CC1 is an input: The current value of the counter is captured in TIMx_CCR1 register.
-            };
-            pub const Tgw = enum(u1) {
-                trigger = 1, // The TIF flag is set in TIMx_SR register. Related interrupt or DMA transfer can occur if enabled.
-            };
+            pub const Ug = tim1.egr.Ug;
+            pub const Cc1gw = tim1.egr.Cc1gw;
+            pub const Tgw = tim1.egr.Tgw;
             ug: Ug, // Update generation (u1)
             cc1g: Cc1gw, // Capture/compare 1 generation (u1)
             cc2g: Cc1gw, // Capture/compare 2 generation (u1)
@@ -6066,33 +5444,14 @@ pub const registers = struct {
         };
         pub const egr = mmio(base_address + 0x14, 32, Egr);
 
-        /// address: 0x40000c18
+        /// address: 0x40000c18, path: tim5.ccmr1_output
         /// capture/compare mode register 1 (output mode)
         pub const Ccmr1Output = packed struct {
-            pub const Cc1s = enum(u2) {
-                output = 0b00, // CC1 channel is configured as output
-            };
-            pub const Oc1pe = enum(u1) {
-                disabled = 0, // Preload register on CCR1 disabled. New values written to CCR1 are taken into account immediately
-                enabled = 1, // Preload register on CCR1 enabled. Preload value is loaded into active register on each update event
-            };
-            pub const Oc1m = enum(u3) {
-                frozen = 0b000, // The comparison between the output compare register TIMx_CCRy and the counter TIMx_CNT has no effect on the outputs
-                active_on_match = 0b001, // Set channel to active level on match. OCyREF signal is forced high when the counter matches the capture/compare register
-                inactive_on_match = 0b010, // Set channel to inactive level on match. OCyREF signal is forced low when the counter matches the capture/compare register
-                toggle = 0b011, // OCyREF toggles when TIMx_CNT=TIMx_CCRy
-                force_inactive = 0b100, // OCyREF is forced low
-                force_active = 0b101, // OCyREF is forced high
-                pwm_mode1 = 0b110, // In upcounting, channel is active as long as TIMx_CNT<TIMx_CCRy else inactive. In downcounting, channel is inactive as long as TIMx_CNT>TIMx_CCRy else active
-                pwm_mode2 = 0b111, // Inversely to PwmMode1
-            };
-            pub const Cc2s = enum(u2) {
-                output = 0b00, // CC2 channel is configured as output
-            };
-            pub const Oc2pe = enum(u1) {
-                disabled = 0, // Preload register on CCR2 disabled. New values written to CCR2 are taken into account immediately
-                enabled = 1, // Preload register on CCR2 enabled. Preload value is loaded into active register on each update event
-            };
+            pub const Cc1s = tim1.ccmr1_output.Cc1s;
+            pub const Oc1pe = tim1.ccmr1_output.Oc1pe;
+            pub const Oc1m = tim1.ccmr1_output.Oc1m;
+            pub const Cc2s = tim1.ccmr1_output.Cc2s;
+            pub const Oc2pe = tim1.ccmr1_output.Oc2pe;
             cc1s: Cc1s, // CC1S (u2)
             oc1fe: u1, // OC1FE
             oc1pe: Oc1pe, // OC1PE (u1)
@@ -6107,37 +5466,12 @@ pub const registers = struct {
         };
         pub const ccmr1_output = mmio(base_address + 0x18, 32, Ccmr1Output);
 
-        /// address: 0x40000c18
+        /// address: 0x40000c18, path: tim5.ccmr1_input
         /// capture/compare mode register 1 (input mode)
         pub const Ccmr1Input = packed struct {
-            pub const Cc1s = enum(u2) {
-                ti1 = 0b01, // CC1 channel is configured as input, IC1 is mapped on TI1
-                ti2 = 0b10, // CC1 channel is configured as input, IC1 is mapped on TI2
-                trc = 0b11, // CC1 channel is configured as input, IC1 is mapped on TRC
-            };
-            pub const Ic1f = enum(u4) {
-                no_filter = 0b0000, // No filter, sampling is done at fDTS
-                fck_int_n2 = 0b0001, // fSAMPLING=fCK_INT, N=2
-                fck_int_n4 = 0b0010, // fSAMPLING=fCK_INT, N=4
-                fck_int_n8 = 0b0011, // fSAMPLING=fCK_INT, N=8
-                fdts_div2_n6 = 0b0100, // fSAMPLING=fDTS/2, N=6
-                fdts_div2_n8 = 0b0101, // fSAMPLING=fDTS/2, N=8
-                fdts_div4_n6 = 0b0110, // fSAMPLING=fDTS/4, N=6
-                fdts_div4_n8 = 0b0111, // fSAMPLING=fDTS/4, N=8
-                fdts_div8_n6 = 0b1000, // fSAMPLING=fDTS/8, N=6
-                fdts_div8_n8 = 0b1001, // fSAMPLING=fDTS/8, N=8
-                fdts_div16_n5 = 0b1010, // fSAMPLING=fDTS/16, N=5
-                fdts_div16_n6 = 0b1011, // fSAMPLING=fDTS/16, N=6
-                fdts_div16_n8 = 0b1100, // fSAMPLING=fDTS/16, N=8
-                fdts_div32_n5 = 0b1101, // fSAMPLING=fDTS/32, N=5
-                fdts_div32_n6 = 0b1110, // fSAMPLING=fDTS/32, N=6
-                fdts_div32_n8 = 0b1111, // fSAMPLING=fDTS/32, N=8
-            };
-            pub const Cc2s = enum(u2) {
-                ti2 = 0b01, // CC2 channel is configured as input, IC2 is mapped on TI2
-                ti1 = 0b10, // CC2 channel is configured as input, IC2 is mapped on TI1
-                trc = 0b11, // CC2 channel is configured as input, IC2 is mapped on TRC
-            };
+            pub const Cc1s = tim1.ccmr1_input.Cc1s;
+            pub const Ic1f = tim1.ccmr1_input.Ic1f;
+            pub const Cc2s = tim1.ccmr1_input.Cc2s;
             cc1s: Cc1s, // Capture/Compare 1 selection (u2)
             ic1psc: u2, // Input capture 1 prescaler
             ic1f: Ic1f, // Input capture 1 filter (u4)
@@ -6148,33 +5482,14 @@ pub const registers = struct {
         };
         pub const ccmr1_input = mmio(base_address + 0x18, 32, Ccmr1Input);
 
-        /// address: 0x40000c1c
+        /// address: 0x40000c1c, path: tim5.ccmr2_output
         /// capture/compare mode register 2 (output mode)
         pub const Ccmr2Output = packed struct {
-            pub const Cc3s = enum(u2) {
-                output = 0b00, // CC3 channel is configured as output
-            };
-            pub const Oc3pe = enum(u1) {
-                disabled = 0, // Preload register on CCR3 disabled. New values written to CCR3 are taken into account immediately
-                enabled = 1, // Preload register on CCR3 enabled. Preload value is loaded into active register on each update event
-            };
-            pub const Oc3m = enum(u3) {
-                frozen = 0b000, // The comparison between the output compare register TIMx_CCRy and the counter TIMx_CNT has no effect on the outputs
-                active_on_match = 0b001, // Set channel to active level on match. OCyREF signal is forced high when the counter matches the capture/compare register
-                inactive_on_match = 0b010, // Set channel to inactive level on match. OCyREF signal is forced low when the counter matches the capture/compare register
-                toggle = 0b011, // OCyREF toggles when TIMx_CNT=TIMx_CCRy
-                force_inactive = 0b100, // OCyREF is forced low
-                force_active = 0b101, // OCyREF is forced high
-                pwm_mode1 = 0b110, // In upcounting, channel is active as long as TIMx_CNT<TIMx_CCRy else inactive. In downcounting, channel is inactive as long as TIMx_CNT>TIMx_CCRy else active
-                pwm_mode2 = 0b111, // Inversely to PwmMode1
-            };
-            pub const Cc4s = enum(u2) {
-                output = 0b00, // CC4 channel is configured as output
-            };
-            pub const Oc4pe = enum(u1) {
-                disabled = 0, // Preload register on CCR4 disabled. New values written to CCR4 are taken into account immediately
-                enabled = 1, // Preload register on CCR4 enabled. Preload value is loaded into active register on each update event
-            };
+            pub const Cc3s = tim1.ccmr2_output.Cc3s;
+            pub const Oc3pe = tim1.ccmr2_output.Oc3pe;
+            pub const Oc3m = tim1.ccmr2_output.Oc3m;
+            pub const Cc4s = tim1.ccmr2_output.Cc4s;
+            pub const Oc4pe = tim1.ccmr2_output.Oc4pe;
             cc3s: Cc3s, // CC3S (u2)
             oc3fe: u1, // OC3FE
             oc3pe: Oc3pe, // OC3PE (u1)
@@ -6189,19 +5504,11 @@ pub const registers = struct {
         };
         pub const ccmr2_output = mmio(base_address + 0x1c, 32, Ccmr2Output);
 
-        /// address: 0x40000c1c
+        /// address: 0x40000c1c, path: tim5.ccmr2_input
         /// capture/compare mode register 2 (input mode)
         pub const Ccmr2Input = packed struct {
-            pub const Cc3s = enum(u2) {
-                ti3 = 0b01, // CC3 channel is configured as input, IC3 is mapped on TI3
-                ti4 = 0b10, // CC3 channel is configured as input, IC3 is mapped on TI4
-                trc = 0b11, // CC3 channel is configured as input, IC3 is mapped on TRC
-            };
-            pub const Cc4s = enum(u2) {
-                ti4 = 0b01, // CC4 channel is configured as input, IC4 is mapped on TI4
-                ti3 = 0b10, // CC4 channel is configured as input, IC4 is mapped on TI3
-                trc = 0b11, // CC4 channel is configured as input, IC4 is mapped on TRC
-            };
+            pub const Cc3s = tim1.ccmr2_input.Cc3s;
+            pub const Cc4s = tim1.ccmr2_input.Cc4s;
             cc3s: Cc3s, // Capture/compare 3 selection (u2)
             ic3psc: u2, // Input capture 3 prescaler
             ic3f: u4, // Input capture 3 filter
@@ -6212,7 +5519,7 @@ pub const registers = struct {
         };
         pub const ccmr2_input = mmio(base_address + 0x1c, 32, Ccmr2Input);
 
-        /// address: 0x40000c20
+        /// address: 0x40000c20, path: tim5.ccer
         /// capture/compare enable register
         pub const Ccer = packed struct {
             cc1e: u1, // Capture/Compare 1 output enable
@@ -6235,47 +5542,47 @@ pub const registers = struct {
         };
         pub const ccer = mmio(base_address + 0x20, 32, Ccer);
 
-        /// address: 0x40000c24
+        /// address: 0x40000c24, path: tim5.cnt
         /// counter
         pub const cnt = @intToPtr(*volatile u32, base_address + 0x24);
 
-        /// address: 0x40000c28
+        /// address: 0x40000c28, path: tim5.psc
         /// prescaler
         pub const psc = mmioInt(base_address + 0x28, 32, u16);
 
-        /// address: 0x40000c2c
+        /// address: 0x40000c2c, path: tim5.arr
         /// auto-reload register
         pub const arr = @intToPtr(*volatile u32, base_address + 0x2c);
 
-        /// address: 0x40000c34
+        /// address: 0x40000c34, path: tim5.ccr1
         /// capture/compare register
         pub const Ccr1 = packed struct {
             ccr: u32, // Capture/Compare value
         };
         pub const ccr1 = mmio(base_address + 0x34, 32, Ccr1);
 
-        /// address: 0x40000c38
+        /// address: 0x40000c38, path: tim5.ccr2
         /// capture/compare register
         pub const Ccr2 = packed struct {
             ccr: u32, // Capture/Compare value
         };
         pub const ccr2 = mmio(base_address + 0x38, 32, Ccr2);
 
-        /// address: 0x40000c3c
+        /// address: 0x40000c3c, path: tim5.ccr3
         /// capture/compare register
         pub const Ccr3 = packed struct {
             ccr: u32, // Capture/Compare value
         };
         pub const ccr3 = mmio(base_address + 0x3c, 32, Ccr3);
 
-        /// address: 0x40000c40
+        /// address: 0x40000c40, path: tim5.ccr4
         /// capture/compare register
         pub const Ccr4 = packed struct {
             ccr: u32, // Capture/Compare value
         };
         pub const ccr4 = mmio(base_address + 0x40, 32, Ccr4);
 
-        /// address: 0x40000c48
+        /// address: 0x40000c48, path: tim5.dcr
         /// DMA control register
         pub const Dcr = packed struct {
             dba: u5, // DMA base address
@@ -6285,7 +5592,7 @@ pub const registers = struct {
         };
         pub const dcr = mmio(base_address + 0x48, 32, Dcr);
 
-        /// address: 0x40000c4c
+        /// address: 0x40000c4c, path: tim5.dmar
         /// DMA address for full transfer
         pub const Dmar = packed struct {
             dmab: u16, // DMA register for burst accesses
@@ -6293,7 +5600,7 @@ pub const registers = struct {
         };
         pub const dmar = mmio(base_address + 0x4c, 32, Dmar);
 
-        /// address: 0x40000c50
+        /// address: 0x40000c50, path: tim5.@"or"
         /// TIM5 option register
         pub const Or = packed struct {
             _reserved_0_5: u6,
@@ -6306,34 +5613,15 @@ pub const registers = struct {
     pub const tim9 = struct {
         pub const base_address = 0x40014000;
 
-        /// address: 0x40014000
+        /// address: 0x40014000, path: tim9.cr1
         /// control register 1
         pub const Cr1 = packed struct {
-            pub const Cen = enum(u1) {
-                disabled = 0, // Counter disabled
-                enabled = 1, // Counter enabled
-            };
-            pub const Udis = enum(u1) {
-                enabled = 0, // Update event enabled
-                disabled = 1, // Update event disabled
-            };
-            pub const Urs = enum(u1) {
-                any_event = 0, // Any of counter overflow/underflow, setting UG, or update through slave mode, generates an update interrupt or DMA request
-                counter_only = 1, // Only counter overflow/underflow generates an update interrupt or DMA request
-            };
-            pub const Opm = enum(u1) {
-                disabled = 0, // Counter is not stopped at update event
-                enabled = 1, // Counter stops counting at the next update event (clearing the CEN bit)
-            };
-            pub const Arpe = enum(u1) {
-                disabled = 0, // TIMx_APRR register is not buffered
-                enabled = 1, // TIMx_APRR register is buffered
-            };
-            pub const Ckd = enum(u2) {
-                div1 = 0b00, // t_DTS = t_CK_INT
-                div2 = 0b01, // t_DTS = 2 × t_CK_INT
-                div4 = 0b10, // t_DTS = 4 × t_CK_INT
-            };
+            pub const Cen = tim1.cr1.Cen;
+            pub const Udis = tim1.cr1.Udis;
+            pub const Urs = tim1.cr1.Urs;
+            pub const Opm = tim1.cr1.Opm;
+            pub const Arpe = tim1.cr1.Arpe;
+            pub const Ckd = tim1.cr1.Ckd;
             cen: Cen, // Counter enable (u1)
             udis: Udis, // Update disable (u1)
             urs: Urs, // Update request source (u1)
@@ -6345,7 +5633,7 @@ pub const registers = struct {
         };
         pub const cr1 = mmio(base_address + 0x0, 32, Cr1);
 
-        /// address: 0x40014004
+        /// address: 0x40014004, path: tim9.cr2
         /// control register 2
         pub const Cr2 = packed struct {
             _reserved_0_3: u4,
@@ -6354,7 +5642,7 @@ pub const registers = struct {
         };
         pub const cr2 = mmio(base_address + 0x4, 32, Cr2);
 
-        /// address: 0x40014008
+        /// address: 0x40014008, path: tim9.smcr
         /// slave mode control register
         pub const Smcr = packed struct {
             sms: u3, // Slave mode selection
@@ -6365,13 +5653,10 @@ pub const registers = struct {
         };
         pub const smcr = mmio(base_address + 0x8, 32, Smcr);
 
-        /// address: 0x4001400c
+        /// address: 0x4001400c, path: tim9.dier
         /// DMA/Interrupt enable register
         pub const Dier = packed struct {
-            pub const Uie = enum(u1) {
-                disabled = 0, // Update interrupt disabled
-                enabled = 1, // Update interrupt enabled
-            };
+            pub const Uie = tim1.dier.Uie;
             uie: Uie, // Update interrupt enable (u1)
             cc1ie: u1, // Capture/Compare 1 interrupt enable
             cc2ie: u1, // Capture/Compare 2 interrupt enable
@@ -6381,13 +5666,10 @@ pub const registers = struct {
         };
         pub const dier = mmio(base_address + 0xc, 32, Dier);
 
-        /// address: 0x40014010
+        /// address: 0x40014010, path: tim9.sr
         /// status register
         pub const Sr = packed struct {
-            pub const Uif = enum(u1) {
-                clear = 0, // No update occurred
-                update_pending = 1, // Update interrupt pending.
-            };
+            pub const Uif = tim1.sr.Uif;
             uif: Uif, // Update interrupt flag (u1)
             cc1if: u1, // Capture/compare 1 interrupt flag
             cc2if: u1, // Capture/Compare 2 interrupt flag
@@ -6400,12 +5682,10 @@ pub const registers = struct {
         };
         pub const sr = mmio(base_address + 0x10, 32, Sr);
 
-        /// address: 0x40014014
+        /// address: 0x40014014, path: tim9.egr
         /// event generation register
         pub const Egr = packed struct {
-            pub const Ug = enum(u1) {
-                update = 1, // Re-initializes the timer counter and generates an update of the registers.
-            };
+            pub const Ug = tim1.egr.Ug;
             ug: Ug, // Update generation (u1)
             cc1g: u1, // Capture/compare 1 generation
             cc2g: u1, // Capture/compare 2 generation
@@ -6415,19 +5695,10 @@ pub const registers = struct {
         };
         pub const egr = mmio(base_address + 0x14, 32, Egr);
 
-        /// address: 0x40014018
+        /// address: 0x40014018, path: tim9.ccmr1_output
         /// capture/compare mode register 1 (output mode)
         pub const Ccmr1Output = packed struct {
-            pub const Oc1m = enum(u3) {
-                frozen = 0b000, // The comparison between the output compare register TIMx_CCRy and the counter TIMx_CNT has no effect on the outputs
-                active_on_match = 0b001, // Set channel to active level on match. OCyREF signal is forced high when the counter matches the capture/compare register
-                inactive_on_match = 0b010, // Set channel to inactive level on match. OCyREF signal is forced low when the counter matches the capture/compare register
-                toggle = 0b011, // OCyREF toggles when TIMx_CNT=TIMx_CCRy
-                force_inactive = 0b100, // OCyREF is forced low
-                force_active = 0b101, // OCyREF is forced high
-                pwm_mode1 = 0b110, // In upcounting, channel is active as long as TIMx_CNT<TIMx_CCRy else inactive. In downcounting, channel is inactive as long as TIMx_CNT>TIMx_CCRy else active
-                pwm_mode2 = 0b111, // Inversely to PwmMode1
-            };
+            pub const Oc1m = tim1.ccmr1_output.Oc1m;
             cc1s: u2, // Capture/Compare 1 selection
             oc1fe: u1, // Output Compare 1 fast enable
             oc1pe: u1, // Output Compare 1 preload enable
@@ -6441,7 +5712,7 @@ pub const registers = struct {
         };
         pub const ccmr1_output = mmio(base_address + 0x18, 32, Ccmr1Output);
 
-        /// address: 0x40014018
+        /// address: 0x40014018, path: tim9.ccmr1_input
         /// capture/compare mode register 1 (input mode)
         pub const Ccmr1Input = packed struct {
             cc1s: u2, // Capture/Compare 1 selection
@@ -6455,7 +5726,7 @@ pub const registers = struct {
         };
         pub const ccmr1_input = mmio(base_address + 0x18, 32, Ccmr1Input);
 
-        /// address: 0x40014020
+        /// address: 0x40014020, path: tim9.ccer
         /// capture/compare enable register
         pub const Ccer = packed struct {
             cc1e: u1, // Capture/Compare 1 output enable
@@ -6470,19 +5741,19 @@ pub const registers = struct {
         };
         pub const ccer = mmio(base_address + 0x20, 32, Ccer);
 
-        /// address: 0x40014024
+        /// address: 0x40014024, path: tim9.cnt
         /// counter
         pub const cnt = mmioInt(base_address + 0x24, 32, u16);
 
-        /// address: 0x40014028
+        /// address: 0x40014028, path: tim9.psc
         /// prescaler
         pub const psc = mmioInt(base_address + 0x28, 32, u16);
 
-        /// address: 0x4001402c
+        /// address: 0x4001402c, path: tim9.arr
         /// auto-reload register
         pub const arr = mmioInt(base_address + 0x2c, 32, u16);
 
-        /// address: 0x40014034
+        /// address: 0x40014034, path: tim9.ccr1
         /// capture/compare register
         pub const Ccr1 = packed struct {
             ccr: u16, // Capture/Compare value
@@ -6490,7 +5761,7 @@ pub const registers = struct {
         };
         pub const ccr1 = mmio(base_address + 0x34, 32, Ccr1);
 
-        /// address: 0x40014038
+        /// address: 0x40014038, path: tim9.ccr2
         /// capture/compare register
         pub const Ccr2 = packed struct {
             ccr: u16, // Capture/Compare value
@@ -6502,7 +5773,7 @@ pub const registers = struct {
     pub const usart1 = struct {
         pub const base_address = 0x40011000;
 
-        /// address: 0x40011000
+        /// address: 0x40011000, path: usart1.sr
         /// Status register
         pub const Sr = packed struct {
             pe: u1, // Parity error
@@ -6519,11 +5790,11 @@ pub const registers = struct {
         };
         pub const sr = mmio(base_address + 0x0, 32, Sr);
 
-        /// address: 0x40011004
+        /// address: 0x40011004, path: usart1.dr
         /// Data register
         pub const dr = mmioInt(base_address + 0x4, 32, u9);
 
-        /// address: 0x40011008
+        /// address: 0x40011008, path: usart1.brr
         /// Baud rate register
         pub const Brr = packed struct {
             div_fraction: u4, // fraction of USARTDIV
@@ -6532,7 +5803,7 @@ pub const registers = struct {
         };
         pub const brr = mmio(base_address + 0x8, 32, Brr);
 
-        /// address: 0x4001100c
+        /// address: 0x4001100c, path: usart1.cr1
         /// Control register 1
         pub const Cr1 = packed struct {
             pub const Sbk = enum(u1) {
@@ -6615,7 +5886,7 @@ pub const registers = struct {
         };
         pub const cr1 = mmio(base_address + 0xc, 32, Cr1);
 
-        /// address: 0x40011010
+        /// address: 0x40011010, path: usart1.cr2
         /// Control register 2
         pub const Cr2 = packed struct {
             pub const Lbdl = enum(u1) {
@@ -6663,7 +5934,7 @@ pub const registers = struct {
         };
         pub const cr2 = mmio(base_address + 0x10, 32, Cr2);
 
-        /// address: 0x40011014
+        /// address: 0x40011014, path: usart1.cr3
         /// Control register 3
         pub const Cr3 = packed struct {
             pub const Eie = enum(u1) {
@@ -6730,7 +6001,7 @@ pub const registers = struct {
         };
         pub const cr3 = mmio(base_address + 0x14, 32, Cr3);
 
-        /// address: 0x40011018
+        /// address: 0x40011018, path: usart1.gtpr
         /// Guard time and prescaler register
         pub const Gtpr = packed struct {
             psc: u8, // Prescaler value
@@ -6743,7 +6014,7 @@ pub const registers = struct {
     pub const wwdg = struct {
         pub const base_address = 0x40002c00;
 
-        /// address: 0x40002c00
+        /// address: 0x40002c00, path: wwdg.cr
         /// Control register
         pub const Cr = packed struct {
             pub const Wdga = enum(u1) {
@@ -6756,7 +6027,7 @@ pub const registers = struct {
         };
         pub const cr = mmio(base_address + 0x0, 32, Cr);
 
-        /// address: 0x40002c04
+        /// address: 0x40002c04, path: wwdg.cfr
         /// Configuration register
         pub const Cfr = packed struct {
             pub const Wdgtb = enum(u2) {
@@ -6775,7 +6046,7 @@ pub const registers = struct {
         };
         pub const cfr = mmio(base_address + 0x4, 32, Cfr);
 
-        /// address: 0x40002c08
+        /// address: 0x40002c08, path: wwdg.sr
         /// Status register
         pub const Sr = packed struct {
             pub const Ewif = enum(u1) {
@@ -6792,7 +6063,7 @@ pub const registers = struct {
     pub const dma1 = struct {
         pub const base_address = 0x40026000;
 
-        /// address: 0x40026000
+        /// address: 0x40026000, path: dma1.lisr
         /// low interrupt status register
         pub const Lisr = packed struct {
             pub const Feif0 = enum(u1) {
@@ -6844,7 +6115,7 @@ pub const registers = struct {
         };
         pub const lisr = mmio(base_address + 0x0, 32, Lisr);
 
-        /// address: 0x40026004
+        /// address: 0x40026004, path: dma1.hisr
         /// high interrupt status register
         pub const Hisr = packed struct {
             pub const Feif4 = enum(u1) {
@@ -6896,7 +6167,7 @@ pub const registers = struct {
         };
         pub const hisr = mmio(base_address + 0x4, 32, Hisr);
 
-        /// address: 0x40026008
+        /// address: 0x40026008, path: dma1.lifcr
         /// low interrupt flag clear register
         pub const Lifcr = packed struct {
             pub const Cfeif0 = enum(u1) {
@@ -6943,7 +6214,7 @@ pub const registers = struct {
         };
         pub const lifcr = mmio(base_address + 0x8, 32, Lifcr);
 
-        /// address: 0x4002600c
+        /// address: 0x4002600c, path: dma1.hifcr
         /// high interrupt flag clear register
         pub const Hifcr = packed struct {
             pub const Cfeif4 = enum(u1) {
@@ -6990,7 +6261,7 @@ pub const registers = struct {
         };
         pub const hifcr = mmio(base_address + 0xc, 32, Hifcr);
 
-        /// address: 0x40026010
+        /// address: 0x40026010, path: dma1.st0cr
         /// stream x configuration register
         pub const St0cr = packed struct {
             pub const En = enum(u1) {
@@ -7009,10 +6280,7 @@ pub const registers = struct {
                 disabled = 0, // HT interrupt disabled
                 enabled = 1, // HT interrupt enabled
             };
-            pub const Tcie = enum(u1) {
-                disabled = 0, // TC interrupt disabled
-                enabled = 1, // TC interrupt enabled
-            };
+            pub const Tcie = usart1.cr1.Tcie;
             pub const Pfctrl = enum(u1) {
                 dma = 0, // The DMA is the flow controller
                 peripheral = 1, // The peripheral is the flow controller
@@ -7083,7 +6351,7 @@ pub const registers = struct {
         };
         pub const st0cr = mmio(base_address + 0x10, 32, St0cr);
 
-        /// address: 0x40026014
+        /// address: 0x40026014, path: dma1.st0ndtr
         /// stream x number of data register
         pub const St0ndtr = packed struct {
             ndt: u16, // Number of data items to transfer
@@ -7091,28 +6359,28 @@ pub const registers = struct {
         };
         pub const st0ndtr = mmio(base_address + 0x14, 32, St0ndtr);
 
-        /// address: 0x40026018
+        /// address: 0x40026018, path: dma1.st0par
         /// stream x peripheral address register
         pub const St0par = packed struct {
             pa: u32, // Peripheral address
         };
         pub const st0par = mmio(base_address + 0x18, 32, St0par);
 
-        /// address: 0x4002601c
+        /// address: 0x4002601c, path: dma1.st0m0ar
         /// stream x memory 0 address register
         pub const St0m0ar = packed struct {
             m0a: u32, // Memory 0 address
         };
         pub const st0m0ar = mmio(base_address + 0x1c, 32, St0m0ar);
 
-        /// address: 0x40026020
+        /// address: 0x40026020, path: dma1.st0m1ar
         /// stream x memory 1 address register
         pub const St0m1ar = packed struct {
             m1a: u32, // Memory 1 address (used in case of Double buffer mode)
         };
         pub const st0m1ar = mmio(base_address + 0x20, 32, St0m1ar);
 
-        /// address: 0x40026024
+        /// address: 0x40026024, path: dma1.st0fcr
         /// stream x FIFO control register
         pub const St0fcr = packed struct {
             pub const Fth = enum(u2) {
@@ -7146,75 +6414,24 @@ pub const registers = struct {
         };
         pub const st0fcr = mmio(base_address + 0x24, 32, St0fcr);
 
-        /// address: 0x40026028
+        /// address: 0x40026028, path: dma1.st1cr
         /// stream x configuration register
         pub const St1cr = packed struct {
-            pub const En = enum(u1) {
-                disabled = 0, // Stream disabled
-                enabled = 1, // Stream enabled
-            };
-            pub const Dmeie = enum(u1) {
-                disabled = 0, // DME interrupt disabled
-                enabled = 1, // DME interrupt enabled
-            };
-            pub const Teie = enum(u1) {
-                disabled = 0, // TE interrupt disabled
-                enabled = 1, // TE interrupt enabled
-            };
-            pub const Htie = enum(u1) {
-                disabled = 0, // HT interrupt disabled
-                enabled = 1, // HT interrupt enabled
-            };
-            pub const Tcie = enum(u1) {
-                disabled = 0, // TC interrupt disabled
-                enabled = 1, // TC interrupt enabled
-            };
-            pub const Pfctrl = enum(u1) {
-                dma = 0, // The DMA is the flow controller
-                peripheral = 1, // The peripheral is the flow controller
-            };
-            pub const Dir = enum(u2) {
-                peripheral_to_memory = 0b00, // Peripheral-to-memory
-                memory_to_peripheral = 0b01, // Memory-to-peripheral
-                memory_to_memory = 0b10, // Memory-to-memory
-            };
-            pub const Circ = enum(u1) {
-                disabled = 0, // Circular mode disabled
-                enabled = 1, // Circular mode enabled
-            };
-            pub const Pinc = enum(u1) {
-                fixed = 0, // Address pointer is fixed
-                incremented = 1, // Address pointer is incremented after each data transfer
-            };
-            pub const Psize = enum(u2) {
-                bits8 = 0b00, // Byte (8-bit)
-                bits16 = 0b01, // Half-word (16-bit)
-                bits32 = 0b10, // Word (32-bit)
-            };
-            pub const Pincos = enum(u1) {
-                psize = 0, // The offset size for the peripheral address calculation is linked to the PSIZE
-                fixed4 = 1, // The offset size for the peripheral address calculation is fixed to 4 (32-bit alignment)
-            };
-            pub const Pl = enum(u2) {
-                low = 0b00, // Low
-                medium = 0b01, // Medium
-                high = 0b10, // High
-                very_high = 0b11, // Very high
-            };
-            pub const Dbm = enum(u1) {
-                disabled = 0, // No buffer switching at the end of transfer
-                enabled = 1, // Memory target switched at the end of the DMA transfer
-            };
-            pub const Ct = enum(u1) {
-                memory0 = 0, // The current target memory is Memory 0
-                memory1 = 1, // The current target memory is Memory 1
-            };
-            pub const Pburst = enum(u2) {
-                single = 0b00, // Single transfer
-                incr4 = 0b01, // Incremental burst of 4 beats
-                incr8 = 0b10, // Incremental burst of 8 beats
-                incr16 = 0b11, // Incremental burst of 16 beats
-            };
+            pub const En = dma1.st0cr.En;
+            pub const Dmeie = dma1.st0cr.Dmeie;
+            pub const Teie = dma1.st0cr.Teie;
+            pub const Htie = dma1.st0cr.Htie;
+            pub const Tcie = usart1.cr1.Tcie;
+            pub const Pfctrl = dma1.st0cr.Pfctrl;
+            pub const Dir = dma1.st0cr.Dir;
+            pub const Circ = dma1.st0cr.Circ;
+            pub const Pinc = dma1.st0cr.Pinc;
+            pub const Psize = dma1.st0cr.Psize;
+            pub const Pincos = dma1.st0cr.Pincos;
+            pub const Pl = dma1.st0cr.Pl;
+            pub const Dbm = dma1.st0cr.Dbm;
+            pub const Ct = dma1.st0cr.Ct;
+            pub const Pburst = dma1.st0cr.Pburst;
             en: En, // Stream enable / flag stream ready when read low (u1)
             dmeie: Dmeie, // Direct mode error interrupt enable (u1)
             teie: Teie, // Transfer error interrupt enable (u1)
@@ -7239,7 +6456,7 @@ pub const registers = struct {
         };
         pub const st1cr = mmio(base_address + 0x28, 32, St1cr);
 
-        /// address: 0x4002602c
+        /// address: 0x4002602c, path: dma1.st1ndtr
         /// stream x number of data register
         pub const St1ndtr = packed struct {
             ndt: u16, // Number of data items to transfer
@@ -7247,52 +6464,34 @@ pub const registers = struct {
         };
         pub const st1ndtr = mmio(base_address + 0x2c, 32, St1ndtr);
 
-        /// address: 0x40026030
+        /// address: 0x40026030, path: dma1.st1par
         /// stream x peripheral address register
         pub const St1par = packed struct {
             pa: u32, // Peripheral address
         };
         pub const st1par = mmio(base_address + 0x30, 32, St1par);
 
-        /// address: 0x40026034
+        /// address: 0x40026034, path: dma1.st1m0ar
         /// stream x memory 0 address register
         pub const St1m0ar = packed struct {
             m0a: u32, // Memory 0 address
         };
         pub const st1m0ar = mmio(base_address + 0x34, 32, St1m0ar);
 
-        /// address: 0x40026038
+        /// address: 0x40026038, path: dma1.st1m1ar
         /// stream x memory 1 address register
         pub const St1m1ar = packed struct {
             m1a: u32, // Memory 1 address (used in case of Double buffer mode)
         };
         pub const st1m1ar = mmio(base_address + 0x38, 32, St1m1ar);
 
-        /// address: 0x4002603c
+        /// address: 0x4002603c, path: dma1.st1fcr
         /// stream x FIFO control register
         pub const St1fcr = packed struct {
-            pub const Fth = enum(u2) {
-                quarter = 0b00, // 1/4 full FIFO
-                half = 0b01, // 1/2 full FIFO
-                three_quarters = 0b10, // 3/4 full FIFO
-                full = 0b11, // Full FIFO
-            };
-            pub const Dmdis = enum(u1) {
-                enabled = 0, // Direct mode is enabled
-                disabled = 1, // Direct mode is disabled
-            };
-            pub const Fs = enum(u3) {
-                quarter1 = 0b000, // 0 < fifo_level < 1/4
-                quarter2 = 0b001, // 1/4 <= fifo_level < 1/2
-                quarter3 = 0b010, // 1/2 <= fifo_level < 3/4
-                quarter4 = 0b011, // 3/4 <= fifo_level < full
-                empty = 0b100, // FIFO is empty
-                full = 0b101, // FIFO is full
-            };
-            pub const Feie = enum(u1) {
-                disabled = 0, // FE interrupt disabled
-                enabled = 1, // FE interrupt enabled
-            };
+            pub const Fth = dma1.st0fcr.Fth;
+            pub const Dmdis = dma1.st0fcr.Dmdis;
+            pub const Fs = dma1.st0fcr.Fs;
+            pub const Feie = dma1.st0fcr.Feie;
             fth: Fth, // FIFO threshold selection (u2)
             dmdis: Dmdis, // Direct mode disable (u1)
             fs: Fs, // FIFO status (u3)
@@ -7302,75 +6501,24 @@ pub const registers = struct {
         };
         pub const st1fcr = mmio(base_address + 0x3c, 32, St1fcr);
 
-        /// address: 0x40026040
+        /// address: 0x40026040, path: dma1.st2cr
         /// stream x configuration register
         pub const St2cr = packed struct {
-            pub const En = enum(u1) {
-                disabled = 0, // Stream disabled
-                enabled = 1, // Stream enabled
-            };
-            pub const Dmeie = enum(u1) {
-                disabled = 0, // DME interrupt disabled
-                enabled = 1, // DME interrupt enabled
-            };
-            pub const Teie = enum(u1) {
-                disabled = 0, // TE interrupt disabled
-                enabled = 1, // TE interrupt enabled
-            };
-            pub const Htie = enum(u1) {
-                disabled = 0, // HT interrupt disabled
-                enabled = 1, // HT interrupt enabled
-            };
-            pub const Tcie = enum(u1) {
-                disabled = 0, // TC interrupt disabled
-                enabled = 1, // TC interrupt enabled
-            };
-            pub const Pfctrl = enum(u1) {
-                dma = 0, // The DMA is the flow controller
-                peripheral = 1, // The peripheral is the flow controller
-            };
-            pub const Dir = enum(u2) {
-                peripheral_to_memory = 0b00, // Peripheral-to-memory
-                memory_to_peripheral = 0b01, // Memory-to-peripheral
-                memory_to_memory = 0b10, // Memory-to-memory
-            };
-            pub const Circ = enum(u1) {
-                disabled = 0, // Circular mode disabled
-                enabled = 1, // Circular mode enabled
-            };
-            pub const Pinc = enum(u1) {
-                fixed = 0, // Address pointer is fixed
-                incremented = 1, // Address pointer is incremented after each data transfer
-            };
-            pub const Psize = enum(u2) {
-                bits8 = 0b00, // Byte (8-bit)
-                bits16 = 0b01, // Half-word (16-bit)
-                bits32 = 0b10, // Word (32-bit)
-            };
-            pub const Pincos = enum(u1) {
-                psize = 0, // The offset size for the peripheral address calculation is linked to the PSIZE
-                fixed4 = 1, // The offset size for the peripheral address calculation is fixed to 4 (32-bit alignment)
-            };
-            pub const Pl = enum(u2) {
-                low = 0b00, // Low
-                medium = 0b01, // Medium
-                high = 0b10, // High
-                very_high = 0b11, // Very high
-            };
-            pub const Dbm = enum(u1) {
-                disabled = 0, // No buffer switching at the end of transfer
-                enabled = 1, // Memory target switched at the end of the DMA transfer
-            };
-            pub const Ct = enum(u1) {
-                memory0 = 0, // The current target memory is Memory 0
-                memory1 = 1, // The current target memory is Memory 1
-            };
-            pub const Pburst = enum(u2) {
-                single = 0b00, // Single transfer
-                incr4 = 0b01, // Incremental burst of 4 beats
-                incr8 = 0b10, // Incremental burst of 8 beats
-                incr16 = 0b11, // Incremental burst of 16 beats
-            };
+            pub const En = dma1.st0cr.En;
+            pub const Dmeie = dma1.st0cr.Dmeie;
+            pub const Teie = dma1.st0cr.Teie;
+            pub const Htie = dma1.st0cr.Htie;
+            pub const Tcie = usart1.cr1.Tcie;
+            pub const Pfctrl = dma1.st0cr.Pfctrl;
+            pub const Dir = dma1.st0cr.Dir;
+            pub const Circ = dma1.st0cr.Circ;
+            pub const Pinc = dma1.st0cr.Pinc;
+            pub const Psize = dma1.st0cr.Psize;
+            pub const Pincos = dma1.st0cr.Pincos;
+            pub const Pl = dma1.st0cr.Pl;
+            pub const Dbm = dma1.st0cr.Dbm;
+            pub const Ct = dma1.st0cr.Ct;
+            pub const Pburst = dma1.st0cr.Pburst;
             en: En, // Stream enable / flag stream ready when read low (u1)
             dmeie: Dmeie, // Direct mode error interrupt enable (u1)
             teie: Teie, // Transfer error interrupt enable (u1)
@@ -7395,7 +6543,7 @@ pub const registers = struct {
         };
         pub const st2cr = mmio(base_address + 0x40, 32, St2cr);
 
-        /// address: 0x40026044
+        /// address: 0x40026044, path: dma1.st2ndtr
         /// stream x number of data register
         pub const St2ndtr = packed struct {
             ndt: u16, // Number of data items to transfer
@@ -7403,52 +6551,34 @@ pub const registers = struct {
         };
         pub const st2ndtr = mmio(base_address + 0x44, 32, St2ndtr);
 
-        /// address: 0x40026048
+        /// address: 0x40026048, path: dma1.st2par
         /// stream x peripheral address register
         pub const St2par = packed struct {
             pa: u32, // Peripheral address
         };
         pub const st2par = mmio(base_address + 0x48, 32, St2par);
 
-        /// address: 0x4002604c
+        /// address: 0x4002604c, path: dma1.st2m0ar
         /// stream x memory 0 address register
         pub const St2m0ar = packed struct {
             m0a: u32, // Memory 0 address
         };
         pub const st2m0ar = mmio(base_address + 0x4c, 32, St2m0ar);
 
-        /// address: 0x40026050
+        /// address: 0x40026050, path: dma1.st2m1ar
         /// stream x memory 1 address register
         pub const St2m1ar = packed struct {
             m1a: u32, // Memory 1 address (used in case of Double buffer mode)
         };
         pub const st2m1ar = mmio(base_address + 0x50, 32, St2m1ar);
 
-        /// address: 0x40026054
+        /// address: 0x40026054, path: dma1.st2fcr
         /// stream x FIFO control register
         pub const St2fcr = packed struct {
-            pub const Fth = enum(u2) {
-                quarter = 0b00, // 1/4 full FIFO
-                half = 0b01, // 1/2 full FIFO
-                three_quarters = 0b10, // 3/4 full FIFO
-                full = 0b11, // Full FIFO
-            };
-            pub const Dmdis = enum(u1) {
-                enabled = 0, // Direct mode is enabled
-                disabled = 1, // Direct mode is disabled
-            };
-            pub const Fs = enum(u3) {
-                quarter1 = 0b000, // 0 < fifo_level < 1/4
-                quarter2 = 0b001, // 1/4 <= fifo_level < 1/2
-                quarter3 = 0b010, // 1/2 <= fifo_level < 3/4
-                quarter4 = 0b011, // 3/4 <= fifo_level < full
-                empty = 0b100, // FIFO is empty
-                full = 0b101, // FIFO is full
-            };
-            pub const Feie = enum(u1) {
-                disabled = 0, // FE interrupt disabled
-                enabled = 1, // FE interrupt enabled
-            };
+            pub const Fth = dma1.st0fcr.Fth;
+            pub const Dmdis = dma1.st0fcr.Dmdis;
+            pub const Fs = dma1.st0fcr.Fs;
+            pub const Feie = dma1.st0fcr.Feie;
             fth: Fth, // FIFO threshold selection (u2)
             dmdis: Dmdis, // Direct mode disable (u1)
             fs: Fs, // FIFO status (u3)
@@ -7458,75 +6588,24 @@ pub const registers = struct {
         };
         pub const st2fcr = mmio(base_address + 0x54, 32, St2fcr);
 
-        /// address: 0x40026058
+        /// address: 0x40026058, path: dma1.st3cr
         /// stream x configuration register
         pub const St3cr = packed struct {
-            pub const En = enum(u1) {
-                disabled = 0, // Stream disabled
-                enabled = 1, // Stream enabled
-            };
-            pub const Dmeie = enum(u1) {
-                disabled = 0, // DME interrupt disabled
-                enabled = 1, // DME interrupt enabled
-            };
-            pub const Teie = enum(u1) {
-                disabled = 0, // TE interrupt disabled
-                enabled = 1, // TE interrupt enabled
-            };
-            pub const Htie = enum(u1) {
-                disabled = 0, // HT interrupt disabled
-                enabled = 1, // HT interrupt enabled
-            };
-            pub const Tcie = enum(u1) {
-                disabled = 0, // TC interrupt disabled
-                enabled = 1, // TC interrupt enabled
-            };
-            pub const Pfctrl = enum(u1) {
-                dma = 0, // The DMA is the flow controller
-                peripheral = 1, // The peripheral is the flow controller
-            };
-            pub const Dir = enum(u2) {
-                peripheral_to_memory = 0b00, // Peripheral-to-memory
-                memory_to_peripheral = 0b01, // Memory-to-peripheral
-                memory_to_memory = 0b10, // Memory-to-memory
-            };
-            pub const Circ = enum(u1) {
-                disabled = 0, // Circular mode disabled
-                enabled = 1, // Circular mode enabled
-            };
-            pub const Pinc = enum(u1) {
-                fixed = 0, // Address pointer is fixed
-                incremented = 1, // Address pointer is incremented after each data transfer
-            };
-            pub const Psize = enum(u2) {
-                bits8 = 0b00, // Byte (8-bit)
-                bits16 = 0b01, // Half-word (16-bit)
-                bits32 = 0b10, // Word (32-bit)
-            };
-            pub const Pincos = enum(u1) {
-                psize = 0, // The offset size for the peripheral address calculation is linked to the PSIZE
-                fixed4 = 1, // The offset size for the peripheral address calculation is fixed to 4 (32-bit alignment)
-            };
-            pub const Pl = enum(u2) {
-                low = 0b00, // Low
-                medium = 0b01, // Medium
-                high = 0b10, // High
-                very_high = 0b11, // Very high
-            };
-            pub const Dbm = enum(u1) {
-                disabled = 0, // No buffer switching at the end of transfer
-                enabled = 1, // Memory target switched at the end of the DMA transfer
-            };
-            pub const Ct = enum(u1) {
-                memory0 = 0, // The current target memory is Memory 0
-                memory1 = 1, // The current target memory is Memory 1
-            };
-            pub const Pburst = enum(u2) {
-                single = 0b00, // Single transfer
-                incr4 = 0b01, // Incremental burst of 4 beats
-                incr8 = 0b10, // Incremental burst of 8 beats
-                incr16 = 0b11, // Incremental burst of 16 beats
-            };
+            pub const En = dma1.st0cr.En;
+            pub const Dmeie = dma1.st0cr.Dmeie;
+            pub const Teie = dma1.st0cr.Teie;
+            pub const Htie = dma1.st0cr.Htie;
+            pub const Tcie = usart1.cr1.Tcie;
+            pub const Pfctrl = dma1.st0cr.Pfctrl;
+            pub const Dir = dma1.st0cr.Dir;
+            pub const Circ = dma1.st0cr.Circ;
+            pub const Pinc = dma1.st0cr.Pinc;
+            pub const Psize = dma1.st0cr.Psize;
+            pub const Pincos = dma1.st0cr.Pincos;
+            pub const Pl = dma1.st0cr.Pl;
+            pub const Dbm = dma1.st0cr.Dbm;
+            pub const Ct = dma1.st0cr.Ct;
+            pub const Pburst = dma1.st0cr.Pburst;
             en: En, // Stream enable / flag stream ready when read low (u1)
             dmeie: Dmeie, // Direct mode error interrupt enable (u1)
             teie: Teie, // Transfer error interrupt enable (u1)
@@ -7551,7 +6630,7 @@ pub const registers = struct {
         };
         pub const st3cr = mmio(base_address + 0x58, 32, St3cr);
 
-        /// address: 0x4002605c
+        /// address: 0x4002605c, path: dma1.st3ndtr
         /// stream x number of data register
         pub const St3ndtr = packed struct {
             ndt: u16, // Number of data items to transfer
@@ -7559,52 +6638,34 @@ pub const registers = struct {
         };
         pub const st3ndtr = mmio(base_address + 0x5c, 32, St3ndtr);
 
-        /// address: 0x40026060
+        /// address: 0x40026060, path: dma1.st3par
         /// stream x peripheral address register
         pub const St3par = packed struct {
             pa: u32, // Peripheral address
         };
         pub const st3par = mmio(base_address + 0x60, 32, St3par);
 
-        /// address: 0x40026064
+        /// address: 0x40026064, path: dma1.st3m0ar
         /// stream x memory 0 address register
         pub const St3m0ar = packed struct {
             m0a: u32, // Memory 0 address
         };
         pub const st3m0ar = mmio(base_address + 0x64, 32, St3m0ar);
 
-        /// address: 0x40026068
+        /// address: 0x40026068, path: dma1.st3m1ar
         /// stream x memory 1 address register
         pub const St3m1ar = packed struct {
             m1a: u32, // Memory 1 address (used in case of Double buffer mode)
         };
         pub const st3m1ar = mmio(base_address + 0x68, 32, St3m1ar);
 
-        /// address: 0x4002606c
+        /// address: 0x4002606c, path: dma1.st3fcr
         /// stream x FIFO control register
         pub const St3fcr = packed struct {
-            pub const Fth = enum(u2) {
-                quarter = 0b00, // 1/4 full FIFO
-                half = 0b01, // 1/2 full FIFO
-                three_quarters = 0b10, // 3/4 full FIFO
-                full = 0b11, // Full FIFO
-            };
-            pub const Dmdis = enum(u1) {
-                enabled = 0, // Direct mode is enabled
-                disabled = 1, // Direct mode is disabled
-            };
-            pub const Fs = enum(u3) {
-                quarter1 = 0b000, // 0 < fifo_level < 1/4
-                quarter2 = 0b001, // 1/4 <= fifo_level < 1/2
-                quarter3 = 0b010, // 1/2 <= fifo_level < 3/4
-                quarter4 = 0b011, // 3/4 <= fifo_level < full
-                empty = 0b100, // FIFO is empty
-                full = 0b101, // FIFO is full
-            };
-            pub const Feie = enum(u1) {
-                disabled = 0, // FE interrupt disabled
-                enabled = 1, // FE interrupt enabled
-            };
+            pub const Fth = dma1.st0fcr.Fth;
+            pub const Dmdis = dma1.st0fcr.Dmdis;
+            pub const Fs = dma1.st0fcr.Fs;
+            pub const Feie = dma1.st0fcr.Feie;
             fth: Fth, // FIFO threshold selection (u2)
             dmdis: Dmdis, // Direct mode disable (u1)
             fs: Fs, // FIFO status (u3)
@@ -7614,75 +6675,24 @@ pub const registers = struct {
         };
         pub const st3fcr = mmio(base_address + 0x6c, 32, St3fcr);
 
-        /// address: 0x40026070
+        /// address: 0x40026070, path: dma1.st4cr
         /// stream x configuration register
         pub const St4cr = packed struct {
-            pub const En = enum(u1) {
-                disabled = 0, // Stream disabled
-                enabled = 1, // Stream enabled
-            };
-            pub const Dmeie = enum(u1) {
-                disabled = 0, // DME interrupt disabled
-                enabled = 1, // DME interrupt enabled
-            };
-            pub const Teie = enum(u1) {
-                disabled = 0, // TE interrupt disabled
-                enabled = 1, // TE interrupt enabled
-            };
-            pub const Htie = enum(u1) {
-                disabled = 0, // HT interrupt disabled
-                enabled = 1, // HT interrupt enabled
-            };
-            pub const Tcie = enum(u1) {
-                disabled = 0, // TC interrupt disabled
-                enabled = 1, // TC interrupt enabled
-            };
-            pub const Pfctrl = enum(u1) {
-                dma = 0, // The DMA is the flow controller
-                peripheral = 1, // The peripheral is the flow controller
-            };
-            pub const Dir = enum(u2) {
-                peripheral_to_memory = 0b00, // Peripheral-to-memory
-                memory_to_peripheral = 0b01, // Memory-to-peripheral
-                memory_to_memory = 0b10, // Memory-to-memory
-            };
-            pub const Circ = enum(u1) {
-                disabled = 0, // Circular mode disabled
-                enabled = 1, // Circular mode enabled
-            };
-            pub const Pinc = enum(u1) {
-                fixed = 0, // Address pointer is fixed
-                incremented = 1, // Address pointer is incremented after each data transfer
-            };
-            pub const Psize = enum(u2) {
-                bits8 = 0b00, // Byte (8-bit)
-                bits16 = 0b01, // Half-word (16-bit)
-                bits32 = 0b10, // Word (32-bit)
-            };
-            pub const Pincos = enum(u1) {
-                psize = 0, // The offset size for the peripheral address calculation is linked to the PSIZE
-                fixed4 = 1, // The offset size for the peripheral address calculation is fixed to 4 (32-bit alignment)
-            };
-            pub const Pl = enum(u2) {
-                low = 0b00, // Low
-                medium = 0b01, // Medium
-                high = 0b10, // High
-                very_high = 0b11, // Very high
-            };
-            pub const Dbm = enum(u1) {
-                disabled = 0, // No buffer switching at the end of transfer
-                enabled = 1, // Memory target switched at the end of the DMA transfer
-            };
-            pub const Ct = enum(u1) {
-                memory0 = 0, // The current target memory is Memory 0
-                memory1 = 1, // The current target memory is Memory 1
-            };
-            pub const Pburst = enum(u2) {
-                single = 0b00, // Single transfer
-                incr4 = 0b01, // Incremental burst of 4 beats
-                incr8 = 0b10, // Incremental burst of 8 beats
-                incr16 = 0b11, // Incremental burst of 16 beats
-            };
+            pub const En = dma1.st0cr.En;
+            pub const Dmeie = dma1.st0cr.Dmeie;
+            pub const Teie = dma1.st0cr.Teie;
+            pub const Htie = dma1.st0cr.Htie;
+            pub const Tcie = usart1.cr1.Tcie;
+            pub const Pfctrl = dma1.st0cr.Pfctrl;
+            pub const Dir = dma1.st0cr.Dir;
+            pub const Circ = dma1.st0cr.Circ;
+            pub const Pinc = dma1.st0cr.Pinc;
+            pub const Psize = dma1.st0cr.Psize;
+            pub const Pincos = dma1.st0cr.Pincos;
+            pub const Pl = dma1.st0cr.Pl;
+            pub const Dbm = dma1.st0cr.Dbm;
+            pub const Ct = dma1.st0cr.Ct;
+            pub const Pburst = dma1.st0cr.Pburst;
             en: En, // Stream enable / flag stream ready when read low (u1)
             dmeie: Dmeie, // Direct mode error interrupt enable (u1)
             teie: Teie, // Transfer error interrupt enable (u1)
@@ -7707,7 +6717,7 @@ pub const registers = struct {
         };
         pub const st4cr = mmio(base_address + 0x70, 32, St4cr);
 
-        /// address: 0x40026074
+        /// address: 0x40026074, path: dma1.st4ndtr
         /// stream x number of data register
         pub const St4ndtr = packed struct {
             ndt: u16, // Number of data items to transfer
@@ -7715,52 +6725,34 @@ pub const registers = struct {
         };
         pub const st4ndtr = mmio(base_address + 0x74, 32, St4ndtr);
 
-        /// address: 0x40026078
+        /// address: 0x40026078, path: dma1.st4par
         /// stream x peripheral address register
         pub const St4par = packed struct {
             pa: u32, // Peripheral address
         };
         pub const st4par = mmio(base_address + 0x78, 32, St4par);
 
-        /// address: 0x4002607c
+        /// address: 0x4002607c, path: dma1.st4m0ar
         /// stream x memory 0 address register
         pub const St4m0ar = packed struct {
             m0a: u32, // Memory 0 address
         };
         pub const st4m0ar = mmio(base_address + 0x7c, 32, St4m0ar);
 
-        /// address: 0x40026080
+        /// address: 0x40026080, path: dma1.st4m1ar
         /// stream x memory 1 address register
         pub const St4m1ar = packed struct {
             m1a: u32, // Memory 1 address (used in case of Double buffer mode)
         };
         pub const st4m1ar = mmio(base_address + 0x80, 32, St4m1ar);
 
-        /// address: 0x40026084
+        /// address: 0x40026084, path: dma1.st4fcr
         /// stream x FIFO control register
         pub const St4fcr = packed struct {
-            pub const Fth = enum(u2) {
-                quarter = 0b00, // 1/4 full FIFO
-                half = 0b01, // 1/2 full FIFO
-                three_quarters = 0b10, // 3/4 full FIFO
-                full = 0b11, // Full FIFO
-            };
-            pub const Dmdis = enum(u1) {
-                enabled = 0, // Direct mode is enabled
-                disabled = 1, // Direct mode is disabled
-            };
-            pub const Fs = enum(u3) {
-                quarter1 = 0b000, // 0 < fifo_level < 1/4
-                quarter2 = 0b001, // 1/4 <= fifo_level < 1/2
-                quarter3 = 0b010, // 1/2 <= fifo_level < 3/4
-                quarter4 = 0b011, // 3/4 <= fifo_level < full
-                empty = 0b100, // FIFO is empty
-                full = 0b101, // FIFO is full
-            };
-            pub const Feie = enum(u1) {
-                disabled = 0, // FE interrupt disabled
-                enabled = 1, // FE interrupt enabled
-            };
+            pub const Fth = dma1.st0fcr.Fth;
+            pub const Dmdis = dma1.st0fcr.Dmdis;
+            pub const Fs = dma1.st0fcr.Fs;
+            pub const Feie = dma1.st0fcr.Feie;
             fth: Fth, // FIFO threshold selection (u2)
             dmdis: Dmdis, // Direct mode disable (u1)
             fs: Fs, // FIFO status (u3)
@@ -7770,75 +6762,24 @@ pub const registers = struct {
         };
         pub const st4fcr = mmio(base_address + 0x84, 32, St4fcr);
 
-        /// address: 0x40026088
+        /// address: 0x40026088, path: dma1.st5cr
         /// stream x configuration register
         pub const St5cr = packed struct {
-            pub const En = enum(u1) {
-                disabled = 0, // Stream disabled
-                enabled = 1, // Stream enabled
-            };
-            pub const Dmeie = enum(u1) {
-                disabled = 0, // DME interrupt disabled
-                enabled = 1, // DME interrupt enabled
-            };
-            pub const Teie = enum(u1) {
-                disabled = 0, // TE interrupt disabled
-                enabled = 1, // TE interrupt enabled
-            };
-            pub const Htie = enum(u1) {
-                disabled = 0, // HT interrupt disabled
-                enabled = 1, // HT interrupt enabled
-            };
-            pub const Tcie = enum(u1) {
-                disabled = 0, // TC interrupt disabled
-                enabled = 1, // TC interrupt enabled
-            };
-            pub const Pfctrl = enum(u1) {
-                dma = 0, // The DMA is the flow controller
-                peripheral = 1, // The peripheral is the flow controller
-            };
-            pub const Dir = enum(u2) {
-                peripheral_to_memory = 0b00, // Peripheral-to-memory
-                memory_to_peripheral = 0b01, // Memory-to-peripheral
-                memory_to_memory = 0b10, // Memory-to-memory
-            };
-            pub const Circ = enum(u1) {
-                disabled = 0, // Circular mode disabled
-                enabled = 1, // Circular mode enabled
-            };
-            pub const Pinc = enum(u1) {
-                fixed = 0, // Address pointer is fixed
-                incremented = 1, // Address pointer is incremented after each data transfer
-            };
-            pub const Psize = enum(u2) {
-                bits8 = 0b00, // Byte (8-bit)
-                bits16 = 0b01, // Half-word (16-bit)
-                bits32 = 0b10, // Word (32-bit)
-            };
-            pub const Pincos = enum(u1) {
-                psize = 0, // The offset size for the peripheral address calculation is linked to the PSIZE
-                fixed4 = 1, // The offset size for the peripheral address calculation is fixed to 4 (32-bit alignment)
-            };
-            pub const Pl = enum(u2) {
-                low = 0b00, // Low
-                medium = 0b01, // Medium
-                high = 0b10, // High
-                very_high = 0b11, // Very high
-            };
-            pub const Dbm = enum(u1) {
-                disabled = 0, // No buffer switching at the end of transfer
-                enabled = 1, // Memory target switched at the end of the DMA transfer
-            };
-            pub const Ct = enum(u1) {
-                memory0 = 0, // The current target memory is Memory 0
-                memory1 = 1, // The current target memory is Memory 1
-            };
-            pub const Pburst = enum(u2) {
-                single = 0b00, // Single transfer
-                incr4 = 0b01, // Incremental burst of 4 beats
-                incr8 = 0b10, // Incremental burst of 8 beats
-                incr16 = 0b11, // Incremental burst of 16 beats
-            };
+            pub const En = dma1.st0cr.En;
+            pub const Dmeie = dma1.st0cr.Dmeie;
+            pub const Teie = dma1.st0cr.Teie;
+            pub const Htie = dma1.st0cr.Htie;
+            pub const Tcie = usart1.cr1.Tcie;
+            pub const Pfctrl = dma1.st0cr.Pfctrl;
+            pub const Dir = dma1.st0cr.Dir;
+            pub const Circ = dma1.st0cr.Circ;
+            pub const Pinc = dma1.st0cr.Pinc;
+            pub const Psize = dma1.st0cr.Psize;
+            pub const Pincos = dma1.st0cr.Pincos;
+            pub const Pl = dma1.st0cr.Pl;
+            pub const Dbm = dma1.st0cr.Dbm;
+            pub const Ct = dma1.st0cr.Ct;
+            pub const Pburst = dma1.st0cr.Pburst;
             en: En, // Stream enable / flag stream ready when read low (u1)
             dmeie: Dmeie, // Direct mode error interrupt enable (u1)
             teie: Teie, // Transfer error interrupt enable (u1)
@@ -7863,7 +6804,7 @@ pub const registers = struct {
         };
         pub const st5cr = mmio(base_address + 0x88, 32, St5cr);
 
-        /// address: 0x4002608c
+        /// address: 0x4002608c, path: dma1.st5ndtr
         /// stream x number of data register
         pub const St5ndtr = packed struct {
             ndt: u16, // Number of data items to transfer
@@ -7871,52 +6812,34 @@ pub const registers = struct {
         };
         pub const st5ndtr = mmio(base_address + 0x8c, 32, St5ndtr);
 
-        /// address: 0x40026090
+        /// address: 0x40026090, path: dma1.st5par
         /// stream x peripheral address register
         pub const St5par = packed struct {
             pa: u32, // Peripheral address
         };
         pub const st5par = mmio(base_address + 0x90, 32, St5par);
 
-        /// address: 0x40026094
+        /// address: 0x40026094, path: dma1.st5m0ar
         /// stream x memory 0 address register
         pub const St5m0ar = packed struct {
             m0a: u32, // Memory 0 address
         };
         pub const st5m0ar = mmio(base_address + 0x94, 32, St5m0ar);
 
-        /// address: 0x40026098
+        /// address: 0x40026098, path: dma1.st5m1ar
         /// stream x memory 1 address register
         pub const St5m1ar = packed struct {
             m1a: u32, // Memory 1 address (used in case of Double buffer mode)
         };
         pub const st5m1ar = mmio(base_address + 0x98, 32, St5m1ar);
 
-        /// address: 0x4002609c
+        /// address: 0x4002609c, path: dma1.st5fcr
         /// stream x FIFO control register
         pub const St5fcr = packed struct {
-            pub const Fth = enum(u2) {
-                quarter = 0b00, // 1/4 full FIFO
-                half = 0b01, // 1/2 full FIFO
-                three_quarters = 0b10, // 3/4 full FIFO
-                full = 0b11, // Full FIFO
-            };
-            pub const Dmdis = enum(u1) {
-                enabled = 0, // Direct mode is enabled
-                disabled = 1, // Direct mode is disabled
-            };
-            pub const Fs = enum(u3) {
-                quarter1 = 0b000, // 0 < fifo_level < 1/4
-                quarter2 = 0b001, // 1/4 <= fifo_level < 1/2
-                quarter3 = 0b010, // 1/2 <= fifo_level < 3/4
-                quarter4 = 0b011, // 3/4 <= fifo_level < full
-                empty = 0b100, // FIFO is empty
-                full = 0b101, // FIFO is full
-            };
-            pub const Feie = enum(u1) {
-                disabled = 0, // FE interrupt disabled
-                enabled = 1, // FE interrupt enabled
-            };
+            pub const Fth = dma1.st0fcr.Fth;
+            pub const Dmdis = dma1.st0fcr.Dmdis;
+            pub const Fs = dma1.st0fcr.Fs;
+            pub const Feie = dma1.st0fcr.Feie;
             fth: Fth, // FIFO threshold selection (u2)
             dmdis: Dmdis, // Direct mode disable (u1)
             fs: Fs, // FIFO status (u3)
@@ -7926,75 +6849,24 @@ pub const registers = struct {
         };
         pub const st5fcr = mmio(base_address + 0x9c, 32, St5fcr);
 
-        /// address: 0x400260a0
+        /// address: 0x400260a0, path: dma1.st6cr
         /// stream x configuration register
         pub const St6cr = packed struct {
-            pub const En = enum(u1) {
-                disabled = 0, // Stream disabled
-                enabled = 1, // Stream enabled
-            };
-            pub const Dmeie = enum(u1) {
-                disabled = 0, // DME interrupt disabled
-                enabled = 1, // DME interrupt enabled
-            };
-            pub const Teie = enum(u1) {
-                disabled = 0, // TE interrupt disabled
-                enabled = 1, // TE interrupt enabled
-            };
-            pub const Htie = enum(u1) {
-                disabled = 0, // HT interrupt disabled
-                enabled = 1, // HT interrupt enabled
-            };
-            pub const Tcie = enum(u1) {
-                disabled = 0, // TC interrupt disabled
-                enabled = 1, // TC interrupt enabled
-            };
-            pub const Pfctrl = enum(u1) {
-                dma = 0, // The DMA is the flow controller
-                peripheral = 1, // The peripheral is the flow controller
-            };
-            pub const Dir = enum(u2) {
-                peripheral_to_memory = 0b00, // Peripheral-to-memory
-                memory_to_peripheral = 0b01, // Memory-to-peripheral
-                memory_to_memory = 0b10, // Memory-to-memory
-            };
-            pub const Circ = enum(u1) {
-                disabled = 0, // Circular mode disabled
-                enabled = 1, // Circular mode enabled
-            };
-            pub const Pinc = enum(u1) {
-                fixed = 0, // Address pointer is fixed
-                incremented = 1, // Address pointer is incremented after each data transfer
-            };
-            pub const Psize = enum(u2) {
-                bits8 = 0b00, // Byte (8-bit)
-                bits16 = 0b01, // Half-word (16-bit)
-                bits32 = 0b10, // Word (32-bit)
-            };
-            pub const Pincos = enum(u1) {
-                psize = 0, // The offset size for the peripheral address calculation is linked to the PSIZE
-                fixed4 = 1, // The offset size for the peripheral address calculation is fixed to 4 (32-bit alignment)
-            };
-            pub const Pl = enum(u2) {
-                low = 0b00, // Low
-                medium = 0b01, // Medium
-                high = 0b10, // High
-                very_high = 0b11, // Very high
-            };
-            pub const Dbm = enum(u1) {
-                disabled = 0, // No buffer switching at the end of transfer
-                enabled = 1, // Memory target switched at the end of the DMA transfer
-            };
-            pub const Ct = enum(u1) {
-                memory0 = 0, // The current target memory is Memory 0
-                memory1 = 1, // The current target memory is Memory 1
-            };
-            pub const Pburst = enum(u2) {
-                single = 0b00, // Single transfer
-                incr4 = 0b01, // Incremental burst of 4 beats
-                incr8 = 0b10, // Incremental burst of 8 beats
-                incr16 = 0b11, // Incremental burst of 16 beats
-            };
+            pub const En = dma1.st0cr.En;
+            pub const Dmeie = dma1.st0cr.Dmeie;
+            pub const Teie = dma1.st0cr.Teie;
+            pub const Htie = dma1.st0cr.Htie;
+            pub const Tcie = usart1.cr1.Tcie;
+            pub const Pfctrl = dma1.st0cr.Pfctrl;
+            pub const Dir = dma1.st0cr.Dir;
+            pub const Circ = dma1.st0cr.Circ;
+            pub const Pinc = dma1.st0cr.Pinc;
+            pub const Psize = dma1.st0cr.Psize;
+            pub const Pincos = dma1.st0cr.Pincos;
+            pub const Pl = dma1.st0cr.Pl;
+            pub const Dbm = dma1.st0cr.Dbm;
+            pub const Ct = dma1.st0cr.Ct;
+            pub const Pburst = dma1.st0cr.Pburst;
             en: En, // Stream enable / flag stream ready when read low (u1)
             dmeie: Dmeie, // Direct mode error interrupt enable (u1)
             teie: Teie, // Transfer error interrupt enable (u1)
@@ -8019,7 +6891,7 @@ pub const registers = struct {
         };
         pub const st6cr = mmio(base_address + 0xa0, 32, St6cr);
 
-        /// address: 0x400260a4
+        /// address: 0x400260a4, path: dma1.st6ndtr
         /// stream x number of data register
         pub const St6ndtr = packed struct {
             ndt: u16, // Number of data items to transfer
@@ -8027,52 +6899,34 @@ pub const registers = struct {
         };
         pub const st6ndtr = mmio(base_address + 0xa4, 32, St6ndtr);
 
-        /// address: 0x400260a8
+        /// address: 0x400260a8, path: dma1.st6par
         /// stream x peripheral address register
         pub const St6par = packed struct {
             pa: u32, // Peripheral address
         };
         pub const st6par = mmio(base_address + 0xa8, 32, St6par);
 
-        /// address: 0x400260ac
+        /// address: 0x400260ac, path: dma1.st6m0ar
         /// stream x memory 0 address register
         pub const St6m0ar = packed struct {
             m0a: u32, // Memory 0 address
         };
         pub const st6m0ar = mmio(base_address + 0xac, 32, St6m0ar);
 
-        /// address: 0x400260b0
+        /// address: 0x400260b0, path: dma1.st6m1ar
         /// stream x memory 1 address register
         pub const St6m1ar = packed struct {
             m1a: u32, // Memory 1 address (used in case of Double buffer mode)
         };
         pub const st6m1ar = mmio(base_address + 0xb0, 32, St6m1ar);
 
-        /// address: 0x400260b4
+        /// address: 0x400260b4, path: dma1.st6fcr
         /// stream x FIFO control register
         pub const St6fcr = packed struct {
-            pub const Fth = enum(u2) {
-                quarter = 0b00, // 1/4 full FIFO
-                half = 0b01, // 1/2 full FIFO
-                three_quarters = 0b10, // 3/4 full FIFO
-                full = 0b11, // Full FIFO
-            };
-            pub const Dmdis = enum(u1) {
-                enabled = 0, // Direct mode is enabled
-                disabled = 1, // Direct mode is disabled
-            };
-            pub const Fs = enum(u3) {
-                quarter1 = 0b000, // 0 < fifo_level < 1/4
-                quarter2 = 0b001, // 1/4 <= fifo_level < 1/2
-                quarter3 = 0b010, // 1/2 <= fifo_level < 3/4
-                quarter4 = 0b011, // 3/4 <= fifo_level < full
-                empty = 0b100, // FIFO is empty
-                full = 0b101, // FIFO is full
-            };
-            pub const Feie = enum(u1) {
-                disabled = 0, // FE interrupt disabled
-                enabled = 1, // FE interrupt enabled
-            };
+            pub const Fth = dma1.st0fcr.Fth;
+            pub const Dmdis = dma1.st0fcr.Dmdis;
+            pub const Fs = dma1.st0fcr.Fs;
+            pub const Feie = dma1.st0fcr.Feie;
             fth: Fth, // FIFO threshold selection (u2)
             dmdis: Dmdis, // Direct mode disable (u1)
             fs: Fs, // FIFO status (u3)
@@ -8082,75 +6936,24 @@ pub const registers = struct {
         };
         pub const st6fcr = mmio(base_address + 0xb4, 32, St6fcr);
 
-        /// address: 0x400260b8
+        /// address: 0x400260b8, path: dma1.st7cr
         /// stream x configuration register
         pub const St7cr = packed struct {
-            pub const En = enum(u1) {
-                disabled = 0, // Stream disabled
-                enabled = 1, // Stream enabled
-            };
-            pub const Dmeie = enum(u1) {
-                disabled = 0, // DME interrupt disabled
-                enabled = 1, // DME interrupt enabled
-            };
-            pub const Teie = enum(u1) {
-                disabled = 0, // TE interrupt disabled
-                enabled = 1, // TE interrupt enabled
-            };
-            pub const Htie = enum(u1) {
-                disabled = 0, // HT interrupt disabled
-                enabled = 1, // HT interrupt enabled
-            };
-            pub const Tcie = enum(u1) {
-                disabled = 0, // TC interrupt disabled
-                enabled = 1, // TC interrupt enabled
-            };
-            pub const Pfctrl = enum(u1) {
-                dma = 0, // The DMA is the flow controller
-                peripheral = 1, // The peripheral is the flow controller
-            };
-            pub const Dir = enum(u2) {
-                peripheral_to_memory = 0b00, // Peripheral-to-memory
-                memory_to_peripheral = 0b01, // Memory-to-peripheral
-                memory_to_memory = 0b10, // Memory-to-memory
-            };
-            pub const Circ = enum(u1) {
-                disabled = 0, // Circular mode disabled
-                enabled = 1, // Circular mode enabled
-            };
-            pub const Pinc = enum(u1) {
-                fixed = 0, // Address pointer is fixed
-                incremented = 1, // Address pointer is incremented after each data transfer
-            };
-            pub const Psize = enum(u2) {
-                bits8 = 0b00, // Byte (8-bit)
-                bits16 = 0b01, // Half-word (16-bit)
-                bits32 = 0b10, // Word (32-bit)
-            };
-            pub const Pincos = enum(u1) {
-                psize = 0, // The offset size for the peripheral address calculation is linked to the PSIZE
-                fixed4 = 1, // The offset size for the peripheral address calculation is fixed to 4 (32-bit alignment)
-            };
-            pub const Pl = enum(u2) {
-                low = 0b00, // Low
-                medium = 0b01, // Medium
-                high = 0b10, // High
-                very_high = 0b11, // Very high
-            };
-            pub const Dbm = enum(u1) {
-                disabled = 0, // No buffer switching at the end of transfer
-                enabled = 1, // Memory target switched at the end of the DMA transfer
-            };
-            pub const Ct = enum(u1) {
-                memory0 = 0, // The current target memory is Memory 0
-                memory1 = 1, // The current target memory is Memory 1
-            };
-            pub const Pburst = enum(u2) {
-                single = 0b00, // Single transfer
-                incr4 = 0b01, // Incremental burst of 4 beats
-                incr8 = 0b10, // Incremental burst of 8 beats
-                incr16 = 0b11, // Incremental burst of 16 beats
-            };
+            pub const En = dma1.st0cr.En;
+            pub const Dmeie = dma1.st0cr.Dmeie;
+            pub const Teie = dma1.st0cr.Teie;
+            pub const Htie = dma1.st0cr.Htie;
+            pub const Tcie = usart1.cr1.Tcie;
+            pub const Pfctrl = dma1.st0cr.Pfctrl;
+            pub const Dir = dma1.st0cr.Dir;
+            pub const Circ = dma1.st0cr.Circ;
+            pub const Pinc = dma1.st0cr.Pinc;
+            pub const Psize = dma1.st0cr.Psize;
+            pub const Pincos = dma1.st0cr.Pincos;
+            pub const Pl = dma1.st0cr.Pl;
+            pub const Dbm = dma1.st0cr.Dbm;
+            pub const Ct = dma1.st0cr.Ct;
+            pub const Pburst = dma1.st0cr.Pburst;
             en: En, // Stream enable / flag stream ready when read low (u1)
             dmeie: Dmeie, // Direct mode error interrupt enable (u1)
             teie: Teie, // Transfer error interrupt enable (u1)
@@ -8175,7 +6978,7 @@ pub const registers = struct {
         };
         pub const st7cr = mmio(base_address + 0xb8, 32, St7cr);
 
-        /// address: 0x400260bc
+        /// address: 0x400260bc, path: dma1.st7ndtr
         /// stream x number of data register
         pub const St7ndtr = packed struct {
             ndt: u16, // Number of data items to transfer
@@ -8183,52 +6986,34 @@ pub const registers = struct {
         };
         pub const st7ndtr = mmio(base_address + 0xbc, 32, St7ndtr);
 
-        /// address: 0x400260c0
+        /// address: 0x400260c0, path: dma1.st7par
         /// stream x peripheral address register
         pub const St7par = packed struct {
             pa: u32, // Peripheral address
         };
         pub const st7par = mmio(base_address + 0xc0, 32, St7par);
 
-        /// address: 0x400260c4
+        /// address: 0x400260c4, path: dma1.st7m0ar
         /// stream x memory 0 address register
         pub const St7m0ar = packed struct {
             m0a: u32, // Memory 0 address
         };
         pub const st7m0ar = mmio(base_address + 0xc4, 32, St7m0ar);
 
-        /// address: 0x400260c8
+        /// address: 0x400260c8, path: dma1.st7m1ar
         /// stream x memory 1 address register
         pub const St7m1ar = packed struct {
             m1a: u32, // Memory 1 address (used in case of Double buffer mode)
         };
         pub const st7m1ar = mmio(base_address + 0xc8, 32, St7m1ar);
 
-        /// address: 0x400260cc
+        /// address: 0x400260cc, path: dma1.st7fcr
         /// stream x FIFO control register
         pub const St7fcr = packed struct {
-            pub const Fth = enum(u2) {
-                quarter = 0b00, // 1/4 full FIFO
-                half = 0b01, // 1/2 full FIFO
-                three_quarters = 0b10, // 3/4 full FIFO
-                full = 0b11, // Full FIFO
-            };
-            pub const Dmdis = enum(u1) {
-                enabled = 0, // Direct mode is enabled
-                disabled = 1, // Direct mode is disabled
-            };
-            pub const Fs = enum(u3) {
-                quarter1 = 0b000, // 0 < fifo_level < 1/4
-                quarter2 = 0b001, // 1/4 <= fifo_level < 1/2
-                quarter3 = 0b010, // 1/2 <= fifo_level < 3/4
-                quarter4 = 0b011, // 3/4 <= fifo_level < full
-                empty = 0b100, // FIFO is empty
-                full = 0b101, // FIFO is full
-            };
-            pub const Feie = enum(u1) {
-                disabled = 0, // FE interrupt disabled
-                enabled = 1, // FE interrupt enabled
-            };
+            pub const Fth = dma1.st0fcr.Fth;
+            pub const Dmdis = dma1.st0fcr.Dmdis;
+            pub const Fs = dma1.st0fcr.Fs;
+            pub const Feie = dma1.st0fcr.Feie;
             fth: Fth, // FIFO threshold selection (u2)
             dmdis: Dmdis, // Direct mode disable (u1)
             fs: Fs, // FIFO status (u3)
@@ -8242,7 +7027,7 @@ pub const registers = struct {
     pub const gpioh = struct {
         pub const base_address = 0x40021c00;
 
-        /// address: 0x40021c00
+        /// address: 0x40021c00, path: gpioh.moder
         /// GPIO port mode register
         pub const Moder = packed struct {
             pub const Moder0 = enum(u2) {
@@ -8270,7 +7055,7 @@ pub const registers = struct {
         };
         pub const moder = mmio(base_address + 0x0, 32, Moder);
 
-        /// address: 0x40021c04
+        /// address: 0x40021c04, path: gpioh.otyper
         /// GPIO port output type register
         pub const Otyper = packed struct {
             pub const Ot0 = enum(u1) {
@@ -8297,7 +7082,7 @@ pub const registers = struct {
         };
         pub const otyper = mmio(base_address + 0x4, 32, Otyper);
 
-        /// address: 0x40021c08
+        /// address: 0x40021c08, path: gpioh.ospeedr
         /// GPIO port output speed register
         pub const Ospeedr = packed struct {
             pub const Ospeedr0 = enum(u2) {
@@ -8325,7 +7110,7 @@ pub const registers = struct {
         };
         pub const ospeedr = mmio(base_address + 0x8, 32, Ospeedr);
 
-        /// address: 0x40021c0c
+        /// address: 0x40021c0c, path: gpioh.pupdr
         /// GPIO port pull-up/pull-down register
         pub const Pupdr = packed struct {
             pub const Pupdr0 = enum(u2) {
@@ -8352,7 +7137,7 @@ pub const registers = struct {
         };
         pub const pupdr = mmio(base_address + 0xc, 32, Pupdr);
 
-        /// address: 0x40021c10
+        /// address: 0x40021c10, path: gpioh.idr
         /// GPIO port input data register
         pub const Idr = packed struct {
             pub const Idr0 = enum(u1) {
@@ -8379,7 +7164,7 @@ pub const registers = struct {
         };
         pub const idr = mmio(base_address + 0x10, 32, Idr);
 
-        /// address: 0x40021c14
+        /// address: 0x40021c14, path: gpioh.odr
         /// GPIO port output data register
         pub const Odr = packed struct {
             pub const Odr0 = enum(u1) {
@@ -8406,7 +7191,7 @@ pub const registers = struct {
         };
         pub const odr = mmio(base_address + 0x14, 32, Odr);
 
-        /// address: 0x40021c18
+        /// address: 0x40021c18, path: gpioh.bsrr
         /// GPIO port bit set/reset register
         pub const Bsrr = packed struct {
             pub const Bs0w = enum(u1) {
@@ -8450,7 +7235,7 @@ pub const registers = struct {
         };
         pub const bsrr = mmio(base_address + 0x18, 32, Bsrr);
 
-        /// address: 0x40021c1c
+        /// address: 0x40021c1c, path: gpioh.lckr
         /// GPIO port configuration lock register
         pub const Lckr = packed struct {
             pub const Lck0 = enum(u1) {
@@ -8482,7 +7267,7 @@ pub const registers = struct {
         };
         pub const lckr = mmio(base_address + 0x1c, 32, Lckr);
 
-        /// address: 0x40021c20
+        /// address: 0x40021c20, path: gpioh.afrl
         /// GPIO alternate function low register
         pub const Afrl = packed struct {
             pub const Afrl0 = enum(u4) {
@@ -8514,7 +7299,7 @@ pub const registers = struct {
         };
         pub const afrl = mmio(base_address + 0x20, 32, Afrl);
 
-        /// address: 0x40021c24
+        /// address: 0x40021c24, path: gpioh.afrh
         /// GPIO alternate function high register
         pub const Afrh = packed struct {
             pub const Afrh8 = enum(u4) {
@@ -8550,15 +7335,10 @@ pub const registers = struct {
     pub const gpiob = struct {
         pub const base_address = 0x40020400;
 
-        /// address: 0x40020400
+        /// address: 0x40020400, path: gpiob.moder
         /// GPIO port mode register
         pub const Moder = packed struct {
-            pub const Moder0 = enum(u2) {
-                input = 0b00, // Input mode (reset state)
-                output = 0b01, // General purpose output mode
-                alternate = 0b10, // Alternate function mode
-                analog = 0b11, // Analog mode
-            };
+            pub const Moder0 = gpioh.moder.Moder0;
             moder0: Moder0, // Port x configuration bits (y = 0..15) (u2)
             moder1: Moder0, // Port x configuration bits (y = 0..15) (u2)
             moder2: Moder0, // Port x configuration bits (y = 0..15) (u2)
@@ -8578,13 +7358,10 @@ pub const registers = struct {
         };
         pub const moder = mmio(base_address + 0x0, 32, Moder);
 
-        /// address: 0x40020404
+        /// address: 0x40020404, path: gpiob.otyper
         /// GPIO port output type register
         pub const Otyper = packed struct {
-            pub const Ot0 = enum(u1) {
-                push_pull = 0, // Output push-pull (reset state)
-                open_drain = 1, // Output open-drain
-            };
+            pub const Ot0 = gpioh.otyper.Ot0;
             ot0: Ot0, // Port x configuration bits (y = 0..15) (u1)
             ot1: Ot0, // Port x configuration bits (y = 0..15) (u1)
             ot2: Ot0, // Port x configuration bits (y = 0..15) (u1)
@@ -8605,15 +7382,10 @@ pub const registers = struct {
         };
         pub const otyper = mmio(base_address + 0x4, 32, Otyper);
 
-        /// address: 0x40020408
+        /// address: 0x40020408, path: gpiob.ospeedr
         /// GPIO port output speed register
         pub const Ospeedr = packed struct {
-            pub const Ospeedr0 = enum(u2) {
-                low_speed = 0b00, // Low speed
-                medium_speed = 0b01, // Medium speed
-                high_speed = 0b10, // High speed
-                very_high_speed = 0b11, // Very high speed
-            };
+            pub const Ospeedr0 = gpioh.ospeedr.Ospeedr0;
             ospeedr0: Ospeedr0, // Port x configuration bits (y = 0..15) (u2)
             ospeedr1: Ospeedr0, // Port x configuration bits (y = 0..15) (u2)
             ospeedr2: Ospeedr0, // Port x configuration bits (y = 0..15) (u2)
@@ -8633,14 +7405,10 @@ pub const registers = struct {
         };
         pub const ospeedr = mmio(base_address + 0x8, 32, Ospeedr);
 
-        /// address: 0x4002040c
+        /// address: 0x4002040c, path: gpiob.pupdr
         /// GPIO port pull-up/pull-down register
         pub const Pupdr = packed struct {
-            pub const Pupdr0 = enum(u2) {
-                floating = 0b00, // No pull-up, pull-down
-                pull_up = 0b01, // Pull-up
-                pull_down = 0b10, // Pull-down
-            };
+            pub const Pupdr0 = gpioh.pupdr.Pupdr0;
             pupdr0: Pupdr0, // Port x configuration bits (y = 0..15) (u2)
             pupdr1: Pupdr0, // Port x configuration bits (y = 0..15) (u2)
             pupdr2: Pupdr0, // Port x configuration bits (y = 0..15) (u2)
@@ -8660,13 +7428,10 @@ pub const registers = struct {
         };
         pub const pupdr = mmio(base_address + 0xc, 32, Pupdr);
 
-        /// address: 0x40020410
+        /// address: 0x40020410, path: gpiob.idr
         /// GPIO port input data register
         pub const Idr = packed struct {
-            pub const Idr0 = enum(u1) {
-                high = 1, // Input is logic high
-                low = 0, // Input is logic low
-            };
+            pub const Idr0 = gpioh.idr.Idr0;
             idr0: Idr0, // Port input data (y = 0..15) (u1)
             idr1: Idr0, // Port input data (y = 0..15) (u1)
             idr2: Idr0, // Port input data (y = 0..15) (u1)
@@ -8687,13 +7452,10 @@ pub const registers = struct {
         };
         pub const idr = mmio(base_address + 0x10, 32, Idr);
 
-        /// address: 0x40020414
+        /// address: 0x40020414, path: gpiob.odr
         /// GPIO port output data register
         pub const Odr = packed struct {
-            pub const Odr0 = enum(u1) {
-                high = 1, // Set output to logic high
-                low = 0, // Set output to logic low
-            };
+            pub const Odr0 = gpioh.odr.Odr0;
             odr0: Odr0, // Port output data (y = 0..15) (u1)
             odr1: Odr0, // Port output data (y = 0..15) (u1)
             odr2: Odr0, // Port output data (y = 0..15) (u1)
@@ -8714,15 +7476,11 @@ pub const registers = struct {
         };
         pub const odr = mmio(base_address + 0x14, 32, Odr);
 
-        /// address: 0x40020418
+        /// address: 0x40020418, path: gpiob.bsrr
         /// GPIO port bit set/reset register
         pub const Bsrr = packed struct {
-            pub const Bs0w = enum(u1) {
-                set = 1, // Sets the corresponding ODRx bit
-            };
-            pub const Br0w = enum(u1) {
-                reset = 1, // Resets the corresponding ODRx bit
-            };
+            pub const Bs0w = gpioh.bsrr.Bs0w;
+            pub const Br0w = gpioh.bsrr.Br0w;
             bs0: Bs0w, // Port x set bit y (y= 0..15) (u1)
             bs1: Bs0w, // Port x set bit y (y= 0..15) (u1)
             bs2: Bs0w, // Port x set bit y (y= 0..15) (u1)
@@ -8758,17 +7516,11 @@ pub const registers = struct {
         };
         pub const bsrr = mmio(base_address + 0x18, 32, Bsrr);
 
-        /// address: 0x4002041c
+        /// address: 0x4002041c, path: gpiob.lckr
         /// GPIO port configuration lock register
         pub const Lckr = packed struct {
-            pub const Lck0 = enum(u1) {
-                unlocked = 0, // Port configuration not locked
-                locked = 1, // Port configuration locked
-            };
-            pub const Lckk = enum(u1) {
-                not_active = 0, // Port configuration lock key not active
-                active = 1, // Port configuration lock key active
-            };
+            pub const Lck0 = gpioh.lckr.Lck0;
+            pub const Lckk = gpioh.lckr.Lckk;
             lck0: Lck0, // Port x lock bit y (y= 0..15) (u1)
             lck1: Lck0, // Port x lock bit y (y= 0..15) (u1)
             lck2: Lck0, // Port x lock bit y (y= 0..15) (u1)
@@ -8790,27 +7542,10 @@ pub const registers = struct {
         };
         pub const lckr = mmio(base_address + 0x1c, 32, Lckr);
 
-        /// address: 0x40020420
+        /// address: 0x40020420, path: gpiob.afrl
         /// GPIO alternate function low register
         pub const Afrl = packed struct {
-            pub const Afrl0 = enum(u4) {
-                af0 = 0b0000, // AF0
-                af1 = 0b0001, // AF1
-                af2 = 0b0010, // AF2
-                af3 = 0b0011, // AF3
-                af4 = 0b0100, // AF4
-                af5 = 0b0101, // AF5
-                af6 = 0b0110, // AF6
-                af7 = 0b0111, // AF7
-                af8 = 0b1000, // AF8
-                af9 = 0b1001, // AF9
-                af10 = 0b1010, // AF10
-                af11 = 0b1011, // AF11
-                af12 = 0b1100, // AF12
-                af13 = 0b1101, // AF13
-                af14 = 0b1110, // AF14
-                af15 = 0b1111, // AF15
-            };
+            pub const Afrl0 = gpioh.afrl.Afrl0;
             afrl0: Afrl0, // Alternate function selection for port x bit y (y = 0..7) (u4)
             afrl1: Afrl0, // Alternate function selection for port x bit y (y = 0..7) (u4)
             afrl2: Afrl0, // Alternate function selection for port x bit y (y = 0..7) (u4)
@@ -8822,27 +7557,10 @@ pub const registers = struct {
         };
         pub const afrl = mmio(base_address + 0x20, 32, Afrl);
 
-        /// address: 0x40020424
+        /// address: 0x40020424, path: gpiob.afrh
         /// GPIO alternate function high register
         pub const Afrh = packed struct {
-            pub const Afrh8 = enum(u4) {
-                af0 = 0b0000, // AF0
-                af1 = 0b0001, // AF1
-                af2 = 0b0010, // AF2
-                af3 = 0b0011, // AF3
-                af4 = 0b0100, // AF4
-                af5 = 0b0101, // AF5
-                af6 = 0b0110, // AF6
-                af7 = 0b0111, // AF7
-                af8 = 0b1000, // AF8
-                af9 = 0b1001, // AF9
-                af10 = 0b1010, // AF10
-                af11 = 0b1011, // AF11
-                af12 = 0b1100, // AF12
-                af13 = 0b1101, // AF13
-                af14 = 0b1110, // AF14
-                af15 = 0b1111, // AF15
-            };
+            pub const Afrh8 = gpioh.afrh.Afrh8;
             afrh8: Afrh8, // Alternate function selection for port x bit y (y = 8..15) (u4)
             afrh9: Afrh8, // Alternate function selection for port x bit y (y = 8..15) (u4)
             afrh10: Afrh8, // Alternate function selection for port x bit y (y = 8..15) (u4)
@@ -8858,15 +7576,10 @@ pub const registers = struct {
     pub const gpioa = struct {
         pub const base_address = 0x40020000;
 
-        /// address: 0x40020000
+        /// address: 0x40020000, path: gpioa.moder
         /// GPIO port mode register
         pub const Moder = packed struct {
-            pub const Moder0 = enum(u2) {
-                input = 0b00, // Input mode (reset state)
-                output = 0b01, // General purpose output mode
-                alternate = 0b10, // Alternate function mode
-                analog = 0b11, // Analog mode
-            };
+            pub const Moder0 = gpioh.moder.Moder0;
             moder0: Moder0, // Port x configuration bits (y = 0..15) (u2)
             moder1: Moder0, // Port x configuration bits (y = 0..15) (u2)
             moder2: Moder0, // Port x configuration bits (y = 0..15) (u2)
@@ -8886,13 +7599,10 @@ pub const registers = struct {
         };
         pub const moder = mmio(base_address + 0x0, 32, Moder);
 
-        /// address: 0x40020004
+        /// address: 0x40020004, path: gpioa.otyper
         /// GPIO port output type register
         pub const Otyper = packed struct {
-            pub const Ot0 = enum(u1) {
-                push_pull = 0, // Output push-pull (reset state)
-                open_drain = 1, // Output open-drain
-            };
+            pub const Ot0 = gpioh.otyper.Ot0;
             ot0: Ot0, // Port x configuration bits (y = 0..15) (u1)
             ot1: Ot0, // Port x configuration bits (y = 0..15) (u1)
             ot2: Ot0, // Port x configuration bits (y = 0..15) (u1)
@@ -8913,15 +7623,10 @@ pub const registers = struct {
         };
         pub const otyper = mmio(base_address + 0x4, 32, Otyper);
 
-        /// address: 0x40020008
+        /// address: 0x40020008, path: gpioa.ospeedr
         /// GPIO port output speed register
         pub const Ospeedr = packed struct {
-            pub const Ospeedr0 = enum(u2) {
-                low_speed = 0b00, // Low speed
-                medium_speed = 0b01, // Medium speed
-                high_speed = 0b10, // High speed
-                very_high_speed = 0b11, // Very high speed
-            };
+            pub const Ospeedr0 = gpioh.ospeedr.Ospeedr0;
             ospeedr0: Ospeedr0, // Port x configuration bits (y = 0..15) (u2)
             ospeedr1: Ospeedr0, // Port x configuration bits (y = 0..15) (u2)
             ospeedr2: Ospeedr0, // Port x configuration bits (y = 0..15) (u2)
@@ -8941,14 +7646,10 @@ pub const registers = struct {
         };
         pub const ospeedr = mmio(base_address + 0x8, 32, Ospeedr);
 
-        /// address: 0x4002000c
+        /// address: 0x4002000c, path: gpioa.pupdr
         /// GPIO port pull-up/pull-down register
         pub const Pupdr = packed struct {
-            pub const Pupdr0 = enum(u2) {
-                floating = 0b00, // No pull-up, pull-down
-                pull_up = 0b01, // Pull-up
-                pull_down = 0b10, // Pull-down
-            };
+            pub const Pupdr0 = gpioh.pupdr.Pupdr0;
             pupdr0: Pupdr0, // Port x configuration bits (y = 0..15) (u2)
             pupdr1: Pupdr0, // Port x configuration bits (y = 0..15) (u2)
             pupdr2: Pupdr0, // Port x configuration bits (y = 0..15) (u2)
@@ -8968,13 +7669,10 @@ pub const registers = struct {
         };
         pub const pupdr = mmio(base_address + 0xc, 32, Pupdr);
 
-        /// address: 0x40020010
+        /// address: 0x40020010, path: gpioa.idr
         /// GPIO port input data register
         pub const Idr = packed struct {
-            pub const Idr0 = enum(u1) {
-                high = 1, // Input is logic high
-                low = 0, // Input is logic low
-            };
+            pub const Idr0 = gpioh.idr.Idr0;
             idr0: Idr0, // Port input data (y = 0..15) (u1)
             idr1: Idr0, // Port input data (y = 0..15) (u1)
             idr2: Idr0, // Port input data (y = 0..15) (u1)
@@ -8995,13 +7693,10 @@ pub const registers = struct {
         };
         pub const idr = mmio(base_address + 0x10, 32, Idr);
 
-        /// address: 0x40020014
+        /// address: 0x40020014, path: gpioa.odr
         /// GPIO port output data register
         pub const Odr = packed struct {
-            pub const Odr0 = enum(u1) {
-                high = 1, // Set output to logic high
-                low = 0, // Set output to logic low
-            };
+            pub const Odr0 = gpioh.odr.Odr0;
             odr0: Odr0, // Port output data (y = 0..15) (u1)
             odr1: Odr0, // Port output data (y = 0..15) (u1)
             odr2: Odr0, // Port output data (y = 0..15) (u1)
@@ -9022,15 +7717,11 @@ pub const registers = struct {
         };
         pub const odr = mmio(base_address + 0x14, 32, Odr);
 
-        /// address: 0x40020018
+        /// address: 0x40020018, path: gpioa.bsrr
         /// GPIO port bit set/reset register
         pub const Bsrr = packed struct {
-            pub const Bs0w = enum(u1) {
-                set = 1, // Sets the corresponding ODRx bit
-            };
-            pub const Br0w = enum(u1) {
-                reset = 1, // Resets the corresponding ODRx bit
-            };
+            pub const Bs0w = gpioh.bsrr.Bs0w;
+            pub const Br0w = gpioh.bsrr.Br0w;
             bs0: Bs0w, // Port x set bit y (y= 0..15) (u1)
             bs1: Bs0w, // Port x set bit y (y= 0..15) (u1)
             bs2: Bs0w, // Port x set bit y (y= 0..15) (u1)
@@ -9066,17 +7757,11 @@ pub const registers = struct {
         };
         pub const bsrr = mmio(base_address + 0x18, 32, Bsrr);
 
-        /// address: 0x4002001c
+        /// address: 0x4002001c, path: gpioa.lckr
         /// GPIO port configuration lock register
         pub const Lckr = packed struct {
-            pub const Lck0 = enum(u1) {
-                unlocked = 0, // Port configuration not locked
-                locked = 1, // Port configuration locked
-            };
-            pub const Lckk = enum(u1) {
-                not_active = 0, // Port configuration lock key not active
-                active = 1, // Port configuration lock key active
-            };
+            pub const Lck0 = gpioh.lckr.Lck0;
+            pub const Lckk = gpioh.lckr.Lckk;
             lck0: Lck0, // Port x lock bit y (y= 0..15) (u1)
             lck1: Lck0, // Port x lock bit y (y= 0..15) (u1)
             lck2: Lck0, // Port x lock bit y (y= 0..15) (u1)
@@ -9098,27 +7783,10 @@ pub const registers = struct {
         };
         pub const lckr = mmio(base_address + 0x1c, 32, Lckr);
 
-        /// address: 0x40020020
+        /// address: 0x40020020, path: gpioa.afrl
         /// GPIO alternate function low register
         pub const Afrl = packed struct {
-            pub const Afrl0 = enum(u4) {
-                af0 = 0b0000, // AF0
-                af1 = 0b0001, // AF1
-                af2 = 0b0010, // AF2
-                af3 = 0b0011, // AF3
-                af4 = 0b0100, // AF4
-                af5 = 0b0101, // AF5
-                af6 = 0b0110, // AF6
-                af7 = 0b0111, // AF7
-                af8 = 0b1000, // AF8
-                af9 = 0b1001, // AF9
-                af10 = 0b1010, // AF10
-                af11 = 0b1011, // AF11
-                af12 = 0b1100, // AF12
-                af13 = 0b1101, // AF13
-                af14 = 0b1110, // AF14
-                af15 = 0b1111, // AF15
-            };
+            pub const Afrl0 = gpioh.afrl.Afrl0;
             afrl0: Afrl0, // Alternate function selection for port x bit y (y = 0..7) (u4)
             afrl1: Afrl0, // Alternate function selection for port x bit y (y = 0..7) (u4)
             afrl2: Afrl0, // Alternate function selection for port x bit y (y = 0..7) (u4)
@@ -9130,27 +7798,10 @@ pub const registers = struct {
         };
         pub const afrl = mmio(base_address + 0x20, 32, Afrl);
 
-        /// address: 0x40020024
+        /// address: 0x40020024, path: gpioa.afrh
         /// GPIO alternate function high register
         pub const Afrh = packed struct {
-            pub const Afrh8 = enum(u4) {
-                af0 = 0b0000, // AF0
-                af1 = 0b0001, // AF1
-                af2 = 0b0010, // AF2
-                af3 = 0b0011, // AF3
-                af4 = 0b0100, // AF4
-                af5 = 0b0101, // AF5
-                af6 = 0b0110, // AF6
-                af7 = 0b0111, // AF7
-                af8 = 0b1000, // AF8
-                af9 = 0b1001, // AF9
-                af10 = 0b1010, // AF10
-                af11 = 0b1011, // AF11
-                af12 = 0b1100, // AF12
-                af13 = 0b1101, // AF13
-                af14 = 0b1110, // AF14
-                af15 = 0b1111, // AF15
-            };
+            pub const Afrh8 = gpioh.afrh.Afrh8;
             afrh8: Afrh8, // Alternate function selection for port x bit y (y = 8..15) (u4)
             afrh9: Afrh8, // Alternate function selection for port x bit y (y = 8..15) (u4)
             afrh10: Afrh8, // Alternate function selection for port x bit y (y = 8..15) (u4)
@@ -9166,7 +7817,7 @@ pub const registers = struct {
     pub const i2c1 = struct {
         pub const base_address = 0x40005400;
 
-        /// address: 0x40005400
+        /// address: 0x40005400, path: i2c1.cr1
         /// Control register 1
         pub const Cr1 = packed struct {
             pub const Pe = enum(u1) {
@@ -9245,7 +7896,7 @@ pub const registers = struct {
         };
         pub const cr1 = mmio(base_address + 0x0, 32, Cr1);
 
-        /// address: 0x40005404
+        /// address: 0x40005404, path: i2c1.cr2
         /// Control register 2
         pub const Cr2 = packed struct {
             pub const Iterren = enum(u1) {
@@ -9279,7 +7930,7 @@ pub const registers = struct {
         };
         pub const cr2 = mmio(base_address + 0x4, 32, Cr2);
 
-        /// address: 0x40005408
+        /// address: 0x40005408, path: i2c1.oar1
         /// Own address register 1
         pub const Oar1 = packed struct {
             pub const Addmode = enum(u1) {
@@ -9293,7 +7944,7 @@ pub const registers = struct {
         };
         pub const oar1 = mmio(base_address + 0x8, 32, Oar1);
 
-        /// address: 0x4000540c
+        /// address: 0x4000540c, path: i2c1.oar2
         /// Own address register 2
         pub const Oar2 = packed struct {
             pub const Endual = enum(u1) {
@@ -9306,11 +7957,11 @@ pub const registers = struct {
         };
         pub const oar2 = mmio(base_address + 0xc, 32, Oar2);
 
-        /// address: 0x40005410
+        /// address: 0x40005410, path: i2c1.dr
         /// Data register
         pub const dr = mmioInt(base_address + 0x10, 32, u8);
 
-        /// address: 0x40005414
+        /// address: 0x40005414, path: i2c1.sr1
         /// Status register 1
         pub const Sr1 = packed struct {
             pub const Sb = enum(u1) {
@@ -9385,7 +8036,7 @@ pub const registers = struct {
         };
         pub const sr1 = mmio(base_address + 0x14, 32, Sr1);
 
-        /// address: 0x40005418
+        /// address: 0x40005418, path: i2c1.sr2
         /// Status register 2
         pub const Sr2 = packed struct {
             msl: u1, // Master/slave
@@ -9401,7 +8052,7 @@ pub const registers = struct {
         };
         pub const sr2 = mmio(base_address + 0x18, 32, Sr2);
 
-        /// address: 0x4000541c
+        /// address: 0x4000541c, path: i2c1.ccr
         /// Clock control register
         pub const Ccr = packed struct {
             pub const Duty = enum(u1) {
@@ -9420,11 +8071,11 @@ pub const registers = struct {
         };
         pub const ccr = mmio(base_address + 0x1c, 32, Ccr);
 
-        /// address: 0x40005420
+        /// address: 0x40005420, path: i2c1.trise
         /// TRISE register
         pub const trise = mmioInt(base_address + 0x20, 32, u6);
 
-        /// address: 0x40005424
+        /// address: 0x40005424, path: i2c1.fltr
         /// FLTR register
         pub const Fltr = packed struct {
             pub const Dnf = enum(u4) {
@@ -9459,7 +8110,7 @@ pub const registers = struct {
     pub const spi1 = struct {
         pub const base_address = 0x40013000;
 
-        /// address: 0x40013000
+        /// address: 0x40013000, path: spi1.cr1
         /// control register 1
         pub const Cr1 = packed struct {
             pub const Cpha = enum(u1) {
@@ -9542,7 +8193,7 @@ pub const registers = struct {
         };
         pub const cr1 = mmio(base_address + 0x0, 32, Cr1);
 
-        /// address: 0x40013004
+        /// address: 0x40013004, path: spi1.cr2
         /// control register 2
         pub const Cr2 = packed struct {
             pub const Rxdmaen = enum(u1) {
@@ -9585,7 +8236,7 @@ pub const registers = struct {
         };
         pub const cr2 = mmio(base_address + 0x4, 32, Cr2);
 
-        /// address: 0x40013008
+        /// address: 0x40013008, path: spi1.sr
         /// status register
         pub const Sr = packed struct {
             pub const Rxne = enum(u1) {
@@ -9637,11 +8288,11 @@ pub const registers = struct {
         };
         pub const sr = mmio(base_address + 0x8, 32, Sr);
 
-        /// address: 0x4001300c
+        /// address: 0x4001300c, path: spi1.dr
         /// data register
         pub const dr = mmioInt(base_address + 0xc, 32, u16);
 
-        /// address: 0x40013010
+        /// address: 0x40013010, path: spi1.crcpr
         /// CRC polynomial register
         pub const Crcpr = packed struct {
             crcpoly: u16, // CRC polynomial register
@@ -9649,7 +8300,7 @@ pub const registers = struct {
         };
         pub const crcpr = mmio(base_address + 0x10, 32, Crcpr);
 
-        /// address: 0x40013014
+        /// address: 0x40013014, path: spi1.rxcrcr
         /// RX CRC register
         pub const Rxcrcr = packed struct {
             rxcrc: u16, // Rx CRC register
@@ -9657,7 +8308,7 @@ pub const registers = struct {
         };
         pub const rxcrcr = mmio(base_address + 0x14, 32, Rxcrcr);
 
-        /// address: 0x40013018
+        /// address: 0x40013018, path: spi1.txcrcr
         /// TX CRC register
         pub const Txcrcr = packed struct {
             txcrc: u16, // Tx CRC register
@@ -9665,7 +8316,7 @@ pub const registers = struct {
         };
         pub const txcrcr = mmio(base_address + 0x18, 32, Txcrcr);
 
-        /// address: 0x4001301c
+        /// address: 0x4001301c, path: spi1.i2scfgr
         /// I2S configuration register
         pub const I2scfgr = packed struct {
             pub const Chlen = enum(u1) {
@@ -9718,7 +8369,7 @@ pub const registers = struct {
         };
         pub const i2scfgr = mmio(base_address + 0x1c, 32, I2scfgr);
 
-        /// address: 0x40013020
+        /// address: 0x40013020, path: spi1.i2spr
         /// I2S prescaler register
         pub const I2spr = packed struct {
             pub const Odd = enum(u1) {
@@ -9740,112 +8391,112 @@ pub const registers = struct {
     pub const nvic = struct {
         pub const base_address = 0xe000e100;
 
-        /// address: 0xe000e100
+        /// address: 0xe000e100, path: nvic.iser0
         /// Interrupt Set-Enable Register
         pub const Iser0 = packed struct {
             setena: u32, // SETENA
         };
         pub const iser0 = mmio(base_address + 0x0, 32, Iser0);
 
-        /// address: 0xe000e104
+        /// address: 0xe000e104, path: nvic.iser1
         /// Interrupt Set-Enable Register
         pub const Iser1 = packed struct {
             setena: u32, // SETENA
         };
         pub const iser1 = mmio(base_address + 0x4, 32, Iser1);
 
-        /// address: 0xe000e108
+        /// address: 0xe000e108, path: nvic.iser2
         /// Interrupt Set-Enable Register
         pub const Iser2 = packed struct {
             setena: u32, // SETENA
         };
         pub const iser2 = mmio(base_address + 0x8, 32, Iser2);
 
-        /// address: 0xe000e180
+        /// address: 0xe000e180, path: nvic.icer0
         /// Interrupt Clear-Enable Register
         pub const Icer0 = packed struct {
             clrena: u32, // CLRENA
         };
         pub const icer0 = mmio(base_address + 0x80, 32, Icer0);
 
-        /// address: 0xe000e184
+        /// address: 0xe000e184, path: nvic.icer1
         /// Interrupt Clear-Enable Register
         pub const Icer1 = packed struct {
             clrena: u32, // CLRENA
         };
         pub const icer1 = mmio(base_address + 0x84, 32, Icer1);
 
-        /// address: 0xe000e188
+        /// address: 0xe000e188, path: nvic.icer2
         /// Interrupt Clear-Enable Register
         pub const Icer2 = packed struct {
             clrena: u32, // CLRENA
         };
         pub const icer2 = mmio(base_address + 0x88, 32, Icer2);
 
-        /// address: 0xe000e200
+        /// address: 0xe000e200, path: nvic.ispr0
         /// Interrupt Set-Pending Register
         pub const Ispr0 = packed struct {
             setpend: u32, // SETPEND
         };
         pub const ispr0 = mmio(base_address + 0x100, 32, Ispr0);
 
-        /// address: 0xe000e204
+        /// address: 0xe000e204, path: nvic.ispr1
         /// Interrupt Set-Pending Register
         pub const Ispr1 = packed struct {
             setpend: u32, // SETPEND
         };
         pub const ispr1 = mmio(base_address + 0x104, 32, Ispr1);
 
-        /// address: 0xe000e208
+        /// address: 0xe000e208, path: nvic.ispr2
         /// Interrupt Set-Pending Register
         pub const Ispr2 = packed struct {
             setpend: u32, // SETPEND
         };
         pub const ispr2 = mmio(base_address + 0x108, 32, Ispr2);
 
-        /// address: 0xe000e280
+        /// address: 0xe000e280, path: nvic.icpr0
         /// Interrupt Clear-Pending Register
         pub const Icpr0 = packed struct {
             clrpend: u32, // CLRPEND
         };
         pub const icpr0 = mmio(base_address + 0x180, 32, Icpr0);
 
-        /// address: 0xe000e284
+        /// address: 0xe000e284, path: nvic.icpr1
         /// Interrupt Clear-Pending Register
         pub const Icpr1 = packed struct {
             clrpend: u32, // CLRPEND
         };
         pub const icpr1 = mmio(base_address + 0x184, 32, Icpr1);
 
-        /// address: 0xe000e288
+        /// address: 0xe000e288, path: nvic.icpr2
         /// Interrupt Clear-Pending Register
         pub const Icpr2 = packed struct {
             clrpend: u32, // CLRPEND
         };
         pub const icpr2 = mmio(base_address + 0x188, 32, Icpr2);
 
-        /// address: 0xe000e300
+        /// address: 0xe000e300, path: nvic.iabr0
         /// Interrupt Active Bit Register
         pub const Iabr0 = packed struct {
             active: u32, // ACTIVE
         };
         pub const iabr0 = mmio(base_address + 0x200, 32, Iabr0);
 
-        /// address: 0xe000e304
+        /// address: 0xe000e304, path: nvic.iabr1
         /// Interrupt Active Bit Register
         pub const Iabr1 = packed struct {
             active: u32, // ACTIVE
         };
         pub const iabr1 = mmio(base_address + 0x204, 32, Iabr1);
 
-        /// address: 0xe000e308
+        /// address: 0xe000e308, path: nvic.iabr2
         /// Interrupt Active Bit Register
         pub const Iabr2 = packed struct {
             active: u32, // ACTIVE
         };
         pub const iabr2 = mmio(base_address + 0x208, 32, Iabr2);
 
-        /// address: 0xe000e400
+        /// address: 0xe000e400, path: nvic.ipr0
         /// Interrupt Priority Register
         pub const Ipr0 = packed struct {
             ipr_n0: u8, // IPR_N0
@@ -9855,7 +8506,7 @@ pub const registers = struct {
         };
         pub const ipr0 = mmio(base_address + 0x300, 32, Ipr0);
 
-        /// address: 0xe000e404
+        /// address: 0xe000e404, path: nvic.ipr1
         /// Interrupt Priority Register
         pub const Ipr1 = packed struct {
             ipr_n0: u8, // IPR_N0
@@ -9865,7 +8516,7 @@ pub const registers = struct {
         };
         pub const ipr1 = mmio(base_address + 0x304, 32, Ipr1);
 
-        /// address: 0xe000e408
+        /// address: 0xe000e408, path: nvic.ipr2
         /// Interrupt Priority Register
         pub const Ipr2 = packed struct {
             ipr_n0: u8, // IPR_N0
@@ -9875,7 +8526,7 @@ pub const registers = struct {
         };
         pub const ipr2 = mmio(base_address + 0x308, 32, Ipr2);
 
-        /// address: 0xe000e40c
+        /// address: 0xe000e40c, path: nvic.ipr3
         /// Interrupt Priority Register
         pub const Ipr3 = packed struct {
             ipr_n0: u8, // IPR_N0
@@ -9885,7 +8536,7 @@ pub const registers = struct {
         };
         pub const ipr3 = mmio(base_address + 0x30c, 32, Ipr3);
 
-        /// address: 0xe000e410
+        /// address: 0xe000e410, path: nvic.ipr4
         /// Interrupt Priority Register
         pub const Ipr4 = packed struct {
             ipr_n0: u8, // IPR_N0
@@ -9895,7 +8546,7 @@ pub const registers = struct {
         };
         pub const ipr4 = mmio(base_address + 0x310, 32, Ipr4);
 
-        /// address: 0xe000e414
+        /// address: 0xe000e414, path: nvic.ipr5
         /// Interrupt Priority Register
         pub const Ipr5 = packed struct {
             ipr_n0: u8, // IPR_N0
@@ -9905,7 +8556,7 @@ pub const registers = struct {
         };
         pub const ipr5 = mmio(base_address + 0x314, 32, Ipr5);
 
-        /// address: 0xe000e418
+        /// address: 0xe000e418, path: nvic.ipr6
         /// Interrupt Priority Register
         pub const Ipr6 = packed struct {
             ipr_n0: u8, // IPR_N0
@@ -9915,7 +8566,7 @@ pub const registers = struct {
         };
         pub const ipr6 = mmio(base_address + 0x318, 32, Ipr6);
 
-        /// address: 0xe000e41c
+        /// address: 0xe000e41c, path: nvic.ipr7
         /// Interrupt Priority Register
         pub const Ipr7 = packed struct {
             ipr_n0: u8, // IPR_N0
@@ -9925,7 +8576,7 @@ pub const registers = struct {
         };
         pub const ipr7 = mmio(base_address + 0x31c, 32, Ipr7);
 
-        /// address: 0xe000e420
+        /// address: 0xe000e420, path: nvic.ipr8
         /// Interrupt Priority Register
         pub const Ipr8 = packed struct {
             ipr_n0: u8, // IPR_N0
@@ -9935,7 +8586,7 @@ pub const registers = struct {
         };
         pub const ipr8 = mmio(base_address + 0x320, 32, Ipr8);
 
-        /// address: 0xe000e424
+        /// address: 0xe000e424, path: nvic.ipr9
         /// Interrupt Priority Register
         pub const Ipr9 = packed struct {
             ipr_n0: u8, // IPR_N0
@@ -9945,7 +8596,7 @@ pub const registers = struct {
         };
         pub const ipr9 = mmio(base_address + 0x324, 32, Ipr9);
 
-        /// address: 0xe000e428
+        /// address: 0xe000e428, path: nvic.ipr10
         /// Interrupt Priority Register
         pub const Ipr10 = packed struct {
             ipr_n0: u8, // IPR_N0
@@ -9955,7 +8606,7 @@ pub const registers = struct {
         };
         pub const ipr10 = mmio(base_address + 0x328, 32, Ipr10);
 
-        /// address: 0xe000e42c
+        /// address: 0xe000e42c, path: nvic.ipr11
         /// Interrupt Priority Register
         pub const Ipr11 = packed struct {
             ipr_n0: u8, // IPR_N0
@@ -9965,7 +8616,7 @@ pub const registers = struct {
         };
         pub const ipr11 = mmio(base_address + 0x32c, 32, Ipr11);
 
-        /// address: 0xe000e430
+        /// address: 0xe000e430, path: nvic.ipr12
         /// Interrupt Priority Register
         pub const Ipr12 = packed struct {
             ipr_n0: u8, // IPR_N0
@@ -9975,7 +8626,7 @@ pub const registers = struct {
         };
         pub const ipr12 = mmio(base_address + 0x330, 32, Ipr12);
 
-        /// address: 0xe000e434
+        /// address: 0xe000e434, path: nvic.ipr13
         /// Interrupt Priority Register
         pub const Ipr13 = packed struct {
             ipr_n0: u8, // IPR_N0
@@ -9985,7 +8636,7 @@ pub const registers = struct {
         };
         pub const ipr13 = mmio(base_address + 0x334, 32, Ipr13);
 
-        /// address: 0xe000e438
+        /// address: 0xe000e438, path: nvic.ipr14
         /// Interrupt Priority Register
         pub const Ipr14 = packed struct {
             ipr_n0: u8, // IPR_N0
@@ -9995,7 +8646,7 @@ pub const registers = struct {
         };
         pub const ipr14 = mmio(base_address + 0x338, 32, Ipr14);
 
-        /// address: 0xe000e43c
+        /// address: 0xe000e43c, path: nvic.ipr15
         /// Interrupt Priority Register
         pub const Ipr15 = packed struct {
             ipr_n0: u8, // IPR_N0
@@ -10005,7 +8656,7 @@ pub const registers = struct {
         };
         pub const ipr15 = mmio(base_address + 0x33c, 32, Ipr15);
 
-        /// address: 0xe000e440
+        /// address: 0xe000e440, path: nvic.ipr16
         /// Interrupt Priority Register
         pub const Ipr16 = packed struct {
             ipr_n0: u8, // IPR_N0
@@ -10015,7 +8666,7 @@ pub const registers = struct {
         };
         pub const ipr16 = mmio(base_address + 0x340, 32, Ipr16);
 
-        /// address: 0xe000e444
+        /// address: 0xe000e444, path: nvic.ipr17
         /// Interrupt Priority Register
         pub const Ipr17 = packed struct {
             ipr_n0: u8, // IPR_N0
@@ -10025,7 +8676,7 @@ pub const registers = struct {
         };
         pub const ipr17 = mmio(base_address + 0x344, 32, Ipr17);
 
-        /// address: 0xe000e448
+        /// address: 0xe000e448, path: nvic.ipr18
         /// Interrupt Priority Register
         pub const Ipr18 = packed struct {
             ipr_n0: u8, // IPR_N0
@@ -10035,7 +8686,7 @@ pub const registers = struct {
         };
         pub const ipr18 = mmio(base_address + 0x348, 32, Ipr18);
 
-        /// address: 0xe000e44c
+        /// address: 0xe000e44c, path: nvic.ipr19
         /// Interrupt Priority Register
         pub const Ipr19 = packed struct {
             ipr_n0: u8, // IPR_N0
@@ -10049,7 +8700,7 @@ pub const registers = struct {
     pub const fpu = struct {
         pub const base_address = 0xe000ef34;
 
-        /// address: 0xe000ef34
+        /// address: 0xe000ef34, path: fpu.fpccr
         /// Floating-point context control register
         pub const Fpccr = packed struct {
             lspact: u1, // LSPACT
@@ -10067,7 +8718,7 @@ pub const registers = struct {
         };
         pub const fpccr = mmio(base_address + 0x0, 32, Fpccr);
 
-        /// address: 0xe000ef38
+        /// address: 0xe000ef38, path: fpu.fpcar
         /// Floating-point context address register
         pub const Fpcar = packed struct {
             _reserved_0_2: u3,
@@ -10075,7 +8726,7 @@ pub const registers = struct {
         };
         pub const fpcar = mmio(base_address + 0x4, 32, Fpcar);
 
-        /// address: 0xe000ef3c
+        /// address: 0xe000ef3c, path: fpu.fpscr
         /// Floating-point status control register
         pub const Fpscr = packed struct {
             ioc: u1, // Invalid operation cumulative exception bit
@@ -10102,7 +8753,7 @@ pub const registers = struct {
     pub const mpu = struct {
         pub const base_address = 0xe000ed90;
 
-        /// address: 0xe000ed90
+        /// address: 0xe000ed90, path: mpu.typer
         /// MPU type register
         pub const Typer = packed struct {
             separate: u1, // Separate flag
@@ -10113,7 +8764,7 @@ pub const registers = struct {
         };
         pub const typer = mmio(base_address + 0x0, 32, Typer);
 
-        /// address: 0xe000ed94
+        /// address: 0xe000ed94, path: mpu.ctrl
         /// MPU control register
         pub const Ctrl = packed struct {
             enable: u1, // Enables the MPU
@@ -10123,7 +8774,7 @@ pub const registers = struct {
         };
         pub const ctrl = mmio(base_address + 0x4, 32, Ctrl);
 
-        /// address: 0xe000ed98
+        /// address: 0xe000ed98, path: mpu.rnr
         /// MPU region number register
         pub const Rnr = packed struct {
             region: u8, // MPU region
@@ -10131,7 +8782,7 @@ pub const registers = struct {
         };
         pub const rnr = mmio(base_address + 0x8, 32, Rnr);
 
-        /// address: 0xe000ed9c
+        /// address: 0xe000ed9c, path: mpu.rbar
         /// MPU region base address register
         pub const Rbar = packed struct {
             region: u4, // MPU region field
@@ -10140,7 +8791,7 @@ pub const registers = struct {
         };
         pub const rbar = mmio(base_address + 0xc, 32, Rbar);
 
-        /// address: 0xe000eda0
+        /// address: 0xe000eda0, path: mpu.rasr
         /// MPU region attribute and size register
         pub const Rasr = packed struct {
             enable: u1, // Region enable bit.
@@ -10163,7 +8814,7 @@ pub const registers = struct {
     pub const stk = struct {
         pub const base_address = 0xe000e010;
 
-        /// address: 0xe000e010
+        /// address: 0xe000e010, path: stk.ctrl
         /// SysTick control and status register
         pub const Ctrl = packed struct {
             enable: u1, // Counter enable
@@ -10175,7 +8826,7 @@ pub const registers = struct {
         };
         pub const ctrl = mmio(base_address + 0x0, 32, Ctrl);
 
-        /// address: 0xe000e014
+        /// address: 0xe000e014, path: stk.load
         /// SysTick reload value register
         pub const Load = packed struct {
             reload: u24, // RELOAD value
@@ -10183,7 +8834,7 @@ pub const registers = struct {
         };
         pub const load = mmio(base_address + 0x4, 32, Load);
 
-        /// address: 0xe000e018
+        /// address: 0xe000e018, path: stk.val
         /// SysTick current value register
         pub const Val = packed struct {
             current: u24, // Current counter value
@@ -10191,7 +8842,7 @@ pub const registers = struct {
         };
         pub const val = mmio(base_address + 0x8, 32, Val);
 
-        /// address: 0xe000e01c
+        /// address: 0xe000e01c, path: stk.calib
         /// SysTick calibration value register
         pub const Calib = packed struct {
             tenms: u24, // Calibration value
@@ -10205,7 +8856,7 @@ pub const registers = struct {
     pub const scb = struct {
         pub const base_address = 0xe000ed00;
 
-        /// address: 0xe000ed00
+        /// address: 0xe000ed00, path: scb.cpuid
         /// CPUID base register
         pub const Cpuid = packed struct {
             revision: u4, // Revision number
@@ -10216,7 +8867,7 @@ pub const registers = struct {
         };
         pub const cpuid = mmio(base_address + 0x0, 32, Cpuid);
 
-        /// address: 0xe000ed04
+        /// address: 0xe000ed04, path: scb.icsr
         /// Interrupt control and state register
         pub const Icsr = packed struct {
             vectactive: u9, // Active vector
@@ -10235,7 +8886,7 @@ pub const registers = struct {
         };
         pub const icsr = mmio(base_address + 0x4, 32, Icsr);
 
-        /// address: 0xe000ed08
+        /// address: 0xe000ed08, path: scb.vtor
         /// Vector table offset register
         pub const Vtor = packed struct {
             _reserved_0_8: u9,
@@ -10244,7 +8895,7 @@ pub const registers = struct {
         };
         pub const vtor = mmio(base_address + 0x8, 32, Vtor);
 
-        /// address: 0xe000ed0c
+        /// address: 0xe000ed0c, path: scb.aircr
         /// Application interrupt and reset control register
         pub const Aircr = packed struct {
             vectreset: u1, // VECTRESET
@@ -10258,7 +8909,7 @@ pub const registers = struct {
         };
         pub const aircr = mmio(base_address + 0xc, 32, Aircr);
 
-        /// address: 0xe000ed10
+        /// address: 0xe000ed10, path: scb.scr
         /// System control register
         pub const Scr = packed struct {
             _reserved_0_0: u1,
@@ -10270,7 +8921,7 @@ pub const registers = struct {
         };
         pub const scr = mmio(base_address + 0x10, 32, Scr);
 
-        /// address: 0xe000ed14
+        /// address: 0xe000ed14, path: scb.ccr
         /// Configuration and control register
         pub const Ccr = packed struct {
             nonbasethrdena: u1, // Configures how the processor enters Thread mode
@@ -10285,7 +8936,7 @@ pub const registers = struct {
         };
         pub const ccr = mmio(base_address + 0x14, 32, Ccr);
 
-        /// address: 0xe000ed18
+        /// address: 0xe000ed18, path: scb.shpr1
         /// System handler priority registers
         pub const Shpr1 = packed struct {
             pri_4: u8, // Priority of system handler 4
@@ -10295,7 +8946,7 @@ pub const registers = struct {
         };
         pub const shpr1 = mmio(base_address + 0x18, 32, Shpr1);
 
-        /// address: 0xe000ed1c
+        /// address: 0xe000ed1c, path: scb.shpr2
         /// System handler priority registers
         pub const Shpr2 = packed struct {
             _reserved_0_23: u24,
@@ -10303,7 +8954,7 @@ pub const registers = struct {
         };
         pub const shpr2 = mmio(base_address + 0x1c, 32, Shpr2);
 
-        /// address: 0xe000ed20
+        /// address: 0xe000ed20, path: scb.shpr3
         /// System handler priority registers
         pub const Shpr3 = packed struct {
             _reserved_0_15: u16,
@@ -10312,7 +8963,7 @@ pub const registers = struct {
         };
         pub const shpr3 = mmio(base_address + 0x20, 32, Shpr3);
 
-        /// address: 0xe000ed24
+        /// address: 0xe000ed24, path: scb.shcrs
         /// System handler control and state register
         pub const Shcrs = packed struct {
             memfaultact: u1, // Memory management fault exception active bit
@@ -10336,7 +8987,7 @@ pub const registers = struct {
         };
         pub const shcrs = mmio(base_address + 0x24, 32, Shcrs);
 
-        /// address: 0xe000ed28
+        /// address: 0xe000ed28, path: scb.cfsr_ufsr_bfsr_mmfsr
         /// Configurable fault status register
         pub const CfsrUfsrBfsrMmfsr = packed struct {
             _reserved_0_0: u1,
@@ -10366,7 +9017,7 @@ pub const registers = struct {
         };
         pub const cfsr_ufsr_bfsr_mmfsr = mmio(base_address + 0x28, 32, CfsrUfsrBfsrMmfsr);
 
-        /// address: 0xe000ed2c
+        /// address: 0xe000ed2c, path: scb.hfsr
         /// Hard fault status register
         pub const Hfsr = packed struct {
             _reserved_0_0: u1,
@@ -10377,15 +9028,15 @@ pub const registers = struct {
         };
         pub const hfsr = mmio(base_address + 0x2c, 32, Hfsr);
 
-        /// address: 0xe000ed34
+        /// address: 0xe000ed34, path: scb.mmfar
         /// Memory management fault address register
         pub const mmfar = @intToPtr(*volatile u32, base_address + 0x34);
 
-        /// address: 0xe000ed38
+        /// address: 0xe000ed38, path: scb.bfar
         /// Bus fault address register
         pub const bfar = @intToPtr(*volatile u32, base_address + 0x38);
 
-        /// address: 0xe000ed3c
+        /// address: 0xe000ed3c, path: scb.afsr
         /// Auxiliary fault status register
         pub const Afsr = packed struct {
             impdef: u32, // Implementation defined
@@ -10396,7 +9047,7 @@ pub const registers = struct {
     pub const nvic_stir = struct {
         pub const base_address = 0xe000ef00;
 
-        /// address: 0xe000ef00
+        /// address: 0xe000ef00, path: nvic_stir.stir
         /// Software trigger interrupt register
         pub const Stir = packed struct {
             intid: u9, // Software generated interrupt ID
@@ -10408,7 +9059,7 @@ pub const registers = struct {
     pub const fpu_cpacr = struct {
         pub const base_address = 0xe000ed88;
 
-        /// address: 0xe000ed88
+        /// address: 0xe000ed88, path: fpu_cpacr.cpacr
         /// Coprocessor access control register
         pub const Cpacr = packed struct {
             _reserved_0_19: u20,
@@ -10421,7 +9072,7 @@ pub const registers = struct {
     pub const scb_actrl = struct {
         pub const base_address = 0xe000e008;
 
-        /// address: 0xe000e008
+        /// address: 0xe000e008, path: scb_actrl.actrl
         /// Auxiliary control register
         pub const Actrl = packed struct {
             dismcycint: u1, // DISMCYCINT
@@ -10438,44 +9089,17 @@ pub const registers = struct {
     pub const tim8 = struct {
         pub const base_address = 0x40010400;
 
-        /// address: 0x40010400
+        /// address: 0x40010400, path: tim8.cr1
         /// control register 1
         pub const Cr1 = packed struct {
-            pub const Cen = enum(u1) {
-                disabled = 0, // Counter disabled
-                enabled = 1, // Counter enabled
-            };
-            pub const Udis = enum(u1) {
-                enabled = 0, // Update event enabled
-                disabled = 1, // Update event disabled
-            };
-            pub const Urs = enum(u1) {
-                any_event = 0, // Any of counter overflow/underflow, setting UG, or update through slave mode, generates an update interrupt or DMA request
-                counter_only = 1, // Only counter overflow/underflow generates an update interrupt or DMA request
-            };
-            pub const Opm = enum(u1) {
-                disabled = 0, // Counter is not stopped at update event
-                enabled = 1, // Counter stops counting at the next update event (clearing the CEN bit)
-            };
-            pub const Dir = enum(u1) {
-                up = 0, // Counter used as upcounter
-                down = 1, // Counter used as downcounter
-            };
-            pub const Cms = enum(u2) {
-                edge_aligned = 0b00, // The counter counts up or down depending on the direction bit
-                center_aligned1 = 0b01, // The counter counts up and down alternatively. Output compare interrupt flags are set only when the counter is counting down.
-                center_aligned2 = 0b10, // The counter counts up and down alternatively. Output compare interrupt flags are set only when the counter is counting up.
-                center_aligned3 = 0b11, // The counter counts up and down alternatively. Output compare interrupt flags are set both when the counter is counting up or down.
-            };
-            pub const Arpe = enum(u1) {
-                disabled = 0, // TIMx_APRR register is not buffered
-                enabled = 1, // TIMx_APRR register is buffered
-            };
-            pub const Ckd = enum(u2) {
-                div1 = 0b00, // t_DTS = t_CK_INT
-                div2 = 0b01, // t_DTS = 2 × t_CK_INT
-                div4 = 0b10, // t_DTS = 4 × t_CK_INT
-            };
+            pub const Cen = tim1.cr1.Cen;
+            pub const Udis = tim1.cr1.Udis;
+            pub const Urs = tim1.cr1.Urs;
+            pub const Opm = tim1.cr1.Opm;
+            pub const Dir = tim1.cr1.Dir;
+            pub const Cms = tim1.cr1.Cms;
+            pub const Arpe = tim1.cr1.Arpe;
+            pub const Ckd = tim1.cr1.Ckd;
             cen: Cen, // Counter enable (u1)
             udis: Udis, // Update disable (u1)
             urs: Urs, // Update request source (u1)
@@ -10488,27 +9112,12 @@ pub const registers = struct {
         };
         pub const cr1 = mmio(base_address + 0x0, 32, Cr1);
 
-        /// address: 0x40010404
+        /// address: 0x40010404, path: tim8.cr2
         /// control register 2
         pub const Cr2 = packed struct {
-            pub const Ccds = enum(u1) {
-                on_compare = 0, // CCx DMA request sent when CCx event occurs
-                on_update = 1, // CCx DMA request sent when update event occurs
-            };
-            pub const Mms = enum(u3) {
-                reset = 0b000, // The UG bit from the TIMx_EGR register is used as trigger output
-                enable = 0b001, // The counter enable signal, CNT_EN, is used as trigger output
-                update = 0b010, // The update event is selected as trigger output
-                compare_pulse = 0b011, // The trigger output send a positive pulse when the CC1IF flag it to be set, as soon as a capture or a compare match occurred
-                compare_oc1 = 0b100, // OC1REF signal is used as trigger output
-                compare_oc2 = 0b101, // OC2REF signal is used as trigger output
-                compare_oc3 = 0b110, // OC3REF signal is used as trigger output
-                compare_oc4 = 0b111, // OC4REF signal is used as trigger output
-            };
-            pub const Ti1s = enum(u1) {
-                normal = 0, // The TIMx_CH1 pin is connected to TI1 input
-                xor = 1, // The TIMx_CH1, CH2, CH3 pins are connected to TI1 input
-            };
+            pub const Ccds = tim1.cr2.Ccds;
+            pub const Mms = tim1.cr2.Mms;
+            pub const Ti1s = tim1.cr2.Ti1s;
             ccpc: u1, // Capture/compare preloaded control
             _reserved_1_1: u1,
             ccus: u1, // Capture/compare control update selection
@@ -10526,64 +9135,16 @@ pub const registers = struct {
         };
         pub const cr2 = mmio(base_address + 0x4, 32, Cr2);
 
-        /// address: 0x40010408
+        /// address: 0x40010408, path: tim8.smcr
         /// slave mode control register
         pub const Smcr = packed struct {
-            pub const Sms = enum(u3) {
-                disabled = 0b000, // Slave mode disabled - if CEN = ‘1 then the prescaler is clocked directly by the internal clock.
-                encoder_mode_1 = 0b001, // Encoder mode 1 - Counter counts up/down on TI2FP1 edge depending on TI1FP2 level.
-                encoder_mode_2 = 0b010, // Encoder mode 2 - Counter counts up/down on TI1FP2 edge depending on TI2FP1 level.
-                encoder_mode_3 = 0b011, // Encoder mode 3 - Counter counts up/down on both TI1FP1 and TI2FP2 edges depending on the level of the other input.
-                reset_mode = 0b100, // Reset Mode - Rising edge of the selected trigger input (TRGI) reinitializes the counter and generates an update of the registers.
-                gated_mode = 0b101, // Gated Mode - The counter clock is enabled when the trigger input (TRGI) is high. The counter stops (but is not reset) as soon as the trigger becomes low. Both start and stop of the counter are controlled.
-                trigger_mode = 0b110, // Trigger Mode - The counter starts at a rising edge of the trigger TRGI (but it is not reset). Only the start of the counter is controlled.
-                ext_clock_mode = 0b111, // External Clock Mode 1 - Rising edges of the selected trigger (TRGI) clock the counter.
-            };
-            pub const Ts = enum(u3) {
-                itr0 = 0b000, // Internal Trigger 0 (ITR0)
-                itr1 = 0b001, // Internal Trigger 1 (ITR1)
-                itr2 = 0b010, // Internal Trigger 2 (ITR2)
-                ti1_f_ed = 0b100, // TI1 Edge Detector (TI1F_ED)
-                ti1_fp1 = 0b101, // Filtered Timer Input 1 (TI1FP1)
-                ti2_fp2 = 0b110, // Filtered Timer Input 2 (TI2FP2)
-                etrf = 0b111, // External Trigger input (ETRF)
-            };
-            pub const Msm = enum(u1) {
-                no_sync = 0, // No action
-                sync = 1, // The effect of an event on the trigger input (TRGI) is delayed to allow a perfect synchronization between the current timer and its slaves (through TRGO). It is useful if we want to synchronize several timers on a single external event.
-            };
-            pub const Etf = enum(u4) {
-                no_filter = 0b0000, // No filter, sampling is done at fDTS
-                fck_int_n2 = 0b0001, // fSAMPLING=fCK_INT, N=2
-                fck_int_n4 = 0b0010, // fSAMPLING=fCK_INT, N=4
-                fck_int_n8 = 0b0011, // fSAMPLING=fCK_INT, N=8
-                fdts_div2_n6 = 0b0100, // fSAMPLING=fDTS/2, N=6
-                fdts_div2_n8 = 0b0101, // fSAMPLING=fDTS/2, N=8
-                fdts_div4_n6 = 0b0110, // fSAMPLING=fDTS/4, N=6
-                fdts_div4_n8 = 0b0111, // fSAMPLING=fDTS/4, N=8
-                fdts_div8_n6 = 0b1000, // fSAMPLING=fDTS/8, N=6
-                fdts_div8_n8 = 0b1001, // fSAMPLING=fDTS/8, N=8
-                fdts_div16_n5 = 0b1010, // fSAMPLING=fDTS/16, N=5
-                fdts_div16_n6 = 0b1011, // fSAMPLING=fDTS/16, N=6
-                fdts_div16_n8 = 0b1100, // fSAMPLING=fDTS/16, N=8
-                fdts_div32_n5 = 0b1101, // fSAMPLING=fDTS/32, N=5
-                fdts_div32_n6 = 0b1110, // fSAMPLING=fDTS/32, N=6
-                fdts_div32_n8 = 0b1111, // fSAMPLING=fDTS/32, N=8
-            };
-            pub const Etps = enum(u2) {
-                div1 = 0b00, // Prescaler OFF
-                div2 = 0b01, // ETRP frequency divided by 2
-                div4 = 0b10, // ETRP frequency divided by 4
-                div8 = 0b11, // ETRP frequency divided by 8
-            };
-            pub const Ece = enum(u1) {
-                disabled = 0, // External clock mode 2 disabled
-                enabled = 1, // External clock mode 2 enabled. The counter is clocked by any active edge on the ETRF signal.
-            };
-            pub const Etp = enum(u1) {
-                not_inverted = 0, // ETR is noninverted, active at high level or rising edge
-                inverted = 1, // ETR is inverted, active at low level or falling edge
-            };
+            pub const Sms = tim1.smcr.Sms;
+            pub const Ts = tim1.smcr.Ts;
+            pub const Msm = tim1.smcr.Msm;
+            pub const Etf = tim1.smcr.Etf;
+            pub const Etps = tim1.smcr.Etps;
+            pub const Ece = tim1.smcr.Ece;
+            pub const Etp = tim1.smcr.Etp;
             sms: Sms, // Slave mode selection (u3)
             _reserved_3_3: u1,
             ts: Ts, // Trigger selection (u3)
@@ -10596,33 +9157,15 @@ pub const registers = struct {
         };
         pub const smcr = mmio(base_address + 0x8, 32, Smcr);
 
-        /// address: 0x4001040c
+        /// address: 0x4001040c, path: tim8.dier
         /// DMA/Interrupt enable register
         pub const Dier = packed struct {
-            pub const Uie = enum(u1) {
-                disabled = 0, // Update interrupt disabled
-                enabled = 1, // Update interrupt enabled
-            };
-            pub const Cc1ie = enum(u1) {
-                disabled = 0, // CCx interrupt disabled
-                enabled = 1, // CCx interrupt enabled
-            };
-            pub const Tie = enum(u1) {
-                disabled = 0, // Trigger interrupt disabled
-                enabled = 1, // Trigger interrupt enabled
-            };
-            pub const Ude = enum(u1) {
-                disabled = 0, // Update DMA request disabled
-                enabled = 1, // Update DMA request enabled
-            };
-            pub const Cc1de = enum(u1) {
-                disabled = 0, // CCx DMA request disabled
-                enabled = 1, // CCx DMA request enabled
-            };
-            pub const Tde = enum(u1) {
-                disabled = 0, // Trigger DMA request disabled
-                enabled = 1, // Trigger DMA request enabled
-            };
+            pub const Uie = tim1.dier.Uie;
+            pub const Cc1ie = tim1.dier.Cc1ie;
+            pub const Tie = tim1.dier.Tie;
+            pub const Ude = tim1.dier.Ude;
+            pub const Cc1de = tim1.dier.Cc1de;
+            pub const Tde = tim1.dier.Tde;
             uie: Uie, // Update interrupt enable (u1)
             cc1ie: Cc1ie, // Capture/Compare 1 interrupt enable (u1)
             cc2ie: Cc1ie, // Capture/Compare 2 interrupt enable (u1)
@@ -10642,26 +9185,13 @@ pub const registers = struct {
         };
         pub const dier = mmio(base_address + 0xc, 32, Dier);
 
-        /// address: 0x40010410
+        /// address: 0x40010410, path: tim8.sr
         /// status register
         pub const Sr = packed struct {
-            pub const Uif = enum(u1) {
-                clear = 0, // No update occurred
-                update_pending = 1, // Update interrupt pending.
-            };
-            pub const Cc1if = enum(u1) {
-                match = 1, // If CC1 is an output: The content of the counter TIMx_CNT matches the content of the TIMx_CCR1 register. If CC1 is an input: The counter value has been captured in TIMx_CCR1 register.
-                clear = 0, // Clear flag
-            };
-            pub const Tif = enum(u1) {
-                no_trigger = 0, // No trigger event occurred
-                trigger = 1, // Trigger interrupt pending
-                pub const clear = @intToEnum(Tif, 0); // Clear flag
-            };
-            pub const Cc1of = enum(u1) {
-                overcapture = 1, // The counter value has been captured in TIMx_CCRx register while CCxIF flag was already set
-                clear = 0, // Clear flag
-            };
+            pub const Uif = tim1.sr.Uif;
+            pub const Cc1if = tim1.sr.Cc1if;
+            pub const Tif = tim1.sr.Tif;
+            pub const Cc1of = tim1.sr.Cc1of;
             uif: Uif, // Update interrupt flag (u1)
             cc1if: Cc1if, // Capture/compare 1 interrupt flag (u1)
             cc2if: Cc1if, // Capture/Compare 2 interrupt flag (u1)
@@ -10679,18 +9209,12 @@ pub const registers = struct {
         };
         pub const sr = mmio(base_address + 0x10, 32, Sr);
 
-        /// address: 0x40010414
+        /// address: 0x40010414, path: tim8.egr
         /// event generation register
         pub const Egr = packed struct {
-            pub const Ug = enum(u1) {
-                update = 1, // Re-initializes the timer counter and generates an update of the registers.
-            };
-            pub const Cc1gw = enum(u1) {
-                trigger = 1, // If CC1 is an output: CC1IF flag is set, Corresponding interrupt or DMA request is sent if enabled. If CC1 is an input: The current value of the counter is captured in TIMx_CCR1 register.
-            };
-            pub const Tgw = enum(u1) {
-                trigger = 1, // The TIF flag is set in TIMx_SR register. Related interrupt or DMA transfer can occur if enabled.
-            };
+            pub const Ug = tim1.egr.Ug;
+            pub const Cc1gw = tim1.egr.Cc1gw;
+            pub const Tgw = tim1.egr.Tgw;
             ug: Ug, // Update generation (u1)
             cc1g: Cc1gw, // Capture/compare 1 generation (u1)
             cc2g: Cc1gw, // Capture/compare 2 generation (u1)
@@ -10703,33 +9227,14 @@ pub const registers = struct {
         };
         pub const egr = mmio(base_address + 0x14, 32, Egr);
 
-        /// address: 0x40010418
+        /// address: 0x40010418, path: tim8.ccmr1_output
         /// capture/compare mode register 1 (output mode)
         pub const Ccmr1Output = packed struct {
-            pub const Cc1s = enum(u2) {
-                output = 0b00, // CC1 channel is configured as output
-            };
-            pub const Oc1pe = enum(u1) {
-                disabled = 0, // Preload register on CCR1 disabled. New values written to CCR1 are taken into account immediately
-                enabled = 1, // Preload register on CCR1 enabled. Preload value is loaded into active register on each update event
-            };
-            pub const Oc1m = enum(u3) {
-                frozen = 0b000, // The comparison between the output compare register TIMx_CCRy and the counter TIMx_CNT has no effect on the outputs
-                active_on_match = 0b001, // Set channel to active level on match. OCyREF signal is forced high when the counter matches the capture/compare register
-                inactive_on_match = 0b010, // Set channel to inactive level on match. OCyREF signal is forced low when the counter matches the capture/compare register
-                toggle = 0b011, // OCyREF toggles when TIMx_CNT=TIMx_CCRy
-                force_inactive = 0b100, // OCyREF is forced low
-                force_active = 0b101, // OCyREF is forced high
-                pwm_mode1 = 0b110, // In upcounting, channel is active as long as TIMx_CNT<TIMx_CCRy else inactive. In downcounting, channel is inactive as long as TIMx_CNT>TIMx_CCRy else active
-                pwm_mode2 = 0b111, // Inversely to PwmMode1
-            };
-            pub const Cc2s = enum(u2) {
-                output = 0b00, // CC2 channel is configured as output
-            };
-            pub const Oc2pe = enum(u1) {
-                disabled = 0, // Preload register on CCR2 disabled. New values written to CCR2 are taken into account immediately
-                enabled = 1, // Preload register on CCR2 enabled. Preload value is loaded into active register on each update event
-            };
+            pub const Cc1s = tim1.ccmr1_output.Cc1s;
+            pub const Oc1pe = tim1.ccmr1_output.Oc1pe;
+            pub const Oc1m = tim1.ccmr1_output.Oc1m;
+            pub const Cc2s = tim1.ccmr1_output.Cc2s;
+            pub const Oc2pe = tim1.ccmr1_output.Oc2pe;
             cc1s: Cc1s, // Capture/Compare 1 selection (u2)
             oc1fe: u1, // Output Compare 1 fast enable
             oc1pe: Oc1pe, // Output Compare 1 preload enable (u1)
@@ -10744,37 +9249,12 @@ pub const registers = struct {
         };
         pub const ccmr1_output = mmio(base_address + 0x18, 32, Ccmr1Output);
 
-        /// address: 0x40010418
+        /// address: 0x40010418, path: tim8.ccmr1_input
         /// capture/compare mode register 1 (input mode)
         pub const Ccmr1Input = packed struct {
-            pub const Cc1s = enum(u2) {
-                ti1 = 0b01, // CC1 channel is configured as input, IC1 is mapped on TI1
-                ti2 = 0b10, // CC1 channel is configured as input, IC1 is mapped on TI2
-                trc = 0b11, // CC1 channel is configured as input, IC1 is mapped on TRC
-            };
-            pub const Ic1f = enum(u4) {
-                no_filter = 0b0000, // No filter, sampling is done at fDTS
-                fck_int_n2 = 0b0001, // fSAMPLING=fCK_INT, N=2
-                fck_int_n4 = 0b0010, // fSAMPLING=fCK_INT, N=4
-                fck_int_n8 = 0b0011, // fSAMPLING=fCK_INT, N=8
-                fdts_div2_n6 = 0b0100, // fSAMPLING=fDTS/2, N=6
-                fdts_div2_n8 = 0b0101, // fSAMPLING=fDTS/2, N=8
-                fdts_div4_n6 = 0b0110, // fSAMPLING=fDTS/4, N=6
-                fdts_div4_n8 = 0b0111, // fSAMPLING=fDTS/4, N=8
-                fdts_div8_n6 = 0b1000, // fSAMPLING=fDTS/8, N=6
-                fdts_div8_n8 = 0b1001, // fSAMPLING=fDTS/8, N=8
-                fdts_div16_n5 = 0b1010, // fSAMPLING=fDTS/16, N=5
-                fdts_div16_n6 = 0b1011, // fSAMPLING=fDTS/16, N=6
-                fdts_div16_n8 = 0b1100, // fSAMPLING=fDTS/16, N=8
-                fdts_div32_n5 = 0b1101, // fSAMPLING=fDTS/32, N=5
-                fdts_div32_n6 = 0b1110, // fSAMPLING=fDTS/32, N=6
-                fdts_div32_n8 = 0b1111, // fSAMPLING=fDTS/32, N=8
-            };
-            pub const Cc2s = enum(u2) {
-                ti2 = 0b01, // CC2 channel is configured as input, IC2 is mapped on TI2
-                ti1 = 0b10, // CC2 channel is configured as input, IC2 is mapped on TI1
-                trc = 0b11, // CC2 channel is configured as input, IC2 is mapped on TRC
-            };
+            pub const Cc1s = tim1.ccmr1_input.Cc1s;
+            pub const Ic1f = tim1.ccmr1_input.Ic1f;
+            pub const Cc2s = tim1.ccmr1_input.Cc2s;
             cc1s: Cc1s, // Capture/Compare 1 selection (u2)
             ic1psc: u2, // Input capture 1 prescaler
             ic1f: Ic1f, // Input capture 1 filter (u4)
@@ -10785,33 +9265,14 @@ pub const registers = struct {
         };
         pub const ccmr1_input = mmio(base_address + 0x18, 32, Ccmr1Input);
 
-        /// address: 0x4001041c
+        /// address: 0x4001041c, path: tim8.ccmr2_output
         /// capture/compare mode register 2 (output mode)
         pub const Ccmr2Output = packed struct {
-            pub const Cc3s = enum(u2) {
-                output = 0b00, // CC3 channel is configured as output
-            };
-            pub const Oc3pe = enum(u1) {
-                disabled = 0, // Preload register on CCR3 disabled. New values written to CCR3 are taken into account immediately
-                enabled = 1, // Preload register on CCR3 enabled. Preload value is loaded into active register on each update event
-            };
-            pub const Oc3m = enum(u3) {
-                frozen = 0b000, // The comparison between the output compare register TIMx_CCRy and the counter TIMx_CNT has no effect on the outputs
-                active_on_match = 0b001, // Set channel to active level on match. OCyREF signal is forced high when the counter matches the capture/compare register
-                inactive_on_match = 0b010, // Set channel to inactive level on match. OCyREF signal is forced low when the counter matches the capture/compare register
-                toggle = 0b011, // OCyREF toggles when TIMx_CNT=TIMx_CCRy
-                force_inactive = 0b100, // OCyREF is forced low
-                force_active = 0b101, // OCyREF is forced high
-                pwm_mode1 = 0b110, // In upcounting, channel is active as long as TIMx_CNT<TIMx_CCRy else inactive. In downcounting, channel is inactive as long as TIMx_CNT>TIMx_CCRy else active
-                pwm_mode2 = 0b111, // Inversely to PwmMode1
-            };
-            pub const Cc4s = enum(u2) {
-                output = 0b00, // CC4 channel is configured as output
-            };
-            pub const Oc4pe = enum(u1) {
-                disabled = 0, // Preload register on CCR4 disabled. New values written to CCR4 are taken into account immediately
-                enabled = 1, // Preload register on CCR4 enabled. Preload value is loaded into active register on each update event
-            };
+            pub const Cc3s = tim1.ccmr2_output.Cc3s;
+            pub const Oc3pe = tim1.ccmr2_output.Oc3pe;
+            pub const Oc3m = tim1.ccmr2_output.Oc3m;
+            pub const Cc4s = tim1.ccmr2_output.Cc4s;
+            pub const Oc4pe = tim1.ccmr2_output.Oc4pe;
             cc3s: Cc3s, // Capture/Compare 3 selection (u2)
             oc3fe: u1, // Output compare 3 fast enable
             oc3pe: Oc3pe, // Output compare 3 preload enable (u1)
@@ -10826,19 +9287,11 @@ pub const registers = struct {
         };
         pub const ccmr2_output = mmio(base_address + 0x1c, 32, Ccmr2Output);
 
-        /// address: 0x4001041c
+        /// address: 0x4001041c, path: tim8.ccmr2_input
         /// capture/compare mode register 2 (input mode)
         pub const Ccmr2Input = packed struct {
-            pub const Cc3s = enum(u2) {
-                ti3 = 0b01, // CC3 channel is configured as input, IC3 is mapped on TI3
-                ti4 = 0b10, // CC3 channel is configured as input, IC3 is mapped on TI4
-                trc = 0b11, // CC3 channel is configured as input, IC3 is mapped on TRC
-            };
-            pub const Cc4s = enum(u2) {
-                ti4 = 0b01, // CC4 channel is configured as input, IC4 is mapped on TI4
-                ti3 = 0b10, // CC4 channel is configured as input, IC4 is mapped on TI3
-                trc = 0b11, // CC4 channel is configured as input, IC4 is mapped on TRC
-            };
+            pub const Cc3s = tim1.ccmr2_input.Cc3s;
+            pub const Cc4s = tim1.ccmr2_input.Cc4s;
             cc3s: Cc3s, // Capture/compare 3 selection (u2)
             ic3psc: u2, // Input capture 3 prescaler
             ic3f: u4, // Input capture 3 filter
@@ -10849,7 +9302,7 @@ pub const registers = struct {
         };
         pub const ccmr2_input = mmio(base_address + 0x1c, 32, Ccmr2Input);
 
-        /// address: 0x40010420
+        /// address: 0x40010420, path: tim8.ccer
         /// capture/compare enable register
         pub const Ccer = packed struct {
             cc1e: u1, // Capture/Compare 1 output enable
@@ -10870,19 +9323,19 @@ pub const registers = struct {
         };
         pub const ccer = mmio(base_address + 0x20, 32, Ccer);
 
-        /// address: 0x40010424
+        /// address: 0x40010424, path: tim8.cnt
         /// counter
         pub const cnt = mmioInt(base_address + 0x24, 32, u16);
 
-        /// address: 0x40010428
+        /// address: 0x40010428, path: tim8.psc
         /// prescaler
         pub const psc = mmioInt(base_address + 0x28, 32, u16);
 
-        /// address: 0x4001042c
+        /// address: 0x4001042c, path: tim8.arr
         /// auto-reload register
         pub const arr = mmioInt(base_address + 0x2c, 32, u16);
 
-        /// address: 0x40010434
+        /// address: 0x40010434, path: tim8.ccr1
         /// capture/compare register
         pub const Ccr1 = packed struct {
             ccr: u16, // Capture/Compare value
@@ -10890,7 +9343,7 @@ pub const registers = struct {
         };
         pub const ccr1 = mmio(base_address + 0x34, 32, Ccr1);
 
-        /// address: 0x40010438
+        /// address: 0x40010438, path: tim8.ccr2
         /// capture/compare register
         pub const Ccr2 = packed struct {
             ccr: u16, // Capture/Compare value
@@ -10898,7 +9351,7 @@ pub const registers = struct {
         };
         pub const ccr2 = mmio(base_address + 0x38, 32, Ccr2);
 
-        /// address: 0x4001043c
+        /// address: 0x4001043c, path: tim8.ccr3
         /// capture/compare register
         pub const Ccr3 = packed struct {
             ccr: u16, // Capture/Compare value
@@ -10906,7 +9359,7 @@ pub const registers = struct {
         };
         pub const ccr3 = mmio(base_address + 0x3c, 32, Ccr3);
 
-        /// address: 0x40010440
+        /// address: 0x40010440, path: tim8.ccr4
         /// capture/compare register
         pub const Ccr4 = packed struct {
             ccr: u16, // Capture/Compare value
@@ -10914,7 +9367,7 @@ pub const registers = struct {
         };
         pub const ccr4 = mmio(base_address + 0x40, 32, Ccr4);
 
-        /// address: 0x40010448
+        /// address: 0x40010448, path: tim8.dcr
         /// DMA control register
         pub const Dcr = packed struct {
             dba: u5, // DMA base address
@@ -10924,7 +9377,7 @@ pub const registers = struct {
         };
         pub const dcr = mmio(base_address + 0x48, 32, Dcr);
 
-        /// address: 0x4001044c
+        /// address: 0x4001044c, path: tim8.dmar
         /// DMA address for full transfer
         pub const Dmar = packed struct {
             dmab: u16, // DMA register for burst accesses
@@ -10932,7 +9385,7 @@ pub const registers = struct {
         };
         pub const dmar = mmio(base_address + 0x4c, 32, Dmar);
 
-        /// address: 0x40010430
+        /// address: 0x40010430, path: tim8.rcr
         /// repetition counter register
         pub const Rcr = packed struct {
             rep: u8, // Repetition counter value
@@ -10940,21 +9393,12 @@ pub const registers = struct {
         };
         pub const rcr = mmio(base_address + 0x30, 32, Rcr);
 
-        /// address: 0x40010444
+        /// address: 0x40010444, path: tim8.bdtr
         /// break and dead-time register
         pub const Bdtr = packed struct {
-            pub const Ossi = enum(u1) {
-                disabled = 0, // When inactive, OC/OCN outputs are disabled
-                idle_level = 1, // When inactive, OC/OCN outputs are forced to idle level
-            };
-            pub const Ossr = enum(u1) {
-                disabled = 0, // When inactive, OC/OCN outputs are disabled
-                idle_level = 1, // When inactive, OC/OCN outputs are enabled with their inactive level
-            };
-            pub const Moe = enum(u1) {
-                disabled_idle = 0, // OC/OCN are disabled or forced idle depending on OSSI
-                enabled = 1, // OC/OCN are enabled if CCxE/CCxNE are set
-            };
+            pub const Ossi = tim1.bdtr.Ossi;
+            pub const Ossr = tim1.bdtr.Ossr;
+            pub const Moe = tim1.bdtr.Moe;
             dtg: u8, // Dead-time generator setup
             lock: u2, // Lock configuration
             ossi: Ossi, // Off-state selection for Idle mode (u1)
@@ -10971,44 +9415,17 @@ pub const registers = struct {
     pub const tim4 = struct {
         pub const base_address = 0x40000800;
 
-        /// address: 0x40000800
+        /// address: 0x40000800, path: tim4.cr1
         /// control register 1
         pub const Cr1 = packed struct {
-            pub const Cen = enum(u1) {
-                disabled = 0, // Counter disabled
-                enabled = 1, // Counter enabled
-            };
-            pub const Udis = enum(u1) {
-                enabled = 0, // Update event enabled
-                disabled = 1, // Update event disabled
-            };
-            pub const Urs = enum(u1) {
-                any_event = 0, // Any of counter overflow/underflow, setting UG, or update through slave mode, generates an update interrupt or DMA request
-                counter_only = 1, // Only counter overflow/underflow generates an update interrupt or DMA request
-            };
-            pub const Opm = enum(u1) {
-                disabled = 0, // Counter is not stopped at update event
-                enabled = 1, // Counter stops counting at the next update event (clearing the CEN bit)
-            };
-            pub const Dir = enum(u1) {
-                up = 0, // Counter used as upcounter
-                down = 1, // Counter used as downcounter
-            };
-            pub const Cms = enum(u2) {
-                edge_aligned = 0b00, // The counter counts up or down depending on the direction bit
-                center_aligned1 = 0b01, // The counter counts up and down alternatively. Output compare interrupt flags are set only when the counter is counting down.
-                center_aligned2 = 0b10, // The counter counts up and down alternatively. Output compare interrupt flags are set only when the counter is counting up.
-                center_aligned3 = 0b11, // The counter counts up and down alternatively. Output compare interrupt flags are set both when the counter is counting up or down.
-            };
-            pub const Arpe = enum(u1) {
-                disabled = 0, // TIMx_APRR register is not buffered
-                enabled = 1, // TIMx_APRR register is buffered
-            };
-            pub const Ckd = enum(u2) {
-                div1 = 0b00, // t_DTS = t_CK_INT
-                div2 = 0b01, // t_DTS = 2 × t_CK_INT
-                div4 = 0b10, // t_DTS = 4 × t_CK_INT
-            };
+            pub const Cen = tim1.cr1.Cen;
+            pub const Udis = tim1.cr1.Udis;
+            pub const Urs = tim1.cr1.Urs;
+            pub const Opm = tim1.cr1.Opm;
+            pub const Dir = tim1.cr1.Dir;
+            pub const Cms = tim1.cr1.Cms;
+            pub const Arpe = tim1.cr1.Arpe;
+            pub const Ckd = tim1.cr1.Ckd;
             cen: Cen, // Counter enable (u1)
             udis: Udis, // Update disable (u1)
             urs: Urs, // Update request source (u1)
@@ -11021,27 +9438,12 @@ pub const registers = struct {
         };
         pub const cr1 = mmio(base_address + 0x0, 32, Cr1);
 
-        /// address: 0x40000804
+        /// address: 0x40000804, path: tim4.cr2
         /// control register 2
         pub const Cr2 = packed struct {
-            pub const Ccds = enum(u1) {
-                on_compare = 0, // CCx DMA request sent when CCx event occurs
-                on_update = 1, // CCx DMA request sent when update event occurs
-            };
-            pub const Mms = enum(u3) {
-                reset = 0b000, // The UG bit from the TIMx_EGR register is used as trigger output
-                enable = 0b001, // The counter enable signal, CNT_EN, is used as trigger output
-                update = 0b010, // The update event is selected as trigger output
-                compare_pulse = 0b011, // The trigger output send a positive pulse when the CC1IF flag it to be set, as soon as a capture or a compare match occurred
-                compare_oc1 = 0b100, // OC1REF signal is used as trigger output
-                compare_oc2 = 0b101, // OC2REF signal is used as trigger output
-                compare_oc3 = 0b110, // OC3REF signal is used as trigger output
-                compare_oc4 = 0b111, // OC4REF signal is used as trigger output
-            };
-            pub const Ti1s = enum(u1) {
-                normal = 0, // The TIMx_CH1 pin is connected to TI1 input
-                xor = 1, // The TIMx_CH1, CH2, CH3 pins are connected to TI1 input
-            };
+            pub const Ccds = tim1.cr2.Ccds;
+            pub const Mms = tim1.cr2.Mms;
+            pub const Ti1s = tim1.cr2.Ti1s;
             _reserved_0_2: u3,
             ccds: Ccds, // Capture/compare DMA selection (u1)
             mms: Mms, // Master mode selection (u3)
@@ -11050,64 +9452,16 @@ pub const registers = struct {
         };
         pub const cr2 = mmio(base_address + 0x4, 32, Cr2);
 
-        /// address: 0x40000808
+        /// address: 0x40000808, path: tim4.smcr
         /// slave mode control register
         pub const Smcr = packed struct {
-            pub const Sms = enum(u3) {
-                disabled = 0b000, // Slave mode disabled - if CEN = ‘1 then the prescaler is clocked directly by the internal clock.
-                encoder_mode_1 = 0b001, // Encoder mode 1 - Counter counts up/down on TI2FP1 edge depending on TI1FP2 level.
-                encoder_mode_2 = 0b010, // Encoder mode 2 - Counter counts up/down on TI1FP2 edge depending on TI2FP1 level.
-                encoder_mode_3 = 0b011, // Encoder mode 3 - Counter counts up/down on both TI1FP1 and TI2FP2 edges depending on the level of the other input.
-                reset_mode = 0b100, // Reset Mode - Rising edge of the selected trigger input (TRGI) reinitializes the counter and generates an update of the registers.
-                gated_mode = 0b101, // Gated Mode - The counter clock is enabled when the trigger input (TRGI) is high. The counter stops (but is not reset) as soon as the trigger becomes low. Both start and stop of the counter are controlled.
-                trigger_mode = 0b110, // Trigger Mode - The counter starts at a rising edge of the trigger TRGI (but it is not reset). Only the start of the counter is controlled.
-                ext_clock_mode = 0b111, // External Clock Mode 1 - Rising edges of the selected trigger (TRGI) clock the counter.
-            };
-            pub const Ts = enum(u3) {
-                itr0 = 0b000, // Internal Trigger 0 (ITR0)
-                itr1 = 0b001, // Internal Trigger 1 (ITR1)
-                itr2 = 0b010, // Internal Trigger 2 (ITR2)
-                ti1_f_ed = 0b100, // TI1 Edge Detector (TI1F_ED)
-                ti1_fp1 = 0b101, // Filtered Timer Input 1 (TI1FP1)
-                ti2_fp2 = 0b110, // Filtered Timer Input 2 (TI2FP2)
-                etrf = 0b111, // External Trigger input (ETRF)
-            };
-            pub const Msm = enum(u1) {
-                no_sync = 0, // No action
-                sync = 1, // The effect of an event on the trigger input (TRGI) is delayed to allow a perfect synchronization between the current timer and its slaves (through TRGO). It is useful if we want to synchronize several timers on a single external event.
-            };
-            pub const Etf = enum(u4) {
-                no_filter = 0b0000, // No filter, sampling is done at fDTS
-                fck_int_n2 = 0b0001, // fSAMPLING=fCK_INT, N=2
-                fck_int_n4 = 0b0010, // fSAMPLING=fCK_INT, N=4
-                fck_int_n8 = 0b0011, // fSAMPLING=fCK_INT, N=8
-                fdts_div2_n6 = 0b0100, // fSAMPLING=fDTS/2, N=6
-                fdts_div2_n8 = 0b0101, // fSAMPLING=fDTS/2, N=8
-                fdts_div4_n6 = 0b0110, // fSAMPLING=fDTS/4, N=6
-                fdts_div4_n8 = 0b0111, // fSAMPLING=fDTS/4, N=8
-                fdts_div8_n6 = 0b1000, // fSAMPLING=fDTS/8, N=6
-                fdts_div8_n8 = 0b1001, // fSAMPLING=fDTS/8, N=8
-                fdts_div16_n5 = 0b1010, // fSAMPLING=fDTS/16, N=5
-                fdts_div16_n6 = 0b1011, // fSAMPLING=fDTS/16, N=6
-                fdts_div16_n8 = 0b1100, // fSAMPLING=fDTS/16, N=8
-                fdts_div32_n5 = 0b1101, // fSAMPLING=fDTS/32, N=5
-                fdts_div32_n6 = 0b1110, // fSAMPLING=fDTS/32, N=6
-                fdts_div32_n8 = 0b1111, // fSAMPLING=fDTS/32, N=8
-            };
-            pub const Etps = enum(u2) {
-                div1 = 0b00, // Prescaler OFF
-                div2 = 0b01, // ETRP frequency divided by 2
-                div4 = 0b10, // ETRP frequency divided by 4
-                div8 = 0b11, // ETRP frequency divided by 8
-            };
-            pub const Ece = enum(u1) {
-                disabled = 0, // External clock mode 2 disabled
-                enabled = 1, // External clock mode 2 enabled. The counter is clocked by any active edge on the ETRF signal.
-            };
-            pub const Etp = enum(u1) {
-                not_inverted = 0, // ETR is noninverted, active at high level or rising edge
-                inverted = 1, // ETR is inverted, active at low level or falling edge
-            };
+            pub const Sms = tim1.smcr.Sms;
+            pub const Ts = tim1.smcr.Ts;
+            pub const Msm = tim1.smcr.Msm;
+            pub const Etf = tim1.smcr.Etf;
+            pub const Etps = tim1.smcr.Etps;
+            pub const Ece = tim1.smcr.Ece;
+            pub const Etp = tim1.smcr.Etp;
             sms: Sms, // Slave mode selection (u3)
             _reserved_3_3: u1,
             ts: Ts, // Trigger selection (u3)
@@ -11120,33 +9474,15 @@ pub const registers = struct {
         };
         pub const smcr = mmio(base_address + 0x8, 32, Smcr);
 
-        /// address: 0x4000080c
+        /// address: 0x4000080c, path: tim4.dier
         /// DMA/Interrupt enable register
         pub const Dier = packed struct {
-            pub const Uie = enum(u1) {
-                disabled = 0, // Update interrupt disabled
-                enabled = 1, // Update interrupt enabled
-            };
-            pub const Cc1ie = enum(u1) {
-                disabled = 0, // CCx interrupt disabled
-                enabled = 1, // CCx interrupt enabled
-            };
-            pub const Tie = enum(u1) {
-                disabled = 0, // Trigger interrupt disabled
-                enabled = 1, // Trigger interrupt enabled
-            };
-            pub const Ude = enum(u1) {
-                disabled = 0, // Update DMA request disabled
-                enabled = 1, // Update DMA request enabled
-            };
-            pub const Cc1de = enum(u1) {
-                disabled = 0, // CCx DMA request disabled
-                enabled = 1, // CCx DMA request enabled
-            };
-            pub const Tde = enum(u1) {
-                disabled = 0, // Trigger DMA request disabled
-                enabled = 1, // Trigger DMA request enabled
-            };
+            pub const Uie = tim1.dier.Uie;
+            pub const Cc1ie = tim1.dier.Cc1ie;
+            pub const Tie = tim1.dier.Tie;
+            pub const Ude = tim1.dier.Ude;
+            pub const Cc1de = tim1.dier.Cc1de;
+            pub const Tde = tim1.dier.Tde;
             uie: Uie, // Update interrupt enable (u1)
             cc1ie: Cc1ie, // Capture/Compare 1 interrupt enable (u1)
             cc2ie: Cc1ie, // Capture/Compare 2 interrupt enable (u1)
@@ -11166,26 +9502,13 @@ pub const registers = struct {
         };
         pub const dier = mmio(base_address + 0xc, 32, Dier);
 
-        /// address: 0x40000810
+        /// address: 0x40000810, path: tim4.sr
         /// status register
         pub const Sr = packed struct {
-            pub const Uif = enum(u1) {
-                clear = 0, // No update occurred
-                update_pending = 1, // Update interrupt pending.
-            };
-            pub const Cc1if = enum(u1) {
-                match = 1, // If CC1 is an output: The content of the counter TIMx_CNT matches the content of the TIMx_CCR1 register. If CC1 is an input: The counter value has been captured in TIMx_CCR1 register.
-                clear = 0, // Clear flag
-            };
-            pub const Tif = enum(u1) {
-                no_trigger = 0, // No trigger event occurred
-                trigger = 1, // Trigger interrupt pending
-                pub const clear = @intToEnum(Tif, 0); // Clear flag
-            };
-            pub const Cc1of = enum(u1) {
-                overcapture = 1, // The counter value has been captured in TIMx_CCRx register while CCxIF flag was already set
-                clear = 0, // Clear flag
-            };
+            pub const Uif = tim1.sr.Uif;
+            pub const Cc1if = tim1.sr.Cc1if;
+            pub const Tif = tim1.sr.Tif;
+            pub const Cc1of = tim1.sr.Cc1of;
             uif: Uif, // Update interrupt flag (u1)
             cc1if: Cc1if, // Capture/compare 1 interrupt flag (u1)
             cc2if: Cc1if, // Capture/Compare 2 interrupt flag (u1)
@@ -11202,18 +9525,12 @@ pub const registers = struct {
         };
         pub const sr = mmio(base_address + 0x10, 32, Sr);
 
-        /// address: 0x40000814
+        /// address: 0x40000814, path: tim4.egr
         /// event generation register
         pub const Egr = packed struct {
-            pub const Ug = enum(u1) {
-                update = 1, // Re-initializes the timer counter and generates an update of the registers.
-            };
-            pub const Cc1gw = enum(u1) {
-                trigger = 1, // If CC1 is an output: CC1IF flag is set, Corresponding interrupt or DMA request is sent if enabled. If CC1 is an input: The current value of the counter is captured in TIMx_CCR1 register.
-            };
-            pub const Tgw = enum(u1) {
-                trigger = 1, // The TIF flag is set in TIMx_SR register. Related interrupt or DMA transfer can occur if enabled.
-            };
+            pub const Ug = tim1.egr.Ug;
+            pub const Cc1gw = tim1.egr.Cc1gw;
+            pub const Tgw = tim1.egr.Tgw;
             ug: Ug, // Update generation (u1)
             cc1g: Cc1gw, // Capture/compare 1 generation (u1)
             cc2g: Cc1gw, // Capture/compare 2 generation (u1)
@@ -11225,33 +9542,14 @@ pub const registers = struct {
         };
         pub const egr = mmio(base_address + 0x14, 32, Egr);
 
-        /// address: 0x40000818
+        /// address: 0x40000818, path: tim4.ccmr1_output
         /// capture/compare mode register 1 (output mode)
         pub const Ccmr1Output = packed struct {
-            pub const Cc1s = enum(u2) {
-                output = 0b00, // CC1 channel is configured as output
-            };
-            pub const Oc1pe = enum(u1) {
-                disabled = 0, // Preload register on CCR1 disabled. New values written to CCR1 are taken into account immediately
-                enabled = 1, // Preload register on CCR1 enabled. Preload value is loaded into active register on each update event
-            };
-            pub const Oc1m = enum(u3) {
-                frozen = 0b000, // The comparison between the output compare register TIMx_CCRy and the counter TIMx_CNT has no effect on the outputs
-                active_on_match = 0b001, // Set channel to active level on match. OCyREF signal is forced high when the counter matches the capture/compare register
-                inactive_on_match = 0b010, // Set channel to inactive level on match. OCyREF signal is forced low when the counter matches the capture/compare register
-                toggle = 0b011, // OCyREF toggles when TIMx_CNT=TIMx_CCRy
-                force_inactive = 0b100, // OCyREF is forced low
-                force_active = 0b101, // OCyREF is forced high
-                pwm_mode1 = 0b110, // In upcounting, channel is active as long as TIMx_CNT<TIMx_CCRy else inactive. In downcounting, channel is inactive as long as TIMx_CNT>TIMx_CCRy else active
-                pwm_mode2 = 0b111, // Inversely to PwmMode1
-            };
-            pub const Cc2s = enum(u2) {
-                output = 0b00, // CC2 channel is configured as output
-            };
-            pub const Oc2pe = enum(u1) {
-                disabled = 0, // Preload register on CCR2 disabled. New values written to CCR2 are taken into account immediately
-                enabled = 1, // Preload register on CCR2 enabled. Preload value is loaded into active register on each update event
-            };
+            pub const Cc1s = tim1.ccmr1_output.Cc1s;
+            pub const Oc1pe = tim1.ccmr1_output.Oc1pe;
+            pub const Oc1m = tim1.ccmr1_output.Oc1m;
+            pub const Cc2s = tim1.ccmr1_output.Cc2s;
+            pub const Oc2pe = tim1.ccmr1_output.Oc2pe;
             cc1s: Cc1s, // CC1S (u2)
             oc1fe: u1, // OC1FE
             oc1pe: Oc1pe, // OC1PE (u1)
@@ -11266,37 +9564,12 @@ pub const registers = struct {
         };
         pub const ccmr1_output = mmio(base_address + 0x18, 32, Ccmr1Output);
 
-        /// address: 0x40000818
+        /// address: 0x40000818, path: tim4.ccmr1_input
         /// capture/compare mode register 1 (input mode)
         pub const Ccmr1Input = packed struct {
-            pub const Cc1s = enum(u2) {
-                ti1 = 0b01, // CC1 channel is configured as input, IC1 is mapped on TI1
-                ti2 = 0b10, // CC1 channel is configured as input, IC1 is mapped on TI2
-                trc = 0b11, // CC1 channel is configured as input, IC1 is mapped on TRC
-            };
-            pub const Ic1f = enum(u4) {
-                no_filter = 0b0000, // No filter, sampling is done at fDTS
-                fck_int_n2 = 0b0001, // fSAMPLING=fCK_INT, N=2
-                fck_int_n4 = 0b0010, // fSAMPLING=fCK_INT, N=4
-                fck_int_n8 = 0b0011, // fSAMPLING=fCK_INT, N=8
-                fdts_div2_n6 = 0b0100, // fSAMPLING=fDTS/2, N=6
-                fdts_div2_n8 = 0b0101, // fSAMPLING=fDTS/2, N=8
-                fdts_div4_n6 = 0b0110, // fSAMPLING=fDTS/4, N=6
-                fdts_div4_n8 = 0b0111, // fSAMPLING=fDTS/4, N=8
-                fdts_div8_n6 = 0b1000, // fSAMPLING=fDTS/8, N=6
-                fdts_div8_n8 = 0b1001, // fSAMPLING=fDTS/8, N=8
-                fdts_div16_n5 = 0b1010, // fSAMPLING=fDTS/16, N=5
-                fdts_div16_n6 = 0b1011, // fSAMPLING=fDTS/16, N=6
-                fdts_div16_n8 = 0b1100, // fSAMPLING=fDTS/16, N=8
-                fdts_div32_n5 = 0b1101, // fSAMPLING=fDTS/32, N=5
-                fdts_div32_n6 = 0b1110, // fSAMPLING=fDTS/32, N=6
-                fdts_div32_n8 = 0b1111, // fSAMPLING=fDTS/32, N=8
-            };
-            pub const Cc2s = enum(u2) {
-                ti2 = 0b01, // CC2 channel is configured as input, IC2 is mapped on TI2
-                ti1 = 0b10, // CC2 channel is configured as input, IC2 is mapped on TI1
-                trc = 0b11, // CC2 channel is configured as input, IC2 is mapped on TRC
-            };
+            pub const Cc1s = tim1.ccmr1_input.Cc1s;
+            pub const Ic1f = tim1.ccmr1_input.Ic1f;
+            pub const Cc2s = tim1.ccmr1_input.Cc2s;
             cc1s: Cc1s, // Capture/Compare 1 selection (u2)
             ic1psc: u2, // Input capture 1 prescaler
             ic1f: Ic1f, // Input capture 1 filter (u4)
@@ -11307,33 +9580,14 @@ pub const registers = struct {
         };
         pub const ccmr1_input = mmio(base_address + 0x18, 32, Ccmr1Input);
 
-        /// address: 0x4000081c
+        /// address: 0x4000081c, path: tim4.ccmr2_output
         /// capture/compare mode register 2 (output mode)
         pub const Ccmr2Output = packed struct {
-            pub const Cc3s = enum(u2) {
-                output = 0b00, // CC3 channel is configured as output
-            };
-            pub const Oc3pe = enum(u1) {
-                disabled = 0, // Preload register on CCR3 disabled. New values written to CCR3 are taken into account immediately
-                enabled = 1, // Preload register on CCR3 enabled. Preload value is loaded into active register on each update event
-            };
-            pub const Oc3m = enum(u3) {
-                frozen = 0b000, // The comparison between the output compare register TIMx_CCRy and the counter TIMx_CNT has no effect on the outputs
-                active_on_match = 0b001, // Set channel to active level on match. OCyREF signal is forced high when the counter matches the capture/compare register
-                inactive_on_match = 0b010, // Set channel to inactive level on match. OCyREF signal is forced low when the counter matches the capture/compare register
-                toggle = 0b011, // OCyREF toggles when TIMx_CNT=TIMx_CCRy
-                force_inactive = 0b100, // OCyREF is forced low
-                force_active = 0b101, // OCyREF is forced high
-                pwm_mode1 = 0b110, // In upcounting, channel is active as long as TIMx_CNT<TIMx_CCRy else inactive. In downcounting, channel is inactive as long as TIMx_CNT>TIMx_CCRy else active
-                pwm_mode2 = 0b111, // Inversely to PwmMode1
-            };
-            pub const Cc4s = enum(u2) {
-                output = 0b00, // CC4 channel is configured as output
-            };
-            pub const Oc4pe = enum(u1) {
-                disabled = 0, // Preload register on CCR4 disabled. New values written to CCR4 are taken into account immediately
-                enabled = 1, // Preload register on CCR4 enabled. Preload value is loaded into active register on each update event
-            };
+            pub const Cc3s = tim1.ccmr2_output.Cc3s;
+            pub const Oc3pe = tim1.ccmr2_output.Oc3pe;
+            pub const Oc3m = tim1.ccmr2_output.Oc3m;
+            pub const Cc4s = tim1.ccmr2_output.Cc4s;
+            pub const Oc4pe = tim1.ccmr2_output.Oc4pe;
             cc3s: Cc3s, // CC3S (u2)
             oc3fe: u1, // OC3FE
             oc3pe: Oc3pe, // OC3PE (u1)
@@ -11348,19 +9602,11 @@ pub const registers = struct {
         };
         pub const ccmr2_output = mmio(base_address + 0x1c, 32, Ccmr2Output);
 
-        /// address: 0x4000081c
+        /// address: 0x4000081c, path: tim4.ccmr2_input
         /// capture/compare mode register 2 (input mode)
         pub const Ccmr2Input = packed struct {
-            pub const Cc3s = enum(u2) {
-                ti3 = 0b01, // CC3 channel is configured as input, IC3 is mapped on TI3
-                ti4 = 0b10, // CC3 channel is configured as input, IC3 is mapped on TI4
-                trc = 0b11, // CC3 channel is configured as input, IC3 is mapped on TRC
-            };
-            pub const Cc4s = enum(u2) {
-                ti4 = 0b01, // CC4 channel is configured as input, IC4 is mapped on TI4
-                ti3 = 0b10, // CC4 channel is configured as input, IC4 is mapped on TI3
-                trc = 0b11, // CC4 channel is configured as input, IC4 is mapped on TRC
-            };
+            pub const Cc3s = tim1.ccmr2_input.Cc3s;
+            pub const Cc4s = tim1.ccmr2_input.Cc4s;
             cc3s: Cc3s, // Capture/compare 3 selection (u2)
             ic3psc: u2, // Input capture 3 prescaler
             ic3f: u4, // Input capture 3 filter
@@ -11371,7 +9617,7 @@ pub const registers = struct {
         };
         pub const ccmr2_input = mmio(base_address + 0x1c, 32, Ccmr2Input);
 
-        /// address: 0x40000820
+        /// address: 0x40000820, path: tim4.ccer
         /// capture/compare enable register
         pub const Ccer = packed struct {
             cc1e: u1, // Capture/Compare 1 output enable
@@ -11394,19 +9640,19 @@ pub const registers = struct {
         };
         pub const ccer = mmio(base_address + 0x20, 32, Ccer);
 
-        /// address: 0x40000824
+        /// address: 0x40000824, path: tim4.cnt
         /// counter
         pub const cnt = mmioInt(base_address + 0x24, 32, u16);
 
-        /// address: 0x40000828
+        /// address: 0x40000828, path: tim4.psc
         /// prescaler
         pub const psc = mmioInt(base_address + 0x28, 32, u16);
 
-        /// address: 0x4000082c
+        /// address: 0x4000082c, path: tim4.arr
         /// auto-reload register
         pub const arr = mmioInt(base_address + 0x2c, 32, u16);
 
-        /// address: 0x40000834
+        /// address: 0x40000834, path: tim4.ccr1
         /// capture/compare register
         pub const Ccr1 = packed struct {
             ccr: u16, // Capture/Compare value
@@ -11414,7 +9660,7 @@ pub const registers = struct {
         };
         pub const ccr1 = mmio(base_address + 0x34, 32, Ccr1);
 
-        /// address: 0x40000838
+        /// address: 0x40000838, path: tim4.ccr2
         /// capture/compare register
         pub const Ccr2 = packed struct {
             ccr: u16, // Capture/Compare value
@@ -11422,7 +9668,7 @@ pub const registers = struct {
         };
         pub const ccr2 = mmio(base_address + 0x38, 32, Ccr2);
 
-        /// address: 0x4000083c
+        /// address: 0x4000083c, path: tim4.ccr3
         /// capture/compare register
         pub const Ccr3 = packed struct {
             ccr: u16, // Capture/Compare value
@@ -11430,7 +9676,7 @@ pub const registers = struct {
         };
         pub const ccr3 = mmio(base_address + 0x3c, 32, Ccr3);
 
-        /// address: 0x40000840
+        /// address: 0x40000840, path: tim4.ccr4
         /// capture/compare register
         pub const Ccr4 = packed struct {
             ccr: u16, // Capture/Compare value
@@ -11438,7 +9684,7 @@ pub const registers = struct {
         };
         pub const ccr4 = mmio(base_address + 0x40, 32, Ccr4);
 
-        /// address: 0x40000848
+        /// address: 0x40000848, path: tim4.dcr
         /// DMA control register
         pub const Dcr = packed struct {
             dba: u5, // DMA base address
@@ -11448,7 +9694,7 @@ pub const registers = struct {
         };
         pub const dcr = mmio(base_address + 0x48, 32, Dcr);
 
-        /// address: 0x4000084c
+        /// address: 0x4000084c, path: tim4.dmar
         /// DMA address for full transfer
         pub const Dmar = packed struct {
             dmab: u16, // DMA register for burst accesses
@@ -11460,7 +9706,7 @@ pub const registers = struct {
     pub const usart2 = struct {
         pub const base_address = 0x40004400;
 
-        /// address: 0x40004400
+        /// address: 0x40004400, path: usart2.sr
         /// Status register
         pub const Sr = packed struct {
             pe: u1, // Parity error
@@ -11477,11 +9723,11 @@ pub const registers = struct {
         };
         pub const sr = mmio(base_address + 0x0, 32, Sr);
 
-        /// address: 0x40004404
+        /// address: 0x40004404, path: usart2.dr
         /// Data register
         pub const dr = mmioInt(base_address + 0x4, 32, u9);
 
-        /// address: 0x40004408
+        /// address: 0x40004408, path: usart2.brr
         /// Baud rate register
         pub const Brr = packed struct {
             div_fraction: u4, // fraction of USARTDIV
@@ -11490,69 +9736,24 @@ pub const registers = struct {
         };
         pub const brr = mmio(base_address + 0x8, 32, Brr);
 
-        /// address: 0x4000440c
+        /// address: 0x4000440c, path: usart2.cr1
         /// Control register 1
         pub const Cr1 = packed struct {
-            pub const Sbk = enum(u1) {
-                no_break = 0, // No break character is transmitted
-                @"break" = 1, // Break character transmitted
-            };
-            pub const Rwu = enum(u1) {
-                active = 0, // Receiver in active mode
-                mute = 1, // Receiver in mute mode
-            };
-            pub const Re = enum(u1) {
-                disabled = 0, // Receiver disabled
-                enabled = 1, // Receiver enabled
-            };
-            pub const Te = enum(u1) {
-                disabled = 0, // Transmitter disabled
-                enabled = 1, // Transmitter enabled
-            };
-            pub const Idleie = enum(u1) {
-                disabled = 0, // IDLE interrupt disabled
-                enabled = 1, // IDLE interrupt enabled
-            };
-            pub const Rxneie = enum(u1) {
-                disabled = 0, // RXNE interrupt disabled
-                enabled = 1, // RXNE interrupt enabled
-            };
-            pub const Tcie = enum(u1) {
-                disabled = 0, // TC interrupt disabled
-                enabled = 1, // TC interrupt enabled
-            };
-            pub const Txeie = enum(u1) {
-                disabled = 0, // TXE interrupt disabled
-                enabled = 1, // TXE interrupt enabled
-            };
-            pub const Peie = enum(u1) {
-                disabled = 0, // PE interrupt disabled
-                enabled = 1, // PE interrupt enabled
-            };
-            pub const Ps = enum(u1) {
-                even = 0, // Even parity
-                odd = 1, // Odd parity
-            };
-            pub const Pce = enum(u1) {
-                disabled = 0, // Parity control disabled
-                enabled = 1, // Parity control enabled
-            };
-            pub const Wake = enum(u1) {
-                idle_line = 0, // USART wakeup on idle line
-                address_mark = 1, // USART wakeup on address mark
-            };
-            pub const M = enum(u1) {
-                m8 = 0, // 8 data bits
-                m9 = 1, // 9 data bits
-            };
-            pub const Ue = enum(u1) {
-                disabled = 0, // USART prescaler and outputs disabled
-                enabled = 1, // USART enabled
-            };
-            pub const Over8 = enum(u1) {
-                oversample16 = 0, // Oversampling by 16
-                oversample8 = 1, // Oversampling by 8
-            };
+            pub const Sbk = usart1.cr1.Sbk;
+            pub const Rwu = usart1.cr1.Rwu;
+            pub const Re = usart1.cr1.Re;
+            pub const Te = usart1.cr1.Te;
+            pub const Idleie = usart1.cr1.Idleie;
+            pub const Rxneie = usart1.cr1.Rxneie;
+            pub const Tcie = usart1.cr1.Tcie;
+            pub const Txeie = usart1.cr1.Txeie;
+            pub const Peie = usart1.cr1.Peie;
+            pub const Ps = usart1.cr1.Ps;
+            pub const Pce = usart1.cr1.Pce;
+            pub const Wake = usart1.cr1.Wake;
+            pub const M = usart1.cr1.M;
+            pub const Ue = usart1.cr1.Ue;
+            pub const Over8 = usart1.cr1.Over8;
             sbk: Sbk, // Send break (u1)
             rwu: Rwu, // Receiver wakeup (u1)
             re: Re, // Receiver enable (u1)
@@ -11573,39 +9774,16 @@ pub const registers = struct {
         };
         pub const cr1 = mmio(base_address + 0xc, 32, Cr1);
 
-        /// address: 0x40004410
+        /// address: 0x40004410, path: usart2.cr2
         /// Control register 2
         pub const Cr2 = packed struct {
-            pub const Lbdl = enum(u1) {
-                lbdl10 = 0, // 10-bit break detection
-                lbdl11 = 1, // 11-bit break detection
-            };
-            pub const Lbdie = enum(u1) {
-                disabled = 0, // LIN break detection interrupt disabled
-                enabled = 1, // LIN break detection interrupt enabled
-            };
-            pub const Cpha = enum(u1) {
-                first = 0, // The first clock transition is the first data capture edge
-                second = 1, // The second clock transition is the first data capture edge
-            };
-            pub const Cpol = enum(u1) {
-                low = 0, // Steady low value on CK pin outside transmission window
-                high = 1, // Steady high value on CK pin outside transmission window
-            };
-            pub const Clken = enum(u1) {
-                disabled = 0, // CK pin disabled
-                enabled = 1, // CK pin enabled
-            };
-            pub const Stop = enum(u2) {
-                stop1 = 0b00, // 1 stop bit
-                stop0p5 = 0b01, // 0.5 stop bits
-                stop2 = 0b10, // 2 stop bits
-                stop1p5 = 0b11, // 1.5 stop bits
-            };
-            pub const Linen = enum(u1) {
-                disabled = 0, // LIN mode disabled
-                enabled = 1, // LIN mode enabled
-            };
+            pub const Lbdl = usart1.cr2.Lbdl;
+            pub const Lbdie = usart1.cr2.Lbdie;
+            pub const Cpha = usart1.cr2.Cpha;
+            pub const Cpol = usart1.cr2.Cpol;
+            pub const Clken = usart1.cr2.Clken;
+            pub const Stop = usart1.cr2.Stop;
+            pub const Linen = usart1.cr2.Linen;
             add: u4, // Address of the USART node
             _reserved_4_4: u1,
             lbdl: Lbdl, // lin break detection length (u1)
@@ -11621,57 +9799,21 @@ pub const registers = struct {
         };
         pub const cr2 = mmio(base_address + 0x10, 32, Cr2);
 
-        /// address: 0x40004414
+        /// address: 0x40004414, path: usart2.cr3
         /// Control register 3
         pub const Cr3 = packed struct {
-            pub const Eie = enum(u1) {
-                disabled = 0, // Error interrupt disabled
-                enabled = 1, // Error interrupt enabled
-            };
-            pub const Iren = enum(u1) {
-                disabled = 0, // IrDA disabled
-                enabled = 1, // IrDA enabled
-            };
-            pub const Irlp = enum(u1) {
-                normal = 0, // Normal mode
-                low_power = 1, // Low-power mode
-            };
-            pub const Hdsel = enum(u1) {
-                full_duplex = 0, // Half duplex mode is not selected
-                half_duplex = 1, // Half duplex mode is selected
-            };
-            pub const Nack = enum(u1) {
-                disabled = 0, // NACK transmission in case of parity error is disabled
-                enabled = 1, // NACK transmission during parity error is enabled
-            };
-            pub const Scen = enum(u1) {
-                disabled = 0, // Smartcard mode disabled
-                enabled = 1, // Smartcard mode enabled
-            };
-            pub const Dmar = enum(u1) {
-                disabled = 0, // DMA mode is disabled for reception
-                enabled = 1, // DMA mode is enabled for reception
-            };
-            pub const Dmat = enum(u1) {
-                disabled = 0, // DMA mode is disabled for transmission
-                enabled = 1, // DMA mode is enabled for transmission
-            };
-            pub const Rtse = enum(u1) {
-                disabled = 0, // RTS hardware flow control disabled
-                enabled = 1, // RTS hardware flow control enabled
-            };
-            pub const Ctse = enum(u1) {
-                disabled = 0, // CTS hardware flow control disabled
-                enabled = 1, // CTS hardware flow control enabled
-            };
-            pub const Ctsie = enum(u1) {
-                disabled = 0, // CTS interrupt disabled
-                enabled = 1, // CTS interrupt enabled
-            };
-            pub const Onebit = enum(u1) {
-                sample3 = 0, // Three sample bit method
-                sample1 = 1, // One sample bit method
-            };
+            pub const Eie = usart1.cr3.Eie;
+            pub const Iren = usart1.cr3.Iren;
+            pub const Irlp = usart1.cr3.Irlp;
+            pub const Hdsel = usart1.cr3.Hdsel;
+            pub const Nack = usart1.cr3.Nack;
+            pub const Scen = usart1.cr3.Scen;
+            pub const Dmar = usart1.cr3.Dmar;
+            pub const Dmat = usart1.cr3.Dmat;
+            pub const Rtse = usart1.cr3.Rtse;
+            pub const Ctse = usart1.cr3.Ctse;
+            pub const Ctsie = usart1.cr3.Ctsie;
+            pub const Onebit = usart1.cr3.Onebit;
             eie: Eie, // Error interrupt enable (u1)
             iren: Iren, // IrDA mode enable (u1)
             irlp: Irlp, // IrDA low-power (u1)
@@ -11688,7 +9830,7 @@ pub const registers = struct {
         };
         pub const cr3 = mmio(base_address + 0x14, 32, Cr3);
 
-        /// address: 0x40004418
+        /// address: 0x40004418, path: usart2.gtpr
         /// Guard time and prescaler register
         pub const Gtpr = packed struct {
             psc: u8, // Prescaler value
@@ -11701,7 +9843,7 @@ pub const registers = struct {
     pub const usart6 = struct {
         pub const base_address = 0x40011400;
 
-        /// address: 0x40011400
+        /// address: 0x40011400, path: usart6.sr
         /// Status register
         pub const Sr = packed struct {
             pe: u1, // Parity error
@@ -11718,11 +9860,11 @@ pub const registers = struct {
         };
         pub const sr = mmio(base_address + 0x0, 32, Sr);
 
-        /// address: 0x40011404
+        /// address: 0x40011404, path: usart6.dr
         /// Data register
         pub const dr = mmioInt(base_address + 0x4, 32, u9);
 
-        /// address: 0x40011408
+        /// address: 0x40011408, path: usart6.brr
         /// Baud rate register
         pub const Brr = packed struct {
             div_fraction: u4, // fraction of USARTDIV
@@ -11731,69 +9873,24 @@ pub const registers = struct {
         };
         pub const brr = mmio(base_address + 0x8, 32, Brr);
 
-        /// address: 0x4001140c
+        /// address: 0x4001140c, path: usart6.cr1
         /// Control register 1
         pub const Cr1 = packed struct {
-            pub const Sbk = enum(u1) {
-                no_break = 0, // No break character is transmitted
-                @"break" = 1, // Break character transmitted
-            };
-            pub const Rwu = enum(u1) {
-                active = 0, // Receiver in active mode
-                mute = 1, // Receiver in mute mode
-            };
-            pub const Re = enum(u1) {
-                disabled = 0, // Receiver disabled
-                enabled = 1, // Receiver enabled
-            };
-            pub const Te = enum(u1) {
-                disabled = 0, // Transmitter disabled
-                enabled = 1, // Transmitter enabled
-            };
-            pub const Idleie = enum(u1) {
-                disabled = 0, // IDLE interrupt disabled
-                enabled = 1, // IDLE interrupt enabled
-            };
-            pub const Rxneie = enum(u1) {
-                disabled = 0, // RXNE interrupt disabled
-                enabled = 1, // RXNE interrupt enabled
-            };
-            pub const Tcie = enum(u1) {
-                disabled = 0, // TC interrupt disabled
-                enabled = 1, // TC interrupt enabled
-            };
-            pub const Txeie = enum(u1) {
-                disabled = 0, // TXE interrupt disabled
-                enabled = 1, // TXE interrupt enabled
-            };
-            pub const Peie = enum(u1) {
-                disabled = 0, // PE interrupt disabled
-                enabled = 1, // PE interrupt enabled
-            };
-            pub const Ps = enum(u1) {
-                even = 0, // Even parity
-                odd = 1, // Odd parity
-            };
-            pub const Pce = enum(u1) {
-                disabled = 0, // Parity control disabled
-                enabled = 1, // Parity control enabled
-            };
-            pub const Wake = enum(u1) {
-                idle_line = 0, // USART wakeup on idle line
-                address_mark = 1, // USART wakeup on address mark
-            };
-            pub const M = enum(u1) {
-                m8 = 0, // 8 data bits
-                m9 = 1, // 9 data bits
-            };
-            pub const Ue = enum(u1) {
-                disabled = 0, // USART prescaler and outputs disabled
-                enabled = 1, // USART enabled
-            };
-            pub const Over8 = enum(u1) {
-                oversample16 = 0, // Oversampling by 16
-                oversample8 = 1, // Oversampling by 8
-            };
+            pub const Sbk = usart1.cr1.Sbk;
+            pub const Rwu = usart1.cr1.Rwu;
+            pub const Re = usart1.cr1.Re;
+            pub const Te = usart1.cr1.Te;
+            pub const Idleie = usart1.cr1.Idleie;
+            pub const Rxneie = usart1.cr1.Rxneie;
+            pub const Tcie = usart1.cr1.Tcie;
+            pub const Txeie = usart1.cr1.Txeie;
+            pub const Peie = usart1.cr1.Peie;
+            pub const Ps = usart1.cr1.Ps;
+            pub const Pce = usart1.cr1.Pce;
+            pub const Wake = usart1.cr1.Wake;
+            pub const M = usart1.cr1.M;
+            pub const Ue = usart1.cr1.Ue;
+            pub const Over8 = usart1.cr1.Over8;
             sbk: Sbk, // Send break (u1)
             rwu: Rwu, // Receiver wakeup (u1)
             re: Re, // Receiver enable (u1)
@@ -11814,39 +9911,16 @@ pub const registers = struct {
         };
         pub const cr1 = mmio(base_address + 0xc, 32, Cr1);
 
-        /// address: 0x40011410
+        /// address: 0x40011410, path: usart6.cr2
         /// Control register 2
         pub const Cr2 = packed struct {
-            pub const Lbdl = enum(u1) {
-                lbdl10 = 0, // 10-bit break detection
-                lbdl11 = 1, // 11-bit break detection
-            };
-            pub const Lbdie = enum(u1) {
-                disabled = 0, // LIN break detection interrupt disabled
-                enabled = 1, // LIN break detection interrupt enabled
-            };
-            pub const Cpha = enum(u1) {
-                first = 0, // The first clock transition is the first data capture edge
-                second = 1, // The second clock transition is the first data capture edge
-            };
-            pub const Cpol = enum(u1) {
-                low = 0, // Steady low value on CK pin outside transmission window
-                high = 1, // Steady high value on CK pin outside transmission window
-            };
-            pub const Clken = enum(u1) {
-                disabled = 0, // CK pin disabled
-                enabled = 1, // CK pin enabled
-            };
-            pub const Stop = enum(u2) {
-                stop1 = 0b00, // 1 stop bit
-                stop0p5 = 0b01, // 0.5 stop bits
-                stop2 = 0b10, // 2 stop bits
-                stop1p5 = 0b11, // 1.5 stop bits
-            };
-            pub const Linen = enum(u1) {
-                disabled = 0, // LIN mode disabled
-                enabled = 1, // LIN mode enabled
-            };
+            pub const Lbdl = usart1.cr2.Lbdl;
+            pub const Lbdie = usart1.cr2.Lbdie;
+            pub const Cpha = usart1.cr2.Cpha;
+            pub const Cpol = usart1.cr2.Cpol;
+            pub const Clken = usart1.cr2.Clken;
+            pub const Stop = usart1.cr2.Stop;
+            pub const Linen = usart1.cr2.Linen;
             add: u4, // Address of the USART node
             _reserved_4_4: u1,
             lbdl: Lbdl, // lin break detection length (u1)
@@ -11862,57 +9936,21 @@ pub const registers = struct {
         };
         pub const cr2 = mmio(base_address + 0x10, 32, Cr2);
 
-        /// address: 0x40011414
+        /// address: 0x40011414, path: usart6.cr3
         /// Control register 3
         pub const Cr3 = packed struct {
-            pub const Eie = enum(u1) {
-                disabled = 0, // Error interrupt disabled
-                enabled = 1, // Error interrupt enabled
-            };
-            pub const Iren = enum(u1) {
-                disabled = 0, // IrDA disabled
-                enabled = 1, // IrDA enabled
-            };
-            pub const Irlp = enum(u1) {
-                normal = 0, // Normal mode
-                low_power = 1, // Low-power mode
-            };
-            pub const Hdsel = enum(u1) {
-                full_duplex = 0, // Half duplex mode is not selected
-                half_duplex = 1, // Half duplex mode is selected
-            };
-            pub const Nack = enum(u1) {
-                disabled = 0, // NACK transmission in case of parity error is disabled
-                enabled = 1, // NACK transmission during parity error is enabled
-            };
-            pub const Scen = enum(u1) {
-                disabled = 0, // Smartcard mode disabled
-                enabled = 1, // Smartcard mode enabled
-            };
-            pub const Dmar = enum(u1) {
-                disabled = 0, // DMA mode is disabled for reception
-                enabled = 1, // DMA mode is enabled for reception
-            };
-            pub const Dmat = enum(u1) {
-                disabled = 0, // DMA mode is disabled for transmission
-                enabled = 1, // DMA mode is enabled for transmission
-            };
-            pub const Rtse = enum(u1) {
-                disabled = 0, // RTS hardware flow control disabled
-                enabled = 1, // RTS hardware flow control enabled
-            };
-            pub const Ctse = enum(u1) {
-                disabled = 0, // CTS hardware flow control disabled
-                enabled = 1, // CTS hardware flow control enabled
-            };
-            pub const Ctsie = enum(u1) {
-                disabled = 0, // CTS interrupt disabled
-                enabled = 1, // CTS interrupt enabled
-            };
-            pub const Onebit = enum(u1) {
-                sample3 = 0, // Three sample bit method
-                sample1 = 1, // One sample bit method
-            };
+            pub const Eie = usart1.cr3.Eie;
+            pub const Iren = usart1.cr3.Iren;
+            pub const Irlp = usart1.cr3.Irlp;
+            pub const Hdsel = usart1.cr3.Hdsel;
+            pub const Nack = usart1.cr3.Nack;
+            pub const Scen = usart1.cr3.Scen;
+            pub const Dmar = usart1.cr3.Dmar;
+            pub const Dmat = usart1.cr3.Dmat;
+            pub const Rtse = usart1.cr3.Rtse;
+            pub const Ctse = usart1.cr3.Ctse;
+            pub const Ctsie = usart1.cr3.Ctsie;
+            pub const Onebit = usart1.cr3.Onebit;
             eie: Eie, // Error interrupt enable (u1)
             iren: Iren, // IrDA mode enable (u1)
             irlp: Irlp, // IrDA low-power (u1)
@@ -11929,7 +9967,7 @@ pub const registers = struct {
         };
         pub const cr3 = mmio(base_address + 0x14, 32, Cr3);
 
-        /// address: 0x40011418
+        /// address: 0x40011418, path: usart6.gtpr
         /// Guard time and prescaler register
         pub const Gtpr = packed struct {
             psc: u8, // Prescaler value
@@ -11942,29 +9980,14 @@ pub const registers = struct {
     pub const dma2 = struct {
         pub const base_address = 0x40026400;
 
-        /// address: 0x40026400
+        /// address: 0x40026400, path: dma2.lisr
         /// low interrupt status register
         pub const Lisr = packed struct {
-            pub const Feif0 = enum(u1) {
-                no_error = 0, // No FIFO error event on stream x
-                @"error" = 1, // A FIFO error event occurred on stream x
-            };
-            pub const Dmeif0 = enum(u1) {
-                no_error = 0, // No Direct Mode error on stream x
-                @"error" = 1, // A Direct Mode error occurred on stream x
-            };
-            pub const Teif0 = enum(u1) {
-                no_error = 0, // No transfer error on stream x
-                @"error" = 1, // A transfer error occurred on stream x
-            };
-            pub const Htif0 = enum(u1) {
-                not_half = 0, // No half transfer event on stream x
-                half = 1, // A half transfer event occurred on stream x
-            };
-            pub const Tcif0 = enum(u1) {
-                not_complete = 0, // No transfer complete event on stream x
-                complete = 1, // A transfer complete event occurred on stream x
-            };
+            pub const Feif0 = dma1.lisr.Feif0;
+            pub const Dmeif0 = dma1.lisr.Dmeif0;
+            pub const Teif0 = dma1.lisr.Teif0;
+            pub const Htif0 = dma1.lisr.Htif0;
+            pub const Tcif0 = dma1.lisr.Tcif0;
             feif0: Feif0, // Stream x FIFO error interrupt flag (x=3..0) (u1)
             _reserved_1_1: u1,
             dmeif0: Dmeif0, // Stream x direct mode error interrupt flag (x=3..0) (u1)
@@ -11994,29 +10017,14 @@ pub const registers = struct {
         };
         pub const lisr = mmio(base_address + 0x0, 32, Lisr);
 
-        /// address: 0x40026404
+        /// address: 0x40026404, path: dma2.hisr
         /// high interrupt status register
         pub const Hisr = packed struct {
-            pub const Feif4 = enum(u1) {
-                no_error = 0, // No FIFO error event on stream x
-                @"error" = 1, // A FIFO error event occurred on stream x
-            };
-            pub const Dmeif4 = enum(u1) {
-                no_error = 0, // No Direct Mode error on stream x
-                @"error" = 1, // A Direct Mode error occurred on stream x
-            };
-            pub const Teif4 = enum(u1) {
-                no_error = 0, // No transfer error on stream x
-                @"error" = 1, // A transfer error occurred on stream x
-            };
-            pub const Htif4 = enum(u1) {
-                not_half = 0, // No half transfer event on stream x
-                half = 1, // A half transfer event occurred on stream x
-            };
-            pub const Tcif4 = enum(u1) {
-                not_complete = 0, // No transfer complete event on stream x
-                complete = 1, // A transfer complete event occurred on stream x
-            };
+            pub const Feif4 = dma1.hisr.Feif4;
+            pub const Dmeif4 = dma1.hisr.Dmeif4;
+            pub const Teif4 = dma1.hisr.Teif4;
+            pub const Htif4 = dma1.hisr.Htif4;
+            pub const Tcif4 = dma1.hisr.Tcif4;
             feif4: Feif4, // Stream x FIFO error interrupt flag (x=7..4) (u1)
             _reserved_1_1: u1,
             dmeif4: Dmeif4, // Stream x direct mode error interrupt flag (x=7..4) (u1)
@@ -12046,24 +10054,14 @@ pub const registers = struct {
         };
         pub const hisr = mmio(base_address + 0x4, 32, Hisr);
 
-        /// address: 0x40026408
+        /// address: 0x40026408, path: dma2.lifcr
         /// low interrupt flag clear register
         pub const Lifcr = packed struct {
-            pub const Cfeif0 = enum(u1) {
-                clear = 1, // Clear the corresponding CFEIFx flag
-            };
-            pub const Cdmeif0 = enum(u1) {
-                clear = 1, // Clear the corresponding DMEIFx flag
-            };
-            pub const Cteif0 = enum(u1) {
-                clear = 1, // Clear the corresponding TEIFx flag
-            };
-            pub const Chtif0 = enum(u1) {
-                clear = 1, // Clear the corresponding HTIFx flag
-            };
-            pub const Ctcif0 = enum(u1) {
-                clear = 1, // Clear the corresponding TCIFx flag
-            };
+            pub const Cfeif0 = dma1.lifcr.Cfeif0;
+            pub const Cdmeif0 = dma1.lifcr.Cdmeif0;
+            pub const Cteif0 = dma1.lifcr.Cteif0;
+            pub const Chtif0 = dma1.lifcr.Chtif0;
+            pub const Ctcif0 = dma1.lifcr.Ctcif0;
             cfeif0: Cfeif0, // Stream x clear FIFO error interrupt flag (x = 3..0) (u1)
             _reserved_1_1: u1,
             cdmeif0: Cdmeif0, // Stream x clear direct mode error interrupt flag (x = 3..0) (u1)
@@ -12093,24 +10091,14 @@ pub const registers = struct {
         };
         pub const lifcr = mmio(base_address + 0x8, 32, Lifcr);
 
-        /// address: 0x4002640c
+        /// address: 0x4002640c, path: dma2.hifcr
         /// high interrupt flag clear register
         pub const Hifcr = packed struct {
-            pub const Cfeif4 = enum(u1) {
-                clear = 1, // Clear the corresponding CFEIFx flag
-            };
-            pub const Cdmeif4 = enum(u1) {
-                clear = 1, // Clear the corresponding DMEIFx flag
-            };
-            pub const Cteif4 = enum(u1) {
-                clear = 1, // Clear the corresponding TEIFx flag
-            };
-            pub const Chtif4 = enum(u1) {
-                clear = 1, // Clear the corresponding HTIFx flag
-            };
-            pub const Ctcif4 = enum(u1) {
-                clear = 1, // Clear the corresponding TCIFx flag
-            };
+            pub const Cfeif4 = dma1.hifcr.Cfeif4;
+            pub const Cdmeif4 = dma1.hifcr.Cdmeif4;
+            pub const Cteif4 = dma1.hifcr.Cteif4;
+            pub const Chtif4 = dma1.hifcr.Chtif4;
+            pub const Ctcif4 = dma1.hifcr.Ctcif4;
             cfeif4: Cfeif4, // Stream x clear FIFO error interrupt flag (x = 7..4) (u1)
             _reserved_1_1: u1,
             cdmeif4: Cdmeif4, // Stream x clear direct mode error interrupt flag (x = 7..4) (u1)
@@ -12140,75 +10128,24 @@ pub const registers = struct {
         };
         pub const hifcr = mmio(base_address + 0xc, 32, Hifcr);
 
-        /// address: 0x40026410
+        /// address: 0x40026410, path: dma2.st0cr
         /// stream x configuration register
         pub const St0cr = packed struct {
-            pub const En = enum(u1) {
-                disabled = 0, // Stream disabled
-                enabled = 1, // Stream enabled
-            };
-            pub const Dmeie = enum(u1) {
-                disabled = 0, // DME interrupt disabled
-                enabled = 1, // DME interrupt enabled
-            };
-            pub const Teie = enum(u1) {
-                disabled = 0, // TE interrupt disabled
-                enabled = 1, // TE interrupt enabled
-            };
-            pub const Htie = enum(u1) {
-                disabled = 0, // HT interrupt disabled
-                enabled = 1, // HT interrupt enabled
-            };
-            pub const Tcie = enum(u1) {
-                disabled = 0, // TC interrupt disabled
-                enabled = 1, // TC interrupt enabled
-            };
-            pub const Pfctrl = enum(u1) {
-                dma = 0, // The DMA is the flow controller
-                peripheral = 1, // The peripheral is the flow controller
-            };
-            pub const Dir = enum(u2) {
-                peripheral_to_memory = 0b00, // Peripheral-to-memory
-                memory_to_peripheral = 0b01, // Memory-to-peripheral
-                memory_to_memory = 0b10, // Memory-to-memory
-            };
-            pub const Circ = enum(u1) {
-                disabled = 0, // Circular mode disabled
-                enabled = 1, // Circular mode enabled
-            };
-            pub const Pinc = enum(u1) {
-                fixed = 0, // Address pointer is fixed
-                incremented = 1, // Address pointer is incremented after each data transfer
-            };
-            pub const Psize = enum(u2) {
-                bits8 = 0b00, // Byte (8-bit)
-                bits16 = 0b01, // Half-word (16-bit)
-                bits32 = 0b10, // Word (32-bit)
-            };
-            pub const Pincos = enum(u1) {
-                psize = 0, // The offset size for the peripheral address calculation is linked to the PSIZE
-                fixed4 = 1, // The offset size for the peripheral address calculation is fixed to 4 (32-bit alignment)
-            };
-            pub const Pl = enum(u2) {
-                low = 0b00, // Low
-                medium = 0b01, // Medium
-                high = 0b10, // High
-                very_high = 0b11, // Very high
-            };
-            pub const Dbm = enum(u1) {
-                disabled = 0, // No buffer switching at the end of transfer
-                enabled = 1, // Memory target switched at the end of the DMA transfer
-            };
-            pub const Ct = enum(u1) {
-                memory0 = 0, // The current target memory is Memory 0
-                memory1 = 1, // The current target memory is Memory 1
-            };
-            pub const Pburst = enum(u2) {
-                single = 0b00, // Single transfer
-                incr4 = 0b01, // Incremental burst of 4 beats
-                incr8 = 0b10, // Incremental burst of 8 beats
-                incr16 = 0b11, // Incremental burst of 16 beats
-            };
+            pub const En = dma1.st0cr.En;
+            pub const Dmeie = dma1.st0cr.Dmeie;
+            pub const Teie = dma1.st0cr.Teie;
+            pub const Htie = dma1.st0cr.Htie;
+            pub const Tcie = usart1.cr1.Tcie;
+            pub const Pfctrl = dma1.st0cr.Pfctrl;
+            pub const Dir = dma1.st0cr.Dir;
+            pub const Circ = dma1.st0cr.Circ;
+            pub const Pinc = dma1.st0cr.Pinc;
+            pub const Psize = dma1.st0cr.Psize;
+            pub const Pincos = dma1.st0cr.Pincos;
+            pub const Pl = dma1.st0cr.Pl;
+            pub const Dbm = dma1.st0cr.Dbm;
+            pub const Ct = dma1.st0cr.Ct;
+            pub const Pburst = dma1.st0cr.Pburst;
             en: En, // Stream enable / flag stream ready when read low (u1)
             dmeie: Dmeie, // Direct mode error interrupt enable (u1)
             teie: Teie, // Transfer error interrupt enable (u1)
@@ -12233,7 +10170,7 @@ pub const registers = struct {
         };
         pub const st0cr = mmio(base_address + 0x10, 32, St0cr);
 
-        /// address: 0x40026414
+        /// address: 0x40026414, path: dma2.st0ndtr
         /// stream x number of data register
         pub const St0ndtr = packed struct {
             ndt: u16, // Number of data items to transfer
@@ -12241,52 +10178,34 @@ pub const registers = struct {
         };
         pub const st0ndtr = mmio(base_address + 0x14, 32, St0ndtr);
 
-        /// address: 0x40026418
+        /// address: 0x40026418, path: dma2.st0par
         /// stream x peripheral address register
         pub const St0par = packed struct {
             pa: u32, // Peripheral address
         };
         pub const st0par = mmio(base_address + 0x18, 32, St0par);
 
-        /// address: 0x4002641c
+        /// address: 0x4002641c, path: dma2.st0m0ar
         /// stream x memory 0 address register
         pub const St0m0ar = packed struct {
             m0a: u32, // Memory 0 address
         };
         pub const st0m0ar = mmio(base_address + 0x1c, 32, St0m0ar);
 
-        /// address: 0x40026420
+        /// address: 0x40026420, path: dma2.st0m1ar
         /// stream x memory 1 address register
         pub const St0m1ar = packed struct {
             m1a: u32, // Memory 1 address (used in case of Double buffer mode)
         };
         pub const st0m1ar = mmio(base_address + 0x20, 32, St0m1ar);
 
-        /// address: 0x40026424
+        /// address: 0x40026424, path: dma2.st0fcr
         /// stream x FIFO control register
         pub const St0fcr = packed struct {
-            pub const Fth = enum(u2) {
-                quarter = 0b00, // 1/4 full FIFO
-                half = 0b01, // 1/2 full FIFO
-                three_quarters = 0b10, // 3/4 full FIFO
-                full = 0b11, // Full FIFO
-            };
-            pub const Dmdis = enum(u1) {
-                enabled = 0, // Direct mode is enabled
-                disabled = 1, // Direct mode is disabled
-            };
-            pub const Fs = enum(u3) {
-                quarter1 = 0b000, // 0 < fifo_level < 1/4
-                quarter2 = 0b001, // 1/4 <= fifo_level < 1/2
-                quarter3 = 0b010, // 1/2 <= fifo_level < 3/4
-                quarter4 = 0b011, // 3/4 <= fifo_level < full
-                empty = 0b100, // FIFO is empty
-                full = 0b101, // FIFO is full
-            };
-            pub const Feie = enum(u1) {
-                disabled = 0, // FE interrupt disabled
-                enabled = 1, // FE interrupt enabled
-            };
+            pub const Fth = dma1.st0fcr.Fth;
+            pub const Dmdis = dma1.st0fcr.Dmdis;
+            pub const Fs = dma1.st0fcr.Fs;
+            pub const Feie = dma1.st0fcr.Feie;
             fth: Fth, // FIFO threshold selection (u2)
             dmdis: Dmdis, // Direct mode disable (u1)
             fs: Fs, // FIFO status (u3)
@@ -12296,75 +10215,24 @@ pub const registers = struct {
         };
         pub const st0fcr = mmio(base_address + 0x24, 32, St0fcr);
 
-        /// address: 0x40026428
+        /// address: 0x40026428, path: dma2.st1cr
         /// stream x configuration register
         pub const St1cr = packed struct {
-            pub const En = enum(u1) {
-                disabled = 0, // Stream disabled
-                enabled = 1, // Stream enabled
-            };
-            pub const Dmeie = enum(u1) {
-                disabled = 0, // DME interrupt disabled
-                enabled = 1, // DME interrupt enabled
-            };
-            pub const Teie = enum(u1) {
-                disabled = 0, // TE interrupt disabled
-                enabled = 1, // TE interrupt enabled
-            };
-            pub const Htie = enum(u1) {
-                disabled = 0, // HT interrupt disabled
-                enabled = 1, // HT interrupt enabled
-            };
-            pub const Tcie = enum(u1) {
-                disabled = 0, // TC interrupt disabled
-                enabled = 1, // TC interrupt enabled
-            };
-            pub const Pfctrl = enum(u1) {
-                dma = 0, // The DMA is the flow controller
-                peripheral = 1, // The peripheral is the flow controller
-            };
-            pub const Dir = enum(u2) {
-                peripheral_to_memory = 0b00, // Peripheral-to-memory
-                memory_to_peripheral = 0b01, // Memory-to-peripheral
-                memory_to_memory = 0b10, // Memory-to-memory
-            };
-            pub const Circ = enum(u1) {
-                disabled = 0, // Circular mode disabled
-                enabled = 1, // Circular mode enabled
-            };
-            pub const Pinc = enum(u1) {
-                fixed = 0, // Address pointer is fixed
-                incremented = 1, // Address pointer is incremented after each data transfer
-            };
-            pub const Psize = enum(u2) {
-                bits8 = 0b00, // Byte (8-bit)
-                bits16 = 0b01, // Half-word (16-bit)
-                bits32 = 0b10, // Word (32-bit)
-            };
-            pub const Pincos = enum(u1) {
-                psize = 0, // The offset size for the peripheral address calculation is linked to the PSIZE
-                fixed4 = 1, // The offset size for the peripheral address calculation is fixed to 4 (32-bit alignment)
-            };
-            pub const Pl = enum(u2) {
-                low = 0b00, // Low
-                medium = 0b01, // Medium
-                high = 0b10, // High
-                very_high = 0b11, // Very high
-            };
-            pub const Dbm = enum(u1) {
-                disabled = 0, // No buffer switching at the end of transfer
-                enabled = 1, // Memory target switched at the end of the DMA transfer
-            };
-            pub const Ct = enum(u1) {
-                memory0 = 0, // The current target memory is Memory 0
-                memory1 = 1, // The current target memory is Memory 1
-            };
-            pub const Pburst = enum(u2) {
-                single = 0b00, // Single transfer
-                incr4 = 0b01, // Incremental burst of 4 beats
-                incr8 = 0b10, // Incremental burst of 8 beats
-                incr16 = 0b11, // Incremental burst of 16 beats
-            };
+            pub const En = dma1.st0cr.En;
+            pub const Dmeie = dma1.st0cr.Dmeie;
+            pub const Teie = dma1.st0cr.Teie;
+            pub const Htie = dma1.st0cr.Htie;
+            pub const Tcie = usart1.cr1.Tcie;
+            pub const Pfctrl = dma1.st0cr.Pfctrl;
+            pub const Dir = dma1.st0cr.Dir;
+            pub const Circ = dma1.st0cr.Circ;
+            pub const Pinc = dma1.st0cr.Pinc;
+            pub const Psize = dma1.st0cr.Psize;
+            pub const Pincos = dma1.st0cr.Pincos;
+            pub const Pl = dma1.st0cr.Pl;
+            pub const Dbm = dma1.st0cr.Dbm;
+            pub const Ct = dma1.st0cr.Ct;
+            pub const Pburst = dma1.st0cr.Pburst;
             en: En, // Stream enable / flag stream ready when read low (u1)
             dmeie: Dmeie, // Direct mode error interrupt enable (u1)
             teie: Teie, // Transfer error interrupt enable (u1)
@@ -12389,7 +10257,7 @@ pub const registers = struct {
         };
         pub const st1cr = mmio(base_address + 0x28, 32, St1cr);
 
-        /// address: 0x4002642c
+        /// address: 0x4002642c, path: dma2.st1ndtr
         /// stream x number of data register
         pub const St1ndtr = packed struct {
             ndt: u16, // Number of data items to transfer
@@ -12397,52 +10265,34 @@ pub const registers = struct {
         };
         pub const st1ndtr = mmio(base_address + 0x2c, 32, St1ndtr);
 
-        /// address: 0x40026430
+        /// address: 0x40026430, path: dma2.st1par
         /// stream x peripheral address register
         pub const St1par = packed struct {
             pa: u32, // Peripheral address
         };
         pub const st1par = mmio(base_address + 0x30, 32, St1par);
 
-        /// address: 0x40026434
+        /// address: 0x40026434, path: dma2.st1m0ar
         /// stream x memory 0 address register
         pub const St1m0ar = packed struct {
             m0a: u32, // Memory 0 address
         };
         pub const st1m0ar = mmio(base_address + 0x34, 32, St1m0ar);
 
-        /// address: 0x40026438
+        /// address: 0x40026438, path: dma2.st1m1ar
         /// stream x memory 1 address register
         pub const St1m1ar = packed struct {
             m1a: u32, // Memory 1 address (used in case of Double buffer mode)
         };
         pub const st1m1ar = mmio(base_address + 0x38, 32, St1m1ar);
 
-        /// address: 0x4002643c
+        /// address: 0x4002643c, path: dma2.st1fcr
         /// stream x FIFO control register
         pub const St1fcr = packed struct {
-            pub const Fth = enum(u2) {
-                quarter = 0b00, // 1/4 full FIFO
-                half = 0b01, // 1/2 full FIFO
-                three_quarters = 0b10, // 3/4 full FIFO
-                full = 0b11, // Full FIFO
-            };
-            pub const Dmdis = enum(u1) {
-                enabled = 0, // Direct mode is enabled
-                disabled = 1, // Direct mode is disabled
-            };
-            pub const Fs = enum(u3) {
-                quarter1 = 0b000, // 0 < fifo_level < 1/4
-                quarter2 = 0b001, // 1/4 <= fifo_level < 1/2
-                quarter3 = 0b010, // 1/2 <= fifo_level < 3/4
-                quarter4 = 0b011, // 3/4 <= fifo_level < full
-                empty = 0b100, // FIFO is empty
-                full = 0b101, // FIFO is full
-            };
-            pub const Feie = enum(u1) {
-                disabled = 0, // FE interrupt disabled
-                enabled = 1, // FE interrupt enabled
-            };
+            pub const Fth = dma1.st0fcr.Fth;
+            pub const Dmdis = dma1.st0fcr.Dmdis;
+            pub const Fs = dma1.st0fcr.Fs;
+            pub const Feie = dma1.st0fcr.Feie;
             fth: Fth, // FIFO threshold selection (u2)
             dmdis: Dmdis, // Direct mode disable (u1)
             fs: Fs, // FIFO status (u3)
@@ -12452,75 +10302,24 @@ pub const registers = struct {
         };
         pub const st1fcr = mmio(base_address + 0x3c, 32, St1fcr);
 
-        /// address: 0x40026440
+        /// address: 0x40026440, path: dma2.st2cr
         /// stream x configuration register
         pub const St2cr = packed struct {
-            pub const En = enum(u1) {
-                disabled = 0, // Stream disabled
-                enabled = 1, // Stream enabled
-            };
-            pub const Dmeie = enum(u1) {
-                disabled = 0, // DME interrupt disabled
-                enabled = 1, // DME interrupt enabled
-            };
-            pub const Teie = enum(u1) {
-                disabled = 0, // TE interrupt disabled
-                enabled = 1, // TE interrupt enabled
-            };
-            pub const Htie = enum(u1) {
-                disabled = 0, // HT interrupt disabled
-                enabled = 1, // HT interrupt enabled
-            };
-            pub const Tcie = enum(u1) {
-                disabled = 0, // TC interrupt disabled
-                enabled = 1, // TC interrupt enabled
-            };
-            pub const Pfctrl = enum(u1) {
-                dma = 0, // The DMA is the flow controller
-                peripheral = 1, // The peripheral is the flow controller
-            };
-            pub const Dir = enum(u2) {
-                peripheral_to_memory = 0b00, // Peripheral-to-memory
-                memory_to_peripheral = 0b01, // Memory-to-peripheral
-                memory_to_memory = 0b10, // Memory-to-memory
-            };
-            pub const Circ = enum(u1) {
-                disabled = 0, // Circular mode disabled
-                enabled = 1, // Circular mode enabled
-            };
-            pub const Pinc = enum(u1) {
-                fixed = 0, // Address pointer is fixed
-                incremented = 1, // Address pointer is incremented after each data transfer
-            };
-            pub const Psize = enum(u2) {
-                bits8 = 0b00, // Byte (8-bit)
-                bits16 = 0b01, // Half-word (16-bit)
-                bits32 = 0b10, // Word (32-bit)
-            };
-            pub const Pincos = enum(u1) {
-                psize = 0, // The offset size for the peripheral address calculation is linked to the PSIZE
-                fixed4 = 1, // The offset size for the peripheral address calculation is fixed to 4 (32-bit alignment)
-            };
-            pub const Pl = enum(u2) {
-                low = 0b00, // Low
-                medium = 0b01, // Medium
-                high = 0b10, // High
-                very_high = 0b11, // Very high
-            };
-            pub const Dbm = enum(u1) {
-                disabled = 0, // No buffer switching at the end of transfer
-                enabled = 1, // Memory target switched at the end of the DMA transfer
-            };
-            pub const Ct = enum(u1) {
-                memory0 = 0, // The current target memory is Memory 0
-                memory1 = 1, // The current target memory is Memory 1
-            };
-            pub const Pburst = enum(u2) {
-                single = 0b00, // Single transfer
-                incr4 = 0b01, // Incremental burst of 4 beats
-                incr8 = 0b10, // Incremental burst of 8 beats
-                incr16 = 0b11, // Incremental burst of 16 beats
-            };
+            pub const En = dma1.st0cr.En;
+            pub const Dmeie = dma1.st0cr.Dmeie;
+            pub const Teie = dma1.st0cr.Teie;
+            pub const Htie = dma1.st0cr.Htie;
+            pub const Tcie = usart1.cr1.Tcie;
+            pub const Pfctrl = dma1.st0cr.Pfctrl;
+            pub const Dir = dma1.st0cr.Dir;
+            pub const Circ = dma1.st0cr.Circ;
+            pub const Pinc = dma1.st0cr.Pinc;
+            pub const Psize = dma1.st0cr.Psize;
+            pub const Pincos = dma1.st0cr.Pincos;
+            pub const Pl = dma1.st0cr.Pl;
+            pub const Dbm = dma1.st0cr.Dbm;
+            pub const Ct = dma1.st0cr.Ct;
+            pub const Pburst = dma1.st0cr.Pburst;
             en: En, // Stream enable / flag stream ready when read low (u1)
             dmeie: Dmeie, // Direct mode error interrupt enable (u1)
             teie: Teie, // Transfer error interrupt enable (u1)
@@ -12545,7 +10344,7 @@ pub const registers = struct {
         };
         pub const st2cr = mmio(base_address + 0x40, 32, St2cr);
 
-        /// address: 0x40026444
+        /// address: 0x40026444, path: dma2.st2ndtr
         /// stream x number of data register
         pub const St2ndtr = packed struct {
             ndt: u16, // Number of data items to transfer
@@ -12553,52 +10352,34 @@ pub const registers = struct {
         };
         pub const st2ndtr = mmio(base_address + 0x44, 32, St2ndtr);
 
-        /// address: 0x40026448
+        /// address: 0x40026448, path: dma2.st2par
         /// stream x peripheral address register
         pub const St2par = packed struct {
             pa: u32, // Peripheral address
         };
         pub const st2par = mmio(base_address + 0x48, 32, St2par);
 
-        /// address: 0x4002644c
+        /// address: 0x4002644c, path: dma2.st2m0ar
         /// stream x memory 0 address register
         pub const St2m0ar = packed struct {
             m0a: u32, // Memory 0 address
         };
         pub const st2m0ar = mmio(base_address + 0x4c, 32, St2m0ar);
 
-        /// address: 0x40026450
+        /// address: 0x40026450, path: dma2.st2m1ar
         /// stream x memory 1 address register
         pub const St2m1ar = packed struct {
             m1a: u32, // Memory 1 address (used in case of Double buffer mode)
         };
         pub const st2m1ar = mmio(base_address + 0x50, 32, St2m1ar);
 
-        /// address: 0x40026454
+        /// address: 0x40026454, path: dma2.st2fcr
         /// stream x FIFO control register
         pub const St2fcr = packed struct {
-            pub const Fth = enum(u2) {
-                quarter = 0b00, // 1/4 full FIFO
-                half = 0b01, // 1/2 full FIFO
-                three_quarters = 0b10, // 3/4 full FIFO
-                full = 0b11, // Full FIFO
-            };
-            pub const Dmdis = enum(u1) {
-                enabled = 0, // Direct mode is enabled
-                disabled = 1, // Direct mode is disabled
-            };
-            pub const Fs = enum(u3) {
-                quarter1 = 0b000, // 0 < fifo_level < 1/4
-                quarter2 = 0b001, // 1/4 <= fifo_level < 1/2
-                quarter3 = 0b010, // 1/2 <= fifo_level < 3/4
-                quarter4 = 0b011, // 3/4 <= fifo_level < full
-                empty = 0b100, // FIFO is empty
-                full = 0b101, // FIFO is full
-            };
-            pub const Feie = enum(u1) {
-                disabled = 0, // FE interrupt disabled
-                enabled = 1, // FE interrupt enabled
-            };
+            pub const Fth = dma1.st0fcr.Fth;
+            pub const Dmdis = dma1.st0fcr.Dmdis;
+            pub const Fs = dma1.st0fcr.Fs;
+            pub const Feie = dma1.st0fcr.Feie;
             fth: Fth, // FIFO threshold selection (u2)
             dmdis: Dmdis, // Direct mode disable (u1)
             fs: Fs, // FIFO status (u3)
@@ -12608,75 +10389,24 @@ pub const registers = struct {
         };
         pub const st2fcr = mmio(base_address + 0x54, 32, St2fcr);
 
-        /// address: 0x40026458
+        /// address: 0x40026458, path: dma2.st3cr
         /// stream x configuration register
         pub const St3cr = packed struct {
-            pub const En = enum(u1) {
-                disabled = 0, // Stream disabled
-                enabled = 1, // Stream enabled
-            };
-            pub const Dmeie = enum(u1) {
-                disabled = 0, // DME interrupt disabled
-                enabled = 1, // DME interrupt enabled
-            };
-            pub const Teie = enum(u1) {
-                disabled = 0, // TE interrupt disabled
-                enabled = 1, // TE interrupt enabled
-            };
-            pub const Htie = enum(u1) {
-                disabled = 0, // HT interrupt disabled
-                enabled = 1, // HT interrupt enabled
-            };
-            pub const Tcie = enum(u1) {
-                disabled = 0, // TC interrupt disabled
-                enabled = 1, // TC interrupt enabled
-            };
-            pub const Pfctrl = enum(u1) {
-                dma = 0, // The DMA is the flow controller
-                peripheral = 1, // The peripheral is the flow controller
-            };
-            pub const Dir = enum(u2) {
-                peripheral_to_memory = 0b00, // Peripheral-to-memory
-                memory_to_peripheral = 0b01, // Memory-to-peripheral
-                memory_to_memory = 0b10, // Memory-to-memory
-            };
-            pub const Circ = enum(u1) {
-                disabled = 0, // Circular mode disabled
-                enabled = 1, // Circular mode enabled
-            };
-            pub const Pinc = enum(u1) {
-                fixed = 0, // Address pointer is fixed
-                incremented = 1, // Address pointer is incremented after each data transfer
-            };
-            pub const Psize = enum(u2) {
-                bits8 = 0b00, // Byte (8-bit)
-                bits16 = 0b01, // Half-word (16-bit)
-                bits32 = 0b10, // Word (32-bit)
-            };
-            pub const Pincos = enum(u1) {
-                psize = 0, // The offset size for the peripheral address calculation is linked to the PSIZE
-                fixed4 = 1, // The offset size for the peripheral address calculation is fixed to 4 (32-bit alignment)
-            };
-            pub const Pl = enum(u2) {
-                low = 0b00, // Low
-                medium = 0b01, // Medium
-                high = 0b10, // High
-                very_high = 0b11, // Very high
-            };
-            pub const Dbm = enum(u1) {
-                disabled = 0, // No buffer switching at the end of transfer
-                enabled = 1, // Memory target switched at the end of the DMA transfer
-            };
-            pub const Ct = enum(u1) {
-                memory0 = 0, // The current target memory is Memory 0
-                memory1 = 1, // The current target memory is Memory 1
-            };
-            pub const Pburst = enum(u2) {
-                single = 0b00, // Single transfer
-                incr4 = 0b01, // Incremental burst of 4 beats
-                incr8 = 0b10, // Incremental burst of 8 beats
-                incr16 = 0b11, // Incremental burst of 16 beats
-            };
+            pub const En = dma1.st0cr.En;
+            pub const Dmeie = dma1.st0cr.Dmeie;
+            pub const Teie = dma1.st0cr.Teie;
+            pub const Htie = dma1.st0cr.Htie;
+            pub const Tcie = usart1.cr1.Tcie;
+            pub const Pfctrl = dma1.st0cr.Pfctrl;
+            pub const Dir = dma1.st0cr.Dir;
+            pub const Circ = dma1.st0cr.Circ;
+            pub const Pinc = dma1.st0cr.Pinc;
+            pub const Psize = dma1.st0cr.Psize;
+            pub const Pincos = dma1.st0cr.Pincos;
+            pub const Pl = dma1.st0cr.Pl;
+            pub const Dbm = dma1.st0cr.Dbm;
+            pub const Ct = dma1.st0cr.Ct;
+            pub const Pburst = dma1.st0cr.Pburst;
             en: En, // Stream enable / flag stream ready when read low (u1)
             dmeie: Dmeie, // Direct mode error interrupt enable (u1)
             teie: Teie, // Transfer error interrupt enable (u1)
@@ -12701,7 +10431,7 @@ pub const registers = struct {
         };
         pub const st3cr = mmio(base_address + 0x58, 32, St3cr);
 
-        /// address: 0x4002645c
+        /// address: 0x4002645c, path: dma2.st3ndtr
         /// stream x number of data register
         pub const St3ndtr = packed struct {
             ndt: u16, // Number of data items to transfer
@@ -12709,52 +10439,34 @@ pub const registers = struct {
         };
         pub const st3ndtr = mmio(base_address + 0x5c, 32, St3ndtr);
 
-        /// address: 0x40026460
+        /// address: 0x40026460, path: dma2.st3par
         /// stream x peripheral address register
         pub const St3par = packed struct {
             pa: u32, // Peripheral address
         };
         pub const st3par = mmio(base_address + 0x60, 32, St3par);
 
-        /// address: 0x40026464
+        /// address: 0x40026464, path: dma2.st3m0ar
         /// stream x memory 0 address register
         pub const St3m0ar = packed struct {
             m0a: u32, // Memory 0 address
         };
         pub const st3m0ar = mmio(base_address + 0x64, 32, St3m0ar);
 
-        /// address: 0x40026468
+        /// address: 0x40026468, path: dma2.st3m1ar
         /// stream x memory 1 address register
         pub const St3m1ar = packed struct {
             m1a: u32, // Memory 1 address (used in case of Double buffer mode)
         };
         pub const st3m1ar = mmio(base_address + 0x68, 32, St3m1ar);
 
-        /// address: 0x4002646c
+        /// address: 0x4002646c, path: dma2.st3fcr
         /// stream x FIFO control register
         pub const St3fcr = packed struct {
-            pub const Fth = enum(u2) {
-                quarter = 0b00, // 1/4 full FIFO
-                half = 0b01, // 1/2 full FIFO
-                three_quarters = 0b10, // 3/4 full FIFO
-                full = 0b11, // Full FIFO
-            };
-            pub const Dmdis = enum(u1) {
-                enabled = 0, // Direct mode is enabled
-                disabled = 1, // Direct mode is disabled
-            };
-            pub const Fs = enum(u3) {
-                quarter1 = 0b000, // 0 < fifo_level < 1/4
-                quarter2 = 0b001, // 1/4 <= fifo_level < 1/2
-                quarter3 = 0b010, // 1/2 <= fifo_level < 3/4
-                quarter4 = 0b011, // 3/4 <= fifo_level < full
-                empty = 0b100, // FIFO is empty
-                full = 0b101, // FIFO is full
-            };
-            pub const Feie = enum(u1) {
-                disabled = 0, // FE interrupt disabled
-                enabled = 1, // FE interrupt enabled
-            };
+            pub const Fth = dma1.st0fcr.Fth;
+            pub const Dmdis = dma1.st0fcr.Dmdis;
+            pub const Fs = dma1.st0fcr.Fs;
+            pub const Feie = dma1.st0fcr.Feie;
             fth: Fth, // FIFO threshold selection (u2)
             dmdis: Dmdis, // Direct mode disable (u1)
             fs: Fs, // FIFO status (u3)
@@ -12764,75 +10476,24 @@ pub const registers = struct {
         };
         pub const st3fcr = mmio(base_address + 0x6c, 32, St3fcr);
 
-        /// address: 0x40026470
+        /// address: 0x40026470, path: dma2.st4cr
         /// stream x configuration register
         pub const St4cr = packed struct {
-            pub const En = enum(u1) {
-                disabled = 0, // Stream disabled
-                enabled = 1, // Stream enabled
-            };
-            pub const Dmeie = enum(u1) {
-                disabled = 0, // DME interrupt disabled
-                enabled = 1, // DME interrupt enabled
-            };
-            pub const Teie = enum(u1) {
-                disabled = 0, // TE interrupt disabled
-                enabled = 1, // TE interrupt enabled
-            };
-            pub const Htie = enum(u1) {
-                disabled = 0, // HT interrupt disabled
-                enabled = 1, // HT interrupt enabled
-            };
-            pub const Tcie = enum(u1) {
-                disabled = 0, // TC interrupt disabled
-                enabled = 1, // TC interrupt enabled
-            };
-            pub const Pfctrl = enum(u1) {
-                dma = 0, // The DMA is the flow controller
-                peripheral = 1, // The peripheral is the flow controller
-            };
-            pub const Dir = enum(u2) {
-                peripheral_to_memory = 0b00, // Peripheral-to-memory
-                memory_to_peripheral = 0b01, // Memory-to-peripheral
-                memory_to_memory = 0b10, // Memory-to-memory
-            };
-            pub const Circ = enum(u1) {
-                disabled = 0, // Circular mode disabled
-                enabled = 1, // Circular mode enabled
-            };
-            pub const Pinc = enum(u1) {
-                fixed = 0, // Address pointer is fixed
-                incremented = 1, // Address pointer is incremented after each data transfer
-            };
-            pub const Psize = enum(u2) {
-                bits8 = 0b00, // Byte (8-bit)
-                bits16 = 0b01, // Half-word (16-bit)
-                bits32 = 0b10, // Word (32-bit)
-            };
-            pub const Pincos = enum(u1) {
-                psize = 0, // The offset size for the peripheral address calculation is linked to the PSIZE
-                fixed4 = 1, // The offset size for the peripheral address calculation is fixed to 4 (32-bit alignment)
-            };
-            pub const Pl = enum(u2) {
-                low = 0b00, // Low
-                medium = 0b01, // Medium
-                high = 0b10, // High
-                very_high = 0b11, // Very high
-            };
-            pub const Dbm = enum(u1) {
-                disabled = 0, // No buffer switching at the end of transfer
-                enabled = 1, // Memory target switched at the end of the DMA transfer
-            };
-            pub const Ct = enum(u1) {
-                memory0 = 0, // The current target memory is Memory 0
-                memory1 = 1, // The current target memory is Memory 1
-            };
-            pub const Pburst = enum(u2) {
-                single = 0b00, // Single transfer
-                incr4 = 0b01, // Incremental burst of 4 beats
-                incr8 = 0b10, // Incremental burst of 8 beats
-                incr16 = 0b11, // Incremental burst of 16 beats
-            };
+            pub const En = dma1.st0cr.En;
+            pub const Dmeie = dma1.st0cr.Dmeie;
+            pub const Teie = dma1.st0cr.Teie;
+            pub const Htie = dma1.st0cr.Htie;
+            pub const Tcie = usart1.cr1.Tcie;
+            pub const Pfctrl = dma1.st0cr.Pfctrl;
+            pub const Dir = dma1.st0cr.Dir;
+            pub const Circ = dma1.st0cr.Circ;
+            pub const Pinc = dma1.st0cr.Pinc;
+            pub const Psize = dma1.st0cr.Psize;
+            pub const Pincos = dma1.st0cr.Pincos;
+            pub const Pl = dma1.st0cr.Pl;
+            pub const Dbm = dma1.st0cr.Dbm;
+            pub const Ct = dma1.st0cr.Ct;
+            pub const Pburst = dma1.st0cr.Pburst;
             en: En, // Stream enable / flag stream ready when read low (u1)
             dmeie: Dmeie, // Direct mode error interrupt enable (u1)
             teie: Teie, // Transfer error interrupt enable (u1)
@@ -12857,7 +10518,7 @@ pub const registers = struct {
         };
         pub const st4cr = mmio(base_address + 0x70, 32, St4cr);
 
-        /// address: 0x40026474
+        /// address: 0x40026474, path: dma2.st4ndtr
         /// stream x number of data register
         pub const St4ndtr = packed struct {
             ndt: u16, // Number of data items to transfer
@@ -12865,52 +10526,34 @@ pub const registers = struct {
         };
         pub const st4ndtr = mmio(base_address + 0x74, 32, St4ndtr);
 
-        /// address: 0x40026478
+        /// address: 0x40026478, path: dma2.st4par
         /// stream x peripheral address register
         pub const St4par = packed struct {
             pa: u32, // Peripheral address
         };
         pub const st4par = mmio(base_address + 0x78, 32, St4par);
 
-        /// address: 0x4002647c
+        /// address: 0x4002647c, path: dma2.st4m0ar
         /// stream x memory 0 address register
         pub const St4m0ar = packed struct {
             m0a: u32, // Memory 0 address
         };
         pub const st4m0ar = mmio(base_address + 0x7c, 32, St4m0ar);
 
-        /// address: 0x40026480
+        /// address: 0x40026480, path: dma2.st4m1ar
         /// stream x memory 1 address register
         pub const St4m1ar = packed struct {
             m1a: u32, // Memory 1 address (used in case of Double buffer mode)
         };
         pub const st4m1ar = mmio(base_address + 0x80, 32, St4m1ar);
 
-        /// address: 0x40026484
+        /// address: 0x40026484, path: dma2.st4fcr
         /// stream x FIFO control register
         pub const St4fcr = packed struct {
-            pub const Fth = enum(u2) {
-                quarter = 0b00, // 1/4 full FIFO
-                half = 0b01, // 1/2 full FIFO
-                three_quarters = 0b10, // 3/4 full FIFO
-                full = 0b11, // Full FIFO
-            };
-            pub const Dmdis = enum(u1) {
-                enabled = 0, // Direct mode is enabled
-                disabled = 1, // Direct mode is disabled
-            };
-            pub const Fs = enum(u3) {
-                quarter1 = 0b000, // 0 < fifo_level < 1/4
-                quarter2 = 0b001, // 1/4 <= fifo_level < 1/2
-                quarter3 = 0b010, // 1/2 <= fifo_level < 3/4
-                quarter4 = 0b011, // 3/4 <= fifo_level < full
-                empty = 0b100, // FIFO is empty
-                full = 0b101, // FIFO is full
-            };
-            pub const Feie = enum(u1) {
-                disabled = 0, // FE interrupt disabled
-                enabled = 1, // FE interrupt enabled
-            };
+            pub const Fth = dma1.st0fcr.Fth;
+            pub const Dmdis = dma1.st0fcr.Dmdis;
+            pub const Fs = dma1.st0fcr.Fs;
+            pub const Feie = dma1.st0fcr.Feie;
             fth: Fth, // FIFO threshold selection (u2)
             dmdis: Dmdis, // Direct mode disable (u1)
             fs: Fs, // FIFO status (u3)
@@ -12920,75 +10563,24 @@ pub const registers = struct {
         };
         pub const st4fcr = mmio(base_address + 0x84, 32, St4fcr);
 
-        /// address: 0x40026488
+        /// address: 0x40026488, path: dma2.st5cr
         /// stream x configuration register
         pub const St5cr = packed struct {
-            pub const En = enum(u1) {
-                disabled = 0, // Stream disabled
-                enabled = 1, // Stream enabled
-            };
-            pub const Dmeie = enum(u1) {
-                disabled = 0, // DME interrupt disabled
-                enabled = 1, // DME interrupt enabled
-            };
-            pub const Teie = enum(u1) {
-                disabled = 0, // TE interrupt disabled
-                enabled = 1, // TE interrupt enabled
-            };
-            pub const Htie = enum(u1) {
-                disabled = 0, // HT interrupt disabled
-                enabled = 1, // HT interrupt enabled
-            };
-            pub const Tcie = enum(u1) {
-                disabled = 0, // TC interrupt disabled
-                enabled = 1, // TC interrupt enabled
-            };
-            pub const Pfctrl = enum(u1) {
-                dma = 0, // The DMA is the flow controller
-                peripheral = 1, // The peripheral is the flow controller
-            };
-            pub const Dir = enum(u2) {
-                peripheral_to_memory = 0b00, // Peripheral-to-memory
-                memory_to_peripheral = 0b01, // Memory-to-peripheral
-                memory_to_memory = 0b10, // Memory-to-memory
-            };
-            pub const Circ = enum(u1) {
-                disabled = 0, // Circular mode disabled
-                enabled = 1, // Circular mode enabled
-            };
-            pub const Pinc = enum(u1) {
-                fixed = 0, // Address pointer is fixed
-                incremented = 1, // Address pointer is incremented after each data transfer
-            };
-            pub const Psize = enum(u2) {
-                bits8 = 0b00, // Byte (8-bit)
-                bits16 = 0b01, // Half-word (16-bit)
-                bits32 = 0b10, // Word (32-bit)
-            };
-            pub const Pincos = enum(u1) {
-                psize = 0, // The offset size for the peripheral address calculation is linked to the PSIZE
-                fixed4 = 1, // The offset size for the peripheral address calculation is fixed to 4 (32-bit alignment)
-            };
-            pub const Pl = enum(u2) {
-                low = 0b00, // Low
-                medium = 0b01, // Medium
-                high = 0b10, // High
-                very_high = 0b11, // Very high
-            };
-            pub const Dbm = enum(u1) {
-                disabled = 0, // No buffer switching at the end of transfer
-                enabled = 1, // Memory target switched at the end of the DMA transfer
-            };
-            pub const Ct = enum(u1) {
-                memory0 = 0, // The current target memory is Memory 0
-                memory1 = 1, // The current target memory is Memory 1
-            };
-            pub const Pburst = enum(u2) {
-                single = 0b00, // Single transfer
-                incr4 = 0b01, // Incremental burst of 4 beats
-                incr8 = 0b10, // Incremental burst of 8 beats
-                incr16 = 0b11, // Incremental burst of 16 beats
-            };
+            pub const En = dma1.st0cr.En;
+            pub const Dmeie = dma1.st0cr.Dmeie;
+            pub const Teie = dma1.st0cr.Teie;
+            pub const Htie = dma1.st0cr.Htie;
+            pub const Tcie = usart1.cr1.Tcie;
+            pub const Pfctrl = dma1.st0cr.Pfctrl;
+            pub const Dir = dma1.st0cr.Dir;
+            pub const Circ = dma1.st0cr.Circ;
+            pub const Pinc = dma1.st0cr.Pinc;
+            pub const Psize = dma1.st0cr.Psize;
+            pub const Pincos = dma1.st0cr.Pincos;
+            pub const Pl = dma1.st0cr.Pl;
+            pub const Dbm = dma1.st0cr.Dbm;
+            pub const Ct = dma1.st0cr.Ct;
+            pub const Pburst = dma1.st0cr.Pburst;
             en: En, // Stream enable / flag stream ready when read low (u1)
             dmeie: Dmeie, // Direct mode error interrupt enable (u1)
             teie: Teie, // Transfer error interrupt enable (u1)
@@ -13013,7 +10605,7 @@ pub const registers = struct {
         };
         pub const st5cr = mmio(base_address + 0x88, 32, St5cr);
 
-        /// address: 0x4002648c
+        /// address: 0x4002648c, path: dma2.st5ndtr
         /// stream x number of data register
         pub const St5ndtr = packed struct {
             ndt: u16, // Number of data items to transfer
@@ -13021,52 +10613,34 @@ pub const registers = struct {
         };
         pub const st5ndtr = mmio(base_address + 0x8c, 32, St5ndtr);
 
-        /// address: 0x40026490
+        /// address: 0x40026490, path: dma2.st5par
         /// stream x peripheral address register
         pub const St5par = packed struct {
             pa: u32, // Peripheral address
         };
         pub const st5par = mmio(base_address + 0x90, 32, St5par);
 
-        /// address: 0x40026494
+        /// address: 0x40026494, path: dma2.st5m0ar
         /// stream x memory 0 address register
         pub const St5m0ar = packed struct {
             m0a: u32, // Memory 0 address
         };
         pub const st5m0ar = mmio(base_address + 0x94, 32, St5m0ar);
 
-        /// address: 0x40026498
+        /// address: 0x40026498, path: dma2.st5m1ar
         /// stream x memory 1 address register
         pub const St5m1ar = packed struct {
             m1a: u32, // Memory 1 address (used in case of Double buffer mode)
         };
         pub const st5m1ar = mmio(base_address + 0x98, 32, St5m1ar);
 
-        /// address: 0x4002649c
+        /// address: 0x4002649c, path: dma2.st5fcr
         /// stream x FIFO control register
         pub const St5fcr = packed struct {
-            pub const Fth = enum(u2) {
-                quarter = 0b00, // 1/4 full FIFO
-                half = 0b01, // 1/2 full FIFO
-                three_quarters = 0b10, // 3/4 full FIFO
-                full = 0b11, // Full FIFO
-            };
-            pub const Dmdis = enum(u1) {
-                enabled = 0, // Direct mode is enabled
-                disabled = 1, // Direct mode is disabled
-            };
-            pub const Fs = enum(u3) {
-                quarter1 = 0b000, // 0 < fifo_level < 1/4
-                quarter2 = 0b001, // 1/4 <= fifo_level < 1/2
-                quarter3 = 0b010, // 1/2 <= fifo_level < 3/4
-                quarter4 = 0b011, // 3/4 <= fifo_level < full
-                empty = 0b100, // FIFO is empty
-                full = 0b101, // FIFO is full
-            };
-            pub const Feie = enum(u1) {
-                disabled = 0, // FE interrupt disabled
-                enabled = 1, // FE interrupt enabled
-            };
+            pub const Fth = dma1.st0fcr.Fth;
+            pub const Dmdis = dma1.st0fcr.Dmdis;
+            pub const Fs = dma1.st0fcr.Fs;
+            pub const Feie = dma1.st0fcr.Feie;
             fth: Fth, // FIFO threshold selection (u2)
             dmdis: Dmdis, // Direct mode disable (u1)
             fs: Fs, // FIFO status (u3)
@@ -13076,75 +10650,24 @@ pub const registers = struct {
         };
         pub const st5fcr = mmio(base_address + 0x9c, 32, St5fcr);
 
-        /// address: 0x400264a0
+        /// address: 0x400264a0, path: dma2.st6cr
         /// stream x configuration register
         pub const St6cr = packed struct {
-            pub const En = enum(u1) {
-                disabled = 0, // Stream disabled
-                enabled = 1, // Stream enabled
-            };
-            pub const Dmeie = enum(u1) {
-                disabled = 0, // DME interrupt disabled
-                enabled = 1, // DME interrupt enabled
-            };
-            pub const Teie = enum(u1) {
-                disabled = 0, // TE interrupt disabled
-                enabled = 1, // TE interrupt enabled
-            };
-            pub const Htie = enum(u1) {
-                disabled = 0, // HT interrupt disabled
-                enabled = 1, // HT interrupt enabled
-            };
-            pub const Tcie = enum(u1) {
-                disabled = 0, // TC interrupt disabled
-                enabled = 1, // TC interrupt enabled
-            };
-            pub const Pfctrl = enum(u1) {
-                dma = 0, // The DMA is the flow controller
-                peripheral = 1, // The peripheral is the flow controller
-            };
-            pub const Dir = enum(u2) {
-                peripheral_to_memory = 0b00, // Peripheral-to-memory
-                memory_to_peripheral = 0b01, // Memory-to-peripheral
-                memory_to_memory = 0b10, // Memory-to-memory
-            };
-            pub const Circ = enum(u1) {
-                disabled = 0, // Circular mode disabled
-                enabled = 1, // Circular mode enabled
-            };
-            pub const Pinc = enum(u1) {
-                fixed = 0, // Address pointer is fixed
-                incremented = 1, // Address pointer is incremented after each data transfer
-            };
-            pub const Psize = enum(u2) {
-                bits8 = 0b00, // Byte (8-bit)
-                bits16 = 0b01, // Half-word (16-bit)
-                bits32 = 0b10, // Word (32-bit)
-            };
-            pub const Pincos = enum(u1) {
-                psize = 0, // The offset size for the peripheral address calculation is linked to the PSIZE
-                fixed4 = 1, // The offset size for the peripheral address calculation is fixed to 4 (32-bit alignment)
-            };
-            pub const Pl = enum(u2) {
-                low = 0b00, // Low
-                medium = 0b01, // Medium
-                high = 0b10, // High
-                very_high = 0b11, // Very high
-            };
-            pub const Dbm = enum(u1) {
-                disabled = 0, // No buffer switching at the end of transfer
-                enabled = 1, // Memory target switched at the end of the DMA transfer
-            };
-            pub const Ct = enum(u1) {
-                memory0 = 0, // The current target memory is Memory 0
-                memory1 = 1, // The current target memory is Memory 1
-            };
-            pub const Pburst = enum(u2) {
-                single = 0b00, // Single transfer
-                incr4 = 0b01, // Incremental burst of 4 beats
-                incr8 = 0b10, // Incremental burst of 8 beats
-                incr16 = 0b11, // Incremental burst of 16 beats
-            };
+            pub const En = dma1.st0cr.En;
+            pub const Dmeie = dma1.st0cr.Dmeie;
+            pub const Teie = dma1.st0cr.Teie;
+            pub const Htie = dma1.st0cr.Htie;
+            pub const Tcie = usart1.cr1.Tcie;
+            pub const Pfctrl = dma1.st0cr.Pfctrl;
+            pub const Dir = dma1.st0cr.Dir;
+            pub const Circ = dma1.st0cr.Circ;
+            pub const Pinc = dma1.st0cr.Pinc;
+            pub const Psize = dma1.st0cr.Psize;
+            pub const Pincos = dma1.st0cr.Pincos;
+            pub const Pl = dma1.st0cr.Pl;
+            pub const Dbm = dma1.st0cr.Dbm;
+            pub const Ct = dma1.st0cr.Ct;
+            pub const Pburst = dma1.st0cr.Pburst;
             en: En, // Stream enable / flag stream ready when read low (u1)
             dmeie: Dmeie, // Direct mode error interrupt enable (u1)
             teie: Teie, // Transfer error interrupt enable (u1)
@@ -13169,7 +10692,7 @@ pub const registers = struct {
         };
         pub const st6cr = mmio(base_address + 0xa0, 32, St6cr);
 
-        /// address: 0x400264a4
+        /// address: 0x400264a4, path: dma2.st6ndtr
         /// stream x number of data register
         pub const St6ndtr = packed struct {
             ndt: u16, // Number of data items to transfer
@@ -13177,52 +10700,34 @@ pub const registers = struct {
         };
         pub const st6ndtr = mmio(base_address + 0xa4, 32, St6ndtr);
 
-        /// address: 0x400264a8
+        /// address: 0x400264a8, path: dma2.st6par
         /// stream x peripheral address register
         pub const St6par = packed struct {
             pa: u32, // Peripheral address
         };
         pub const st6par = mmio(base_address + 0xa8, 32, St6par);
 
-        /// address: 0x400264ac
+        /// address: 0x400264ac, path: dma2.st6m0ar
         /// stream x memory 0 address register
         pub const St6m0ar = packed struct {
             m0a: u32, // Memory 0 address
         };
         pub const st6m0ar = mmio(base_address + 0xac, 32, St6m0ar);
 
-        /// address: 0x400264b0
+        /// address: 0x400264b0, path: dma2.st6m1ar
         /// stream x memory 1 address register
         pub const St6m1ar = packed struct {
             m1a: u32, // Memory 1 address (used in case of Double buffer mode)
         };
         pub const st6m1ar = mmio(base_address + 0xb0, 32, St6m1ar);
 
-        /// address: 0x400264b4
+        /// address: 0x400264b4, path: dma2.st6fcr
         /// stream x FIFO control register
         pub const St6fcr = packed struct {
-            pub const Fth = enum(u2) {
-                quarter = 0b00, // 1/4 full FIFO
-                half = 0b01, // 1/2 full FIFO
-                three_quarters = 0b10, // 3/4 full FIFO
-                full = 0b11, // Full FIFO
-            };
-            pub const Dmdis = enum(u1) {
-                enabled = 0, // Direct mode is enabled
-                disabled = 1, // Direct mode is disabled
-            };
-            pub const Fs = enum(u3) {
-                quarter1 = 0b000, // 0 < fifo_level < 1/4
-                quarter2 = 0b001, // 1/4 <= fifo_level < 1/2
-                quarter3 = 0b010, // 1/2 <= fifo_level < 3/4
-                quarter4 = 0b011, // 3/4 <= fifo_level < full
-                empty = 0b100, // FIFO is empty
-                full = 0b101, // FIFO is full
-            };
-            pub const Feie = enum(u1) {
-                disabled = 0, // FE interrupt disabled
-                enabled = 1, // FE interrupt enabled
-            };
+            pub const Fth = dma1.st0fcr.Fth;
+            pub const Dmdis = dma1.st0fcr.Dmdis;
+            pub const Fs = dma1.st0fcr.Fs;
+            pub const Feie = dma1.st0fcr.Feie;
             fth: Fth, // FIFO threshold selection (u2)
             dmdis: Dmdis, // Direct mode disable (u1)
             fs: Fs, // FIFO status (u3)
@@ -13232,75 +10737,24 @@ pub const registers = struct {
         };
         pub const st6fcr = mmio(base_address + 0xb4, 32, St6fcr);
 
-        /// address: 0x400264b8
+        /// address: 0x400264b8, path: dma2.st7cr
         /// stream x configuration register
         pub const St7cr = packed struct {
-            pub const En = enum(u1) {
-                disabled = 0, // Stream disabled
-                enabled = 1, // Stream enabled
-            };
-            pub const Dmeie = enum(u1) {
-                disabled = 0, // DME interrupt disabled
-                enabled = 1, // DME interrupt enabled
-            };
-            pub const Teie = enum(u1) {
-                disabled = 0, // TE interrupt disabled
-                enabled = 1, // TE interrupt enabled
-            };
-            pub const Htie = enum(u1) {
-                disabled = 0, // HT interrupt disabled
-                enabled = 1, // HT interrupt enabled
-            };
-            pub const Tcie = enum(u1) {
-                disabled = 0, // TC interrupt disabled
-                enabled = 1, // TC interrupt enabled
-            };
-            pub const Pfctrl = enum(u1) {
-                dma = 0, // The DMA is the flow controller
-                peripheral = 1, // The peripheral is the flow controller
-            };
-            pub const Dir = enum(u2) {
-                peripheral_to_memory = 0b00, // Peripheral-to-memory
-                memory_to_peripheral = 0b01, // Memory-to-peripheral
-                memory_to_memory = 0b10, // Memory-to-memory
-            };
-            pub const Circ = enum(u1) {
-                disabled = 0, // Circular mode disabled
-                enabled = 1, // Circular mode enabled
-            };
-            pub const Pinc = enum(u1) {
-                fixed = 0, // Address pointer is fixed
-                incremented = 1, // Address pointer is incremented after each data transfer
-            };
-            pub const Psize = enum(u2) {
-                bits8 = 0b00, // Byte (8-bit)
-                bits16 = 0b01, // Half-word (16-bit)
-                bits32 = 0b10, // Word (32-bit)
-            };
-            pub const Pincos = enum(u1) {
-                psize = 0, // The offset size for the peripheral address calculation is linked to the PSIZE
-                fixed4 = 1, // The offset size for the peripheral address calculation is fixed to 4 (32-bit alignment)
-            };
-            pub const Pl = enum(u2) {
-                low = 0b00, // Low
-                medium = 0b01, // Medium
-                high = 0b10, // High
-                very_high = 0b11, // Very high
-            };
-            pub const Dbm = enum(u1) {
-                disabled = 0, // No buffer switching at the end of transfer
-                enabled = 1, // Memory target switched at the end of the DMA transfer
-            };
-            pub const Ct = enum(u1) {
-                memory0 = 0, // The current target memory is Memory 0
-                memory1 = 1, // The current target memory is Memory 1
-            };
-            pub const Pburst = enum(u2) {
-                single = 0b00, // Single transfer
-                incr4 = 0b01, // Incremental burst of 4 beats
-                incr8 = 0b10, // Incremental burst of 8 beats
-                incr16 = 0b11, // Incremental burst of 16 beats
-            };
+            pub const En = dma1.st0cr.En;
+            pub const Dmeie = dma1.st0cr.Dmeie;
+            pub const Teie = dma1.st0cr.Teie;
+            pub const Htie = dma1.st0cr.Htie;
+            pub const Tcie = usart1.cr1.Tcie;
+            pub const Pfctrl = dma1.st0cr.Pfctrl;
+            pub const Dir = dma1.st0cr.Dir;
+            pub const Circ = dma1.st0cr.Circ;
+            pub const Pinc = dma1.st0cr.Pinc;
+            pub const Psize = dma1.st0cr.Psize;
+            pub const Pincos = dma1.st0cr.Pincos;
+            pub const Pl = dma1.st0cr.Pl;
+            pub const Dbm = dma1.st0cr.Dbm;
+            pub const Ct = dma1.st0cr.Ct;
+            pub const Pburst = dma1.st0cr.Pburst;
             en: En, // Stream enable / flag stream ready when read low (u1)
             dmeie: Dmeie, // Direct mode error interrupt enable (u1)
             teie: Teie, // Transfer error interrupt enable (u1)
@@ -13325,7 +10779,7 @@ pub const registers = struct {
         };
         pub const st7cr = mmio(base_address + 0xb8, 32, St7cr);
 
-        /// address: 0x400264bc
+        /// address: 0x400264bc, path: dma2.st7ndtr
         /// stream x number of data register
         pub const St7ndtr = packed struct {
             ndt: u16, // Number of data items to transfer
@@ -13333,52 +10787,34 @@ pub const registers = struct {
         };
         pub const st7ndtr = mmio(base_address + 0xbc, 32, St7ndtr);
 
-        /// address: 0x400264c0
+        /// address: 0x400264c0, path: dma2.st7par
         /// stream x peripheral address register
         pub const St7par = packed struct {
             pa: u32, // Peripheral address
         };
         pub const st7par = mmio(base_address + 0xc0, 32, St7par);
 
-        /// address: 0x400264c4
+        /// address: 0x400264c4, path: dma2.st7m0ar
         /// stream x memory 0 address register
         pub const St7m0ar = packed struct {
             m0a: u32, // Memory 0 address
         };
         pub const st7m0ar = mmio(base_address + 0xc4, 32, St7m0ar);
 
-        /// address: 0x400264c8
+        /// address: 0x400264c8, path: dma2.st7m1ar
         /// stream x memory 1 address register
         pub const St7m1ar = packed struct {
             m1a: u32, // Memory 1 address (used in case of Double buffer mode)
         };
         pub const st7m1ar = mmio(base_address + 0xc8, 32, St7m1ar);
 
-        /// address: 0x400264cc
+        /// address: 0x400264cc, path: dma2.st7fcr
         /// stream x FIFO control register
         pub const St7fcr = packed struct {
-            pub const Fth = enum(u2) {
-                quarter = 0b00, // 1/4 full FIFO
-                half = 0b01, // 1/2 full FIFO
-                three_quarters = 0b10, // 3/4 full FIFO
-                full = 0b11, // Full FIFO
-            };
-            pub const Dmdis = enum(u1) {
-                enabled = 0, // Direct mode is enabled
-                disabled = 1, // Direct mode is disabled
-            };
-            pub const Fs = enum(u3) {
-                quarter1 = 0b000, // 0 < fifo_level < 1/4
-                quarter2 = 0b001, // 1/4 <= fifo_level < 1/2
-                quarter3 = 0b010, // 1/2 <= fifo_level < 3/4
-                quarter4 = 0b011, // 3/4 <= fifo_level < full
-                empty = 0b100, // FIFO is empty
-                full = 0b101, // FIFO is full
-            };
-            pub const Feie = enum(u1) {
-                disabled = 0, // FE interrupt disabled
-                enabled = 1, // FE interrupt enabled
-            };
+            pub const Fth = dma1.st0fcr.Fth;
+            pub const Dmdis = dma1.st0fcr.Dmdis;
+            pub const Fs = dma1.st0fcr.Fs;
+            pub const Feie = dma1.st0fcr.Feie;
             fth: Fth, // FIFO threshold selection (u2)
             dmdis: Dmdis, // Direct mode disable (u1)
             fs: Fs, // FIFO status (u3)
@@ -13392,15 +10828,10 @@ pub const registers = struct {
     pub const gpioe = struct {
         pub const base_address = 0x40021000;
 
-        /// address: 0x40021000
+        /// address: 0x40021000, path: gpioe.moder
         /// GPIO port mode register
         pub const Moder = packed struct {
-            pub const Moder0 = enum(u2) {
-                input = 0b00, // Input mode (reset state)
-                output = 0b01, // General purpose output mode
-                alternate = 0b10, // Alternate function mode
-                analog = 0b11, // Analog mode
-            };
+            pub const Moder0 = gpioh.moder.Moder0;
             moder0: Moder0, // Port x configuration bits (y = 0..15) (u2)
             moder1: Moder0, // Port x configuration bits (y = 0..15) (u2)
             moder2: Moder0, // Port x configuration bits (y = 0..15) (u2)
@@ -13420,13 +10851,10 @@ pub const registers = struct {
         };
         pub const moder = mmio(base_address + 0x0, 32, Moder);
 
-        /// address: 0x40021004
+        /// address: 0x40021004, path: gpioe.otyper
         /// GPIO port output type register
         pub const Otyper = packed struct {
-            pub const Ot0 = enum(u1) {
-                push_pull = 0, // Output push-pull (reset state)
-                open_drain = 1, // Output open-drain
-            };
+            pub const Ot0 = gpioh.otyper.Ot0;
             ot0: Ot0, // Port x configuration bits (y = 0..15) (u1)
             ot1: Ot0, // Port x configuration bits (y = 0..15) (u1)
             ot2: Ot0, // Port x configuration bits (y = 0..15) (u1)
@@ -13447,15 +10875,10 @@ pub const registers = struct {
         };
         pub const otyper = mmio(base_address + 0x4, 32, Otyper);
 
-        /// address: 0x40021008
+        /// address: 0x40021008, path: gpioe.ospeedr
         /// GPIO port output speed register
         pub const Ospeedr = packed struct {
-            pub const Ospeedr0 = enum(u2) {
-                low_speed = 0b00, // Low speed
-                medium_speed = 0b01, // Medium speed
-                high_speed = 0b10, // High speed
-                very_high_speed = 0b11, // Very high speed
-            };
+            pub const Ospeedr0 = gpioh.ospeedr.Ospeedr0;
             ospeedr0: Ospeedr0, // Port x configuration bits (y = 0..15) (u2)
             ospeedr1: Ospeedr0, // Port x configuration bits (y = 0..15) (u2)
             ospeedr2: Ospeedr0, // Port x configuration bits (y = 0..15) (u2)
@@ -13475,14 +10898,10 @@ pub const registers = struct {
         };
         pub const ospeedr = mmio(base_address + 0x8, 32, Ospeedr);
 
-        /// address: 0x4002100c
+        /// address: 0x4002100c, path: gpioe.pupdr
         /// GPIO port pull-up/pull-down register
         pub const Pupdr = packed struct {
-            pub const Pupdr0 = enum(u2) {
-                floating = 0b00, // No pull-up, pull-down
-                pull_up = 0b01, // Pull-up
-                pull_down = 0b10, // Pull-down
-            };
+            pub const Pupdr0 = gpioh.pupdr.Pupdr0;
             pupdr0: Pupdr0, // Port x configuration bits (y = 0..15) (u2)
             pupdr1: Pupdr0, // Port x configuration bits (y = 0..15) (u2)
             pupdr2: Pupdr0, // Port x configuration bits (y = 0..15) (u2)
@@ -13502,13 +10921,10 @@ pub const registers = struct {
         };
         pub const pupdr = mmio(base_address + 0xc, 32, Pupdr);
 
-        /// address: 0x40021010
+        /// address: 0x40021010, path: gpioe.idr
         /// GPIO port input data register
         pub const Idr = packed struct {
-            pub const Idr0 = enum(u1) {
-                high = 1, // Input is logic high
-                low = 0, // Input is logic low
-            };
+            pub const Idr0 = gpioh.idr.Idr0;
             idr0: Idr0, // Port input data (y = 0..15) (u1)
             idr1: Idr0, // Port input data (y = 0..15) (u1)
             idr2: Idr0, // Port input data (y = 0..15) (u1)
@@ -13529,13 +10945,10 @@ pub const registers = struct {
         };
         pub const idr = mmio(base_address + 0x10, 32, Idr);
 
-        /// address: 0x40021014
+        /// address: 0x40021014, path: gpioe.odr
         /// GPIO port output data register
         pub const Odr = packed struct {
-            pub const Odr0 = enum(u1) {
-                high = 1, // Set output to logic high
-                low = 0, // Set output to logic low
-            };
+            pub const Odr0 = gpioh.odr.Odr0;
             odr0: Odr0, // Port output data (y = 0..15) (u1)
             odr1: Odr0, // Port output data (y = 0..15) (u1)
             odr2: Odr0, // Port output data (y = 0..15) (u1)
@@ -13556,15 +10969,11 @@ pub const registers = struct {
         };
         pub const odr = mmio(base_address + 0x14, 32, Odr);
 
-        /// address: 0x40021018
+        /// address: 0x40021018, path: gpioe.bsrr
         /// GPIO port bit set/reset register
         pub const Bsrr = packed struct {
-            pub const Bs0w = enum(u1) {
-                set = 1, // Sets the corresponding ODRx bit
-            };
-            pub const Br0w = enum(u1) {
-                reset = 1, // Resets the corresponding ODRx bit
-            };
+            pub const Bs0w = gpioh.bsrr.Bs0w;
+            pub const Br0w = gpioh.bsrr.Br0w;
             bs0: Bs0w, // Port x set bit y (y= 0..15) (u1)
             bs1: Bs0w, // Port x set bit y (y= 0..15) (u1)
             bs2: Bs0w, // Port x set bit y (y= 0..15) (u1)
@@ -13600,17 +11009,11 @@ pub const registers = struct {
         };
         pub const bsrr = mmio(base_address + 0x18, 32, Bsrr);
 
-        /// address: 0x4002101c
+        /// address: 0x4002101c, path: gpioe.lckr
         /// GPIO port configuration lock register
         pub const Lckr = packed struct {
-            pub const Lck0 = enum(u1) {
-                unlocked = 0, // Port configuration not locked
-                locked = 1, // Port configuration locked
-            };
-            pub const Lckk = enum(u1) {
-                not_active = 0, // Port configuration lock key not active
-                active = 1, // Port configuration lock key active
-            };
+            pub const Lck0 = gpioh.lckr.Lck0;
+            pub const Lckk = gpioh.lckr.Lckk;
             lck0: Lck0, // Port x lock bit y (y= 0..15) (u1)
             lck1: Lck0, // Port x lock bit y (y= 0..15) (u1)
             lck2: Lck0, // Port x lock bit y (y= 0..15) (u1)
@@ -13632,27 +11035,10 @@ pub const registers = struct {
         };
         pub const lckr = mmio(base_address + 0x1c, 32, Lckr);
 
-        /// address: 0x40021020
+        /// address: 0x40021020, path: gpioe.afrl
         /// GPIO alternate function low register
         pub const Afrl = packed struct {
-            pub const Afrl0 = enum(u4) {
-                af0 = 0b0000, // AF0
-                af1 = 0b0001, // AF1
-                af2 = 0b0010, // AF2
-                af3 = 0b0011, // AF3
-                af4 = 0b0100, // AF4
-                af5 = 0b0101, // AF5
-                af6 = 0b0110, // AF6
-                af7 = 0b0111, // AF7
-                af8 = 0b1000, // AF8
-                af9 = 0b1001, // AF9
-                af10 = 0b1010, // AF10
-                af11 = 0b1011, // AF11
-                af12 = 0b1100, // AF12
-                af13 = 0b1101, // AF13
-                af14 = 0b1110, // AF14
-                af15 = 0b1111, // AF15
-            };
+            pub const Afrl0 = gpioh.afrl.Afrl0;
             afrl0: Afrl0, // Alternate function selection for port x bit y (y = 0..7) (u4)
             afrl1: Afrl0, // Alternate function selection for port x bit y (y = 0..7) (u4)
             afrl2: Afrl0, // Alternate function selection for port x bit y (y = 0..7) (u4)
@@ -13664,27 +11050,10 @@ pub const registers = struct {
         };
         pub const afrl = mmio(base_address + 0x20, 32, Afrl);
 
-        /// address: 0x40021024
+        /// address: 0x40021024, path: gpioe.afrh
         /// GPIO alternate function high register
         pub const Afrh = packed struct {
-            pub const Afrh8 = enum(u4) {
-                af0 = 0b0000, // AF0
-                af1 = 0b0001, // AF1
-                af2 = 0b0010, // AF2
-                af3 = 0b0011, // AF3
-                af4 = 0b0100, // AF4
-                af5 = 0b0101, // AF5
-                af6 = 0b0110, // AF6
-                af7 = 0b0111, // AF7
-                af8 = 0b1000, // AF8
-                af9 = 0b1001, // AF9
-                af10 = 0b1010, // AF10
-                af11 = 0b1011, // AF11
-                af12 = 0b1100, // AF12
-                af13 = 0b1101, // AF13
-                af14 = 0b1110, // AF14
-                af15 = 0b1111, // AF15
-            };
+            pub const Afrh8 = gpioh.afrh.Afrh8;
             afrh8: Afrh8, // Alternate function selection for port x bit y (y = 8..15) (u4)
             afrh9: Afrh8, // Alternate function selection for port x bit y (y = 8..15) (u4)
             afrh10: Afrh8, // Alternate function selection for port x bit y (y = 8..15) (u4)
@@ -13700,15 +11069,10 @@ pub const registers = struct {
     pub const gpiod = struct {
         pub const base_address = 0x40020c00;
 
-        /// address: 0x40020c00
+        /// address: 0x40020c00, path: gpiod.moder
         /// GPIO port mode register
         pub const Moder = packed struct {
-            pub const Moder0 = enum(u2) {
-                input = 0b00, // Input mode (reset state)
-                output = 0b01, // General purpose output mode
-                alternate = 0b10, // Alternate function mode
-                analog = 0b11, // Analog mode
-            };
+            pub const Moder0 = gpioh.moder.Moder0;
             moder0: Moder0, // Port x configuration bits (y = 0..15) (u2)
             moder1: Moder0, // Port x configuration bits (y = 0..15) (u2)
             moder2: Moder0, // Port x configuration bits (y = 0..15) (u2)
@@ -13728,13 +11092,10 @@ pub const registers = struct {
         };
         pub const moder = mmio(base_address + 0x0, 32, Moder);
 
-        /// address: 0x40020c04
+        /// address: 0x40020c04, path: gpiod.otyper
         /// GPIO port output type register
         pub const Otyper = packed struct {
-            pub const Ot0 = enum(u1) {
-                push_pull = 0, // Output push-pull (reset state)
-                open_drain = 1, // Output open-drain
-            };
+            pub const Ot0 = gpioh.otyper.Ot0;
             ot0: Ot0, // Port x configuration bits (y = 0..15) (u1)
             ot1: Ot0, // Port x configuration bits (y = 0..15) (u1)
             ot2: Ot0, // Port x configuration bits (y = 0..15) (u1)
@@ -13755,15 +11116,10 @@ pub const registers = struct {
         };
         pub const otyper = mmio(base_address + 0x4, 32, Otyper);
 
-        /// address: 0x40020c08
+        /// address: 0x40020c08, path: gpiod.ospeedr
         /// GPIO port output speed register
         pub const Ospeedr = packed struct {
-            pub const Ospeedr0 = enum(u2) {
-                low_speed = 0b00, // Low speed
-                medium_speed = 0b01, // Medium speed
-                high_speed = 0b10, // High speed
-                very_high_speed = 0b11, // Very high speed
-            };
+            pub const Ospeedr0 = gpioh.ospeedr.Ospeedr0;
             ospeedr0: Ospeedr0, // Port x configuration bits (y = 0..15) (u2)
             ospeedr1: Ospeedr0, // Port x configuration bits (y = 0..15) (u2)
             ospeedr2: Ospeedr0, // Port x configuration bits (y = 0..15) (u2)
@@ -13783,14 +11139,10 @@ pub const registers = struct {
         };
         pub const ospeedr = mmio(base_address + 0x8, 32, Ospeedr);
 
-        /// address: 0x40020c0c
+        /// address: 0x40020c0c, path: gpiod.pupdr
         /// GPIO port pull-up/pull-down register
         pub const Pupdr = packed struct {
-            pub const Pupdr0 = enum(u2) {
-                floating = 0b00, // No pull-up, pull-down
-                pull_up = 0b01, // Pull-up
-                pull_down = 0b10, // Pull-down
-            };
+            pub const Pupdr0 = gpioh.pupdr.Pupdr0;
             pupdr0: Pupdr0, // Port x configuration bits (y = 0..15) (u2)
             pupdr1: Pupdr0, // Port x configuration bits (y = 0..15) (u2)
             pupdr2: Pupdr0, // Port x configuration bits (y = 0..15) (u2)
@@ -13810,13 +11162,10 @@ pub const registers = struct {
         };
         pub const pupdr = mmio(base_address + 0xc, 32, Pupdr);
 
-        /// address: 0x40020c10
+        /// address: 0x40020c10, path: gpiod.idr
         /// GPIO port input data register
         pub const Idr = packed struct {
-            pub const Idr0 = enum(u1) {
-                high = 1, // Input is logic high
-                low = 0, // Input is logic low
-            };
+            pub const Idr0 = gpioh.idr.Idr0;
             idr0: Idr0, // Port input data (y = 0..15) (u1)
             idr1: Idr0, // Port input data (y = 0..15) (u1)
             idr2: Idr0, // Port input data (y = 0..15) (u1)
@@ -13837,13 +11186,10 @@ pub const registers = struct {
         };
         pub const idr = mmio(base_address + 0x10, 32, Idr);
 
-        /// address: 0x40020c14
+        /// address: 0x40020c14, path: gpiod.odr
         /// GPIO port output data register
         pub const Odr = packed struct {
-            pub const Odr0 = enum(u1) {
-                high = 1, // Set output to logic high
-                low = 0, // Set output to logic low
-            };
+            pub const Odr0 = gpioh.odr.Odr0;
             odr0: Odr0, // Port output data (y = 0..15) (u1)
             odr1: Odr0, // Port output data (y = 0..15) (u1)
             odr2: Odr0, // Port output data (y = 0..15) (u1)
@@ -13864,15 +11210,11 @@ pub const registers = struct {
         };
         pub const odr = mmio(base_address + 0x14, 32, Odr);
 
-        /// address: 0x40020c18
+        /// address: 0x40020c18, path: gpiod.bsrr
         /// GPIO port bit set/reset register
         pub const Bsrr = packed struct {
-            pub const Bs0w = enum(u1) {
-                set = 1, // Sets the corresponding ODRx bit
-            };
-            pub const Br0w = enum(u1) {
-                reset = 1, // Resets the corresponding ODRx bit
-            };
+            pub const Bs0w = gpioh.bsrr.Bs0w;
+            pub const Br0w = gpioh.bsrr.Br0w;
             bs0: Bs0w, // Port x set bit y (y= 0..15) (u1)
             bs1: Bs0w, // Port x set bit y (y= 0..15) (u1)
             bs2: Bs0w, // Port x set bit y (y= 0..15) (u1)
@@ -13908,17 +11250,11 @@ pub const registers = struct {
         };
         pub const bsrr = mmio(base_address + 0x18, 32, Bsrr);
 
-        /// address: 0x40020c1c
+        /// address: 0x40020c1c, path: gpiod.lckr
         /// GPIO port configuration lock register
         pub const Lckr = packed struct {
-            pub const Lck0 = enum(u1) {
-                unlocked = 0, // Port configuration not locked
-                locked = 1, // Port configuration locked
-            };
-            pub const Lckk = enum(u1) {
-                not_active = 0, // Port configuration lock key not active
-                active = 1, // Port configuration lock key active
-            };
+            pub const Lck0 = gpioh.lckr.Lck0;
+            pub const Lckk = gpioh.lckr.Lckk;
             lck0: Lck0, // Port x lock bit y (y= 0..15) (u1)
             lck1: Lck0, // Port x lock bit y (y= 0..15) (u1)
             lck2: Lck0, // Port x lock bit y (y= 0..15) (u1)
@@ -13940,27 +11276,10 @@ pub const registers = struct {
         };
         pub const lckr = mmio(base_address + 0x1c, 32, Lckr);
 
-        /// address: 0x40020c20
+        /// address: 0x40020c20, path: gpiod.afrl
         /// GPIO alternate function low register
         pub const Afrl = packed struct {
-            pub const Afrl0 = enum(u4) {
-                af0 = 0b0000, // AF0
-                af1 = 0b0001, // AF1
-                af2 = 0b0010, // AF2
-                af3 = 0b0011, // AF3
-                af4 = 0b0100, // AF4
-                af5 = 0b0101, // AF5
-                af6 = 0b0110, // AF6
-                af7 = 0b0111, // AF7
-                af8 = 0b1000, // AF8
-                af9 = 0b1001, // AF9
-                af10 = 0b1010, // AF10
-                af11 = 0b1011, // AF11
-                af12 = 0b1100, // AF12
-                af13 = 0b1101, // AF13
-                af14 = 0b1110, // AF14
-                af15 = 0b1111, // AF15
-            };
+            pub const Afrl0 = gpioh.afrl.Afrl0;
             afrl0: Afrl0, // Alternate function selection for port x bit y (y = 0..7) (u4)
             afrl1: Afrl0, // Alternate function selection for port x bit y (y = 0..7) (u4)
             afrl2: Afrl0, // Alternate function selection for port x bit y (y = 0..7) (u4)
@@ -13972,27 +11291,10 @@ pub const registers = struct {
         };
         pub const afrl = mmio(base_address + 0x20, 32, Afrl);
 
-        /// address: 0x40020c24
+        /// address: 0x40020c24, path: gpiod.afrh
         /// GPIO alternate function high register
         pub const Afrh = packed struct {
-            pub const Afrh8 = enum(u4) {
-                af0 = 0b0000, // AF0
-                af1 = 0b0001, // AF1
-                af2 = 0b0010, // AF2
-                af3 = 0b0011, // AF3
-                af4 = 0b0100, // AF4
-                af5 = 0b0101, // AF5
-                af6 = 0b0110, // AF6
-                af7 = 0b0111, // AF7
-                af8 = 0b1000, // AF8
-                af9 = 0b1001, // AF9
-                af10 = 0b1010, // AF10
-                af11 = 0b1011, // AF11
-                af12 = 0b1100, // AF12
-                af13 = 0b1101, // AF13
-                af14 = 0b1110, // AF14
-                af15 = 0b1111, // AF15
-            };
+            pub const Afrh8 = gpioh.afrh.Afrh8;
             afrh8: Afrh8, // Alternate function selection for port x bit y (y = 8..15) (u4)
             afrh9: Afrh8, // Alternate function selection for port x bit y (y = 8..15) (u4)
             afrh10: Afrh8, // Alternate function selection for port x bit y (y = 8..15) (u4)
@@ -14008,15 +11310,10 @@ pub const registers = struct {
     pub const gpioc = struct {
         pub const base_address = 0x40020800;
 
-        /// address: 0x40020800
+        /// address: 0x40020800, path: gpioc.moder
         /// GPIO port mode register
         pub const Moder = packed struct {
-            pub const Moder0 = enum(u2) {
-                input = 0b00, // Input mode (reset state)
-                output = 0b01, // General purpose output mode
-                alternate = 0b10, // Alternate function mode
-                analog = 0b11, // Analog mode
-            };
+            pub const Moder0 = gpioh.moder.Moder0;
             moder0: Moder0, // Port x configuration bits (y = 0..15) (u2)
             moder1: Moder0, // Port x configuration bits (y = 0..15) (u2)
             moder2: Moder0, // Port x configuration bits (y = 0..15) (u2)
@@ -14036,13 +11333,10 @@ pub const registers = struct {
         };
         pub const moder = mmio(base_address + 0x0, 32, Moder);
 
-        /// address: 0x40020804
+        /// address: 0x40020804, path: gpioc.otyper
         /// GPIO port output type register
         pub const Otyper = packed struct {
-            pub const Ot0 = enum(u1) {
-                push_pull = 0, // Output push-pull (reset state)
-                open_drain = 1, // Output open-drain
-            };
+            pub const Ot0 = gpioh.otyper.Ot0;
             ot0: Ot0, // Port x configuration bits (y = 0..15) (u1)
             ot1: Ot0, // Port x configuration bits (y = 0..15) (u1)
             ot2: Ot0, // Port x configuration bits (y = 0..15) (u1)
@@ -14063,15 +11357,10 @@ pub const registers = struct {
         };
         pub const otyper = mmio(base_address + 0x4, 32, Otyper);
 
-        /// address: 0x40020808
+        /// address: 0x40020808, path: gpioc.ospeedr
         /// GPIO port output speed register
         pub const Ospeedr = packed struct {
-            pub const Ospeedr0 = enum(u2) {
-                low_speed = 0b00, // Low speed
-                medium_speed = 0b01, // Medium speed
-                high_speed = 0b10, // High speed
-                very_high_speed = 0b11, // Very high speed
-            };
+            pub const Ospeedr0 = gpioh.ospeedr.Ospeedr0;
             ospeedr0: Ospeedr0, // Port x configuration bits (y = 0..15) (u2)
             ospeedr1: Ospeedr0, // Port x configuration bits (y = 0..15) (u2)
             ospeedr2: Ospeedr0, // Port x configuration bits (y = 0..15) (u2)
@@ -14091,14 +11380,10 @@ pub const registers = struct {
         };
         pub const ospeedr = mmio(base_address + 0x8, 32, Ospeedr);
 
-        /// address: 0x4002080c
+        /// address: 0x4002080c, path: gpioc.pupdr
         /// GPIO port pull-up/pull-down register
         pub const Pupdr = packed struct {
-            pub const Pupdr0 = enum(u2) {
-                floating = 0b00, // No pull-up, pull-down
-                pull_up = 0b01, // Pull-up
-                pull_down = 0b10, // Pull-down
-            };
+            pub const Pupdr0 = gpioh.pupdr.Pupdr0;
             pupdr0: Pupdr0, // Port x configuration bits (y = 0..15) (u2)
             pupdr1: Pupdr0, // Port x configuration bits (y = 0..15) (u2)
             pupdr2: Pupdr0, // Port x configuration bits (y = 0..15) (u2)
@@ -14118,13 +11403,10 @@ pub const registers = struct {
         };
         pub const pupdr = mmio(base_address + 0xc, 32, Pupdr);
 
-        /// address: 0x40020810
+        /// address: 0x40020810, path: gpioc.idr
         /// GPIO port input data register
         pub const Idr = packed struct {
-            pub const Idr0 = enum(u1) {
-                high = 1, // Input is logic high
-                low = 0, // Input is logic low
-            };
+            pub const Idr0 = gpioh.idr.Idr0;
             idr0: Idr0, // Port input data (y = 0..15) (u1)
             idr1: Idr0, // Port input data (y = 0..15) (u1)
             idr2: Idr0, // Port input data (y = 0..15) (u1)
@@ -14145,13 +11427,10 @@ pub const registers = struct {
         };
         pub const idr = mmio(base_address + 0x10, 32, Idr);
 
-        /// address: 0x40020814
+        /// address: 0x40020814, path: gpioc.odr
         /// GPIO port output data register
         pub const Odr = packed struct {
-            pub const Odr0 = enum(u1) {
-                high = 1, // Set output to logic high
-                low = 0, // Set output to logic low
-            };
+            pub const Odr0 = gpioh.odr.Odr0;
             odr0: Odr0, // Port output data (y = 0..15) (u1)
             odr1: Odr0, // Port output data (y = 0..15) (u1)
             odr2: Odr0, // Port output data (y = 0..15) (u1)
@@ -14172,15 +11451,11 @@ pub const registers = struct {
         };
         pub const odr = mmio(base_address + 0x14, 32, Odr);
 
-        /// address: 0x40020818
+        /// address: 0x40020818, path: gpioc.bsrr
         /// GPIO port bit set/reset register
         pub const Bsrr = packed struct {
-            pub const Bs0w = enum(u1) {
-                set = 1, // Sets the corresponding ODRx bit
-            };
-            pub const Br0w = enum(u1) {
-                reset = 1, // Resets the corresponding ODRx bit
-            };
+            pub const Bs0w = gpioh.bsrr.Bs0w;
+            pub const Br0w = gpioh.bsrr.Br0w;
             bs0: Bs0w, // Port x set bit y (y= 0..15) (u1)
             bs1: Bs0w, // Port x set bit y (y= 0..15) (u1)
             bs2: Bs0w, // Port x set bit y (y= 0..15) (u1)
@@ -14216,17 +11491,11 @@ pub const registers = struct {
         };
         pub const bsrr = mmio(base_address + 0x18, 32, Bsrr);
 
-        /// address: 0x4002081c
+        /// address: 0x4002081c, path: gpioc.lckr
         /// GPIO port configuration lock register
         pub const Lckr = packed struct {
-            pub const Lck0 = enum(u1) {
-                unlocked = 0, // Port configuration not locked
-                locked = 1, // Port configuration locked
-            };
-            pub const Lckk = enum(u1) {
-                not_active = 0, // Port configuration lock key not active
-                active = 1, // Port configuration lock key active
-            };
+            pub const Lck0 = gpioh.lckr.Lck0;
+            pub const Lckk = gpioh.lckr.Lckk;
             lck0: Lck0, // Port x lock bit y (y= 0..15) (u1)
             lck1: Lck0, // Port x lock bit y (y= 0..15) (u1)
             lck2: Lck0, // Port x lock bit y (y= 0..15) (u1)
@@ -14248,27 +11517,10 @@ pub const registers = struct {
         };
         pub const lckr = mmio(base_address + 0x1c, 32, Lckr);
 
-        /// address: 0x40020820
+        /// address: 0x40020820, path: gpioc.afrl
         /// GPIO alternate function low register
         pub const Afrl = packed struct {
-            pub const Afrl0 = enum(u4) {
-                af0 = 0b0000, // AF0
-                af1 = 0b0001, // AF1
-                af2 = 0b0010, // AF2
-                af3 = 0b0011, // AF3
-                af4 = 0b0100, // AF4
-                af5 = 0b0101, // AF5
-                af6 = 0b0110, // AF6
-                af7 = 0b0111, // AF7
-                af8 = 0b1000, // AF8
-                af9 = 0b1001, // AF9
-                af10 = 0b1010, // AF10
-                af11 = 0b1011, // AF11
-                af12 = 0b1100, // AF12
-                af13 = 0b1101, // AF13
-                af14 = 0b1110, // AF14
-                af15 = 0b1111, // AF15
-            };
+            pub const Afrl0 = gpioh.afrl.Afrl0;
             afrl0: Afrl0, // Alternate function selection for port x bit y (y = 0..7) (u4)
             afrl1: Afrl0, // Alternate function selection for port x bit y (y = 0..7) (u4)
             afrl2: Afrl0, // Alternate function selection for port x bit y (y = 0..7) (u4)
@@ -14280,27 +11532,10 @@ pub const registers = struct {
         };
         pub const afrl = mmio(base_address + 0x20, 32, Afrl);
 
-        /// address: 0x40020824
+        /// address: 0x40020824, path: gpioc.afrh
         /// GPIO alternate function high register
         pub const Afrh = packed struct {
-            pub const Afrh8 = enum(u4) {
-                af0 = 0b0000, // AF0
-                af1 = 0b0001, // AF1
-                af2 = 0b0010, // AF2
-                af3 = 0b0011, // AF3
-                af4 = 0b0100, // AF4
-                af5 = 0b0101, // AF5
-                af6 = 0b0110, // AF6
-                af7 = 0b0111, // AF7
-                af8 = 0b1000, // AF8
-                af9 = 0b1001, // AF9
-                af10 = 0b1010, // AF10
-                af11 = 0b1011, // AF11
-                af12 = 0b1100, // AF12
-                af13 = 0b1101, // AF13
-                af14 = 0b1110, // AF14
-                af15 = 0b1111, // AF15
-            };
+            pub const Afrh8 = gpioh.afrh.Afrh8;
             afrh8: Afrh8, // Alternate function selection for port x bit y (y = 8..15) (u4)
             afrh9: Afrh8, // Alternate function selection for port x bit y (y = 8..15) (u4)
             afrh10: Afrh8, // Alternate function selection for port x bit y (y = 8..15) (u4)
@@ -14316,65 +11551,23 @@ pub const registers = struct {
     pub const i2c3 = struct {
         pub const base_address = 0x40005c00;
 
-        /// address: 0x40005c00
+        /// address: 0x40005c00, path: i2c3.cr1
         /// Control register 1
         pub const Cr1 = packed struct {
-            pub const Pe = enum(u1) {
-                disabled = 0, // Peripheral disabled
-                enabled = 1, // Peripheral enabled
-            };
-            pub const Smbus = enum(u1) {
-                i2_c = 0, // I2C Mode
-                sm_bus = 1, // SMBus
-            };
-            pub const Smbtype = enum(u1) {
-                device = 0, // SMBus Device
-                host = 1, // SMBus Host
-            };
-            pub const Enarp = enum(u1) {
-                disabled = 0, // ARP disabled
-                enabled = 1, // ARP enabled
-            };
-            pub const Enpec = enum(u1) {
-                disabled = 0, // PEC calculation disabled
-                enabled = 1, // PEC calculation enabled
-            };
-            pub const Engc = enum(u1) {
-                disabled = 0, // General call disabled
-                enabled = 1, // General call enabled
-            };
-            pub const Nostretch = enum(u1) {
-                enabled = 0, // Clock stretching enabled
-                disabled = 1, // Clock stretching disabled
-            };
-            pub const Start = enum(u1) {
-                no_start = 0, // No Start generation
-                start = 1, // In master mode: repeated start generation, in slave mode: start generation when bus is free
-            };
-            pub const Stop = enum(u1) {
-                no_stop = 0, // No Stop generation
-                stop = 1, // In master mode: stop generation after current byte/start, in slave mode: release SCL and SDA after current byte
-            };
-            pub const Ack = enum(u1) {
-                nak = 0, // No acknowledge returned
-                ack = 1, // Acknowledge returned after a byte is received
-            };
-            pub const Pos = enum(u1) {
-                current = 0, // ACK bit controls the (N)ACK of the current byte being received
-                next = 1, // ACK bit controls the (N)ACK of the next byte to be received
-            };
-            pub const Pec = enum(u1) {
-                disabled = 0, // No PEC transfer
-                enabled = 1, // PEC transfer
-            };
-            pub const Alert = enum(u1) {
-                release = 0, // SMBA pin released high
-                drive = 1, // SMBA pin driven low
-            };
-            pub const Swrst = enum(u1) {
-                not_reset = 0, // I2C peripheral not under reset
-                reset = 1, // I2C peripheral under reset
-            };
+            pub const Pe = i2c1.cr1.Pe;
+            pub const Smbus = i2c1.cr1.Smbus;
+            pub const Smbtype = i2c1.cr1.Smbtype;
+            pub const Enarp = i2c1.cr1.Enarp;
+            pub const Enpec = i2c1.cr1.Enpec;
+            pub const Engc = i2c1.cr1.Engc;
+            pub const Nostretch = i2c1.cr1.Nostretch;
+            pub const Start = i2c1.cr1.Start;
+            pub const Stop = i2c1.cr1.Stop;
+            pub const Ack = i2c1.cr1.Ack;
+            pub const Pos = i2c1.cr1.Pos;
+            pub const Pec = i2c1.cr1.Pec;
+            pub const Alert = i2c1.cr1.Alert;
+            pub const Swrst = i2c1.cr1.Swrst;
             pe: Pe, // Peripheral enable (u1)
             smbus: Smbus, // SMBus mode (u1)
             _reserved_2_2: u1,
@@ -14395,29 +11588,14 @@ pub const registers = struct {
         };
         pub const cr1 = mmio(base_address + 0x0, 32, Cr1);
 
-        /// address: 0x40005c04
+        /// address: 0x40005c04, path: i2c3.cr2
         /// Control register 2
         pub const Cr2 = packed struct {
-            pub const Iterren = enum(u1) {
-                disabled = 0, // Error interrupt disabled
-                enabled = 1, // Error interrupt enabled
-            };
-            pub const Itevten = enum(u1) {
-                disabled = 0, // Event interrupt disabled
-                enabled = 1, // Event interrupt enabled
-            };
-            pub const Itbufen = enum(u1) {
-                disabled = 0, // TxE=1 or RxNE=1 does not generate any interrupt
-                enabled = 1, // TxE=1 or RxNE=1 generates Event interrupt
-            };
-            pub const Dmaen = enum(u1) {
-                disabled = 0, // DMA requests disabled
-                enabled = 1, // DMA request enabled when TxE=1 or RxNE=1
-            };
-            pub const Last = enum(u1) {
-                not_last = 0, // Next DMA EOT is not the last transfer
-                last = 1, // Next DMA EOT is the last transfer
-            };
+            pub const Iterren = i2c1.cr2.Iterren;
+            pub const Itevten = i2c1.cr2.Itevten;
+            pub const Itbufen = i2c1.cr2.Itbufen;
+            pub const Dmaen = i2c1.cr2.Dmaen;
+            pub const Last = i2c1.cr2.Last;
             freq: u6, // Peripheral clock frequency
             _reserved_6_7: u2,
             iterren: Iterren, // Error interrupt enable (u1)
@@ -14429,13 +11607,10 @@ pub const registers = struct {
         };
         pub const cr2 = mmio(base_address + 0x4, 32, Cr2);
 
-        /// address: 0x40005c08
+        /// address: 0x40005c08, path: i2c3.oar1
         /// Own address register 1
         pub const Oar1 = packed struct {
-            pub const Addmode = enum(u1) {
-                add7 = 0, // 7-bit slave address
-                add10 = 1, // 10-bit slave address
-            };
+            pub const Addmode = i2c1.oar1.Addmode;
             add: u10, // Interface address
             _reserved_10_14: u5,
             addmode: Addmode, // Addressing mode (slave mode) (u1)
@@ -14443,78 +11618,36 @@ pub const registers = struct {
         };
         pub const oar1 = mmio(base_address + 0x8, 32, Oar1);
 
-        /// address: 0x40005c0c
+        /// address: 0x40005c0c, path: i2c3.oar2
         /// Own address register 2
         pub const Oar2 = packed struct {
-            pub const Endual = enum(u1) {
-                single = 0, // Single addressing mode
-                dual = 1, // Dual addressing mode
-            };
+            pub const Endual = i2c1.oar2.Endual;
             endual: Endual, // Dual addressing mode enable (u1)
             add2: u7, // Interface address
             _padding_8_31: u24,
         };
         pub const oar2 = mmio(base_address + 0xc, 32, Oar2);
 
-        /// address: 0x40005c10
+        /// address: 0x40005c10, path: i2c3.dr
         /// Data register
         pub const dr = mmioInt(base_address + 0x10, 32, u8);
 
-        /// address: 0x40005c14
+        /// address: 0x40005c14, path: i2c3.sr1
         /// Status register 1
         pub const Sr1 = packed struct {
-            pub const Sb = enum(u1) {
-                no_start = 0, // No Start condition
-                start = 1, // Start condition generated
-            };
-            pub const Addr = enum(u1) {
-                not_match = 0, // Adress mismatched or not received
-                match = 1, // Received slave address matched with one of the enabled slave addresses
-            };
-            pub const Btf = enum(u1) {
-                not_finished = 0, // Data byte transfer not done
-                finished = 1, // Data byte transfer successful
-            };
-            pub const Stopf = enum(u1) {
-                no_stop = 0, // No Stop condition detected
-                stop = 1, // Stop condition detected
-            };
-            pub const Rxne = enum(u1) {
-                empty = 0, // Data register empty
-                not_empty = 1, // Data register not empty
-            };
-            pub const Txe = enum(u1) {
-                not_empty = 0, // Data register not empty
-                empty = 1, // Data register empty
-            };
-            pub const Berr = enum(u1) {
-                no_error = 0, // No misplaced Start or Stop condition
-                @"error" = 1, // Misplaced Start or Stop condition
-            };
-            pub const Arlo = enum(u1) {
-                no_lost = 0, // No Arbitration Lost detected
-                lost = 1, // Arbitration Lost detected
-            };
-            pub const Af = enum(u1) {
-                no_failure = 0, // No acknowledge failure
-                failure = 1, // Acknowledge failure
-            };
-            pub const Ovr = enum(u1) {
-                no_overrun = 0, // No overrun/underrun occured
-                overrun = 1, // Overrun/underrun occured
-            };
-            pub const Pecerr = enum(u1) {
-                no_error = 0, // no PEC error: receiver returns ACK after PEC reception (if ACK=1)
-                @"error" = 1, // PEC error: receiver returns NACK after PEC reception (whatever ACK)
-            };
-            pub const Timeout = enum(u1) {
-                no_timeout = 0, // No Timeout error
-                timeout = 1, // SCL remained LOW for 25 ms
-            };
-            pub const Smbalert = enum(u1) {
-                no_alert = 0, // No SMBALERT occured
-                alert = 1, // SMBALERT occurred
-            };
+            pub const Sb = i2c1.sr1.Sb;
+            pub const Addr = i2c1.sr1.Addr;
+            pub const Btf = i2c1.sr1.Btf;
+            pub const Stopf = i2c1.sr1.Stopf;
+            pub const Rxne = i2c1.sr1.Rxne;
+            pub const Txe = i2c1.sr1.Txe;
+            pub const Berr = i2c1.sr1.Berr;
+            pub const Arlo = i2c1.sr1.Arlo;
+            pub const Af = i2c1.sr1.Af;
+            pub const Ovr = i2c1.sr1.Ovr;
+            pub const Pecerr = i2c1.sr1.Pecerr;
+            pub const Timeout = i2c1.sr1.Timeout;
+            pub const Smbalert = i2c1.sr1.Smbalert;
             sb: Sb, // Start bit (Master mode) (u1)
             addr: Addr, // Address sent (master mode)/matched (slave mode) (u1)
             btf: Btf, // Byte transfer finished (u1)
@@ -14535,7 +11668,7 @@ pub const registers = struct {
         };
         pub const sr1 = mmio(base_address + 0x14, 32, Sr1);
 
-        /// address: 0x40005c18
+        /// address: 0x40005c18, path: i2c3.sr2
         /// Status register 2
         pub const Sr2 = packed struct {
             msl: u1, // Master/slave
@@ -14551,17 +11684,11 @@ pub const registers = struct {
         };
         pub const sr2 = mmio(base_address + 0x18, 32, Sr2);
 
-        /// address: 0x40005c1c
+        /// address: 0x40005c1c, path: i2c3.ccr
         /// Clock control register
         pub const Ccr = packed struct {
-            pub const Duty = enum(u1) {
-                duty2_1 = 0, // Duty cycle t_low/t_high = 2/1
-                duty16_9 = 1, // Duty cycle t_low/t_high = 16/9
-            };
-            pub const FS = enum(u1) {
-                standard = 0, // Standard mode I2C
-                fast = 1, // Fast mode I2C
-            };
+            pub const Duty = i2c1.ccr.Duty;
+            pub const FS = i2c1.ccr.FS;
             ccr: u12, // Clock control register in Fast/Standard mode (Master mode)
             _reserved_12_13: u2,
             duty: Duty, // Fast mode duty cycle (u1)
@@ -14570,35 +11697,15 @@ pub const registers = struct {
         };
         pub const ccr = mmio(base_address + 0x1c, 32, Ccr);
 
-        /// address: 0x40005c20
+        /// address: 0x40005c20, path: i2c3.trise
         /// TRISE register
         pub const trise = mmioInt(base_address + 0x20, 32, u6);
 
-        /// address: 0x40005c24
+        /// address: 0x40005c24, path: i2c3.fltr
         /// FLTR register
         pub const Fltr = packed struct {
-            pub const Dnf = enum(u4) {
-                no_filter = 0b0000, // Digital filter disabled
-                filter1 = 0b0001, // Digital filter enabled and filtering capability up to 1 tI2CCLK
-                filter2 = 0b0010, // Digital filter enabled and filtering capability up to 2 tI2CCLK
-                filter3 = 0b0011, // Digital filter enabled and filtering capability up to 3 tI2CCLK
-                filter4 = 0b0100, // Digital filter enabled and filtering capability up to 4 tI2CCLK
-                filter5 = 0b0101, // Digital filter enabled and filtering capability up to 5 tI2CCLK
-                filter6 = 0b0110, // Digital filter enabled and filtering capability up to 6 tI2CCLK
-                filter7 = 0b0111, // Digital filter enabled and filtering capability up to 7 tI2CCLK
-                filter8 = 0b1000, // Digital filter enabled and filtering capability up to 8 tI2CCLK
-                filter9 = 0b1001, // Digital filter enabled and filtering capability up to 9 tI2CCLK
-                filter10 = 0b1010, // Digital filter enabled and filtering capability up to 10 tI2CCLK
-                filter11 = 0b1011, // Digital filter enabled and filtering capability up to 11 tI2CCLK
-                filter12 = 0b1100, // Digital filter enabled and filtering capability up to 12 tI2CCLK
-                filter13 = 0b1101, // Digital filter enabled and filtering capability up to 13 tI2CCLK
-                filter14 = 0b1110, // Digital filter enabled and filtering capability up to 14 tI2CCLK
-                filter15 = 0b1111, // Digital filter enabled and filtering capability up to 15 tI2CCLK
-            };
-            pub const Anoff = enum(u1) {
-                enabled = 0, // Analog noise filter enabled
-                disabled = 1, // Analog noise filter disabled
-            };
+            pub const Dnf = i2c1.fltr.Dnf;
+            pub const Anoff = i2c1.fltr.Anoff;
             dnf: Dnf, // Digital noise filter (u4)
             anoff: Anoff, // Analog noise filter (u1)
             _padding_5_31: u27,
@@ -14609,65 +11716,23 @@ pub const registers = struct {
     pub const i2c2 = struct {
         pub const base_address = 0x40005800;
 
-        /// address: 0x40005800
+        /// address: 0x40005800, path: i2c2.cr1
         /// Control register 1
         pub const Cr1 = packed struct {
-            pub const Pe = enum(u1) {
-                disabled = 0, // Peripheral disabled
-                enabled = 1, // Peripheral enabled
-            };
-            pub const Smbus = enum(u1) {
-                i2_c = 0, // I2C Mode
-                sm_bus = 1, // SMBus
-            };
-            pub const Smbtype = enum(u1) {
-                device = 0, // SMBus Device
-                host = 1, // SMBus Host
-            };
-            pub const Enarp = enum(u1) {
-                disabled = 0, // ARP disabled
-                enabled = 1, // ARP enabled
-            };
-            pub const Enpec = enum(u1) {
-                disabled = 0, // PEC calculation disabled
-                enabled = 1, // PEC calculation enabled
-            };
-            pub const Engc = enum(u1) {
-                disabled = 0, // General call disabled
-                enabled = 1, // General call enabled
-            };
-            pub const Nostretch = enum(u1) {
-                enabled = 0, // Clock stretching enabled
-                disabled = 1, // Clock stretching disabled
-            };
-            pub const Start = enum(u1) {
-                no_start = 0, // No Start generation
-                start = 1, // In master mode: repeated start generation, in slave mode: start generation when bus is free
-            };
-            pub const Stop = enum(u1) {
-                no_stop = 0, // No Stop generation
-                stop = 1, // In master mode: stop generation after current byte/start, in slave mode: release SCL and SDA after current byte
-            };
-            pub const Ack = enum(u1) {
-                nak = 0, // No acknowledge returned
-                ack = 1, // Acknowledge returned after a byte is received
-            };
-            pub const Pos = enum(u1) {
-                current = 0, // ACK bit controls the (N)ACK of the current byte being received
-                next = 1, // ACK bit controls the (N)ACK of the next byte to be received
-            };
-            pub const Pec = enum(u1) {
-                disabled = 0, // No PEC transfer
-                enabled = 1, // PEC transfer
-            };
-            pub const Alert = enum(u1) {
-                release = 0, // SMBA pin released high
-                drive = 1, // SMBA pin driven low
-            };
-            pub const Swrst = enum(u1) {
-                not_reset = 0, // I2C peripheral not under reset
-                reset = 1, // I2C peripheral under reset
-            };
+            pub const Pe = i2c1.cr1.Pe;
+            pub const Smbus = i2c1.cr1.Smbus;
+            pub const Smbtype = i2c1.cr1.Smbtype;
+            pub const Enarp = i2c1.cr1.Enarp;
+            pub const Enpec = i2c1.cr1.Enpec;
+            pub const Engc = i2c1.cr1.Engc;
+            pub const Nostretch = i2c1.cr1.Nostretch;
+            pub const Start = i2c1.cr1.Start;
+            pub const Stop = i2c1.cr1.Stop;
+            pub const Ack = i2c1.cr1.Ack;
+            pub const Pos = i2c1.cr1.Pos;
+            pub const Pec = i2c1.cr1.Pec;
+            pub const Alert = i2c1.cr1.Alert;
+            pub const Swrst = i2c1.cr1.Swrst;
             pe: Pe, // Peripheral enable (u1)
             smbus: Smbus, // SMBus mode (u1)
             _reserved_2_2: u1,
@@ -14688,29 +11753,14 @@ pub const registers = struct {
         };
         pub const cr1 = mmio(base_address + 0x0, 32, Cr1);
 
-        /// address: 0x40005804
+        /// address: 0x40005804, path: i2c2.cr2
         /// Control register 2
         pub const Cr2 = packed struct {
-            pub const Iterren = enum(u1) {
-                disabled = 0, // Error interrupt disabled
-                enabled = 1, // Error interrupt enabled
-            };
-            pub const Itevten = enum(u1) {
-                disabled = 0, // Event interrupt disabled
-                enabled = 1, // Event interrupt enabled
-            };
-            pub const Itbufen = enum(u1) {
-                disabled = 0, // TxE=1 or RxNE=1 does not generate any interrupt
-                enabled = 1, // TxE=1 or RxNE=1 generates Event interrupt
-            };
-            pub const Dmaen = enum(u1) {
-                disabled = 0, // DMA requests disabled
-                enabled = 1, // DMA request enabled when TxE=1 or RxNE=1
-            };
-            pub const Last = enum(u1) {
-                not_last = 0, // Next DMA EOT is not the last transfer
-                last = 1, // Next DMA EOT is the last transfer
-            };
+            pub const Iterren = i2c1.cr2.Iterren;
+            pub const Itevten = i2c1.cr2.Itevten;
+            pub const Itbufen = i2c1.cr2.Itbufen;
+            pub const Dmaen = i2c1.cr2.Dmaen;
+            pub const Last = i2c1.cr2.Last;
             freq: u6, // Peripheral clock frequency
             _reserved_6_7: u2,
             iterren: Iterren, // Error interrupt enable (u1)
@@ -14722,13 +11772,10 @@ pub const registers = struct {
         };
         pub const cr2 = mmio(base_address + 0x4, 32, Cr2);
 
-        /// address: 0x40005808
+        /// address: 0x40005808, path: i2c2.oar1
         /// Own address register 1
         pub const Oar1 = packed struct {
-            pub const Addmode = enum(u1) {
-                add7 = 0, // 7-bit slave address
-                add10 = 1, // 10-bit slave address
-            };
+            pub const Addmode = i2c1.oar1.Addmode;
             add: u10, // Interface address
             _reserved_10_14: u5,
             addmode: Addmode, // Addressing mode (slave mode) (u1)
@@ -14736,78 +11783,36 @@ pub const registers = struct {
         };
         pub const oar1 = mmio(base_address + 0x8, 32, Oar1);
 
-        /// address: 0x4000580c
+        /// address: 0x4000580c, path: i2c2.oar2
         /// Own address register 2
         pub const Oar2 = packed struct {
-            pub const Endual = enum(u1) {
-                single = 0, // Single addressing mode
-                dual = 1, // Dual addressing mode
-            };
+            pub const Endual = i2c1.oar2.Endual;
             endual: Endual, // Dual addressing mode enable (u1)
             add2: u7, // Interface address
             _padding_8_31: u24,
         };
         pub const oar2 = mmio(base_address + 0xc, 32, Oar2);
 
-        /// address: 0x40005810
+        /// address: 0x40005810, path: i2c2.dr
         /// Data register
         pub const dr = mmioInt(base_address + 0x10, 32, u8);
 
-        /// address: 0x40005814
+        /// address: 0x40005814, path: i2c2.sr1
         /// Status register 1
         pub const Sr1 = packed struct {
-            pub const Sb = enum(u1) {
-                no_start = 0, // No Start condition
-                start = 1, // Start condition generated
-            };
-            pub const Addr = enum(u1) {
-                not_match = 0, // Adress mismatched or not received
-                match = 1, // Received slave address matched with one of the enabled slave addresses
-            };
-            pub const Btf = enum(u1) {
-                not_finished = 0, // Data byte transfer not done
-                finished = 1, // Data byte transfer successful
-            };
-            pub const Stopf = enum(u1) {
-                no_stop = 0, // No Stop condition detected
-                stop = 1, // Stop condition detected
-            };
-            pub const Rxne = enum(u1) {
-                empty = 0, // Data register empty
-                not_empty = 1, // Data register not empty
-            };
-            pub const Txe = enum(u1) {
-                not_empty = 0, // Data register not empty
-                empty = 1, // Data register empty
-            };
-            pub const Berr = enum(u1) {
-                no_error = 0, // No misplaced Start or Stop condition
-                @"error" = 1, // Misplaced Start or Stop condition
-            };
-            pub const Arlo = enum(u1) {
-                no_lost = 0, // No Arbitration Lost detected
-                lost = 1, // Arbitration Lost detected
-            };
-            pub const Af = enum(u1) {
-                no_failure = 0, // No acknowledge failure
-                failure = 1, // Acknowledge failure
-            };
-            pub const Ovr = enum(u1) {
-                no_overrun = 0, // No overrun/underrun occured
-                overrun = 1, // Overrun/underrun occured
-            };
-            pub const Pecerr = enum(u1) {
-                no_error = 0, // no PEC error: receiver returns ACK after PEC reception (if ACK=1)
-                @"error" = 1, // PEC error: receiver returns NACK after PEC reception (whatever ACK)
-            };
-            pub const Timeout = enum(u1) {
-                no_timeout = 0, // No Timeout error
-                timeout = 1, // SCL remained LOW for 25 ms
-            };
-            pub const Smbalert = enum(u1) {
-                no_alert = 0, // No SMBALERT occured
-                alert = 1, // SMBALERT occurred
-            };
+            pub const Sb = i2c1.sr1.Sb;
+            pub const Addr = i2c1.sr1.Addr;
+            pub const Btf = i2c1.sr1.Btf;
+            pub const Stopf = i2c1.sr1.Stopf;
+            pub const Rxne = i2c1.sr1.Rxne;
+            pub const Txe = i2c1.sr1.Txe;
+            pub const Berr = i2c1.sr1.Berr;
+            pub const Arlo = i2c1.sr1.Arlo;
+            pub const Af = i2c1.sr1.Af;
+            pub const Ovr = i2c1.sr1.Ovr;
+            pub const Pecerr = i2c1.sr1.Pecerr;
+            pub const Timeout = i2c1.sr1.Timeout;
+            pub const Smbalert = i2c1.sr1.Smbalert;
             sb: Sb, // Start bit (Master mode) (u1)
             addr: Addr, // Address sent (master mode)/matched (slave mode) (u1)
             btf: Btf, // Byte transfer finished (u1)
@@ -14828,7 +11833,7 @@ pub const registers = struct {
         };
         pub const sr1 = mmio(base_address + 0x14, 32, Sr1);
 
-        /// address: 0x40005818
+        /// address: 0x40005818, path: i2c2.sr2
         /// Status register 2
         pub const Sr2 = packed struct {
             msl: u1, // Master/slave
@@ -14844,17 +11849,11 @@ pub const registers = struct {
         };
         pub const sr2 = mmio(base_address + 0x18, 32, Sr2);
 
-        /// address: 0x4000581c
+        /// address: 0x4000581c, path: i2c2.ccr
         /// Clock control register
         pub const Ccr = packed struct {
-            pub const Duty = enum(u1) {
-                duty2_1 = 0, // Duty cycle t_low/t_high = 2/1
-                duty16_9 = 1, // Duty cycle t_low/t_high = 16/9
-            };
-            pub const FS = enum(u1) {
-                standard = 0, // Standard mode I2C
-                fast = 1, // Fast mode I2C
-            };
+            pub const Duty = i2c1.ccr.Duty;
+            pub const FS = i2c1.ccr.FS;
             ccr: u12, // Clock control register in Fast/Standard mode (Master mode)
             _reserved_12_13: u2,
             duty: Duty, // Fast mode duty cycle (u1)
@@ -14863,35 +11862,15 @@ pub const registers = struct {
         };
         pub const ccr = mmio(base_address + 0x1c, 32, Ccr);
 
-        /// address: 0x40005820
+        /// address: 0x40005820, path: i2c2.trise
         /// TRISE register
         pub const trise = mmioInt(base_address + 0x20, 32, u6);
 
-        /// address: 0x40005824
+        /// address: 0x40005824, path: i2c2.fltr
         /// FLTR register
         pub const Fltr = packed struct {
-            pub const Dnf = enum(u4) {
-                no_filter = 0b0000, // Digital filter disabled
-                filter1 = 0b0001, // Digital filter enabled and filtering capability up to 1 tI2CCLK
-                filter2 = 0b0010, // Digital filter enabled and filtering capability up to 2 tI2CCLK
-                filter3 = 0b0011, // Digital filter enabled and filtering capability up to 3 tI2CCLK
-                filter4 = 0b0100, // Digital filter enabled and filtering capability up to 4 tI2CCLK
-                filter5 = 0b0101, // Digital filter enabled and filtering capability up to 5 tI2CCLK
-                filter6 = 0b0110, // Digital filter enabled and filtering capability up to 6 tI2CCLK
-                filter7 = 0b0111, // Digital filter enabled and filtering capability up to 7 tI2CCLK
-                filter8 = 0b1000, // Digital filter enabled and filtering capability up to 8 tI2CCLK
-                filter9 = 0b1001, // Digital filter enabled and filtering capability up to 9 tI2CCLK
-                filter10 = 0b1010, // Digital filter enabled and filtering capability up to 10 tI2CCLK
-                filter11 = 0b1011, // Digital filter enabled and filtering capability up to 11 tI2CCLK
-                filter12 = 0b1100, // Digital filter enabled and filtering capability up to 12 tI2CCLK
-                filter13 = 0b1101, // Digital filter enabled and filtering capability up to 13 tI2CCLK
-                filter14 = 0b1110, // Digital filter enabled and filtering capability up to 14 tI2CCLK
-                filter15 = 0b1111, // Digital filter enabled and filtering capability up to 15 tI2CCLK
-            };
-            pub const Anoff = enum(u1) {
-                enabled = 0, // Analog noise filter enabled
-                disabled = 1, // Analog noise filter disabled
-            };
+            pub const Dnf = i2c1.fltr.Dnf;
+            pub const Anoff = i2c1.fltr.Anoff;
             dnf: Dnf, // Digital noise filter (u4)
             anoff: Anoff, // Analog noise filter (u1)
             _padding_5_31: u27,
@@ -14902,71 +11881,23 @@ pub const registers = struct {
     pub const i2s2ext = struct {
         pub const base_address = 0x40003400;
 
-        /// address: 0x40003400
+        /// address: 0x40003400, path: i2s2ext.cr1
         /// control register 1
         pub const Cr1 = packed struct {
-            pub const Cpha = enum(u1) {
-                first_edge = 0, // The first clock transition is the first data capture edge
-                second_edge = 1, // The second clock transition is the first data capture edge
-            };
-            pub const Cpol = enum(u1) {
-                idle_low = 0, // CK to 0 when idle
-                idle_high = 1, // CK to 1 when idle
-            };
-            pub const Mstr = enum(u1) {
-                slave = 0, // Slave configuration
-                master = 1, // Master configuration
-            };
-            pub const Br = enum(u3) {
-                div2 = 0b000, // f_PCLK / 2
-                div4 = 0b001, // f_PCLK / 4
-                div8 = 0b010, // f_PCLK / 8
-                div16 = 0b011, // f_PCLK / 16
-                div32 = 0b100, // f_PCLK / 32
-                div64 = 0b101, // f_PCLK / 64
-                div128 = 0b110, // f_PCLK / 128
-                div256 = 0b111, // f_PCLK / 256
-            };
-            pub const Spe = enum(u1) {
-                disabled = 0, // Peripheral disabled
-                enabled = 1, // Peripheral enabled
-            };
-            pub const Lsbfirst = enum(u1) {
-                msb_first = 0, // Data is transmitted/received with the MSB first
-                lsb_first = 1, // Data is transmitted/received with the LSB first
-            };
-            pub const Ssi = enum(u1) {
-                slave_selected = 0, // 0 is forced onto the NSS pin and the I/O value of the NSS pin is ignored
-                slave_not_selected = 1, // 1 is forced onto the NSS pin and the I/O value of the NSS pin is ignored
-            };
-            pub const Ssm = enum(u1) {
-                disabled = 0, // Software slave management disabled
-                enabled = 1, // Software slave management enabled
-            };
-            pub const Rxonly = enum(u1) {
-                full_duplex = 0, // Full duplex (Transmit and receive)
-                output_disabled = 1, // Output disabled (Receive-only mode)
-            };
-            pub const Dff = enum(u1) {
-                eight_bit = 0, // 8-bit data frame format is selected for transmission/reception
-                sixteen_bit = 1, // 16-bit data frame format is selected for transmission/reception
-            };
-            pub const Crcnext = enum(u1) {
-                tx_buffer = 0, // Next transmit value is from Tx buffer
-                crc = 1, // Next transmit value is from Tx CRC register
-            };
-            pub const Crcen = enum(u1) {
-                disabled = 0, // CRC calculation disabled
-                enabled = 1, // CRC calculation enabled
-            };
-            pub const Bidioe = enum(u1) {
-                output_disabled = 0, // Output disabled (receive-only mode)
-                output_enabled = 1, // Output enabled (transmit-only mode)
-            };
-            pub const Bidimode = enum(u1) {
-                unidirectional = 0, // 2-line unidirectional data mode selected
-                bidirectional = 1, // 1-line bidirectional data mode selected
-            };
+            pub const Cpha = spi1.cr1.Cpha;
+            pub const Cpol = spi1.cr1.Cpol;
+            pub const Mstr = spi1.cr1.Mstr;
+            pub const Br = spi1.cr1.Br;
+            pub const Spe = spi1.cr1.Spe;
+            pub const Lsbfirst = spi1.cr1.Lsbfirst;
+            pub const Ssi = spi1.cr1.Ssi;
+            pub const Ssm = spi1.cr1.Ssm;
+            pub const Rxonly = spi1.cr1.Rxonly;
+            pub const Dff = spi1.cr1.Dff;
+            pub const Crcnext = spi1.cr1.Crcnext;
+            pub const Crcen = spi1.cr1.Crcen;
+            pub const Bidioe = spi1.cr1.Bidioe;
+            pub const Bidimode = spi1.cr1.Bidimode;
             cpha: Cpha, // Clock phase (u1)
             cpol: Cpol, // Clock polarity (u1)
             mstr: Mstr, // Master selection (u1)
@@ -14985,37 +11916,16 @@ pub const registers = struct {
         };
         pub const cr1 = mmio(base_address + 0x0, 32, Cr1);
 
-        /// address: 0x40003404
+        /// address: 0x40003404, path: i2s2ext.cr2
         /// control register 2
         pub const Cr2 = packed struct {
-            pub const Rxdmaen = enum(u1) {
-                disabled = 0, // Rx buffer DMA disabled
-                enabled = 1, // Rx buffer DMA enabled
-            };
-            pub const Txdmaen = enum(u1) {
-                disabled = 0, // Tx buffer DMA disabled
-                enabled = 1, // Tx buffer DMA enabled
-            };
-            pub const Ssoe = enum(u1) {
-                disabled = 0, // SS output is disabled in master mode
-                enabled = 1, // SS output is enabled in master mode
-            };
-            pub const Frf = enum(u1) {
-                motorola = 0, // SPI Motorola mode
-                ti = 1, // SPI TI mode
-            };
-            pub const Errie = enum(u1) {
-                masked = 0, // Error interrupt masked
-                not_masked = 1, // Error interrupt not masked
-            };
-            pub const Rxneie = enum(u1) {
-                masked = 0, // RXE interrupt masked
-                not_masked = 1, // RXE interrupt not masked
-            };
-            pub const Txeie = enum(u1) {
-                masked = 0, // TXE interrupt masked
-                not_masked = 1, // TXE interrupt not masked
-            };
+            pub const Rxdmaen = spi1.cr2.Rxdmaen;
+            pub const Txdmaen = spi1.cr2.Txdmaen;
+            pub const Ssoe = spi1.cr2.Ssoe;
+            pub const Frf = spi1.cr2.Frf;
+            pub const Errie = spi1.cr2.Errie;
+            pub const Rxneie = spi1.cr2.Rxneie;
+            pub const Txeie = spi1.cr2.Txeie;
             rxdmaen: Rxdmaen, // Rx buffer DMA enable (u1)
             txdmaen: Txdmaen, // Tx buffer DMA enable (u1)
             ssoe: Ssoe, // SS output enable (u1)
@@ -15028,45 +11938,18 @@ pub const registers = struct {
         };
         pub const cr2 = mmio(base_address + 0x4, 32, Cr2);
 
-        /// address: 0x40003408
+        /// address: 0x40003408, path: i2s2ext.sr
         /// status register
         pub const Sr = packed struct {
-            pub const Rxne = enum(u1) {
-                empty = 0, // Rx buffer empty
-                not_empty = 1, // Rx buffer not empty
-            };
-            pub const Txe = enum(u1) {
-                not_empty = 0, // Tx buffer not empty
-                empty = 1, // Tx buffer empty
-            };
-            pub const Chside = enum(u1) {
-                left = 0, // Channel left has to be transmitted or has been received
-                right = 1, // Channel right has to be transmitted or has been received
-            };
-            pub const Udrr = enum(u1) {
-                no_underrun = 0, // No underrun occurred
-                underrun = 1, // Underrun occurred
-            };
-            pub const Crcerr = enum(u1) {
-                match = 0, // CRC value received matches the SPIx_RXCRCR value
-                no_match = 1, // CRC value received does not match the SPIx_RXCRCR value
-            };
-            pub const Modfr = enum(u1) {
-                no_fault = 0, // No mode fault occurred
-                fault = 1, // Mode fault occurred
-            };
-            pub const Ovrr = enum(u1) {
-                no_overrun = 0, // No overrun occurred
-                overrun = 1, // Overrun occurred
-            };
-            pub const Bsyr = enum(u1) {
-                not_busy = 0, // SPI not busy
-                busy = 1, // SPI busy
-            };
-            pub const Frer = enum(u1) {
-                no_error = 0, // No frame format error
-                @"error" = 1, // A frame format error occurred
-            };
+            pub const Rxne = spi1.sr.Rxne;
+            pub const Txe = spi1.sr.Txe;
+            pub const Chside = spi1.sr.Chside;
+            pub const Udrr = spi1.sr.Udrr;
+            pub const Crcerr = spi1.sr.Crcerr;
+            pub const Modfr = spi1.sr.Modfr;
+            pub const Ovrr = spi1.sr.Ovrr;
+            pub const Bsyr = spi1.sr.Bsyr;
+            pub const Frer = spi1.sr.Frer;
             rxne: Rxne, // Receive buffer not empty (u1)
             txe: Txe, // Transmit buffer empty (u1)
             chside: Chside, // Channel side (u1)
@@ -15080,11 +11963,11 @@ pub const registers = struct {
         };
         pub const sr = mmio(base_address + 0x8, 32, Sr);
 
-        /// address: 0x4000340c
+        /// address: 0x4000340c, path: i2s2ext.dr
         /// data register
         pub const dr = mmioInt(base_address + 0xc, 32, u16);
 
-        /// address: 0x40003410
+        /// address: 0x40003410, path: i2s2ext.crcpr
         /// CRC polynomial register
         pub const Crcpr = packed struct {
             crcpoly: u16, // CRC polynomial register
@@ -15092,7 +11975,7 @@ pub const registers = struct {
         };
         pub const crcpr = mmio(base_address + 0x10, 32, Crcpr);
 
-        /// address: 0x40003414
+        /// address: 0x40003414, path: i2s2ext.rxcrcr
         /// RX CRC register
         pub const Rxcrcr = packed struct {
             rxcrc: u16, // Rx CRC register
@@ -15100,7 +11983,7 @@ pub const registers = struct {
         };
         pub const rxcrcr = mmio(base_address + 0x14, 32, Rxcrcr);
 
-        /// address: 0x40003418
+        /// address: 0x40003418, path: i2s2ext.txcrcr
         /// TX CRC register
         pub const Txcrcr = packed struct {
             txcrc: u16, // Tx CRC register
@@ -15108,46 +11991,17 @@ pub const registers = struct {
         };
         pub const txcrcr = mmio(base_address + 0x18, 32, Txcrcr);
 
-        /// address: 0x4000341c
+        /// address: 0x4000341c, path: i2s2ext.i2scfgr
         /// I2S configuration register
         pub const I2scfgr = packed struct {
-            pub const Chlen = enum(u1) {
-                sixteen_bit = 0, // 16-bit wide
-                thirty_two_bit = 1, // 32-bit wide
-            };
-            pub const Datlen = enum(u2) {
-                sixteen_bit = 0b00, // 16-bit data length
-                twenty_four_bit = 0b01, // 24-bit data length
-                thirty_two_bit = 0b10, // 32-bit data length
-            };
-            pub const Ckpol = enum(u1) {
-                idle_low = 0, // I2S clock inactive state is low level
-                idle_high = 1, // I2S clock inactive state is high level
-            };
-            pub const I2sstd = enum(u2) {
-                philips = 0b00, // I2S Philips standard
-                msb = 0b01, // MSB justified standard
-                lsb = 0b10, // LSB justified standard
-                pcm = 0b11, // PCM standard
-            };
-            pub const Pcmsync = enum(u1) {
-                short = 0, // Short frame synchronisation
-                long = 1, // Long frame synchronisation
-            };
-            pub const I2scfg = enum(u2) {
-                slave_tx = 0b00, // Slave - transmit
-                slave_rx = 0b01, // Slave - receive
-                master_tx = 0b10, // Master - transmit
-                master_rx = 0b11, // Master - receive
-            };
-            pub const I2se = enum(u1) {
-                disabled = 0, // I2S peripheral is disabled
-                enabled = 1, // I2S peripheral is enabled
-            };
-            pub const I2smod = enum(u1) {
-                spi_mode = 0, // SPI mode is selected
-                i2_s_mode = 1, // I2S mode is selected
-            };
+            pub const Chlen = spi1.i2scfgr.Chlen;
+            pub const Datlen = spi1.i2scfgr.Datlen;
+            pub const Ckpol = spi1.i2scfgr.Ckpol;
+            pub const I2sstd = spi1.i2scfgr.I2sstd;
+            pub const Pcmsync = spi1.i2scfgr.Pcmsync;
+            pub const I2scfg = spi1.i2scfgr.I2scfg;
+            pub const I2se = spi1.i2scfgr.I2se;
+            pub const I2smod = spi1.i2scfgr.I2smod;
             chlen: Chlen, // Channel length (number of bits per audio channel) (u1)
             datlen: Datlen, // Data length to be transferred (u2)
             ckpol: Ckpol, // Steady state clock polarity (u1)
@@ -15161,17 +12015,11 @@ pub const registers = struct {
         };
         pub const i2scfgr = mmio(base_address + 0x1c, 32, I2scfgr);
 
-        /// address: 0x40003420
+        /// address: 0x40003420, path: i2s2ext.i2spr
         /// I2S prescaler register
         pub const I2spr = packed struct {
-            pub const Odd = enum(u1) {
-                even = 0, // Real divider value is I2SDIV * 2
-                odd = 1, // Real divider value is (I2SDIV * 2) + 1
-            };
-            pub const Mckoe = enum(u1) {
-                disabled = 0, // Master clock output is disabled
-                enabled = 1, // Master clock output is enabled
-            };
+            pub const Odd = spi1.i2spr.Odd;
+            pub const Mckoe = spi1.i2spr.Mckoe;
             i2sdiv: u8, // I2S Linear prescaler
             odd: Odd, // Odd factor for the prescaler (u1)
             mckoe: Mckoe, // Master clock output enable (u1)
@@ -15183,71 +12031,23 @@ pub const registers = struct {
     pub const i2s3ext = struct {
         pub const base_address = 0x40004000;
 
-        /// address: 0x40004000
+        /// address: 0x40004000, path: i2s3ext.cr1
         /// control register 1
         pub const Cr1 = packed struct {
-            pub const Cpha = enum(u1) {
-                first_edge = 0, // The first clock transition is the first data capture edge
-                second_edge = 1, // The second clock transition is the first data capture edge
-            };
-            pub const Cpol = enum(u1) {
-                idle_low = 0, // CK to 0 when idle
-                idle_high = 1, // CK to 1 when idle
-            };
-            pub const Mstr = enum(u1) {
-                slave = 0, // Slave configuration
-                master = 1, // Master configuration
-            };
-            pub const Br = enum(u3) {
-                div2 = 0b000, // f_PCLK / 2
-                div4 = 0b001, // f_PCLK / 4
-                div8 = 0b010, // f_PCLK / 8
-                div16 = 0b011, // f_PCLK / 16
-                div32 = 0b100, // f_PCLK / 32
-                div64 = 0b101, // f_PCLK / 64
-                div128 = 0b110, // f_PCLK / 128
-                div256 = 0b111, // f_PCLK / 256
-            };
-            pub const Spe = enum(u1) {
-                disabled = 0, // Peripheral disabled
-                enabled = 1, // Peripheral enabled
-            };
-            pub const Lsbfirst = enum(u1) {
-                msb_first = 0, // Data is transmitted/received with the MSB first
-                lsb_first = 1, // Data is transmitted/received with the LSB first
-            };
-            pub const Ssi = enum(u1) {
-                slave_selected = 0, // 0 is forced onto the NSS pin and the I/O value of the NSS pin is ignored
-                slave_not_selected = 1, // 1 is forced onto the NSS pin and the I/O value of the NSS pin is ignored
-            };
-            pub const Ssm = enum(u1) {
-                disabled = 0, // Software slave management disabled
-                enabled = 1, // Software slave management enabled
-            };
-            pub const Rxonly = enum(u1) {
-                full_duplex = 0, // Full duplex (Transmit and receive)
-                output_disabled = 1, // Output disabled (Receive-only mode)
-            };
-            pub const Dff = enum(u1) {
-                eight_bit = 0, // 8-bit data frame format is selected for transmission/reception
-                sixteen_bit = 1, // 16-bit data frame format is selected for transmission/reception
-            };
-            pub const Crcnext = enum(u1) {
-                tx_buffer = 0, // Next transmit value is from Tx buffer
-                crc = 1, // Next transmit value is from Tx CRC register
-            };
-            pub const Crcen = enum(u1) {
-                disabled = 0, // CRC calculation disabled
-                enabled = 1, // CRC calculation enabled
-            };
-            pub const Bidioe = enum(u1) {
-                output_disabled = 0, // Output disabled (receive-only mode)
-                output_enabled = 1, // Output enabled (transmit-only mode)
-            };
-            pub const Bidimode = enum(u1) {
-                unidirectional = 0, // 2-line unidirectional data mode selected
-                bidirectional = 1, // 1-line bidirectional data mode selected
-            };
+            pub const Cpha = spi1.cr1.Cpha;
+            pub const Cpol = spi1.cr1.Cpol;
+            pub const Mstr = spi1.cr1.Mstr;
+            pub const Br = spi1.cr1.Br;
+            pub const Spe = spi1.cr1.Spe;
+            pub const Lsbfirst = spi1.cr1.Lsbfirst;
+            pub const Ssi = spi1.cr1.Ssi;
+            pub const Ssm = spi1.cr1.Ssm;
+            pub const Rxonly = spi1.cr1.Rxonly;
+            pub const Dff = spi1.cr1.Dff;
+            pub const Crcnext = spi1.cr1.Crcnext;
+            pub const Crcen = spi1.cr1.Crcen;
+            pub const Bidioe = spi1.cr1.Bidioe;
+            pub const Bidimode = spi1.cr1.Bidimode;
             cpha: Cpha, // Clock phase (u1)
             cpol: Cpol, // Clock polarity (u1)
             mstr: Mstr, // Master selection (u1)
@@ -15266,37 +12066,16 @@ pub const registers = struct {
         };
         pub const cr1 = mmio(base_address + 0x0, 32, Cr1);
 
-        /// address: 0x40004004
+        /// address: 0x40004004, path: i2s3ext.cr2
         /// control register 2
         pub const Cr2 = packed struct {
-            pub const Rxdmaen = enum(u1) {
-                disabled = 0, // Rx buffer DMA disabled
-                enabled = 1, // Rx buffer DMA enabled
-            };
-            pub const Txdmaen = enum(u1) {
-                disabled = 0, // Tx buffer DMA disabled
-                enabled = 1, // Tx buffer DMA enabled
-            };
-            pub const Ssoe = enum(u1) {
-                disabled = 0, // SS output is disabled in master mode
-                enabled = 1, // SS output is enabled in master mode
-            };
-            pub const Frf = enum(u1) {
-                motorola = 0, // SPI Motorola mode
-                ti = 1, // SPI TI mode
-            };
-            pub const Errie = enum(u1) {
-                masked = 0, // Error interrupt masked
-                not_masked = 1, // Error interrupt not masked
-            };
-            pub const Rxneie = enum(u1) {
-                masked = 0, // RXE interrupt masked
-                not_masked = 1, // RXE interrupt not masked
-            };
-            pub const Txeie = enum(u1) {
-                masked = 0, // TXE interrupt masked
-                not_masked = 1, // TXE interrupt not masked
-            };
+            pub const Rxdmaen = spi1.cr2.Rxdmaen;
+            pub const Txdmaen = spi1.cr2.Txdmaen;
+            pub const Ssoe = spi1.cr2.Ssoe;
+            pub const Frf = spi1.cr2.Frf;
+            pub const Errie = spi1.cr2.Errie;
+            pub const Rxneie = spi1.cr2.Rxneie;
+            pub const Txeie = spi1.cr2.Txeie;
             rxdmaen: Rxdmaen, // Rx buffer DMA enable (u1)
             txdmaen: Txdmaen, // Tx buffer DMA enable (u1)
             ssoe: Ssoe, // SS output enable (u1)
@@ -15309,45 +12088,18 @@ pub const registers = struct {
         };
         pub const cr2 = mmio(base_address + 0x4, 32, Cr2);
 
-        /// address: 0x40004008
+        /// address: 0x40004008, path: i2s3ext.sr
         /// status register
         pub const Sr = packed struct {
-            pub const Rxne = enum(u1) {
-                empty = 0, // Rx buffer empty
-                not_empty = 1, // Rx buffer not empty
-            };
-            pub const Txe = enum(u1) {
-                not_empty = 0, // Tx buffer not empty
-                empty = 1, // Tx buffer empty
-            };
-            pub const Chside = enum(u1) {
-                left = 0, // Channel left has to be transmitted or has been received
-                right = 1, // Channel right has to be transmitted or has been received
-            };
-            pub const Udrr = enum(u1) {
-                no_underrun = 0, // No underrun occurred
-                underrun = 1, // Underrun occurred
-            };
-            pub const Crcerr = enum(u1) {
-                match = 0, // CRC value received matches the SPIx_RXCRCR value
-                no_match = 1, // CRC value received does not match the SPIx_RXCRCR value
-            };
-            pub const Modfr = enum(u1) {
-                no_fault = 0, // No mode fault occurred
-                fault = 1, // Mode fault occurred
-            };
-            pub const Ovrr = enum(u1) {
-                no_overrun = 0, // No overrun occurred
-                overrun = 1, // Overrun occurred
-            };
-            pub const Bsyr = enum(u1) {
-                not_busy = 0, // SPI not busy
-                busy = 1, // SPI busy
-            };
-            pub const Frer = enum(u1) {
-                no_error = 0, // No frame format error
-                @"error" = 1, // A frame format error occurred
-            };
+            pub const Rxne = spi1.sr.Rxne;
+            pub const Txe = spi1.sr.Txe;
+            pub const Chside = spi1.sr.Chside;
+            pub const Udrr = spi1.sr.Udrr;
+            pub const Crcerr = spi1.sr.Crcerr;
+            pub const Modfr = spi1.sr.Modfr;
+            pub const Ovrr = spi1.sr.Ovrr;
+            pub const Bsyr = spi1.sr.Bsyr;
+            pub const Frer = spi1.sr.Frer;
             rxne: Rxne, // Receive buffer not empty (u1)
             txe: Txe, // Transmit buffer empty (u1)
             chside: Chside, // Channel side (u1)
@@ -15361,11 +12113,11 @@ pub const registers = struct {
         };
         pub const sr = mmio(base_address + 0x8, 32, Sr);
 
-        /// address: 0x4000400c
+        /// address: 0x4000400c, path: i2s3ext.dr
         /// data register
         pub const dr = mmioInt(base_address + 0xc, 32, u16);
 
-        /// address: 0x40004010
+        /// address: 0x40004010, path: i2s3ext.crcpr
         /// CRC polynomial register
         pub const Crcpr = packed struct {
             crcpoly: u16, // CRC polynomial register
@@ -15373,7 +12125,7 @@ pub const registers = struct {
         };
         pub const crcpr = mmio(base_address + 0x10, 32, Crcpr);
 
-        /// address: 0x40004014
+        /// address: 0x40004014, path: i2s3ext.rxcrcr
         /// RX CRC register
         pub const Rxcrcr = packed struct {
             rxcrc: u16, // Rx CRC register
@@ -15381,7 +12133,7 @@ pub const registers = struct {
         };
         pub const rxcrcr = mmio(base_address + 0x14, 32, Rxcrcr);
 
-        /// address: 0x40004018
+        /// address: 0x40004018, path: i2s3ext.txcrcr
         /// TX CRC register
         pub const Txcrcr = packed struct {
             txcrc: u16, // Tx CRC register
@@ -15389,46 +12141,17 @@ pub const registers = struct {
         };
         pub const txcrcr = mmio(base_address + 0x18, 32, Txcrcr);
 
-        /// address: 0x4000401c
+        /// address: 0x4000401c, path: i2s3ext.i2scfgr
         /// I2S configuration register
         pub const I2scfgr = packed struct {
-            pub const Chlen = enum(u1) {
-                sixteen_bit = 0, // 16-bit wide
-                thirty_two_bit = 1, // 32-bit wide
-            };
-            pub const Datlen = enum(u2) {
-                sixteen_bit = 0b00, // 16-bit data length
-                twenty_four_bit = 0b01, // 24-bit data length
-                thirty_two_bit = 0b10, // 32-bit data length
-            };
-            pub const Ckpol = enum(u1) {
-                idle_low = 0, // I2S clock inactive state is low level
-                idle_high = 1, // I2S clock inactive state is high level
-            };
-            pub const I2sstd = enum(u2) {
-                philips = 0b00, // I2S Philips standard
-                msb = 0b01, // MSB justified standard
-                lsb = 0b10, // LSB justified standard
-                pcm = 0b11, // PCM standard
-            };
-            pub const Pcmsync = enum(u1) {
-                short = 0, // Short frame synchronisation
-                long = 1, // Long frame synchronisation
-            };
-            pub const I2scfg = enum(u2) {
-                slave_tx = 0b00, // Slave - transmit
-                slave_rx = 0b01, // Slave - receive
-                master_tx = 0b10, // Master - transmit
-                master_rx = 0b11, // Master - receive
-            };
-            pub const I2se = enum(u1) {
-                disabled = 0, // I2S peripheral is disabled
-                enabled = 1, // I2S peripheral is enabled
-            };
-            pub const I2smod = enum(u1) {
-                spi_mode = 0, // SPI mode is selected
-                i2_s_mode = 1, // I2S mode is selected
-            };
+            pub const Chlen = spi1.i2scfgr.Chlen;
+            pub const Datlen = spi1.i2scfgr.Datlen;
+            pub const Ckpol = spi1.i2scfgr.Ckpol;
+            pub const I2sstd = spi1.i2scfgr.I2sstd;
+            pub const Pcmsync = spi1.i2scfgr.Pcmsync;
+            pub const I2scfg = spi1.i2scfgr.I2scfg;
+            pub const I2se = spi1.i2scfgr.I2se;
+            pub const I2smod = spi1.i2scfgr.I2smod;
             chlen: Chlen, // Channel length (number of bits per audio channel) (u1)
             datlen: Datlen, // Data length to be transferred (u2)
             ckpol: Ckpol, // Steady state clock polarity (u1)
@@ -15442,17 +12165,11 @@ pub const registers = struct {
         };
         pub const i2scfgr = mmio(base_address + 0x1c, 32, I2scfgr);
 
-        /// address: 0x40004020
+        /// address: 0x40004020, path: i2s3ext.i2spr
         /// I2S prescaler register
         pub const I2spr = packed struct {
-            pub const Odd = enum(u1) {
-                even = 0, // Real divider value is I2SDIV * 2
-                odd = 1, // Real divider value is (I2SDIV * 2) + 1
-            };
-            pub const Mckoe = enum(u1) {
-                disabled = 0, // Master clock output is disabled
-                enabled = 1, // Master clock output is enabled
-            };
+            pub const Odd = spi1.i2spr.Odd;
+            pub const Mckoe = spi1.i2spr.Mckoe;
             i2sdiv: u8, // I2S Linear prescaler
             odd: Odd, // Odd factor for the prescaler (u1)
             mckoe: Mckoe, // Master clock output enable (u1)
@@ -15464,71 +12181,23 @@ pub const registers = struct {
     pub const spi2 = struct {
         pub const base_address = 0x40003800;
 
-        /// address: 0x40003800
+        /// address: 0x40003800, path: spi2.cr1
         /// control register 1
         pub const Cr1 = packed struct {
-            pub const Cpha = enum(u1) {
-                first_edge = 0, // The first clock transition is the first data capture edge
-                second_edge = 1, // The second clock transition is the first data capture edge
-            };
-            pub const Cpol = enum(u1) {
-                idle_low = 0, // CK to 0 when idle
-                idle_high = 1, // CK to 1 when idle
-            };
-            pub const Mstr = enum(u1) {
-                slave = 0, // Slave configuration
-                master = 1, // Master configuration
-            };
-            pub const Br = enum(u3) {
-                div2 = 0b000, // f_PCLK / 2
-                div4 = 0b001, // f_PCLK / 4
-                div8 = 0b010, // f_PCLK / 8
-                div16 = 0b011, // f_PCLK / 16
-                div32 = 0b100, // f_PCLK / 32
-                div64 = 0b101, // f_PCLK / 64
-                div128 = 0b110, // f_PCLK / 128
-                div256 = 0b111, // f_PCLK / 256
-            };
-            pub const Spe = enum(u1) {
-                disabled = 0, // Peripheral disabled
-                enabled = 1, // Peripheral enabled
-            };
-            pub const Lsbfirst = enum(u1) {
-                msb_first = 0, // Data is transmitted/received with the MSB first
-                lsb_first = 1, // Data is transmitted/received with the LSB first
-            };
-            pub const Ssi = enum(u1) {
-                slave_selected = 0, // 0 is forced onto the NSS pin and the I/O value of the NSS pin is ignored
-                slave_not_selected = 1, // 1 is forced onto the NSS pin and the I/O value of the NSS pin is ignored
-            };
-            pub const Ssm = enum(u1) {
-                disabled = 0, // Software slave management disabled
-                enabled = 1, // Software slave management enabled
-            };
-            pub const Rxonly = enum(u1) {
-                full_duplex = 0, // Full duplex (Transmit and receive)
-                output_disabled = 1, // Output disabled (Receive-only mode)
-            };
-            pub const Dff = enum(u1) {
-                eight_bit = 0, // 8-bit data frame format is selected for transmission/reception
-                sixteen_bit = 1, // 16-bit data frame format is selected for transmission/reception
-            };
-            pub const Crcnext = enum(u1) {
-                tx_buffer = 0, // Next transmit value is from Tx buffer
-                crc = 1, // Next transmit value is from Tx CRC register
-            };
-            pub const Crcen = enum(u1) {
-                disabled = 0, // CRC calculation disabled
-                enabled = 1, // CRC calculation enabled
-            };
-            pub const Bidioe = enum(u1) {
-                output_disabled = 0, // Output disabled (receive-only mode)
-                output_enabled = 1, // Output enabled (transmit-only mode)
-            };
-            pub const Bidimode = enum(u1) {
-                unidirectional = 0, // 2-line unidirectional data mode selected
-                bidirectional = 1, // 1-line bidirectional data mode selected
-            };
+            pub const Cpha = spi1.cr1.Cpha;
+            pub const Cpol = spi1.cr1.Cpol;
+            pub const Mstr = spi1.cr1.Mstr;
+            pub const Br = spi1.cr1.Br;
+            pub const Spe = spi1.cr1.Spe;
+            pub const Lsbfirst = spi1.cr1.Lsbfirst;
+            pub const Ssi = spi1.cr1.Ssi;
+            pub const Ssm = spi1.cr1.Ssm;
+            pub const Rxonly = spi1.cr1.Rxonly;
+            pub const Dff = spi1.cr1.Dff;
+            pub const Crcnext = spi1.cr1.Crcnext;
+            pub const Crcen = spi1.cr1.Crcen;
+            pub const Bidioe = spi1.cr1.Bidioe;
+            pub const Bidimode = spi1.cr1.Bidimode;
             cpha: Cpha, // Clock phase (u1)
             cpol: Cpol, // Clock polarity (u1)
             mstr: Mstr, // Master selection (u1)
@@ -15547,37 +12216,16 @@ pub const registers = struct {
         };
         pub const cr1 = mmio(base_address + 0x0, 32, Cr1);
 
-        /// address: 0x40003804
+        /// address: 0x40003804, path: spi2.cr2
         /// control register 2
         pub const Cr2 = packed struct {
-            pub const Rxdmaen = enum(u1) {
-                disabled = 0, // Rx buffer DMA disabled
-                enabled = 1, // Rx buffer DMA enabled
-            };
-            pub const Txdmaen = enum(u1) {
-                disabled = 0, // Tx buffer DMA disabled
-                enabled = 1, // Tx buffer DMA enabled
-            };
-            pub const Ssoe = enum(u1) {
-                disabled = 0, // SS output is disabled in master mode
-                enabled = 1, // SS output is enabled in master mode
-            };
-            pub const Frf = enum(u1) {
-                motorola = 0, // SPI Motorola mode
-                ti = 1, // SPI TI mode
-            };
-            pub const Errie = enum(u1) {
-                masked = 0, // Error interrupt masked
-                not_masked = 1, // Error interrupt not masked
-            };
-            pub const Rxneie = enum(u1) {
-                masked = 0, // RXE interrupt masked
-                not_masked = 1, // RXE interrupt not masked
-            };
-            pub const Txeie = enum(u1) {
-                masked = 0, // TXE interrupt masked
-                not_masked = 1, // TXE interrupt not masked
-            };
+            pub const Rxdmaen = spi1.cr2.Rxdmaen;
+            pub const Txdmaen = spi1.cr2.Txdmaen;
+            pub const Ssoe = spi1.cr2.Ssoe;
+            pub const Frf = spi1.cr2.Frf;
+            pub const Errie = spi1.cr2.Errie;
+            pub const Rxneie = spi1.cr2.Rxneie;
+            pub const Txeie = spi1.cr2.Txeie;
             rxdmaen: Rxdmaen, // Rx buffer DMA enable (u1)
             txdmaen: Txdmaen, // Tx buffer DMA enable (u1)
             ssoe: Ssoe, // SS output enable (u1)
@@ -15590,45 +12238,18 @@ pub const registers = struct {
         };
         pub const cr2 = mmio(base_address + 0x4, 32, Cr2);
 
-        /// address: 0x40003808
+        /// address: 0x40003808, path: spi2.sr
         /// status register
         pub const Sr = packed struct {
-            pub const Rxne = enum(u1) {
-                empty = 0, // Rx buffer empty
-                not_empty = 1, // Rx buffer not empty
-            };
-            pub const Txe = enum(u1) {
-                not_empty = 0, // Tx buffer not empty
-                empty = 1, // Tx buffer empty
-            };
-            pub const Chside = enum(u1) {
-                left = 0, // Channel left has to be transmitted or has been received
-                right = 1, // Channel right has to be transmitted or has been received
-            };
-            pub const Udrr = enum(u1) {
-                no_underrun = 0, // No underrun occurred
-                underrun = 1, // Underrun occurred
-            };
-            pub const Crcerr = enum(u1) {
-                match = 0, // CRC value received matches the SPIx_RXCRCR value
-                no_match = 1, // CRC value received does not match the SPIx_RXCRCR value
-            };
-            pub const Modfr = enum(u1) {
-                no_fault = 0, // No mode fault occurred
-                fault = 1, // Mode fault occurred
-            };
-            pub const Ovrr = enum(u1) {
-                no_overrun = 0, // No overrun occurred
-                overrun = 1, // Overrun occurred
-            };
-            pub const Bsyr = enum(u1) {
-                not_busy = 0, // SPI not busy
-                busy = 1, // SPI busy
-            };
-            pub const Frer = enum(u1) {
-                no_error = 0, // No frame format error
-                @"error" = 1, // A frame format error occurred
-            };
+            pub const Rxne = spi1.sr.Rxne;
+            pub const Txe = spi1.sr.Txe;
+            pub const Chside = spi1.sr.Chside;
+            pub const Udrr = spi1.sr.Udrr;
+            pub const Crcerr = spi1.sr.Crcerr;
+            pub const Modfr = spi1.sr.Modfr;
+            pub const Ovrr = spi1.sr.Ovrr;
+            pub const Bsyr = spi1.sr.Bsyr;
+            pub const Frer = spi1.sr.Frer;
             rxne: Rxne, // Receive buffer not empty (u1)
             txe: Txe, // Transmit buffer empty (u1)
             chside: Chside, // Channel side (u1)
@@ -15642,11 +12263,11 @@ pub const registers = struct {
         };
         pub const sr = mmio(base_address + 0x8, 32, Sr);
 
-        /// address: 0x4000380c
+        /// address: 0x4000380c, path: spi2.dr
         /// data register
         pub const dr = mmioInt(base_address + 0xc, 32, u16);
 
-        /// address: 0x40003810
+        /// address: 0x40003810, path: spi2.crcpr
         /// CRC polynomial register
         pub const Crcpr = packed struct {
             crcpoly: u16, // CRC polynomial register
@@ -15654,7 +12275,7 @@ pub const registers = struct {
         };
         pub const crcpr = mmio(base_address + 0x10, 32, Crcpr);
 
-        /// address: 0x40003814
+        /// address: 0x40003814, path: spi2.rxcrcr
         /// RX CRC register
         pub const Rxcrcr = packed struct {
             rxcrc: u16, // Rx CRC register
@@ -15662,7 +12283,7 @@ pub const registers = struct {
         };
         pub const rxcrcr = mmio(base_address + 0x14, 32, Rxcrcr);
 
-        /// address: 0x40003818
+        /// address: 0x40003818, path: spi2.txcrcr
         /// TX CRC register
         pub const Txcrcr = packed struct {
             txcrc: u16, // Tx CRC register
@@ -15670,46 +12291,17 @@ pub const registers = struct {
         };
         pub const txcrcr = mmio(base_address + 0x18, 32, Txcrcr);
 
-        /// address: 0x4000381c
+        /// address: 0x4000381c, path: spi2.i2scfgr
         /// I2S configuration register
         pub const I2scfgr = packed struct {
-            pub const Chlen = enum(u1) {
-                sixteen_bit = 0, // 16-bit wide
-                thirty_two_bit = 1, // 32-bit wide
-            };
-            pub const Datlen = enum(u2) {
-                sixteen_bit = 0b00, // 16-bit data length
-                twenty_four_bit = 0b01, // 24-bit data length
-                thirty_two_bit = 0b10, // 32-bit data length
-            };
-            pub const Ckpol = enum(u1) {
-                idle_low = 0, // I2S clock inactive state is low level
-                idle_high = 1, // I2S clock inactive state is high level
-            };
-            pub const I2sstd = enum(u2) {
-                philips = 0b00, // I2S Philips standard
-                msb = 0b01, // MSB justified standard
-                lsb = 0b10, // LSB justified standard
-                pcm = 0b11, // PCM standard
-            };
-            pub const Pcmsync = enum(u1) {
-                short = 0, // Short frame synchronisation
-                long = 1, // Long frame synchronisation
-            };
-            pub const I2scfg = enum(u2) {
-                slave_tx = 0b00, // Slave - transmit
-                slave_rx = 0b01, // Slave - receive
-                master_tx = 0b10, // Master - transmit
-                master_rx = 0b11, // Master - receive
-            };
-            pub const I2se = enum(u1) {
-                disabled = 0, // I2S peripheral is disabled
-                enabled = 1, // I2S peripheral is enabled
-            };
-            pub const I2smod = enum(u1) {
-                spi_mode = 0, // SPI mode is selected
-                i2_s_mode = 1, // I2S mode is selected
-            };
+            pub const Chlen = spi1.i2scfgr.Chlen;
+            pub const Datlen = spi1.i2scfgr.Datlen;
+            pub const Ckpol = spi1.i2scfgr.Ckpol;
+            pub const I2sstd = spi1.i2scfgr.I2sstd;
+            pub const Pcmsync = spi1.i2scfgr.Pcmsync;
+            pub const I2scfg = spi1.i2scfgr.I2scfg;
+            pub const I2se = spi1.i2scfgr.I2se;
+            pub const I2smod = spi1.i2scfgr.I2smod;
             chlen: Chlen, // Channel length (number of bits per audio channel) (u1)
             datlen: Datlen, // Data length to be transferred (u2)
             ckpol: Ckpol, // Steady state clock polarity (u1)
@@ -15723,17 +12315,11 @@ pub const registers = struct {
         };
         pub const i2scfgr = mmio(base_address + 0x1c, 32, I2scfgr);
 
-        /// address: 0x40003820
+        /// address: 0x40003820, path: spi2.i2spr
         /// I2S prescaler register
         pub const I2spr = packed struct {
-            pub const Odd = enum(u1) {
-                even = 0, // Real divider value is I2SDIV * 2
-                odd = 1, // Real divider value is (I2SDIV * 2) + 1
-            };
-            pub const Mckoe = enum(u1) {
-                disabled = 0, // Master clock output is disabled
-                enabled = 1, // Master clock output is enabled
-            };
+            pub const Odd = spi1.i2spr.Odd;
+            pub const Mckoe = spi1.i2spr.Mckoe;
             i2sdiv: u8, // I2S Linear prescaler
             odd: Odd, // Odd factor for the prescaler (u1)
             mckoe: Mckoe, // Master clock output enable (u1)
@@ -15745,71 +12331,23 @@ pub const registers = struct {
     pub const spi3 = struct {
         pub const base_address = 0x40003c00;
 
-        /// address: 0x40003c00
+        /// address: 0x40003c00, path: spi3.cr1
         /// control register 1
         pub const Cr1 = packed struct {
-            pub const Cpha = enum(u1) {
-                first_edge = 0, // The first clock transition is the first data capture edge
-                second_edge = 1, // The second clock transition is the first data capture edge
-            };
-            pub const Cpol = enum(u1) {
-                idle_low = 0, // CK to 0 when idle
-                idle_high = 1, // CK to 1 when idle
-            };
-            pub const Mstr = enum(u1) {
-                slave = 0, // Slave configuration
-                master = 1, // Master configuration
-            };
-            pub const Br = enum(u3) {
-                div2 = 0b000, // f_PCLK / 2
-                div4 = 0b001, // f_PCLK / 4
-                div8 = 0b010, // f_PCLK / 8
-                div16 = 0b011, // f_PCLK / 16
-                div32 = 0b100, // f_PCLK / 32
-                div64 = 0b101, // f_PCLK / 64
-                div128 = 0b110, // f_PCLK / 128
-                div256 = 0b111, // f_PCLK / 256
-            };
-            pub const Spe = enum(u1) {
-                disabled = 0, // Peripheral disabled
-                enabled = 1, // Peripheral enabled
-            };
-            pub const Lsbfirst = enum(u1) {
-                msb_first = 0, // Data is transmitted/received with the MSB first
-                lsb_first = 1, // Data is transmitted/received with the LSB first
-            };
-            pub const Ssi = enum(u1) {
-                slave_selected = 0, // 0 is forced onto the NSS pin and the I/O value of the NSS pin is ignored
-                slave_not_selected = 1, // 1 is forced onto the NSS pin and the I/O value of the NSS pin is ignored
-            };
-            pub const Ssm = enum(u1) {
-                disabled = 0, // Software slave management disabled
-                enabled = 1, // Software slave management enabled
-            };
-            pub const Rxonly = enum(u1) {
-                full_duplex = 0, // Full duplex (Transmit and receive)
-                output_disabled = 1, // Output disabled (Receive-only mode)
-            };
-            pub const Dff = enum(u1) {
-                eight_bit = 0, // 8-bit data frame format is selected for transmission/reception
-                sixteen_bit = 1, // 16-bit data frame format is selected for transmission/reception
-            };
-            pub const Crcnext = enum(u1) {
-                tx_buffer = 0, // Next transmit value is from Tx buffer
-                crc = 1, // Next transmit value is from Tx CRC register
-            };
-            pub const Crcen = enum(u1) {
-                disabled = 0, // CRC calculation disabled
-                enabled = 1, // CRC calculation enabled
-            };
-            pub const Bidioe = enum(u1) {
-                output_disabled = 0, // Output disabled (receive-only mode)
-                output_enabled = 1, // Output enabled (transmit-only mode)
-            };
-            pub const Bidimode = enum(u1) {
-                unidirectional = 0, // 2-line unidirectional data mode selected
-                bidirectional = 1, // 1-line bidirectional data mode selected
-            };
+            pub const Cpha = spi1.cr1.Cpha;
+            pub const Cpol = spi1.cr1.Cpol;
+            pub const Mstr = spi1.cr1.Mstr;
+            pub const Br = spi1.cr1.Br;
+            pub const Spe = spi1.cr1.Spe;
+            pub const Lsbfirst = spi1.cr1.Lsbfirst;
+            pub const Ssi = spi1.cr1.Ssi;
+            pub const Ssm = spi1.cr1.Ssm;
+            pub const Rxonly = spi1.cr1.Rxonly;
+            pub const Dff = spi1.cr1.Dff;
+            pub const Crcnext = spi1.cr1.Crcnext;
+            pub const Crcen = spi1.cr1.Crcen;
+            pub const Bidioe = spi1.cr1.Bidioe;
+            pub const Bidimode = spi1.cr1.Bidimode;
             cpha: Cpha, // Clock phase (u1)
             cpol: Cpol, // Clock polarity (u1)
             mstr: Mstr, // Master selection (u1)
@@ -15828,37 +12366,16 @@ pub const registers = struct {
         };
         pub const cr1 = mmio(base_address + 0x0, 32, Cr1);
 
-        /// address: 0x40003c04
+        /// address: 0x40003c04, path: spi3.cr2
         /// control register 2
         pub const Cr2 = packed struct {
-            pub const Rxdmaen = enum(u1) {
-                disabled = 0, // Rx buffer DMA disabled
-                enabled = 1, // Rx buffer DMA enabled
-            };
-            pub const Txdmaen = enum(u1) {
-                disabled = 0, // Tx buffer DMA disabled
-                enabled = 1, // Tx buffer DMA enabled
-            };
-            pub const Ssoe = enum(u1) {
-                disabled = 0, // SS output is disabled in master mode
-                enabled = 1, // SS output is enabled in master mode
-            };
-            pub const Frf = enum(u1) {
-                motorola = 0, // SPI Motorola mode
-                ti = 1, // SPI TI mode
-            };
-            pub const Errie = enum(u1) {
-                masked = 0, // Error interrupt masked
-                not_masked = 1, // Error interrupt not masked
-            };
-            pub const Rxneie = enum(u1) {
-                masked = 0, // RXE interrupt masked
-                not_masked = 1, // RXE interrupt not masked
-            };
-            pub const Txeie = enum(u1) {
-                masked = 0, // TXE interrupt masked
-                not_masked = 1, // TXE interrupt not masked
-            };
+            pub const Rxdmaen = spi1.cr2.Rxdmaen;
+            pub const Txdmaen = spi1.cr2.Txdmaen;
+            pub const Ssoe = spi1.cr2.Ssoe;
+            pub const Frf = spi1.cr2.Frf;
+            pub const Errie = spi1.cr2.Errie;
+            pub const Rxneie = spi1.cr2.Rxneie;
+            pub const Txeie = spi1.cr2.Txeie;
             rxdmaen: Rxdmaen, // Rx buffer DMA enable (u1)
             txdmaen: Txdmaen, // Tx buffer DMA enable (u1)
             ssoe: Ssoe, // SS output enable (u1)
@@ -15871,45 +12388,18 @@ pub const registers = struct {
         };
         pub const cr2 = mmio(base_address + 0x4, 32, Cr2);
 
-        /// address: 0x40003c08
+        /// address: 0x40003c08, path: spi3.sr
         /// status register
         pub const Sr = packed struct {
-            pub const Rxne = enum(u1) {
-                empty = 0, // Rx buffer empty
-                not_empty = 1, // Rx buffer not empty
-            };
-            pub const Txe = enum(u1) {
-                not_empty = 0, // Tx buffer not empty
-                empty = 1, // Tx buffer empty
-            };
-            pub const Chside = enum(u1) {
-                left = 0, // Channel left has to be transmitted or has been received
-                right = 1, // Channel right has to be transmitted or has been received
-            };
-            pub const Udrr = enum(u1) {
-                no_underrun = 0, // No underrun occurred
-                underrun = 1, // Underrun occurred
-            };
-            pub const Crcerr = enum(u1) {
-                match = 0, // CRC value received matches the SPIx_RXCRCR value
-                no_match = 1, // CRC value received does not match the SPIx_RXCRCR value
-            };
-            pub const Modfr = enum(u1) {
-                no_fault = 0, // No mode fault occurred
-                fault = 1, // Mode fault occurred
-            };
-            pub const Ovrr = enum(u1) {
-                no_overrun = 0, // No overrun occurred
-                overrun = 1, // Overrun occurred
-            };
-            pub const Bsyr = enum(u1) {
-                not_busy = 0, // SPI not busy
-                busy = 1, // SPI busy
-            };
-            pub const Frer = enum(u1) {
-                no_error = 0, // No frame format error
-                @"error" = 1, // A frame format error occurred
-            };
+            pub const Rxne = spi1.sr.Rxne;
+            pub const Txe = spi1.sr.Txe;
+            pub const Chside = spi1.sr.Chside;
+            pub const Udrr = spi1.sr.Udrr;
+            pub const Crcerr = spi1.sr.Crcerr;
+            pub const Modfr = spi1.sr.Modfr;
+            pub const Ovrr = spi1.sr.Ovrr;
+            pub const Bsyr = spi1.sr.Bsyr;
+            pub const Frer = spi1.sr.Frer;
             rxne: Rxne, // Receive buffer not empty (u1)
             txe: Txe, // Transmit buffer empty (u1)
             chside: Chside, // Channel side (u1)
@@ -15923,11 +12413,11 @@ pub const registers = struct {
         };
         pub const sr = mmio(base_address + 0x8, 32, Sr);
 
-        /// address: 0x40003c0c
+        /// address: 0x40003c0c, path: spi3.dr
         /// data register
         pub const dr = mmioInt(base_address + 0xc, 32, u16);
 
-        /// address: 0x40003c10
+        /// address: 0x40003c10, path: spi3.crcpr
         /// CRC polynomial register
         pub const Crcpr = packed struct {
             crcpoly: u16, // CRC polynomial register
@@ -15935,7 +12425,7 @@ pub const registers = struct {
         };
         pub const crcpr = mmio(base_address + 0x10, 32, Crcpr);
 
-        /// address: 0x40003c14
+        /// address: 0x40003c14, path: spi3.rxcrcr
         /// RX CRC register
         pub const Rxcrcr = packed struct {
             rxcrc: u16, // Rx CRC register
@@ -15943,7 +12433,7 @@ pub const registers = struct {
         };
         pub const rxcrcr = mmio(base_address + 0x14, 32, Rxcrcr);
 
-        /// address: 0x40003c18
+        /// address: 0x40003c18, path: spi3.txcrcr
         /// TX CRC register
         pub const Txcrcr = packed struct {
             txcrc: u16, // Tx CRC register
@@ -15951,46 +12441,17 @@ pub const registers = struct {
         };
         pub const txcrcr = mmio(base_address + 0x18, 32, Txcrcr);
 
-        /// address: 0x40003c1c
+        /// address: 0x40003c1c, path: spi3.i2scfgr
         /// I2S configuration register
         pub const I2scfgr = packed struct {
-            pub const Chlen = enum(u1) {
-                sixteen_bit = 0, // 16-bit wide
-                thirty_two_bit = 1, // 32-bit wide
-            };
-            pub const Datlen = enum(u2) {
-                sixteen_bit = 0b00, // 16-bit data length
-                twenty_four_bit = 0b01, // 24-bit data length
-                thirty_two_bit = 0b10, // 32-bit data length
-            };
-            pub const Ckpol = enum(u1) {
-                idle_low = 0, // I2S clock inactive state is low level
-                idle_high = 1, // I2S clock inactive state is high level
-            };
-            pub const I2sstd = enum(u2) {
-                philips = 0b00, // I2S Philips standard
-                msb = 0b01, // MSB justified standard
-                lsb = 0b10, // LSB justified standard
-                pcm = 0b11, // PCM standard
-            };
-            pub const Pcmsync = enum(u1) {
-                short = 0, // Short frame synchronisation
-                long = 1, // Long frame synchronisation
-            };
-            pub const I2scfg = enum(u2) {
-                slave_tx = 0b00, // Slave - transmit
-                slave_rx = 0b01, // Slave - receive
-                master_tx = 0b10, // Master - transmit
-                master_rx = 0b11, // Master - receive
-            };
-            pub const I2se = enum(u1) {
-                disabled = 0, // I2S peripheral is disabled
-                enabled = 1, // I2S peripheral is enabled
-            };
-            pub const I2smod = enum(u1) {
-                spi_mode = 0, // SPI mode is selected
-                i2_s_mode = 1, // I2S mode is selected
-            };
+            pub const Chlen = spi1.i2scfgr.Chlen;
+            pub const Datlen = spi1.i2scfgr.Datlen;
+            pub const Ckpol = spi1.i2scfgr.Ckpol;
+            pub const I2sstd = spi1.i2scfgr.I2sstd;
+            pub const Pcmsync = spi1.i2scfgr.Pcmsync;
+            pub const I2scfg = spi1.i2scfgr.I2scfg;
+            pub const I2se = spi1.i2scfgr.I2se;
+            pub const I2smod = spi1.i2scfgr.I2smod;
             chlen: Chlen, // Channel length (number of bits per audio channel) (u1)
             datlen: Datlen, // Data length to be transferred (u2)
             ckpol: Ckpol, // Steady state clock polarity (u1)
@@ -16004,17 +12465,11 @@ pub const registers = struct {
         };
         pub const i2scfgr = mmio(base_address + 0x1c, 32, I2scfgr);
 
-        /// address: 0x40003c20
+        /// address: 0x40003c20, path: spi3.i2spr
         /// I2S prescaler register
         pub const I2spr = packed struct {
-            pub const Odd = enum(u1) {
-                even = 0, // Real divider value is I2SDIV * 2
-                odd = 1, // Real divider value is (I2SDIV * 2) + 1
-            };
-            pub const Mckoe = enum(u1) {
-                disabled = 0, // Master clock output is disabled
-                enabled = 1, // Master clock output is enabled
-            };
+            pub const Odd = spi1.i2spr.Odd;
+            pub const Mckoe = spi1.i2spr.Mckoe;
             i2sdiv: u8, // I2S Linear prescaler
             odd: Odd, // Odd factor for the prescaler (u1)
             mckoe: Mckoe, // Master clock output enable (u1)
@@ -16026,71 +12481,23 @@ pub const registers = struct {
     pub const spi4 = struct {
         pub const base_address = 0x40013400;
 
-        /// address: 0x40013400
+        /// address: 0x40013400, path: spi4.cr1
         /// control register 1
         pub const Cr1 = packed struct {
-            pub const Cpha = enum(u1) {
-                first_edge = 0, // The first clock transition is the first data capture edge
-                second_edge = 1, // The second clock transition is the first data capture edge
-            };
-            pub const Cpol = enum(u1) {
-                idle_low = 0, // CK to 0 when idle
-                idle_high = 1, // CK to 1 when idle
-            };
-            pub const Mstr = enum(u1) {
-                slave = 0, // Slave configuration
-                master = 1, // Master configuration
-            };
-            pub const Br = enum(u3) {
-                div2 = 0b000, // f_PCLK / 2
-                div4 = 0b001, // f_PCLK / 4
-                div8 = 0b010, // f_PCLK / 8
-                div16 = 0b011, // f_PCLK / 16
-                div32 = 0b100, // f_PCLK / 32
-                div64 = 0b101, // f_PCLK / 64
-                div128 = 0b110, // f_PCLK / 128
-                div256 = 0b111, // f_PCLK / 256
-            };
-            pub const Spe = enum(u1) {
-                disabled = 0, // Peripheral disabled
-                enabled = 1, // Peripheral enabled
-            };
-            pub const Lsbfirst = enum(u1) {
-                msb_first = 0, // Data is transmitted/received with the MSB first
-                lsb_first = 1, // Data is transmitted/received with the LSB first
-            };
-            pub const Ssi = enum(u1) {
-                slave_selected = 0, // 0 is forced onto the NSS pin and the I/O value of the NSS pin is ignored
-                slave_not_selected = 1, // 1 is forced onto the NSS pin and the I/O value of the NSS pin is ignored
-            };
-            pub const Ssm = enum(u1) {
-                disabled = 0, // Software slave management disabled
-                enabled = 1, // Software slave management enabled
-            };
-            pub const Rxonly = enum(u1) {
-                full_duplex = 0, // Full duplex (Transmit and receive)
-                output_disabled = 1, // Output disabled (Receive-only mode)
-            };
-            pub const Dff = enum(u1) {
-                eight_bit = 0, // 8-bit data frame format is selected for transmission/reception
-                sixteen_bit = 1, // 16-bit data frame format is selected for transmission/reception
-            };
-            pub const Crcnext = enum(u1) {
-                tx_buffer = 0, // Next transmit value is from Tx buffer
-                crc = 1, // Next transmit value is from Tx CRC register
-            };
-            pub const Crcen = enum(u1) {
-                disabled = 0, // CRC calculation disabled
-                enabled = 1, // CRC calculation enabled
-            };
-            pub const Bidioe = enum(u1) {
-                output_disabled = 0, // Output disabled (receive-only mode)
-                output_enabled = 1, // Output enabled (transmit-only mode)
-            };
-            pub const Bidimode = enum(u1) {
-                unidirectional = 0, // 2-line unidirectional data mode selected
-                bidirectional = 1, // 1-line bidirectional data mode selected
-            };
+            pub const Cpha = spi1.cr1.Cpha;
+            pub const Cpol = spi1.cr1.Cpol;
+            pub const Mstr = spi1.cr1.Mstr;
+            pub const Br = spi1.cr1.Br;
+            pub const Spe = spi1.cr1.Spe;
+            pub const Lsbfirst = spi1.cr1.Lsbfirst;
+            pub const Ssi = spi1.cr1.Ssi;
+            pub const Ssm = spi1.cr1.Ssm;
+            pub const Rxonly = spi1.cr1.Rxonly;
+            pub const Dff = spi1.cr1.Dff;
+            pub const Crcnext = spi1.cr1.Crcnext;
+            pub const Crcen = spi1.cr1.Crcen;
+            pub const Bidioe = spi1.cr1.Bidioe;
+            pub const Bidimode = spi1.cr1.Bidimode;
             cpha: Cpha, // Clock phase (u1)
             cpol: Cpol, // Clock polarity (u1)
             mstr: Mstr, // Master selection (u1)
@@ -16109,37 +12516,16 @@ pub const registers = struct {
         };
         pub const cr1 = mmio(base_address + 0x0, 32, Cr1);
 
-        /// address: 0x40013404
+        /// address: 0x40013404, path: spi4.cr2
         /// control register 2
         pub const Cr2 = packed struct {
-            pub const Rxdmaen = enum(u1) {
-                disabled = 0, // Rx buffer DMA disabled
-                enabled = 1, // Rx buffer DMA enabled
-            };
-            pub const Txdmaen = enum(u1) {
-                disabled = 0, // Tx buffer DMA disabled
-                enabled = 1, // Tx buffer DMA enabled
-            };
-            pub const Ssoe = enum(u1) {
-                disabled = 0, // SS output is disabled in master mode
-                enabled = 1, // SS output is enabled in master mode
-            };
-            pub const Frf = enum(u1) {
-                motorola = 0, // SPI Motorola mode
-                ti = 1, // SPI TI mode
-            };
-            pub const Errie = enum(u1) {
-                masked = 0, // Error interrupt masked
-                not_masked = 1, // Error interrupt not masked
-            };
-            pub const Rxneie = enum(u1) {
-                masked = 0, // RXE interrupt masked
-                not_masked = 1, // RXE interrupt not masked
-            };
-            pub const Txeie = enum(u1) {
-                masked = 0, // TXE interrupt masked
-                not_masked = 1, // TXE interrupt not masked
-            };
+            pub const Rxdmaen = spi1.cr2.Rxdmaen;
+            pub const Txdmaen = spi1.cr2.Txdmaen;
+            pub const Ssoe = spi1.cr2.Ssoe;
+            pub const Frf = spi1.cr2.Frf;
+            pub const Errie = spi1.cr2.Errie;
+            pub const Rxneie = spi1.cr2.Rxneie;
+            pub const Txeie = spi1.cr2.Txeie;
             rxdmaen: Rxdmaen, // Rx buffer DMA enable (u1)
             txdmaen: Txdmaen, // Tx buffer DMA enable (u1)
             ssoe: Ssoe, // SS output enable (u1)
@@ -16152,45 +12538,18 @@ pub const registers = struct {
         };
         pub const cr2 = mmio(base_address + 0x4, 32, Cr2);
 
-        /// address: 0x40013408
+        /// address: 0x40013408, path: spi4.sr
         /// status register
         pub const Sr = packed struct {
-            pub const Rxne = enum(u1) {
-                empty = 0, // Rx buffer empty
-                not_empty = 1, // Rx buffer not empty
-            };
-            pub const Txe = enum(u1) {
-                not_empty = 0, // Tx buffer not empty
-                empty = 1, // Tx buffer empty
-            };
-            pub const Chside = enum(u1) {
-                left = 0, // Channel left has to be transmitted or has been received
-                right = 1, // Channel right has to be transmitted or has been received
-            };
-            pub const Udrr = enum(u1) {
-                no_underrun = 0, // No underrun occurred
-                underrun = 1, // Underrun occurred
-            };
-            pub const Crcerr = enum(u1) {
-                match = 0, // CRC value received matches the SPIx_RXCRCR value
-                no_match = 1, // CRC value received does not match the SPIx_RXCRCR value
-            };
-            pub const Modfr = enum(u1) {
-                no_fault = 0, // No mode fault occurred
-                fault = 1, // Mode fault occurred
-            };
-            pub const Ovrr = enum(u1) {
-                no_overrun = 0, // No overrun occurred
-                overrun = 1, // Overrun occurred
-            };
-            pub const Bsyr = enum(u1) {
-                not_busy = 0, // SPI not busy
-                busy = 1, // SPI busy
-            };
-            pub const Frer = enum(u1) {
-                no_error = 0, // No frame format error
-                @"error" = 1, // A frame format error occurred
-            };
+            pub const Rxne = spi1.sr.Rxne;
+            pub const Txe = spi1.sr.Txe;
+            pub const Chside = spi1.sr.Chside;
+            pub const Udrr = spi1.sr.Udrr;
+            pub const Crcerr = spi1.sr.Crcerr;
+            pub const Modfr = spi1.sr.Modfr;
+            pub const Ovrr = spi1.sr.Ovrr;
+            pub const Bsyr = spi1.sr.Bsyr;
+            pub const Frer = spi1.sr.Frer;
             rxne: Rxne, // Receive buffer not empty (u1)
             txe: Txe, // Transmit buffer empty (u1)
             chside: Chside, // Channel side (u1)
@@ -16204,11 +12563,11 @@ pub const registers = struct {
         };
         pub const sr = mmio(base_address + 0x8, 32, Sr);
 
-        /// address: 0x4001340c
+        /// address: 0x4001340c, path: spi4.dr
         /// data register
         pub const dr = mmioInt(base_address + 0xc, 32, u16);
 
-        /// address: 0x40013410
+        /// address: 0x40013410, path: spi4.crcpr
         /// CRC polynomial register
         pub const Crcpr = packed struct {
             crcpoly: u16, // CRC polynomial register
@@ -16216,7 +12575,7 @@ pub const registers = struct {
         };
         pub const crcpr = mmio(base_address + 0x10, 32, Crcpr);
 
-        /// address: 0x40013414
+        /// address: 0x40013414, path: spi4.rxcrcr
         /// RX CRC register
         pub const Rxcrcr = packed struct {
             rxcrc: u16, // Rx CRC register
@@ -16224,7 +12583,7 @@ pub const registers = struct {
         };
         pub const rxcrcr = mmio(base_address + 0x14, 32, Rxcrcr);
 
-        /// address: 0x40013418
+        /// address: 0x40013418, path: spi4.txcrcr
         /// TX CRC register
         pub const Txcrcr = packed struct {
             txcrc: u16, // Tx CRC register
@@ -16232,46 +12591,17 @@ pub const registers = struct {
         };
         pub const txcrcr = mmio(base_address + 0x18, 32, Txcrcr);
 
-        /// address: 0x4001341c
+        /// address: 0x4001341c, path: spi4.i2scfgr
         /// I2S configuration register
         pub const I2scfgr = packed struct {
-            pub const Chlen = enum(u1) {
-                sixteen_bit = 0, // 16-bit wide
-                thirty_two_bit = 1, // 32-bit wide
-            };
-            pub const Datlen = enum(u2) {
-                sixteen_bit = 0b00, // 16-bit data length
-                twenty_four_bit = 0b01, // 24-bit data length
-                thirty_two_bit = 0b10, // 32-bit data length
-            };
-            pub const Ckpol = enum(u1) {
-                idle_low = 0, // I2S clock inactive state is low level
-                idle_high = 1, // I2S clock inactive state is high level
-            };
-            pub const I2sstd = enum(u2) {
-                philips = 0b00, // I2S Philips standard
-                msb = 0b01, // MSB justified standard
-                lsb = 0b10, // LSB justified standard
-                pcm = 0b11, // PCM standard
-            };
-            pub const Pcmsync = enum(u1) {
-                short = 0, // Short frame synchronisation
-                long = 1, // Long frame synchronisation
-            };
-            pub const I2scfg = enum(u2) {
-                slave_tx = 0b00, // Slave - transmit
-                slave_rx = 0b01, // Slave - receive
-                master_tx = 0b10, // Master - transmit
-                master_rx = 0b11, // Master - receive
-            };
-            pub const I2se = enum(u1) {
-                disabled = 0, // I2S peripheral is disabled
-                enabled = 1, // I2S peripheral is enabled
-            };
-            pub const I2smod = enum(u1) {
-                spi_mode = 0, // SPI mode is selected
-                i2_s_mode = 1, // I2S mode is selected
-            };
+            pub const Chlen = spi1.i2scfgr.Chlen;
+            pub const Datlen = spi1.i2scfgr.Datlen;
+            pub const Ckpol = spi1.i2scfgr.Ckpol;
+            pub const I2sstd = spi1.i2scfgr.I2sstd;
+            pub const Pcmsync = spi1.i2scfgr.Pcmsync;
+            pub const I2scfg = spi1.i2scfgr.I2scfg;
+            pub const I2se = spi1.i2scfgr.I2se;
+            pub const I2smod = spi1.i2scfgr.I2smod;
             chlen: Chlen, // Channel length (number of bits per audio channel) (u1)
             datlen: Datlen, // Data length to be transferred (u2)
             ckpol: Ckpol, // Steady state clock polarity (u1)
@@ -16285,17 +12615,11 @@ pub const registers = struct {
         };
         pub const i2scfgr = mmio(base_address + 0x1c, 32, I2scfgr);
 
-        /// address: 0x40013420
+        /// address: 0x40013420, path: spi4.i2spr
         /// I2S prescaler register
         pub const I2spr = packed struct {
-            pub const Odd = enum(u1) {
-                even = 0, // Real divider value is I2SDIV * 2
-                odd = 1, // Real divider value is (I2SDIV * 2) + 1
-            };
-            pub const Mckoe = enum(u1) {
-                disabled = 0, // Master clock output is disabled
-                enabled = 1, // Master clock output is enabled
-            };
+            pub const Odd = spi1.i2spr.Odd;
+            pub const Mckoe = spi1.i2spr.Mckoe;
             i2sdiv: u8, // I2S Linear prescaler
             odd: Odd, // Odd factor for the prescaler (u1)
             mckoe: Mckoe, // Master clock output enable (u1)
@@ -16307,71 +12631,23 @@ pub const registers = struct {
     pub const spi5 = struct {
         pub const base_address = 0x40015000;
 
-        /// address: 0x40015000
+        /// address: 0x40015000, path: spi5.cr1
         /// control register 1
         pub const Cr1 = packed struct {
-            pub const Cpha = enum(u1) {
-                first_edge = 0, // The first clock transition is the first data capture edge
-                second_edge = 1, // The second clock transition is the first data capture edge
-            };
-            pub const Cpol = enum(u1) {
-                idle_low = 0, // CK to 0 when idle
-                idle_high = 1, // CK to 1 when idle
-            };
-            pub const Mstr = enum(u1) {
-                slave = 0, // Slave configuration
-                master = 1, // Master configuration
-            };
-            pub const Br = enum(u3) {
-                div2 = 0b000, // f_PCLK / 2
-                div4 = 0b001, // f_PCLK / 4
-                div8 = 0b010, // f_PCLK / 8
-                div16 = 0b011, // f_PCLK / 16
-                div32 = 0b100, // f_PCLK / 32
-                div64 = 0b101, // f_PCLK / 64
-                div128 = 0b110, // f_PCLK / 128
-                div256 = 0b111, // f_PCLK / 256
-            };
-            pub const Spe = enum(u1) {
-                disabled = 0, // Peripheral disabled
-                enabled = 1, // Peripheral enabled
-            };
-            pub const Lsbfirst = enum(u1) {
-                msb_first = 0, // Data is transmitted/received with the MSB first
-                lsb_first = 1, // Data is transmitted/received with the LSB first
-            };
-            pub const Ssi = enum(u1) {
-                slave_selected = 0, // 0 is forced onto the NSS pin and the I/O value of the NSS pin is ignored
-                slave_not_selected = 1, // 1 is forced onto the NSS pin and the I/O value of the NSS pin is ignored
-            };
-            pub const Ssm = enum(u1) {
-                disabled = 0, // Software slave management disabled
-                enabled = 1, // Software slave management enabled
-            };
-            pub const Rxonly = enum(u1) {
-                full_duplex = 0, // Full duplex (Transmit and receive)
-                output_disabled = 1, // Output disabled (Receive-only mode)
-            };
-            pub const Dff = enum(u1) {
-                eight_bit = 0, // 8-bit data frame format is selected for transmission/reception
-                sixteen_bit = 1, // 16-bit data frame format is selected for transmission/reception
-            };
-            pub const Crcnext = enum(u1) {
-                tx_buffer = 0, // Next transmit value is from Tx buffer
-                crc = 1, // Next transmit value is from Tx CRC register
-            };
-            pub const Crcen = enum(u1) {
-                disabled = 0, // CRC calculation disabled
-                enabled = 1, // CRC calculation enabled
-            };
-            pub const Bidioe = enum(u1) {
-                output_disabled = 0, // Output disabled (receive-only mode)
-                output_enabled = 1, // Output enabled (transmit-only mode)
-            };
-            pub const Bidimode = enum(u1) {
-                unidirectional = 0, // 2-line unidirectional data mode selected
-                bidirectional = 1, // 1-line bidirectional data mode selected
-            };
+            pub const Cpha = spi1.cr1.Cpha;
+            pub const Cpol = spi1.cr1.Cpol;
+            pub const Mstr = spi1.cr1.Mstr;
+            pub const Br = spi1.cr1.Br;
+            pub const Spe = spi1.cr1.Spe;
+            pub const Lsbfirst = spi1.cr1.Lsbfirst;
+            pub const Ssi = spi1.cr1.Ssi;
+            pub const Ssm = spi1.cr1.Ssm;
+            pub const Rxonly = spi1.cr1.Rxonly;
+            pub const Dff = spi1.cr1.Dff;
+            pub const Crcnext = spi1.cr1.Crcnext;
+            pub const Crcen = spi1.cr1.Crcen;
+            pub const Bidioe = spi1.cr1.Bidioe;
+            pub const Bidimode = spi1.cr1.Bidimode;
             cpha: Cpha, // Clock phase (u1)
             cpol: Cpol, // Clock polarity (u1)
             mstr: Mstr, // Master selection (u1)
@@ -16390,37 +12666,16 @@ pub const registers = struct {
         };
         pub const cr1 = mmio(base_address + 0x0, 32, Cr1);
 
-        /// address: 0x40015004
+        /// address: 0x40015004, path: spi5.cr2
         /// control register 2
         pub const Cr2 = packed struct {
-            pub const Rxdmaen = enum(u1) {
-                disabled = 0, // Rx buffer DMA disabled
-                enabled = 1, // Rx buffer DMA enabled
-            };
-            pub const Txdmaen = enum(u1) {
-                disabled = 0, // Tx buffer DMA disabled
-                enabled = 1, // Tx buffer DMA enabled
-            };
-            pub const Ssoe = enum(u1) {
-                disabled = 0, // SS output is disabled in master mode
-                enabled = 1, // SS output is enabled in master mode
-            };
-            pub const Frf = enum(u1) {
-                motorola = 0, // SPI Motorola mode
-                ti = 1, // SPI TI mode
-            };
-            pub const Errie = enum(u1) {
-                masked = 0, // Error interrupt masked
-                not_masked = 1, // Error interrupt not masked
-            };
-            pub const Rxneie = enum(u1) {
-                masked = 0, // RXE interrupt masked
-                not_masked = 1, // RXE interrupt not masked
-            };
-            pub const Txeie = enum(u1) {
-                masked = 0, // TXE interrupt masked
-                not_masked = 1, // TXE interrupt not masked
-            };
+            pub const Rxdmaen = spi1.cr2.Rxdmaen;
+            pub const Txdmaen = spi1.cr2.Txdmaen;
+            pub const Ssoe = spi1.cr2.Ssoe;
+            pub const Frf = spi1.cr2.Frf;
+            pub const Errie = spi1.cr2.Errie;
+            pub const Rxneie = spi1.cr2.Rxneie;
+            pub const Txeie = spi1.cr2.Txeie;
             rxdmaen: Rxdmaen, // Rx buffer DMA enable (u1)
             txdmaen: Txdmaen, // Tx buffer DMA enable (u1)
             ssoe: Ssoe, // SS output enable (u1)
@@ -16433,45 +12688,18 @@ pub const registers = struct {
         };
         pub const cr2 = mmio(base_address + 0x4, 32, Cr2);
 
-        /// address: 0x40015008
+        /// address: 0x40015008, path: spi5.sr
         /// status register
         pub const Sr = packed struct {
-            pub const Rxne = enum(u1) {
-                empty = 0, // Rx buffer empty
-                not_empty = 1, // Rx buffer not empty
-            };
-            pub const Txe = enum(u1) {
-                not_empty = 0, // Tx buffer not empty
-                empty = 1, // Tx buffer empty
-            };
-            pub const Chside = enum(u1) {
-                left = 0, // Channel left has to be transmitted or has been received
-                right = 1, // Channel right has to be transmitted or has been received
-            };
-            pub const Udrr = enum(u1) {
-                no_underrun = 0, // No underrun occurred
-                underrun = 1, // Underrun occurred
-            };
-            pub const Crcerr = enum(u1) {
-                match = 0, // CRC value received matches the SPIx_RXCRCR value
-                no_match = 1, // CRC value received does not match the SPIx_RXCRCR value
-            };
-            pub const Modfr = enum(u1) {
-                no_fault = 0, // No mode fault occurred
-                fault = 1, // Mode fault occurred
-            };
-            pub const Ovrr = enum(u1) {
-                no_overrun = 0, // No overrun occurred
-                overrun = 1, // Overrun occurred
-            };
-            pub const Bsyr = enum(u1) {
-                not_busy = 0, // SPI not busy
-                busy = 1, // SPI busy
-            };
-            pub const Frer = enum(u1) {
-                no_error = 0, // No frame format error
-                @"error" = 1, // A frame format error occurred
-            };
+            pub const Rxne = spi1.sr.Rxne;
+            pub const Txe = spi1.sr.Txe;
+            pub const Chside = spi1.sr.Chside;
+            pub const Udrr = spi1.sr.Udrr;
+            pub const Crcerr = spi1.sr.Crcerr;
+            pub const Modfr = spi1.sr.Modfr;
+            pub const Ovrr = spi1.sr.Ovrr;
+            pub const Bsyr = spi1.sr.Bsyr;
+            pub const Frer = spi1.sr.Frer;
             rxne: Rxne, // Receive buffer not empty (u1)
             txe: Txe, // Transmit buffer empty (u1)
             chside: Chside, // Channel side (u1)
@@ -16485,11 +12713,11 @@ pub const registers = struct {
         };
         pub const sr = mmio(base_address + 0x8, 32, Sr);
 
-        /// address: 0x4001500c
+        /// address: 0x4001500c, path: spi5.dr
         /// data register
         pub const dr = mmioInt(base_address + 0xc, 32, u16);
 
-        /// address: 0x40015010
+        /// address: 0x40015010, path: spi5.crcpr
         /// CRC polynomial register
         pub const Crcpr = packed struct {
             crcpoly: u16, // CRC polynomial register
@@ -16497,7 +12725,7 @@ pub const registers = struct {
         };
         pub const crcpr = mmio(base_address + 0x10, 32, Crcpr);
 
-        /// address: 0x40015014
+        /// address: 0x40015014, path: spi5.rxcrcr
         /// RX CRC register
         pub const Rxcrcr = packed struct {
             rxcrc: u16, // Rx CRC register
@@ -16505,7 +12733,7 @@ pub const registers = struct {
         };
         pub const rxcrcr = mmio(base_address + 0x14, 32, Rxcrcr);
 
-        /// address: 0x40015018
+        /// address: 0x40015018, path: spi5.txcrcr
         /// TX CRC register
         pub const Txcrcr = packed struct {
             txcrc: u16, // Tx CRC register
@@ -16513,46 +12741,17 @@ pub const registers = struct {
         };
         pub const txcrcr = mmio(base_address + 0x18, 32, Txcrcr);
 
-        /// address: 0x4001501c
+        /// address: 0x4001501c, path: spi5.i2scfgr
         /// I2S configuration register
         pub const I2scfgr = packed struct {
-            pub const Chlen = enum(u1) {
-                sixteen_bit = 0, // 16-bit wide
-                thirty_two_bit = 1, // 32-bit wide
-            };
-            pub const Datlen = enum(u2) {
-                sixteen_bit = 0b00, // 16-bit data length
-                twenty_four_bit = 0b01, // 24-bit data length
-                thirty_two_bit = 0b10, // 32-bit data length
-            };
-            pub const Ckpol = enum(u1) {
-                idle_low = 0, // I2S clock inactive state is low level
-                idle_high = 1, // I2S clock inactive state is high level
-            };
-            pub const I2sstd = enum(u2) {
-                philips = 0b00, // I2S Philips standard
-                msb = 0b01, // MSB justified standard
-                lsb = 0b10, // LSB justified standard
-                pcm = 0b11, // PCM standard
-            };
-            pub const Pcmsync = enum(u1) {
-                short = 0, // Short frame synchronisation
-                long = 1, // Long frame synchronisation
-            };
-            pub const I2scfg = enum(u2) {
-                slave_tx = 0b00, // Slave - transmit
-                slave_rx = 0b01, // Slave - receive
-                master_tx = 0b10, // Master - transmit
-                master_rx = 0b11, // Master - receive
-            };
-            pub const I2se = enum(u1) {
-                disabled = 0, // I2S peripheral is disabled
-                enabled = 1, // I2S peripheral is enabled
-            };
-            pub const I2smod = enum(u1) {
-                spi_mode = 0, // SPI mode is selected
-                i2_s_mode = 1, // I2S mode is selected
-            };
+            pub const Chlen = spi1.i2scfgr.Chlen;
+            pub const Datlen = spi1.i2scfgr.Datlen;
+            pub const Ckpol = spi1.i2scfgr.Ckpol;
+            pub const I2sstd = spi1.i2scfgr.I2sstd;
+            pub const Pcmsync = spi1.i2scfgr.Pcmsync;
+            pub const I2scfg = spi1.i2scfgr.I2scfg;
+            pub const I2se = spi1.i2scfgr.I2se;
+            pub const I2smod = spi1.i2scfgr.I2smod;
             chlen: Chlen, // Channel length (number of bits per audio channel) (u1)
             datlen: Datlen, // Data length to be transferred (u2)
             ckpol: Ckpol, // Steady state clock polarity (u1)
@@ -16566,17 +12765,11 @@ pub const registers = struct {
         };
         pub const i2scfgr = mmio(base_address + 0x1c, 32, I2scfgr);
 
-        /// address: 0x40015020
+        /// address: 0x40015020, path: spi5.i2spr
         /// I2S prescaler register
         pub const I2spr = packed struct {
-            pub const Odd = enum(u1) {
-                even = 0, // Real divider value is I2SDIV * 2
-                odd = 1, // Real divider value is (I2SDIV * 2) + 1
-            };
-            pub const Mckoe = enum(u1) {
-                disabled = 0, // Master clock output is disabled
-                enabled = 1, // Master clock output is enabled
-            };
+            pub const Odd = spi1.i2spr.Odd;
+            pub const Mckoe = spi1.i2spr.Mckoe;
             i2sdiv: u8, // I2S Linear prescaler
             odd: Odd, // Odd factor for the prescaler (u1)
             mckoe: Mckoe, // Master clock output enable (u1)
