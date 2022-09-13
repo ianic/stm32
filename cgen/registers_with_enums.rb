@@ -10,7 +10,7 @@ if ARGV[0].nil?
 end
 
 def open_doc(chip)
-  filename = "data/stm32f#{chip[0..2]}.svd"
+  filename = "svd/stm32f#{chip[0..2]}.svd"
   @doc = File.open(filename) { |f| Nokogiri::XML(f) }
 end
 
