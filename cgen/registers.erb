@@ -4,7 +4,7 @@ pub const registers = struct {
     pub const <%= p.name.nscase %> = struct {
     pub const base_address = <%= p.base_address %>;
     <%- for r in p.registers %>
-        /// address: <%= address(p.base_address, r.address_offset) %>
+        /// address: <%= address(p.base_address, r.address_offset) %>, path: <%= p.name.nscase %>.<%= r.name.nscase %>
         /// <%= r.desc %>
         <%- case r.type -%>
         <%- when :int -%>
