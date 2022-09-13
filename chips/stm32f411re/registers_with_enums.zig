@@ -685,34 +685,34 @@ pub const registers = struct {
         /// address: 0x40013c14
         /// Pending register (EXTI_PR)
         pub const Pr = packed struct {
-            pub const Pr0rPr0w = enum(u1) {
+            pub const Pr0 = enum(u1) {
                 not_pending = 0, // No trigger request occurred
                 pending = 1, // Selected trigger request occurred
-                pub const clear = @intToEnum(Pr0rPr0w, 1); // Clears pending bit
+                pub const clear = @intToEnum(Pr0, 1); // Clears pending bit
             };
-            pr0: Pr0rPr0w, // Pending bit 0 (u1)
-            pr1: Pr0rPr0w, // Pending bit 1 (u1)
-            pr2: Pr0rPr0w, // Pending bit 2 (u1)
-            pr3: Pr0rPr0w, // Pending bit 3 (u1)
-            pr4: Pr0rPr0w, // Pending bit 4 (u1)
-            pr5: Pr0rPr0w, // Pending bit 5 (u1)
-            pr6: Pr0rPr0w, // Pending bit 6 (u1)
-            pr7: Pr0rPr0w, // Pending bit 7 (u1)
-            pr8: Pr0rPr0w, // Pending bit 8 (u1)
-            pr9: Pr0rPr0w, // Pending bit 9 (u1)
-            pr10: Pr0rPr0w, // Pending bit 10 (u1)
-            pr11: Pr0rPr0w, // Pending bit 11 (u1)
-            pr12: Pr0rPr0w, // Pending bit 12 (u1)
-            pr13: Pr0rPr0w, // Pending bit 13 (u1)
-            pr14: Pr0rPr0w, // Pending bit 14 (u1)
-            pr15: Pr0rPr0w, // Pending bit 15 (u1)
-            pr16: Pr0rPr0w, // Pending bit 16 (u1)
-            pr17: Pr0rPr0w, // Pending bit 17 (u1)
-            pr18: Pr0rPr0w, // Pending bit 18 (u1)
-            pr19: Pr0rPr0w, // Pending bit 19 (u1)
-            pr20: Pr0rPr0w, // Pending bit 20 (u1)
-            pr21: Pr0rPr0w, // Pending bit 21 (u1)
-            pr22: Pr0rPr0w, // Pending bit 22 (u1)
+            pr0: Pr0, // Pending bit 0 (u1)
+            pr1: Pr0, // Pending bit 1 (u1)
+            pr2: Pr0, // Pending bit 2 (u1)
+            pr3: Pr0, // Pending bit 3 (u1)
+            pr4: Pr0, // Pending bit 4 (u1)
+            pr5: Pr0, // Pending bit 5 (u1)
+            pr6: Pr0, // Pending bit 6 (u1)
+            pr7: Pr0, // Pending bit 7 (u1)
+            pr8: Pr0, // Pending bit 8 (u1)
+            pr9: Pr0, // Pending bit 9 (u1)
+            pr10: Pr0, // Pending bit 10 (u1)
+            pr11: Pr0, // Pending bit 11 (u1)
+            pr12: Pr0, // Pending bit 12 (u1)
+            pr13: Pr0, // Pending bit 13 (u1)
+            pr14: Pr0, // Pending bit 14 (u1)
+            pr15: Pr0, // Pending bit 15 (u1)
+            pr16: Pr0, // Pending bit 16 (u1)
+            pr17: Pr0, // Pending bit 17 (u1)
+            pr18: Pr0, // Pending bit 18 (u1)
+            pr19: Pr0, // Pending bit 19 (u1)
+            pr20: Pr0, // Pending bit 20 (u1)
+            pr21: Pr0, // Pending bit 21 (u1)
+            pr22: Pr0, // Pending bit 22 (u1)
             _padding_23_31: u9,
         };
         pub const pr = mmio(base_address + 0x14, 32, Pr);
@@ -3076,10 +3076,10 @@ pub const registers = struct {
                 not_initalized = 0, // Calendar has not been initialized
                 initalized = 1, // Calendar has been initialized
             };
-            pub const RsfrRsfw = enum(u1) {
+            pub const Rsf = enum(u1) {
                 not_synced = 0, // Calendar shadow registers not yet synchronized
                 synced = 1, // Calendar shadow registers synchronized
-                pub const clear = @intToEnum(RsfrRsfw, 0); // This flag is cleared by software by writing 0
+                pub const clear = @intToEnum(Rsf, 0); // This flag is cleared by software by writing 0
             };
             pub const Initfr = enum(u1) {
                 not_allowed = 0, // Calendar registers update is not allowed
@@ -3089,27 +3089,27 @@ pub const registers = struct {
                 free_running_mode = 0, // Free running mode
                 init_mode = 1, // Initialization mode used to program time and date register (RTC_TR and RTC_DR), and prescaler register (RTC_PRER). Counters are stopped and start counting from the new value when INIT is reset.
             };
-            pub const AlrafrAlrafw = enum(u1) {
+            pub const Alraf = enum(u1) {
                 match = 1, // This flag is set by hardware when the time/date registers (RTC_TR and RTC_DR) match the Alarm A register (RTC_ALRMAR)
                 clear = 0, // This flag is cleared by software by writing 0
             };
-            pub const AlrbfrAlrbfw = enum(u1) {
+            pub const Alrbf = enum(u1) {
                 match = 1, // This flag is set by hardware when the time/date registers (RTC_TR and RTC_DR) match the Alarm B register (RTC_ALRMBR)
                 clear = 0, // This flag is cleared by software by writing 0
             };
-            pub const WutfrWutfw = enum(u1) {
+            pub const Wutf = enum(u1) {
                 zero = 1, // This flag is set by hardware when the wakeup auto-reload counter reaches 0
                 clear = 0, // This flag is cleared by software by writing 0
             };
-            pub const TsfrTsfw = enum(u1) {
+            pub const Tsf = enum(u1) {
                 timestamp_event = 1, // This flag is set by hardware when a time-stamp event occurs
                 clear = 0, // This flag is cleared by software by writing 0
             };
-            pub const TsovfrTsovfw = enum(u1) {
+            pub const Tsovf = enum(u1) {
                 overflow = 1, // This flag is set by hardware when a time-stamp event occurs while TSF is already set
                 clear = 0, // This flag is cleared by software by writing 0
             };
-            pub const Tamp1frTamp1fw = enum(u1) {
+            pub const Tamp1f = enum(u1) {
                 tampered = 1, // This flag is set by hardware when a tamper detection event is detected on the RTC_TAMPx input
                 clear = 0, // Flag cleared by software writing 0
             };
@@ -3121,16 +3121,16 @@ pub const registers = struct {
             wutwf: Wutwfr, // Wakeup timer write flag (u1)
             shpf: Shpfr, // Shift operation pending (u1)
             inits: Initsr, // Initialization status flag (u1)
-            rsf: RsfrRsfw, // Registers synchronization flag (u1)
+            rsf: Rsf, // Registers synchronization flag (u1)
             initf: Initfr, // Initialization flag (u1)
             init: Init, // Initialization mode (u1)
-            alraf: AlrafrAlrafw, // Alarm A flag (u1)
-            alrbf: AlrbfrAlrbfw, // Alarm B flag (u1)
-            wutf: WutfrWutfw, // Wakeup timer flag (u1)
-            tsf: TsfrTsfw, // Time-stamp flag (u1)
-            tsovf: TsovfrTsovfw, // Time-stamp overflow flag (u1)
-            tamp1f: Tamp1frTamp1fw, // Tamper detection flag (u1)
-            tamp2f: Tamp1frTamp1fw, // TAMPER2 detection flag (u1)
+            alraf: Alraf, // Alarm A flag (u1)
+            alrbf: Alrbf, // Alarm B flag (u1)
+            wutf: Wutf, // Wakeup timer flag (u1)
+            tsf: Tsf, // Time-stamp flag (u1)
+            tsovf: Tsovf, // Time-stamp overflow flag (u1)
+            tamp1f: Tamp1f, // Tamper detection flag (u1)
+            tamp2f: Tamp1f, // TAMPER2 detection flag (u1)
             _reserved_15_15: u1,
             recalpf: Recalpfr, // Recalibration pending Flag (u1)
             _padding_17_31: u15,
@@ -4209,32 +4209,32 @@ pub const registers = struct {
                 clear = 0, // No update occurred
                 update_pending = 1, // Update interrupt pending.
             };
-            pub const Cc1ifrCc1ifw = enum(u1) {
+            pub const Cc1if = enum(u1) {
                 match = 1, // If CC1 is an output: The content of the counter TIMx_CNT matches the content of the TIMx_CCR1 register. If CC1 is an input: The counter value has been captured in TIMx_CCR1 register.
                 clear = 0, // Clear flag
             };
-            pub const TifrTifw = enum(u1) {
+            pub const Tif = enum(u1) {
                 no_trigger = 0, // No trigger event occurred
                 trigger = 1, // Trigger interrupt pending
-                pub const clear = @intToEnum(TifrTifw, 0); // Clear flag
+                pub const clear = @intToEnum(Tif, 0); // Clear flag
             };
-            pub const Cc1ofrCc1ofw = enum(u1) {
+            pub const Cc1of = enum(u1) {
                 overcapture = 1, // The counter value has been captured in TIMx_CCRx register while CCxIF flag was already set
                 clear = 0, // Clear flag
             };
             uif: Uif, // Update interrupt flag (u1)
-            cc1if: Cc1ifrCc1ifw, // Capture/compare 1 interrupt flag (u1)
-            cc2if: Cc1ifrCc1ifw, // Capture/Compare 2 interrupt flag (u1)
-            cc3if: Cc1ifrCc1ifw, // Capture/Compare 3 interrupt flag (u1)
-            cc4if: Cc1ifrCc1ifw, // Capture/Compare 4 interrupt flag (u1)
+            cc1if: Cc1if, // Capture/compare 1 interrupt flag (u1)
+            cc2if: Cc1if, // Capture/Compare 2 interrupt flag (u1)
+            cc3if: Cc1if, // Capture/Compare 3 interrupt flag (u1)
+            cc4if: Cc1if, // Capture/Compare 4 interrupt flag (u1)
             comif: u1, // COM interrupt flag
-            tif: TifrTifw, // Trigger interrupt flag (u1)
+            tif: Tif, // Trigger interrupt flag (u1)
             bif: u1, // Break interrupt flag
             _reserved_8_8: u1,
-            cc1of: Cc1ofrCc1ofw, // Capture/Compare 1 overcapture flag (u1)
-            cc2of: Cc1ofrCc1ofw, // Capture/compare 2 overcapture flag (u1)
-            cc3of: Cc1ofrCc1ofw, // Capture/Compare 3 overcapture flag (u1)
-            cc4of: Cc1ofrCc1ofw, // Capture/Compare 4 overcapture flag (u1)
+            cc1of: Cc1of, // Capture/Compare 1 overcapture flag (u1)
+            cc2of: Cc1of, // Capture/compare 2 overcapture flag (u1)
+            cc3of: Cc1of, // Capture/Compare 3 overcapture flag (u1)
+            cc4of: Cc1of, // Capture/Compare 4 overcapture flag (u1)
             _padding_13_31: u19,
         };
         pub const sr = mmio(base_address + 0x10, 32, Sr);
@@ -5031,31 +5031,31 @@ pub const registers = struct {
                 clear = 0, // No update occurred
                 update_pending = 1, // Update interrupt pending.
             };
-            pub const Cc1ifrCc1ifw = enum(u1) {
+            pub const Cc1if = enum(u1) {
                 match = 1, // If CC1 is an output: The content of the counter TIMx_CNT matches the content of the TIMx_CCR1 register. If CC1 is an input: The counter value has been captured in TIMx_CCR1 register.
                 clear = 0, // Clear flag
             };
-            pub const TifrTifw = enum(u1) {
+            pub const Tif = enum(u1) {
                 no_trigger = 0, // No trigger event occurred
                 trigger = 1, // Trigger interrupt pending
-                pub const clear = @intToEnum(TifrTifw, 0); // Clear flag
+                pub const clear = @intToEnum(Tif, 0); // Clear flag
             };
-            pub const Cc1ofrCc1ofw = enum(u1) {
+            pub const Cc1of = enum(u1) {
                 overcapture = 1, // The counter value has been captured in TIMx_CCRx register while CCxIF flag was already set
                 clear = 0, // Clear flag
             };
             uif: Uif, // Update interrupt flag (u1)
-            cc1if: Cc1ifrCc1ifw, // Capture/compare 1 interrupt flag (u1)
-            cc2if: Cc1ifrCc1ifw, // Capture/Compare 2 interrupt flag (u1)
-            cc3if: Cc1ifrCc1ifw, // Capture/Compare 3 interrupt flag (u1)
-            cc4if: Cc1ifrCc1ifw, // Capture/Compare 4 interrupt flag (u1)
+            cc1if: Cc1if, // Capture/compare 1 interrupt flag (u1)
+            cc2if: Cc1if, // Capture/Compare 2 interrupt flag (u1)
+            cc3if: Cc1if, // Capture/Compare 3 interrupt flag (u1)
+            cc4if: Cc1if, // Capture/Compare 4 interrupt flag (u1)
             _reserved_5_5: u1,
-            tif: TifrTifw, // Trigger interrupt flag (u1)
+            tif: Tif, // Trigger interrupt flag (u1)
             _reserved_7_8: u2,
-            cc1of: Cc1ofrCc1ofw, // Capture/Compare 1 overcapture flag (u1)
-            cc2of: Cc1ofrCc1ofw, // Capture/compare 2 overcapture flag (u1)
-            cc3of: Cc1ofrCc1ofw, // Capture/Compare 3 overcapture flag (u1)
-            cc4of: Cc1ofrCc1ofw, // Capture/Compare 4 overcapture flag (u1)
+            cc1of: Cc1of, // Capture/Compare 1 overcapture flag (u1)
+            cc2of: Cc1of, // Capture/compare 2 overcapture flag (u1)
+            cc3of: Cc1of, // Capture/Compare 3 overcapture flag (u1)
+            cc4of: Cc1of, // Capture/Compare 4 overcapture flag (u1)
             _padding_13_31: u19,
         };
         pub const sr = mmio(base_address + 0x10, 32, Sr);
@@ -5525,31 +5525,31 @@ pub const registers = struct {
                 clear = 0, // No update occurred
                 update_pending = 1, // Update interrupt pending.
             };
-            pub const Cc1ifrCc1ifw = enum(u1) {
+            pub const Cc1if = enum(u1) {
                 match = 1, // If CC1 is an output: The content of the counter TIMx_CNT matches the content of the TIMx_CCR1 register. If CC1 is an input: The counter value has been captured in TIMx_CCR1 register.
                 clear = 0, // Clear flag
             };
-            pub const TifrTifw = enum(u1) {
+            pub const Tif = enum(u1) {
                 no_trigger = 0, // No trigger event occurred
                 trigger = 1, // Trigger interrupt pending
-                pub const clear = @intToEnum(TifrTifw, 0); // Clear flag
+                pub const clear = @intToEnum(Tif, 0); // Clear flag
             };
-            pub const Cc1ofrCc1ofw = enum(u1) {
+            pub const Cc1of = enum(u1) {
                 overcapture = 1, // The counter value has been captured in TIMx_CCRx register while CCxIF flag was already set
                 clear = 0, // Clear flag
             };
             uif: Uif, // Update interrupt flag (u1)
-            cc1if: Cc1ifrCc1ifw, // Capture/compare 1 interrupt flag (u1)
-            cc2if: Cc1ifrCc1ifw, // Capture/Compare 2 interrupt flag (u1)
-            cc3if: Cc1ifrCc1ifw, // Capture/Compare 3 interrupt flag (u1)
-            cc4if: Cc1ifrCc1ifw, // Capture/Compare 4 interrupt flag (u1)
+            cc1if: Cc1if, // Capture/compare 1 interrupt flag (u1)
+            cc2if: Cc1if, // Capture/Compare 2 interrupt flag (u1)
+            cc3if: Cc1if, // Capture/Compare 3 interrupt flag (u1)
+            cc4if: Cc1if, // Capture/Compare 4 interrupt flag (u1)
             _reserved_5_5: u1,
-            tif: TifrTifw, // Trigger interrupt flag (u1)
+            tif: Tif, // Trigger interrupt flag (u1)
             _reserved_7_8: u2,
-            cc1of: Cc1ofrCc1ofw, // Capture/Compare 1 overcapture flag (u1)
-            cc2of: Cc1ofrCc1ofw, // Capture/compare 2 overcapture flag (u1)
-            cc3of: Cc1ofrCc1ofw, // Capture/Compare 3 overcapture flag (u1)
-            cc4of: Cc1ofrCc1ofw, // Capture/Compare 4 overcapture flag (u1)
+            cc1of: Cc1of, // Capture/Compare 1 overcapture flag (u1)
+            cc2of: Cc1of, // Capture/compare 2 overcapture flag (u1)
+            cc3of: Cc1of, // Capture/Compare 3 overcapture flag (u1)
+            cc4of: Cc1of, // Capture/Compare 4 overcapture flag (u1)
             _padding_13_31: u19,
         };
         pub const sr = mmio(base_address + 0x10, 32, Sr);
@@ -6014,31 +6014,31 @@ pub const registers = struct {
                 clear = 0, // No update occurred
                 update_pending = 1, // Update interrupt pending.
             };
-            pub const Cc1ifrCc1ifw = enum(u1) {
+            pub const Cc1if = enum(u1) {
                 match = 1, // If CC1 is an output: The content of the counter TIMx_CNT matches the content of the TIMx_CCR1 register. If CC1 is an input: The counter value has been captured in TIMx_CCR1 register.
                 clear = 0, // Clear flag
             };
-            pub const TifrTifw = enum(u1) {
+            pub const Tif = enum(u1) {
                 no_trigger = 0, // No trigger event occurred
                 trigger = 1, // Trigger interrupt pending
-                pub const clear = @intToEnum(TifrTifw, 0); // Clear flag
+                pub const clear = @intToEnum(Tif, 0); // Clear flag
             };
-            pub const Cc1ofrCc1ofw = enum(u1) {
+            pub const Cc1of = enum(u1) {
                 overcapture = 1, // The counter value has been captured in TIMx_CCRx register while CCxIF flag was already set
                 clear = 0, // Clear flag
             };
             uif: Uif, // Update interrupt flag (u1)
-            cc1if: Cc1ifrCc1ifw, // Capture/compare 1 interrupt flag (u1)
-            cc2if: Cc1ifrCc1ifw, // Capture/Compare 2 interrupt flag (u1)
-            cc3if: Cc1ifrCc1ifw, // Capture/Compare 3 interrupt flag (u1)
-            cc4if: Cc1ifrCc1ifw, // Capture/Compare 4 interrupt flag (u1)
+            cc1if: Cc1if, // Capture/compare 1 interrupt flag (u1)
+            cc2if: Cc1if, // Capture/Compare 2 interrupt flag (u1)
+            cc3if: Cc1if, // Capture/Compare 3 interrupt flag (u1)
+            cc4if: Cc1if, // Capture/Compare 4 interrupt flag (u1)
             _reserved_5_5: u1,
-            tif: TifrTifw, // Trigger interrupt flag (u1)
+            tif: Tif, // Trigger interrupt flag (u1)
             _reserved_7_8: u2,
-            cc1of: Cc1ofrCc1ofw, // Capture/Compare 1 overcapture flag (u1)
-            cc2of: Cc1ofrCc1ofw, // Capture/compare 2 overcapture flag (u1)
-            cc3of: Cc1ofrCc1ofw, // Capture/Compare 3 overcapture flag (u1)
-            cc4of: Cc1ofrCc1ofw, // Capture/Compare 4 overcapture flag (u1)
+            cc1of: Cc1of, // Capture/Compare 1 overcapture flag (u1)
+            cc2of: Cc1of, // Capture/compare 2 overcapture flag (u1)
+            cc3of: Cc1of, // Capture/Compare 3 overcapture flag (u1)
+            cc4of: Cc1of, // Capture/Compare 4 overcapture flag (u1)
             _padding_13_31: u19,
         };
         pub const sr = mmio(base_address + 0x10, 32, Sr);
@@ -6778,12 +6778,12 @@ pub const registers = struct {
         /// address: 0x40002c08
         /// Status register
         pub const Sr = packed struct {
-            pub const EwifrEwifw = enum(u1) {
+            pub const Ewif = enum(u1) {
                 pending = 1, // The EWI Interrupt Service Routine has been triggered
                 finished = 0, // The EWI Interrupt Service Routine has been serviced
-                pub const finished = @intToEnum(EwifrEwifw, 0); // The EWI Interrupt Service Routine has been serviced
+                pub const finished = @intToEnum(Ewif, 0); // The EWI Interrupt Service Routine has been serviced
             };
-            ewif: EwifrEwifw, // Early wakeup interrupt flag (u1)
+            ewif: Ewif, // Early wakeup interrupt flag (u1)
             _padding_1_31: u31,
         };
         pub const sr = mmio(base_address + 0x8, 32, Sr);
@@ -10649,32 +10649,32 @@ pub const registers = struct {
                 clear = 0, // No update occurred
                 update_pending = 1, // Update interrupt pending.
             };
-            pub const Cc1ifrCc1ifw = enum(u1) {
+            pub const Cc1if = enum(u1) {
                 match = 1, // If CC1 is an output: The content of the counter TIMx_CNT matches the content of the TIMx_CCR1 register. If CC1 is an input: The counter value has been captured in TIMx_CCR1 register.
                 clear = 0, // Clear flag
             };
-            pub const TifrTifw = enum(u1) {
+            pub const Tif = enum(u1) {
                 no_trigger = 0, // No trigger event occurred
                 trigger = 1, // Trigger interrupt pending
-                pub const clear = @intToEnum(TifrTifw, 0); // Clear flag
+                pub const clear = @intToEnum(Tif, 0); // Clear flag
             };
-            pub const Cc1ofrCc1ofw = enum(u1) {
+            pub const Cc1of = enum(u1) {
                 overcapture = 1, // The counter value has been captured in TIMx_CCRx register while CCxIF flag was already set
                 clear = 0, // Clear flag
             };
             uif: Uif, // Update interrupt flag (u1)
-            cc1if: Cc1ifrCc1ifw, // Capture/compare 1 interrupt flag (u1)
-            cc2if: Cc1ifrCc1ifw, // Capture/Compare 2 interrupt flag (u1)
-            cc3if: Cc1ifrCc1ifw, // Capture/Compare 3 interrupt flag (u1)
-            cc4if: Cc1ifrCc1ifw, // Capture/Compare 4 interrupt flag (u1)
+            cc1if: Cc1if, // Capture/compare 1 interrupt flag (u1)
+            cc2if: Cc1if, // Capture/Compare 2 interrupt flag (u1)
+            cc3if: Cc1if, // Capture/Compare 3 interrupt flag (u1)
+            cc4if: Cc1if, // Capture/Compare 4 interrupt flag (u1)
             comif: u1, // COM interrupt flag
-            tif: TifrTifw, // Trigger interrupt flag (u1)
+            tif: Tif, // Trigger interrupt flag (u1)
             bif: u1, // Break interrupt flag
             _reserved_8_8: u1,
-            cc1of: Cc1ofrCc1ofw, // Capture/Compare 1 overcapture flag (u1)
-            cc2of: Cc1ofrCc1ofw, // Capture/compare 2 overcapture flag (u1)
-            cc3of: Cc1ofrCc1ofw, // Capture/Compare 3 overcapture flag (u1)
-            cc4of: Cc1ofrCc1ofw, // Capture/Compare 4 overcapture flag (u1)
+            cc1of: Cc1of, // Capture/Compare 1 overcapture flag (u1)
+            cc2of: Cc1of, // Capture/compare 2 overcapture flag (u1)
+            cc3of: Cc1of, // Capture/Compare 3 overcapture flag (u1)
+            cc4of: Cc1of, // Capture/Compare 4 overcapture flag (u1)
             _padding_13_31: u19,
         };
         pub const sr = mmio(base_address + 0x10, 32, Sr);
@@ -11173,31 +11173,31 @@ pub const registers = struct {
                 clear = 0, // No update occurred
                 update_pending = 1, // Update interrupt pending.
             };
-            pub const Cc1ifrCc1ifw = enum(u1) {
+            pub const Cc1if = enum(u1) {
                 match = 1, // If CC1 is an output: The content of the counter TIMx_CNT matches the content of the TIMx_CCR1 register. If CC1 is an input: The counter value has been captured in TIMx_CCR1 register.
                 clear = 0, // Clear flag
             };
-            pub const TifrTifw = enum(u1) {
+            pub const Tif = enum(u1) {
                 no_trigger = 0, // No trigger event occurred
                 trigger = 1, // Trigger interrupt pending
-                pub const clear = @intToEnum(TifrTifw, 0); // Clear flag
+                pub const clear = @intToEnum(Tif, 0); // Clear flag
             };
-            pub const Cc1ofrCc1ofw = enum(u1) {
+            pub const Cc1of = enum(u1) {
                 overcapture = 1, // The counter value has been captured in TIMx_CCRx register while CCxIF flag was already set
                 clear = 0, // Clear flag
             };
             uif: Uif, // Update interrupt flag (u1)
-            cc1if: Cc1ifrCc1ifw, // Capture/compare 1 interrupt flag (u1)
-            cc2if: Cc1ifrCc1ifw, // Capture/Compare 2 interrupt flag (u1)
-            cc3if: Cc1ifrCc1ifw, // Capture/Compare 3 interrupt flag (u1)
-            cc4if: Cc1ifrCc1ifw, // Capture/Compare 4 interrupt flag (u1)
+            cc1if: Cc1if, // Capture/compare 1 interrupt flag (u1)
+            cc2if: Cc1if, // Capture/Compare 2 interrupt flag (u1)
+            cc3if: Cc1if, // Capture/Compare 3 interrupt flag (u1)
+            cc4if: Cc1if, // Capture/Compare 4 interrupt flag (u1)
             _reserved_5_5: u1,
-            tif: TifrTifw, // Trigger interrupt flag (u1)
+            tif: Tif, // Trigger interrupt flag (u1)
             _reserved_7_8: u2,
-            cc1of: Cc1ofrCc1ofw, // Capture/Compare 1 overcapture flag (u1)
-            cc2of: Cc1ofrCc1ofw, // Capture/compare 2 overcapture flag (u1)
-            cc3of: Cc1ofrCc1ofw, // Capture/Compare 3 overcapture flag (u1)
-            cc4of: Cc1ofrCc1ofw, // Capture/Compare 4 overcapture flag (u1)
+            cc1of: Cc1of, // Capture/Compare 1 overcapture flag (u1)
+            cc2of: Cc1of, // Capture/compare 2 overcapture flag (u1)
+            cc3of: Cc1of, // Capture/Compare 3 overcapture flag (u1)
+            cc4of: Cc1of, // Capture/Compare 4 overcapture flag (u1)
             _padding_13_31: u19,
         };
         pub const sr = mmio(base_address + 0x10, 32, Sr);
