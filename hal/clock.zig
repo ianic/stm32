@@ -272,7 +272,7 @@ test "show available pll parameters" {
                     var fv = source * n / m;
                     var fs = fv / p;
                     var fu = fv / q;
-                    if (fs <= fs_max and (fusb == 0100 or fu == fusb)) {
+                    if (fs <= fs_max and (fusb == 0 or fu == fusb)) {
                         std.debug.print("fs: {d:3} MHz", .{fs / 1_000_000});
                         std.debug.print(" m: {d:2}, n: {d:3}, p: {d:2}, q: {d:2}", .{ m, n, p, q });
                         std.debug.print("{d:10} Hz\r\n", .{fs});

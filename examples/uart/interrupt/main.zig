@@ -11,7 +11,7 @@ pub const interrupts = struct {
     }
 
     pub fn EXTI15_10() void {
-        if (button.extiPending()) {
+        if (button.exti.pending()) {
             changeBlinkSpeed();
         }
     }

@@ -175,19 +175,19 @@ pub fn Pin(comptime pin_name: []const u8) type {
 
     return struct {
         pub fn Input() type {
-            const exti = Exti(pin);
+            const pin_exti = Exti(pin);
             return struct {
                 pub fn init(c: InputConfig) void {
                     pin.initClock();
                     pin.initInput(c);
                     if (c.exti.enable) {
-                        exti.enable(c.exti.trigger);
-                        exti.setPriority(c.exti.priority);
+                        pin_exti.enable(c.exti.trigger);
+                        pin_exti.setPriority(c.exti.priority);
                     }
                 }
                 pub const read = pin.read;
-                pub const exti = exti;
-                pub const extiPending = exti.pending;
+                pub const exti = pin_exti;
+                //pub const extiPending = exti.pending;
             };
         }
 

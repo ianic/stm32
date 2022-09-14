@@ -31,7 +31,7 @@ pub fn build(b: *std.build.Builder) !void {
             e.source,
             backing,
             .{
-                .hal_package_path = .{ .path = root() ++ "/hal.zig" },
+                .hal_package_path = .{ .path = comptime root() ++ "hal.zig" },
             },
         );
         elf.inner.setBuildMode(.ReleaseSmall);
@@ -46,5 +46,5 @@ pub fn build(b: *std.build.Builder) !void {
 }
 
 fn root() []const u8 {
-    return std.fs.path.dirname(@src().file) orelse unreachable;
+    return comptime (std.fs.path.dirname(@src().file) orelse unreachable) ++ "/";
 }
