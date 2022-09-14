@@ -377,16 +377,24 @@
               <description>Channel 18 sampling time selection</description>
               <bitOffset>24</bitOffset>
               <bitWidth>3</bitWidth>
-            <enumeratedValues><name>SMPx_x</name><usage>read-write</usage><enumeratedValue><name>Cycles3</name><description>3 cycles</description><value>0</value></enumeratedValue><enumeratedValue><name>Cycles15</name><description>15 cycles</description><value>1</value></enumeratedValue><enumeratedValue><name>Cycles28</name><description>28 cycles</description><value>2</value></enumeratedValue><enumeratedValue><name>Cycles56</name><description>56 cycles</description><value>3</value></enumeratedValue><enumeratedValue><name>Cycles84</name><description>84 cycles</description><value>4</value></enumeratedValue><enumeratedValue><name>Cycles112</name><description>112 cycles</description><value>5</value></enumeratedValue><enumeratedValue><name>Cycles144</name><description>144 cycles</description><value>6</value></enumeratedValue><enumeratedValue><name>Cycles480</name><description>480 cycles</description><value>7</value></enumeratedValue></enumeratedValues>
+            <enumeratedValues derivedFrom="SMP10"/>
             </field>
-          <field><name>SMP17</name><description>Channel 17 sampling time selection</description><bitOffset>21</bitOffset><bitWidth>3</bitWidth></field>
-            <field><name>SMP16</name><description>Channel 16 sampling time selection</description><bitOffset>18</bitOffset><bitWidth>3</bitWidth></field>
-            <field><name>SMP15</name><description>Channel 15 sampling time selection</description><bitOffset>15</bitOffset><bitWidth>3</bitWidth></field>
-            <field><name>SMP14</name><description>Channel 14 sampling time selection</description><bitOffset>12</bitOffset><bitWidth>3</bitWidth></field>
-            <field><name>SMP13</name><description>Channel 13 sampling time selection</description><bitOffset>9</bitOffset><bitWidth>3</bitWidth></field>
-            <field><name>SMP12</name><description>Channel 12 sampling time selection</description><bitOffset>6</bitOffset><bitWidth>3</bitWidth></field>
-            <field><name>SMP11</name><description>Channel 11 sampling time selection</description><bitOffset>3</bitOffset><bitWidth>3</bitWidth></field>
-            <field><name>SMP10</name><description>Channel 10 sampling time selection</description><bitOffset>0</bitOffset><bitWidth>3</bitWidth></field>
+          <field><name>SMP17</name><description>Channel 17 sampling time selection</description><bitOffset>21</bitOffset><bitWidth>3</bitWidth><enumeratedValues derivedFrom="SMP10"/>
+            </field>
+            <field><name>SMP16</name><description>Channel 16 sampling time selection</description><bitOffset>18</bitOffset><bitWidth>3</bitWidth><enumeratedValues derivedFrom="SMP10"/>
+            </field>
+            <field><name>SMP15</name><description>Channel 15 sampling time selection</description><bitOffset>15</bitOffset><bitWidth>3</bitWidth><enumeratedValues derivedFrom="SMP10"/>
+            </field>
+            <field><name>SMP14</name><description>Channel 14 sampling time selection</description><bitOffset>12</bitOffset><bitWidth>3</bitWidth><enumeratedValues derivedFrom="SMP10"/>
+            </field>
+            <field><name>SMP13</name><description>Channel 13 sampling time selection</description><bitOffset>9</bitOffset><bitWidth>3</bitWidth><enumeratedValues derivedFrom="SMP10"/>
+            </field>
+            <field><name>SMP12</name><description>Channel 12 sampling time selection</description><bitOffset>6</bitOffset><bitWidth>3</bitWidth><enumeratedValues derivedFrom="SMP10"/>
+            </field>
+            <field><name>SMP11</name><description>Channel 11 sampling time selection</description><bitOffset>3</bitOffset><bitWidth>3</bitWidth><enumeratedValues derivedFrom="SMP10"/>
+            </field>
+            <field><name>SMP10</name><description>Channel 10 sampling time selection</description><bitOffset>0</bitOffset><bitWidth>3</bitWidth><enumeratedValues><name>SMP10</name><usage>read-write</usage><enumeratedValue><name>Cycles3</name><description>3 cycles</description><value>0</value></enumeratedValue><enumeratedValue><name>Cycles15</name><description>15 cycles</description><value>1</value></enumeratedValue><enumeratedValue><name>Cycles28</name><description>28 cycles</description><value>2</value></enumeratedValue><enumeratedValue><name>Cycles56</name><description>56 cycles</description><value>3</value></enumeratedValue><enumeratedValue><name>Cycles84</name><description>84 cycles</description><value>4</value></enumeratedValue><enumeratedValue><name>Cycles112</name><description>112 cycles</description><value>5</value></enumeratedValue><enumeratedValue><name>Cycles144</name><description>144 cycles</description><value>6</value></enumeratedValue><enumeratedValue><name>Cycles480</name><description>480 cycles</description><value>7</value></enumeratedValue></enumeratedValues>
+            </field>
             </fields>
         </register>
         <register>
@@ -403,17 +411,26 @@
               <description>Channel 9 sampling time selection</description>
               <bitOffset>27</bitOffset>
               <bitWidth>3</bitWidth>
-            <enumeratedValues><name>SMPx_x</name><usage>read-write</usage><enumeratedValue><name>Cycles3</name><description>3 cycles</description><value>0</value></enumeratedValue><enumeratedValue><name>Cycles15</name><description>15 cycles</description><value>1</value></enumeratedValue><enumeratedValue><name>Cycles28</name><description>28 cycles</description><value>2</value></enumeratedValue><enumeratedValue><name>Cycles56</name><description>56 cycles</description><value>3</value></enumeratedValue><enumeratedValue><name>Cycles84</name><description>84 cycles</description><value>4</value></enumeratedValue><enumeratedValue><name>Cycles112</name><description>112 cycles</description><value>5</value></enumeratedValue><enumeratedValue><name>Cycles144</name><description>144 cycles</description><value>6</value></enumeratedValue><enumeratedValue><name>Cycles480</name><description>480 cycles</description><value>7</value></enumeratedValue></enumeratedValues>
+            <enumeratedValues derivedFrom="SMP0"/>
             </field>
-          <field><name>SMP8</name><description>Channel 8 sampling time selection</description><bitOffset>24</bitOffset><bitWidth>3</bitWidth></field>
-            <field><name>SMP7</name><description>Channel 7 sampling time selection</description><bitOffset>21</bitOffset><bitWidth>3</bitWidth></field>
-            <field><name>SMP6</name><description>Channel 6 sampling time selection</description><bitOffset>18</bitOffset><bitWidth>3</bitWidth></field>
-            <field><name>SMP5</name><description>Channel 5 sampling time selection</description><bitOffset>15</bitOffset><bitWidth>3</bitWidth></field>
-            <field><name>SMP4</name><description>Channel 4 sampling time selection</description><bitOffset>12</bitOffset><bitWidth>3</bitWidth></field>
-            <field><name>SMP3</name><description>Channel 3 sampling time selection</description><bitOffset>9</bitOffset><bitWidth>3</bitWidth></field>
-            <field><name>SMP2</name><description>Channel 2 sampling time selection</description><bitOffset>6</bitOffset><bitWidth>3</bitWidth></field>
-            <field><name>SMP1</name><description>Channel 1 sampling time selection</description><bitOffset>3</bitOffset><bitWidth>3</bitWidth></field>
-            <field><name>SMP0</name><description>Channel 0 sampling time selection</description><bitOffset>0</bitOffset><bitWidth>3</bitWidth></field>
+          <field><name>SMP8</name><description>Channel 8 sampling time selection</description><bitOffset>24</bitOffset><bitWidth>3</bitWidth><enumeratedValues derivedFrom="SMP0"/>
+            </field>
+            <field><name>SMP7</name><description>Channel 7 sampling time selection</description><bitOffset>21</bitOffset><bitWidth>3</bitWidth><enumeratedValues derivedFrom="SMP0"/>
+            </field>
+            <field><name>SMP6</name><description>Channel 6 sampling time selection</description><bitOffset>18</bitOffset><bitWidth>3</bitWidth><enumeratedValues derivedFrom="SMP0"/>
+            </field>
+            <field><name>SMP5</name><description>Channel 5 sampling time selection</description><bitOffset>15</bitOffset><bitWidth>3</bitWidth><enumeratedValues derivedFrom="SMP0"/>
+            </field>
+            <field><name>SMP4</name><description>Channel 4 sampling time selection</description><bitOffset>12</bitOffset><bitWidth>3</bitWidth><enumeratedValues derivedFrom="SMP0"/>
+            </field>
+            <field><name>SMP3</name><description>Channel 3 sampling time selection</description><bitOffset>9</bitOffset><bitWidth>3</bitWidth><enumeratedValues derivedFrom="SMP0"/>
+            </field>
+            <field><name>SMP2</name><description>Channel 2 sampling time selection</description><bitOffset>6</bitOffset><bitWidth>3</bitWidth><enumeratedValues derivedFrom="SMP0"/>
+            </field>
+            <field><name>SMP1</name><description>Channel 1 sampling time selection</description><bitOffset>3</bitOffset><bitWidth>3</bitWidth><enumeratedValues derivedFrom="SMP0"/>
+            </field>
+            <field><name>SMP0</name><description>Channel 0 sampling time selection</description><bitOffset>0</bitOffset><bitWidth>3</bitWidth><enumeratedValues><name>SMP0</name><usage>read-write</usage><enumeratedValue><name>Cycles3</name><description>3 cycles</description><value>0</value></enumeratedValue><enumeratedValue><name>Cycles15</name><description>15 cycles</description><value>1</value></enumeratedValue><enumeratedValue><name>Cycles28</name><description>28 cycles</description><value>2</value></enumeratedValue><enumeratedValue><name>Cycles56</name><description>56 cycles</description><value>3</value></enumeratedValue><enumeratedValue><name>Cycles84</name><description>84 cycles</description><value>4</value></enumeratedValue><enumeratedValue><name>Cycles112</name><description>112 cycles</description><value>5</value></enumeratedValue><enumeratedValue><name>Cycles144</name><description>144 cycles</description><value>6</value></enumeratedValue><enumeratedValue><name>Cycles480</name><description>480 cycles</description><value>7</value></enumeratedValue></enumeratedValues>
+            </field>
             </fields>
         </register>
         <register>
