@@ -550,7 +550,7 @@ pub const registers = struct {
         /// address: 0x40013c04, path: exti.emr
         /// Event mask register (EXTI_EMR)
         pub const Emr = packed struct {
-            pub const Mr0 = exti.imr.Mr0;
+            pub const Mr0 = exti.Imr.Mr0;
             mr0: Mr0, // Event Mask on line 0 (u1)
             mr1: Mr0, // Event Mask on line 1 (u1)
             mr2: Mr0, // Event Mask on line 2 (u1)
@@ -3169,7 +3169,7 @@ pub const registers = struct {
                 mask = 0, // Alarm set if the date/day match
                 not_mask = 1, // Date/day don’t care in Alarm comparison
             };
-            pub const Pm = rtc.tr.Pm;
+            pub const Pm = rtc.Tr.Pm;
             pub const Wdsel = enum(u1) {
                 date_units = 0, // DU[3:0] represents the date units
                 week_day = 1, // DU[3:0] represents the week day. DT[1:0] is don’t care.
@@ -3194,9 +3194,9 @@ pub const registers = struct {
         /// address: 0x40002820, path: rtc.alrmbr
         /// Alarm register
         pub const Alrmbr = packed struct {
-            pub const Msk1 = rtc.alrmar.Msk1;
-            pub const Pm = rtc.tr.Pm;
-            pub const Wdsel = rtc.alrmar.Wdsel;
+            pub const Msk1 = rtc.Alrmar.Msk1;
+            pub const Pm = rtc.Tr.Pm;
+            pub const Wdsel = rtc.Alrmar.Wdsel;
             su: u4, // Second units in BCD format
             st: u3, // Second tens in BCD format
             msk1: Msk1, // Alarm seconds mask (u1)
@@ -3448,7 +3448,7 @@ pub const registers = struct {
         /// address: 0x40002830, path: rtc.tstr
         /// time stamp time register
         pub const Tstr = packed struct {
-            pub const Pm = rtc.tr.Pm;
+            pub const Pm = rtc.Tr.Pm;
             su: u4, // Second units in BCD format
             st: u3, // Second tens in BCD format
             _reserved_7_7: u1,
@@ -4516,12 +4516,12 @@ pub const registers = struct {
         /// address: 0x40014400, path: tim10.cr1
         /// control register 1
         pub const Cr1 = packed struct {
-            pub const Cen = tim1.cr1.Cen;
-            pub const Udis = tim1.cr1.Udis;
-            pub const Urs = tim1.cr1.Urs;
-            pub const Opm = tim1.cr1.Opm;
-            pub const Arpe = tim1.cr1.Arpe;
-            pub const Ckd = tim1.cr1.Ckd;
+            pub const Cen = tim1.Cr1.Cen;
+            pub const Udis = tim1.Cr1.Udis;
+            pub const Urs = tim1.Cr1.Urs;
+            pub const Opm = tim1.Cr1.Opm;
+            pub const Arpe = tim1.Cr1.Arpe;
+            pub const Ckd = tim1.Cr1.Ckd;
             cen: Cen, // Counter enable (u1)
             udis: Udis, // Update disable (u1)
             urs: Urs, // Update request source (u1)
@@ -4536,7 +4536,7 @@ pub const registers = struct {
         /// address: 0x4001440c, path: tim10.dier
         /// DMA/Interrupt enable register
         pub const Dier = packed struct {
-            pub const Uie = tim1.dier.Uie;
+            pub const Uie = tim1.Dier.Uie;
             uie: Uie, // Update interrupt enable (u1)
             cc1ie: u1, // Capture/Compare 1 interrupt enable
             _padding_2_31: u30,
@@ -4546,7 +4546,7 @@ pub const registers = struct {
         /// address: 0x40014410, path: tim10.sr
         /// status register
         pub const Sr = packed struct {
-            pub const Uif = tim1.sr.Uif;
+            pub const Uif = tim1.Sr.Uif;
             uif: Uif, // Update interrupt flag (u1)
             cc1if: u1, // Capture/compare 1 interrupt flag
             _reserved_2_8: u7,
@@ -4558,7 +4558,7 @@ pub const registers = struct {
         /// address: 0x40014414, path: tim10.egr
         /// event generation register
         pub const Egr = packed struct {
-            pub const Ug = tim1.egr.Ug;
+            pub const Ug = tim1.Egr.Ug;
             ug: Ug, // Update generation (u1)
             cc1g: u1, // Capture/compare 1 generation
             _padding_2_31: u30,
@@ -4568,7 +4568,7 @@ pub const registers = struct {
         /// address: 0x40014418, path: tim10.ccmr1_output
         /// capture/compare mode register 1 (output mode)
         pub const Ccmr1Output = packed struct {
-            pub const Oc1m = tim1.ccmr1_output.Oc1m;
+            pub const Oc1m = tim1.Ccmr1Output.Oc1m;
             cc1s: u2, // Capture/Compare 1 selection
             oc1fe: u1, // Output Compare 1 fast enable
             oc1pe: u1, // Output Compare 1 preload enable
@@ -4625,12 +4625,12 @@ pub const registers = struct {
         /// address: 0x40014800, path: tim11.cr1
         /// control register 1
         pub const Cr1 = packed struct {
-            pub const Cen = tim1.cr1.Cen;
-            pub const Udis = tim1.cr1.Udis;
-            pub const Urs = tim1.cr1.Urs;
-            pub const Opm = tim1.cr1.Opm;
-            pub const Arpe = tim1.cr1.Arpe;
-            pub const Ckd = tim1.cr1.Ckd;
+            pub const Cen = tim1.Cr1.Cen;
+            pub const Udis = tim1.Cr1.Udis;
+            pub const Urs = tim1.Cr1.Urs;
+            pub const Opm = tim1.Cr1.Opm;
+            pub const Arpe = tim1.Cr1.Arpe;
+            pub const Ckd = tim1.Cr1.Ckd;
             cen: Cen, // Counter enable (u1)
             udis: Udis, // Update disable (u1)
             urs: Urs, // Update request source (u1)
@@ -4645,7 +4645,7 @@ pub const registers = struct {
         /// address: 0x4001480c, path: tim11.dier
         /// DMA/Interrupt enable register
         pub const Dier = packed struct {
-            pub const Uie = tim1.dier.Uie;
+            pub const Uie = tim1.Dier.Uie;
             uie: Uie, // Update interrupt enable (u1)
             cc1ie: u1, // Capture/Compare 1 interrupt enable
             _padding_2_31: u30,
@@ -4655,7 +4655,7 @@ pub const registers = struct {
         /// address: 0x40014810, path: tim11.sr
         /// status register
         pub const Sr = packed struct {
-            pub const Uif = tim1.sr.Uif;
+            pub const Uif = tim1.Sr.Uif;
             uif: Uif, // Update interrupt flag (u1)
             cc1if: u1, // Capture/compare 1 interrupt flag
             _reserved_2_8: u7,
@@ -4667,7 +4667,7 @@ pub const registers = struct {
         /// address: 0x40014814, path: tim11.egr
         /// event generation register
         pub const Egr = packed struct {
-            pub const Ug = tim1.egr.Ug;
+            pub const Ug = tim1.Egr.Ug;
             ug: Ug, // Update generation (u1)
             cc1g: u1, // Capture/compare 1 generation
             _padding_2_31: u30,
@@ -4677,7 +4677,7 @@ pub const registers = struct {
         /// address: 0x40014818, path: tim11.ccmr1_output
         /// capture/compare mode register 1 (output mode)
         pub const Ccmr1Output = packed struct {
-            pub const Oc1m = tim1.ccmr1_output.Oc1m;
+            pub const Oc1m = tim1.Ccmr1Output.Oc1m;
             cc1s: u2, // Capture/Compare 1 selection
             oc1fe: u1, // Output Compare 1 fast enable
             oc1pe: u1, // Output Compare 1 preload enable
@@ -4742,14 +4742,14 @@ pub const registers = struct {
         /// address: 0x40000000, path: tim2.cr1
         /// control register 1
         pub const Cr1 = packed struct {
-            pub const Cen = tim1.cr1.Cen;
-            pub const Udis = tim1.cr1.Udis;
-            pub const Urs = tim1.cr1.Urs;
-            pub const Opm = tim1.cr1.Opm;
-            pub const Dir = tim1.cr1.Dir;
-            pub const Cms = tim1.cr1.Cms;
-            pub const Arpe = tim1.cr1.Arpe;
-            pub const Ckd = tim1.cr1.Ckd;
+            pub const Cen = tim1.Cr1.Cen;
+            pub const Udis = tim1.Cr1.Udis;
+            pub const Urs = tim1.Cr1.Urs;
+            pub const Opm = tim1.Cr1.Opm;
+            pub const Dir = tim1.Cr1.Dir;
+            pub const Cms = tim1.Cr1.Cms;
+            pub const Arpe = tim1.Cr1.Arpe;
+            pub const Ckd = tim1.Cr1.Ckd;
             cen: Cen, // Counter enable (u1)
             udis: Udis, // Update disable (u1)
             urs: Urs, // Update request source (u1)
@@ -4765,9 +4765,9 @@ pub const registers = struct {
         /// address: 0x40000004, path: tim2.cr2
         /// control register 2
         pub const Cr2 = packed struct {
-            pub const Ccds = tim1.cr2.Ccds;
-            pub const Mms = tim1.cr2.Mms;
-            pub const Ti1s = tim1.cr2.Ti1s;
+            pub const Ccds = tim1.Cr2.Ccds;
+            pub const Mms = tim1.Cr2.Mms;
+            pub const Ti1s = tim1.Cr2.Ti1s;
             _reserved_0_2: u3,
             ccds: Ccds, // Capture/compare DMA selection (u1)
             mms: Mms, // Master mode selection (u3)
@@ -4779,13 +4779,13 @@ pub const registers = struct {
         /// address: 0x40000008, path: tim2.smcr
         /// slave mode control register
         pub const Smcr = packed struct {
-            pub const Sms = tim1.smcr.Sms;
-            pub const Ts = tim1.smcr.Ts;
-            pub const Msm = tim1.smcr.Msm;
-            pub const Etf = tim1.smcr.Etf;
-            pub const Etps = tim1.smcr.Etps;
-            pub const Ece = tim1.smcr.Ece;
-            pub const Etp = tim1.smcr.Etp;
+            pub const Sms = tim1.Smcr.Sms;
+            pub const Ts = tim1.Smcr.Ts;
+            pub const Msm = tim1.Smcr.Msm;
+            pub const Etf = tim1.Smcr.Etf;
+            pub const Etps = tim1.Smcr.Etps;
+            pub const Ece = tim1.Smcr.Ece;
+            pub const Etp = tim1.Smcr.Etp;
             sms: Sms, // Slave mode selection (u3)
             _reserved_3_3: u1,
             ts: Ts, // Trigger selection (u3)
@@ -4801,12 +4801,12 @@ pub const registers = struct {
         /// address: 0x4000000c, path: tim2.dier
         /// DMA/Interrupt enable register
         pub const Dier = packed struct {
-            pub const Uie = tim1.dier.Uie;
-            pub const Cc1ie = tim1.dier.Cc1ie;
-            pub const Tie = tim1.dier.Tie;
-            pub const Ude = tim1.dier.Ude;
-            pub const Cc1de = tim1.dier.Cc1de;
-            pub const Tde = tim1.dier.Tde;
+            pub const Uie = tim1.Dier.Uie;
+            pub const Cc1ie = tim1.Dier.Cc1ie;
+            pub const Tie = tim1.Dier.Tie;
+            pub const Ude = tim1.Dier.Ude;
+            pub const Cc1de = tim1.Dier.Cc1de;
+            pub const Tde = tim1.Dier.Tde;
             uie: Uie, // Update interrupt enable (u1)
             cc1ie: Cc1ie, // Capture/Compare 1 interrupt enable (u1)
             cc2ie: Cc1ie, // Capture/Compare 2 interrupt enable (u1)
@@ -4829,10 +4829,10 @@ pub const registers = struct {
         /// address: 0x40000010, path: tim2.sr
         /// status register
         pub const Sr = packed struct {
-            pub const Uif = tim1.sr.Uif;
-            pub const Cc1if = tim1.sr.Cc1if;
-            pub const Tif = tim1.sr.Tif;
-            pub const Cc1of = tim1.sr.Cc1of;
+            pub const Uif = tim1.Sr.Uif;
+            pub const Cc1if = tim1.Sr.Cc1if;
+            pub const Tif = tim1.Sr.Tif;
+            pub const Cc1of = tim1.Sr.Cc1of;
             uif: Uif, // Update interrupt flag (u1)
             cc1if: Cc1if, // Capture/compare 1 interrupt flag (u1)
             cc2if: Cc1if, // Capture/Compare 2 interrupt flag (u1)
@@ -4852,9 +4852,9 @@ pub const registers = struct {
         /// address: 0x40000014, path: tim2.egr
         /// event generation register
         pub const Egr = packed struct {
-            pub const Ug = tim1.egr.Ug;
-            pub const Cc1gw = tim1.egr.Cc1gw;
-            pub const Tgw = tim1.egr.Tgw;
+            pub const Ug = tim1.Egr.Ug;
+            pub const Cc1gw = tim1.Egr.Cc1gw;
+            pub const Tgw = tim1.Egr.Tgw;
             ug: Ug, // Update generation (u1)
             cc1g: Cc1gw, // Capture/compare 1 generation (u1)
             cc2g: Cc1gw, // Capture/compare 2 generation (u1)
@@ -4869,11 +4869,11 @@ pub const registers = struct {
         /// address: 0x40000018, path: tim2.ccmr1_output
         /// capture/compare mode register 1 (output mode)
         pub const Ccmr1Output = packed struct {
-            pub const Cc1s = tim1.ccmr1_output.Cc1s;
-            pub const Oc1pe = tim1.ccmr1_output.Oc1pe;
-            pub const Oc1m = tim1.ccmr1_output.Oc1m;
-            pub const Cc2s = tim1.ccmr1_output.Cc2s;
-            pub const Oc2pe = tim1.ccmr1_output.Oc2pe;
+            pub const Cc1s = tim1.Ccmr1Output.Cc1s;
+            pub const Oc1pe = tim1.Ccmr1Output.Oc1pe;
+            pub const Oc1m = tim1.Ccmr1Output.Oc1m;
+            pub const Cc2s = tim1.Ccmr1Output.Cc2s;
+            pub const Oc2pe = tim1.Ccmr1Output.Oc2pe;
             cc1s: Cc1s, // CC1S (u2)
             oc1fe: u1, // OC1FE
             oc1pe: Oc1pe, // OC1PE (u1)
@@ -4891,9 +4891,9 @@ pub const registers = struct {
         /// address: 0x40000018, path: tim2.ccmr1_input
         /// capture/compare mode register 1 (input mode)
         pub const Ccmr1Input = packed struct {
-            pub const Cc1s = tim1.ccmr1_input.Cc1s;
-            pub const Ic1f = tim1.ccmr1_input.Ic1f;
-            pub const Cc2s = tim1.ccmr1_input.Cc2s;
+            pub const Cc1s = tim1.Ccmr1Input.Cc1s;
+            pub const Ic1f = tim1.Ccmr1Input.Ic1f;
+            pub const Cc2s = tim1.Ccmr1Input.Cc2s;
             cc1s: Cc1s, // Capture/Compare 1 selection (u2)
             ic1psc: u2, // Input capture 1 prescaler
             ic1f: Ic1f, // Input capture 1 filter (u4)
@@ -4907,11 +4907,11 @@ pub const registers = struct {
         /// address: 0x4000001c, path: tim2.ccmr2_output
         /// capture/compare mode register 2 (output mode)
         pub const Ccmr2Output = packed struct {
-            pub const Cc3s = tim1.ccmr2_output.Cc3s;
-            pub const Oc3pe = tim1.ccmr2_output.Oc3pe;
-            pub const Oc3m = tim1.ccmr2_output.Oc3m;
-            pub const Cc4s = tim1.ccmr2_output.Cc4s;
-            pub const Oc4pe = tim1.ccmr2_output.Oc4pe;
+            pub const Cc3s = tim1.Ccmr2Output.Cc3s;
+            pub const Oc3pe = tim1.Ccmr2Output.Oc3pe;
+            pub const Oc3m = tim1.Ccmr2Output.Oc3m;
+            pub const Cc4s = tim1.Ccmr2Output.Cc4s;
+            pub const Oc4pe = tim1.Ccmr2Output.Oc4pe;
             cc3s: Cc3s, // CC3S (u2)
             oc3fe: u1, // OC3FE
             oc3pe: Oc3pe, // OC3PE (u1)
@@ -4929,8 +4929,8 @@ pub const registers = struct {
         /// address: 0x4000001c, path: tim2.ccmr2_input
         /// capture/compare mode register 2 (input mode)
         pub const Ccmr2Input = packed struct {
-            pub const Cc3s = tim1.ccmr2_input.Cc3s;
-            pub const Cc4s = tim1.ccmr2_input.Cc4s;
+            pub const Cc3s = tim1.Ccmr2Input.Cc3s;
+            pub const Cc4s = tim1.Ccmr2Input.Cc4s;
             cc3s: Cc3s, // Capture/compare 3 selection (u2)
             ic3psc: u2, // Input capture 3 prescaler
             ic3f: u4, // Input capture 3 filter
@@ -5038,14 +5038,14 @@ pub const registers = struct {
         /// address: 0x40000400, path: tim3.cr1
         /// control register 1
         pub const Cr1 = packed struct {
-            pub const Cen = tim1.cr1.Cen;
-            pub const Udis = tim1.cr1.Udis;
-            pub const Urs = tim1.cr1.Urs;
-            pub const Opm = tim1.cr1.Opm;
-            pub const Dir = tim1.cr1.Dir;
-            pub const Cms = tim1.cr1.Cms;
-            pub const Arpe = tim1.cr1.Arpe;
-            pub const Ckd = tim1.cr1.Ckd;
+            pub const Cen = tim1.Cr1.Cen;
+            pub const Udis = tim1.Cr1.Udis;
+            pub const Urs = tim1.Cr1.Urs;
+            pub const Opm = tim1.Cr1.Opm;
+            pub const Dir = tim1.Cr1.Dir;
+            pub const Cms = tim1.Cr1.Cms;
+            pub const Arpe = tim1.Cr1.Arpe;
+            pub const Ckd = tim1.Cr1.Ckd;
             cen: Cen, // Counter enable (u1)
             udis: Udis, // Update disable (u1)
             urs: Urs, // Update request source (u1)
@@ -5061,9 +5061,9 @@ pub const registers = struct {
         /// address: 0x40000404, path: tim3.cr2
         /// control register 2
         pub const Cr2 = packed struct {
-            pub const Ccds = tim1.cr2.Ccds;
-            pub const Mms = tim1.cr2.Mms;
-            pub const Ti1s = tim1.cr2.Ti1s;
+            pub const Ccds = tim1.Cr2.Ccds;
+            pub const Mms = tim1.Cr2.Mms;
+            pub const Ti1s = tim1.Cr2.Ti1s;
             _reserved_0_2: u3,
             ccds: Ccds, // Capture/compare DMA selection (u1)
             mms: Mms, // Master mode selection (u3)
@@ -5075,13 +5075,13 @@ pub const registers = struct {
         /// address: 0x40000408, path: tim3.smcr
         /// slave mode control register
         pub const Smcr = packed struct {
-            pub const Sms = tim1.smcr.Sms;
-            pub const Ts = tim1.smcr.Ts;
-            pub const Msm = tim1.smcr.Msm;
-            pub const Etf = tim1.smcr.Etf;
-            pub const Etps = tim1.smcr.Etps;
-            pub const Ece = tim1.smcr.Ece;
-            pub const Etp = tim1.smcr.Etp;
+            pub const Sms = tim1.Smcr.Sms;
+            pub const Ts = tim1.Smcr.Ts;
+            pub const Msm = tim1.Smcr.Msm;
+            pub const Etf = tim1.Smcr.Etf;
+            pub const Etps = tim1.Smcr.Etps;
+            pub const Ece = tim1.Smcr.Ece;
+            pub const Etp = tim1.Smcr.Etp;
             sms: Sms, // Slave mode selection (u3)
             _reserved_3_3: u1,
             ts: Ts, // Trigger selection (u3)
@@ -5097,12 +5097,12 @@ pub const registers = struct {
         /// address: 0x4000040c, path: tim3.dier
         /// DMA/Interrupt enable register
         pub const Dier = packed struct {
-            pub const Uie = tim1.dier.Uie;
-            pub const Cc1ie = tim1.dier.Cc1ie;
-            pub const Tie = tim1.dier.Tie;
-            pub const Ude = tim1.dier.Ude;
-            pub const Cc1de = tim1.dier.Cc1de;
-            pub const Tde = tim1.dier.Tde;
+            pub const Uie = tim1.Dier.Uie;
+            pub const Cc1ie = tim1.Dier.Cc1ie;
+            pub const Tie = tim1.Dier.Tie;
+            pub const Ude = tim1.Dier.Ude;
+            pub const Cc1de = tim1.Dier.Cc1de;
+            pub const Tde = tim1.Dier.Tde;
             uie: Uie, // Update interrupt enable (u1)
             cc1ie: Cc1ie, // Capture/Compare 1 interrupt enable (u1)
             cc2ie: Cc1ie, // Capture/Compare 2 interrupt enable (u1)
@@ -5125,10 +5125,10 @@ pub const registers = struct {
         /// address: 0x40000410, path: tim3.sr
         /// status register
         pub const Sr = packed struct {
-            pub const Uif = tim1.sr.Uif;
-            pub const Cc1if = tim1.sr.Cc1if;
-            pub const Tif = tim1.sr.Tif;
-            pub const Cc1of = tim1.sr.Cc1of;
+            pub const Uif = tim1.Sr.Uif;
+            pub const Cc1if = tim1.Sr.Cc1if;
+            pub const Tif = tim1.Sr.Tif;
+            pub const Cc1of = tim1.Sr.Cc1of;
             uif: Uif, // Update interrupt flag (u1)
             cc1if: Cc1if, // Capture/compare 1 interrupt flag (u1)
             cc2if: Cc1if, // Capture/Compare 2 interrupt flag (u1)
@@ -5148,9 +5148,9 @@ pub const registers = struct {
         /// address: 0x40000414, path: tim3.egr
         /// event generation register
         pub const Egr = packed struct {
-            pub const Ug = tim1.egr.Ug;
-            pub const Cc1gw = tim1.egr.Cc1gw;
-            pub const Tgw = tim1.egr.Tgw;
+            pub const Ug = tim1.Egr.Ug;
+            pub const Cc1gw = tim1.Egr.Cc1gw;
+            pub const Tgw = tim1.Egr.Tgw;
             ug: Ug, // Update generation (u1)
             cc1g: Cc1gw, // Capture/compare 1 generation (u1)
             cc2g: Cc1gw, // Capture/compare 2 generation (u1)
@@ -5165,11 +5165,11 @@ pub const registers = struct {
         /// address: 0x40000418, path: tim3.ccmr1_output
         /// capture/compare mode register 1 (output mode)
         pub const Ccmr1Output = packed struct {
-            pub const Cc1s = tim1.ccmr1_output.Cc1s;
-            pub const Oc1pe = tim1.ccmr1_output.Oc1pe;
-            pub const Oc1m = tim1.ccmr1_output.Oc1m;
-            pub const Cc2s = tim1.ccmr1_output.Cc2s;
-            pub const Oc2pe = tim1.ccmr1_output.Oc2pe;
+            pub const Cc1s = tim1.Ccmr1Output.Cc1s;
+            pub const Oc1pe = tim1.Ccmr1Output.Oc1pe;
+            pub const Oc1m = tim1.Ccmr1Output.Oc1m;
+            pub const Cc2s = tim1.Ccmr1Output.Cc2s;
+            pub const Oc2pe = tim1.Ccmr1Output.Oc2pe;
             cc1s: Cc1s, // CC1S (u2)
             oc1fe: u1, // OC1FE
             oc1pe: Oc1pe, // OC1PE (u1)
@@ -5187,9 +5187,9 @@ pub const registers = struct {
         /// address: 0x40000418, path: tim3.ccmr1_input
         /// capture/compare mode register 1 (input mode)
         pub const Ccmr1Input = packed struct {
-            pub const Cc1s = tim1.ccmr1_input.Cc1s;
-            pub const Ic1f = tim1.ccmr1_input.Ic1f;
-            pub const Cc2s = tim1.ccmr1_input.Cc2s;
+            pub const Cc1s = tim1.Ccmr1Input.Cc1s;
+            pub const Ic1f = tim1.Ccmr1Input.Ic1f;
+            pub const Cc2s = tim1.Ccmr1Input.Cc2s;
             cc1s: Cc1s, // Capture/Compare 1 selection (u2)
             ic1psc: u2, // Input capture 1 prescaler
             ic1f: Ic1f, // Input capture 1 filter (u4)
@@ -5203,11 +5203,11 @@ pub const registers = struct {
         /// address: 0x4000041c, path: tim3.ccmr2_output
         /// capture/compare mode register 2 (output mode)
         pub const Ccmr2Output = packed struct {
-            pub const Cc3s = tim1.ccmr2_output.Cc3s;
-            pub const Oc3pe = tim1.ccmr2_output.Oc3pe;
-            pub const Oc3m = tim1.ccmr2_output.Oc3m;
-            pub const Cc4s = tim1.ccmr2_output.Cc4s;
-            pub const Oc4pe = tim1.ccmr2_output.Oc4pe;
+            pub const Cc3s = tim1.Ccmr2Output.Cc3s;
+            pub const Oc3pe = tim1.Ccmr2Output.Oc3pe;
+            pub const Oc3m = tim1.Ccmr2Output.Oc3m;
+            pub const Cc4s = tim1.Ccmr2Output.Cc4s;
+            pub const Oc4pe = tim1.Ccmr2Output.Oc4pe;
             cc3s: Cc3s, // CC3S (u2)
             oc3fe: u1, // OC3FE
             oc3pe: Oc3pe, // OC3PE (u1)
@@ -5225,8 +5225,8 @@ pub const registers = struct {
         /// address: 0x4000041c, path: tim3.ccmr2_input
         /// capture/compare mode register 2 (input mode)
         pub const Ccmr2Input = packed struct {
-            pub const Cc3s = tim1.ccmr2_input.Cc3s;
-            pub const Cc4s = tim1.ccmr2_input.Cc4s;
+            pub const Cc3s = tim1.Ccmr2Input.Cc3s;
+            pub const Cc4s = tim1.Ccmr2Input.Cc4s;
             cc3s: Cc3s, // Capture/compare 3 selection (u2)
             ic3psc: u2, // Input capture 3 prescaler
             ic3f: u4, // Input capture 3 filter
@@ -5329,14 +5329,14 @@ pub const registers = struct {
         /// address: 0x40000c00, path: tim5.cr1
         /// control register 1
         pub const Cr1 = packed struct {
-            pub const Cen = tim1.cr1.Cen;
-            pub const Udis = tim1.cr1.Udis;
-            pub const Urs = tim1.cr1.Urs;
-            pub const Opm = tim1.cr1.Opm;
-            pub const Dir = tim1.cr1.Dir;
-            pub const Cms = tim1.cr1.Cms;
-            pub const Arpe = tim1.cr1.Arpe;
-            pub const Ckd = tim1.cr1.Ckd;
+            pub const Cen = tim1.Cr1.Cen;
+            pub const Udis = tim1.Cr1.Udis;
+            pub const Urs = tim1.Cr1.Urs;
+            pub const Opm = tim1.Cr1.Opm;
+            pub const Dir = tim1.Cr1.Dir;
+            pub const Cms = tim1.Cr1.Cms;
+            pub const Arpe = tim1.Cr1.Arpe;
+            pub const Ckd = tim1.Cr1.Ckd;
             cen: Cen, // Counter enable (u1)
             udis: Udis, // Update disable (u1)
             urs: Urs, // Update request source (u1)
@@ -5352,9 +5352,9 @@ pub const registers = struct {
         /// address: 0x40000c04, path: tim5.cr2
         /// control register 2
         pub const Cr2 = packed struct {
-            pub const Ccds = tim1.cr2.Ccds;
-            pub const Mms = tim1.cr2.Mms;
-            pub const Ti1s = tim1.cr2.Ti1s;
+            pub const Ccds = tim1.Cr2.Ccds;
+            pub const Mms = tim1.Cr2.Mms;
+            pub const Ti1s = tim1.Cr2.Ti1s;
             _reserved_0_2: u3,
             ccds: Ccds, // Capture/compare DMA selection (u1)
             mms: Mms, // Master mode selection (u3)
@@ -5366,13 +5366,13 @@ pub const registers = struct {
         /// address: 0x40000c08, path: tim5.smcr
         /// slave mode control register
         pub const Smcr = packed struct {
-            pub const Sms = tim1.smcr.Sms;
-            pub const Ts = tim1.smcr.Ts;
-            pub const Msm = tim1.smcr.Msm;
-            pub const Etf = tim1.smcr.Etf;
-            pub const Etps = tim1.smcr.Etps;
-            pub const Ece = tim1.smcr.Ece;
-            pub const Etp = tim1.smcr.Etp;
+            pub const Sms = tim1.Smcr.Sms;
+            pub const Ts = tim1.Smcr.Ts;
+            pub const Msm = tim1.Smcr.Msm;
+            pub const Etf = tim1.Smcr.Etf;
+            pub const Etps = tim1.Smcr.Etps;
+            pub const Ece = tim1.Smcr.Ece;
+            pub const Etp = tim1.Smcr.Etp;
             sms: Sms, // Slave mode selection (u3)
             _reserved_3_3: u1,
             ts: Ts, // Trigger selection (u3)
@@ -5388,12 +5388,12 @@ pub const registers = struct {
         /// address: 0x40000c0c, path: tim5.dier
         /// DMA/Interrupt enable register
         pub const Dier = packed struct {
-            pub const Uie = tim1.dier.Uie;
-            pub const Cc1ie = tim1.dier.Cc1ie;
-            pub const Tie = tim1.dier.Tie;
-            pub const Ude = tim1.dier.Ude;
-            pub const Cc1de = tim1.dier.Cc1de;
-            pub const Tde = tim1.dier.Tde;
+            pub const Uie = tim1.Dier.Uie;
+            pub const Cc1ie = tim1.Dier.Cc1ie;
+            pub const Tie = tim1.Dier.Tie;
+            pub const Ude = tim1.Dier.Ude;
+            pub const Cc1de = tim1.Dier.Cc1de;
+            pub const Tde = tim1.Dier.Tde;
             uie: Uie, // Update interrupt enable (u1)
             cc1ie: Cc1ie, // Capture/Compare 1 interrupt enable (u1)
             cc2ie: Cc1ie, // Capture/Compare 2 interrupt enable (u1)
@@ -5416,10 +5416,10 @@ pub const registers = struct {
         /// address: 0x40000c10, path: tim5.sr
         /// status register
         pub const Sr = packed struct {
-            pub const Uif = tim1.sr.Uif;
-            pub const Cc1if = tim1.sr.Cc1if;
-            pub const Tif = tim1.sr.Tif;
-            pub const Cc1of = tim1.sr.Cc1of;
+            pub const Uif = tim1.Sr.Uif;
+            pub const Cc1if = tim1.Sr.Cc1if;
+            pub const Tif = tim1.Sr.Tif;
+            pub const Cc1of = tim1.Sr.Cc1of;
             uif: Uif, // Update interrupt flag (u1)
             cc1if: Cc1if, // Capture/compare 1 interrupt flag (u1)
             cc2if: Cc1if, // Capture/Compare 2 interrupt flag (u1)
@@ -5439,9 +5439,9 @@ pub const registers = struct {
         /// address: 0x40000c14, path: tim5.egr
         /// event generation register
         pub const Egr = packed struct {
-            pub const Ug = tim1.egr.Ug;
-            pub const Cc1gw = tim1.egr.Cc1gw;
-            pub const Tgw = tim1.egr.Tgw;
+            pub const Ug = tim1.Egr.Ug;
+            pub const Cc1gw = tim1.Egr.Cc1gw;
+            pub const Tgw = tim1.Egr.Tgw;
             ug: Ug, // Update generation (u1)
             cc1g: Cc1gw, // Capture/compare 1 generation (u1)
             cc2g: Cc1gw, // Capture/compare 2 generation (u1)
@@ -5456,11 +5456,11 @@ pub const registers = struct {
         /// address: 0x40000c18, path: tim5.ccmr1_output
         /// capture/compare mode register 1 (output mode)
         pub const Ccmr1Output = packed struct {
-            pub const Cc1s = tim1.ccmr1_output.Cc1s;
-            pub const Oc1pe = tim1.ccmr1_output.Oc1pe;
-            pub const Oc1m = tim1.ccmr1_output.Oc1m;
-            pub const Cc2s = tim1.ccmr1_output.Cc2s;
-            pub const Oc2pe = tim1.ccmr1_output.Oc2pe;
+            pub const Cc1s = tim1.Ccmr1Output.Cc1s;
+            pub const Oc1pe = tim1.Ccmr1Output.Oc1pe;
+            pub const Oc1m = tim1.Ccmr1Output.Oc1m;
+            pub const Cc2s = tim1.Ccmr1Output.Cc2s;
+            pub const Oc2pe = tim1.Ccmr1Output.Oc2pe;
             cc1s: Cc1s, // CC1S (u2)
             oc1fe: u1, // OC1FE
             oc1pe: Oc1pe, // OC1PE (u1)
@@ -5478,9 +5478,9 @@ pub const registers = struct {
         /// address: 0x40000c18, path: tim5.ccmr1_input
         /// capture/compare mode register 1 (input mode)
         pub const Ccmr1Input = packed struct {
-            pub const Cc1s = tim1.ccmr1_input.Cc1s;
-            pub const Ic1f = tim1.ccmr1_input.Ic1f;
-            pub const Cc2s = tim1.ccmr1_input.Cc2s;
+            pub const Cc1s = tim1.Ccmr1Input.Cc1s;
+            pub const Ic1f = tim1.Ccmr1Input.Ic1f;
+            pub const Cc2s = tim1.Ccmr1Input.Cc2s;
             cc1s: Cc1s, // Capture/Compare 1 selection (u2)
             ic1psc: u2, // Input capture 1 prescaler
             ic1f: Ic1f, // Input capture 1 filter (u4)
@@ -5494,11 +5494,11 @@ pub const registers = struct {
         /// address: 0x40000c1c, path: tim5.ccmr2_output
         /// capture/compare mode register 2 (output mode)
         pub const Ccmr2Output = packed struct {
-            pub const Cc3s = tim1.ccmr2_output.Cc3s;
-            pub const Oc3pe = tim1.ccmr2_output.Oc3pe;
-            pub const Oc3m = tim1.ccmr2_output.Oc3m;
-            pub const Cc4s = tim1.ccmr2_output.Cc4s;
-            pub const Oc4pe = tim1.ccmr2_output.Oc4pe;
+            pub const Cc3s = tim1.Ccmr2Output.Cc3s;
+            pub const Oc3pe = tim1.Ccmr2Output.Oc3pe;
+            pub const Oc3m = tim1.Ccmr2Output.Oc3m;
+            pub const Cc4s = tim1.Ccmr2Output.Cc4s;
+            pub const Oc4pe = tim1.Ccmr2Output.Oc4pe;
             cc3s: Cc3s, // CC3S (u2)
             oc3fe: u1, // OC3FE
             oc3pe: Oc3pe, // OC3PE (u1)
@@ -5516,8 +5516,8 @@ pub const registers = struct {
         /// address: 0x40000c1c, path: tim5.ccmr2_input
         /// capture/compare mode register 2 (input mode)
         pub const Ccmr2Input = packed struct {
-            pub const Cc3s = tim1.ccmr2_input.Cc3s;
-            pub const Cc4s = tim1.ccmr2_input.Cc4s;
+            pub const Cc3s = tim1.Ccmr2Input.Cc3s;
+            pub const Cc4s = tim1.Ccmr2Input.Cc4s;
             cc3s: Cc3s, // Capture/compare 3 selection (u2)
             ic3psc: u2, // Input capture 3 prescaler
             ic3f: u4, // Input capture 3 filter
@@ -5625,12 +5625,12 @@ pub const registers = struct {
         /// address: 0x40014000, path: tim9.cr1
         /// control register 1
         pub const Cr1 = packed struct {
-            pub const Cen = tim1.cr1.Cen;
-            pub const Udis = tim1.cr1.Udis;
-            pub const Urs = tim1.cr1.Urs;
-            pub const Opm = tim1.cr1.Opm;
-            pub const Arpe = tim1.cr1.Arpe;
-            pub const Ckd = tim1.cr1.Ckd;
+            pub const Cen = tim1.Cr1.Cen;
+            pub const Udis = tim1.Cr1.Udis;
+            pub const Urs = tim1.Cr1.Urs;
+            pub const Opm = tim1.Cr1.Opm;
+            pub const Arpe = tim1.Cr1.Arpe;
+            pub const Ckd = tim1.Cr1.Ckd;
             cen: Cen, // Counter enable (u1)
             udis: Udis, // Update disable (u1)
             urs: Urs, // Update request source (u1)
@@ -5665,7 +5665,7 @@ pub const registers = struct {
         /// address: 0x4001400c, path: tim9.dier
         /// DMA/Interrupt enable register
         pub const Dier = packed struct {
-            pub const Uie = tim1.dier.Uie;
+            pub const Uie = tim1.Dier.Uie;
             uie: Uie, // Update interrupt enable (u1)
             cc1ie: u1, // Capture/Compare 1 interrupt enable
             cc2ie: u1, // Capture/Compare 2 interrupt enable
@@ -5678,7 +5678,7 @@ pub const registers = struct {
         /// address: 0x40014010, path: tim9.sr
         /// status register
         pub const Sr = packed struct {
-            pub const Uif = tim1.sr.Uif;
+            pub const Uif = tim1.Sr.Uif;
             uif: Uif, // Update interrupt flag (u1)
             cc1if: u1, // Capture/compare 1 interrupt flag
             cc2if: u1, // Capture/Compare 2 interrupt flag
@@ -5694,7 +5694,7 @@ pub const registers = struct {
         /// address: 0x40014014, path: tim9.egr
         /// event generation register
         pub const Egr = packed struct {
-            pub const Ug = tim1.egr.Ug;
+            pub const Ug = tim1.Egr.Ug;
             ug: Ug, // Update generation (u1)
             cc1g: u1, // Capture/compare 1 generation
             cc2g: u1, // Capture/compare 2 generation
@@ -5707,7 +5707,7 @@ pub const registers = struct {
         /// address: 0x40014018, path: tim9.ccmr1_output
         /// capture/compare mode register 1 (output mode)
         pub const Ccmr1Output = packed struct {
-            pub const Oc1m = tim1.ccmr1_output.Oc1m;
+            pub const Oc1m = tim1.Ccmr1Output.Oc1m;
             cc1s: u2, // Capture/Compare 1 selection
             oc1fe: u1, // Output Compare 1 fast enable
             oc1pe: u1, // Output Compare 1 preload enable
@@ -6289,7 +6289,7 @@ pub const registers = struct {
                 disabled = 0, // HT interrupt disabled
                 enabled = 1, // HT interrupt enabled
             };
-            pub const Tcie = usart1.cr1.Tcie;
+            pub const Tcie = usart1.Cr1.Tcie;
             pub const Pfctrl = enum(u1) {
                 dma = 0, // The DMA is the flow controller
                 peripheral = 1, // The peripheral is the flow controller
@@ -6426,21 +6426,21 @@ pub const registers = struct {
         /// address: 0x40026028, path: dma1.st1cr
         /// stream x configuration register
         pub const St1cr = packed struct {
-            pub const En = dma1.st0cr.En;
-            pub const Dmeie = dma1.st0cr.Dmeie;
-            pub const Teie = dma1.st0cr.Teie;
-            pub const Htie = dma1.st0cr.Htie;
-            pub const Tcie = usart1.cr1.Tcie;
-            pub const Pfctrl = dma1.st0cr.Pfctrl;
-            pub const Dir = dma1.st0cr.Dir;
-            pub const Circ = dma1.st0cr.Circ;
-            pub const Pinc = dma1.st0cr.Pinc;
-            pub const Psize = dma1.st0cr.Psize;
-            pub const Pincos = dma1.st0cr.Pincos;
-            pub const Pl = dma1.st0cr.Pl;
-            pub const Dbm = dma1.st0cr.Dbm;
-            pub const Ct = dma1.st0cr.Ct;
-            pub const Pburst = dma1.st0cr.Pburst;
+            pub const En = dma1.St0cr.En;
+            pub const Dmeie = dma1.St0cr.Dmeie;
+            pub const Teie = dma1.St0cr.Teie;
+            pub const Htie = dma1.St0cr.Htie;
+            pub const Tcie = usart1.Cr1.Tcie;
+            pub const Pfctrl = dma1.St0cr.Pfctrl;
+            pub const Dir = dma1.St0cr.Dir;
+            pub const Circ = dma1.St0cr.Circ;
+            pub const Pinc = dma1.St0cr.Pinc;
+            pub const Psize = dma1.St0cr.Psize;
+            pub const Pincos = dma1.St0cr.Pincos;
+            pub const Pl = dma1.St0cr.Pl;
+            pub const Dbm = dma1.St0cr.Dbm;
+            pub const Ct = dma1.St0cr.Ct;
+            pub const Pburst = dma1.St0cr.Pburst;
             en: En, // Stream enable / flag stream ready when read low (u1)
             dmeie: Dmeie, // Direct mode error interrupt enable (u1)
             teie: Teie, // Transfer error interrupt enable (u1)
@@ -6497,10 +6497,10 @@ pub const registers = struct {
         /// address: 0x4002603c, path: dma1.st1fcr
         /// stream x FIFO control register
         pub const St1fcr = packed struct {
-            pub const Fth = dma1.st0fcr.Fth;
-            pub const Dmdis = dma1.st0fcr.Dmdis;
-            pub const Fs = dma1.st0fcr.Fs;
-            pub const Feie = dma1.st0fcr.Feie;
+            pub const Fth = dma1.St0fcr.Fth;
+            pub const Dmdis = dma1.St0fcr.Dmdis;
+            pub const Fs = dma1.St0fcr.Fs;
+            pub const Feie = dma1.St0fcr.Feie;
             fth: Fth, // FIFO threshold selection (u2)
             dmdis: Dmdis, // Direct mode disable (u1)
             fs: Fs, // FIFO status (u3)
@@ -6513,21 +6513,21 @@ pub const registers = struct {
         /// address: 0x40026040, path: dma1.st2cr
         /// stream x configuration register
         pub const St2cr = packed struct {
-            pub const En = dma1.st0cr.En;
-            pub const Dmeie = dma1.st0cr.Dmeie;
-            pub const Teie = dma1.st0cr.Teie;
-            pub const Htie = dma1.st0cr.Htie;
-            pub const Tcie = usart1.cr1.Tcie;
-            pub const Pfctrl = dma1.st0cr.Pfctrl;
-            pub const Dir = dma1.st0cr.Dir;
-            pub const Circ = dma1.st0cr.Circ;
-            pub const Pinc = dma1.st0cr.Pinc;
-            pub const Psize = dma1.st0cr.Psize;
-            pub const Pincos = dma1.st0cr.Pincos;
-            pub const Pl = dma1.st0cr.Pl;
-            pub const Dbm = dma1.st0cr.Dbm;
-            pub const Ct = dma1.st0cr.Ct;
-            pub const Pburst = dma1.st0cr.Pburst;
+            pub const En = dma1.St0cr.En;
+            pub const Dmeie = dma1.St0cr.Dmeie;
+            pub const Teie = dma1.St0cr.Teie;
+            pub const Htie = dma1.St0cr.Htie;
+            pub const Tcie = usart1.Cr1.Tcie;
+            pub const Pfctrl = dma1.St0cr.Pfctrl;
+            pub const Dir = dma1.St0cr.Dir;
+            pub const Circ = dma1.St0cr.Circ;
+            pub const Pinc = dma1.St0cr.Pinc;
+            pub const Psize = dma1.St0cr.Psize;
+            pub const Pincos = dma1.St0cr.Pincos;
+            pub const Pl = dma1.St0cr.Pl;
+            pub const Dbm = dma1.St0cr.Dbm;
+            pub const Ct = dma1.St0cr.Ct;
+            pub const Pburst = dma1.St0cr.Pburst;
             en: En, // Stream enable / flag stream ready when read low (u1)
             dmeie: Dmeie, // Direct mode error interrupt enable (u1)
             teie: Teie, // Transfer error interrupt enable (u1)
@@ -6584,10 +6584,10 @@ pub const registers = struct {
         /// address: 0x40026054, path: dma1.st2fcr
         /// stream x FIFO control register
         pub const St2fcr = packed struct {
-            pub const Fth = dma1.st0fcr.Fth;
-            pub const Dmdis = dma1.st0fcr.Dmdis;
-            pub const Fs = dma1.st0fcr.Fs;
-            pub const Feie = dma1.st0fcr.Feie;
+            pub const Fth = dma1.St0fcr.Fth;
+            pub const Dmdis = dma1.St0fcr.Dmdis;
+            pub const Fs = dma1.St0fcr.Fs;
+            pub const Feie = dma1.St0fcr.Feie;
             fth: Fth, // FIFO threshold selection (u2)
             dmdis: Dmdis, // Direct mode disable (u1)
             fs: Fs, // FIFO status (u3)
@@ -6600,21 +6600,21 @@ pub const registers = struct {
         /// address: 0x40026058, path: dma1.st3cr
         /// stream x configuration register
         pub const St3cr = packed struct {
-            pub const En = dma1.st0cr.En;
-            pub const Dmeie = dma1.st0cr.Dmeie;
-            pub const Teie = dma1.st0cr.Teie;
-            pub const Htie = dma1.st0cr.Htie;
-            pub const Tcie = usart1.cr1.Tcie;
-            pub const Pfctrl = dma1.st0cr.Pfctrl;
-            pub const Dir = dma1.st0cr.Dir;
-            pub const Circ = dma1.st0cr.Circ;
-            pub const Pinc = dma1.st0cr.Pinc;
-            pub const Psize = dma1.st0cr.Psize;
-            pub const Pincos = dma1.st0cr.Pincos;
-            pub const Pl = dma1.st0cr.Pl;
-            pub const Dbm = dma1.st0cr.Dbm;
-            pub const Ct = dma1.st0cr.Ct;
-            pub const Pburst = dma1.st0cr.Pburst;
+            pub const En = dma1.St0cr.En;
+            pub const Dmeie = dma1.St0cr.Dmeie;
+            pub const Teie = dma1.St0cr.Teie;
+            pub const Htie = dma1.St0cr.Htie;
+            pub const Tcie = usart1.Cr1.Tcie;
+            pub const Pfctrl = dma1.St0cr.Pfctrl;
+            pub const Dir = dma1.St0cr.Dir;
+            pub const Circ = dma1.St0cr.Circ;
+            pub const Pinc = dma1.St0cr.Pinc;
+            pub const Psize = dma1.St0cr.Psize;
+            pub const Pincos = dma1.St0cr.Pincos;
+            pub const Pl = dma1.St0cr.Pl;
+            pub const Dbm = dma1.St0cr.Dbm;
+            pub const Ct = dma1.St0cr.Ct;
+            pub const Pburst = dma1.St0cr.Pburst;
             en: En, // Stream enable / flag stream ready when read low (u1)
             dmeie: Dmeie, // Direct mode error interrupt enable (u1)
             teie: Teie, // Transfer error interrupt enable (u1)
@@ -6671,10 +6671,10 @@ pub const registers = struct {
         /// address: 0x4002606c, path: dma1.st3fcr
         /// stream x FIFO control register
         pub const St3fcr = packed struct {
-            pub const Fth = dma1.st0fcr.Fth;
-            pub const Dmdis = dma1.st0fcr.Dmdis;
-            pub const Fs = dma1.st0fcr.Fs;
-            pub const Feie = dma1.st0fcr.Feie;
+            pub const Fth = dma1.St0fcr.Fth;
+            pub const Dmdis = dma1.St0fcr.Dmdis;
+            pub const Fs = dma1.St0fcr.Fs;
+            pub const Feie = dma1.St0fcr.Feie;
             fth: Fth, // FIFO threshold selection (u2)
             dmdis: Dmdis, // Direct mode disable (u1)
             fs: Fs, // FIFO status (u3)
@@ -6687,21 +6687,21 @@ pub const registers = struct {
         /// address: 0x40026070, path: dma1.st4cr
         /// stream x configuration register
         pub const St4cr = packed struct {
-            pub const En = dma1.st0cr.En;
-            pub const Dmeie = dma1.st0cr.Dmeie;
-            pub const Teie = dma1.st0cr.Teie;
-            pub const Htie = dma1.st0cr.Htie;
-            pub const Tcie = usart1.cr1.Tcie;
-            pub const Pfctrl = dma1.st0cr.Pfctrl;
-            pub const Dir = dma1.st0cr.Dir;
-            pub const Circ = dma1.st0cr.Circ;
-            pub const Pinc = dma1.st0cr.Pinc;
-            pub const Psize = dma1.st0cr.Psize;
-            pub const Pincos = dma1.st0cr.Pincos;
-            pub const Pl = dma1.st0cr.Pl;
-            pub const Dbm = dma1.st0cr.Dbm;
-            pub const Ct = dma1.st0cr.Ct;
-            pub const Pburst = dma1.st0cr.Pburst;
+            pub const En = dma1.St0cr.En;
+            pub const Dmeie = dma1.St0cr.Dmeie;
+            pub const Teie = dma1.St0cr.Teie;
+            pub const Htie = dma1.St0cr.Htie;
+            pub const Tcie = usart1.Cr1.Tcie;
+            pub const Pfctrl = dma1.St0cr.Pfctrl;
+            pub const Dir = dma1.St0cr.Dir;
+            pub const Circ = dma1.St0cr.Circ;
+            pub const Pinc = dma1.St0cr.Pinc;
+            pub const Psize = dma1.St0cr.Psize;
+            pub const Pincos = dma1.St0cr.Pincos;
+            pub const Pl = dma1.St0cr.Pl;
+            pub const Dbm = dma1.St0cr.Dbm;
+            pub const Ct = dma1.St0cr.Ct;
+            pub const Pburst = dma1.St0cr.Pburst;
             en: En, // Stream enable / flag stream ready when read low (u1)
             dmeie: Dmeie, // Direct mode error interrupt enable (u1)
             teie: Teie, // Transfer error interrupt enable (u1)
@@ -6758,10 +6758,10 @@ pub const registers = struct {
         /// address: 0x40026084, path: dma1.st4fcr
         /// stream x FIFO control register
         pub const St4fcr = packed struct {
-            pub const Fth = dma1.st0fcr.Fth;
-            pub const Dmdis = dma1.st0fcr.Dmdis;
-            pub const Fs = dma1.st0fcr.Fs;
-            pub const Feie = dma1.st0fcr.Feie;
+            pub const Fth = dma1.St0fcr.Fth;
+            pub const Dmdis = dma1.St0fcr.Dmdis;
+            pub const Fs = dma1.St0fcr.Fs;
+            pub const Feie = dma1.St0fcr.Feie;
             fth: Fth, // FIFO threshold selection (u2)
             dmdis: Dmdis, // Direct mode disable (u1)
             fs: Fs, // FIFO status (u3)
@@ -6774,21 +6774,21 @@ pub const registers = struct {
         /// address: 0x40026088, path: dma1.st5cr
         /// stream x configuration register
         pub const St5cr = packed struct {
-            pub const En = dma1.st0cr.En;
-            pub const Dmeie = dma1.st0cr.Dmeie;
-            pub const Teie = dma1.st0cr.Teie;
-            pub const Htie = dma1.st0cr.Htie;
-            pub const Tcie = usart1.cr1.Tcie;
-            pub const Pfctrl = dma1.st0cr.Pfctrl;
-            pub const Dir = dma1.st0cr.Dir;
-            pub const Circ = dma1.st0cr.Circ;
-            pub const Pinc = dma1.st0cr.Pinc;
-            pub const Psize = dma1.st0cr.Psize;
-            pub const Pincos = dma1.st0cr.Pincos;
-            pub const Pl = dma1.st0cr.Pl;
-            pub const Dbm = dma1.st0cr.Dbm;
-            pub const Ct = dma1.st0cr.Ct;
-            pub const Pburst = dma1.st0cr.Pburst;
+            pub const En = dma1.St0cr.En;
+            pub const Dmeie = dma1.St0cr.Dmeie;
+            pub const Teie = dma1.St0cr.Teie;
+            pub const Htie = dma1.St0cr.Htie;
+            pub const Tcie = usart1.Cr1.Tcie;
+            pub const Pfctrl = dma1.St0cr.Pfctrl;
+            pub const Dir = dma1.St0cr.Dir;
+            pub const Circ = dma1.St0cr.Circ;
+            pub const Pinc = dma1.St0cr.Pinc;
+            pub const Psize = dma1.St0cr.Psize;
+            pub const Pincos = dma1.St0cr.Pincos;
+            pub const Pl = dma1.St0cr.Pl;
+            pub const Dbm = dma1.St0cr.Dbm;
+            pub const Ct = dma1.St0cr.Ct;
+            pub const Pburst = dma1.St0cr.Pburst;
             en: En, // Stream enable / flag stream ready when read low (u1)
             dmeie: Dmeie, // Direct mode error interrupt enable (u1)
             teie: Teie, // Transfer error interrupt enable (u1)
@@ -6845,10 +6845,10 @@ pub const registers = struct {
         /// address: 0x4002609c, path: dma1.st5fcr
         /// stream x FIFO control register
         pub const St5fcr = packed struct {
-            pub const Fth = dma1.st0fcr.Fth;
-            pub const Dmdis = dma1.st0fcr.Dmdis;
-            pub const Fs = dma1.st0fcr.Fs;
-            pub const Feie = dma1.st0fcr.Feie;
+            pub const Fth = dma1.St0fcr.Fth;
+            pub const Dmdis = dma1.St0fcr.Dmdis;
+            pub const Fs = dma1.St0fcr.Fs;
+            pub const Feie = dma1.St0fcr.Feie;
             fth: Fth, // FIFO threshold selection (u2)
             dmdis: Dmdis, // Direct mode disable (u1)
             fs: Fs, // FIFO status (u3)
@@ -6861,21 +6861,21 @@ pub const registers = struct {
         /// address: 0x400260a0, path: dma1.st6cr
         /// stream x configuration register
         pub const St6cr = packed struct {
-            pub const En = dma1.st0cr.En;
-            pub const Dmeie = dma1.st0cr.Dmeie;
-            pub const Teie = dma1.st0cr.Teie;
-            pub const Htie = dma1.st0cr.Htie;
-            pub const Tcie = usart1.cr1.Tcie;
-            pub const Pfctrl = dma1.st0cr.Pfctrl;
-            pub const Dir = dma1.st0cr.Dir;
-            pub const Circ = dma1.st0cr.Circ;
-            pub const Pinc = dma1.st0cr.Pinc;
-            pub const Psize = dma1.st0cr.Psize;
-            pub const Pincos = dma1.st0cr.Pincos;
-            pub const Pl = dma1.st0cr.Pl;
-            pub const Dbm = dma1.st0cr.Dbm;
-            pub const Ct = dma1.st0cr.Ct;
-            pub const Pburst = dma1.st0cr.Pburst;
+            pub const En = dma1.St0cr.En;
+            pub const Dmeie = dma1.St0cr.Dmeie;
+            pub const Teie = dma1.St0cr.Teie;
+            pub const Htie = dma1.St0cr.Htie;
+            pub const Tcie = usart1.Cr1.Tcie;
+            pub const Pfctrl = dma1.St0cr.Pfctrl;
+            pub const Dir = dma1.St0cr.Dir;
+            pub const Circ = dma1.St0cr.Circ;
+            pub const Pinc = dma1.St0cr.Pinc;
+            pub const Psize = dma1.St0cr.Psize;
+            pub const Pincos = dma1.St0cr.Pincos;
+            pub const Pl = dma1.St0cr.Pl;
+            pub const Dbm = dma1.St0cr.Dbm;
+            pub const Ct = dma1.St0cr.Ct;
+            pub const Pburst = dma1.St0cr.Pburst;
             en: En, // Stream enable / flag stream ready when read low (u1)
             dmeie: Dmeie, // Direct mode error interrupt enable (u1)
             teie: Teie, // Transfer error interrupt enable (u1)
@@ -6932,10 +6932,10 @@ pub const registers = struct {
         /// address: 0x400260b4, path: dma1.st6fcr
         /// stream x FIFO control register
         pub const St6fcr = packed struct {
-            pub const Fth = dma1.st0fcr.Fth;
-            pub const Dmdis = dma1.st0fcr.Dmdis;
-            pub const Fs = dma1.st0fcr.Fs;
-            pub const Feie = dma1.st0fcr.Feie;
+            pub const Fth = dma1.St0fcr.Fth;
+            pub const Dmdis = dma1.St0fcr.Dmdis;
+            pub const Fs = dma1.St0fcr.Fs;
+            pub const Feie = dma1.St0fcr.Feie;
             fth: Fth, // FIFO threshold selection (u2)
             dmdis: Dmdis, // Direct mode disable (u1)
             fs: Fs, // FIFO status (u3)
@@ -6948,21 +6948,21 @@ pub const registers = struct {
         /// address: 0x400260b8, path: dma1.st7cr
         /// stream x configuration register
         pub const St7cr = packed struct {
-            pub const En = dma1.st0cr.En;
-            pub const Dmeie = dma1.st0cr.Dmeie;
-            pub const Teie = dma1.st0cr.Teie;
-            pub const Htie = dma1.st0cr.Htie;
-            pub const Tcie = usart1.cr1.Tcie;
-            pub const Pfctrl = dma1.st0cr.Pfctrl;
-            pub const Dir = dma1.st0cr.Dir;
-            pub const Circ = dma1.st0cr.Circ;
-            pub const Pinc = dma1.st0cr.Pinc;
-            pub const Psize = dma1.st0cr.Psize;
-            pub const Pincos = dma1.st0cr.Pincos;
-            pub const Pl = dma1.st0cr.Pl;
-            pub const Dbm = dma1.st0cr.Dbm;
-            pub const Ct = dma1.st0cr.Ct;
-            pub const Pburst = dma1.st0cr.Pburst;
+            pub const En = dma1.St0cr.En;
+            pub const Dmeie = dma1.St0cr.Dmeie;
+            pub const Teie = dma1.St0cr.Teie;
+            pub const Htie = dma1.St0cr.Htie;
+            pub const Tcie = usart1.Cr1.Tcie;
+            pub const Pfctrl = dma1.St0cr.Pfctrl;
+            pub const Dir = dma1.St0cr.Dir;
+            pub const Circ = dma1.St0cr.Circ;
+            pub const Pinc = dma1.St0cr.Pinc;
+            pub const Psize = dma1.St0cr.Psize;
+            pub const Pincos = dma1.St0cr.Pincos;
+            pub const Pl = dma1.St0cr.Pl;
+            pub const Dbm = dma1.St0cr.Dbm;
+            pub const Ct = dma1.St0cr.Ct;
+            pub const Pburst = dma1.St0cr.Pburst;
             en: En, // Stream enable / flag stream ready when read low (u1)
             dmeie: Dmeie, // Direct mode error interrupt enable (u1)
             teie: Teie, // Transfer error interrupt enable (u1)
@@ -7019,10 +7019,10 @@ pub const registers = struct {
         /// address: 0x400260cc, path: dma1.st7fcr
         /// stream x FIFO control register
         pub const St7fcr = packed struct {
-            pub const Fth = dma1.st0fcr.Fth;
-            pub const Dmdis = dma1.st0fcr.Dmdis;
-            pub const Fs = dma1.st0fcr.Fs;
-            pub const Feie = dma1.st0fcr.Feie;
+            pub const Fth = dma1.St0fcr.Fth;
+            pub const Dmdis = dma1.St0fcr.Dmdis;
+            pub const Fs = dma1.St0fcr.Fs;
+            pub const Feie = dma1.St0fcr.Feie;
             fth: Fth, // FIFO threshold selection (u2)
             dmdis: Dmdis, // Direct mode disable (u1)
             fs: Fs, // FIFO status (u3)
@@ -7347,7 +7347,7 @@ pub const registers = struct {
         /// address: 0x40020400, path: gpiob.moder
         /// GPIO port mode register
         pub const Moder = packed struct {
-            pub const Moder0 = gpioh.moder.Moder0;
+            pub const Moder0 = gpioh.Moder.Moder0;
             moder0: Moder0, // Port x configuration bits (y = 0..15) (u2)
             moder1: Moder0, // Port x configuration bits (y = 0..15) (u2)
             moder2: Moder0, // Port x configuration bits (y = 0..15) (u2)
@@ -7370,7 +7370,7 @@ pub const registers = struct {
         /// address: 0x40020404, path: gpiob.otyper
         /// GPIO port output type register
         pub const Otyper = packed struct {
-            pub const Ot0 = gpioh.otyper.Ot0;
+            pub const Ot0 = gpioh.Otyper.Ot0;
             ot0: Ot0, // Port x configuration bits (y = 0..15) (u1)
             ot1: Ot0, // Port x configuration bits (y = 0..15) (u1)
             ot2: Ot0, // Port x configuration bits (y = 0..15) (u1)
@@ -7394,7 +7394,7 @@ pub const registers = struct {
         /// address: 0x40020408, path: gpiob.ospeedr
         /// GPIO port output speed register
         pub const Ospeedr = packed struct {
-            pub const Ospeedr0 = gpioh.ospeedr.Ospeedr0;
+            pub const Ospeedr0 = gpioh.Ospeedr.Ospeedr0;
             ospeedr0: Ospeedr0, // Port x configuration bits (y = 0..15) (u2)
             ospeedr1: Ospeedr0, // Port x configuration bits (y = 0..15) (u2)
             ospeedr2: Ospeedr0, // Port x configuration bits (y = 0..15) (u2)
@@ -7417,7 +7417,7 @@ pub const registers = struct {
         /// address: 0x4002040c, path: gpiob.pupdr
         /// GPIO port pull-up/pull-down register
         pub const Pupdr = packed struct {
-            pub const Pupdr0 = gpioh.pupdr.Pupdr0;
+            pub const Pupdr0 = gpioh.Pupdr.Pupdr0;
             pupdr0: Pupdr0, // Port x configuration bits (y = 0..15) (u2)
             pupdr1: Pupdr0, // Port x configuration bits (y = 0..15) (u2)
             pupdr2: Pupdr0, // Port x configuration bits (y = 0..15) (u2)
@@ -7440,7 +7440,7 @@ pub const registers = struct {
         /// address: 0x40020410, path: gpiob.idr
         /// GPIO port input data register
         pub const Idr = packed struct {
-            pub const Idr0 = gpioh.idr.Idr0;
+            pub const Idr0 = gpioh.Idr.Idr0;
             idr0: Idr0, // Port input data (y = 0..15) (u1)
             idr1: Idr0, // Port input data (y = 0..15) (u1)
             idr2: Idr0, // Port input data (y = 0..15) (u1)
@@ -7464,7 +7464,7 @@ pub const registers = struct {
         /// address: 0x40020414, path: gpiob.odr
         /// GPIO port output data register
         pub const Odr = packed struct {
-            pub const Odr0 = gpioh.odr.Odr0;
+            pub const Odr0 = gpioh.Odr.Odr0;
             odr0: Odr0, // Port output data (y = 0..15) (u1)
             odr1: Odr0, // Port output data (y = 0..15) (u1)
             odr2: Odr0, // Port output data (y = 0..15) (u1)
@@ -7488,8 +7488,8 @@ pub const registers = struct {
         /// address: 0x40020418, path: gpiob.bsrr
         /// GPIO port bit set/reset register
         pub const Bsrr = packed struct {
-            pub const Bs0w = gpioh.bsrr.Bs0w;
-            pub const Br0w = gpioh.bsrr.Br0w;
+            pub const Bs0w = gpioh.Bsrr.Bs0w;
+            pub const Br0w = gpioh.Bsrr.Br0w;
             bs0: Bs0w, // Port x set bit y (y= 0..15) (u1)
             bs1: Bs0w, // Port x set bit y (y= 0..15) (u1)
             bs2: Bs0w, // Port x set bit y (y= 0..15) (u1)
@@ -7528,8 +7528,8 @@ pub const registers = struct {
         /// address: 0x4002041c, path: gpiob.lckr
         /// GPIO port configuration lock register
         pub const Lckr = packed struct {
-            pub const Lck0 = gpioh.lckr.Lck0;
-            pub const Lckk = gpioh.lckr.Lckk;
+            pub const Lck0 = gpioh.Lckr.Lck0;
+            pub const Lckk = gpioh.Lckr.Lckk;
             lck0: Lck0, // Port x lock bit y (y= 0..15) (u1)
             lck1: Lck0, // Port x lock bit y (y= 0..15) (u1)
             lck2: Lck0, // Port x lock bit y (y= 0..15) (u1)
@@ -7554,7 +7554,7 @@ pub const registers = struct {
         /// address: 0x40020420, path: gpiob.afrl
         /// GPIO alternate function low register
         pub const Afrl = packed struct {
-            pub const Afrl0 = gpioh.afrl.Afrl0;
+            pub const Afrl0 = gpioh.Afrl.Afrl0;
             afrl0: Afrl0, // Alternate function selection for port x bit y (y = 0..7) (u4)
             afrl1: Afrl0, // Alternate function selection for port x bit y (y = 0..7) (u4)
             afrl2: Afrl0, // Alternate function selection for port x bit y (y = 0..7) (u4)
@@ -7569,7 +7569,7 @@ pub const registers = struct {
         /// address: 0x40020424, path: gpiob.afrh
         /// GPIO alternate function high register
         pub const Afrh = packed struct {
-            pub const Afrh8 = gpioh.afrh.Afrh8;
+            pub const Afrh8 = gpioh.Afrh.Afrh8;
             afrh8: Afrh8, // Alternate function selection for port x bit y (y = 8..15) (u4)
             afrh9: Afrh8, // Alternate function selection for port x bit y (y = 8..15) (u4)
             afrh10: Afrh8, // Alternate function selection for port x bit y (y = 8..15) (u4)
@@ -7588,7 +7588,7 @@ pub const registers = struct {
         /// address: 0x40020000, path: gpioa.moder
         /// GPIO port mode register
         pub const Moder = packed struct {
-            pub const Moder0 = gpioh.moder.Moder0;
+            pub const Moder0 = gpioh.Moder.Moder0;
             moder0: Moder0, // Port x configuration bits (y = 0..15) (u2)
             moder1: Moder0, // Port x configuration bits (y = 0..15) (u2)
             moder2: Moder0, // Port x configuration bits (y = 0..15) (u2)
@@ -7611,7 +7611,7 @@ pub const registers = struct {
         /// address: 0x40020004, path: gpioa.otyper
         /// GPIO port output type register
         pub const Otyper = packed struct {
-            pub const Ot0 = gpioh.otyper.Ot0;
+            pub const Ot0 = gpioh.Otyper.Ot0;
             ot0: Ot0, // Port x configuration bits (y = 0..15) (u1)
             ot1: Ot0, // Port x configuration bits (y = 0..15) (u1)
             ot2: Ot0, // Port x configuration bits (y = 0..15) (u1)
@@ -7635,7 +7635,7 @@ pub const registers = struct {
         /// address: 0x40020008, path: gpioa.ospeedr
         /// GPIO port output speed register
         pub const Ospeedr = packed struct {
-            pub const Ospeedr0 = gpioh.ospeedr.Ospeedr0;
+            pub const Ospeedr0 = gpioh.Ospeedr.Ospeedr0;
             ospeedr0: Ospeedr0, // Port x configuration bits (y = 0..15) (u2)
             ospeedr1: Ospeedr0, // Port x configuration bits (y = 0..15) (u2)
             ospeedr2: Ospeedr0, // Port x configuration bits (y = 0..15) (u2)
@@ -7658,7 +7658,7 @@ pub const registers = struct {
         /// address: 0x4002000c, path: gpioa.pupdr
         /// GPIO port pull-up/pull-down register
         pub const Pupdr = packed struct {
-            pub const Pupdr0 = gpioh.pupdr.Pupdr0;
+            pub const Pupdr0 = gpioh.Pupdr.Pupdr0;
             pupdr0: Pupdr0, // Port x configuration bits (y = 0..15) (u2)
             pupdr1: Pupdr0, // Port x configuration bits (y = 0..15) (u2)
             pupdr2: Pupdr0, // Port x configuration bits (y = 0..15) (u2)
@@ -7681,7 +7681,7 @@ pub const registers = struct {
         /// address: 0x40020010, path: gpioa.idr
         /// GPIO port input data register
         pub const Idr = packed struct {
-            pub const Idr0 = gpioh.idr.Idr0;
+            pub const Idr0 = gpioh.Idr.Idr0;
             idr0: Idr0, // Port input data (y = 0..15) (u1)
             idr1: Idr0, // Port input data (y = 0..15) (u1)
             idr2: Idr0, // Port input data (y = 0..15) (u1)
@@ -7705,7 +7705,7 @@ pub const registers = struct {
         /// address: 0x40020014, path: gpioa.odr
         /// GPIO port output data register
         pub const Odr = packed struct {
-            pub const Odr0 = gpioh.odr.Odr0;
+            pub const Odr0 = gpioh.Odr.Odr0;
             odr0: Odr0, // Port output data (y = 0..15) (u1)
             odr1: Odr0, // Port output data (y = 0..15) (u1)
             odr2: Odr0, // Port output data (y = 0..15) (u1)
@@ -7729,8 +7729,8 @@ pub const registers = struct {
         /// address: 0x40020018, path: gpioa.bsrr
         /// GPIO port bit set/reset register
         pub const Bsrr = packed struct {
-            pub const Bs0w = gpioh.bsrr.Bs0w;
-            pub const Br0w = gpioh.bsrr.Br0w;
+            pub const Bs0w = gpioh.Bsrr.Bs0w;
+            pub const Br0w = gpioh.Bsrr.Br0w;
             bs0: Bs0w, // Port x set bit y (y= 0..15) (u1)
             bs1: Bs0w, // Port x set bit y (y= 0..15) (u1)
             bs2: Bs0w, // Port x set bit y (y= 0..15) (u1)
@@ -7769,8 +7769,8 @@ pub const registers = struct {
         /// address: 0x4002001c, path: gpioa.lckr
         /// GPIO port configuration lock register
         pub const Lckr = packed struct {
-            pub const Lck0 = gpioh.lckr.Lck0;
-            pub const Lckk = gpioh.lckr.Lckk;
+            pub const Lck0 = gpioh.Lckr.Lck0;
+            pub const Lckk = gpioh.Lckr.Lckk;
             lck0: Lck0, // Port x lock bit y (y= 0..15) (u1)
             lck1: Lck0, // Port x lock bit y (y= 0..15) (u1)
             lck2: Lck0, // Port x lock bit y (y= 0..15) (u1)
@@ -7795,7 +7795,7 @@ pub const registers = struct {
         /// address: 0x40020020, path: gpioa.afrl
         /// GPIO alternate function low register
         pub const Afrl = packed struct {
-            pub const Afrl0 = gpioh.afrl.Afrl0;
+            pub const Afrl0 = gpioh.Afrl.Afrl0;
             afrl0: Afrl0, // Alternate function selection for port x bit y (y = 0..7) (u4)
             afrl1: Afrl0, // Alternate function selection for port x bit y (y = 0..7) (u4)
             afrl2: Afrl0, // Alternate function selection for port x bit y (y = 0..7) (u4)
@@ -7810,7 +7810,7 @@ pub const registers = struct {
         /// address: 0x40020024, path: gpioa.afrh
         /// GPIO alternate function high register
         pub const Afrh = packed struct {
-            pub const Afrh8 = gpioh.afrh.Afrh8;
+            pub const Afrh8 = gpioh.Afrh.Afrh8;
             afrh8: Afrh8, // Alternate function selection for port x bit y (y = 8..15) (u4)
             afrh9: Afrh8, // Alternate function selection for port x bit y (y = 8..15) (u4)
             afrh10: Afrh8, // Alternate function selection for port x bit y (y = 8..15) (u4)
@@ -9101,14 +9101,14 @@ pub const registers = struct {
         /// address: 0x40010400, path: tim8.cr1
         /// control register 1
         pub const Cr1 = packed struct {
-            pub const Cen = tim1.cr1.Cen;
-            pub const Udis = tim1.cr1.Udis;
-            pub const Urs = tim1.cr1.Urs;
-            pub const Opm = tim1.cr1.Opm;
-            pub const Dir = tim1.cr1.Dir;
-            pub const Cms = tim1.cr1.Cms;
-            pub const Arpe = tim1.cr1.Arpe;
-            pub const Ckd = tim1.cr1.Ckd;
+            pub const Cen = tim1.Cr1.Cen;
+            pub const Udis = tim1.Cr1.Udis;
+            pub const Urs = tim1.Cr1.Urs;
+            pub const Opm = tim1.Cr1.Opm;
+            pub const Dir = tim1.Cr1.Dir;
+            pub const Cms = tim1.Cr1.Cms;
+            pub const Arpe = tim1.Cr1.Arpe;
+            pub const Ckd = tim1.Cr1.Ckd;
             cen: Cen, // Counter enable (u1)
             udis: Udis, // Update disable (u1)
             urs: Urs, // Update request source (u1)
@@ -9124,9 +9124,9 @@ pub const registers = struct {
         /// address: 0x40010404, path: tim8.cr2
         /// control register 2
         pub const Cr2 = packed struct {
-            pub const Ccds = tim1.cr2.Ccds;
-            pub const Mms = tim1.cr2.Mms;
-            pub const Ti1s = tim1.cr2.Ti1s;
+            pub const Ccds = tim1.Cr2.Ccds;
+            pub const Mms = tim1.Cr2.Mms;
+            pub const Ti1s = tim1.Cr2.Ti1s;
             ccpc: u1, // Capture/compare preloaded control
             _reserved_1_1: u1,
             ccus: u1, // Capture/compare control update selection
@@ -9147,13 +9147,13 @@ pub const registers = struct {
         /// address: 0x40010408, path: tim8.smcr
         /// slave mode control register
         pub const Smcr = packed struct {
-            pub const Sms = tim1.smcr.Sms;
-            pub const Ts = tim1.smcr.Ts;
-            pub const Msm = tim1.smcr.Msm;
-            pub const Etf = tim1.smcr.Etf;
-            pub const Etps = tim1.smcr.Etps;
-            pub const Ece = tim1.smcr.Ece;
-            pub const Etp = tim1.smcr.Etp;
+            pub const Sms = tim1.Smcr.Sms;
+            pub const Ts = tim1.Smcr.Ts;
+            pub const Msm = tim1.Smcr.Msm;
+            pub const Etf = tim1.Smcr.Etf;
+            pub const Etps = tim1.Smcr.Etps;
+            pub const Ece = tim1.Smcr.Ece;
+            pub const Etp = tim1.Smcr.Etp;
             sms: Sms, // Slave mode selection (u3)
             _reserved_3_3: u1,
             ts: Ts, // Trigger selection (u3)
@@ -9169,12 +9169,12 @@ pub const registers = struct {
         /// address: 0x4001040c, path: tim8.dier
         /// DMA/Interrupt enable register
         pub const Dier = packed struct {
-            pub const Uie = tim1.dier.Uie;
-            pub const Cc1ie = tim1.dier.Cc1ie;
-            pub const Tie = tim1.dier.Tie;
-            pub const Ude = tim1.dier.Ude;
-            pub const Cc1de = tim1.dier.Cc1de;
-            pub const Tde = tim1.dier.Tde;
+            pub const Uie = tim1.Dier.Uie;
+            pub const Cc1ie = tim1.Dier.Cc1ie;
+            pub const Tie = tim1.Dier.Tie;
+            pub const Ude = tim1.Dier.Ude;
+            pub const Cc1de = tim1.Dier.Cc1de;
+            pub const Tde = tim1.Dier.Tde;
             uie: Uie, // Update interrupt enable (u1)
             cc1ie: Cc1ie, // Capture/Compare 1 interrupt enable (u1)
             cc2ie: Cc1ie, // Capture/Compare 2 interrupt enable (u1)
@@ -9197,10 +9197,10 @@ pub const registers = struct {
         /// address: 0x40010410, path: tim8.sr
         /// status register
         pub const Sr = packed struct {
-            pub const Uif = tim1.sr.Uif;
-            pub const Cc1if = tim1.sr.Cc1if;
-            pub const Tif = tim1.sr.Tif;
-            pub const Cc1of = tim1.sr.Cc1of;
+            pub const Uif = tim1.Sr.Uif;
+            pub const Cc1if = tim1.Sr.Cc1if;
+            pub const Tif = tim1.Sr.Tif;
+            pub const Cc1of = tim1.Sr.Cc1of;
             uif: Uif, // Update interrupt flag (u1)
             cc1if: Cc1if, // Capture/compare 1 interrupt flag (u1)
             cc2if: Cc1if, // Capture/Compare 2 interrupt flag (u1)
@@ -9221,9 +9221,9 @@ pub const registers = struct {
         /// address: 0x40010414, path: tim8.egr
         /// event generation register
         pub const Egr = packed struct {
-            pub const Ug = tim1.egr.Ug;
-            pub const Cc1gw = tim1.egr.Cc1gw;
-            pub const Tgw = tim1.egr.Tgw;
+            pub const Ug = tim1.Egr.Ug;
+            pub const Cc1gw = tim1.Egr.Cc1gw;
+            pub const Tgw = tim1.Egr.Tgw;
             ug: Ug, // Update generation (u1)
             cc1g: Cc1gw, // Capture/compare 1 generation (u1)
             cc2g: Cc1gw, // Capture/compare 2 generation (u1)
@@ -9239,11 +9239,11 @@ pub const registers = struct {
         /// address: 0x40010418, path: tim8.ccmr1_output
         /// capture/compare mode register 1 (output mode)
         pub const Ccmr1Output = packed struct {
-            pub const Cc1s = tim1.ccmr1_output.Cc1s;
-            pub const Oc1pe = tim1.ccmr1_output.Oc1pe;
-            pub const Oc1m = tim1.ccmr1_output.Oc1m;
-            pub const Cc2s = tim1.ccmr1_output.Cc2s;
-            pub const Oc2pe = tim1.ccmr1_output.Oc2pe;
+            pub const Cc1s = tim1.Ccmr1Output.Cc1s;
+            pub const Oc1pe = tim1.Ccmr1Output.Oc1pe;
+            pub const Oc1m = tim1.Ccmr1Output.Oc1m;
+            pub const Cc2s = tim1.Ccmr1Output.Cc2s;
+            pub const Oc2pe = tim1.Ccmr1Output.Oc2pe;
             cc1s: Cc1s, // Capture/Compare 1 selection (u2)
             oc1fe: u1, // Output Compare 1 fast enable
             oc1pe: Oc1pe, // Output Compare 1 preload enable (u1)
@@ -9261,9 +9261,9 @@ pub const registers = struct {
         /// address: 0x40010418, path: tim8.ccmr1_input
         /// capture/compare mode register 1 (input mode)
         pub const Ccmr1Input = packed struct {
-            pub const Cc1s = tim1.ccmr1_input.Cc1s;
-            pub const Ic1f = tim1.ccmr1_input.Ic1f;
-            pub const Cc2s = tim1.ccmr1_input.Cc2s;
+            pub const Cc1s = tim1.Ccmr1Input.Cc1s;
+            pub const Ic1f = tim1.Ccmr1Input.Ic1f;
+            pub const Cc2s = tim1.Ccmr1Input.Cc2s;
             cc1s: Cc1s, // Capture/Compare 1 selection (u2)
             ic1psc: u2, // Input capture 1 prescaler
             ic1f: Ic1f, // Input capture 1 filter (u4)
@@ -9277,11 +9277,11 @@ pub const registers = struct {
         /// address: 0x4001041c, path: tim8.ccmr2_output
         /// capture/compare mode register 2 (output mode)
         pub const Ccmr2Output = packed struct {
-            pub const Cc3s = tim1.ccmr2_output.Cc3s;
-            pub const Oc3pe = tim1.ccmr2_output.Oc3pe;
-            pub const Oc3m = tim1.ccmr2_output.Oc3m;
-            pub const Cc4s = tim1.ccmr2_output.Cc4s;
-            pub const Oc4pe = tim1.ccmr2_output.Oc4pe;
+            pub const Cc3s = tim1.Ccmr2Output.Cc3s;
+            pub const Oc3pe = tim1.Ccmr2Output.Oc3pe;
+            pub const Oc3m = tim1.Ccmr2Output.Oc3m;
+            pub const Cc4s = tim1.Ccmr2Output.Cc4s;
+            pub const Oc4pe = tim1.Ccmr2Output.Oc4pe;
             cc3s: Cc3s, // Capture/Compare 3 selection (u2)
             oc3fe: u1, // Output compare 3 fast enable
             oc3pe: Oc3pe, // Output compare 3 preload enable (u1)
@@ -9299,8 +9299,8 @@ pub const registers = struct {
         /// address: 0x4001041c, path: tim8.ccmr2_input
         /// capture/compare mode register 2 (input mode)
         pub const Ccmr2Input = packed struct {
-            pub const Cc3s = tim1.ccmr2_input.Cc3s;
-            pub const Cc4s = tim1.ccmr2_input.Cc4s;
+            pub const Cc3s = tim1.Ccmr2Input.Cc3s;
+            pub const Cc4s = tim1.Ccmr2Input.Cc4s;
             cc3s: Cc3s, // Capture/compare 3 selection (u2)
             ic3psc: u2, // Input capture 3 prescaler
             ic3f: u4, // Input capture 3 filter
@@ -9405,9 +9405,9 @@ pub const registers = struct {
         /// address: 0x40010444, path: tim8.bdtr
         /// break and dead-time register
         pub const Bdtr = packed struct {
-            pub const Ossi = tim1.bdtr.Ossi;
-            pub const Ossr = tim1.bdtr.Ossr;
-            pub const Moe = tim1.bdtr.Moe;
+            pub const Ossi = tim1.Bdtr.Ossi;
+            pub const Ossr = tim1.Bdtr.Ossr;
+            pub const Moe = tim1.Bdtr.Moe;
             dtg: u8, // Dead-time generator setup
             lock: u2, // Lock configuration
             ossi: Ossi, // Off-state selection for Idle mode (u1)
@@ -9427,14 +9427,14 @@ pub const registers = struct {
         /// address: 0x40000800, path: tim4.cr1
         /// control register 1
         pub const Cr1 = packed struct {
-            pub const Cen = tim1.cr1.Cen;
-            pub const Udis = tim1.cr1.Udis;
-            pub const Urs = tim1.cr1.Urs;
-            pub const Opm = tim1.cr1.Opm;
-            pub const Dir = tim1.cr1.Dir;
-            pub const Cms = tim1.cr1.Cms;
-            pub const Arpe = tim1.cr1.Arpe;
-            pub const Ckd = tim1.cr1.Ckd;
+            pub const Cen = tim1.Cr1.Cen;
+            pub const Udis = tim1.Cr1.Udis;
+            pub const Urs = tim1.Cr1.Urs;
+            pub const Opm = tim1.Cr1.Opm;
+            pub const Dir = tim1.Cr1.Dir;
+            pub const Cms = tim1.Cr1.Cms;
+            pub const Arpe = tim1.Cr1.Arpe;
+            pub const Ckd = tim1.Cr1.Ckd;
             cen: Cen, // Counter enable (u1)
             udis: Udis, // Update disable (u1)
             urs: Urs, // Update request source (u1)
@@ -9450,9 +9450,9 @@ pub const registers = struct {
         /// address: 0x40000804, path: tim4.cr2
         /// control register 2
         pub const Cr2 = packed struct {
-            pub const Ccds = tim1.cr2.Ccds;
-            pub const Mms = tim1.cr2.Mms;
-            pub const Ti1s = tim1.cr2.Ti1s;
+            pub const Ccds = tim1.Cr2.Ccds;
+            pub const Mms = tim1.Cr2.Mms;
+            pub const Ti1s = tim1.Cr2.Ti1s;
             _reserved_0_2: u3,
             ccds: Ccds, // Capture/compare DMA selection (u1)
             mms: Mms, // Master mode selection (u3)
@@ -9464,13 +9464,13 @@ pub const registers = struct {
         /// address: 0x40000808, path: tim4.smcr
         /// slave mode control register
         pub const Smcr = packed struct {
-            pub const Sms = tim1.smcr.Sms;
-            pub const Ts = tim1.smcr.Ts;
-            pub const Msm = tim1.smcr.Msm;
-            pub const Etf = tim1.smcr.Etf;
-            pub const Etps = tim1.smcr.Etps;
-            pub const Ece = tim1.smcr.Ece;
-            pub const Etp = tim1.smcr.Etp;
+            pub const Sms = tim1.Smcr.Sms;
+            pub const Ts = tim1.Smcr.Ts;
+            pub const Msm = tim1.Smcr.Msm;
+            pub const Etf = tim1.Smcr.Etf;
+            pub const Etps = tim1.Smcr.Etps;
+            pub const Ece = tim1.Smcr.Ece;
+            pub const Etp = tim1.Smcr.Etp;
             sms: Sms, // Slave mode selection (u3)
             _reserved_3_3: u1,
             ts: Ts, // Trigger selection (u3)
@@ -9486,12 +9486,12 @@ pub const registers = struct {
         /// address: 0x4000080c, path: tim4.dier
         /// DMA/Interrupt enable register
         pub const Dier = packed struct {
-            pub const Uie = tim1.dier.Uie;
-            pub const Cc1ie = tim1.dier.Cc1ie;
-            pub const Tie = tim1.dier.Tie;
-            pub const Ude = tim1.dier.Ude;
-            pub const Cc1de = tim1.dier.Cc1de;
-            pub const Tde = tim1.dier.Tde;
+            pub const Uie = tim1.Dier.Uie;
+            pub const Cc1ie = tim1.Dier.Cc1ie;
+            pub const Tie = tim1.Dier.Tie;
+            pub const Ude = tim1.Dier.Ude;
+            pub const Cc1de = tim1.Dier.Cc1de;
+            pub const Tde = tim1.Dier.Tde;
             uie: Uie, // Update interrupt enable (u1)
             cc1ie: Cc1ie, // Capture/Compare 1 interrupt enable (u1)
             cc2ie: Cc1ie, // Capture/Compare 2 interrupt enable (u1)
@@ -9514,10 +9514,10 @@ pub const registers = struct {
         /// address: 0x40000810, path: tim4.sr
         /// status register
         pub const Sr = packed struct {
-            pub const Uif = tim1.sr.Uif;
-            pub const Cc1if = tim1.sr.Cc1if;
-            pub const Tif = tim1.sr.Tif;
-            pub const Cc1of = tim1.sr.Cc1of;
+            pub const Uif = tim1.Sr.Uif;
+            pub const Cc1if = tim1.Sr.Cc1if;
+            pub const Tif = tim1.Sr.Tif;
+            pub const Cc1of = tim1.Sr.Cc1of;
             uif: Uif, // Update interrupt flag (u1)
             cc1if: Cc1if, // Capture/compare 1 interrupt flag (u1)
             cc2if: Cc1if, // Capture/Compare 2 interrupt flag (u1)
@@ -9537,9 +9537,9 @@ pub const registers = struct {
         /// address: 0x40000814, path: tim4.egr
         /// event generation register
         pub const Egr = packed struct {
-            pub const Ug = tim1.egr.Ug;
-            pub const Cc1gw = tim1.egr.Cc1gw;
-            pub const Tgw = tim1.egr.Tgw;
+            pub const Ug = tim1.Egr.Ug;
+            pub const Cc1gw = tim1.Egr.Cc1gw;
+            pub const Tgw = tim1.Egr.Tgw;
             ug: Ug, // Update generation (u1)
             cc1g: Cc1gw, // Capture/compare 1 generation (u1)
             cc2g: Cc1gw, // Capture/compare 2 generation (u1)
@@ -9554,11 +9554,11 @@ pub const registers = struct {
         /// address: 0x40000818, path: tim4.ccmr1_output
         /// capture/compare mode register 1 (output mode)
         pub const Ccmr1Output = packed struct {
-            pub const Cc1s = tim1.ccmr1_output.Cc1s;
-            pub const Oc1pe = tim1.ccmr1_output.Oc1pe;
-            pub const Oc1m = tim1.ccmr1_output.Oc1m;
-            pub const Cc2s = tim1.ccmr1_output.Cc2s;
-            pub const Oc2pe = tim1.ccmr1_output.Oc2pe;
+            pub const Cc1s = tim1.Ccmr1Output.Cc1s;
+            pub const Oc1pe = tim1.Ccmr1Output.Oc1pe;
+            pub const Oc1m = tim1.Ccmr1Output.Oc1m;
+            pub const Cc2s = tim1.Ccmr1Output.Cc2s;
+            pub const Oc2pe = tim1.Ccmr1Output.Oc2pe;
             cc1s: Cc1s, // CC1S (u2)
             oc1fe: u1, // OC1FE
             oc1pe: Oc1pe, // OC1PE (u1)
@@ -9576,9 +9576,9 @@ pub const registers = struct {
         /// address: 0x40000818, path: tim4.ccmr1_input
         /// capture/compare mode register 1 (input mode)
         pub const Ccmr1Input = packed struct {
-            pub const Cc1s = tim1.ccmr1_input.Cc1s;
-            pub const Ic1f = tim1.ccmr1_input.Ic1f;
-            pub const Cc2s = tim1.ccmr1_input.Cc2s;
+            pub const Cc1s = tim1.Ccmr1Input.Cc1s;
+            pub const Ic1f = tim1.Ccmr1Input.Ic1f;
+            pub const Cc2s = tim1.Ccmr1Input.Cc2s;
             cc1s: Cc1s, // Capture/Compare 1 selection (u2)
             ic1psc: u2, // Input capture 1 prescaler
             ic1f: Ic1f, // Input capture 1 filter (u4)
@@ -9592,11 +9592,11 @@ pub const registers = struct {
         /// address: 0x4000081c, path: tim4.ccmr2_output
         /// capture/compare mode register 2 (output mode)
         pub const Ccmr2Output = packed struct {
-            pub const Cc3s = tim1.ccmr2_output.Cc3s;
-            pub const Oc3pe = tim1.ccmr2_output.Oc3pe;
-            pub const Oc3m = tim1.ccmr2_output.Oc3m;
-            pub const Cc4s = tim1.ccmr2_output.Cc4s;
-            pub const Oc4pe = tim1.ccmr2_output.Oc4pe;
+            pub const Cc3s = tim1.Ccmr2Output.Cc3s;
+            pub const Oc3pe = tim1.Ccmr2Output.Oc3pe;
+            pub const Oc3m = tim1.Ccmr2Output.Oc3m;
+            pub const Cc4s = tim1.Ccmr2Output.Cc4s;
+            pub const Oc4pe = tim1.Ccmr2Output.Oc4pe;
             cc3s: Cc3s, // CC3S (u2)
             oc3fe: u1, // OC3FE
             oc3pe: Oc3pe, // OC3PE (u1)
@@ -9614,8 +9614,8 @@ pub const registers = struct {
         /// address: 0x4000081c, path: tim4.ccmr2_input
         /// capture/compare mode register 2 (input mode)
         pub const Ccmr2Input = packed struct {
-            pub const Cc3s = tim1.ccmr2_input.Cc3s;
-            pub const Cc4s = tim1.ccmr2_input.Cc4s;
+            pub const Cc3s = tim1.Ccmr2Input.Cc3s;
+            pub const Cc4s = tim1.Ccmr2Input.Cc4s;
             cc3s: Cc3s, // Capture/compare 3 selection (u2)
             ic3psc: u2, // Input capture 3 prescaler
             ic3f: u4, // Input capture 3 filter
@@ -9748,21 +9748,21 @@ pub const registers = struct {
         /// address: 0x4000440c, path: usart2.cr1
         /// Control register 1
         pub const Cr1 = packed struct {
-            pub const Sbk = usart1.cr1.Sbk;
-            pub const Rwu = usart1.cr1.Rwu;
-            pub const Re = usart1.cr1.Re;
-            pub const Te = usart1.cr1.Te;
-            pub const Idleie = usart1.cr1.Idleie;
-            pub const Rxneie = usart1.cr1.Rxneie;
-            pub const Tcie = usart1.cr1.Tcie;
-            pub const Txeie = usart1.cr1.Txeie;
-            pub const Peie = usart1.cr1.Peie;
-            pub const Ps = usart1.cr1.Ps;
-            pub const Pce = usart1.cr1.Pce;
-            pub const Wake = usart1.cr1.Wake;
-            pub const M = usart1.cr1.M;
-            pub const Ue = usart1.cr1.Ue;
-            pub const Over8 = usart1.cr1.Over8;
+            pub const Sbk = usart1.Cr1.Sbk;
+            pub const Rwu = usart1.Cr1.Rwu;
+            pub const Re = usart1.Cr1.Re;
+            pub const Te = usart1.Cr1.Te;
+            pub const Idleie = usart1.Cr1.Idleie;
+            pub const Rxneie = usart1.Cr1.Rxneie;
+            pub const Tcie = usart1.Cr1.Tcie;
+            pub const Txeie = usart1.Cr1.Txeie;
+            pub const Peie = usart1.Cr1.Peie;
+            pub const Ps = usart1.Cr1.Ps;
+            pub const Pce = usart1.Cr1.Pce;
+            pub const Wake = usart1.Cr1.Wake;
+            pub const M = usart1.Cr1.M;
+            pub const Ue = usart1.Cr1.Ue;
+            pub const Over8 = usart1.Cr1.Over8;
             sbk: Sbk, // Send break (u1)
             rwu: Rwu, // Receiver wakeup (u1)
             re: Re, // Receiver enable (u1)
@@ -9786,13 +9786,13 @@ pub const registers = struct {
         /// address: 0x40004410, path: usart2.cr2
         /// Control register 2
         pub const Cr2 = packed struct {
-            pub const Lbdl = usart1.cr2.Lbdl;
-            pub const Lbdie = usart1.cr2.Lbdie;
-            pub const Cpha = usart1.cr2.Cpha;
-            pub const Cpol = usart1.cr2.Cpol;
-            pub const Clken = usart1.cr2.Clken;
-            pub const Stop = usart1.cr2.Stop;
-            pub const Linen = usart1.cr2.Linen;
+            pub const Lbdl = usart1.Cr2.Lbdl;
+            pub const Lbdie = usart1.Cr2.Lbdie;
+            pub const Cpha = usart1.Cr2.Cpha;
+            pub const Cpol = usart1.Cr2.Cpol;
+            pub const Clken = usart1.Cr2.Clken;
+            pub const Stop = usart1.Cr2.Stop;
+            pub const Linen = usart1.Cr2.Linen;
             add: u4, // Address of the USART node
             _reserved_4_4: u1,
             lbdl: Lbdl, // lin break detection length (u1)
@@ -9811,18 +9811,18 @@ pub const registers = struct {
         /// address: 0x40004414, path: usart2.cr3
         /// Control register 3
         pub const Cr3 = packed struct {
-            pub const Eie = usart1.cr3.Eie;
-            pub const Iren = usart1.cr3.Iren;
-            pub const Irlp = usart1.cr3.Irlp;
-            pub const Hdsel = usart1.cr3.Hdsel;
-            pub const Nack = usart1.cr3.Nack;
-            pub const Scen = usart1.cr3.Scen;
-            pub const Dmar = usart1.cr3.Dmar;
-            pub const Dmat = usart1.cr3.Dmat;
-            pub const Rtse = usart1.cr3.Rtse;
-            pub const Ctse = usart1.cr3.Ctse;
-            pub const Ctsie = usart1.cr3.Ctsie;
-            pub const Onebit = usart1.cr3.Onebit;
+            pub const Eie = usart1.Cr3.Eie;
+            pub const Iren = usart1.Cr3.Iren;
+            pub const Irlp = usart1.Cr3.Irlp;
+            pub const Hdsel = usart1.Cr3.Hdsel;
+            pub const Nack = usart1.Cr3.Nack;
+            pub const Scen = usart1.Cr3.Scen;
+            pub const Dmar = usart1.Cr3.Dmar;
+            pub const Dmat = usart1.Cr3.Dmat;
+            pub const Rtse = usart1.Cr3.Rtse;
+            pub const Ctse = usart1.Cr3.Ctse;
+            pub const Ctsie = usart1.Cr3.Ctsie;
+            pub const Onebit = usart1.Cr3.Onebit;
             eie: Eie, // Error interrupt enable (u1)
             iren: Iren, // IrDA mode enable (u1)
             irlp: Irlp, // IrDA low-power (u1)
@@ -9885,21 +9885,21 @@ pub const registers = struct {
         /// address: 0x4001140c, path: usart6.cr1
         /// Control register 1
         pub const Cr1 = packed struct {
-            pub const Sbk = usart1.cr1.Sbk;
-            pub const Rwu = usart1.cr1.Rwu;
-            pub const Re = usart1.cr1.Re;
-            pub const Te = usart1.cr1.Te;
-            pub const Idleie = usart1.cr1.Idleie;
-            pub const Rxneie = usart1.cr1.Rxneie;
-            pub const Tcie = usart1.cr1.Tcie;
-            pub const Txeie = usart1.cr1.Txeie;
-            pub const Peie = usart1.cr1.Peie;
-            pub const Ps = usart1.cr1.Ps;
-            pub const Pce = usart1.cr1.Pce;
-            pub const Wake = usart1.cr1.Wake;
-            pub const M = usart1.cr1.M;
-            pub const Ue = usart1.cr1.Ue;
-            pub const Over8 = usart1.cr1.Over8;
+            pub const Sbk = usart1.Cr1.Sbk;
+            pub const Rwu = usart1.Cr1.Rwu;
+            pub const Re = usart1.Cr1.Re;
+            pub const Te = usart1.Cr1.Te;
+            pub const Idleie = usart1.Cr1.Idleie;
+            pub const Rxneie = usart1.Cr1.Rxneie;
+            pub const Tcie = usart1.Cr1.Tcie;
+            pub const Txeie = usart1.Cr1.Txeie;
+            pub const Peie = usart1.Cr1.Peie;
+            pub const Ps = usart1.Cr1.Ps;
+            pub const Pce = usart1.Cr1.Pce;
+            pub const Wake = usart1.Cr1.Wake;
+            pub const M = usart1.Cr1.M;
+            pub const Ue = usart1.Cr1.Ue;
+            pub const Over8 = usart1.Cr1.Over8;
             sbk: Sbk, // Send break (u1)
             rwu: Rwu, // Receiver wakeup (u1)
             re: Re, // Receiver enable (u1)
@@ -9923,13 +9923,13 @@ pub const registers = struct {
         /// address: 0x40011410, path: usart6.cr2
         /// Control register 2
         pub const Cr2 = packed struct {
-            pub const Lbdl = usart1.cr2.Lbdl;
-            pub const Lbdie = usart1.cr2.Lbdie;
-            pub const Cpha = usart1.cr2.Cpha;
-            pub const Cpol = usart1.cr2.Cpol;
-            pub const Clken = usart1.cr2.Clken;
-            pub const Stop = usart1.cr2.Stop;
-            pub const Linen = usart1.cr2.Linen;
+            pub const Lbdl = usart1.Cr2.Lbdl;
+            pub const Lbdie = usart1.Cr2.Lbdie;
+            pub const Cpha = usart1.Cr2.Cpha;
+            pub const Cpol = usart1.Cr2.Cpol;
+            pub const Clken = usart1.Cr2.Clken;
+            pub const Stop = usart1.Cr2.Stop;
+            pub const Linen = usart1.Cr2.Linen;
             add: u4, // Address of the USART node
             _reserved_4_4: u1,
             lbdl: Lbdl, // lin break detection length (u1)
@@ -9948,18 +9948,18 @@ pub const registers = struct {
         /// address: 0x40011414, path: usart6.cr3
         /// Control register 3
         pub const Cr3 = packed struct {
-            pub const Eie = usart1.cr3.Eie;
-            pub const Iren = usart1.cr3.Iren;
-            pub const Irlp = usart1.cr3.Irlp;
-            pub const Hdsel = usart1.cr3.Hdsel;
-            pub const Nack = usart1.cr3.Nack;
-            pub const Scen = usart1.cr3.Scen;
-            pub const Dmar = usart1.cr3.Dmar;
-            pub const Dmat = usart1.cr3.Dmat;
-            pub const Rtse = usart1.cr3.Rtse;
-            pub const Ctse = usart1.cr3.Ctse;
-            pub const Ctsie = usart1.cr3.Ctsie;
-            pub const Onebit = usart1.cr3.Onebit;
+            pub const Eie = usart1.Cr3.Eie;
+            pub const Iren = usart1.Cr3.Iren;
+            pub const Irlp = usart1.Cr3.Irlp;
+            pub const Hdsel = usart1.Cr3.Hdsel;
+            pub const Nack = usart1.Cr3.Nack;
+            pub const Scen = usart1.Cr3.Scen;
+            pub const Dmar = usart1.Cr3.Dmar;
+            pub const Dmat = usart1.Cr3.Dmat;
+            pub const Rtse = usart1.Cr3.Rtse;
+            pub const Ctse = usart1.Cr3.Ctse;
+            pub const Ctsie = usart1.Cr3.Ctsie;
+            pub const Onebit = usart1.Cr3.Onebit;
             eie: Eie, // Error interrupt enable (u1)
             iren: Iren, // IrDA mode enable (u1)
             irlp: Irlp, // IrDA low-power (u1)
@@ -9992,11 +9992,11 @@ pub const registers = struct {
         /// address: 0x40026400, path: dma2.lisr
         /// low interrupt status register
         pub const Lisr = packed struct {
-            pub const Feif0 = dma1.lisr.Feif0;
-            pub const Dmeif0 = dma1.lisr.Dmeif0;
-            pub const Teif0 = dma1.lisr.Teif0;
-            pub const Htif0 = dma1.lisr.Htif0;
-            pub const Tcif0 = dma1.lisr.Tcif0;
+            pub const Feif0 = dma1.Lisr.Feif0;
+            pub const Dmeif0 = dma1.Lisr.Dmeif0;
+            pub const Teif0 = dma1.Lisr.Teif0;
+            pub const Htif0 = dma1.Lisr.Htif0;
+            pub const Tcif0 = dma1.Lisr.Tcif0;
             feif0: Feif0, // Stream x FIFO error interrupt flag (x=3..0) (u1)
             _reserved_1_1: u1,
             dmeif0: Dmeif0, // Stream x direct mode error interrupt flag (x=3..0) (u1)
@@ -10029,11 +10029,11 @@ pub const registers = struct {
         /// address: 0x40026404, path: dma2.hisr
         /// high interrupt status register
         pub const Hisr = packed struct {
-            pub const Feif4 = dma1.hisr.Feif4;
-            pub const Dmeif4 = dma1.hisr.Dmeif4;
-            pub const Teif4 = dma1.hisr.Teif4;
-            pub const Htif4 = dma1.hisr.Htif4;
-            pub const Tcif4 = dma1.hisr.Tcif4;
+            pub const Feif4 = dma1.Hisr.Feif4;
+            pub const Dmeif4 = dma1.Hisr.Dmeif4;
+            pub const Teif4 = dma1.Hisr.Teif4;
+            pub const Htif4 = dma1.Hisr.Htif4;
+            pub const Tcif4 = dma1.Hisr.Tcif4;
             feif4: Feif4, // Stream x FIFO error interrupt flag (x=7..4) (u1)
             _reserved_1_1: u1,
             dmeif4: Dmeif4, // Stream x direct mode error interrupt flag (x=7..4) (u1)
@@ -10066,11 +10066,11 @@ pub const registers = struct {
         /// address: 0x40026408, path: dma2.lifcr
         /// low interrupt flag clear register
         pub const Lifcr = packed struct {
-            pub const Cfeif0 = dma1.lifcr.Cfeif0;
-            pub const Cdmeif0 = dma1.lifcr.Cdmeif0;
-            pub const Cteif0 = dma1.lifcr.Cteif0;
-            pub const Chtif0 = dma1.lifcr.Chtif0;
-            pub const Ctcif0 = dma1.lifcr.Ctcif0;
+            pub const Cfeif0 = dma1.Lifcr.Cfeif0;
+            pub const Cdmeif0 = dma1.Lifcr.Cdmeif0;
+            pub const Cteif0 = dma1.Lifcr.Cteif0;
+            pub const Chtif0 = dma1.Lifcr.Chtif0;
+            pub const Ctcif0 = dma1.Lifcr.Ctcif0;
             cfeif0: Cfeif0, // Stream x clear FIFO error interrupt flag (x = 3..0) (u1)
             _reserved_1_1: u1,
             cdmeif0: Cdmeif0, // Stream x clear direct mode error interrupt flag (x = 3..0) (u1)
@@ -10103,11 +10103,11 @@ pub const registers = struct {
         /// address: 0x4002640c, path: dma2.hifcr
         /// high interrupt flag clear register
         pub const Hifcr = packed struct {
-            pub const Cfeif4 = dma1.hifcr.Cfeif4;
-            pub const Cdmeif4 = dma1.hifcr.Cdmeif4;
-            pub const Cteif4 = dma1.hifcr.Cteif4;
-            pub const Chtif4 = dma1.hifcr.Chtif4;
-            pub const Ctcif4 = dma1.hifcr.Ctcif4;
+            pub const Cfeif4 = dma1.Hifcr.Cfeif4;
+            pub const Cdmeif4 = dma1.Hifcr.Cdmeif4;
+            pub const Cteif4 = dma1.Hifcr.Cteif4;
+            pub const Chtif4 = dma1.Hifcr.Chtif4;
+            pub const Ctcif4 = dma1.Hifcr.Ctcif4;
             cfeif4: Cfeif4, // Stream x clear FIFO error interrupt flag (x = 7..4) (u1)
             _reserved_1_1: u1,
             cdmeif4: Cdmeif4, // Stream x clear direct mode error interrupt flag (x = 7..4) (u1)
@@ -10140,21 +10140,21 @@ pub const registers = struct {
         /// address: 0x40026410, path: dma2.st0cr
         /// stream x configuration register
         pub const St0cr = packed struct {
-            pub const En = dma1.st0cr.En;
-            pub const Dmeie = dma1.st0cr.Dmeie;
-            pub const Teie = dma1.st0cr.Teie;
-            pub const Htie = dma1.st0cr.Htie;
-            pub const Tcie = usart1.cr1.Tcie;
-            pub const Pfctrl = dma1.st0cr.Pfctrl;
-            pub const Dir = dma1.st0cr.Dir;
-            pub const Circ = dma1.st0cr.Circ;
-            pub const Pinc = dma1.st0cr.Pinc;
-            pub const Psize = dma1.st0cr.Psize;
-            pub const Pincos = dma1.st0cr.Pincos;
-            pub const Pl = dma1.st0cr.Pl;
-            pub const Dbm = dma1.st0cr.Dbm;
-            pub const Ct = dma1.st0cr.Ct;
-            pub const Pburst = dma1.st0cr.Pburst;
+            pub const En = dma1.St0cr.En;
+            pub const Dmeie = dma1.St0cr.Dmeie;
+            pub const Teie = dma1.St0cr.Teie;
+            pub const Htie = dma1.St0cr.Htie;
+            pub const Tcie = usart1.Cr1.Tcie;
+            pub const Pfctrl = dma1.St0cr.Pfctrl;
+            pub const Dir = dma1.St0cr.Dir;
+            pub const Circ = dma1.St0cr.Circ;
+            pub const Pinc = dma1.St0cr.Pinc;
+            pub const Psize = dma1.St0cr.Psize;
+            pub const Pincos = dma1.St0cr.Pincos;
+            pub const Pl = dma1.St0cr.Pl;
+            pub const Dbm = dma1.St0cr.Dbm;
+            pub const Ct = dma1.St0cr.Ct;
+            pub const Pburst = dma1.St0cr.Pburst;
             en: En, // Stream enable / flag stream ready when read low (u1)
             dmeie: Dmeie, // Direct mode error interrupt enable (u1)
             teie: Teie, // Transfer error interrupt enable (u1)
@@ -10211,10 +10211,10 @@ pub const registers = struct {
         /// address: 0x40026424, path: dma2.st0fcr
         /// stream x FIFO control register
         pub const St0fcr = packed struct {
-            pub const Fth = dma1.st0fcr.Fth;
-            pub const Dmdis = dma1.st0fcr.Dmdis;
-            pub const Fs = dma1.st0fcr.Fs;
-            pub const Feie = dma1.st0fcr.Feie;
+            pub const Fth = dma1.St0fcr.Fth;
+            pub const Dmdis = dma1.St0fcr.Dmdis;
+            pub const Fs = dma1.St0fcr.Fs;
+            pub const Feie = dma1.St0fcr.Feie;
             fth: Fth, // FIFO threshold selection (u2)
             dmdis: Dmdis, // Direct mode disable (u1)
             fs: Fs, // FIFO status (u3)
@@ -10227,21 +10227,21 @@ pub const registers = struct {
         /// address: 0x40026428, path: dma2.st1cr
         /// stream x configuration register
         pub const St1cr = packed struct {
-            pub const En = dma1.st0cr.En;
-            pub const Dmeie = dma1.st0cr.Dmeie;
-            pub const Teie = dma1.st0cr.Teie;
-            pub const Htie = dma1.st0cr.Htie;
-            pub const Tcie = usart1.cr1.Tcie;
-            pub const Pfctrl = dma1.st0cr.Pfctrl;
-            pub const Dir = dma1.st0cr.Dir;
-            pub const Circ = dma1.st0cr.Circ;
-            pub const Pinc = dma1.st0cr.Pinc;
-            pub const Psize = dma1.st0cr.Psize;
-            pub const Pincos = dma1.st0cr.Pincos;
-            pub const Pl = dma1.st0cr.Pl;
-            pub const Dbm = dma1.st0cr.Dbm;
-            pub const Ct = dma1.st0cr.Ct;
-            pub const Pburst = dma1.st0cr.Pburst;
+            pub const En = dma1.St0cr.En;
+            pub const Dmeie = dma1.St0cr.Dmeie;
+            pub const Teie = dma1.St0cr.Teie;
+            pub const Htie = dma1.St0cr.Htie;
+            pub const Tcie = usart1.Cr1.Tcie;
+            pub const Pfctrl = dma1.St0cr.Pfctrl;
+            pub const Dir = dma1.St0cr.Dir;
+            pub const Circ = dma1.St0cr.Circ;
+            pub const Pinc = dma1.St0cr.Pinc;
+            pub const Psize = dma1.St0cr.Psize;
+            pub const Pincos = dma1.St0cr.Pincos;
+            pub const Pl = dma1.St0cr.Pl;
+            pub const Dbm = dma1.St0cr.Dbm;
+            pub const Ct = dma1.St0cr.Ct;
+            pub const Pburst = dma1.St0cr.Pburst;
             en: En, // Stream enable / flag stream ready when read low (u1)
             dmeie: Dmeie, // Direct mode error interrupt enable (u1)
             teie: Teie, // Transfer error interrupt enable (u1)
@@ -10298,10 +10298,10 @@ pub const registers = struct {
         /// address: 0x4002643c, path: dma2.st1fcr
         /// stream x FIFO control register
         pub const St1fcr = packed struct {
-            pub const Fth = dma1.st0fcr.Fth;
-            pub const Dmdis = dma1.st0fcr.Dmdis;
-            pub const Fs = dma1.st0fcr.Fs;
-            pub const Feie = dma1.st0fcr.Feie;
+            pub const Fth = dma1.St0fcr.Fth;
+            pub const Dmdis = dma1.St0fcr.Dmdis;
+            pub const Fs = dma1.St0fcr.Fs;
+            pub const Feie = dma1.St0fcr.Feie;
             fth: Fth, // FIFO threshold selection (u2)
             dmdis: Dmdis, // Direct mode disable (u1)
             fs: Fs, // FIFO status (u3)
@@ -10314,21 +10314,21 @@ pub const registers = struct {
         /// address: 0x40026440, path: dma2.st2cr
         /// stream x configuration register
         pub const St2cr = packed struct {
-            pub const En = dma1.st0cr.En;
-            pub const Dmeie = dma1.st0cr.Dmeie;
-            pub const Teie = dma1.st0cr.Teie;
-            pub const Htie = dma1.st0cr.Htie;
-            pub const Tcie = usart1.cr1.Tcie;
-            pub const Pfctrl = dma1.st0cr.Pfctrl;
-            pub const Dir = dma1.st0cr.Dir;
-            pub const Circ = dma1.st0cr.Circ;
-            pub const Pinc = dma1.st0cr.Pinc;
-            pub const Psize = dma1.st0cr.Psize;
-            pub const Pincos = dma1.st0cr.Pincos;
-            pub const Pl = dma1.st0cr.Pl;
-            pub const Dbm = dma1.st0cr.Dbm;
-            pub const Ct = dma1.st0cr.Ct;
-            pub const Pburst = dma1.st0cr.Pburst;
+            pub const En = dma1.St0cr.En;
+            pub const Dmeie = dma1.St0cr.Dmeie;
+            pub const Teie = dma1.St0cr.Teie;
+            pub const Htie = dma1.St0cr.Htie;
+            pub const Tcie = usart1.Cr1.Tcie;
+            pub const Pfctrl = dma1.St0cr.Pfctrl;
+            pub const Dir = dma1.St0cr.Dir;
+            pub const Circ = dma1.St0cr.Circ;
+            pub const Pinc = dma1.St0cr.Pinc;
+            pub const Psize = dma1.St0cr.Psize;
+            pub const Pincos = dma1.St0cr.Pincos;
+            pub const Pl = dma1.St0cr.Pl;
+            pub const Dbm = dma1.St0cr.Dbm;
+            pub const Ct = dma1.St0cr.Ct;
+            pub const Pburst = dma1.St0cr.Pburst;
             en: En, // Stream enable / flag stream ready when read low (u1)
             dmeie: Dmeie, // Direct mode error interrupt enable (u1)
             teie: Teie, // Transfer error interrupt enable (u1)
@@ -10385,10 +10385,10 @@ pub const registers = struct {
         /// address: 0x40026454, path: dma2.st2fcr
         /// stream x FIFO control register
         pub const St2fcr = packed struct {
-            pub const Fth = dma1.st0fcr.Fth;
-            pub const Dmdis = dma1.st0fcr.Dmdis;
-            pub const Fs = dma1.st0fcr.Fs;
-            pub const Feie = dma1.st0fcr.Feie;
+            pub const Fth = dma1.St0fcr.Fth;
+            pub const Dmdis = dma1.St0fcr.Dmdis;
+            pub const Fs = dma1.St0fcr.Fs;
+            pub const Feie = dma1.St0fcr.Feie;
             fth: Fth, // FIFO threshold selection (u2)
             dmdis: Dmdis, // Direct mode disable (u1)
             fs: Fs, // FIFO status (u3)
@@ -10401,21 +10401,21 @@ pub const registers = struct {
         /// address: 0x40026458, path: dma2.st3cr
         /// stream x configuration register
         pub const St3cr = packed struct {
-            pub const En = dma1.st0cr.En;
-            pub const Dmeie = dma1.st0cr.Dmeie;
-            pub const Teie = dma1.st0cr.Teie;
-            pub const Htie = dma1.st0cr.Htie;
-            pub const Tcie = usart1.cr1.Tcie;
-            pub const Pfctrl = dma1.st0cr.Pfctrl;
-            pub const Dir = dma1.st0cr.Dir;
-            pub const Circ = dma1.st0cr.Circ;
-            pub const Pinc = dma1.st0cr.Pinc;
-            pub const Psize = dma1.st0cr.Psize;
-            pub const Pincos = dma1.st0cr.Pincos;
-            pub const Pl = dma1.st0cr.Pl;
-            pub const Dbm = dma1.st0cr.Dbm;
-            pub const Ct = dma1.st0cr.Ct;
-            pub const Pburst = dma1.st0cr.Pburst;
+            pub const En = dma1.St0cr.En;
+            pub const Dmeie = dma1.St0cr.Dmeie;
+            pub const Teie = dma1.St0cr.Teie;
+            pub const Htie = dma1.St0cr.Htie;
+            pub const Tcie = usart1.Cr1.Tcie;
+            pub const Pfctrl = dma1.St0cr.Pfctrl;
+            pub const Dir = dma1.St0cr.Dir;
+            pub const Circ = dma1.St0cr.Circ;
+            pub const Pinc = dma1.St0cr.Pinc;
+            pub const Psize = dma1.St0cr.Psize;
+            pub const Pincos = dma1.St0cr.Pincos;
+            pub const Pl = dma1.St0cr.Pl;
+            pub const Dbm = dma1.St0cr.Dbm;
+            pub const Ct = dma1.St0cr.Ct;
+            pub const Pburst = dma1.St0cr.Pburst;
             en: En, // Stream enable / flag stream ready when read low (u1)
             dmeie: Dmeie, // Direct mode error interrupt enable (u1)
             teie: Teie, // Transfer error interrupt enable (u1)
@@ -10472,10 +10472,10 @@ pub const registers = struct {
         /// address: 0x4002646c, path: dma2.st3fcr
         /// stream x FIFO control register
         pub const St3fcr = packed struct {
-            pub const Fth = dma1.st0fcr.Fth;
-            pub const Dmdis = dma1.st0fcr.Dmdis;
-            pub const Fs = dma1.st0fcr.Fs;
-            pub const Feie = dma1.st0fcr.Feie;
+            pub const Fth = dma1.St0fcr.Fth;
+            pub const Dmdis = dma1.St0fcr.Dmdis;
+            pub const Fs = dma1.St0fcr.Fs;
+            pub const Feie = dma1.St0fcr.Feie;
             fth: Fth, // FIFO threshold selection (u2)
             dmdis: Dmdis, // Direct mode disable (u1)
             fs: Fs, // FIFO status (u3)
@@ -10488,21 +10488,21 @@ pub const registers = struct {
         /// address: 0x40026470, path: dma2.st4cr
         /// stream x configuration register
         pub const St4cr = packed struct {
-            pub const En = dma1.st0cr.En;
-            pub const Dmeie = dma1.st0cr.Dmeie;
-            pub const Teie = dma1.st0cr.Teie;
-            pub const Htie = dma1.st0cr.Htie;
-            pub const Tcie = usart1.cr1.Tcie;
-            pub const Pfctrl = dma1.st0cr.Pfctrl;
-            pub const Dir = dma1.st0cr.Dir;
-            pub const Circ = dma1.st0cr.Circ;
-            pub const Pinc = dma1.st0cr.Pinc;
-            pub const Psize = dma1.st0cr.Psize;
-            pub const Pincos = dma1.st0cr.Pincos;
-            pub const Pl = dma1.st0cr.Pl;
-            pub const Dbm = dma1.st0cr.Dbm;
-            pub const Ct = dma1.st0cr.Ct;
-            pub const Pburst = dma1.st0cr.Pburst;
+            pub const En = dma1.St0cr.En;
+            pub const Dmeie = dma1.St0cr.Dmeie;
+            pub const Teie = dma1.St0cr.Teie;
+            pub const Htie = dma1.St0cr.Htie;
+            pub const Tcie = usart1.Cr1.Tcie;
+            pub const Pfctrl = dma1.St0cr.Pfctrl;
+            pub const Dir = dma1.St0cr.Dir;
+            pub const Circ = dma1.St0cr.Circ;
+            pub const Pinc = dma1.St0cr.Pinc;
+            pub const Psize = dma1.St0cr.Psize;
+            pub const Pincos = dma1.St0cr.Pincos;
+            pub const Pl = dma1.St0cr.Pl;
+            pub const Dbm = dma1.St0cr.Dbm;
+            pub const Ct = dma1.St0cr.Ct;
+            pub const Pburst = dma1.St0cr.Pburst;
             en: En, // Stream enable / flag stream ready when read low (u1)
             dmeie: Dmeie, // Direct mode error interrupt enable (u1)
             teie: Teie, // Transfer error interrupt enable (u1)
@@ -10559,10 +10559,10 @@ pub const registers = struct {
         /// address: 0x40026484, path: dma2.st4fcr
         /// stream x FIFO control register
         pub const St4fcr = packed struct {
-            pub const Fth = dma1.st0fcr.Fth;
-            pub const Dmdis = dma1.st0fcr.Dmdis;
-            pub const Fs = dma1.st0fcr.Fs;
-            pub const Feie = dma1.st0fcr.Feie;
+            pub const Fth = dma1.St0fcr.Fth;
+            pub const Dmdis = dma1.St0fcr.Dmdis;
+            pub const Fs = dma1.St0fcr.Fs;
+            pub const Feie = dma1.St0fcr.Feie;
             fth: Fth, // FIFO threshold selection (u2)
             dmdis: Dmdis, // Direct mode disable (u1)
             fs: Fs, // FIFO status (u3)
@@ -10575,21 +10575,21 @@ pub const registers = struct {
         /// address: 0x40026488, path: dma2.st5cr
         /// stream x configuration register
         pub const St5cr = packed struct {
-            pub const En = dma1.st0cr.En;
-            pub const Dmeie = dma1.st0cr.Dmeie;
-            pub const Teie = dma1.st0cr.Teie;
-            pub const Htie = dma1.st0cr.Htie;
-            pub const Tcie = usart1.cr1.Tcie;
-            pub const Pfctrl = dma1.st0cr.Pfctrl;
-            pub const Dir = dma1.st0cr.Dir;
-            pub const Circ = dma1.st0cr.Circ;
-            pub const Pinc = dma1.st0cr.Pinc;
-            pub const Psize = dma1.st0cr.Psize;
-            pub const Pincos = dma1.st0cr.Pincos;
-            pub const Pl = dma1.st0cr.Pl;
-            pub const Dbm = dma1.st0cr.Dbm;
-            pub const Ct = dma1.st0cr.Ct;
-            pub const Pburst = dma1.st0cr.Pburst;
+            pub const En = dma1.St0cr.En;
+            pub const Dmeie = dma1.St0cr.Dmeie;
+            pub const Teie = dma1.St0cr.Teie;
+            pub const Htie = dma1.St0cr.Htie;
+            pub const Tcie = usart1.Cr1.Tcie;
+            pub const Pfctrl = dma1.St0cr.Pfctrl;
+            pub const Dir = dma1.St0cr.Dir;
+            pub const Circ = dma1.St0cr.Circ;
+            pub const Pinc = dma1.St0cr.Pinc;
+            pub const Psize = dma1.St0cr.Psize;
+            pub const Pincos = dma1.St0cr.Pincos;
+            pub const Pl = dma1.St0cr.Pl;
+            pub const Dbm = dma1.St0cr.Dbm;
+            pub const Ct = dma1.St0cr.Ct;
+            pub const Pburst = dma1.St0cr.Pburst;
             en: En, // Stream enable / flag stream ready when read low (u1)
             dmeie: Dmeie, // Direct mode error interrupt enable (u1)
             teie: Teie, // Transfer error interrupt enable (u1)
@@ -10646,10 +10646,10 @@ pub const registers = struct {
         /// address: 0x4002649c, path: dma2.st5fcr
         /// stream x FIFO control register
         pub const St5fcr = packed struct {
-            pub const Fth = dma1.st0fcr.Fth;
-            pub const Dmdis = dma1.st0fcr.Dmdis;
-            pub const Fs = dma1.st0fcr.Fs;
-            pub const Feie = dma1.st0fcr.Feie;
+            pub const Fth = dma1.St0fcr.Fth;
+            pub const Dmdis = dma1.St0fcr.Dmdis;
+            pub const Fs = dma1.St0fcr.Fs;
+            pub const Feie = dma1.St0fcr.Feie;
             fth: Fth, // FIFO threshold selection (u2)
             dmdis: Dmdis, // Direct mode disable (u1)
             fs: Fs, // FIFO status (u3)
@@ -10662,21 +10662,21 @@ pub const registers = struct {
         /// address: 0x400264a0, path: dma2.st6cr
         /// stream x configuration register
         pub const St6cr = packed struct {
-            pub const En = dma1.st0cr.En;
-            pub const Dmeie = dma1.st0cr.Dmeie;
-            pub const Teie = dma1.st0cr.Teie;
-            pub const Htie = dma1.st0cr.Htie;
-            pub const Tcie = usart1.cr1.Tcie;
-            pub const Pfctrl = dma1.st0cr.Pfctrl;
-            pub const Dir = dma1.st0cr.Dir;
-            pub const Circ = dma1.st0cr.Circ;
-            pub const Pinc = dma1.st0cr.Pinc;
-            pub const Psize = dma1.st0cr.Psize;
-            pub const Pincos = dma1.st0cr.Pincos;
-            pub const Pl = dma1.st0cr.Pl;
-            pub const Dbm = dma1.st0cr.Dbm;
-            pub const Ct = dma1.st0cr.Ct;
-            pub const Pburst = dma1.st0cr.Pburst;
+            pub const En = dma1.St0cr.En;
+            pub const Dmeie = dma1.St0cr.Dmeie;
+            pub const Teie = dma1.St0cr.Teie;
+            pub const Htie = dma1.St0cr.Htie;
+            pub const Tcie = usart1.Cr1.Tcie;
+            pub const Pfctrl = dma1.St0cr.Pfctrl;
+            pub const Dir = dma1.St0cr.Dir;
+            pub const Circ = dma1.St0cr.Circ;
+            pub const Pinc = dma1.St0cr.Pinc;
+            pub const Psize = dma1.St0cr.Psize;
+            pub const Pincos = dma1.St0cr.Pincos;
+            pub const Pl = dma1.St0cr.Pl;
+            pub const Dbm = dma1.St0cr.Dbm;
+            pub const Ct = dma1.St0cr.Ct;
+            pub const Pburst = dma1.St0cr.Pburst;
             en: En, // Stream enable / flag stream ready when read low (u1)
             dmeie: Dmeie, // Direct mode error interrupt enable (u1)
             teie: Teie, // Transfer error interrupt enable (u1)
@@ -10733,10 +10733,10 @@ pub const registers = struct {
         /// address: 0x400264b4, path: dma2.st6fcr
         /// stream x FIFO control register
         pub const St6fcr = packed struct {
-            pub const Fth = dma1.st0fcr.Fth;
-            pub const Dmdis = dma1.st0fcr.Dmdis;
-            pub const Fs = dma1.st0fcr.Fs;
-            pub const Feie = dma1.st0fcr.Feie;
+            pub const Fth = dma1.St0fcr.Fth;
+            pub const Dmdis = dma1.St0fcr.Dmdis;
+            pub const Fs = dma1.St0fcr.Fs;
+            pub const Feie = dma1.St0fcr.Feie;
             fth: Fth, // FIFO threshold selection (u2)
             dmdis: Dmdis, // Direct mode disable (u1)
             fs: Fs, // FIFO status (u3)
@@ -10749,21 +10749,21 @@ pub const registers = struct {
         /// address: 0x400264b8, path: dma2.st7cr
         /// stream x configuration register
         pub const St7cr = packed struct {
-            pub const En = dma1.st0cr.En;
-            pub const Dmeie = dma1.st0cr.Dmeie;
-            pub const Teie = dma1.st0cr.Teie;
-            pub const Htie = dma1.st0cr.Htie;
-            pub const Tcie = usart1.cr1.Tcie;
-            pub const Pfctrl = dma1.st0cr.Pfctrl;
-            pub const Dir = dma1.st0cr.Dir;
-            pub const Circ = dma1.st0cr.Circ;
-            pub const Pinc = dma1.st0cr.Pinc;
-            pub const Psize = dma1.st0cr.Psize;
-            pub const Pincos = dma1.st0cr.Pincos;
-            pub const Pl = dma1.st0cr.Pl;
-            pub const Dbm = dma1.st0cr.Dbm;
-            pub const Ct = dma1.st0cr.Ct;
-            pub const Pburst = dma1.st0cr.Pburst;
+            pub const En = dma1.St0cr.En;
+            pub const Dmeie = dma1.St0cr.Dmeie;
+            pub const Teie = dma1.St0cr.Teie;
+            pub const Htie = dma1.St0cr.Htie;
+            pub const Tcie = usart1.Cr1.Tcie;
+            pub const Pfctrl = dma1.St0cr.Pfctrl;
+            pub const Dir = dma1.St0cr.Dir;
+            pub const Circ = dma1.St0cr.Circ;
+            pub const Pinc = dma1.St0cr.Pinc;
+            pub const Psize = dma1.St0cr.Psize;
+            pub const Pincos = dma1.St0cr.Pincos;
+            pub const Pl = dma1.St0cr.Pl;
+            pub const Dbm = dma1.St0cr.Dbm;
+            pub const Ct = dma1.St0cr.Ct;
+            pub const Pburst = dma1.St0cr.Pburst;
             en: En, // Stream enable / flag stream ready when read low (u1)
             dmeie: Dmeie, // Direct mode error interrupt enable (u1)
             teie: Teie, // Transfer error interrupt enable (u1)
@@ -10820,10 +10820,10 @@ pub const registers = struct {
         /// address: 0x400264cc, path: dma2.st7fcr
         /// stream x FIFO control register
         pub const St7fcr = packed struct {
-            pub const Fth = dma1.st0fcr.Fth;
-            pub const Dmdis = dma1.st0fcr.Dmdis;
-            pub const Fs = dma1.st0fcr.Fs;
-            pub const Feie = dma1.st0fcr.Feie;
+            pub const Fth = dma1.St0fcr.Fth;
+            pub const Dmdis = dma1.St0fcr.Dmdis;
+            pub const Fs = dma1.St0fcr.Fs;
+            pub const Feie = dma1.St0fcr.Feie;
             fth: Fth, // FIFO threshold selection (u2)
             dmdis: Dmdis, // Direct mode disable (u1)
             fs: Fs, // FIFO status (u3)
@@ -10840,7 +10840,7 @@ pub const registers = struct {
         /// address: 0x40021000, path: gpioe.moder
         /// GPIO port mode register
         pub const Moder = packed struct {
-            pub const Moder0 = gpioh.moder.Moder0;
+            pub const Moder0 = gpioh.Moder.Moder0;
             moder0: Moder0, // Port x configuration bits (y = 0..15) (u2)
             moder1: Moder0, // Port x configuration bits (y = 0..15) (u2)
             moder2: Moder0, // Port x configuration bits (y = 0..15) (u2)
@@ -10863,7 +10863,7 @@ pub const registers = struct {
         /// address: 0x40021004, path: gpioe.otyper
         /// GPIO port output type register
         pub const Otyper = packed struct {
-            pub const Ot0 = gpioh.otyper.Ot0;
+            pub const Ot0 = gpioh.Otyper.Ot0;
             ot0: Ot0, // Port x configuration bits (y = 0..15) (u1)
             ot1: Ot0, // Port x configuration bits (y = 0..15) (u1)
             ot2: Ot0, // Port x configuration bits (y = 0..15) (u1)
@@ -10887,7 +10887,7 @@ pub const registers = struct {
         /// address: 0x40021008, path: gpioe.ospeedr
         /// GPIO port output speed register
         pub const Ospeedr = packed struct {
-            pub const Ospeedr0 = gpioh.ospeedr.Ospeedr0;
+            pub const Ospeedr0 = gpioh.Ospeedr.Ospeedr0;
             ospeedr0: Ospeedr0, // Port x configuration bits (y = 0..15) (u2)
             ospeedr1: Ospeedr0, // Port x configuration bits (y = 0..15) (u2)
             ospeedr2: Ospeedr0, // Port x configuration bits (y = 0..15) (u2)
@@ -10910,7 +10910,7 @@ pub const registers = struct {
         /// address: 0x4002100c, path: gpioe.pupdr
         /// GPIO port pull-up/pull-down register
         pub const Pupdr = packed struct {
-            pub const Pupdr0 = gpioh.pupdr.Pupdr0;
+            pub const Pupdr0 = gpioh.Pupdr.Pupdr0;
             pupdr0: Pupdr0, // Port x configuration bits (y = 0..15) (u2)
             pupdr1: Pupdr0, // Port x configuration bits (y = 0..15) (u2)
             pupdr2: Pupdr0, // Port x configuration bits (y = 0..15) (u2)
@@ -10933,7 +10933,7 @@ pub const registers = struct {
         /// address: 0x40021010, path: gpioe.idr
         /// GPIO port input data register
         pub const Idr = packed struct {
-            pub const Idr0 = gpioh.idr.Idr0;
+            pub const Idr0 = gpioh.Idr.Idr0;
             idr0: Idr0, // Port input data (y = 0..15) (u1)
             idr1: Idr0, // Port input data (y = 0..15) (u1)
             idr2: Idr0, // Port input data (y = 0..15) (u1)
@@ -10957,7 +10957,7 @@ pub const registers = struct {
         /// address: 0x40021014, path: gpioe.odr
         /// GPIO port output data register
         pub const Odr = packed struct {
-            pub const Odr0 = gpioh.odr.Odr0;
+            pub const Odr0 = gpioh.Odr.Odr0;
             odr0: Odr0, // Port output data (y = 0..15) (u1)
             odr1: Odr0, // Port output data (y = 0..15) (u1)
             odr2: Odr0, // Port output data (y = 0..15) (u1)
@@ -10981,8 +10981,8 @@ pub const registers = struct {
         /// address: 0x40021018, path: gpioe.bsrr
         /// GPIO port bit set/reset register
         pub const Bsrr = packed struct {
-            pub const Bs0w = gpioh.bsrr.Bs0w;
-            pub const Br0w = gpioh.bsrr.Br0w;
+            pub const Bs0w = gpioh.Bsrr.Bs0w;
+            pub const Br0w = gpioh.Bsrr.Br0w;
             bs0: Bs0w, // Port x set bit y (y= 0..15) (u1)
             bs1: Bs0w, // Port x set bit y (y= 0..15) (u1)
             bs2: Bs0w, // Port x set bit y (y= 0..15) (u1)
@@ -11021,8 +11021,8 @@ pub const registers = struct {
         /// address: 0x4002101c, path: gpioe.lckr
         /// GPIO port configuration lock register
         pub const Lckr = packed struct {
-            pub const Lck0 = gpioh.lckr.Lck0;
-            pub const Lckk = gpioh.lckr.Lckk;
+            pub const Lck0 = gpioh.Lckr.Lck0;
+            pub const Lckk = gpioh.Lckr.Lckk;
             lck0: Lck0, // Port x lock bit y (y= 0..15) (u1)
             lck1: Lck0, // Port x lock bit y (y= 0..15) (u1)
             lck2: Lck0, // Port x lock bit y (y= 0..15) (u1)
@@ -11047,7 +11047,7 @@ pub const registers = struct {
         /// address: 0x40021020, path: gpioe.afrl
         /// GPIO alternate function low register
         pub const Afrl = packed struct {
-            pub const Afrl0 = gpioh.afrl.Afrl0;
+            pub const Afrl0 = gpioh.Afrl.Afrl0;
             afrl0: Afrl0, // Alternate function selection for port x bit y (y = 0..7) (u4)
             afrl1: Afrl0, // Alternate function selection for port x bit y (y = 0..7) (u4)
             afrl2: Afrl0, // Alternate function selection for port x bit y (y = 0..7) (u4)
@@ -11062,7 +11062,7 @@ pub const registers = struct {
         /// address: 0x40021024, path: gpioe.afrh
         /// GPIO alternate function high register
         pub const Afrh = packed struct {
-            pub const Afrh8 = gpioh.afrh.Afrh8;
+            pub const Afrh8 = gpioh.Afrh.Afrh8;
             afrh8: Afrh8, // Alternate function selection for port x bit y (y = 8..15) (u4)
             afrh9: Afrh8, // Alternate function selection for port x bit y (y = 8..15) (u4)
             afrh10: Afrh8, // Alternate function selection for port x bit y (y = 8..15) (u4)
@@ -11081,7 +11081,7 @@ pub const registers = struct {
         /// address: 0x40020c00, path: gpiod.moder
         /// GPIO port mode register
         pub const Moder = packed struct {
-            pub const Moder0 = gpioh.moder.Moder0;
+            pub const Moder0 = gpioh.Moder.Moder0;
             moder0: Moder0, // Port x configuration bits (y = 0..15) (u2)
             moder1: Moder0, // Port x configuration bits (y = 0..15) (u2)
             moder2: Moder0, // Port x configuration bits (y = 0..15) (u2)
@@ -11104,7 +11104,7 @@ pub const registers = struct {
         /// address: 0x40020c04, path: gpiod.otyper
         /// GPIO port output type register
         pub const Otyper = packed struct {
-            pub const Ot0 = gpioh.otyper.Ot0;
+            pub const Ot0 = gpioh.Otyper.Ot0;
             ot0: Ot0, // Port x configuration bits (y = 0..15) (u1)
             ot1: Ot0, // Port x configuration bits (y = 0..15) (u1)
             ot2: Ot0, // Port x configuration bits (y = 0..15) (u1)
@@ -11128,7 +11128,7 @@ pub const registers = struct {
         /// address: 0x40020c08, path: gpiod.ospeedr
         /// GPIO port output speed register
         pub const Ospeedr = packed struct {
-            pub const Ospeedr0 = gpioh.ospeedr.Ospeedr0;
+            pub const Ospeedr0 = gpioh.Ospeedr.Ospeedr0;
             ospeedr0: Ospeedr0, // Port x configuration bits (y = 0..15) (u2)
             ospeedr1: Ospeedr0, // Port x configuration bits (y = 0..15) (u2)
             ospeedr2: Ospeedr0, // Port x configuration bits (y = 0..15) (u2)
@@ -11151,7 +11151,7 @@ pub const registers = struct {
         /// address: 0x40020c0c, path: gpiod.pupdr
         /// GPIO port pull-up/pull-down register
         pub const Pupdr = packed struct {
-            pub const Pupdr0 = gpioh.pupdr.Pupdr0;
+            pub const Pupdr0 = gpioh.Pupdr.Pupdr0;
             pupdr0: Pupdr0, // Port x configuration bits (y = 0..15) (u2)
             pupdr1: Pupdr0, // Port x configuration bits (y = 0..15) (u2)
             pupdr2: Pupdr0, // Port x configuration bits (y = 0..15) (u2)
@@ -11174,7 +11174,7 @@ pub const registers = struct {
         /// address: 0x40020c10, path: gpiod.idr
         /// GPIO port input data register
         pub const Idr = packed struct {
-            pub const Idr0 = gpioh.idr.Idr0;
+            pub const Idr0 = gpioh.Idr.Idr0;
             idr0: Idr0, // Port input data (y = 0..15) (u1)
             idr1: Idr0, // Port input data (y = 0..15) (u1)
             idr2: Idr0, // Port input data (y = 0..15) (u1)
@@ -11198,7 +11198,7 @@ pub const registers = struct {
         /// address: 0x40020c14, path: gpiod.odr
         /// GPIO port output data register
         pub const Odr = packed struct {
-            pub const Odr0 = gpioh.odr.Odr0;
+            pub const Odr0 = gpioh.Odr.Odr0;
             odr0: Odr0, // Port output data (y = 0..15) (u1)
             odr1: Odr0, // Port output data (y = 0..15) (u1)
             odr2: Odr0, // Port output data (y = 0..15) (u1)
@@ -11222,8 +11222,8 @@ pub const registers = struct {
         /// address: 0x40020c18, path: gpiod.bsrr
         /// GPIO port bit set/reset register
         pub const Bsrr = packed struct {
-            pub const Bs0w = gpioh.bsrr.Bs0w;
-            pub const Br0w = gpioh.bsrr.Br0w;
+            pub const Bs0w = gpioh.Bsrr.Bs0w;
+            pub const Br0w = gpioh.Bsrr.Br0w;
             bs0: Bs0w, // Port x set bit y (y= 0..15) (u1)
             bs1: Bs0w, // Port x set bit y (y= 0..15) (u1)
             bs2: Bs0w, // Port x set bit y (y= 0..15) (u1)
@@ -11262,8 +11262,8 @@ pub const registers = struct {
         /// address: 0x40020c1c, path: gpiod.lckr
         /// GPIO port configuration lock register
         pub const Lckr = packed struct {
-            pub const Lck0 = gpioh.lckr.Lck0;
-            pub const Lckk = gpioh.lckr.Lckk;
+            pub const Lck0 = gpioh.Lckr.Lck0;
+            pub const Lckk = gpioh.Lckr.Lckk;
             lck0: Lck0, // Port x lock bit y (y= 0..15) (u1)
             lck1: Lck0, // Port x lock bit y (y= 0..15) (u1)
             lck2: Lck0, // Port x lock bit y (y= 0..15) (u1)
@@ -11288,7 +11288,7 @@ pub const registers = struct {
         /// address: 0x40020c20, path: gpiod.afrl
         /// GPIO alternate function low register
         pub const Afrl = packed struct {
-            pub const Afrl0 = gpioh.afrl.Afrl0;
+            pub const Afrl0 = gpioh.Afrl.Afrl0;
             afrl0: Afrl0, // Alternate function selection for port x bit y (y = 0..7) (u4)
             afrl1: Afrl0, // Alternate function selection for port x bit y (y = 0..7) (u4)
             afrl2: Afrl0, // Alternate function selection for port x bit y (y = 0..7) (u4)
@@ -11303,7 +11303,7 @@ pub const registers = struct {
         /// address: 0x40020c24, path: gpiod.afrh
         /// GPIO alternate function high register
         pub const Afrh = packed struct {
-            pub const Afrh8 = gpioh.afrh.Afrh8;
+            pub const Afrh8 = gpioh.Afrh.Afrh8;
             afrh8: Afrh8, // Alternate function selection for port x bit y (y = 8..15) (u4)
             afrh9: Afrh8, // Alternate function selection for port x bit y (y = 8..15) (u4)
             afrh10: Afrh8, // Alternate function selection for port x bit y (y = 8..15) (u4)
@@ -11322,7 +11322,7 @@ pub const registers = struct {
         /// address: 0x40020800, path: gpioc.moder
         /// GPIO port mode register
         pub const Moder = packed struct {
-            pub const Moder0 = gpioh.moder.Moder0;
+            pub const Moder0 = gpioh.Moder.Moder0;
             moder0: Moder0, // Port x configuration bits (y = 0..15) (u2)
             moder1: Moder0, // Port x configuration bits (y = 0..15) (u2)
             moder2: Moder0, // Port x configuration bits (y = 0..15) (u2)
@@ -11345,7 +11345,7 @@ pub const registers = struct {
         /// address: 0x40020804, path: gpioc.otyper
         /// GPIO port output type register
         pub const Otyper = packed struct {
-            pub const Ot0 = gpioh.otyper.Ot0;
+            pub const Ot0 = gpioh.Otyper.Ot0;
             ot0: Ot0, // Port x configuration bits (y = 0..15) (u1)
             ot1: Ot0, // Port x configuration bits (y = 0..15) (u1)
             ot2: Ot0, // Port x configuration bits (y = 0..15) (u1)
@@ -11369,7 +11369,7 @@ pub const registers = struct {
         /// address: 0x40020808, path: gpioc.ospeedr
         /// GPIO port output speed register
         pub const Ospeedr = packed struct {
-            pub const Ospeedr0 = gpioh.ospeedr.Ospeedr0;
+            pub const Ospeedr0 = gpioh.Ospeedr.Ospeedr0;
             ospeedr0: Ospeedr0, // Port x configuration bits (y = 0..15) (u2)
             ospeedr1: Ospeedr0, // Port x configuration bits (y = 0..15) (u2)
             ospeedr2: Ospeedr0, // Port x configuration bits (y = 0..15) (u2)
@@ -11392,7 +11392,7 @@ pub const registers = struct {
         /// address: 0x4002080c, path: gpioc.pupdr
         /// GPIO port pull-up/pull-down register
         pub const Pupdr = packed struct {
-            pub const Pupdr0 = gpioh.pupdr.Pupdr0;
+            pub const Pupdr0 = gpioh.Pupdr.Pupdr0;
             pupdr0: Pupdr0, // Port x configuration bits (y = 0..15) (u2)
             pupdr1: Pupdr0, // Port x configuration bits (y = 0..15) (u2)
             pupdr2: Pupdr0, // Port x configuration bits (y = 0..15) (u2)
@@ -11415,7 +11415,7 @@ pub const registers = struct {
         /// address: 0x40020810, path: gpioc.idr
         /// GPIO port input data register
         pub const Idr = packed struct {
-            pub const Idr0 = gpioh.idr.Idr0;
+            pub const Idr0 = gpioh.Idr.Idr0;
             idr0: Idr0, // Port input data (y = 0..15) (u1)
             idr1: Idr0, // Port input data (y = 0..15) (u1)
             idr2: Idr0, // Port input data (y = 0..15) (u1)
@@ -11439,7 +11439,7 @@ pub const registers = struct {
         /// address: 0x40020814, path: gpioc.odr
         /// GPIO port output data register
         pub const Odr = packed struct {
-            pub const Odr0 = gpioh.odr.Odr0;
+            pub const Odr0 = gpioh.Odr.Odr0;
             odr0: Odr0, // Port output data (y = 0..15) (u1)
             odr1: Odr0, // Port output data (y = 0..15) (u1)
             odr2: Odr0, // Port output data (y = 0..15) (u1)
@@ -11463,8 +11463,8 @@ pub const registers = struct {
         /// address: 0x40020818, path: gpioc.bsrr
         /// GPIO port bit set/reset register
         pub const Bsrr = packed struct {
-            pub const Bs0w = gpioh.bsrr.Bs0w;
-            pub const Br0w = gpioh.bsrr.Br0w;
+            pub const Bs0w = gpioh.Bsrr.Bs0w;
+            pub const Br0w = gpioh.Bsrr.Br0w;
             bs0: Bs0w, // Port x set bit y (y= 0..15) (u1)
             bs1: Bs0w, // Port x set bit y (y= 0..15) (u1)
             bs2: Bs0w, // Port x set bit y (y= 0..15) (u1)
@@ -11503,8 +11503,8 @@ pub const registers = struct {
         /// address: 0x4002081c, path: gpioc.lckr
         /// GPIO port configuration lock register
         pub const Lckr = packed struct {
-            pub const Lck0 = gpioh.lckr.Lck0;
-            pub const Lckk = gpioh.lckr.Lckk;
+            pub const Lck0 = gpioh.Lckr.Lck0;
+            pub const Lckk = gpioh.Lckr.Lckk;
             lck0: Lck0, // Port x lock bit y (y= 0..15) (u1)
             lck1: Lck0, // Port x lock bit y (y= 0..15) (u1)
             lck2: Lck0, // Port x lock bit y (y= 0..15) (u1)
@@ -11529,7 +11529,7 @@ pub const registers = struct {
         /// address: 0x40020820, path: gpioc.afrl
         /// GPIO alternate function low register
         pub const Afrl = packed struct {
-            pub const Afrl0 = gpioh.afrl.Afrl0;
+            pub const Afrl0 = gpioh.Afrl.Afrl0;
             afrl0: Afrl0, // Alternate function selection for port x bit y (y = 0..7) (u4)
             afrl1: Afrl0, // Alternate function selection for port x bit y (y = 0..7) (u4)
             afrl2: Afrl0, // Alternate function selection for port x bit y (y = 0..7) (u4)
@@ -11544,7 +11544,7 @@ pub const registers = struct {
         /// address: 0x40020824, path: gpioc.afrh
         /// GPIO alternate function high register
         pub const Afrh = packed struct {
-            pub const Afrh8 = gpioh.afrh.Afrh8;
+            pub const Afrh8 = gpioh.Afrh.Afrh8;
             afrh8: Afrh8, // Alternate function selection for port x bit y (y = 8..15) (u4)
             afrh9: Afrh8, // Alternate function selection for port x bit y (y = 8..15) (u4)
             afrh10: Afrh8, // Alternate function selection for port x bit y (y = 8..15) (u4)
@@ -11563,20 +11563,20 @@ pub const registers = struct {
         /// address: 0x40005c00, path: i2c3.cr1
         /// Control register 1
         pub const Cr1 = packed struct {
-            pub const Pe = i2c1.cr1.Pe;
-            pub const Smbus = i2c1.cr1.Smbus;
-            pub const Smbtype = i2c1.cr1.Smbtype;
-            pub const Enarp = i2c1.cr1.Enarp;
-            pub const Enpec = i2c1.cr1.Enpec;
-            pub const Engc = i2c1.cr1.Engc;
-            pub const Nostretch = i2c1.cr1.Nostretch;
-            pub const Start = i2c1.cr1.Start;
-            pub const Stop = i2c1.cr1.Stop;
-            pub const Ack = i2c1.cr1.Ack;
-            pub const Pos = i2c1.cr1.Pos;
-            pub const Pec = i2c1.cr1.Pec;
-            pub const Alert = i2c1.cr1.Alert;
-            pub const Swrst = i2c1.cr1.Swrst;
+            pub const Pe = i2c1.Cr1.Pe;
+            pub const Smbus = i2c1.Cr1.Smbus;
+            pub const Smbtype = i2c1.Cr1.Smbtype;
+            pub const Enarp = i2c1.Cr1.Enarp;
+            pub const Enpec = i2c1.Cr1.Enpec;
+            pub const Engc = i2c1.Cr1.Engc;
+            pub const Nostretch = i2c1.Cr1.Nostretch;
+            pub const Start = i2c1.Cr1.Start;
+            pub const Stop = i2c1.Cr1.Stop;
+            pub const Ack = i2c1.Cr1.Ack;
+            pub const Pos = i2c1.Cr1.Pos;
+            pub const Pec = i2c1.Cr1.Pec;
+            pub const Alert = i2c1.Cr1.Alert;
+            pub const Swrst = i2c1.Cr1.Swrst;
             pe: Pe, // Peripheral enable (u1)
             smbus: Smbus, // SMBus mode (u1)
             _reserved_2_2: u1,
@@ -11600,11 +11600,11 @@ pub const registers = struct {
         /// address: 0x40005c04, path: i2c3.cr2
         /// Control register 2
         pub const Cr2 = packed struct {
-            pub const Iterren = i2c1.cr2.Iterren;
-            pub const Itevten = i2c1.cr2.Itevten;
-            pub const Itbufen = i2c1.cr2.Itbufen;
-            pub const Dmaen = i2c1.cr2.Dmaen;
-            pub const Last = i2c1.cr2.Last;
+            pub const Iterren = i2c1.Cr2.Iterren;
+            pub const Itevten = i2c1.Cr2.Itevten;
+            pub const Itbufen = i2c1.Cr2.Itbufen;
+            pub const Dmaen = i2c1.Cr2.Dmaen;
+            pub const Last = i2c1.Cr2.Last;
             freq: u6, // Peripheral clock frequency
             _reserved_6_7: u2,
             iterren: Iterren, // Error interrupt enable (u1)
@@ -11619,7 +11619,7 @@ pub const registers = struct {
         /// address: 0x40005c08, path: i2c3.oar1
         /// Own address register 1
         pub const Oar1 = packed struct {
-            pub const Addmode = i2c1.oar1.Addmode;
+            pub const Addmode = i2c1.Oar1.Addmode;
             add: u10, // Interface address
             _reserved_10_14: u5,
             addmode: Addmode, // Addressing mode (slave mode) (u1)
@@ -11630,7 +11630,7 @@ pub const registers = struct {
         /// address: 0x40005c0c, path: i2c3.oar2
         /// Own address register 2
         pub const Oar2 = packed struct {
-            pub const Endual = i2c1.oar2.Endual;
+            pub const Endual = i2c1.Oar2.Endual;
             endual: Endual, // Dual addressing mode enable (u1)
             add2: u7, // Interface address
             _padding_8_31: u24,
@@ -11644,19 +11644,19 @@ pub const registers = struct {
         /// address: 0x40005c14, path: i2c3.sr1
         /// Status register 1
         pub const Sr1 = packed struct {
-            pub const Sb = i2c1.sr1.Sb;
-            pub const Addr = i2c1.sr1.Addr;
-            pub const Btf = i2c1.sr1.Btf;
-            pub const Stopf = i2c1.sr1.Stopf;
-            pub const Rxne = i2c1.sr1.Rxne;
-            pub const Txe = i2c1.sr1.Txe;
-            pub const Berr = i2c1.sr1.Berr;
-            pub const Arlo = i2c1.sr1.Arlo;
-            pub const Af = i2c1.sr1.Af;
-            pub const Ovr = i2c1.sr1.Ovr;
-            pub const Pecerr = i2c1.sr1.Pecerr;
-            pub const Timeout = i2c1.sr1.Timeout;
-            pub const Smbalert = i2c1.sr1.Smbalert;
+            pub const Sb = i2c1.Sr1.Sb;
+            pub const Addr = i2c1.Sr1.Addr;
+            pub const Btf = i2c1.Sr1.Btf;
+            pub const Stopf = i2c1.Sr1.Stopf;
+            pub const Rxne = i2c1.Sr1.Rxne;
+            pub const Txe = i2c1.Sr1.Txe;
+            pub const Berr = i2c1.Sr1.Berr;
+            pub const Arlo = i2c1.Sr1.Arlo;
+            pub const Af = i2c1.Sr1.Af;
+            pub const Ovr = i2c1.Sr1.Ovr;
+            pub const Pecerr = i2c1.Sr1.Pecerr;
+            pub const Timeout = i2c1.Sr1.Timeout;
+            pub const Smbalert = i2c1.Sr1.Smbalert;
             sb: Sb, // Start bit (Master mode) (u1)
             addr: Addr, // Address sent (master mode)/matched (slave mode) (u1)
             btf: Btf, // Byte transfer finished (u1)
@@ -11696,8 +11696,8 @@ pub const registers = struct {
         /// address: 0x40005c1c, path: i2c3.ccr
         /// Clock control register
         pub const Ccr = packed struct {
-            pub const Duty = i2c1.ccr.Duty;
-            pub const FS = i2c1.ccr.FS;
+            pub const Duty = i2c1.Ccr.Duty;
+            pub const FS = i2c1.Ccr.FS;
             ccr: u12, // Clock control register in Fast/Standard mode (Master mode)
             _reserved_12_13: u2,
             duty: Duty, // Fast mode duty cycle (u1)
@@ -11713,8 +11713,8 @@ pub const registers = struct {
         /// address: 0x40005c24, path: i2c3.fltr
         /// FLTR register
         pub const Fltr = packed struct {
-            pub const Dnf = i2c1.fltr.Dnf;
-            pub const Anoff = i2c1.fltr.Anoff;
+            pub const Dnf = i2c1.Fltr.Dnf;
+            pub const Anoff = i2c1.Fltr.Anoff;
             dnf: Dnf, // Digital noise filter (u4)
             anoff: Anoff, // Analog noise filter (u1)
             _padding_5_31: u27,
@@ -11728,20 +11728,20 @@ pub const registers = struct {
         /// address: 0x40005800, path: i2c2.cr1
         /// Control register 1
         pub const Cr1 = packed struct {
-            pub const Pe = i2c1.cr1.Pe;
-            pub const Smbus = i2c1.cr1.Smbus;
-            pub const Smbtype = i2c1.cr1.Smbtype;
-            pub const Enarp = i2c1.cr1.Enarp;
-            pub const Enpec = i2c1.cr1.Enpec;
-            pub const Engc = i2c1.cr1.Engc;
-            pub const Nostretch = i2c1.cr1.Nostretch;
-            pub const Start = i2c1.cr1.Start;
-            pub const Stop = i2c1.cr1.Stop;
-            pub const Ack = i2c1.cr1.Ack;
-            pub const Pos = i2c1.cr1.Pos;
-            pub const Pec = i2c1.cr1.Pec;
-            pub const Alert = i2c1.cr1.Alert;
-            pub const Swrst = i2c1.cr1.Swrst;
+            pub const Pe = i2c1.Cr1.Pe;
+            pub const Smbus = i2c1.Cr1.Smbus;
+            pub const Smbtype = i2c1.Cr1.Smbtype;
+            pub const Enarp = i2c1.Cr1.Enarp;
+            pub const Enpec = i2c1.Cr1.Enpec;
+            pub const Engc = i2c1.Cr1.Engc;
+            pub const Nostretch = i2c1.Cr1.Nostretch;
+            pub const Start = i2c1.Cr1.Start;
+            pub const Stop = i2c1.Cr1.Stop;
+            pub const Ack = i2c1.Cr1.Ack;
+            pub const Pos = i2c1.Cr1.Pos;
+            pub const Pec = i2c1.Cr1.Pec;
+            pub const Alert = i2c1.Cr1.Alert;
+            pub const Swrst = i2c1.Cr1.Swrst;
             pe: Pe, // Peripheral enable (u1)
             smbus: Smbus, // SMBus mode (u1)
             _reserved_2_2: u1,
@@ -11765,11 +11765,11 @@ pub const registers = struct {
         /// address: 0x40005804, path: i2c2.cr2
         /// Control register 2
         pub const Cr2 = packed struct {
-            pub const Iterren = i2c1.cr2.Iterren;
-            pub const Itevten = i2c1.cr2.Itevten;
-            pub const Itbufen = i2c1.cr2.Itbufen;
-            pub const Dmaen = i2c1.cr2.Dmaen;
-            pub const Last = i2c1.cr2.Last;
+            pub const Iterren = i2c1.Cr2.Iterren;
+            pub const Itevten = i2c1.Cr2.Itevten;
+            pub const Itbufen = i2c1.Cr2.Itbufen;
+            pub const Dmaen = i2c1.Cr2.Dmaen;
+            pub const Last = i2c1.Cr2.Last;
             freq: u6, // Peripheral clock frequency
             _reserved_6_7: u2,
             iterren: Iterren, // Error interrupt enable (u1)
@@ -11784,7 +11784,7 @@ pub const registers = struct {
         /// address: 0x40005808, path: i2c2.oar1
         /// Own address register 1
         pub const Oar1 = packed struct {
-            pub const Addmode = i2c1.oar1.Addmode;
+            pub const Addmode = i2c1.Oar1.Addmode;
             add: u10, // Interface address
             _reserved_10_14: u5,
             addmode: Addmode, // Addressing mode (slave mode) (u1)
@@ -11795,7 +11795,7 @@ pub const registers = struct {
         /// address: 0x4000580c, path: i2c2.oar2
         /// Own address register 2
         pub const Oar2 = packed struct {
-            pub const Endual = i2c1.oar2.Endual;
+            pub const Endual = i2c1.Oar2.Endual;
             endual: Endual, // Dual addressing mode enable (u1)
             add2: u7, // Interface address
             _padding_8_31: u24,
@@ -11809,19 +11809,19 @@ pub const registers = struct {
         /// address: 0x40005814, path: i2c2.sr1
         /// Status register 1
         pub const Sr1 = packed struct {
-            pub const Sb = i2c1.sr1.Sb;
-            pub const Addr = i2c1.sr1.Addr;
-            pub const Btf = i2c1.sr1.Btf;
-            pub const Stopf = i2c1.sr1.Stopf;
-            pub const Rxne = i2c1.sr1.Rxne;
-            pub const Txe = i2c1.sr1.Txe;
-            pub const Berr = i2c1.sr1.Berr;
-            pub const Arlo = i2c1.sr1.Arlo;
-            pub const Af = i2c1.sr1.Af;
-            pub const Ovr = i2c1.sr1.Ovr;
-            pub const Pecerr = i2c1.sr1.Pecerr;
-            pub const Timeout = i2c1.sr1.Timeout;
-            pub const Smbalert = i2c1.sr1.Smbalert;
+            pub const Sb = i2c1.Sr1.Sb;
+            pub const Addr = i2c1.Sr1.Addr;
+            pub const Btf = i2c1.Sr1.Btf;
+            pub const Stopf = i2c1.Sr1.Stopf;
+            pub const Rxne = i2c1.Sr1.Rxne;
+            pub const Txe = i2c1.Sr1.Txe;
+            pub const Berr = i2c1.Sr1.Berr;
+            pub const Arlo = i2c1.Sr1.Arlo;
+            pub const Af = i2c1.Sr1.Af;
+            pub const Ovr = i2c1.Sr1.Ovr;
+            pub const Pecerr = i2c1.Sr1.Pecerr;
+            pub const Timeout = i2c1.Sr1.Timeout;
+            pub const Smbalert = i2c1.Sr1.Smbalert;
             sb: Sb, // Start bit (Master mode) (u1)
             addr: Addr, // Address sent (master mode)/matched (slave mode) (u1)
             btf: Btf, // Byte transfer finished (u1)
@@ -11861,8 +11861,8 @@ pub const registers = struct {
         /// address: 0x4000581c, path: i2c2.ccr
         /// Clock control register
         pub const Ccr = packed struct {
-            pub const Duty = i2c1.ccr.Duty;
-            pub const FS = i2c1.ccr.FS;
+            pub const Duty = i2c1.Ccr.Duty;
+            pub const FS = i2c1.Ccr.FS;
             ccr: u12, // Clock control register in Fast/Standard mode (Master mode)
             _reserved_12_13: u2,
             duty: Duty, // Fast mode duty cycle (u1)
@@ -11878,8 +11878,8 @@ pub const registers = struct {
         /// address: 0x40005824, path: i2c2.fltr
         /// FLTR register
         pub const Fltr = packed struct {
-            pub const Dnf = i2c1.fltr.Dnf;
-            pub const Anoff = i2c1.fltr.Anoff;
+            pub const Dnf = i2c1.Fltr.Dnf;
+            pub const Anoff = i2c1.Fltr.Anoff;
             dnf: Dnf, // Digital noise filter (u4)
             anoff: Anoff, // Analog noise filter (u1)
             _padding_5_31: u27,
@@ -11893,20 +11893,20 @@ pub const registers = struct {
         /// address: 0x40003400, path: i2s2ext.cr1
         /// control register 1
         pub const Cr1 = packed struct {
-            pub const Cpha = spi1.cr1.Cpha;
-            pub const Cpol = spi1.cr1.Cpol;
-            pub const Mstr = spi1.cr1.Mstr;
-            pub const Br = spi1.cr1.Br;
-            pub const Spe = spi1.cr1.Spe;
-            pub const Lsbfirst = spi1.cr1.Lsbfirst;
-            pub const Ssi = spi1.cr1.Ssi;
-            pub const Ssm = spi1.cr1.Ssm;
-            pub const Rxonly = spi1.cr1.Rxonly;
-            pub const Dff = spi1.cr1.Dff;
-            pub const Crcnext = spi1.cr1.Crcnext;
-            pub const Crcen = spi1.cr1.Crcen;
-            pub const Bidioe = spi1.cr1.Bidioe;
-            pub const Bidimode = spi1.cr1.Bidimode;
+            pub const Cpha = spi1.Cr1.Cpha;
+            pub const Cpol = spi1.Cr1.Cpol;
+            pub const Mstr = spi1.Cr1.Mstr;
+            pub const Br = spi1.Cr1.Br;
+            pub const Spe = spi1.Cr1.Spe;
+            pub const Lsbfirst = spi1.Cr1.Lsbfirst;
+            pub const Ssi = spi1.Cr1.Ssi;
+            pub const Ssm = spi1.Cr1.Ssm;
+            pub const Rxonly = spi1.Cr1.Rxonly;
+            pub const Dff = spi1.Cr1.Dff;
+            pub const Crcnext = spi1.Cr1.Crcnext;
+            pub const Crcen = spi1.Cr1.Crcen;
+            pub const Bidioe = spi1.Cr1.Bidioe;
+            pub const Bidimode = spi1.Cr1.Bidimode;
             cpha: Cpha, // Clock phase (u1)
             cpol: Cpol, // Clock polarity (u1)
             mstr: Mstr, // Master selection (u1)
@@ -11928,13 +11928,13 @@ pub const registers = struct {
         /// address: 0x40003404, path: i2s2ext.cr2
         /// control register 2
         pub const Cr2 = packed struct {
-            pub const Rxdmaen = spi1.cr2.Rxdmaen;
-            pub const Txdmaen = spi1.cr2.Txdmaen;
-            pub const Ssoe = spi1.cr2.Ssoe;
-            pub const Frf = spi1.cr2.Frf;
-            pub const Errie = spi1.cr2.Errie;
-            pub const Rxneie = spi1.cr2.Rxneie;
-            pub const Txeie = spi1.cr2.Txeie;
+            pub const Rxdmaen = spi1.Cr2.Rxdmaen;
+            pub const Txdmaen = spi1.Cr2.Txdmaen;
+            pub const Ssoe = spi1.Cr2.Ssoe;
+            pub const Frf = spi1.Cr2.Frf;
+            pub const Errie = spi1.Cr2.Errie;
+            pub const Rxneie = spi1.Cr2.Rxneie;
+            pub const Txeie = spi1.Cr2.Txeie;
             rxdmaen: Rxdmaen, // Rx buffer DMA enable (u1)
             txdmaen: Txdmaen, // Tx buffer DMA enable (u1)
             ssoe: Ssoe, // SS output enable (u1)
@@ -11950,15 +11950,15 @@ pub const registers = struct {
         /// address: 0x40003408, path: i2s2ext.sr
         /// status register
         pub const Sr = packed struct {
-            pub const Rxne = spi1.sr.Rxne;
-            pub const Txe = spi1.sr.Txe;
-            pub const Chside = spi1.sr.Chside;
-            pub const Udrr = spi1.sr.Udrr;
-            pub const Crcerr = spi1.sr.Crcerr;
-            pub const Modfr = spi1.sr.Modfr;
-            pub const Ovrr = spi1.sr.Ovrr;
-            pub const Bsyr = spi1.sr.Bsyr;
-            pub const Frer = spi1.sr.Frer;
+            pub const Rxne = spi1.Sr.Rxne;
+            pub const Txe = spi1.Sr.Txe;
+            pub const Chside = spi1.Sr.Chside;
+            pub const Udrr = spi1.Sr.Udrr;
+            pub const Crcerr = spi1.Sr.Crcerr;
+            pub const Modfr = spi1.Sr.Modfr;
+            pub const Ovrr = spi1.Sr.Ovrr;
+            pub const Bsyr = spi1.Sr.Bsyr;
+            pub const Frer = spi1.Sr.Frer;
             rxne: Rxne, // Receive buffer not empty (u1)
             txe: Txe, // Transmit buffer empty (u1)
             chside: Chside, // Channel side (u1)
@@ -12003,14 +12003,14 @@ pub const registers = struct {
         /// address: 0x4000341c, path: i2s2ext.i2scfgr
         /// I2S configuration register
         pub const I2scfgr = packed struct {
-            pub const Chlen = spi1.i2scfgr.Chlen;
-            pub const Datlen = spi1.i2scfgr.Datlen;
-            pub const Ckpol = spi1.i2scfgr.Ckpol;
-            pub const I2sstd = spi1.i2scfgr.I2sstd;
-            pub const Pcmsync = spi1.i2scfgr.Pcmsync;
-            pub const I2scfg = spi1.i2scfgr.I2scfg;
-            pub const I2se = spi1.i2scfgr.I2se;
-            pub const I2smod = spi1.i2scfgr.I2smod;
+            pub const Chlen = spi1.I2scfgr.Chlen;
+            pub const Datlen = spi1.I2scfgr.Datlen;
+            pub const Ckpol = spi1.I2scfgr.Ckpol;
+            pub const I2sstd = spi1.I2scfgr.I2sstd;
+            pub const Pcmsync = spi1.I2scfgr.Pcmsync;
+            pub const I2scfg = spi1.I2scfgr.I2scfg;
+            pub const I2se = spi1.I2scfgr.I2se;
+            pub const I2smod = spi1.I2scfgr.I2smod;
             chlen: Chlen, // Channel length (number of bits per audio channel) (u1)
             datlen: Datlen, // Data length to be transferred (u2)
             ckpol: Ckpol, // Steady state clock polarity (u1)
@@ -12027,8 +12027,8 @@ pub const registers = struct {
         /// address: 0x40003420, path: i2s2ext.i2spr
         /// I2S prescaler register
         pub const I2spr = packed struct {
-            pub const Odd = spi1.i2spr.Odd;
-            pub const Mckoe = spi1.i2spr.Mckoe;
+            pub const Odd = spi1.I2spr.Odd;
+            pub const Mckoe = spi1.I2spr.Mckoe;
             i2sdiv: u8, // I2S Linear prescaler
             odd: Odd, // Odd factor for the prescaler (u1)
             mckoe: Mckoe, // Master clock output enable (u1)
@@ -12043,20 +12043,20 @@ pub const registers = struct {
         /// address: 0x40004000, path: i2s3ext.cr1
         /// control register 1
         pub const Cr1 = packed struct {
-            pub const Cpha = spi1.cr1.Cpha;
-            pub const Cpol = spi1.cr1.Cpol;
-            pub const Mstr = spi1.cr1.Mstr;
-            pub const Br = spi1.cr1.Br;
-            pub const Spe = spi1.cr1.Spe;
-            pub const Lsbfirst = spi1.cr1.Lsbfirst;
-            pub const Ssi = spi1.cr1.Ssi;
-            pub const Ssm = spi1.cr1.Ssm;
-            pub const Rxonly = spi1.cr1.Rxonly;
-            pub const Dff = spi1.cr1.Dff;
-            pub const Crcnext = spi1.cr1.Crcnext;
-            pub const Crcen = spi1.cr1.Crcen;
-            pub const Bidioe = spi1.cr1.Bidioe;
-            pub const Bidimode = spi1.cr1.Bidimode;
+            pub const Cpha = spi1.Cr1.Cpha;
+            pub const Cpol = spi1.Cr1.Cpol;
+            pub const Mstr = spi1.Cr1.Mstr;
+            pub const Br = spi1.Cr1.Br;
+            pub const Spe = spi1.Cr1.Spe;
+            pub const Lsbfirst = spi1.Cr1.Lsbfirst;
+            pub const Ssi = spi1.Cr1.Ssi;
+            pub const Ssm = spi1.Cr1.Ssm;
+            pub const Rxonly = spi1.Cr1.Rxonly;
+            pub const Dff = spi1.Cr1.Dff;
+            pub const Crcnext = spi1.Cr1.Crcnext;
+            pub const Crcen = spi1.Cr1.Crcen;
+            pub const Bidioe = spi1.Cr1.Bidioe;
+            pub const Bidimode = spi1.Cr1.Bidimode;
             cpha: Cpha, // Clock phase (u1)
             cpol: Cpol, // Clock polarity (u1)
             mstr: Mstr, // Master selection (u1)
@@ -12078,13 +12078,13 @@ pub const registers = struct {
         /// address: 0x40004004, path: i2s3ext.cr2
         /// control register 2
         pub const Cr2 = packed struct {
-            pub const Rxdmaen = spi1.cr2.Rxdmaen;
-            pub const Txdmaen = spi1.cr2.Txdmaen;
-            pub const Ssoe = spi1.cr2.Ssoe;
-            pub const Frf = spi1.cr2.Frf;
-            pub const Errie = spi1.cr2.Errie;
-            pub const Rxneie = spi1.cr2.Rxneie;
-            pub const Txeie = spi1.cr2.Txeie;
+            pub const Rxdmaen = spi1.Cr2.Rxdmaen;
+            pub const Txdmaen = spi1.Cr2.Txdmaen;
+            pub const Ssoe = spi1.Cr2.Ssoe;
+            pub const Frf = spi1.Cr2.Frf;
+            pub const Errie = spi1.Cr2.Errie;
+            pub const Rxneie = spi1.Cr2.Rxneie;
+            pub const Txeie = spi1.Cr2.Txeie;
             rxdmaen: Rxdmaen, // Rx buffer DMA enable (u1)
             txdmaen: Txdmaen, // Tx buffer DMA enable (u1)
             ssoe: Ssoe, // SS output enable (u1)
@@ -12100,15 +12100,15 @@ pub const registers = struct {
         /// address: 0x40004008, path: i2s3ext.sr
         /// status register
         pub const Sr = packed struct {
-            pub const Rxne = spi1.sr.Rxne;
-            pub const Txe = spi1.sr.Txe;
-            pub const Chside = spi1.sr.Chside;
-            pub const Udrr = spi1.sr.Udrr;
-            pub const Crcerr = spi1.sr.Crcerr;
-            pub const Modfr = spi1.sr.Modfr;
-            pub const Ovrr = spi1.sr.Ovrr;
-            pub const Bsyr = spi1.sr.Bsyr;
-            pub const Frer = spi1.sr.Frer;
+            pub const Rxne = spi1.Sr.Rxne;
+            pub const Txe = spi1.Sr.Txe;
+            pub const Chside = spi1.Sr.Chside;
+            pub const Udrr = spi1.Sr.Udrr;
+            pub const Crcerr = spi1.Sr.Crcerr;
+            pub const Modfr = spi1.Sr.Modfr;
+            pub const Ovrr = spi1.Sr.Ovrr;
+            pub const Bsyr = spi1.Sr.Bsyr;
+            pub const Frer = spi1.Sr.Frer;
             rxne: Rxne, // Receive buffer not empty (u1)
             txe: Txe, // Transmit buffer empty (u1)
             chside: Chside, // Channel side (u1)
@@ -12153,14 +12153,14 @@ pub const registers = struct {
         /// address: 0x4000401c, path: i2s3ext.i2scfgr
         /// I2S configuration register
         pub const I2scfgr = packed struct {
-            pub const Chlen = spi1.i2scfgr.Chlen;
-            pub const Datlen = spi1.i2scfgr.Datlen;
-            pub const Ckpol = spi1.i2scfgr.Ckpol;
-            pub const I2sstd = spi1.i2scfgr.I2sstd;
-            pub const Pcmsync = spi1.i2scfgr.Pcmsync;
-            pub const I2scfg = spi1.i2scfgr.I2scfg;
-            pub const I2se = spi1.i2scfgr.I2se;
-            pub const I2smod = spi1.i2scfgr.I2smod;
+            pub const Chlen = spi1.I2scfgr.Chlen;
+            pub const Datlen = spi1.I2scfgr.Datlen;
+            pub const Ckpol = spi1.I2scfgr.Ckpol;
+            pub const I2sstd = spi1.I2scfgr.I2sstd;
+            pub const Pcmsync = spi1.I2scfgr.Pcmsync;
+            pub const I2scfg = spi1.I2scfgr.I2scfg;
+            pub const I2se = spi1.I2scfgr.I2se;
+            pub const I2smod = spi1.I2scfgr.I2smod;
             chlen: Chlen, // Channel length (number of bits per audio channel) (u1)
             datlen: Datlen, // Data length to be transferred (u2)
             ckpol: Ckpol, // Steady state clock polarity (u1)
@@ -12177,8 +12177,8 @@ pub const registers = struct {
         /// address: 0x40004020, path: i2s3ext.i2spr
         /// I2S prescaler register
         pub const I2spr = packed struct {
-            pub const Odd = spi1.i2spr.Odd;
-            pub const Mckoe = spi1.i2spr.Mckoe;
+            pub const Odd = spi1.I2spr.Odd;
+            pub const Mckoe = spi1.I2spr.Mckoe;
             i2sdiv: u8, // I2S Linear prescaler
             odd: Odd, // Odd factor for the prescaler (u1)
             mckoe: Mckoe, // Master clock output enable (u1)
@@ -12193,20 +12193,20 @@ pub const registers = struct {
         /// address: 0x40003800, path: spi2.cr1
         /// control register 1
         pub const Cr1 = packed struct {
-            pub const Cpha = spi1.cr1.Cpha;
-            pub const Cpol = spi1.cr1.Cpol;
-            pub const Mstr = spi1.cr1.Mstr;
-            pub const Br = spi1.cr1.Br;
-            pub const Spe = spi1.cr1.Spe;
-            pub const Lsbfirst = spi1.cr1.Lsbfirst;
-            pub const Ssi = spi1.cr1.Ssi;
-            pub const Ssm = spi1.cr1.Ssm;
-            pub const Rxonly = spi1.cr1.Rxonly;
-            pub const Dff = spi1.cr1.Dff;
-            pub const Crcnext = spi1.cr1.Crcnext;
-            pub const Crcen = spi1.cr1.Crcen;
-            pub const Bidioe = spi1.cr1.Bidioe;
-            pub const Bidimode = spi1.cr1.Bidimode;
+            pub const Cpha = spi1.Cr1.Cpha;
+            pub const Cpol = spi1.Cr1.Cpol;
+            pub const Mstr = spi1.Cr1.Mstr;
+            pub const Br = spi1.Cr1.Br;
+            pub const Spe = spi1.Cr1.Spe;
+            pub const Lsbfirst = spi1.Cr1.Lsbfirst;
+            pub const Ssi = spi1.Cr1.Ssi;
+            pub const Ssm = spi1.Cr1.Ssm;
+            pub const Rxonly = spi1.Cr1.Rxonly;
+            pub const Dff = spi1.Cr1.Dff;
+            pub const Crcnext = spi1.Cr1.Crcnext;
+            pub const Crcen = spi1.Cr1.Crcen;
+            pub const Bidioe = spi1.Cr1.Bidioe;
+            pub const Bidimode = spi1.Cr1.Bidimode;
             cpha: Cpha, // Clock phase (u1)
             cpol: Cpol, // Clock polarity (u1)
             mstr: Mstr, // Master selection (u1)
@@ -12228,13 +12228,13 @@ pub const registers = struct {
         /// address: 0x40003804, path: spi2.cr2
         /// control register 2
         pub const Cr2 = packed struct {
-            pub const Rxdmaen = spi1.cr2.Rxdmaen;
-            pub const Txdmaen = spi1.cr2.Txdmaen;
-            pub const Ssoe = spi1.cr2.Ssoe;
-            pub const Frf = spi1.cr2.Frf;
-            pub const Errie = spi1.cr2.Errie;
-            pub const Rxneie = spi1.cr2.Rxneie;
-            pub const Txeie = spi1.cr2.Txeie;
+            pub const Rxdmaen = spi1.Cr2.Rxdmaen;
+            pub const Txdmaen = spi1.Cr2.Txdmaen;
+            pub const Ssoe = spi1.Cr2.Ssoe;
+            pub const Frf = spi1.Cr2.Frf;
+            pub const Errie = spi1.Cr2.Errie;
+            pub const Rxneie = spi1.Cr2.Rxneie;
+            pub const Txeie = spi1.Cr2.Txeie;
             rxdmaen: Rxdmaen, // Rx buffer DMA enable (u1)
             txdmaen: Txdmaen, // Tx buffer DMA enable (u1)
             ssoe: Ssoe, // SS output enable (u1)
@@ -12250,15 +12250,15 @@ pub const registers = struct {
         /// address: 0x40003808, path: spi2.sr
         /// status register
         pub const Sr = packed struct {
-            pub const Rxne = spi1.sr.Rxne;
-            pub const Txe = spi1.sr.Txe;
-            pub const Chside = spi1.sr.Chside;
-            pub const Udrr = spi1.sr.Udrr;
-            pub const Crcerr = spi1.sr.Crcerr;
-            pub const Modfr = spi1.sr.Modfr;
-            pub const Ovrr = spi1.sr.Ovrr;
-            pub const Bsyr = spi1.sr.Bsyr;
-            pub const Frer = spi1.sr.Frer;
+            pub const Rxne = spi1.Sr.Rxne;
+            pub const Txe = spi1.Sr.Txe;
+            pub const Chside = spi1.Sr.Chside;
+            pub const Udrr = spi1.Sr.Udrr;
+            pub const Crcerr = spi1.Sr.Crcerr;
+            pub const Modfr = spi1.Sr.Modfr;
+            pub const Ovrr = spi1.Sr.Ovrr;
+            pub const Bsyr = spi1.Sr.Bsyr;
+            pub const Frer = spi1.Sr.Frer;
             rxne: Rxne, // Receive buffer not empty (u1)
             txe: Txe, // Transmit buffer empty (u1)
             chside: Chside, // Channel side (u1)
@@ -12303,14 +12303,14 @@ pub const registers = struct {
         /// address: 0x4000381c, path: spi2.i2scfgr
         /// I2S configuration register
         pub const I2scfgr = packed struct {
-            pub const Chlen = spi1.i2scfgr.Chlen;
-            pub const Datlen = spi1.i2scfgr.Datlen;
-            pub const Ckpol = spi1.i2scfgr.Ckpol;
-            pub const I2sstd = spi1.i2scfgr.I2sstd;
-            pub const Pcmsync = spi1.i2scfgr.Pcmsync;
-            pub const I2scfg = spi1.i2scfgr.I2scfg;
-            pub const I2se = spi1.i2scfgr.I2se;
-            pub const I2smod = spi1.i2scfgr.I2smod;
+            pub const Chlen = spi1.I2scfgr.Chlen;
+            pub const Datlen = spi1.I2scfgr.Datlen;
+            pub const Ckpol = spi1.I2scfgr.Ckpol;
+            pub const I2sstd = spi1.I2scfgr.I2sstd;
+            pub const Pcmsync = spi1.I2scfgr.Pcmsync;
+            pub const I2scfg = spi1.I2scfgr.I2scfg;
+            pub const I2se = spi1.I2scfgr.I2se;
+            pub const I2smod = spi1.I2scfgr.I2smod;
             chlen: Chlen, // Channel length (number of bits per audio channel) (u1)
             datlen: Datlen, // Data length to be transferred (u2)
             ckpol: Ckpol, // Steady state clock polarity (u1)
@@ -12327,8 +12327,8 @@ pub const registers = struct {
         /// address: 0x40003820, path: spi2.i2spr
         /// I2S prescaler register
         pub const I2spr = packed struct {
-            pub const Odd = spi1.i2spr.Odd;
-            pub const Mckoe = spi1.i2spr.Mckoe;
+            pub const Odd = spi1.I2spr.Odd;
+            pub const Mckoe = spi1.I2spr.Mckoe;
             i2sdiv: u8, // I2S Linear prescaler
             odd: Odd, // Odd factor for the prescaler (u1)
             mckoe: Mckoe, // Master clock output enable (u1)
@@ -12343,20 +12343,20 @@ pub const registers = struct {
         /// address: 0x40003c00, path: spi3.cr1
         /// control register 1
         pub const Cr1 = packed struct {
-            pub const Cpha = spi1.cr1.Cpha;
-            pub const Cpol = spi1.cr1.Cpol;
-            pub const Mstr = spi1.cr1.Mstr;
-            pub const Br = spi1.cr1.Br;
-            pub const Spe = spi1.cr1.Spe;
-            pub const Lsbfirst = spi1.cr1.Lsbfirst;
-            pub const Ssi = spi1.cr1.Ssi;
-            pub const Ssm = spi1.cr1.Ssm;
-            pub const Rxonly = spi1.cr1.Rxonly;
-            pub const Dff = spi1.cr1.Dff;
-            pub const Crcnext = spi1.cr1.Crcnext;
-            pub const Crcen = spi1.cr1.Crcen;
-            pub const Bidioe = spi1.cr1.Bidioe;
-            pub const Bidimode = spi1.cr1.Bidimode;
+            pub const Cpha = spi1.Cr1.Cpha;
+            pub const Cpol = spi1.Cr1.Cpol;
+            pub const Mstr = spi1.Cr1.Mstr;
+            pub const Br = spi1.Cr1.Br;
+            pub const Spe = spi1.Cr1.Spe;
+            pub const Lsbfirst = spi1.Cr1.Lsbfirst;
+            pub const Ssi = spi1.Cr1.Ssi;
+            pub const Ssm = spi1.Cr1.Ssm;
+            pub const Rxonly = spi1.Cr1.Rxonly;
+            pub const Dff = spi1.Cr1.Dff;
+            pub const Crcnext = spi1.Cr1.Crcnext;
+            pub const Crcen = spi1.Cr1.Crcen;
+            pub const Bidioe = spi1.Cr1.Bidioe;
+            pub const Bidimode = spi1.Cr1.Bidimode;
             cpha: Cpha, // Clock phase (u1)
             cpol: Cpol, // Clock polarity (u1)
             mstr: Mstr, // Master selection (u1)
@@ -12378,13 +12378,13 @@ pub const registers = struct {
         /// address: 0x40003c04, path: spi3.cr2
         /// control register 2
         pub const Cr2 = packed struct {
-            pub const Rxdmaen = spi1.cr2.Rxdmaen;
-            pub const Txdmaen = spi1.cr2.Txdmaen;
-            pub const Ssoe = spi1.cr2.Ssoe;
-            pub const Frf = spi1.cr2.Frf;
-            pub const Errie = spi1.cr2.Errie;
-            pub const Rxneie = spi1.cr2.Rxneie;
-            pub const Txeie = spi1.cr2.Txeie;
+            pub const Rxdmaen = spi1.Cr2.Rxdmaen;
+            pub const Txdmaen = spi1.Cr2.Txdmaen;
+            pub const Ssoe = spi1.Cr2.Ssoe;
+            pub const Frf = spi1.Cr2.Frf;
+            pub const Errie = spi1.Cr2.Errie;
+            pub const Rxneie = spi1.Cr2.Rxneie;
+            pub const Txeie = spi1.Cr2.Txeie;
             rxdmaen: Rxdmaen, // Rx buffer DMA enable (u1)
             txdmaen: Txdmaen, // Tx buffer DMA enable (u1)
             ssoe: Ssoe, // SS output enable (u1)
@@ -12400,15 +12400,15 @@ pub const registers = struct {
         /// address: 0x40003c08, path: spi3.sr
         /// status register
         pub const Sr = packed struct {
-            pub const Rxne = spi1.sr.Rxne;
-            pub const Txe = spi1.sr.Txe;
-            pub const Chside = spi1.sr.Chside;
-            pub const Udrr = spi1.sr.Udrr;
-            pub const Crcerr = spi1.sr.Crcerr;
-            pub const Modfr = spi1.sr.Modfr;
-            pub const Ovrr = spi1.sr.Ovrr;
-            pub const Bsyr = spi1.sr.Bsyr;
-            pub const Frer = spi1.sr.Frer;
+            pub const Rxne = spi1.Sr.Rxne;
+            pub const Txe = spi1.Sr.Txe;
+            pub const Chside = spi1.Sr.Chside;
+            pub const Udrr = spi1.Sr.Udrr;
+            pub const Crcerr = spi1.Sr.Crcerr;
+            pub const Modfr = spi1.Sr.Modfr;
+            pub const Ovrr = spi1.Sr.Ovrr;
+            pub const Bsyr = spi1.Sr.Bsyr;
+            pub const Frer = spi1.Sr.Frer;
             rxne: Rxne, // Receive buffer not empty (u1)
             txe: Txe, // Transmit buffer empty (u1)
             chside: Chside, // Channel side (u1)
@@ -12453,14 +12453,14 @@ pub const registers = struct {
         /// address: 0x40003c1c, path: spi3.i2scfgr
         /// I2S configuration register
         pub const I2scfgr = packed struct {
-            pub const Chlen = spi1.i2scfgr.Chlen;
-            pub const Datlen = spi1.i2scfgr.Datlen;
-            pub const Ckpol = spi1.i2scfgr.Ckpol;
-            pub const I2sstd = spi1.i2scfgr.I2sstd;
-            pub const Pcmsync = spi1.i2scfgr.Pcmsync;
-            pub const I2scfg = spi1.i2scfgr.I2scfg;
-            pub const I2se = spi1.i2scfgr.I2se;
-            pub const I2smod = spi1.i2scfgr.I2smod;
+            pub const Chlen = spi1.I2scfgr.Chlen;
+            pub const Datlen = spi1.I2scfgr.Datlen;
+            pub const Ckpol = spi1.I2scfgr.Ckpol;
+            pub const I2sstd = spi1.I2scfgr.I2sstd;
+            pub const Pcmsync = spi1.I2scfgr.Pcmsync;
+            pub const I2scfg = spi1.I2scfgr.I2scfg;
+            pub const I2se = spi1.I2scfgr.I2se;
+            pub const I2smod = spi1.I2scfgr.I2smod;
             chlen: Chlen, // Channel length (number of bits per audio channel) (u1)
             datlen: Datlen, // Data length to be transferred (u2)
             ckpol: Ckpol, // Steady state clock polarity (u1)
@@ -12477,8 +12477,8 @@ pub const registers = struct {
         /// address: 0x40003c20, path: spi3.i2spr
         /// I2S prescaler register
         pub const I2spr = packed struct {
-            pub const Odd = spi1.i2spr.Odd;
-            pub const Mckoe = spi1.i2spr.Mckoe;
+            pub const Odd = spi1.I2spr.Odd;
+            pub const Mckoe = spi1.I2spr.Mckoe;
             i2sdiv: u8, // I2S Linear prescaler
             odd: Odd, // Odd factor for the prescaler (u1)
             mckoe: Mckoe, // Master clock output enable (u1)
@@ -12493,20 +12493,20 @@ pub const registers = struct {
         /// address: 0x40013400, path: spi4.cr1
         /// control register 1
         pub const Cr1 = packed struct {
-            pub const Cpha = spi1.cr1.Cpha;
-            pub const Cpol = spi1.cr1.Cpol;
-            pub const Mstr = spi1.cr1.Mstr;
-            pub const Br = spi1.cr1.Br;
-            pub const Spe = spi1.cr1.Spe;
-            pub const Lsbfirst = spi1.cr1.Lsbfirst;
-            pub const Ssi = spi1.cr1.Ssi;
-            pub const Ssm = spi1.cr1.Ssm;
-            pub const Rxonly = spi1.cr1.Rxonly;
-            pub const Dff = spi1.cr1.Dff;
-            pub const Crcnext = spi1.cr1.Crcnext;
-            pub const Crcen = spi1.cr1.Crcen;
-            pub const Bidioe = spi1.cr1.Bidioe;
-            pub const Bidimode = spi1.cr1.Bidimode;
+            pub const Cpha = spi1.Cr1.Cpha;
+            pub const Cpol = spi1.Cr1.Cpol;
+            pub const Mstr = spi1.Cr1.Mstr;
+            pub const Br = spi1.Cr1.Br;
+            pub const Spe = spi1.Cr1.Spe;
+            pub const Lsbfirst = spi1.Cr1.Lsbfirst;
+            pub const Ssi = spi1.Cr1.Ssi;
+            pub const Ssm = spi1.Cr1.Ssm;
+            pub const Rxonly = spi1.Cr1.Rxonly;
+            pub const Dff = spi1.Cr1.Dff;
+            pub const Crcnext = spi1.Cr1.Crcnext;
+            pub const Crcen = spi1.Cr1.Crcen;
+            pub const Bidioe = spi1.Cr1.Bidioe;
+            pub const Bidimode = spi1.Cr1.Bidimode;
             cpha: Cpha, // Clock phase (u1)
             cpol: Cpol, // Clock polarity (u1)
             mstr: Mstr, // Master selection (u1)
@@ -12528,13 +12528,13 @@ pub const registers = struct {
         /// address: 0x40013404, path: spi4.cr2
         /// control register 2
         pub const Cr2 = packed struct {
-            pub const Rxdmaen = spi1.cr2.Rxdmaen;
-            pub const Txdmaen = spi1.cr2.Txdmaen;
-            pub const Ssoe = spi1.cr2.Ssoe;
-            pub const Frf = spi1.cr2.Frf;
-            pub const Errie = spi1.cr2.Errie;
-            pub const Rxneie = spi1.cr2.Rxneie;
-            pub const Txeie = spi1.cr2.Txeie;
+            pub const Rxdmaen = spi1.Cr2.Rxdmaen;
+            pub const Txdmaen = spi1.Cr2.Txdmaen;
+            pub const Ssoe = spi1.Cr2.Ssoe;
+            pub const Frf = spi1.Cr2.Frf;
+            pub const Errie = spi1.Cr2.Errie;
+            pub const Rxneie = spi1.Cr2.Rxneie;
+            pub const Txeie = spi1.Cr2.Txeie;
             rxdmaen: Rxdmaen, // Rx buffer DMA enable (u1)
             txdmaen: Txdmaen, // Tx buffer DMA enable (u1)
             ssoe: Ssoe, // SS output enable (u1)
@@ -12550,15 +12550,15 @@ pub const registers = struct {
         /// address: 0x40013408, path: spi4.sr
         /// status register
         pub const Sr = packed struct {
-            pub const Rxne = spi1.sr.Rxne;
-            pub const Txe = spi1.sr.Txe;
-            pub const Chside = spi1.sr.Chside;
-            pub const Udrr = spi1.sr.Udrr;
-            pub const Crcerr = spi1.sr.Crcerr;
-            pub const Modfr = spi1.sr.Modfr;
-            pub const Ovrr = spi1.sr.Ovrr;
-            pub const Bsyr = spi1.sr.Bsyr;
-            pub const Frer = spi1.sr.Frer;
+            pub const Rxne = spi1.Sr.Rxne;
+            pub const Txe = spi1.Sr.Txe;
+            pub const Chside = spi1.Sr.Chside;
+            pub const Udrr = spi1.Sr.Udrr;
+            pub const Crcerr = spi1.Sr.Crcerr;
+            pub const Modfr = spi1.Sr.Modfr;
+            pub const Ovrr = spi1.Sr.Ovrr;
+            pub const Bsyr = spi1.Sr.Bsyr;
+            pub const Frer = spi1.Sr.Frer;
             rxne: Rxne, // Receive buffer not empty (u1)
             txe: Txe, // Transmit buffer empty (u1)
             chside: Chside, // Channel side (u1)
@@ -12603,14 +12603,14 @@ pub const registers = struct {
         /// address: 0x4001341c, path: spi4.i2scfgr
         /// I2S configuration register
         pub const I2scfgr = packed struct {
-            pub const Chlen = spi1.i2scfgr.Chlen;
-            pub const Datlen = spi1.i2scfgr.Datlen;
-            pub const Ckpol = spi1.i2scfgr.Ckpol;
-            pub const I2sstd = spi1.i2scfgr.I2sstd;
-            pub const Pcmsync = spi1.i2scfgr.Pcmsync;
-            pub const I2scfg = spi1.i2scfgr.I2scfg;
-            pub const I2se = spi1.i2scfgr.I2se;
-            pub const I2smod = spi1.i2scfgr.I2smod;
+            pub const Chlen = spi1.I2scfgr.Chlen;
+            pub const Datlen = spi1.I2scfgr.Datlen;
+            pub const Ckpol = spi1.I2scfgr.Ckpol;
+            pub const I2sstd = spi1.I2scfgr.I2sstd;
+            pub const Pcmsync = spi1.I2scfgr.Pcmsync;
+            pub const I2scfg = spi1.I2scfgr.I2scfg;
+            pub const I2se = spi1.I2scfgr.I2se;
+            pub const I2smod = spi1.I2scfgr.I2smod;
             chlen: Chlen, // Channel length (number of bits per audio channel) (u1)
             datlen: Datlen, // Data length to be transferred (u2)
             ckpol: Ckpol, // Steady state clock polarity (u1)
@@ -12627,8 +12627,8 @@ pub const registers = struct {
         /// address: 0x40013420, path: spi4.i2spr
         /// I2S prescaler register
         pub const I2spr = packed struct {
-            pub const Odd = spi1.i2spr.Odd;
-            pub const Mckoe = spi1.i2spr.Mckoe;
+            pub const Odd = spi1.I2spr.Odd;
+            pub const Mckoe = spi1.I2spr.Mckoe;
             i2sdiv: u8, // I2S Linear prescaler
             odd: Odd, // Odd factor for the prescaler (u1)
             mckoe: Mckoe, // Master clock output enable (u1)
@@ -12643,20 +12643,20 @@ pub const registers = struct {
         /// address: 0x40015000, path: spi5.cr1
         /// control register 1
         pub const Cr1 = packed struct {
-            pub const Cpha = spi1.cr1.Cpha;
-            pub const Cpol = spi1.cr1.Cpol;
-            pub const Mstr = spi1.cr1.Mstr;
-            pub const Br = spi1.cr1.Br;
-            pub const Spe = spi1.cr1.Spe;
-            pub const Lsbfirst = spi1.cr1.Lsbfirst;
-            pub const Ssi = spi1.cr1.Ssi;
-            pub const Ssm = spi1.cr1.Ssm;
-            pub const Rxonly = spi1.cr1.Rxonly;
-            pub const Dff = spi1.cr1.Dff;
-            pub const Crcnext = spi1.cr1.Crcnext;
-            pub const Crcen = spi1.cr1.Crcen;
-            pub const Bidioe = spi1.cr1.Bidioe;
-            pub const Bidimode = spi1.cr1.Bidimode;
+            pub const Cpha = spi1.Cr1.Cpha;
+            pub const Cpol = spi1.Cr1.Cpol;
+            pub const Mstr = spi1.Cr1.Mstr;
+            pub const Br = spi1.Cr1.Br;
+            pub const Spe = spi1.Cr1.Spe;
+            pub const Lsbfirst = spi1.Cr1.Lsbfirst;
+            pub const Ssi = spi1.Cr1.Ssi;
+            pub const Ssm = spi1.Cr1.Ssm;
+            pub const Rxonly = spi1.Cr1.Rxonly;
+            pub const Dff = spi1.Cr1.Dff;
+            pub const Crcnext = spi1.Cr1.Crcnext;
+            pub const Crcen = spi1.Cr1.Crcen;
+            pub const Bidioe = spi1.Cr1.Bidioe;
+            pub const Bidimode = spi1.Cr1.Bidimode;
             cpha: Cpha, // Clock phase (u1)
             cpol: Cpol, // Clock polarity (u1)
             mstr: Mstr, // Master selection (u1)
@@ -12678,13 +12678,13 @@ pub const registers = struct {
         /// address: 0x40015004, path: spi5.cr2
         /// control register 2
         pub const Cr2 = packed struct {
-            pub const Rxdmaen = spi1.cr2.Rxdmaen;
-            pub const Txdmaen = spi1.cr2.Txdmaen;
-            pub const Ssoe = spi1.cr2.Ssoe;
-            pub const Frf = spi1.cr2.Frf;
-            pub const Errie = spi1.cr2.Errie;
-            pub const Rxneie = spi1.cr2.Rxneie;
-            pub const Txeie = spi1.cr2.Txeie;
+            pub const Rxdmaen = spi1.Cr2.Rxdmaen;
+            pub const Txdmaen = spi1.Cr2.Txdmaen;
+            pub const Ssoe = spi1.Cr2.Ssoe;
+            pub const Frf = spi1.Cr2.Frf;
+            pub const Errie = spi1.Cr2.Errie;
+            pub const Rxneie = spi1.Cr2.Rxneie;
+            pub const Txeie = spi1.Cr2.Txeie;
             rxdmaen: Rxdmaen, // Rx buffer DMA enable (u1)
             txdmaen: Txdmaen, // Tx buffer DMA enable (u1)
             ssoe: Ssoe, // SS output enable (u1)
@@ -12700,15 +12700,15 @@ pub const registers = struct {
         /// address: 0x40015008, path: spi5.sr
         /// status register
         pub const Sr = packed struct {
-            pub const Rxne = spi1.sr.Rxne;
-            pub const Txe = spi1.sr.Txe;
-            pub const Chside = spi1.sr.Chside;
-            pub const Udrr = spi1.sr.Udrr;
-            pub const Crcerr = spi1.sr.Crcerr;
-            pub const Modfr = spi1.sr.Modfr;
-            pub const Ovrr = spi1.sr.Ovrr;
-            pub const Bsyr = spi1.sr.Bsyr;
-            pub const Frer = spi1.sr.Frer;
+            pub const Rxne = spi1.Sr.Rxne;
+            pub const Txe = spi1.Sr.Txe;
+            pub const Chside = spi1.Sr.Chside;
+            pub const Udrr = spi1.Sr.Udrr;
+            pub const Crcerr = spi1.Sr.Crcerr;
+            pub const Modfr = spi1.Sr.Modfr;
+            pub const Ovrr = spi1.Sr.Ovrr;
+            pub const Bsyr = spi1.Sr.Bsyr;
+            pub const Frer = spi1.Sr.Frer;
             rxne: Rxne, // Receive buffer not empty (u1)
             txe: Txe, // Transmit buffer empty (u1)
             chside: Chside, // Channel side (u1)
@@ -12753,14 +12753,14 @@ pub const registers = struct {
         /// address: 0x4001501c, path: spi5.i2scfgr
         /// I2S configuration register
         pub const I2scfgr = packed struct {
-            pub const Chlen = spi1.i2scfgr.Chlen;
-            pub const Datlen = spi1.i2scfgr.Datlen;
-            pub const Ckpol = spi1.i2scfgr.Ckpol;
-            pub const I2sstd = spi1.i2scfgr.I2sstd;
-            pub const Pcmsync = spi1.i2scfgr.Pcmsync;
-            pub const I2scfg = spi1.i2scfgr.I2scfg;
-            pub const I2se = spi1.i2scfgr.I2se;
-            pub const I2smod = spi1.i2scfgr.I2smod;
+            pub const Chlen = spi1.I2scfgr.Chlen;
+            pub const Datlen = spi1.I2scfgr.Datlen;
+            pub const Ckpol = spi1.I2scfgr.Ckpol;
+            pub const I2sstd = spi1.I2scfgr.I2sstd;
+            pub const Pcmsync = spi1.I2scfgr.Pcmsync;
+            pub const I2scfg = spi1.I2scfgr.I2scfg;
+            pub const I2se = spi1.I2scfgr.I2se;
+            pub const I2smod = spi1.I2scfgr.I2smod;
             chlen: Chlen, // Channel length (number of bits per audio channel) (u1)
             datlen: Datlen, // Data length to be transferred (u2)
             ckpol: Ckpol, // Steady state clock polarity (u1)
@@ -12777,8 +12777,8 @@ pub const registers = struct {
         /// address: 0x40015020, path: spi5.i2spr
         /// I2S prescaler register
         pub const I2spr = packed struct {
-            pub const Odd = spi1.i2spr.Odd;
-            pub const Mckoe = spi1.i2spr.Mckoe;
+            pub const Odd = spi1.I2spr.Odd;
+            pub const Mckoe = spi1.I2spr.Mckoe;
             i2sdiv: u8, // I2S Linear prescaler
             odd: Odd, // Odd factor for the prescaler (u1)
             mckoe: Mckoe, // Master clock output enable (u1)
