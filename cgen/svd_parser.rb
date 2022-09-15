@@ -2,6 +2,8 @@ require 'nokogiri'
 require 'ostruct'
 require File.dirname(__FILE__) + '/common.rb'
 
+$regs_fields_type = false
+
 class Document
   attr_reader :parent
 
@@ -86,7 +88,7 @@ class Enum
   end
 
   def path
-    "#{@field.parent.parent.name}.#{@field.parent.name}"
+    "#{@field.parent.parent.name.nscase}.#{@field.parent.name.titlecase}"
   end
 
   def fields
@@ -181,7 +183,13 @@ class Register < Document
   end
 
   def calc_type(fields)
-    if fields.length == 1 and fields.first.bit_offset == 0 and fields.first.name == name
+    if fields.length == 1 and
+       fields.first.bit_offset == 0 and
+       (
+         ($regs_fields_type and fields.first.name == name) or
+         (!$regs_fields_type and (fields.first.name == name or fields.first.bit_width == size))
+       )
+
       @bit_width = fields.first.bit_width
       @type = bit_width == 32 ? :int : :mmio_int
       return

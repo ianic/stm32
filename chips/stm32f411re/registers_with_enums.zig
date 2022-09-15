@@ -772,17 +772,11 @@ pub const registers = struct {
 
         /// address: 0x40023c04, path: flash.keyr
         /// Flash key register
-        pub const Keyr = packed struct {
-            key: u32, // FPEC key
-        };
-        pub const keyr = mmio(base_address + 0x4, 32, Keyr);
+        pub const keyr = @intToPtr(*volatile u32, base_address + 0x4); // FPEC key
 
         /// address: 0x40023c08, path: flash.optkeyr
         /// Flash option key register
-        pub const Optkeyr = packed struct {
-            optkey: u32, // Option byte key
-        };
-        pub const optkeyr = mmio(base_address + 0x8, 32, Optkeyr);
+        pub const optkeyr = @intToPtr(*volatile u32, base_address + 0x8); // Option byte key
 
         /// address: 0x40023c0c, path: flash.sr
         /// Status register
@@ -1636,10 +1630,7 @@ pub const registers = struct {
 
         /// address: 0x5000003c, path: otg_fs_global.cid
         /// core ID register
-        pub const Cid = packed struct {
-            product_id: u32, // Product ID field
-        };
-        pub const cid = mmio(base_address + 0x3c, 32, Cid);
+        pub const cid = @intToPtr(*volatile u32, base_address + 0x3c); // Product ID field
 
         /// address: 0x50000100, path: otg_fs_global.hptxfsiz
         /// OTG_FS Host periodic transmit FIFO size register (OTG_FS_HPTXFSIZ)
@@ -3307,143 +3298,83 @@ pub const registers = struct {
 
         /// address: 0x40002850, path: rtc.bkp0r
         /// backup register
-        pub const Bkp0r = packed struct {
-            bkp: u32, // BKP
-        };
-        pub const bkp0r = mmio(base_address + 0x50, 32, Bkp0r);
+        pub const bkp0r = @intToPtr(*volatile u32, base_address + 0x50); // BKP
 
         /// address: 0x40002854, path: rtc.bkp1r
         /// backup register
-        pub const Bkp1r = packed struct {
-            bkp: u32, // BKP
-        };
-        pub const bkp1r = mmio(base_address + 0x54, 32, Bkp1r);
+        pub const bkp1r = @intToPtr(*volatile u32, base_address + 0x54); // BKP
 
         /// address: 0x40002858, path: rtc.bkp2r
         /// backup register
-        pub const Bkp2r = packed struct {
-            bkp: u32, // BKP
-        };
-        pub const bkp2r = mmio(base_address + 0x58, 32, Bkp2r);
+        pub const bkp2r = @intToPtr(*volatile u32, base_address + 0x58); // BKP
 
         /// address: 0x4000285c, path: rtc.bkp3r
         /// backup register
-        pub const Bkp3r = packed struct {
-            bkp: u32, // BKP
-        };
-        pub const bkp3r = mmio(base_address + 0x5c, 32, Bkp3r);
+        pub const bkp3r = @intToPtr(*volatile u32, base_address + 0x5c); // BKP
 
         /// address: 0x40002860, path: rtc.bkp4r
         /// backup register
-        pub const Bkp4r = packed struct {
-            bkp: u32, // BKP
-        };
-        pub const bkp4r = mmio(base_address + 0x60, 32, Bkp4r);
+        pub const bkp4r = @intToPtr(*volatile u32, base_address + 0x60); // BKP
 
         /// address: 0x40002864, path: rtc.bkp5r
         /// backup register
-        pub const Bkp5r = packed struct {
-            bkp: u32, // BKP
-        };
-        pub const bkp5r = mmio(base_address + 0x64, 32, Bkp5r);
+        pub const bkp5r = @intToPtr(*volatile u32, base_address + 0x64); // BKP
 
         /// address: 0x40002868, path: rtc.bkp6r
         /// backup register
-        pub const Bkp6r = packed struct {
-            bkp: u32, // BKP
-        };
-        pub const bkp6r = mmio(base_address + 0x68, 32, Bkp6r);
+        pub const bkp6r = @intToPtr(*volatile u32, base_address + 0x68); // BKP
 
         /// address: 0x4000286c, path: rtc.bkp7r
         /// backup register
-        pub const Bkp7r = packed struct {
-            bkp: u32, // BKP
-        };
-        pub const bkp7r = mmio(base_address + 0x6c, 32, Bkp7r);
+        pub const bkp7r = @intToPtr(*volatile u32, base_address + 0x6c); // BKP
 
         /// address: 0x40002870, path: rtc.bkp8r
         /// backup register
-        pub const Bkp8r = packed struct {
-            bkp: u32, // BKP
-        };
-        pub const bkp8r = mmio(base_address + 0x70, 32, Bkp8r);
+        pub const bkp8r = @intToPtr(*volatile u32, base_address + 0x70); // BKP
 
         /// address: 0x40002874, path: rtc.bkp9r
         /// backup register
-        pub const Bkp9r = packed struct {
-            bkp: u32, // BKP
-        };
-        pub const bkp9r = mmio(base_address + 0x74, 32, Bkp9r);
+        pub const bkp9r = @intToPtr(*volatile u32, base_address + 0x74); // BKP
 
         /// address: 0x40002878, path: rtc.bkp10r
         /// backup register
-        pub const Bkp10r = packed struct {
-            bkp: u32, // BKP
-        };
-        pub const bkp10r = mmio(base_address + 0x78, 32, Bkp10r);
+        pub const bkp10r = @intToPtr(*volatile u32, base_address + 0x78); // BKP
 
         /// address: 0x4000287c, path: rtc.bkp11r
         /// backup register
-        pub const Bkp11r = packed struct {
-            bkp: u32, // BKP
-        };
-        pub const bkp11r = mmio(base_address + 0x7c, 32, Bkp11r);
+        pub const bkp11r = @intToPtr(*volatile u32, base_address + 0x7c); // BKP
 
         /// address: 0x40002880, path: rtc.bkp12r
         /// backup register
-        pub const Bkp12r = packed struct {
-            bkp: u32, // BKP
-        };
-        pub const bkp12r = mmio(base_address + 0x80, 32, Bkp12r);
+        pub const bkp12r = @intToPtr(*volatile u32, base_address + 0x80); // BKP
 
         /// address: 0x40002884, path: rtc.bkp13r
         /// backup register
-        pub const Bkp13r = packed struct {
-            bkp: u32, // BKP
-        };
-        pub const bkp13r = mmio(base_address + 0x84, 32, Bkp13r);
+        pub const bkp13r = @intToPtr(*volatile u32, base_address + 0x84); // BKP
 
         /// address: 0x40002888, path: rtc.bkp14r
         /// backup register
-        pub const Bkp14r = packed struct {
-            bkp: u32, // BKP
-        };
-        pub const bkp14r = mmio(base_address + 0x88, 32, Bkp14r);
+        pub const bkp14r = @intToPtr(*volatile u32, base_address + 0x88); // BKP
 
         /// address: 0x4000288c, path: rtc.bkp15r
         /// backup register
-        pub const Bkp15r = packed struct {
-            bkp: u32, // BKP
-        };
-        pub const bkp15r = mmio(base_address + 0x8c, 32, Bkp15r);
+        pub const bkp15r = @intToPtr(*volatile u32, base_address + 0x8c); // BKP
 
         /// address: 0x40002890, path: rtc.bkp16r
         /// backup register
-        pub const Bkp16r = packed struct {
-            bkp: u32, // BKP
-        };
-        pub const bkp16r = mmio(base_address + 0x90, 32, Bkp16r);
+        pub const bkp16r = @intToPtr(*volatile u32, base_address + 0x90); // BKP
 
         /// address: 0x40002894, path: rtc.bkp17r
         /// backup register
-        pub const Bkp17r = packed struct {
-            bkp: u32, // BKP
-        };
-        pub const bkp17r = mmio(base_address + 0x94, 32, Bkp17r);
+        pub const bkp17r = @intToPtr(*volatile u32, base_address + 0x94); // BKP
 
         /// address: 0x40002898, path: rtc.bkp18r
         /// backup register
-        pub const Bkp18r = packed struct {
-            bkp: u32, // BKP
-        };
-        pub const bkp18r = mmio(base_address + 0x98, 32, Bkp18r);
+        pub const bkp18r = @intToPtr(*volatile u32, base_address + 0x98); // BKP
 
         /// address: 0x4000289c, path: rtc.bkp19r
         /// backup register
-        pub const Bkp19r = packed struct {
-            bkp: u32, // BKP
-        };
-        pub const bkp19r = mmio(base_address + 0x9c, 32, Bkp19r);
+        pub const bkp19r = @intToPtr(*volatile u32, base_address + 0x9c); // BKP
 
         /// address: 0x40002830, path: rtc.tstr
         /// time stamp time register
@@ -3542,10 +3473,7 @@ pub const registers = struct {
 
         /// address: 0x40012c08, path: sdio.arg
         /// argument register
-        pub const Arg = packed struct {
-            cmdarg: u32, // Command argument
-        };
-        pub const arg = mmio(base_address + 0x8, 32, Arg);
+        pub const arg = @intToPtr(*volatile u32, base_address + 0x8); // Command argument
 
         /// address: 0x40012c0c, path: sdio.cmd
         /// command register
@@ -3603,38 +3531,23 @@ pub const registers = struct {
 
         /// address: 0x40012c14, path: sdio.resp1
         /// response 1..4 register
-        pub const Resp1 = packed struct {
-            cardstatus1: u32, // Card Status
-        };
-        pub const resp1 = mmio(base_address + 0x14, 32, Resp1);
+        pub const resp1 = @intToPtr(*volatile u32, base_address + 0x14); // Card Status
 
         /// address: 0x40012c18, path: sdio.resp2
         /// response 1..4 register
-        pub const Resp2 = packed struct {
-            cardstatus2: u32, // Card Status
-        };
-        pub const resp2 = mmio(base_address + 0x18, 32, Resp2);
+        pub const resp2 = @intToPtr(*volatile u32, base_address + 0x18); // Card Status
 
         /// address: 0x40012c1c, path: sdio.resp3
         /// response 1..4 register
-        pub const Resp3 = packed struct {
-            cardstatus3: u32, // Card Status
-        };
-        pub const resp3 = mmio(base_address + 0x1c, 32, Resp3);
+        pub const resp3 = @intToPtr(*volatile u32, base_address + 0x1c); // Card Status
 
         /// address: 0x40012c20, path: sdio.resp4
         /// response 1..4 register
-        pub const Resp4 = packed struct {
-            cardstatus4: u32, // Card Status
-        };
-        pub const resp4 = mmio(base_address + 0x20, 32, Resp4);
+        pub const resp4 = @intToPtr(*volatile u32, base_address + 0x20); // Card Status
 
         /// address: 0x40012c24, path: sdio.dtimer
         /// data timer register
-        pub const Dtimer = packed struct {
-            datatime: u32, // Data timeout period
-        };
-        pub const dtimer = mmio(base_address + 0x24, 32, Dtimer);
+        pub const dtimer = @intToPtr(*volatile u32, base_address + 0x24); // Data timeout period
 
         /// address: 0x40012c28, path: sdio.dlen
         /// data length register
@@ -3896,10 +3809,7 @@ pub const registers = struct {
 
         /// address: 0x40012c80, path: sdio.fifo
         /// data FIFO register
-        pub const Fifo = packed struct {
-            fifodata: u32, // Receive and transmit FIFO data
-        };
-        pub const fifo = mmio(base_address + 0x80, 32, Fifo);
+        pub const fifo = @intToPtr(*volatile u32, base_address + 0x80); // Receive and transmit FIFO data
     };
     /// System configuration controller
     pub const syscfg = struct {
@@ -4978,31 +4888,19 @@ pub const registers = struct {
 
         /// address: 0x40000034, path: tim2.ccr1
         /// capture/compare register
-        pub const Ccr1 = packed struct {
-            ccr: u32, // Capture/Compare value
-        };
-        pub const ccr1 = mmio(base_address + 0x34, 32, Ccr1);
+        pub const ccr1 = @intToPtr(*volatile u32, base_address + 0x34); // Capture/Compare value
 
         /// address: 0x40000038, path: tim2.ccr2
         /// capture/compare register
-        pub const Ccr2 = packed struct {
-            ccr: u32, // Capture/Compare value
-        };
-        pub const ccr2 = mmio(base_address + 0x38, 32, Ccr2);
+        pub const ccr2 = @intToPtr(*volatile u32, base_address + 0x38); // Capture/Compare value
 
         /// address: 0x4000003c, path: tim2.ccr3
         /// capture/compare register
-        pub const Ccr3 = packed struct {
-            ccr: u32, // Capture/Compare value
-        };
-        pub const ccr3 = mmio(base_address + 0x3c, 32, Ccr3);
+        pub const ccr3 = @intToPtr(*volatile u32, base_address + 0x3c); // Capture/Compare value
 
         /// address: 0x40000040, path: tim2.ccr4
         /// capture/compare register
-        pub const Ccr4 = packed struct {
-            ccr: u32, // Capture/Compare value
-        };
-        pub const ccr4 = mmio(base_address + 0x40, 32, Ccr4);
+        pub const ccr4 = @intToPtr(*volatile u32, base_address + 0x40); // Capture/Compare value
 
         /// address: 0x40000048, path: tim2.dcr
         /// DMA control register
@@ -5565,31 +5463,19 @@ pub const registers = struct {
 
         /// address: 0x40000c34, path: tim5.ccr1
         /// capture/compare register
-        pub const Ccr1 = packed struct {
-            ccr: u32, // Capture/Compare value
-        };
-        pub const ccr1 = mmio(base_address + 0x34, 32, Ccr1);
+        pub const ccr1 = @intToPtr(*volatile u32, base_address + 0x34); // Capture/Compare value
 
         /// address: 0x40000c38, path: tim5.ccr2
         /// capture/compare register
-        pub const Ccr2 = packed struct {
-            ccr: u32, // Capture/Compare value
-        };
-        pub const ccr2 = mmio(base_address + 0x38, 32, Ccr2);
+        pub const ccr2 = @intToPtr(*volatile u32, base_address + 0x38); // Capture/Compare value
 
         /// address: 0x40000c3c, path: tim5.ccr3
         /// capture/compare register
-        pub const Ccr3 = packed struct {
-            ccr: u32, // Capture/Compare value
-        };
-        pub const ccr3 = mmio(base_address + 0x3c, 32, Ccr3);
+        pub const ccr3 = @intToPtr(*volatile u32, base_address + 0x3c); // Capture/Compare value
 
         /// address: 0x40000c40, path: tim5.ccr4
         /// capture/compare register
-        pub const Ccr4 = packed struct {
-            ccr: u32, // Capture/Compare value
-        };
-        pub const ccr4 = mmio(base_address + 0x40, 32, Ccr4);
+        pub const ccr4 = @intToPtr(*volatile u32, base_address + 0x40); // Capture/Compare value
 
         /// address: 0x40000c48, path: tim5.dcr
         /// DMA control register
@@ -6370,24 +6256,15 @@ pub const registers = struct {
 
         /// address: 0x40026018, path: dma1.st0par
         /// stream x peripheral address register
-        pub const St0par = packed struct {
-            pa: u32, // Peripheral address
-        };
-        pub const st0par = mmio(base_address + 0x18, 32, St0par);
+        pub const st0par = @intToPtr(*volatile u32, base_address + 0x18); // Peripheral address
 
         /// address: 0x4002601c, path: dma1.st0m0ar
         /// stream x memory 0 address register
-        pub const St0m0ar = packed struct {
-            m0a: u32, // Memory 0 address
-        };
-        pub const st0m0ar = mmio(base_address + 0x1c, 32, St0m0ar);
+        pub const st0m0ar = @intToPtr(*volatile u32, base_address + 0x1c); // Memory 0 address
 
         /// address: 0x40026020, path: dma1.st0m1ar
         /// stream x memory 1 address register
-        pub const St0m1ar = packed struct {
-            m1a: u32, // Memory 1 address (used in case of Double buffer mode)
-        };
-        pub const st0m1ar = mmio(base_address + 0x20, 32, St0m1ar);
+        pub const st0m1ar = @intToPtr(*volatile u32, base_address + 0x20); // Memory 1 address (used in case of Double buffer mode)
 
         /// address: 0x40026024, path: dma1.st0fcr
         /// stream x FIFO control register
@@ -6475,24 +6352,15 @@ pub const registers = struct {
 
         /// address: 0x40026030, path: dma1.st1par
         /// stream x peripheral address register
-        pub const St1par = packed struct {
-            pa: u32, // Peripheral address
-        };
-        pub const st1par = mmio(base_address + 0x30, 32, St1par);
+        pub const st1par = @intToPtr(*volatile u32, base_address + 0x30); // Peripheral address
 
         /// address: 0x40026034, path: dma1.st1m0ar
         /// stream x memory 0 address register
-        pub const St1m0ar = packed struct {
-            m0a: u32, // Memory 0 address
-        };
-        pub const st1m0ar = mmio(base_address + 0x34, 32, St1m0ar);
+        pub const st1m0ar = @intToPtr(*volatile u32, base_address + 0x34); // Memory 0 address
 
         /// address: 0x40026038, path: dma1.st1m1ar
         /// stream x memory 1 address register
-        pub const St1m1ar = packed struct {
-            m1a: u32, // Memory 1 address (used in case of Double buffer mode)
-        };
-        pub const st1m1ar = mmio(base_address + 0x38, 32, St1m1ar);
+        pub const st1m1ar = @intToPtr(*volatile u32, base_address + 0x38); // Memory 1 address (used in case of Double buffer mode)
 
         /// address: 0x4002603c, path: dma1.st1fcr
         /// stream x FIFO control register
@@ -6562,24 +6430,15 @@ pub const registers = struct {
 
         /// address: 0x40026048, path: dma1.st2par
         /// stream x peripheral address register
-        pub const St2par = packed struct {
-            pa: u32, // Peripheral address
-        };
-        pub const st2par = mmio(base_address + 0x48, 32, St2par);
+        pub const st2par = @intToPtr(*volatile u32, base_address + 0x48); // Peripheral address
 
         /// address: 0x4002604c, path: dma1.st2m0ar
         /// stream x memory 0 address register
-        pub const St2m0ar = packed struct {
-            m0a: u32, // Memory 0 address
-        };
-        pub const st2m0ar = mmio(base_address + 0x4c, 32, St2m0ar);
+        pub const st2m0ar = @intToPtr(*volatile u32, base_address + 0x4c); // Memory 0 address
 
         /// address: 0x40026050, path: dma1.st2m1ar
         /// stream x memory 1 address register
-        pub const St2m1ar = packed struct {
-            m1a: u32, // Memory 1 address (used in case of Double buffer mode)
-        };
-        pub const st2m1ar = mmio(base_address + 0x50, 32, St2m1ar);
+        pub const st2m1ar = @intToPtr(*volatile u32, base_address + 0x50); // Memory 1 address (used in case of Double buffer mode)
 
         /// address: 0x40026054, path: dma1.st2fcr
         /// stream x FIFO control register
@@ -6649,24 +6508,15 @@ pub const registers = struct {
 
         /// address: 0x40026060, path: dma1.st3par
         /// stream x peripheral address register
-        pub const St3par = packed struct {
-            pa: u32, // Peripheral address
-        };
-        pub const st3par = mmio(base_address + 0x60, 32, St3par);
+        pub const st3par = @intToPtr(*volatile u32, base_address + 0x60); // Peripheral address
 
         /// address: 0x40026064, path: dma1.st3m0ar
         /// stream x memory 0 address register
-        pub const St3m0ar = packed struct {
-            m0a: u32, // Memory 0 address
-        };
-        pub const st3m0ar = mmio(base_address + 0x64, 32, St3m0ar);
+        pub const st3m0ar = @intToPtr(*volatile u32, base_address + 0x64); // Memory 0 address
 
         /// address: 0x40026068, path: dma1.st3m1ar
         /// stream x memory 1 address register
-        pub const St3m1ar = packed struct {
-            m1a: u32, // Memory 1 address (used in case of Double buffer mode)
-        };
-        pub const st3m1ar = mmio(base_address + 0x68, 32, St3m1ar);
+        pub const st3m1ar = @intToPtr(*volatile u32, base_address + 0x68); // Memory 1 address (used in case of Double buffer mode)
 
         /// address: 0x4002606c, path: dma1.st3fcr
         /// stream x FIFO control register
@@ -6736,24 +6586,15 @@ pub const registers = struct {
 
         /// address: 0x40026078, path: dma1.st4par
         /// stream x peripheral address register
-        pub const St4par = packed struct {
-            pa: u32, // Peripheral address
-        };
-        pub const st4par = mmio(base_address + 0x78, 32, St4par);
+        pub const st4par = @intToPtr(*volatile u32, base_address + 0x78); // Peripheral address
 
         /// address: 0x4002607c, path: dma1.st4m0ar
         /// stream x memory 0 address register
-        pub const St4m0ar = packed struct {
-            m0a: u32, // Memory 0 address
-        };
-        pub const st4m0ar = mmio(base_address + 0x7c, 32, St4m0ar);
+        pub const st4m0ar = @intToPtr(*volatile u32, base_address + 0x7c); // Memory 0 address
 
         /// address: 0x40026080, path: dma1.st4m1ar
         /// stream x memory 1 address register
-        pub const St4m1ar = packed struct {
-            m1a: u32, // Memory 1 address (used in case of Double buffer mode)
-        };
-        pub const st4m1ar = mmio(base_address + 0x80, 32, St4m1ar);
+        pub const st4m1ar = @intToPtr(*volatile u32, base_address + 0x80); // Memory 1 address (used in case of Double buffer mode)
 
         /// address: 0x40026084, path: dma1.st4fcr
         /// stream x FIFO control register
@@ -6823,24 +6664,15 @@ pub const registers = struct {
 
         /// address: 0x40026090, path: dma1.st5par
         /// stream x peripheral address register
-        pub const St5par = packed struct {
-            pa: u32, // Peripheral address
-        };
-        pub const st5par = mmio(base_address + 0x90, 32, St5par);
+        pub const st5par = @intToPtr(*volatile u32, base_address + 0x90); // Peripheral address
 
         /// address: 0x40026094, path: dma1.st5m0ar
         /// stream x memory 0 address register
-        pub const St5m0ar = packed struct {
-            m0a: u32, // Memory 0 address
-        };
-        pub const st5m0ar = mmio(base_address + 0x94, 32, St5m0ar);
+        pub const st5m0ar = @intToPtr(*volatile u32, base_address + 0x94); // Memory 0 address
 
         /// address: 0x40026098, path: dma1.st5m1ar
         /// stream x memory 1 address register
-        pub const St5m1ar = packed struct {
-            m1a: u32, // Memory 1 address (used in case of Double buffer mode)
-        };
-        pub const st5m1ar = mmio(base_address + 0x98, 32, St5m1ar);
+        pub const st5m1ar = @intToPtr(*volatile u32, base_address + 0x98); // Memory 1 address (used in case of Double buffer mode)
 
         /// address: 0x4002609c, path: dma1.st5fcr
         /// stream x FIFO control register
@@ -6910,24 +6742,15 @@ pub const registers = struct {
 
         /// address: 0x400260a8, path: dma1.st6par
         /// stream x peripheral address register
-        pub const St6par = packed struct {
-            pa: u32, // Peripheral address
-        };
-        pub const st6par = mmio(base_address + 0xa8, 32, St6par);
+        pub const st6par = @intToPtr(*volatile u32, base_address + 0xa8); // Peripheral address
 
         /// address: 0x400260ac, path: dma1.st6m0ar
         /// stream x memory 0 address register
-        pub const St6m0ar = packed struct {
-            m0a: u32, // Memory 0 address
-        };
-        pub const st6m0ar = mmio(base_address + 0xac, 32, St6m0ar);
+        pub const st6m0ar = @intToPtr(*volatile u32, base_address + 0xac); // Memory 0 address
 
         /// address: 0x400260b0, path: dma1.st6m1ar
         /// stream x memory 1 address register
-        pub const St6m1ar = packed struct {
-            m1a: u32, // Memory 1 address (used in case of Double buffer mode)
-        };
-        pub const st6m1ar = mmio(base_address + 0xb0, 32, St6m1ar);
+        pub const st6m1ar = @intToPtr(*volatile u32, base_address + 0xb0); // Memory 1 address (used in case of Double buffer mode)
 
         /// address: 0x400260b4, path: dma1.st6fcr
         /// stream x FIFO control register
@@ -6997,24 +6820,15 @@ pub const registers = struct {
 
         /// address: 0x400260c0, path: dma1.st7par
         /// stream x peripheral address register
-        pub const St7par = packed struct {
-            pa: u32, // Peripheral address
-        };
-        pub const st7par = mmio(base_address + 0xc0, 32, St7par);
+        pub const st7par = @intToPtr(*volatile u32, base_address + 0xc0); // Peripheral address
 
         /// address: 0x400260c4, path: dma1.st7m0ar
         /// stream x memory 0 address register
-        pub const St7m0ar = packed struct {
-            m0a: u32, // Memory 0 address
-        };
-        pub const st7m0ar = mmio(base_address + 0xc4, 32, St7m0ar);
+        pub const st7m0ar = @intToPtr(*volatile u32, base_address + 0xc4); // Memory 0 address
 
         /// address: 0x400260c8, path: dma1.st7m1ar
         /// stream x memory 1 address register
-        pub const St7m1ar = packed struct {
-            m1a: u32, // Memory 1 address (used in case of Double buffer mode)
-        };
-        pub const st7m1ar = mmio(base_address + 0xc8, 32, St7m1ar);
+        pub const st7m1ar = @intToPtr(*volatile u32, base_address + 0xc8); // Memory 1 address (used in case of Double buffer mode)
 
         /// address: 0x400260cc, path: dma1.st7fcr
         /// stream x FIFO control register
@@ -8402,108 +8216,63 @@ pub const registers = struct {
 
         /// address: 0xe000e100, path: nvic.iser0
         /// Interrupt Set-Enable Register
-        pub const Iser0 = packed struct {
-            setena: u32, // SETENA
-        };
-        pub const iser0 = mmio(base_address + 0x0, 32, Iser0);
+        pub const iser0 = @intToPtr(*volatile u32, base_address + 0x0); // SETENA
 
         /// address: 0xe000e104, path: nvic.iser1
         /// Interrupt Set-Enable Register
-        pub const Iser1 = packed struct {
-            setena: u32, // SETENA
-        };
-        pub const iser1 = mmio(base_address + 0x4, 32, Iser1);
+        pub const iser1 = @intToPtr(*volatile u32, base_address + 0x4); // SETENA
 
         /// address: 0xe000e108, path: nvic.iser2
         /// Interrupt Set-Enable Register
-        pub const Iser2 = packed struct {
-            setena: u32, // SETENA
-        };
-        pub const iser2 = mmio(base_address + 0x8, 32, Iser2);
+        pub const iser2 = @intToPtr(*volatile u32, base_address + 0x8); // SETENA
 
         /// address: 0xe000e180, path: nvic.icer0
         /// Interrupt Clear-Enable Register
-        pub const Icer0 = packed struct {
-            clrena: u32, // CLRENA
-        };
-        pub const icer0 = mmio(base_address + 0x80, 32, Icer0);
+        pub const icer0 = @intToPtr(*volatile u32, base_address + 0x80); // CLRENA
 
         /// address: 0xe000e184, path: nvic.icer1
         /// Interrupt Clear-Enable Register
-        pub const Icer1 = packed struct {
-            clrena: u32, // CLRENA
-        };
-        pub const icer1 = mmio(base_address + 0x84, 32, Icer1);
+        pub const icer1 = @intToPtr(*volatile u32, base_address + 0x84); // CLRENA
 
         /// address: 0xe000e188, path: nvic.icer2
         /// Interrupt Clear-Enable Register
-        pub const Icer2 = packed struct {
-            clrena: u32, // CLRENA
-        };
-        pub const icer2 = mmio(base_address + 0x88, 32, Icer2);
+        pub const icer2 = @intToPtr(*volatile u32, base_address + 0x88); // CLRENA
 
         /// address: 0xe000e200, path: nvic.ispr0
         /// Interrupt Set-Pending Register
-        pub const Ispr0 = packed struct {
-            setpend: u32, // SETPEND
-        };
-        pub const ispr0 = mmio(base_address + 0x100, 32, Ispr0);
+        pub const ispr0 = @intToPtr(*volatile u32, base_address + 0x100); // SETPEND
 
         /// address: 0xe000e204, path: nvic.ispr1
         /// Interrupt Set-Pending Register
-        pub const Ispr1 = packed struct {
-            setpend: u32, // SETPEND
-        };
-        pub const ispr1 = mmio(base_address + 0x104, 32, Ispr1);
+        pub const ispr1 = @intToPtr(*volatile u32, base_address + 0x104); // SETPEND
 
         /// address: 0xe000e208, path: nvic.ispr2
         /// Interrupt Set-Pending Register
-        pub const Ispr2 = packed struct {
-            setpend: u32, // SETPEND
-        };
-        pub const ispr2 = mmio(base_address + 0x108, 32, Ispr2);
+        pub const ispr2 = @intToPtr(*volatile u32, base_address + 0x108); // SETPEND
 
         /// address: 0xe000e280, path: nvic.icpr0
         /// Interrupt Clear-Pending Register
-        pub const Icpr0 = packed struct {
-            clrpend: u32, // CLRPEND
-        };
-        pub const icpr0 = mmio(base_address + 0x180, 32, Icpr0);
+        pub const icpr0 = @intToPtr(*volatile u32, base_address + 0x180); // CLRPEND
 
         /// address: 0xe000e284, path: nvic.icpr1
         /// Interrupt Clear-Pending Register
-        pub const Icpr1 = packed struct {
-            clrpend: u32, // CLRPEND
-        };
-        pub const icpr1 = mmio(base_address + 0x184, 32, Icpr1);
+        pub const icpr1 = @intToPtr(*volatile u32, base_address + 0x184); // CLRPEND
 
         /// address: 0xe000e288, path: nvic.icpr2
         /// Interrupt Clear-Pending Register
-        pub const Icpr2 = packed struct {
-            clrpend: u32, // CLRPEND
-        };
-        pub const icpr2 = mmio(base_address + 0x188, 32, Icpr2);
+        pub const icpr2 = @intToPtr(*volatile u32, base_address + 0x188); // CLRPEND
 
         /// address: 0xe000e300, path: nvic.iabr0
         /// Interrupt Active Bit Register
-        pub const Iabr0 = packed struct {
-            active: u32, // ACTIVE
-        };
-        pub const iabr0 = mmio(base_address + 0x200, 32, Iabr0);
+        pub const iabr0 = @intToPtr(*volatile u32, base_address + 0x200); // ACTIVE
 
         /// address: 0xe000e304, path: nvic.iabr1
         /// Interrupt Active Bit Register
-        pub const Iabr1 = packed struct {
-            active: u32, // ACTIVE
-        };
-        pub const iabr1 = mmio(base_address + 0x204, 32, Iabr1);
+        pub const iabr1 = @intToPtr(*volatile u32, base_address + 0x204); // ACTIVE
 
         /// address: 0xe000e308, path: nvic.iabr2
         /// Interrupt Active Bit Register
-        pub const Iabr2 = packed struct {
-            active: u32, // ACTIVE
-        };
-        pub const iabr2 = mmio(base_address + 0x208, 32, Iabr2);
+        pub const iabr2 = @intToPtr(*volatile u32, base_address + 0x208); // ACTIVE
 
         /// address: 0xe000e400, path: nvic.ipr0
         /// Interrupt Priority Register
@@ -9047,10 +8816,7 @@ pub const registers = struct {
 
         /// address: 0xe000ed3c, path: scb.afsr
         /// Auxiliary fault status register
-        pub const Afsr = packed struct {
-            impdef: u32, // Implementation defined
-        };
-        pub const afsr = mmio(base_address + 0x3c, 32, Afsr);
+        pub const afsr = @intToPtr(*volatile u32, base_address + 0x3c); // Implementation defined
     };
     /// Nested vectored interrupt controller
     pub const nvic_stir = struct {
@@ -10189,24 +9955,15 @@ pub const registers = struct {
 
         /// address: 0x40026418, path: dma2.st0par
         /// stream x peripheral address register
-        pub const St0par = packed struct {
-            pa: u32, // Peripheral address
-        };
-        pub const st0par = mmio(base_address + 0x18, 32, St0par);
+        pub const st0par = @intToPtr(*volatile u32, base_address + 0x18); // Peripheral address
 
         /// address: 0x4002641c, path: dma2.st0m0ar
         /// stream x memory 0 address register
-        pub const St0m0ar = packed struct {
-            m0a: u32, // Memory 0 address
-        };
-        pub const st0m0ar = mmio(base_address + 0x1c, 32, St0m0ar);
+        pub const st0m0ar = @intToPtr(*volatile u32, base_address + 0x1c); // Memory 0 address
 
         /// address: 0x40026420, path: dma2.st0m1ar
         /// stream x memory 1 address register
-        pub const St0m1ar = packed struct {
-            m1a: u32, // Memory 1 address (used in case of Double buffer mode)
-        };
-        pub const st0m1ar = mmio(base_address + 0x20, 32, St0m1ar);
+        pub const st0m1ar = @intToPtr(*volatile u32, base_address + 0x20); // Memory 1 address (used in case of Double buffer mode)
 
         /// address: 0x40026424, path: dma2.st0fcr
         /// stream x FIFO control register
@@ -10276,24 +10033,15 @@ pub const registers = struct {
 
         /// address: 0x40026430, path: dma2.st1par
         /// stream x peripheral address register
-        pub const St1par = packed struct {
-            pa: u32, // Peripheral address
-        };
-        pub const st1par = mmio(base_address + 0x30, 32, St1par);
+        pub const st1par = @intToPtr(*volatile u32, base_address + 0x30); // Peripheral address
 
         /// address: 0x40026434, path: dma2.st1m0ar
         /// stream x memory 0 address register
-        pub const St1m0ar = packed struct {
-            m0a: u32, // Memory 0 address
-        };
-        pub const st1m0ar = mmio(base_address + 0x34, 32, St1m0ar);
+        pub const st1m0ar = @intToPtr(*volatile u32, base_address + 0x34); // Memory 0 address
 
         /// address: 0x40026438, path: dma2.st1m1ar
         /// stream x memory 1 address register
-        pub const St1m1ar = packed struct {
-            m1a: u32, // Memory 1 address (used in case of Double buffer mode)
-        };
-        pub const st1m1ar = mmio(base_address + 0x38, 32, St1m1ar);
+        pub const st1m1ar = @intToPtr(*volatile u32, base_address + 0x38); // Memory 1 address (used in case of Double buffer mode)
 
         /// address: 0x4002643c, path: dma2.st1fcr
         /// stream x FIFO control register
@@ -10363,24 +10111,15 @@ pub const registers = struct {
 
         /// address: 0x40026448, path: dma2.st2par
         /// stream x peripheral address register
-        pub const St2par = packed struct {
-            pa: u32, // Peripheral address
-        };
-        pub const st2par = mmio(base_address + 0x48, 32, St2par);
+        pub const st2par = @intToPtr(*volatile u32, base_address + 0x48); // Peripheral address
 
         /// address: 0x4002644c, path: dma2.st2m0ar
         /// stream x memory 0 address register
-        pub const St2m0ar = packed struct {
-            m0a: u32, // Memory 0 address
-        };
-        pub const st2m0ar = mmio(base_address + 0x4c, 32, St2m0ar);
+        pub const st2m0ar = @intToPtr(*volatile u32, base_address + 0x4c); // Memory 0 address
 
         /// address: 0x40026450, path: dma2.st2m1ar
         /// stream x memory 1 address register
-        pub const St2m1ar = packed struct {
-            m1a: u32, // Memory 1 address (used in case of Double buffer mode)
-        };
-        pub const st2m1ar = mmio(base_address + 0x50, 32, St2m1ar);
+        pub const st2m1ar = @intToPtr(*volatile u32, base_address + 0x50); // Memory 1 address (used in case of Double buffer mode)
 
         /// address: 0x40026454, path: dma2.st2fcr
         /// stream x FIFO control register
@@ -10450,24 +10189,15 @@ pub const registers = struct {
 
         /// address: 0x40026460, path: dma2.st3par
         /// stream x peripheral address register
-        pub const St3par = packed struct {
-            pa: u32, // Peripheral address
-        };
-        pub const st3par = mmio(base_address + 0x60, 32, St3par);
+        pub const st3par = @intToPtr(*volatile u32, base_address + 0x60); // Peripheral address
 
         /// address: 0x40026464, path: dma2.st3m0ar
         /// stream x memory 0 address register
-        pub const St3m0ar = packed struct {
-            m0a: u32, // Memory 0 address
-        };
-        pub const st3m0ar = mmio(base_address + 0x64, 32, St3m0ar);
+        pub const st3m0ar = @intToPtr(*volatile u32, base_address + 0x64); // Memory 0 address
 
         /// address: 0x40026468, path: dma2.st3m1ar
         /// stream x memory 1 address register
-        pub const St3m1ar = packed struct {
-            m1a: u32, // Memory 1 address (used in case of Double buffer mode)
-        };
-        pub const st3m1ar = mmio(base_address + 0x68, 32, St3m1ar);
+        pub const st3m1ar = @intToPtr(*volatile u32, base_address + 0x68); // Memory 1 address (used in case of Double buffer mode)
 
         /// address: 0x4002646c, path: dma2.st3fcr
         /// stream x FIFO control register
@@ -10537,24 +10267,15 @@ pub const registers = struct {
 
         /// address: 0x40026478, path: dma2.st4par
         /// stream x peripheral address register
-        pub const St4par = packed struct {
-            pa: u32, // Peripheral address
-        };
-        pub const st4par = mmio(base_address + 0x78, 32, St4par);
+        pub const st4par = @intToPtr(*volatile u32, base_address + 0x78); // Peripheral address
 
         /// address: 0x4002647c, path: dma2.st4m0ar
         /// stream x memory 0 address register
-        pub const St4m0ar = packed struct {
-            m0a: u32, // Memory 0 address
-        };
-        pub const st4m0ar = mmio(base_address + 0x7c, 32, St4m0ar);
+        pub const st4m0ar = @intToPtr(*volatile u32, base_address + 0x7c); // Memory 0 address
 
         /// address: 0x40026480, path: dma2.st4m1ar
         /// stream x memory 1 address register
-        pub const St4m1ar = packed struct {
-            m1a: u32, // Memory 1 address (used in case of Double buffer mode)
-        };
-        pub const st4m1ar = mmio(base_address + 0x80, 32, St4m1ar);
+        pub const st4m1ar = @intToPtr(*volatile u32, base_address + 0x80); // Memory 1 address (used in case of Double buffer mode)
 
         /// address: 0x40026484, path: dma2.st4fcr
         /// stream x FIFO control register
@@ -10624,24 +10345,15 @@ pub const registers = struct {
 
         /// address: 0x40026490, path: dma2.st5par
         /// stream x peripheral address register
-        pub const St5par = packed struct {
-            pa: u32, // Peripheral address
-        };
-        pub const st5par = mmio(base_address + 0x90, 32, St5par);
+        pub const st5par = @intToPtr(*volatile u32, base_address + 0x90); // Peripheral address
 
         /// address: 0x40026494, path: dma2.st5m0ar
         /// stream x memory 0 address register
-        pub const St5m0ar = packed struct {
-            m0a: u32, // Memory 0 address
-        };
-        pub const st5m0ar = mmio(base_address + 0x94, 32, St5m0ar);
+        pub const st5m0ar = @intToPtr(*volatile u32, base_address + 0x94); // Memory 0 address
 
         /// address: 0x40026498, path: dma2.st5m1ar
         /// stream x memory 1 address register
-        pub const St5m1ar = packed struct {
-            m1a: u32, // Memory 1 address (used in case of Double buffer mode)
-        };
-        pub const st5m1ar = mmio(base_address + 0x98, 32, St5m1ar);
+        pub const st5m1ar = @intToPtr(*volatile u32, base_address + 0x98); // Memory 1 address (used in case of Double buffer mode)
 
         /// address: 0x4002649c, path: dma2.st5fcr
         /// stream x FIFO control register
@@ -10711,24 +10423,15 @@ pub const registers = struct {
 
         /// address: 0x400264a8, path: dma2.st6par
         /// stream x peripheral address register
-        pub const St6par = packed struct {
-            pa: u32, // Peripheral address
-        };
-        pub const st6par = mmio(base_address + 0xa8, 32, St6par);
+        pub const st6par = @intToPtr(*volatile u32, base_address + 0xa8); // Peripheral address
 
         /// address: 0x400264ac, path: dma2.st6m0ar
         /// stream x memory 0 address register
-        pub const St6m0ar = packed struct {
-            m0a: u32, // Memory 0 address
-        };
-        pub const st6m0ar = mmio(base_address + 0xac, 32, St6m0ar);
+        pub const st6m0ar = @intToPtr(*volatile u32, base_address + 0xac); // Memory 0 address
 
         /// address: 0x400264b0, path: dma2.st6m1ar
         /// stream x memory 1 address register
-        pub const St6m1ar = packed struct {
-            m1a: u32, // Memory 1 address (used in case of Double buffer mode)
-        };
-        pub const st6m1ar = mmio(base_address + 0xb0, 32, St6m1ar);
+        pub const st6m1ar = @intToPtr(*volatile u32, base_address + 0xb0); // Memory 1 address (used in case of Double buffer mode)
 
         /// address: 0x400264b4, path: dma2.st6fcr
         /// stream x FIFO control register
@@ -10798,24 +10501,15 @@ pub const registers = struct {
 
         /// address: 0x400264c0, path: dma2.st7par
         /// stream x peripheral address register
-        pub const St7par = packed struct {
-            pa: u32, // Peripheral address
-        };
-        pub const st7par = mmio(base_address + 0xc0, 32, St7par);
+        pub const st7par = @intToPtr(*volatile u32, base_address + 0xc0); // Peripheral address
 
         /// address: 0x400264c4, path: dma2.st7m0ar
         /// stream x memory 0 address register
-        pub const St7m0ar = packed struct {
-            m0a: u32, // Memory 0 address
-        };
-        pub const st7m0ar = mmio(base_address + 0xc4, 32, St7m0ar);
+        pub const st7m0ar = @intToPtr(*volatile u32, base_address + 0xc4); // Memory 0 address
 
         /// address: 0x400264c8, path: dma2.st7m1ar
         /// stream x memory 1 address register
-        pub const St7m1ar = packed struct {
-            m1a: u32, // Memory 1 address (used in case of Double buffer mode)
-        };
-        pub const st7m1ar = mmio(base_address + 0xc8, 32, St7m1ar);
+        pub const st7m1ar = @intToPtr(*volatile u32, base_address + 0xc8); // Memory 1 address (used in case of Double buffer mode)
 
         /// address: 0x400264cc, path: dma2.st7fcr
         /// stream x FIFO control register

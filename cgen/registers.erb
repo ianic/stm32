@@ -8,15 +8,15 @@ pub const registers = struct {
         /// <%= r.desc %>
         <%- case r.type -%>
         <%- when :int -%>
-            pub const <%= r.name.nscase %> = @intToPtr(*volatile u<%= r.size %>, base_address + <%= r.address_offset.to_hex %>);
+            pub const <%= r.name.nscase %> = @intToPtr(*volatile u<%= r.size %>, base_address + <%= r.address_offset.to_hex %>); // <%= r.fields.first.desc %>
         <%- when :mmio_int -%>
-            pub const <%= r.name.nscase %> = mmioInt(base_address + <%= r.address_offset.to_hex %> , <%= r.size %>, u<%= r.bit_width %>);
+            pub const <%= r.name.nscase %> = mmioInt(base_address + <%= r.address_offset.to_hex %> , <%= r.size %>, u<%= r.bit_width %>); // <%= r.fields.first.desc %>
         <%- else -%>
             pub const <%= r.name.titlecase %> = packed struct {
             <%- for e in r.enums -%>
                 <%- if (e and e.values) -%>
                     <%- if e.redirect_to  -%>
-                        pub const <%= e.name.titlecase %> = <%= e.redirect_to.path.downcase %>.<%= e.name.titlecase %>;
+                        pub const <%= e.name.titlecase %> = <%= e.redirect_to.path %>.<%= e.name.titlecase %>;
                     <%- else -%>
                         pub const <%= e.name.titlecase %> = enum(u<%= e.bit_width %>) {
                         <%- for v in e.fields -%>
