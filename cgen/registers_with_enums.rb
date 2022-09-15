@@ -18,10 +18,6 @@ device = Device.new(open_doc(ARGV[0])) # used in template binding
 device.calc_enum_redirect_to
 
 # formatting functions used in template
-def address(base_address, address_offset)
-  "0x#{(as_int(base_address) + as_int(address_offset)).to_s(16)}"
-end
-
 def enum_value(val, bit_width)
   return val if bit_width == 1
 

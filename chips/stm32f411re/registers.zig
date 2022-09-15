@@ -1218,7 +1218,7 @@ pub const registers = struct {
             DPID: u2, // Data PID
             PKTSTS: u4, // Packet status
             padding_21_31: u11,
-        }), base_address + 28);
+        }), base_address + 0x1c);
 
         /// address: 0x50000024
         /// OTG_FS Receive FIFO size register (OTG_FS_GRXFSIZ)
@@ -1306,7 +1306,7 @@ pub const registers = struct {
             PKTSTS: u4, // Packet status
             FRMNUM: u4, // Frame number
             padding_25_31: u7,
-        }), base_address + 32);
+        }), base_address + 0x20);
 
         /// address: 0x50000020
         /// OTG status read and pop (host mode)
@@ -1316,7 +1316,7 @@ pub const registers = struct {
             DPID: u2, // Data PID
             PKTSTS: u4, // Packet status
             padding_21_31: u11,
-        }), base_address + 32);
+        }), base_address + 0x20);
     };
     /// USB on the go full speed
     pub const OTG_FS_HOST = struct {
@@ -2265,7 +2265,7 @@ pub const registers = struct {
             reserved_0_23: u24,
             TIMPRE: u1, // Timers clocks prescalers selection
             padding_25_31: u7,
-        }), base_address + 140);
+        }), base_address + 0x8c);
     };
     /// Real-time clock
     pub const RTC = struct {
@@ -5710,7 +5710,7 @@ pub const registers = struct {
             DNF: u4, // Digital noise filter
             ANOFF: u1, // Analog noise filter
             padding_5_31: u27,
-        }), base_address + 36);
+        }), base_address + 0x24);
     };
     /// Serial peripheral interface
     pub const SPI1 = struct {
@@ -8527,7 +8527,7 @@ pub const registers = struct {
             DNF: u4, // Digital noise filter
             ANOFF: u1, // Analog noise filter
             padding_5_31: u27,
-        }), base_address + 36);
+        }), base_address + 0x24);
     };
     /// Inter-integrated circuit
     pub const I2C2 = struct {
@@ -8646,7 +8646,7 @@ pub const registers = struct {
             DNF: u4, // Digital noise filter
             ANOFF: u1, // Analog noise filter
             padding_5_31: u27,
-        }), base_address + 36);
+        }), base_address + 0x24);
     };
     /// Serial peripheral interface
     pub const I2S2ext = struct {

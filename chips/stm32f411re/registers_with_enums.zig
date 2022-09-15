@@ -1584,7 +1584,7 @@ pub const registers = struct {
             pktsts: u4, // Packet status
             _padding_21_31: u11,
         };
-        pub const grxstsr_host = mmio(base_address + 28, 32, GrxstsrHost);
+        pub const grxstsr_host = mmio(base_address + 0x1c, 32, GrxstsrHost);
 
         /// address: 0x50000024, path: otg_fs_global.grxfsiz
         /// OTG_FS Receive FIFO size register (OTG_FS_GRXFSIZ)
@@ -1683,7 +1683,7 @@ pub const registers = struct {
             frmnum: u4, // Frame number
             _padding_25_31: u7,
         };
-        pub const grxstsp_device = mmio(base_address + 32, 32, GrxstspDevice);
+        pub const grxstsp_device = mmio(base_address + 0x20, 32, GrxstspDevice);
 
         /// address: 0x50000020, path: otg_fs_global.grxstsp_host
         /// OTG status read and pop (host mode)
@@ -1694,7 +1694,7 @@ pub const registers = struct {
             pktsts: u4, // Packet status
             _padding_21_31: u11,
         };
-        pub const grxstsp_host = mmio(base_address + 32, 32, GrxstspHost);
+        pub const grxstsp_host = mmio(base_address + 0x20, 32, GrxstspHost);
     };
     /// USB on the go full speed
     pub const otg_fs_host = struct {
@@ -2901,7 +2901,7 @@ pub const registers = struct {
             timpre: Timpre, // Timers clocks prescalers selection (u1)
             _padding_25_31: u7,
         };
-        pub const dckcfgr = mmio(base_address + 140, 32, Dckcfgr);
+        pub const dckcfgr = mmio(base_address + 0x8c, 32, Dckcfgr);
     };
     /// Real-time clock
     pub const rtc = struct {
@@ -8113,7 +8113,7 @@ pub const registers = struct {
             anoff: Anoff, // Analog noise filter (u1)
             _padding_5_31: u27,
         };
-        pub const fltr = mmio(base_address + 36, 32, Fltr);
+        pub const fltr = mmio(base_address + 0x24, 32, Fltr);
     };
     /// Serial peripheral interface
     pub const spi1 = struct {
@@ -11719,7 +11719,7 @@ pub const registers = struct {
             anoff: Anoff, // Analog noise filter (u1)
             _padding_5_31: u27,
         };
-        pub const fltr = mmio(base_address + 36, 32, Fltr);
+        pub const fltr = mmio(base_address + 0x24, 32, Fltr);
     };
     /// Inter-integrated circuit
     pub const i2c2 = struct {
@@ -11884,7 +11884,7 @@ pub const registers = struct {
             anoff: Anoff, // Analog noise filter (u1)
             _padding_5_31: u27,
         };
-        pub const fltr = mmio(base_address + 36, 32, Fltr);
+        pub const fltr = mmio(base_address + 0x24, 32, Fltr);
     };
     /// Serial peripheral interface
     pub const i2s2ext = struct {

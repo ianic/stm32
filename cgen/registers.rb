@@ -16,31 +16,27 @@ filename = 'data/test.svd' if is_test
 @doc = File.open(filename) { |f| Nokogiri::XML(f) }
 device = Device.new(@doc)
 
-def address(base_address, address_offset)
-  '0x' + (as_int(base_address) + as_int(address_offset)).to_s(16)
-end
-
 def generate(device)
   tmpl = <<~EOF
     pub const registers = struct {
         <%- for p in device.peripherals -%>
         /// <%= p.desc %>
         pub const <%= p.name %> = struct {
-            pub const base_address = <%= p.base_address %>;
+            pub const base_address = <%= p.base_address.to_hex %>;
             <%- for r in p.registers %>
-            /// address: <%= address(p.base_address, r.address_offset) %>
+            /// address: <%= r.address(p.base_address).to_hex %>
             /// <%= r.desc %>
             <%- case r.type -%>
             <%- when :int -%>
-            pub const <%= r.name %> = @intToPtr(*volatile u<%= r.size %>, base_address + <%= r.address_offset %>);
+            pub const <%= r.name %> = @intToPtr(*volatile u<%= r.size %>, base_address + <%= r.address_offset.to_hex %>);
             <%- when :mmio_int -%>
-            pub const <%= r.name %> = @intToPtr(*volatile MmioInt(<%= r.size %>, u<%= r.bit_width %>), base_address + <%= r.address_offset %>);
+            pub const <%= r.name %> = @intToPtr(*volatile MmioInt(<%= r.size %>, u<%= r.bit_width %>), base_address + <%= r.address_offset.to_hex %>);
             <%- else -%>
             pub const <%= r.name %> = @intToPtr(*volatile Mmio(<%= r.size %>, packed struct {
                 <%- for f in r.fields -%>
                 <%= f.name %>: u<%= f.bit_width %>,<%- if f.desc -%> // <%= f.desc %> <%- end %>
                 <%- end -%>
-            }), base_address + <%= r.address_offset %>);
+            }), base_address + <%= r.address_offset.to_hex %>);
             <%- end -%>
             <%- end -%>
         };

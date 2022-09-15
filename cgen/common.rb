@@ -45,6 +45,13 @@ class String
   def is_hexadecimal_literal?
     HEXADECIMAL_REGEX.match?(self)
   end
+
+end
+
+class Integer
+  def to_hex
+    "0x#{self.to_s(16)}"
+  end
 end
 
 class Hash

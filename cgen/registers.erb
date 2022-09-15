@@ -2,15 +2,15 @@ pub const registers = struct {
 <%- for p in device.peripherals -%>
     /// <%= p.desc %>
     pub const <%= p.name.nscase %> = struct {
-    pub const base_address = <%= p.base_address %>;
+    pub const base_address = <%= p.base_address.to_hex %>;
     <%- for r in p.registers %>
-        /// address: <%= address(p.base_address, r.address_offset) %>, path: <%= p.name.nscase %>.<%= r.name.nscase %>
+        /// address: <%= r.address(p.base_address).to_hex %>, path: <%= p.name.nscase %>.<%= r.name.nscase %>
         /// <%= r.desc %>
         <%- case r.type -%>
         <%- when :int -%>
-            pub const <%= r.name.nscase %> = @intToPtr(*volatile u<%= r.size %>, base_address + <%= r.address_offset %>);
+            pub const <%= r.name.nscase %> = @intToPtr(*volatile u<%= r.size %>, base_address + <%= r.address_offset.to_hex %>);
         <%- when :mmio_int -%>
-            pub const <%= r.name.nscase %> = mmioInt(base_address + <%= r.address_offset %> , <%= r.size %>, u<%= r.bit_width %>);
+            pub const <%= r.name.nscase %> = mmioInt(base_address + <%= r.address_offset.to_hex %> , <%= r.size %>, u<%= r.bit_width %>);
         <%- else -%>
             pub const <%= r.name.titlecase %> = packed struct {
             <%- for f in r.fields -%>
@@ -35,7 +35,7 @@ pub const registers = struct {
                 <%= "_" if f.is_a?(PaddingField) %><%= f.name.nscase %>: <%- if f.enum -%><%= f.enum.name.titlecase %><%- else -%>u<%= f.bit_width %><%- end -%>,<%- if f.desc or f.enum -%> // <%= f.desc %> <%- if f.enum %> (u<%= f.bit_width %>) <%- end -%> <%- end %>
             <%- end -%>
             };
-            pub const <%= r.name.nscase %> = mmio(base_address + <%= r.address_offset %>, <%= r.size %>, <%= r.name.titlecase %>);
+            pub const <%= r.name.nscase %> = mmio(base_address + <%= r.address_offset.to_hex %>, <%= r.size %>, <%= r.name.titlecase %>);
         <%- end -%>
     <%- end -%>
     };
