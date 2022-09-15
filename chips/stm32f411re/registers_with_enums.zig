@@ -435,11 +435,11 @@ pub const registers = struct {
 
         /// address: 0x40023000, path: crc.dr
         /// Data register
-        pub const dr = @intToPtr(*volatile u32, base_address + 0x0);
+        pub const dr = @intToPtr(*volatile u32, base_address + 0x0); // Data Register
 
         /// address: 0x40023004, path: crc.idr
         /// Independent Data register
-        pub const idr = mmioInt(base_address + 0x4, 32, u8);
+        pub const idr = mmioInt(base_address + 0x4, 32, u8); // Independent Data register
 
         /// address: 0x40023008, path: crc.cr
         /// Control register
@@ -884,7 +884,7 @@ pub const registers = struct {
 
         /// address: 0x40003004, path: iwdg.pr
         /// Prescaler register
-        pub const pr = mmioInt(base_address + 0x4, 32, u3);
+        pub const pr = mmioInt(base_address + 0x4, 32, u3); // Prescaler divider
 
         /// address: 0x40003008, path: iwdg.rlr
         /// Reload register
@@ -1736,7 +1736,7 @@ pub const registers = struct {
 
         /// address: 0x50000414, path: otg_fs_host.haint
         /// OTG_FS Host all channels interrupt register
-        pub const haint = mmioInt(base_address + 0x14, 32, u16);
+        pub const haint = mmioInt(base_address + 0x14, 32, u16); // Channel interrupts
 
         /// address: 0x50000418, path: otg_fs_host.haintmsk
         /// OTG_FS host all channels interrupt mask register
@@ -3599,7 +3599,7 @@ pub const registers = struct {
 
         /// address: 0x40012c10, path: sdio.respcmd
         /// command response register
-        pub const respcmd = mmioInt(base_address + 0x10, 32, u6);
+        pub const respcmd = mmioInt(base_address + 0x10, 32, u6); // Response command index
 
         /// address: 0x40012c14, path: sdio.resp1
         /// response 1..4 register
@@ -4414,15 +4414,15 @@ pub const registers = struct {
 
         /// address: 0x40010024, path: tim1.cnt
         /// counter
-        pub const cnt = mmioInt(base_address + 0x24, 32, u16);
+        pub const cnt = mmioInt(base_address + 0x24, 32, u16); // counter value
 
         /// address: 0x40010028, path: tim1.psc
         /// prescaler
-        pub const psc = mmioInt(base_address + 0x28, 32, u16);
+        pub const psc = mmioInt(base_address + 0x28, 32, u16); // Prescaler value
 
         /// address: 0x4001002c, path: tim1.arr
         /// auto-reload register
-        pub const arr = mmioInt(base_address + 0x2c, 32, u16);
+        pub const arr = mmioInt(base_address + 0x2c, 32, u16); // Auto-reload value
 
         /// address: 0x40010034, path: tim1.ccr1
         /// capture/compare register
@@ -4600,15 +4600,15 @@ pub const registers = struct {
 
         /// address: 0x40014424, path: tim10.cnt
         /// counter
-        pub const cnt = mmioInt(base_address + 0x24, 32, u16);
+        pub const cnt = mmioInt(base_address + 0x24, 32, u16); // counter value
 
         /// address: 0x40014428, path: tim10.psc
         /// prescaler
-        pub const psc = mmioInt(base_address + 0x28, 32, u16);
+        pub const psc = mmioInt(base_address + 0x28, 32, u16); // Prescaler value
 
         /// address: 0x4001442c, path: tim10.arr
         /// auto-reload register
-        pub const arr = mmioInt(base_address + 0x2c, 32, u16);
+        pub const arr = mmioInt(base_address + 0x2c, 32, u16); // Auto-reload value
 
         /// address: 0x40014434, path: tim10.ccr1
         /// capture/compare register
@@ -4709,15 +4709,15 @@ pub const registers = struct {
 
         /// address: 0x40014824, path: tim11.cnt
         /// counter
-        pub const cnt = mmioInt(base_address + 0x24, 32, u16);
+        pub const cnt = mmioInt(base_address + 0x24, 32, u16); // counter value
 
         /// address: 0x40014828, path: tim11.psc
         /// prescaler
-        pub const psc = mmioInt(base_address + 0x28, 32, u16);
+        pub const psc = mmioInt(base_address + 0x28, 32, u16); // Prescaler value
 
         /// address: 0x4001482c, path: tim11.arr
         /// auto-reload register
-        pub const arr = mmioInt(base_address + 0x2c, 32, u16);
+        pub const arr = mmioInt(base_address + 0x2c, 32, u16); // Auto-reload value
 
         /// address: 0x40014834, path: tim11.ccr1
         /// capture/compare register
@@ -4966,15 +4966,15 @@ pub const registers = struct {
 
         /// address: 0x40000024, path: tim2.cnt
         /// counter
-        pub const cnt = @intToPtr(*volatile u32, base_address + 0x24);
+        pub const cnt = @intToPtr(*volatile u32, base_address + 0x24); // Counter value
 
         /// address: 0x40000028, path: tim2.psc
         /// prescaler
-        pub const psc = mmioInt(base_address + 0x28, 32, u16);
+        pub const psc = mmioInt(base_address + 0x28, 32, u16); // Prescaler value
 
         /// address: 0x4000002c, path: tim2.arr
         /// auto-reload register
-        pub const arr = @intToPtr(*volatile u32, base_address + 0x2c);
+        pub const arr = @intToPtr(*volatile u32, base_address + 0x2c); // Auto-reload value
 
         /// address: 0x40000034, path: tim2.ccr1
         /// capture/compare register
@@ -5262,15 +5262,15 @@ pub const registers = struct {
 
         /// address: 0x40000424, path: tim3.cnt
         /// counter
-        pub const cnt = mmioInt(base_address + 0x24, 32, u16);
+        pub const cnt = mmioInt(base_address + 0x24, 32, u16); // Counter value
 
         /// address: 0x40000428, path: tim3.psc
         /// prescaler
-        pub const psc = mmioInt(base_address + 0x28, 32, u16);
+        pub const psc = mmioInt(base_address + 0x28, 32, u16); // Prescaler value
 
         /// address: 0x4000042c, path: tim3.arr
         /// auto-reload register
-        pub const arr = mmioInt(base_address + 0x2c, 32, u16);
+        pub const arr = mmioInt(base_address + 0x2c, 32, u16); // Auto-reload value
 
         /// address: 0x40000434, path: tim3.ccr1
         /// capture/compare register
@@ -5553,15 +5553,15 @@ pub const registers = struct {
 
         /// address: 0x40000c24, path: tim5.cnt
         /// counter
-        pub const cnt = @intToPtr(*volatile u32, base_address + 0x24);
+        pub const cnt = @intToPtr(*volatile u32, base_address + 0x24); // Counter value
 
         /// address: 0x40000c28, path: tim5.psc
         /// prescaler
-        pub const psc = mmioInt(base_address + 0x28, 32, u16);
+        pub const psc = mmioInt(base_address + 0x28, 32, u16); // Prescaler value
 
         /// address: 0x40000c2c, path: tim5.arr
         /// auto-reload register
-        pub const arr = @intToPtr(*volatile u32, base_address + 0x2c);
+        pub const arr = @intToPtr(*volatile u32, base_address + 0x2c); // Auto-reload value
 
         /// address: 0x40000c34, path: tim5.ccr1
         /// capture/compare register
@@ -5752,15 +5752,15 @@ pub const registers = struct {
 
         /// address: 0x40014024, path: tim9.cnt
         /// counter
-        pub const cnt = mmioInt(base_address + 0x24, 32, u16);
+        pub const cnt = mmioInt(base_address + 0x24, 32, u16); // counter value
 
         /// address: 0x40014028, path: tim9.psc
         /// prescaler
-        pub const psc = mmioInt(base_address + 0x28, 32, u16);
+        pub const psc = mmioInt(base_address + 0x28, 32, u16); // Prescaler value
 
         /// address: 0x4001402c, path: tim9.arr
         /// auto-reload register
-        pub const arr = mmioInt(base_address + 0x2c, 32, u16);
+        pub const arr = mmioInt(base_address + 0x2c, 32, u16); // Auto-reload value
 
         /// address: 0x40014034, path: tim9.ccr1
         /// capture/compare register
@@ -5801,7 +5801,7 @@ pub const registers = struct {
 
         /// address: 0x40011004, path: usart1.dr
         /// Data register
-        pub const dr = mmioInt(base_address + 0x4, 32, u9);
+        pub const dr = mmioInt(base_address + 0x4, 32, u9); // Data value
 
         /// address: 0x40011008, path: usart1.brr
         /// Baud rate register
@@ -7968,7 +7968,7 @@ pub const registers = struct {
 
         /// address: 0x40005410, path: i2c1.dr
         /// Data register
-        pub const dr = mmioInt(base_address + 0x10, 32, u8);
+        pub const dr = mmioInt(base_address + 0x10, 32, u8); // 8-bit data register
 
         /// address: 0x40005414, path: i2c1.sr1
         /// Status register 1
@@ -8082,7 +8082,7 @@ pub const registers = struct {
 
         /// address: 0x40005420, path: i2c1.trise
         /// TRISE register
-        pub const trise = mmioInt(base_address + 0x20, 32, u6);
+        pub const trise = mmioInt(base_address + 0x20, 32, u6); // Maximum rise time in Fast/Standard mode (Master mode)
 
         /// address: 0x40005424, path: i2c1.fltr
         /// FLTR register
@@ -8299,7 +8299,7 @@ pub const registers = struct {
 
         /// address: 0x4001300c, path: spi1.dr
         /// data register
-        pub const dr = mmioInt(base_address + 0xc, 32, u16);
+        pub const dr = mmioInt(base_address + 0xc, 32, u16); // Data register
 
         /// address: 0x40013010, path: spi1.crcpr
         /// CRC polynomial register
@@ -9039,11 +9039,11 @@ pub const registers = struct {
 
         /// address: 0xe000ed34, path: scb.mmfar
         /// Memory management fault address register
-        pub const mmfar = @intToPtr(*volatile u32, base_address + 0x34);
+        pub const mmfar = @intToPtr(*volatile u32, base_address + 0x34); // Memory management fault address
 
         /// address: 0xe000ed38, path: scb.bfar
         /// Bus fault address register
-        pub const bfar = @intToPtr(*volatile u32, base_address + 0x38);
+        pub const bfar = @intToPtr(*volatile u32, base_address + 0x38); // Bus fault address
 
         /// address: 0xe000ed3c, path: scb.afsr
         /// Auxiliary fault status register
@@ -9334,15 +9334,15 @@ pub const registers = struct {
 
         /// address: 0x40010424, path: tim8.cnt
         /// counter
-        pub const cnt = mmioInt(base_address + 0x24, 32, u16);
+        pub const cnt = mmioInt(base_address + 0x24, 32, u16); // counter value
 
         /// address: 0x40010428, path: tim8.psc
         /// prescaler
-        pub const psc = mmioInt(base_address + 0x28, 32, u16);
+        pub const psc = mmioInt(base_address + 0x28, 32, u16); // Prescaler value
 
         /// address: 0x4001042c, path: tim8.arr
         /// auto-reload register
-        pub const arr = mmioInt(base_address + 0x2c, 32, u16);
+        pub const arr = mmioInt(base_address + 0x2c, 32, u16); // Auto-reload value
 
         /// address: 0x40010434, path: tim8.ccr1
         /// capture/compare register
@@ -9651,15 +9651,15 @@ pub const registers = struct {
 
         /// address: 0x40000824, path: tim4.cnt
         /// counter
-        pub const cnt = mmioInt(base_address + 0x24, 32, u16);
+        pub const cnt = mmioInt(base_address + 0x24, 32, u16); // Counter value
 
         /// address: 0x40000828, path: tim4.psc
         /// prescaler
-        pub const psc = mmioInt(base_address + 0x28, 32, u16);
+        pub const psc = mmioInt(base_address + 0x28, 32, u16); // Prescaler value
 
         /// address: 0x4000082c, path: tim4.arr
         /// auto-reload register
-        pub const arr = mmioInt(base_address + 0x2c, 32, u16);
+        pub const arr = mmioInt(base_address + 0x2c, 32, u16); // Auto-reload value
 
         /// address: 0x40000834, path: tim4.ccr1
         /// capture/compare register
@@ -9734,7 +9734,7 @@ pub const registers = struct {
 
         /// address: 0x40004404, path: usart2.dr
         /// Data register
-        pub const dr = mmioInt(base_address + 0x4, 32, u9);
+        pub const dr = mmioInt(base_address + 0x4, 32, u9); // Data value
 
         /// address: 0x40004408, path: usart2.brr
         /// Baud rate register
@@ -9871,7 +9871,7 @@ pub const registers = struct {
 
         /// address: 0x40011404, path: usart6.dr
         /// Data register
-        pub const dr = mmioInt(base_address + 0x4, 32, u9);
+        pub const dr = mmioInt(base_address + 0x4, 32, u9); // Data value
 
         /// address: 0x40011408, path: usart6.brr
         /// Baud rate register
@@ -11639,7 +11639,7 @@ pub const registers = struct {
 
         /// address: 0x40005c10, path: i2c3.dr
         /// Data register
-        pub const dr = mmioInt(base_address + 0x10, 32, u8);
+        pub const dr = mmioInt(base_address + 0x10, 32, u8); // 8-bit data register
 
         /// address: 0x40005c14, path: i2c3.sr1
         /// Status register 1
@@ -11708,7 +11708,7 @@ pub const registers = struct {
 
         /// address: 0x40005c20, path: i2c3.trise
         /// TRISE register
-        pub const trise = mmioInt(base_address + 0x20, 32, u6);
+        pub const trise = mmioInt(base_address + 0x20, 32, u6); // Maximum rise time in Fast/Standard mode (Master mode)
 
         /// address: 0x40005c24, path: i2c3.fltr
         /// FLTR register
@@ -11804,7 +11804,7 @@ pub const registers = struct {
 
         /// address: 0x40005810, path: i2c2.dr
         /// Data register
-        pub const dr = mmioInt(base_address + 0x10, 32, u8);
+        pub const dr = mmioInt(base_address + 0x10, 32, u8); // 8-bit data register
 
         /// address: 0x40005814, path: i2c2.sr1
         /// Status register 1
@@ -11873,7 +11873,7 @@ pub const registers = struct {
 
         /// address: 0x40005820, path: i2c2.trise
         /// TRISE register
-        pub const trise = mmioInt(base_address + 0x20, 32, u6);
+        pub const trise = mmioInt(base_address + 0x20, 32, u6); // Maximum rise time in Fast/Standard mode (Master mode)
 
         /// address: 0x40005824, path: i2c2.fltr
         /// FLTR register
@@ -11974,7 +11974,7 @@ pub const registers = struct {
 
         /// address: 0x4000340c, path: i2s2ext.dr
         /// data register
-        pub const dr = mmioInt(base_address + 0xc, 32, u16);
+        pub const dr = mmioInt(base_address + 0xc, 32, u16); // Data register
 
         /// address: 0x40003410, path: i2s2ext.crcpr
         /// CRC polynomial register
@@ -12124,7 +12124,7 @@ pub const registers = struct {
 
         /// address: 0x4000400c, path: i2s3ext.dr
         /// data register
-        pub const dr = mmioInt(base_address + 0xc, 32, u16);
+        pub const dr = mmioInt(base_address + 0xc, 32, u16); // Data register
 
         /// address: 0x40004010, path: i2s3ext.crcpr
         /// CRC polynomial register
@@ -12274,7 +12274,7 @@ pub const registers = struct {
 
         /// address: 0x4000380c, path: spi2.dr
         /// data register
-        pub const dr = mmioInt(base_address + 0xc, 32, u16);
+        pub const dr = mmioInt(base_address + 0xc, 32, u16); // Data register
 
         /// address: 0x40003810, path: spi2.crcpr
         /// CRC polynomial register
@@ -12424,7 +12424,7 @@ pub const registers = struct {
 
         /// address: 0x40003c0c, path: spi3.dr
         /// data register
-        pub const dr = mmioInt(base_address + 0xc, 32, u16);
+        pub const dr = mmioInt(base_address + 0xc, 32, u16); // Data register
 
         /// address: 0x40003c10, path: spi3.crcpr
         /// CRC polynomial register
@@ -12574,7 +12574,7 @@ pub const registers = struct {
 
         /// address: 0x4001340c, path: spi4.dr
         /// data register
-        pub const dr = mmioInt(base_address + 0xc, 32, u16);
+        pub const dr = mmioInt(base_address + 0xc, 32, u16); // Data register
 
         /// address: 0x40013410, path: spi4.crcpr
         /// CRC polynomial register
@@ -12724,7 +12724,7 @@ pub const registers = struct {
 
         /// address: 0x4001500c, path: spi5.dr
         /// data register
-        pub const dr = mmioInt(base_address + 0xc, 32, u16);
+        pub const dr = mmioInt(base_address + 0xc, 32, u16); // Data register
 
         /// address: 0x40015010, path: spi5.crcpr
         /// CRC polynomial register
