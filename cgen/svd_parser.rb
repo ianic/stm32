@@ -89,10 +89,18 @@ class Enum
     "#{@field.parent.parent.name}.#{@field.parent.name}"
   end
 
+  def fields
+    @values.select { |v| !v.alias }
+  end
+
+  def aliases
+    @values.select { |v| v.alias }
+  end
+
   private
 
   def collect_values(doc)
-    @values = doc.map { |xd| EnumValue.new(xd) }
+    @values = doc.map { |xd| EnumValue.new(xd, self) }
     # mark repeating value as alias
     # in zig we can not have two items with the same value in enum
     @values.each_with_index do |v, i|
@@ -117,12 +125,19 @@ class Enum
 end
 
 class EnumValue < Document
-  attr_reader :name, :desc, :value, :alias
+  attr_reader :name, :desc, :alias
 
-  def initialize(doc)
-    super doc
+  def initialize(doc, parent)
+    super doc, parent
     doc_to_vars :name, :desc, :value
     @alias = false
+  end
+
+  def value
+    return @value if @parent.bit_width == 1
+
+    fmt = "0b%0#{@parent.bit_width}b"
+    fmt % @value
   end
 end
 
@@ -153,6 +168,10 @@ class Register < Document
 
   def address(base)
     base + address_offset
+  end
+
+  def enums
+    @fields.map { |f| f.enum if f.enum and f.enum.values }.compact
   end
 
   private

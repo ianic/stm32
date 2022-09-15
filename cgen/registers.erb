@@ -13,26 +13,26 @@ pub const registers = struct {
             pub const <%= r.name.nscase %> = mmioInt(base_address + <%= r.address_offset.to_hex %> , <%= r.size %>, u<%= r.bit_width %>);
         <%- else -%>
             pub const <%= r.name.titlecase %> = packed struct {
-            <%- for f in r.fields -%>
-                <%- if (f.enum and f.enum.values) -%>
-                    <%- if f.enum.redirect_to  -%>
-                        pub const <%= f.enum.name.titlecase %> = <%= f.enum.redirect_to.path.downcase %>.<%= f.enum.name.titlecase %>;
+            <%- for e in r.enums -%>
+                <%- if (e and e.values) -%>
+                    <%- if e.redirect_to  -%>
+                        pub const <%= e.name.titlecase %> = <%= e.redirect_to.path.downcase %>.<%= e.name.titlecase %>;
                     <%- else -%>
-                        pub const <%= f.enum.name.titlecase %> = enum(u<%= f.bit_width %>) {
-                        <%- for v in f.enum.values -%>
-                            <%- next if v.alias -%>
-                            <%= v.name.underscore.nscase %> = <%= enum_value(v.value, f.bit_width) %>, // <%= v.desc %>
+                        pub const <%= e.name.titlecase %> = enum(u<%= e.bit_width %>) {
+                        <%- for v in e.fields -%>
+                            <%= v.name.unscase %> = <%= v.value %>, // <%= v.desc %>
                         <%- end -%>
-                        <%- for v in f.enum.values -%>
-                            <%- next unless v.alias -%>
-                            pub const <%= v.name.underscore.nscase %> = @intToEnum(<%= f.enum.name.titlecase %>,<%= enum_value(v.value, f.bit_width) %>); // <%= v.desc %>
+                        <%- for v in e.aliases -%>
+                            pub const <%= v.name.unscase %> = @intToEnum(<%= e.name.titlecase %>,<%= v.value %>); // <%= v.desc %>
                         <%- end -%>
                         };
                     <%- end -%>
                 <%- end -%>
             <%- end -%>
-            <%- for f in r.fields -%>
-                <%= "_" if f.is_a?(PaddingField) %><%= f.name.nscase %>: <%- if f.enum -%><%= f.enum.name.titlecase %><%- else -%>u<%= f.bit_width %><%- end -%>,<%- if f.desc or f.enum -%> // <%= f.desc %> <%- if f.enum %> (u<%= f.bit_width %>) <%- end -%> <%- end %>
+            <%- for f in r.fields
+                e = f.enum
+            -%>
+                <%= "_" if f.is_a?(PaddingField) %><%= f.name.nscase %>: <%- if e -%><%= e.name.titlecase %><%- else -%>u<%= f.bit_width %><%- end -%>,<%- if f.desc or e -%> // <%= f.desc %> <%- if e %> (u<%= f.bit_width %>) <%- end -%> <%- end %>
             <%- end -%>
             };
             pub const <%= r.name.nscase %> = mmio(base_address + <%= r.address_offset.to_hex %>, <%= r.size %>, <%= r.name.titlecase %>);

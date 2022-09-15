@@ -24,6 +24,11 @@ class String
     self.downcase.keyword
   end
 
+  def unscase
+    self.underscore.keyword
+  end
+
+
   def underscore
     self.gsub(/::/, '/').
     gsub(/([A-Z]+)([A-Z][a-z])/,'\1_\2').
