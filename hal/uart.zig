@@ -1,7 +1,10 @@
 const std = @import("std");
 const micro = @import("microzig");
-const chip = micro.chip; // TODO: rething chip.Irq dependency
+const chip = micro.chip; // TODO: rethink chip.Irq dependency
 const regs = chip.regs;
+
+// Started as copy from microzig:
+// ref: https://github.com/ZigEmbeddedGroup/microzig/blob/4159581b4848bfb8bbdf91dabdebd15ecd503427/src/modules/chips/stm32f407/stm32f407.zig#L136
 
 pub const Config = struct {
     // communication params

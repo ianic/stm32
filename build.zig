@@ -22,6 +22,7 @@ pub fn build(b: *std.build.Builder) !void {
         .{ .name = "uart-dma", .source = "examples/uart/dma/main.zig" },
         .{ .name = "adc", .source = "examples/adc.zig" },
         .{ .name = "pwm", .source = "examples/pwm.zig" },
+        .{ .name = "led_dim", .source = "examples/led_dim.zig" },
     };
 
     for (examples) |e| {
