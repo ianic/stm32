@@ -2,7 +2,7 @@
 // inspired and started as as a copy of: https://github.com/rbino/zig-stm32-blink
 
 const micro = @import("microzig");
-const regs = micro.chip.regs;
+const regs = micro.chip.eregs;
 
 // Provide chip frequencies to customize init and checkConfig for that chip.
 pub fn Chip(comptime chip_frequencies: type) type {
@@ -45,28 +45,48 @@ pub fn Chip(comptime chip_frequencies: type) type {
         pub fn init(comptime cfg: Config) void {
             checkConfig(cfg);
 
-            regs.RCC.APB1ENR.modify(.{ .PWREN = 1 }); // enable power interface clock
-            regs.PWR.CR.modify(.{ .VOS = voltageScalingOutput(cfg.frequencies.cpu) }); // voltage scaling output
+            regs.rcc.apb1enr.modify(.{ .pwren = .enabled }); // enable power interface clock
+            regs.pwr.cr.modify(.{ .vos = voltageScalingOutput(cfg.frequencies.cpu) }); // voltage scaling output
 
-            regs.RCC.CR.modify(.{ .HSION = 1 }); // Enable HSI
-            while (regs.RCC.CR.read().HSIRDY != 1) {} // Wait for HSI ready
-            regs.RCC.CFGR.modify(.{ .SW = 0b00 }); // Select HSI as clock source
-
-            if (cfg.source == .hse) {
-                regs.RCC.CR.modify(.{ .HSEON = 1 }); // Enable external high-speed oscillator (HSE)
-                while (regs.RCC.CR.read().HSERDY != 1) {} // Wait for HSE ready
+            if (cfg.source == .hsi) {
+                regs.rcc.cr.modify(.{ .hsion = .on }); // Enable HSI
+                while (regs.rcc.cr.read().hsirdy != .ready) {} // Wait for HSI ready
+            } else {
+                regs.rcc.cr.modify(.{ .hseon = .on }); // Enable external high-speed oscillator (HSE)
+                while (regs.rcc.cr.read().hserdy != .ready) {} // Wait for HSE ready
             }
-            // set prescalers
-            regs.RCC.CFGR.modify(.{
-                .HPRE = prescalerBits(u4, cfg.prescaler.ahb), // AHB prescaler
-                .PPRE1 = prescalerBits(u3, cfg.prescaler.apb1), // APB Low speed prescaler APB1
-                .PPRE2 = prescalerBits(u3, cfg.prescaler.apb2), // APB high-speed prescaler APB2
-            });
 
             initPLL(cfg);
-            if (cfg.source == .hse) {
-                regs.RCC.CR.modify(.{ .HSION = 0 }); // Disable HSI
-            }
+
+            // Set flash latency wait states
+            regs.flash.acr.modify(.{ .latency = enumField(regs.flash.Acr.Latency, "ws", cfg.latency) });
+
+            regs.rcc.cfgr.modify(.{
+                .sw = .pll, // clock source to pll
+                // set prescalers
+                // converting number values to the enum 2 => .div2
+                .hpre = enumField(regs.rcc.Cfgr.Hpre, "div", cfg.prescaler.ahb), // ahb prescaler
+                .ppre1 = enumField(regs.rcc.Cfgr.Ppre1, "div", cfg.prescaler.apb1), // apb low speed prescaler apb1
+                .ppre2 = enumField(regs.rcc.Cfgr.Ppre1, "div", cfg.prescaler.apb2), // apb high-speed prescaler apb2
+            });
+            while (regs.rcc.cfgr.read().sws != .pll) {} // wait for pll ready
+        }
+
+        fn initPLL(comptime cfg: Config) void {
+            const pll = cfg.pll;
+
+            regs.rcc.cr.modify(.{ .pllon = .off }); // Disable PLL before changing its configuration
+
+            regs.rcc.pllcfgr.modify(.{
+                .pllsrc = @field(regs.rcc.Pllcfgr.Pllsrc, @tagName(cfg.source)),
+                .pllm = pll.m,
+                .plln = pll.n,
+                .pllp = enumField(regs.rcc.Pllcfgr.Pllp, "div", pll.p),
+                .pllq = pll.q,
+            });
+
+            regs.rcc.cr.modify(.{ .pllon = .on }); // Enable PLL
+            while (regs.rcc.cr.read().pllrdy != .ready) {} // Wait for PLL ready
         }
 
         fn voltageScalingOutput(cpu_freq: u32) u2 {
@@ -133,52 +153,24 @@ pub fn Chip(comptime chip_frequencies: type) type {
             }
         }
 
-        fn initPLL(comptime cfg: Config) void {
-            regs.RCC.CR.modify(.{ .PLLON = 0 }); // Disable PLL before changing its configuration
-
-            const pll = cfg.pll;
-
-            const pllp = switch (pll.p) {
-                2 => 0b00,
-                4 => 0b01,
-                6 => 0b10,
-                8 => 0b11,
-                else => unreachable,
-            };
-            var src: u1 = if (cfg.source == .hse) 1 else 0;
-            regs.RCC.PLLCFGR.modify(.{
-                .PLLSRC = src,
-                .PLLM = pll.m,
-                .PLLN = pll.n,
-                .PLLP = pllp,
-                .PLLQ = pll.q,
-            });
-
-            regs.RCC.CR.modify(.{ .PLLON = 1 }); // Enable PLL
-            while (regs.RCC.CR.read().PLLRDY != 1) {} // Wait for PLL ready
-
-            regs.FLASH.ACR.modify(.{ .LATENCY = cfg.latency }); // Set flash latency wait states
-
-            regs.RCC.CFGR.modify(.{ .SW = 0b10 }); //Select PLL as clock source
-
-            var cfgr = regs.RCC.CFGR.read(); // Wait for PLL selected as clock source
-            while (cfgr.SWS != 0b10) : (cfgr = regs.RCC.CFGR.read()) {}
-        }
-
         // init SysTick interrupt every ms milliseconds
         pub fn initSysTick(comptime ahb_freq: u32, comptime ms: u16) void {
             const reload: u24 = @intCast(u24, ahb_freq / 8) / 1000 * ms - 1;
             //const reload: u24 = @intCast(u24, ahb_freq / 1000) * ms - 1;  // for clocksource = 1
-            regs.STK.LOAD.modify(.{ .RELOAD = reload }); // set counter
-            regs.SCB.SHPR3.modify(.{ .PRI_15 = 0xf0 }); // SysTick IRQ priority
-            regs.STK.VAL.modify(.{ .CURRENT = 0 }); // start from 0
-            regs.STK.CTRL.modify(.{
-                .ENABLE = 1,
-                .CLKSOURCE = 0, // 0: AHB/8, 1: AHB (processor clock)
-                .TICKINT = 1, // 1: Counting down to zero to asserts the SysTick exception request
+            regs.stk.load.modify(.{ .reload = reload }); // set counter
+            regs.scb.shpr3.modify(.{ .pri_15 = 0xf0 }); // systick irq priority
+            regs.stk.val.modify(.{ .current = 0 }); // start from 0
+            regs.stk.ctrl.modify(.{
+                .enable = 1,
+                .clksource = 0, // 0: AHB/8, 1: AHB (processor clock)
+                .tickint = 1, // 1: Counting down to zero to asserts the SysTick exception request
             });
         }
     };
+}
+
+fn enumField(comptime T: type, comptime prefix: []const u8, comptime value: anytype) T {
+    return comptime @field(T, prefix ++ std.fmt.comptimePrint("{d}", .{value}));
 }
 
 fn bitOf(x: u16, index: u4) u1 {
