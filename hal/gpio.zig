@@ -1,7 +1,7 @@
 const std = @import("std");
 const micro = @import("microzig");
 const chip = micro.chip;
-const regs = chip.regs;
+const regs = chip.eregs;
 
 pub const InputConfig = struct {
     pull: Pull = .none,
@@ -18,11 +18,6 @@ pub const OutputConfig = struct {
     pull: Pull = .none,
     speed: OutputSpeed = .low,
     @"type": OutputType = .push_pull,
-};
-
-pub const AlternateFunctionConfig = struct {
-    pull: Pull = .none,
-    af: u4,
 };
 
 pub const FunctionConfig = struct {
@@ -69,19 +64,19 @@ fn Exti(comptime pp: anytype) type {
     };
     return struct {
         pub fn enable(trigger: IrqTrigger) void {
-            regs.RCC.APB2ENR.modify(.{ .SYSCFGEN = 1 }); // Enable SYSCFG Clock
+            regs.rcc.apb2enr.modify(.{ .syscfgen = .enabled }); // enable SYSCFG Clock
 
-            // regs.SYSCFG.EXTICR[cr_reg_no].modify(.{ .EXTI[suffix] = [port_number] });
-            const cr_reg = @field(regs.SYSCFG, "EXTICR" ++ pp.cr_suffix);
-            cr_reg.set("EXTI" ++ pp.suffix, pp.port_number);
+            // regs.syscfg.exticr[cr_reg_no].modify(.{ .exti[suffix] = [port_number] });
+            const cr_reg = @field(regs.syscfg, "exticr" ++ pp.cr_suffix);
+            cr_reg.setField("exti" ++ pp.suffix, pp.port_number);
 
             if (trigger == .falling or .trigger == .both) {
-                regs.EXTI.FTSR.set("TR" ++ pp.suffix, 1); // regs.EXTI.FTSR.modify(.{ .TR[suffix] = 1 });
+                regs.exti.ftsr.setField("tr" ++ pp.suffix, 1); // regs.exti.ftsr.modify(.{ .tr[suffix] = 1 });
             }
             if (trigger == .rising or .trigger == .both) {
-                regs.EXTI.RTSR.set("TR" ++ pp.suffix, 1); // regs.EXTI.RTSR.modify(.{ .TR[suffix] = 1 });
+                regs.exti.rtsr.setField("tr" ++ pp.suffix, 1); // regs.exti.rtsr.modify(.{ .tr[suffix] = 1 });
             }
-            regs.EXTI.IMR.set("MR" ++ pp.suffix, 1); // regs.EXTI.IMR.modify(.{ .MR[suffix] = 1 });
+            regs.exti.imr.setField("mr" ++ pp.suffix, 1); // regs.exti.imr.modify(.{ .mr[suffix] = 1 });
 
             irq.enable();
         }
@@ -94,13 +89,13 @@ fn Exti(comptime pp: anytype) type {
         // get and clear pending exti interrupt
         // regs.EXTI.PR.read().PR[suffix]
         pub fn pending() bool {
-            const field_name = "PR" ++ pp.suffix;
-            var reg_value = regs.EXTI.PR.read();
-            const is_pending = @field(reg_value, field_name) == 1;
+            const field_name = "pr" ++ pp.suffix;
+            var reg_value = regs.exti.pr.read();
+            const is_pending = @field(reg_value, field_name) == .pending;
             if (is_pending) {
                 // clear pending bit
-                @field(reg_value, field_name) = 1;
-                regs.EXTI.PR.write(reg_value);
+                @field(reg_value, field_name) = .pending;
+                regs.exti.pr.write(reg_value);
             }
             return is_pending;
         }
@@ -122,48 +117,102 @@ fn Spec(comptime pin_name: []const u8) type {
         const pin_number: comptime_int = std.fmt.parseInt(u4, pin_name[2..], 10) catch unreachable;
         const port_number = @intCast(u4, pin_name[1..2][0] - 65); // A = 0, B = 1, ...
         const name = "GPIO" ++ pin_name[1..2]; // GPIOx = GPIOA or GPIOB or ...
-        const port_reg = @field(regs, name); // regs.GPIOx
+        //const port_reg = @field(regs, name); // regs.GPIOx
         const suffix = std.fmt.comptimePrint("{d}", .{pin_number}); // pin as string '0', '1', ...
         const cr_suffix = std.fmt.comptimePrint("{d}", .{pin_number / 4 + 1}); // 0-3 => '1', 4-7 => '2', ...
-        const af_reg_name = if (pin_number < 8) "AFRL" else "AFRH";
+        const af_reg_name = if (pin_number < 8) "afrl" else "afrh";
+        const per_name = "gpio" ++ std.fmt.comptimePrint("{c}", .{std.ascii.toLower(pin_name[1..2][0])});
+        const peripheral = @field(regs, per_name);
 
         // regs.GPIOx.[reg_name].[field]y = value
-        fn set(comptime reg_name: []const u8, comptime prefix: []const u8, value: anytype) void {
-            @field(port_reg, reg_name).set(prefix ++ suffix, value);
+        // fn set(comptime reg_name: []const u8, comptime prefix: []const u8, value: anytype) void {
+        //     @field(port_reg, reg_name).set(prefix ++ suffix, value);
+        // }
+
+        fn eset(
+            comptime reg_name: []const u8,
+            comptime field_prefix: []const u8,
+            comptime value: anytype,
+        ) void {
+            @field(peripheral, reg_name).setField(field_prefix ++ suffix, value);
         }
 
         fn initClock() void {
-            regs.RCC.AHB1ENR.set(name ++ "EN", 1); // regs.RCC.AHB1ENR.GPIOxEN = 1
+            regs.rcc.ahb1enr.setField(per_name ++ "en", .enabled); // regs.rcc.ahb1enr.gpioXen = 1
         }
 
-        fn initMode(mode: Mode, pull: Pull) void {
-            set("MODER", "MODER", mode); // regs.GPIOx.MODER.MODERy = z
-            set("PUPDR", "PUPDR", pull); // regs.GPIOx.PUPDR.PUPDRy = z
+        // fn initMode(m: Mode, p: Pull) void {
+        //     set("MODER", "MODER", m); // regs.GPIOx.MODER.MODERy = z
+        //     set("PUPDR", "PUPDR", p); // regs.GPIOx.PUPDR.PUPDRy = z
+        // }
+
+        // fn initOutput(c: OutputConfig) void {
+        //     initMode(.output, c.pull);
+        //     set("OTYPER", "OT", c.type); // regs.GPIOx.OTYPER.OTy = z
+        //     set("OSPEEDR", "OSPEEDR", c.speed); // regs.GPIOx.OSPEEDR.OSPEEDRy = z
+        // }
+
+        // fn initInput(c: InputConfig) void {
+        //     initMode(.input, c.pull);
+        // }
+
+        fn mode(comptime m: Mode) void {
+            eset("moder", "moder", m); // regs.gpioX.moder.moderY = m
         }
 
-        fn initOutput(c: OutputConfig) void {
-            initMode(.output, c.pull);
-            set("OTYPER", "OT", c.type); // regs.GPIOx.OTYPER.OTy = z
-            set("OSPEEDR", "OSPEEDR", c.speed); // regs.GPIOx.OSPEEDR.OSPEEDRy = z
+        fn outputType(comptime ot: OutputType) void {
+            eset("otyper", "ot", ot); // regs.gpioX.otyper.otY = ot
         }
 
-        fn initInput(c: InputConfig) void {
-            initMode(.input, c.pull);
+        fn outputSpeed(comptime os: OutputSpeed) void {
+            eset("ospeedr", "ospeedr", os); // regs.gpioX.ospeedr.ospeedrY = os
         }
 
-        fn initAlternateFunction(comptime af: u4, c: FunctionConfig) void {
-            initMode(.alternate_function, c.pull);
-            set(af_reg_name, af_reg_name, af); // regs.GPIOx.AFRL.AFRLy = z
+        fn pull(comptime p: Pull) void {
+            eset("pupdr", "pupdr", p); // regs.gpioX.pupdr.pupdrY = p
         }
+
+        fn input(comptime c: InputConfig) void {
+            initClock();
+            mode(.input);
+            pull(c.pull);
+        }
+
+        fn output(comptime c: OutputConfig) void {
+            initClock();
+            mode(.output);
+            pull(c.pull);
+            outputType(c.type);
+            outputSpeed(c.speed);
+        }
+
+        fn analog() void {
+            initClock();
+        }
+
+        fn function(comptime af: u4, comptime c: FunctionConfig) void {
+            initClock();
+            mode(.alternate_function);
+            eset(af_reg_name, af_reg_name, af); // regs.gpioX.afrl.afrlY = af
+            pull(c.pull);
+        }
+
+        // fn initAlternateFunction(comptime af: u4, c: FunctionConfig) void {
+        //     initMode(.alternate_function, c.pull);
+        //     set(af_reg_name, af_reg_name, af); // regs.GPIOx.AFRL.AFRLy = z
+        // }
 
         fn read() u1 {
-            return @field(port_reg.IDR.read(), "IDR" ++ suffix); // regs.GPIOx.IDR.read().IDRy
+            return switch (@field(peripheral.idr.read(), "idr" ++ suffix)) {
+                .high => 1,
+                .low => 0,
+            }; // regs.gpioX.idr.read().idrY
         }
 
         fn write(value: u1) void {
             switch (value) {
-                0 => set("BSRR", "BR", 1), // regs.GPIOx.BSRR.BRy = 1
-                1 => set("BSRR", "BS", 1), // regs.GPIOx.BSRR.BSy = 1
+                0 => eset("bsrr", "br", 1), // regs.gpioX.bsrr.brY = 1
+                1 => eset("bsrr", "bs", 1), // regs.gpioX.bsrr.bsY = 1
             }
         }
     };
@@ -177,9 +226,8 @@ pub fn Pin(comptime pin_name: []const u8) type {
         pub fn Input() type {
             const pin_exti = Exti(pin);
             return struct {
-                pub fn init(c: InputConfig) void {
-                    pin.initClock();
-                    pin.initInput(c);
+                pub fn init(comptime c: InputConfig) void {
+                    pin.input(c);
                     if (c.exti.enable) {
                         pin_exti.enable(c.exti.trigger);
                         pin_exti.setPriority(c.exti.priority);
@@ -187,35 +235,13 @@ pub fn Pin(comptime pin_name: []const u8) type {
                 }
                 pub const read = pin.read;
                 pub const exti = pin_exti;
-                //pub const extiPending = exti.pending;
-            };
-        }
-
-        pub fn InputInstance() type {
-            const exti = Exti(pin);
-            return struct {
-                const Self = @This();
-                pub fn init(c: InputConfig) Self {
-                    pin.initClock();
-                    pin.initInput(c);
-                    if (c.exti.enable) {
-                        exti.enable(c.exti.trigger);
-                        exti.setPriority(c.exti.priority);
-                    }
-                    return .{};
-                }
-
-                pub fn extiPending(_: Self) bool {
-                    return exti.pending();
-                }
             };
         }
 
         pub fn Output() type {
             return struct {
-                pub fn init(c: OutputConfig) void {
-                    pin.initClock();
-                    pin.initOutput(c);
+                pub fn init(comptime c: OutputConfig) void {
+                    pin.output(c);
                 }
                 pub fn setToHigh() void {
                     pin.write(1);
@@ -242,9 +268,8 @@ pub fn Pin(comptime pin_name: []const u8) type {
 
         pub fn Function(comptime af: u4) type {
             return struct {
-                pub fn init(c: FunctionConfig) void {
-                    pin.initClock();
-                    pin.initAlternateFunction(af, c);
+                pub fn init(comptime c: FunctionConfig) void {
+                    pin.function(af, c);
                 }
             };
         }
@@ -254,14 +279,12 @@ pub fn Pin(comptime pin_name: []const u8) type {
         }
 
         pub fn analog() void {
-            pin.initClock();
-            pin.initMode(.analog, .none);
+            pin.analog();
         }
         pub fn Analog() type {
             return struct {
                 pub fn init() void {
-                    pin.initClock();
-                    pin.initMode(.analog, .none);
+                    pin.analog();
                 }
             };
         }

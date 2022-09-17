@@ -12533,10 +12533,44 @@ pub fn Mmio(comptime size: u8, comptime PackedT: type) type {
             write(addr, val);
         }
 
-        pub inline fn set(addr: *volatile Self, comptime field_name: anytype, field_value: anytype) void {
-            var val = read(addr);
-            @field(val, field_name) = field_value;
-            write(addr, val);
+        // pub inline fn set(addr: *volatile Self, comptime field_name: anytype, field_value: anytype) void {
+        //     var val = read(addr);
+        //     @field(val, field_name) = field_value;
+        //     write(addr, val);
+        // }
+
+        // setField supports setting filed value in various ways
+        // for example:
+        // regs.gpioa.moder.set("moder3", regs.gpioh.Moder.Moder0.input) // exact type
+        // regs.gpioa.moder.set("moder3", 1)     // int will be cast to enum by value
+        // regs.gpioa.moder.set("moder3", mode)  // where mode is application enum with same values
+        // regs.gpioa.moder.set("moder3", .input)// enum literal will be cast to enum by name
+        pub inline fn setField(
+            addr: *volatile Self,
+            comptime name: []const u8,
+            comptime value: anytype,
+        ) void {
+            var reg_val = read(addr);
+            const field_type = @TypeOf(@field(reg_val, name));
+            const value_type = @TypeOf(value);
+            const value_ti = @typeInfo(value_type);
+            @field(reg_val, name) = if (field_type == value_type)
+                value
+            else switch (@typeInfo(field_type)) {
+                .Int => switch (value_ti) { // field type is int
+                    .Int, .ComptimeInt => value,
+                    .Enum => @enumToInt(value), // enum to int
+                    else => @compileError("unable to set field value"),
+                },
+                .Enum => switch (value_ti) { // field type is enum
+                    .Int, .ComptimeInt => @intToEnum(field_type, value), // int to enum, find by value
+                    .Enum => @intToEnum(field_type, @enumToInt(value)), // enum to enum, find by value
+                    .EnumLiteral => @field(field_type, @tagName(value)), // literal to enum, find by name
+                    else => @compileError("unable to set field value"),
+                },
+                else => @compileError("unable to set field value"),
+            };
+            write(addr, reg_val);
         }
     };
 }

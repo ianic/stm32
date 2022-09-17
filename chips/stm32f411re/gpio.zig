@@ -11,20 +11,20 @@ pub const gpio = struct {
             pub const in0 = pin.analog;
         };
         pub const tim2 = struct {
-            pub fn ch1(c: hal.FunctionConfig) void {
+            pub fn ch1(comptime c: hal.FunctionConfig) void {
                 pin.Function(1).init(c);
             }
-            pub fn etr(c: hal.FunctionConfig) void {
+            pub fn etr(comptime c: hal.FunctionConfig) void {
                 pin.Function(1).init(c);
             }
         };
         pub const tim5 = struct {
-            pub fn ch1(c: hal.FunctionConfig) void {
+            pub fn ch1(comptime c: hal.FunctionConfig) void {
                 pin.Function(2).init(c);
             }
         };
         pub const usart2 = struct {
-            pub fn cts(c: hal.FunctionConfig) void {
+            pub fn cts(comptime c: hal.FunctionConfig) void {
                 pin.Function(7).init(c);
             }
         };
@@ -38,22 +38,22 @@ pub const gpio = struct {
             pub const in1 = pin.analog;
         };
         pub const spi4 = struct {
-            pub fn mosi(c: hal.FunctionConfig) void {
+            pub fn mosi(comptime c: hal.FunctionConfig) void {
                 pin.Function(5).init(c);
             }
         };
         pub const tim2 = struct {
-            pub fn ch2(c: hal.FunctionConfig) void {
+            pub fn ch2(comptime c: hal.FunctionConfig) void {
                 pin.Function(1).init(c);
             }
         };
         pub const tim5 = struct {
-            pub fn ch2(c: hal.FunctionConfig) void {
+            pub fn ch2(comptime c: hal.FunctionConfig) void {
                 pin.Function(2).init(c);
             }
         };
         pub const usart2 = struct {
-            pub fn rts(c: hal.FunctionConfig) void {
+            pub fn rts(comptime c: hal.FunctionConfig) void {
                 pin.Function(7).init(c);
             }
         };
@@ -67,22 +67,22 @@ pub const gpio = struct {
             pub const in2 = pin.analog;
         };
         pub const tim2 = struct {
-            pub fn ch3(c: hal.FunctionConfig) void {
+            pub fn ch3(comptime c: hal.FunctionConfig) void {
                 pin.Function(1).init(c);
             }
         };
         pub const tim5 = struct {
-            pub fn ch3(c: hal.FunctionConfig) void {
+            pub fn ch3(comptime c: hal.FunctionConfig) void {
                 pin.Function(2).init(c);
             }
         };
         pub const tim9 = struct {
-            pub fn ch1(c: hal.FunctionConfig) void {
+            pub fn ch1(comptime c: hal.FunctionConfig) void {
                 pin.Function(3).init(c);
             }
         };
         pub const usart2 = struct {
-            pub fn tx(c: hal.FunctionConfig) void {
+            pub fn tx(comptime c: hal.FunctionConfig) void {
                 pin.Function(7).init(c);
             }
         };
@@ -96,22 +96,22 @@ pub const gpio = struct {
             pub const in3 = pin.analog;
         };
         pub const tim2 = struct {
-            pub fn ch4(c: hal.FunctionConfig) void {
+            pub fn ch4(comptime c: hal.FunctionConfig) void {
                 pin.Function(1).init(c);
             }
         };
         pub const tim5 = struct {
-            pub fn ch4(c: hal.FunctionConfig) void {
+            pub fn ch4(comptime c: hal.FunctionConfig) void {
                 pin.Function(2).init(c);
             }
         };
         pub const tim9 = struct {
-            pub fn ch2(c: hal.FunctionConfig) void {
+            pub fn ch2(comptime c: hal.FunctionConfig) void {
                 pin.Function(3).init(c);
             }
         };
         pub const usart2 = struct {
-            pub fn rx(c: hal.FunctionConfig) void {
+            pub fn rx(comptime c: hal.FunctionConfig) void {
                 pin.Function(7).init(c);
             }
         };
@@ -125,17 +125,17 @@ pub const gpio = struct {
             pub const in4 = pin.analog;
         };
         pub const spi1 = struct {
-            pub fn nss(c: hal.FunctionConfig) void {
+            pub fn nss(comptime c: hal.FunctionConfig) void {
                 pin.Function(5).init(c);
             }
         };
         pub const spi3 = struct {
-            pub fn nss(c: hal.FunctionConfig) void {
+            pub fn nss(comptime c: hal.FunctionConfig) void {
                 pin.Function(6).init(c);
             }
         };
         pub const usart2 = struct {
-            pub fn ck(c: hal.FunctionConfig) void {
+            pub fn ck(comptime c: hal.FunctionConfig) void {
                 pin.Function(7).init(c);
             }
         };
@@ -149,15 +149,15 @@ pub const gpio = struct {
             pub const in5 = pin.analog;
         };
         pub const spi1 = struct {
-            pub fn sck(c: hal.FunctionConfig) void {
+            pub fn sck(comptime c: hal.FunctionConfig) void {
                 pin.Function(5).init(c);
             }
         };
         pub const tim2 = struct {
-            pub fn ch1(c: hal.FunctionConfig) void {
+            pub fn ch1(comptime c: hal.FunctionConfig) void {
                 pin.Function(1).init(c);
             }
-            pub fn etr(c: hal.FunctionConfig) void {
+            pub fn etr(comptime c: hal.FunctionConfig) void {
                 pin.Function(1).init(c);
             }
         };
@@ -171,22 +171,22 @@ pub const gpio = struct {
             pub const in6 = pin.analog;
         };
         pub const sdio = struct {
-            pub fn cmd(c: hal.FunctionConfig) void {
+            pub fn cmd(comptime c: hal.FunctionConfig) void {
                 pin.Function(12).init(c);
             }
         };
         pub const spi1 = struct {
-            pub fn miso(c: hal.FunctionConfig) void {
+            pub fn miso(comptime c: hal.FunctionConfig) void {
                 pin.Function(5).init(c);
             }
         };
         pub const tim1 = struct {
-            pub fn bkin(c: hal.FunctionConfig) void {
+            pub fn bkin(comptime c: hal.FunctionConfig) void {
                 pin.Function(1).init(c);
             }
         };
         pub const tim3 = struct {
-            pub fn ch1(c: hal.FunctionConfig) void {
+            pub fn ch1(comptime c: hal.FunctionConfig) void {
                 pin.Function(2).init(c);
             }
         };
@@ -200,17 +200,17 @@ pub const gpio = struct {
             pub const in7 = pin.analog;
         };
         pub const spi1 = struct {
-            pub fn mosi(c: hal.FunctionConfig) void {
+            pub fn mosi(comptime c: hal.FunctionConfig) void {
                 pin.Function(5).init(c);
             }
         };
         pub const tim1 = struct {
-            pub fn ch1n(c: hal.FunctionConfig) void {
+            pub fn ch1n(comptime c: hal.FunctionConfig) void {
                 pin.Function(1).init(c);
             }
         };
         pub const tim3 = struct {
-            pub fn ch2(c: hal.FunctionConfig) void {
+            pub fn ch2(comptime c: hal.FunctionConfig) void {
                 pin.Function(2).init(c);
             }
         };
@@ -221,32 +221,32 @@ pub const gpio = struct {
         pub const Input = pin.Input;
         pub const analog = pin.analog;
         pub const i2c3 = struct {
-            pub fn scl(c: hal.FunctionConfig) void {
+            pub fn scl(comptime c: hal.FunctionConfig) void {
                 pin.Function(4).init(c);
             }
         };
         pub const rcc = struct {
-            pub fn mco_1(c: hal.FunctionConfig) void {
+            pub fn mco_1(comptime c: hal.FunctionConfig) void {
                 pin.Function(0).init(c);
             }
         };
         pub const sdio = struct {
-            pub fn d1(c: hal.FunctionConfig) void {
+            pub fn d1(comptime c: hal.FunctionConfig) void {
                 pin.Function(12).init(c);
             }
         };
         pub const tim1 = struct {
-            pub fn ch1(c: hal.FunctionConfig) void {
+            pub fn ch1(comptime c: hal.FunctionConfig) void {
                 pin.Function(1).init(c);
             }
         };
         pub const usart1 = struct {
-            pub fn ck(c: hal.FunctionConfig) void {
+            pub fn ck(comptime c: hal.FunctionConfig) void {
                 pin.Function(7).init(c);
             }
         };
         pub const usb_otg_fs = struct {
-            pub fn sof(c: hal.FunctionConfig) void {
+            pub fn sof(comptime c: hal.FunctionConfig) void {
                 pin.Function(10).init(c);
             }
         };
@@ -257,27 +257,27 @@ pub const gpio = struct {
         pub const Input = pin.Input;
         pub const analog = pin.analog;
         pub const i2c3 = struct {
-            pub fn smba(c: hal.FunctionConfig) void {
+            pub fn smba(comptime c: hal.FunctionConfig) void {
                 pin.Function(4).init(c);
             }
         };
         pub const sdio = struct {
-            pub fn d2(c: hal.FunctionConfig) void {
+            pub fn d2(comptime c: hal.FunctionConfig) void {
                 pin.Function(12).init(c);
             }
         };
         pub const tim1 = struct {
-            pub fn ch2(c: hal.FunctionConfig) void {
+            pub fn ch2(comptime c: hal.FunctionConfig) void {
                 pin.Function(1).init(c);
             }
         };
         pub const usart1 = struct {
-            pub fn tx(c: hal.FunctionConfig) void {
+            pub fn tx(comptime c: hal.FunctionConfig) void {
                 pin.Function(7).init(c);
             }
         };
         pub const usb_otg_fs = struct {
-            pub fn vbus(c: hal.FunctionConfig) void {
+            pub fn vbus(comptime c: hal.FunctionConfig) void {
                 pin.Function(10).init(c);
             }
         };
@@ -288,22 +288,22 @@ pub const gpio = struct {
         pub const Input = pin.Input;
         pub const analog = pin.analog;
         pub const spi5 = struct {
-            pub fn mosi(c: hal.FunctionConfig) void {
+            pub fn mosi(comptime c: hal.FunctionConfig) void {
                 pin.Function(6).init(c);
             }
         };
         pub const tim1 = struct {
-            pub fn ch3(c: hal.FunctionConfig) void {
+            pub fn ch3(comptime c: hal.FunctionConfig) void {
                 pin.Function(1).init(c);
             }
         };
         pub const usart1 = struct {
-            pub fn rx(c: hal.FunctionConfig) void {
+            pub fn rx(comptime c: hal.FunctionConfig) void {
                 pin.Function(7).init(c);
             }
         };
         pub const usb_otg_fs = struct {
-            pub fn id(c: hal.FunctionConfig) void {
+            pub fn id(comptime c: hal.FunctionConfig) void {
                 pin.Function(10).init(c);
             }
         };
@@ -314,27 +314,27 @@ pub const gpio = struct {
         pub const Input = pin.Input;
         pub const analog = pin.analog;
         pub const spi4 = struct {
-            pub fn miso(c: hal.FunctionConfig) void {
+            pub fn miso(comptime c: hal.FunctionConfig) void {
                 pin.Function(6).init(c);
             }
         };
         pub const tim1 = struct {
-            pub fn ch4(c: hal.FunctionConfig) void {
+            pub fn ch4(comptime c: hal.FunctionConfig) void {
                 pin.Function(1).init(c);
             }
         };
         pub const usart1 = struct {
-            pub fn cts(c: hal.FunctionConfig) void {
+            pub fn cts(comptime c: hal.FunctionConfig) void {
                 pin.Function(7).init(c);
             }
         };
         pub const usart6 = struct {
-            pub fn tx(c: hal.FunctionConfig) void {
+            pub fn tx(comptime c: hal.FunctionConfig) void {
                 pin.Function(8).init(c);
             }
         };
         pub const usb_otg_fs = struct {
-            pub fn dm(c: hal.FunctionConfig) void {
+            pub fn dm(comptime c: hal.FunctionConfig) void {
                 pin.Function(10).init(c);
             }
         };
@@ -345,27 +345,27 @@ pub const gpio = struct {
         pub const Input = pin.Input;
         pub const analog = pin.analog;
         pub const spi5 = struct {
-            pub fn miso(c: hal.FunctionConfig) void {
+            pub fn miso(comptime c: hal.FunctionConfig) void {
                 pin.Function(6).init(c);
             }
         };
         pub const tim1 = struct {
-            pub fn etr(c: hal.FunctionConfig) void {
+            pub fn etr(comptime c: hal.FunctionConfig) void {
                 pin.Function(1).init(c);
             }
         };
         pub const usart1 = struct {
-            pub fn rts(c: hal.FunctionConfig) void {
+            pub fn rts(comptime c: hal.FunctionConfig) void {
                 pin.Function(7).init(c);
             }
         };
         pub const usart6 = struct {
-            pub fn rx(c: hal.FunctionConfig) void {
+            pub fn rx(comptime c: hal.FunctionConfig) void {
                 pin.Function(8).init(c);
             }
         };
         pub const usb_otg_fs = struct {
-            pub fn dp(c: hal.FunctionConfig) void {
+            pub fn dp(comptime c: hal.FunctionConfig) void {
                 pin.Function(10).init(c);
             }
         };
@@ -388,25 +388,25 @@ pub const gpio = struct {
         pub const Input = pin.Input;
         pub const analog = pin.analog;
         pub const spi1 = struct {
-            pub fn nss(c: hal.FunctionConfig) void {
+            pub fn nss(comptime c: hal.FunctionConfig) void {
                 pin.Function(5).init(c);
             }
         };
         pub const spi3 = struct {
-            pub fn nss(c: hal.FunctionConfig) void {
+            pub fn nss(comptime c: hal.FunctionConfig) void {
                 pin.Function(6).init(c);
             }
         };
         pub const tim2 = struct {
-            pub fn ch1(c: hal.FunctionConfig) void {
+            pub fn ch1(comptime c: hal.FunctionConfig) void {
                 pin.Function(1).init(c);
             }
-            pub fn etr(c: hal.FunctionConfig) void {
+            pub fn etr(comptime c: hal.FunctionConfig) void {
                 pin.Function(1).init(c);
             }
         };
         pub const usart1 = struct {
-            pub fn tx(c: hal.FunctionConfig) void {
+            pub fn tx(comptime c: hal.FunctionConfig) void {
                 pin.Function(7).init(c);
             }
         };
@@ -420,17 +420,17 @@ pub const gpio = struct {
             pub const in8 = pin.analog;
         };
         pub const spi5 = struct {
-            pub fn sck(c: hal.FunctionConfig) void {
+            pub fn sck(comptime c: hal.FunctionConfig) void {
                 pin.Function(6).init(c);
             }
         };
         pub const tim1 = struct {
-            pub fn ch2n(c: hal.FunctionConfig) void {
+            pub fn ch2n(comptime c: hal.FunctionConfig) void {
                 pin.Function(1).init(c);
             }
         };
         pub const tim3 = struct {
-            pub fn ch3(c: hal.FunctionConfig) void {
+            pub fn ch3(comptime c: hal.FunctionConfig) void {
                 pin.Function(2).init(c);
             }
         };
@@ -444,17 +444,17 @@ pub const gpio = struct {
             pub const in9 = pin.analog;
         };
         pub const spi5 = struct {
-            pub fn nss(c: hal.FunctionConfig) void {
+            pub fn nss(comptime c: hal.FunctionConfig) void {
                 pin.Function(6).init(c);
             }
         };
         pub const tim1 = struct {
-            pub fn ch3n(c: hal.FunctionConfig) void {
+            pub fn ch3n(comptime c: hal.FunctionConfig) void {
                 pin.Function(1).init(c);
             }
         };
         pub const tim3 = struct {
-            pub fn ch4(c: hal.FunctionConfig) void {
+            pub fn ch4(comptime c: hal.FunctionConfig) void {
                 pin.Function(2).init(c);
             }
         };
@@ -471,27 +471,27 @@ pub const gpio = struct {
         pub const Input = pin.Input;
         pub const analog = pin.analog;
         pub const i2c2 = struct {
-            pub fn sda(c: hal.FunctionConfig) void {
+            pub fn sda(comptime c: hal.FunctionConfig) void {
                 pin.Function(9).init(c);
             }
         };
         pub const spi1 = struct {
-            pub fn sck(c: hal.FunctionConfig) void {
+            pub fn sck(comptime c: hal.FunctionConfig) void {
                 pin.Function(5).init(c);
             }
         };
         pub const spi3 = struct {
-            pub fn sck(c: hal.FunctionConfig) void {
+            pub fn sck(comptime c: hal.FunctionConfig) void {
                 pin.Function(6).init(c);
             }
         };
         pub const tim2 = struct {
-            pub fn ch2(c: hal.FunctionConfig) void {
+            pub fn ch2(comptime c: hal.FunctionConfig) void {
                 pin.Function(1).init(c);
             }
         };
         pub const usart1 = struct {
-            pub fn rx(c: hal.FunctionConfig) void {
+            pub fn rx(comptime c: hal.FunctionConfig) void {
                 pin.Function(7).init(c);
             }
         };
@@ -502,27 +502,27 @@ pub const gpio = struct {
         pub const Input = pin.Input;
         pub const analog = pin.analog;
         pub const i2c3 = struct {
-            pub fn sda(c: hal.FunctionConfig) void {
+            pub fn sda(comptime c: hal.FunctionConfig) void {
                 pin.Function(9).init(c);
             }
         };
         pub const sdio = struct {
-            pub fn d0(c: hal.FunctionConfig) void {
+            pub fn d0(comptime c: hal.FunctionConfig) void {
                 pin.Function(12).init(c);
             }
         };
         pub const spi1 = struct {
-            pub fn miso(c: hal.FunctionConfig) void {
+            pub fn miso(comptime c: hal.FunctionConfig) void {
                 pin.Function(5).init(c);
             }
         };
         pub const spi3 = struct {
-            pub fn miso(c: hal.FunctionConfig) void {
+            pub fn miso(comptime c: hal.FunctionConfig) void {
                 pin.Function(6).init(c);
             }
         };
         pub const tim3 = struct {
-            pub fn ch1(c: hal.FunctionConfig) void {
+            pub fn ch1(comptime c: hal.FunctionConfig) void {
                 pin.Function(2).init(c);
             }
         };
@@ -533,27 +533,27 @@ pub const gpio = struct {
         pub const Input = pin.Input;
         pub const analog = pin.analog;
         pub const i2c1 = struct {
-            pub fn smba(c: hal.FunctionConfig) void {
+            pub fn smba(comptime c: hal.FunctionConfig) void {
                 pin.Function(4).init(c);
             }
         };
         pub const sdio = struct {
-            pub fn d3(c: hal.FunctionConfig) void {
+            pub fn d3(comptime c: hal.FunctionConfig) void {
                 pin.Function(12).init(c);
             }
         };
         pub const spi1 = struct {
-            pub fn mosi(c: hal.FunctionConfig) void {
+            pub fn mosi(comptime c: hal.FunctionConfig) void {
                 pin.Function(5).init(c);
             }
         };
         pub const spi3 = struct {
-            pub fn mosi(c: hal.FunctionConfig) void {
+            pub fn mosi(comptime c: hal.FunctionConfig) void {
                 pin.Function(6).init(c);
             }
         };
         pub const tim3 = struct {
-            pub fn ch2(c: hal.FunctionConfig) void {
+            pub fn ch2(comptime c: hal.FunctionConfig) void {
                 pin.Function(2).init(c);
             }
         };
@@ -564,17 +564,17 @@ pub const gpio = struct {
         pub const Input = pin.Input;
         pub const analog = pin.analog;
         pub const i2c1 = struct {
-            pub fn scl(c: hal.FunctionConfig) void {
+            pub fn scl(comptime c: hal.FunctionConfig) void {
                 pin.Function(4).init(c);
             }
         };
         pub const tim4 = struct {
-            pub fn ch1(c: hal.FunctionConfig) void {
+            pub fn ch1(comptime c: hal.FunctionConfig) void {
                 pin.Function(2).init(c);
             }
         };
         pub const usart1 = struct {
-            pub fn tx(c: hal.FunctionConfig) void {
+            pub fn tx(comptime c: hal.FunctionConfig) void {
                 pin.Function(7).init(c);
             }
         };
@@ -585,22 +585,22 @@ pub const gpio = struct {
         pub const Input = pin.Input;
         pub const analog = pin.analog;
         pub const i2c1 = struct {
-            pub fn sda(c: hal.FunctionConfig) void {
+            pub fn sda(comptime c: hal.FunctionConfig) void {
                 pin.Function(4).init(c);
             }
         };
         pub const sdio = struct {
-            pub fn d0(c: hal.FunctionConfig) void {
+            pub fn d0(comptime c: hal.FunctionConfig) void {
                 pin.Function(12).init(c);
             }
         };
         pub const tim4 = struct {
-            pub fn ch2(c: hal.FunctionConfig) void {
+            pub fn ch2(comptime c: hal.FunctionConfig) void {
                 pin.Function(2).init(c);
             }
         };
         pub const usart1 = struct {
-            pub fn rx(c: hal.FunctionConfig) void {
+            pub fn rx(comptime c: hal.FunctionConfig) void {
                 pin.Function(7).init(c);
             }
         };
@@ -611,32 +611,32 @@ pub const gpio = struct {
         pub const Input = pin.Input;
         pub const analog = pin.analog;
         pub const i2c1 = struct {
-            pub fn scl(c: hal.FunctionConfig) void {
+            pub fn scl(comptime c: hal.FunctionConfig) void {
                 pin.Function(4).init(c);
             }
         };
         pub const i2c3 = struct {
-            pub fn sda(c: hal.FunctionConfig) void {
+            pub fn sda(comptime c: hal.FunctionConfig) void {
                 pin.Function(9).init(c);
             }
         };
         pub const sdio = struct {
-            pub fn d4(c: hal.FunctionConfig) void {
+            pub fn d4(comptime c: hal.FunctionConfig) void {
                 pin.Function(12).init(c);
             }
         };
         pub const spi5 = struct {
-            pub fn mosi(c: hal.FunctionConfig) void {
+            pub fn mosi(comptime c: hal.FunctionConfig) void {
                 pin.Function(6).init(c);
             }
         };
         pub const tim10 = struct {
-            pub fn ch1(c: hal.FunctionConfig) void {
+            pub fn ch1(comptime c: hal.FunctionConfig) void {
                 pin.Function(3).init(c);
             }
         };
         pub const tim4 = struct {
-            pub fn ch3(c: hal.FunctionConfig) void {
+            pub fn ch3(comptime c: hal.FunctionConfig) void {
                 pin.Function(2).init(c);
             }
         };
@@ -647,32 +647,32 @@ pub const gpio = struct {
         pub const Input = pin.Input;
         pub const analog = pin.analog;
         pub const i2c1 = struct {
-            pub fn sda(c: hal.FunctionConfig) void {
+            pub fn sda(comptime c: hal.FunctionConfig) void {
                 pin.Function(4).init(c);
             }
         };
         pub const i2c2 = struct {
-            pub fn sda(c: hal.FunctionConfig) void {
+            pub fn sda(comptime c: hal.FunctionConfig) void {
                 pin.Function(9).init(c);
             }
         };
         pub const sdio = struct {
-            pub fn d5(c: hal.FunctionConfig) void {
+            pub fn d5(comptime c: hal.FunctionConfig) void {
                 pin.Function(12).init(c);
             }
         };
         pub const spi2 = struct {
-            pub fn nss(c: hal.FunctionConfig) void {
+            pub fn nss(comptime c: hal.FunctionConfig) void {
                 pin.Function(5).init(c);
             }
         };
         pub const tim11 = struct {
-            pub fn ch1(c: hal.FunctionConfig) void {
+            pub fn ch1(comptime c: hal.FunctionConfig) void {
                 pin.Function(3).init(c);
             }
         };
         pub const tim4 = struct {
-            pub fn ch4(c: hal.FunctionConfig) void {
+            pub fn ch4(comptime c: hal.FunctionConfig) void {
                 pin.Function(2).init(c);
             }
         };
@@ -683,22 +683,22 @@ pub const gpio = struct {
         pub const Input = pin.Input;
         pub const analog = pin.analog;
         pub const i2c2 = struct {
-            pub fn scl(c: hal.FunctionConfig) void {
+            pub fn scl(comptime c: hal.FunctionConfig) void {
                 pin.Function(4).init(c);
             }
         };
         pub const sdio = struct {
-            pub fn d7(c: hal.FunctionConfig) void {
+            pub fn d7(comptime c: hal.FunctionConfig) void {
                 pin.Function(12).init(c);
             }
         };
         pub const spi2 = struct {
-            pub fn sck(c: hal.FunctionConfig) void {
+            pub fn sck(comptime c: hal.FunctionConfig) void {
                 pin.Function(5).init(c);
             }
         };
         pub const tim2 = struct {
-            pub fn ch3(c: hal.FunctionConfig) void {
+            pub fn ch3(comptime c: hal.FunctionConfig) void {
                 pin.Function(1).init(c);
             }
         };
@@ -709,27 +709,27 @@ pub const gpio = struct {
         pub const Input = pin.Input;
         pub const analog = pin.analog;
         pub const i2c2 = struct {
-            pub fn smba(c: hal.FunctionConfig) void {
+            pub fn smba(comptime c: hal.FunctionConfig) void {
                 pin.Function(4).init(c);
             }
         };
         pub const spi2 = struct {
-            pub fn nss(c: hal.FunctionConfig) void {
+            pub fn nss(comptime c: hal.FunctionConfig) void {
                 pin.Function(5).init(c);
             }
         };
         pub const spi3 = struct {
-            pub fn sck(c: hal.FunctionConfig) void {
+            pub fn sck(comptime c: hal.FunctionConfig) void {
                 pin.Function(7).init(c);
             }
         };
         pub const spi4 = struct {
-            pub fn nss(c: hal.FunctionConfig) void {
+            pub fn nss(comptime c: hal.FunctionConfig) void {
                 pin.Function(6).init(c);
             }
         };
         pub const tim1 = struct {
-            pub fn bkin(c: hal.FunctionConfig) void {
+            pub fn bkin(comptime c: hal.FunctionConfig) void {
                 pin.Function(1).init(c);
             }
         };
@@ -740,17 +740,17 @@ pub const gpio = struct {
         pub const Input = pin.Input;
         pub const analog = pin.analog;
         pub const spi2 = struct {
-            pub fn sck(c: hal.FunctionConfig) void {
+            pub fn sck(comptime c: hal.FunctionConfig) void {
                 pin.Function(5).init(c);
             }
         };
         pub const spi4 = struct {
-            pub fn sck(c: hal.FunctionConfig) void {
+            pub fn sck(comptime c: hal.FunctionConfig) void {
                 pin.Function(6).init(c);
             }
         };
         pub const tim1 = struct {
-            pub fn ch1n(c: hal.FunctionConfig) void {
+            pub fn ch1n(comptime c: hal.FunctionConfig) void {
                 pin.Function(1).init(c);
             }
         };
@@ -761,17 +761,17 @@ pub const gpio = struct {
         pub const Input = pin.Input;
         pub const analog = pin.analog;
         pub const sdio = struct {
-            pub fn d6(c: hal.FunctionConfig) void {
+            pub fn d6(comptime c: hal.FunctionConfig) void {
                 pin.Function(12).init(c);
             }
         };
         pub const spi2 = struct {
-            pub fn miso(c: hal.FunctionConfig) void {
+            pub fn miso(comptime c: hal.FunctionConfig) void {
                 pin.Function(5).init(c);
             }
         };
         pub const tim1 = struct {
-            pub fn ch2n(c: hal.FunctionConfig) void {
+            pub fn ch2n(comptime c: hal.FunctionConfig) void {
                 pin.Function(1).init(c);
             }
         };
@@ -782,22 +782,22 @@ pub const gpio = struct {
         pub const Input = pin.Input;
         pub const analog = pin.analog;
         pub const rtc = struct {
-            pub fn refin(c: hal.FunctionConfig) void {
+            pub fn refin(comptime c: hal.FunctionConfig) void {
                 pin.Function(0).init(c);
             }
         };
         pub const sdio = struct {
-            pub fn ck(c: hal.FunctionConfig) void {
+            pub fn ck(comptime c: hal.FunctionConfig) void {
                 pin.Function(12).init(c);
             }
         };
         pub const spi2 = struct {
-            pub fn mosi(c: hal.FunctionConfig) void {
+            pub fn mosi(comptime c: hal.FunctionConfig) void {
                 pin.Function(5).init(c);
             }
         };
         pub const tim1 = struct {
-            pub fn ch3n(c: hal.FunctionConfig) void {
+            pub fn ch3n(comptime c: hal.FunctionConfig) void {
                 pin.Function(1).init(c);
             }
         };
@@ -829,7 +829,7 @@ pub const gpio = struct {
             pub const in12 = pin.analog;
         };
         pub const spi2 = struct {
-            pub fn miso(c: hal.FunctionConfig) void {
+            pub fn miso(comptime c: hal.FunctionConfig) void {
                 pin.Function(5).init(c);
             }
         };
@@ -843,7 +843,7 @@ pub const gpio = struct {
             pub const in13 = pin.analog;
         };
         pub const spi2 = struct {
-            pub fn mosi(c: hal.FunctionConfig) void {
+            pub fn mosi(comptime c: hal.FunctionConfig) void {
                 pin.Function(5).init(c);
             }
         };
@@ -872,17 +872,17 @@ pub const gpio = struct {
         pub const Input = pin.Input;
         pub const analog = pin.analog;
         pub const sdio = struct {
-            pub fn d6(c: hal.FunctionConfig) void {
+            pub fn d6(comptime c: hal.FunctionConfig) void {
                 pin.Function(12).init(c);
             }
         };
         pub const tim3 = struct {
-            pub fn ch1(c: hal.FunctionConfig) void {
+            pub fn ch1(comptime c: hal.FunctionConfig) void {
                 pin.Function(2).init(c);
             }
         };
         pub const usart6 = struct {
-            pub fn tx(c: hal.FunctionConfig) void {
+            pub fn tx(comptime c: hal.FunctionConfig) void {
                 pin.Function(8).init(c);
             }
         };
@@ -893,22 +893,22 @@ pub const gpio = struct {
         pub const Input = pin.Input;
         pub const analog = pin.analog;
         pub const sdio = struct {
-            pub fn d7(c: hal.FunctionConfig) void {
+            pub fn d7(comptime c: hal.FunctionConfig) void {
                 pin.Function(12).init(c);
             }
         };
         pub const spi2 = struct {
-            pub fn sck(c: hal.FunctionConfig) void {
+            pub fn sck(comptime c: hal.FunctionConfig) void {
                 pin.Function(5).init(c);
             }
         };
         pub const tim3 = struct {
-            pub fn ch2(c: hal.FunctionConfig) void {
+            pub fn ch2(comptime c: hal.FunctionConfig) void {
                 pin.Function(2).init(c);
             }
         };
         pub const usart6 = struct {
-            pub fn rx(c: hal.FunctionConfig) void {
+            pub fn rx(comptime c: hal.FunctionConfig) void {
                 pin.Function(8).init(c);
             }
         };
@@ -919,17 +919,17 @@ pub const gpio = struct {
         pub const Input = pin.Input;
         pub const analog = pin.analog;
         pub const sdio = struct {
-            pub fn d0(c: hal.FunctionConfig) void {
+            pub fn d0(comptime c: hal.FunctionConfig) void {
                 pin.Function(12).init(c);
             }
         };
         pub const tim3 = struct {
-            pub fn ch3(c: hal.FunctionConfig) void {
+            pub fn ch3(comptime c: hal.FunctionConfig) void {
                 pin.Function(2).init(c);
             }
         };
         pub const usart6 = struct {
-            pub fn ck(c: hal.FunctionConfig) void {
+            pub fn ck(comptime c: hal.FunctionConfig) void {
                 pin.Function(8).init(c);
             }
         };
@@ -940,22 +940,22 @@ pub const gpio = struct {
         pub const Input = pin.Input;
         pub const analog = pin.analog;
         pub const i2c3 = struct {
-            pub fn sda(c: hal.FunctionConfig) void {
+            pub fn sda(comptime c: hal.FunctionConfig) void {
                 pin.Function(4).init(c);
             }
         };
         pub const rcc = struct {
-            pub fn mco_2(c: hal.FunctionConfig) void {
+            pub fn mco_2(comptime c: hal.FunctionConfig) void {
                 pin.Function(0).init(c);
             }
         };
         pub const sdio = struct {
-            pub fn d1(c: hal.FunctionConfig) void {
+            pub fn d1(comptime c: hal.FunctionConfig) void {
                 pin.Function(12).init(c);
             }
         };
         pub const tim3 = struct {
-            pub fn ch4(c: hal.FunctionConfig) void {
+            pub fn ch4(comptime c: hal.FunctionConfig) void {
                 pin.Function(2).init(c);
             }
         };
@@ -966,12 +966,12 @@ pub const gpio = struct {
         pub const Input = pin.Input;
         pub const analog = pin.analog;
         pub const sdio = struct {
-            pub fn d2(c: hal.FunctionConfig) void {
+            pub fn d2(comptime c: hal.FunctionConfig) void {
                 pin.Function(12).init(c);
             }
         };
         pub const spi3 = struct {
-            pub fn sck(c: hal.FunctionConfig) void {
+            pub fn sck(comptime c: hal.FunctionConfig) void {
                 pin.Function(6).init(c);
             }
         };
@@ -982,12 +982,12 @@ pub const gpio = struct {
         pub const Input = pin.Input;
         pub const analog = pin.analog;
         pub const sdio = struct {
-            pub fn d3(c: hal.FunctionConfig) void {
+            pub fn d3(comptime c: hal.FunctionConfig) void {
                 pin.Function(12).init(c);
             }
         };
         pub const spi3 = struct {
-            pub fn miso(c: hal.FunctionConfig) void {
+            pub fn miso(comptime c: hal.FunctionConfig) void {
                 pin.Function(6).init(c);
             }
         };
@@ -998,12 +998,12 @@ pub const gpio = struct {
         pub const Input = pin.Input;
         pub const analog = pin.analog;
         pub const sdio = struct {
-            pub fn ck(c: hal.FunctionConfig) void {
+            pub fn ck(comptime c: hal.FunctionConfig) void {
                 pin.Function(12).init(c);
             }
         };
         pub const spi3 = struct {
-            pub fn mosi(c: hal.FunctionConfig) void {
+            pub fn mosi(comptime c: hal.FunctionConfig) void {
                 pin.Function(6).init(c);
             }
         };
@@ -1041,12 +1041,12 @@ pub const gpio = struct {
         pub const Input = pin.Input;
         pub const analog = pin.analog;
         pub const sdio = struct {
-            pub fn cmd(c: hal.FunctionConfig) void {
+            pub fn cmd(comptime c: hal.FunctionConfig) void {
                 pin.Function(12).init(c);
             }
         };
         pub const tim3 = struct {
-            pub fn etr(c: hal.FunctionConfig) void {
+            pub fn etr(comptime c: hal.FunctionConfig) void {
                 pin.Function(2).init(c);
             }
         };
