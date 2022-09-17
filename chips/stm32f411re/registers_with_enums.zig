@@ -12533,12 +12533,6 @@ pub fn Mmio(comptime size: u8, comptime PackedT: type) type {
             write(addr, val);
         }
 
-        // pub inline fn set(addr: *volatile Self, comptime field_name: anytype, field_value: anytype) void {
-        //     var val = read(addr);
-        //     @field(val, field_name) = field_value;
-        //     write(addr, val);
-        // }
-
         // setField supports setting filed value in various ways
         // for example:
         // regs.gpioa.moder.set("moder3", regs.gpioh.Moder.Moder0.input) // exact type
