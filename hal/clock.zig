@@ -173,66 +173,7 @@ fn enumField(comptime T: type, comptime prefix: []const u8, comptime value: anyt
     return comptime @field(T, prefix ++ std.fmt.comptimePrint("{d}", .{value}));
 }
 
-fn bitOf(x: u16, index: u4) u1 {
-    const mask = @as(u16, 1) << index;
-    return if (x & mask == mask) 1 else 0;
-}
-
 const std = @import("std");
-const expectEqual = std.testing.expectEqual;
-
-test "is bit set" {
-    try expectEqual(bitOf(336, 0), 0);
-    try expectEqual(bitOf(336, 1), 0);
-    try expectEqual(bitOf(336, 2), 0);
-    try expectEqual(bitOf(336, 3), 0);
-    try expectEqual(bitOf(336, 5), 0);
-    try expectEqual(bitOf(336, 7), 0);
-
-    try expectEqual(bitOf(336, 4), 1);
-    try expectEqual(bitOf(336, 6), 1);
-    try expectEqual(bitOf(336, 8), 1);
-}
-
-// Converts prescalre value into bits to write in prescaler register.
-fn prescalerBits(comptime DestType: type, comptime value: u16) DestType {
-    return switch (DestType) {
-        u3 => {
-            return switch (value) {
-                1 => 0b000,
-                2 => 0b100,
-                4 => 0b101,
-                8 => 0b111,
-                else => @compileError("invalid prescaler value"),
-            };
-        },
-        u4 => {
-            return switch (value) {
-                1 => 0b0000,
-                2 => 0b1000,
-                4 => 0b1001,
-                8 => 0b1010,
-                16 => 0b1011,
-                64 => 0b1100,
-                128 => 0b1101,
-                256 => 0b1110,
-                512 => 0b1111,
-                else => @compileError("invalid prescaler value"),
-            };
-        },
-        else => unreachable,
-    };
-}
-
-test "prescalerBits" {
-    try expectEqual(prescalerBits(u3, 4), 0b101);
-    try expectEqual(prescalerBits(u4, 4), 0b1001);
-
-    try expectEqual(prescalerBits(u3, 8), 0b111);
-    try expectEqual(prescalerBits(u4, 8), 0b1010);
-    try expectEqual(prescalerBits(u4, 256), 0b1110);
-}
-
 // use this terminal command to view possible pll config
 // source env var is frequency of input oscilator
 // usb frequency is required to be 48 MHz, but then is unable to reach max
